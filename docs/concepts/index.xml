@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster Topologies</title>
       <link>/docs/concepts/cluster-topologies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;cluster-topologies&#34;&gt;Cluster Topologies&lt;/h1&gt;
-&lt;p&gt;Ondat makes it possible for you to organise your cluster in multiple ways,
+        &lt;p&gt;Ondat makes it possible for you to organise your cluster in multiple ways,
 depending on your priorities and needs. The approaches below are idealised
 representations of possible Ondat clusters and can be mixed, modified and
 changed at execution time.&lt;/p&gt;
@@ -61,7 +60,7 @@ retaining the utility of orchestrators for managing app lifecycle.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster</title>
       <link>/docs/concepts/clusters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -69,8 +68,7 @@ retaining the utility of orchestrators for managing app lifecycle.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;clusters&#34;&gt;Clusters&lt;/h1&gt;
-&lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed
+        &lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed
 control plane.&lt;/p&gt;
 &lt;p&gt;Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar
 orchestrator) cluster, and we expect our daemonset to run on all worker
@@ -82,7 +80,7 @@ nodes.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Compression</title>
       <link>/docs/concepts/compression/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -90,8 +88,7 @@ nodes.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;compression&#34;&gt;Compression&lt;/h1&gt;
-&lt;p&gt;Ondat compression is handled on a per volume basis and is disabled by
+        &lt;p&gt;Ondat compression is handled on a per volume basis and is disabled by
 default in v2.2+, as performance is generally increased when compression is
 disabled due to block alignment. This means that there is a trade
 off between volume performance and the space the volume occupies on the backend
@@ -118,7 +115,7 @@ for a volume, blocks are compressed then encrypted.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Etcd</title>
       <link>/docs/concepts/etcd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -126,8 +123,7 @@ for a volume, blocks are compressed then encrypted.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;etcd&#34;&gt;Etcd&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://etcd.io&#34;&gt;Etcd&lt;/a&gt; is an open-source distributed, strongly consistent key
+        &lt;p&gt;&lt;a href=&#34;https://etcd.io&#34;&gt;Etcd&lt;/a&gt; is an open-source distributed, strongly consistent key
 value store that is used by Ondat to durably persist the Ondat cluster
 state. As the backing store for Kubernetes, Ondat uses etcd for many of the
 same reasons.&lt;/p&gt;
@@ -147,7 +143,7 @@ to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Fencing</title>
       <link>/docs/concepts/fencing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -155,8 +151,7 @@ to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&
       <description>
         
         
-        &lt;h1 id=&#34;fencing&#34;&gt;Fencing&lt;/h1&gt;
-&lt;h2 id=&#34;statefulset-behaviour&#34;&gt;StatefulSet behaviour&lt;/h2&gt;
+        &lt;h2 id=&#34;statefulset-behaviour&#34;&gt;StatefulSet behaviour&lt;/h2&gt;
 &lt;p&gt;In order to understand what Ondat Fencing for Kubernetes is and when it is
 needed, it is required to first understand the behaviour of StatefulSets.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/&#34;&gt;StatefulSets&lt;/a&gt;
@@ -236,7 +231,7 @@ Operations&lt;/a&gt; page.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Namespaces</title>
       <link>/docs/concepts/namespaces/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -244,8 +239,7 @@ Operations&lt;/a&gt; page.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;namespaces&#34;&gt;Namespaces&lt;/h1&gt;
-&lt;p&gt;Ondat namespaces are an identical concept to Kubernetes namespaces. They
+        &lt;p&gt;Ondat namespaces are an identical concept to Kubernetes namespaces. They
 are intended to allow an Ondat cluster to be used by multiple teams across
 multiple projects.&lt;/p&gt;
 &lt;p&gt;It is not necessary to create Ondat namespaces manually, as Ondat maps
@@ -257,7 +251,7 @@ the Ondat StorageClass are created.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Nodes</title>
       <link>/docs/concepts/nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -265,8 +259,7 @@ the Ondat StorageClass are created.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;nodes&#34;&gt;Nodes&lt;/h1&gt;
-&lt;p&gt;An Ondat node is any machine (virtual or physical) that is running the
+        &lt;p&gt;An Ondat node is any machine (virtual or physical) that is running the
 Ondat daemonset pod. A node must be running a daemonset pod in order to
 consume and/or present storage.&lt;/p&gt;
 &lt;p&gt;Nodes can be run in several modes.&lt;/p&gt;
@@ -305,7 +298,7 @@ several nodes running in this mode.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Components</title>
       <link>/docs/concepts/components/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -313,8 +306,7 @@ several nodes running in this mode.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;ondat-components&#34;&gt;Ondat Components&lt;/h1&gt;
-&lt;p&gt;Ondat is a software-defined storage platform for running stateful
+        &lt;p&gt;Ondat is a software-defined storage platform for running stateful
 applications in Kubernetes.&lt;/p&gt;
 &lt;p&gt;Fundamentally, Ondat uses the storage attached to the nodes in the
 Ondat cluster to create and present virtual volumes into containers. Space
@@ -392,7 +384,7 @@ restarted on any node and access volumes transparently.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Policies</title>
       <link>/docs/concepts/policies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -400,8 +392,7 @@ restarted on any node and access volumes transparently.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;policies&#34;&gt;Policies&lt;/h1&gt;
-&lt;p&gt;Ondat policies are a way to control user and group access to Ondat
+        &lt;p&gt;Ondat policies are a way to control user and group access to Ondat
 &lt;a href=&#34;/docs/concepts/namespaces&#34;&gt;Namespaces&lt;/a&gt;. To grant a user or group
 access to a namespace, a policy needs to be created mapping the user or group
 to the namespace.&lt;/p&gt;
@@ -415,7 +406,7 @@ to the namespace.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: ReadWrteMany</title>
       <link>/docs/concepts/rwx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -494,7 +485,7 @@ documentation for more details.&lt;/li&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Replication</title>
       <link>/docs/concepts/replication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -502,8 +493,7 @@ documentation for more details.&lt;/li&gt;
       <description>
         
         
-        &lt;h1 id=&#34;replication&#34;&gt;Replication&lt;/h1&gt;
-&lt;p&gt;Ondat replicates volumes across nodes for data protection and high
+        &lt;p&gt;Ondat replicates volumes across nodes for data protection and high
 availability. Synchronous replication ensures strong consistency for
 applications such as databases and Elasticsearch, incurring one network round
 trip on writes.&lt;/p&gt;
@@ -617,7 +607,7 @@ replicas will be tolerated.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Volumes</title>
       <link>/docs/concepts/volumes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -625,8 +615,7 @@ replicas will be tolerated.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;volumes&#34;&gt;Volumes&lt;/h1&gt;
-&lt;p&gt;Ondat volumes are a logical construct which represent a writeable volume
+        &lt;p&gt;Ondat volumes are a logical construct which represent a writeable volume
 and exhibit standard POSIX semantics. Ondat presents volumes as mounts into
 containers via the Linux LIO subsystem.&lt;/p&gt;
 &lt;p&gt;Conceptually, Ondat volumes have a frontend presentation, which is what
