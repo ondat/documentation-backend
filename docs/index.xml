@@ -3254,7 +3254,7 @@ node5       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster Topologies</title>
       <link>/docs/concepts/cluster-topologies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3262,8 +3262,7 @@ node5       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4
       <description>
         
         
-        &lt;h1 id=&#34;cluster-topologies&#34;&gt;Cluster Topologies&lt;/h1&gt;
-&lt;p&gt;Ondat makes it possible for you to organise your cluster in multiple ways,
+        &lt;p&gt;Ondat makes it possible for you to organise your cluster in multiple ways,
 depending on your priorities and needs. The approaches below are idealised
 representations of possible Ondat clusters and can be mixed, modified and
 changed at execution time.&lt;/p&gt;
@@ -3342,7 +3341,7 @@ Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-we
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster</title>
       <link>/docs/concepts/clusters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3350,8 +3349,7 @@ Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-we
       <description>
         
         
-        &lt;h1 id=&#34;clusters&#34;&gt;Clusters&lt;/h1&gt;
-&lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed
+        &lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed
 control plane.&lt;/p&gt;
 &lt;p&gt;Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar
 orchestrator) cluster, and we expect our daemonset to run on all worker
@@ -3363,7 +3361,7 @@ nodes.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Compression</title>
       <link>/docs/concepts/compression/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3371,8 +3369,7 @@ nodes.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;compression&#34;&gt;Compression&lt;/h1&gt;
-&lt;p&gt;Ondat compression is handled on a per volume basis and is disabled by
+        &lt;p&gt;Ondat compression is handled on a per volume basis and is disabled by
 default in v2.2+, as performance is generally increased when compression is
 disabled due to block alignment. This means that there is a trade
 off between volume performance and the space the volume occupies on the backend
@@ -4580,7 +4577,7 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Etcd</title>
       <link>/docs/concepts/etcd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4588,8 +4585,7 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
       <description>
         
         
-        &lt;h1 id=&#34;etcd&#34;&gt;Etcd&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://etcd.io&#34;&gt;Etcd&lt;/a&gt; is an open-source distributed, strongly consistent key
+        &lt;p&gt;&lt;a href=&#34;https://etcd.io&#34;&gt;Etcd&lt;/a&gt; is an open-source distributed, strongly consistent key
 value store that is used by Ondat to durably persist the Ondat cluster
 state. As the backing store for Kubernetes, Ondat uses etcd for many of the
 same reasons.&lt;/p&gt;
@@ -5005,7 +5001,7 @@ replicas will be tolerated.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Fencing</title>
       <link>/docs/concepts/fencing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5013,8 +5009,7 @@ replicas will be tolerated.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;fencing&#34;&gt;Fencing&lt;/h1&gt;
-&lt;h2 id=&#34;statefulset-behaviour&#34;&gt;StatefulSet behaviour&lt;/h2&gt;
+        &lt;h2 id=&#34;statefulset-behaviour&#34;&gt;StatefulSet behaviour&lt;/h2&gt;
 &lt;p&gt;In order to understand what Ondat Fencing for Kubernetes is and when it is
 needed, it is required to first understand the behaviour of StatefulSets.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/&#34;&gt;StatefulSets&lt;/a&gt;
