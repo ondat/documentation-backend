@@ -74,6 +74,8 @@
   </url><url>
     <loc>/docs/platforms/azure-aks/</loc>
   </url><url>
+    <loc>/docs/usecases/cassandra/</loc>
+  </url><url>
     <loc>/docs/reference/cli/</loc>
   </url><url>
     <loc>/docs/operations/health/</loc>
@@ -233,8 +235,6 @@
     <loc>/docs/reference/cli/update/</loc>
   </url><url>
     <loc>/docs/operations/upgrade/</loc>
-  </url><url>
-    <loc>/docs/usecases/cassandra/</loc>
   </url><url>
     <loc>/docs/operations/users/</loc>
   </url><url>
