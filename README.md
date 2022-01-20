@@ -1,7 +1,7 @@
 [![pages-build-deployment](https://github.com/ondat/documentation-backend/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/ondat/documentation-backend/actions/workflows/pages/pages-build-deployment)
 
 # Documentation Backend
-Ondat documentation is leveraging the open source static site generator called Hugo. 
+Ondat documentation is leveraging the open source static site generator called Hugo.   
 ***Note*: This repository does not have any of the documentation content.**
 
 # How to contribute
