@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster Health</title>
       <link>/docs/operations/health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;cluster-health&#34;&gt;Cluster health&lt;/h1&gt;
-&lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
+        &lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/_index&#34;&gt;CLI&lt;/a&gt; displays the
 status of nodes in the cluster.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get nodes
@@ -38,7 +37,7 @@ node5       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: ClusterID</title>
       <link>/docs/operations/cluster-id/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -46,8 +45,7 @@ node5       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4
       <description>
         
         
-        &lt;h1 id=&#34;clusterid&#34;&gt;ClusterID&lt;/h1&gt;
-&lt;p&gt;Every Ondat cluster has a unique ClusterID generated at bootstrap. A
+        &lt;p&gt;Every Ondat cluster has a unique ClusterID generated at bootstrap. A
 Ondat Licence is specific for a ClusterID.&lt;/p&gt;
 &lt;h2 id=&#34;how-to-obtain-the-clusterid&#34;&gt;How to obtain the ClusterID&lt;/h2&gt;
 &lt;p&gt;You can obtain the ClusterID using either the CLI or GUI.&lt;/p&gt;
@@ -79,7 +77,7 @@ Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-we
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Deleting Ondat Objects</title>
       <link>/docs/operations/delete-stos-objects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -87,8 +85,7 @@ Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-we
       <description>
         
         
-        &lt;h1 id=&#34;deleting-ondat-objects&#34;&gt;Deleting Ondat Objects&lt;/h1&gt;
-&lt;p&gt;When a Kubernetes object is deleted, Ondat controllers automatically sync
+        &lt;p&gt;When a Kubernetes object is deleted, Ondat controllers automatically sync
 this deletion to Ondat. For example, when a Kubernets node is deleted, this
 will automatically be mirrored in Ondat, likewise with Namespaces.&lt;/p&gt;
 &lt;ol&gt;
@@ -175,7 +172,7 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Disk Full</title>
       <link>/docs/operations/disk-full/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -183,8 +180,7 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
       <description>
         
         
-        &lt;h1 id=&#34;disk-full&#34;&gt;Disk Full&lt;/h1&gt;
-&lt;p&gt;When the physical disks in your cluster get full, or start using disk space too
+        &lt;p&gt;When the physical disks in your cluster get full, or start using disk space too
 fast, Kubernetes will automatically apply the &lt;code&gt;DiskPressure:NoExecute&lt;/code&gt; taint.&lt;/p&gt;
 &lt;p&gt;The Ondat Daemonset has a toleration applied for this taint, so it will
 continue to run.&lt;/p&gt;
@@ -245,7 +241,7 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Encryption</title>
       <link>/docs/operations/encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -253,8 +249,7 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
       <description>
         
         
-        &lt;h1 id=&#34;encryption&#34;&gt;Encryption&lt;/h1&gt;
-&lt;p&gt;For more detail on encryption at rest in Ondat, see &lt;a href=&#34;/docs/reference/encryption&#34;&gt;the reference page&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;For more detail on encryption at rest in Ondat, see &lt;a href=&#34;/docs/reference/encryption&#34;&gt;the reference page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;enabling-encryption-on-a-volume&#34;&gt;Enabling encryption on a volume&lt;/h2&gt;
 &lt;p&gt;Encrypting a volume is done by simply creating a volume with the
 &lt;code&gt;storageos.com/encryption=true&lt;/code&gt; label. This can be set on the PVC or on
@@ -307,7 +302,7 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Etcd</title>
       <link>/docs/operations/etcd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -315,8 +310,7 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
       <description>
         
         
-        &lt;h1 id=&#34;etcd&#34;&gt;Etcd&lt;/h1&gt;
-&lt;p&gt;Check the &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites page&lt;/a&gt;
+        &lt;p&gt;Check the &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites page&lt;/a&gt;
 for a step by step installation of etcd.&lt;/p&gt;
 &lt;h2 id=&#34;best-practices&#34;&gt;Best practices&lt;/h2&gt;
 &lt;p&gt;Ondat uses etcd as a service, whether it is deployed following the
@@ -422,7 +416,7 @@ after a failure of etcd, contact the Ondat support team.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Failure Modes</title>
       <link>/docs/operations/failure-modes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -430,8 +424,7 @@ after a failure of etcd, contact the Ondat support team.&lt;/p&gt;
       <description>
         
         
-        &lt;h2 id=&#34;failure-modes&#34;&gt;Failure Modes&lt;/h2&gt;
-&lt;p&gt;For more information about replication and failure modes, see our
+        &lt;p&gt;For more information about replication and failure modes, see our
 &lt;a href=&#34;/docs/concepts/replication&#34;&gt;Replication concepts page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The failure mode for a specific volume can be set using a label on a PVC or it
 can be set as a parameter on a &lt;a href=&#34;/docs/operations/storageclasses&#34;&gt;StorageClass&lt;/a&gt;. The PVC definition takes precedence over
@@ -450,7 +443,7 @@ the StorageClass.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;5Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;failure-modes-1&#34;&gt;Failure Modes&lt;/h2&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;failure-modes&#34;&gt;Failure Modes&lt;/h2&gt;
 &lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically
@@ -517,7 +510,7 @@ replicas will be tolerated.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Fencing</title>
       <link>/docs/operations/fencing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -525,8 +518,7 @@ replicas will be tolerated.&lt;/p&gt;
       <description>
         
         
-        &lt;h2 id=&#34;fencing&#34;&gt;Fencing&lt;/h2&gt;
-&lt;p&gt;For information regarding the Ondat Fencing feature, see our
+        &lt;p&gt;For information regarding the Ondat Fencing feature, see our
 &lt;a href=&#34;/docs/concepts/fencing&#34;&gt;fencing concepts page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;labeling-a-pod-for-fencing&#34;&gt;Labeling a pod for fencing&lt;/h2&gt;
 &lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
@@ -661,7 +653,7 @@ mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;non
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Volume Guide</title>
       <link>/docs/operations/firstpvc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -669,8 +661,7 @@ mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;non
       <description>
         
         
-        &lt;h1 id=&#34;first-pvc&#34;&gt;First PVC&lt;/h1&gt;
-&lt;p&gt;Follow the recipes on this page to create your first PVC (Persistent Volume
+        &lt;p&gt;Follow the recipes on this page to create your first PVC (Persistent Volume
 Claim) using Ondat. Ondat implements dynamic provisioning, so the
 creation of a PVC will automatically provision a PV (PersistentVolume) that can
 be used to persist data written by a Pod.&lt;/p&gt;
@@ -802,7 +793,7 @@ on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Host Storage</title>
       <link>/docs/operations/managing-host-storage/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -810,8 +801,7 @@ on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;host-storage&#34;&gt;Host Storage&lt;/h1&gt;
-&lt;p&gt;Ondat uses the storage available on the nodes where it is installed to
+        &lt;p&gt;Ondat uses the storage available on the nodes where it is installed to
 present as available for volumes.&lt;/p&gt;
 &lt;p&gt;To mitigate against problems caused by filling the host root disk, we
 recommend mounting a separate device into the &lt;code&gt;/var/lib/storageos&lt;/code&gt; directory.
@@ -972,7 +962,7 @@ Filesystem                  Size  Used Avail Use% Mounted on
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Labeling Ondat Objects</title>
       <link>/docs/operations/label-stos-objects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -980,8 +970,7 @@ Filesystem                  Size  Used Avail Use% Mounted on
       <description>
         
         
-        &lt;h1 id=&#34;labeling-ondat-objects&#34;&gt;Labeling Ondat Objects&lt;/h1&gt;
-&lt;p&gt;For more information regarding the Ondat Label Sync feature, see our
+        &lt;p&gt;For more information regarding the Ondat Label Sync feature, see our
 &lt;a href=&#34;/docs/reference/kubernetes-object-sync&#34;&gt;Kubernetes Object Sync reference page.&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;label-syncing&#34;&gt;Label Syncing&lt;/h2&gt;
 &lt;p&gt;The Ondat API Manager handles cases where information from objects in your
@@ -1165,7 +1154,7 @@ Labels                                  beta.kubernetes.io/arch=amd64,
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Licensing</title>
       <link>/docs/operations/licensing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1173,8 +1162,7 @@ Labels                                  beta.kubernetes.io/arch=amd64,
       <description>
         
         
-        &lt;h1 id=&#34;licensing&#34;&gt;Licensing&lt;/h1&gt;
-&lt;p&gt;A newly installed Ondat cluster doesn&amp;rsquo;t include a default licence. The cluster
+        &lt;p&gt;A newly installed Ondat cluster doesn&amp;rsquo;t include a default licence. The cluster
 will run unlicenced for 24 hours without any limitations. After this time
 period, any new operations (for example: volume provisioning, adding nodes,
 etc.) will not be possible. Note that any existing configuration, volumes and
@@ -1315,7 +1303,7 @@ NaalLsK/96bJov6tpbg96g==
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Namespaces</title>
       <link>/docs/operations/namespaces/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1323,8 +1311,7 @@ NaalLsK/96bJov6tpbg96g==
       <description>
         
         
-        &lt;h1 id=&#34;namespaces&#34;&gt;Namespaces&lt;/h1&gt;
-&lt;p&gt;Namespaces help different projects or teams share a Ondat cluster. Only the
+        &lt;p&gt;Namespaces help different projects or teams share a Ondat cluster. Only the
 default namespace is created by default.&lt;/p&gt;
 &lt;p&gt;Namespaces apply to volumes.&lt;/p&gt;
 &lt;h2 id=&#34;managing-namespaces&#34;&gt;Managing Namespaces&lt;/h2&gt;
@@ -1340,7 +1327,7 @@ before the namespace can be deleted.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Policies</title>
       <link>/docs/operations/policies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1348,8 +1335,7 @@ before the namespace can be deleted.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;policies&#34;&gt;Policies&lt;/h1&gt;
-&lt;p&gt;Policies control access to Ondat namespaces. Policies can be
+        &lt;p&gt;Policies control access to Ondat namespaces. Policies can be
 configured at the group or user level so access can be controlled granularly.&lt;/p&gt;
 &lt;p&gt;Users can belong to one or more groups to control their namespace permissions.
 Additionally user specific policies can be created to grant a user access to a
@@ -1374,7 +1360,7 @@ before deletion of the policy can be completed.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: ReadWriteMany</title>
       <link>/docs/operations/rwx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1382,8 +1368,7 @@ before deletion of the policy can be completed.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;readwritemany&#34;&gt;ReadWriteMany&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;Note: Ondat Project edition is required to create RWX Volumes.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access mode&lt;/a&gt;
@@ -1465,7 +1450,7 @@ attached.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Storagelasses</title>
       <link>/docs/operations/storageclasses/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1473,8 +1458,7 @@ attached.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;storageclasses&#34;&gt;StorageClasses&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/storage-classes/&#34;&gt;StorageClasses&lt;/a&gt;
+        &lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/storage-classes/&#34;&gt;StorageClasses&lt;/a&gt;
 in Kubernetes are used to link PVCs with a backend storage provisioner - for
 instance, Ondat. A StorageClass defines parameters to pass to the
 provisioner, which in the case of Ondat can be translated into behaviour
@@ -1567,7 +1551,7 @@ and replication with &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;soft
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Topology-Aware Placement (TAP)</title>
       <link>/docs/operations/tap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1575,8 +1559,7 @@ and replication with &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;soft
       <description>
         
         
-        &lt;h1 id=&#34;topology-aware-placement-tap&#34;&gt;Topology-Aware Placement (TAP)&lt;/h1&gt;
-&lt;p&gt;Ondat Topology-Aware Placement is a feature that enforces placement of data
+        &lt;p&gt;Ondat Topology-Aware Placement is a feature that enforces placement of data
 across failure domains to guarantee high availability.&lt;/p&gt;
 &lt;p&gt;TAP uses default labels on nodes to define failure domains. For instance, an
 Availability Zone. However, the key label used to segment failure domains can
@@ -1659,7 +1642,7 @@ between the zones we just set.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: TRIM</title>
       <link>/docs/operations/trim/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1667,8 +1650,7 @@ between the zones we just set.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;trim&#34;&gt;TRIM&lt;/h1&gt;
-&lt;p&gt;Ondat volumes support TRIM/Unmap by default for all uncompressed volumes.
+        &lt;p&gt;Ondat volumes support TRIM/Unmap by default for all uncompressed volumes.
 Ondat creates uncompressed volumes by default so all of these volumes will
 support TRIM/Unmap calls. TRIM&amp;rsquo;ing a Ondat volume will release space taken
 up by deleted blocks in the Ondat volume blob files.&lt;/p&gt;
@@ -1785,7 +1767,7 @@ will use &lt;code&gt;-o discard&lt;/code&gt;.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Troubleshooting</title>
       <link>/docs/operations/troubleshooting/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1793,8 +1775,7 @@ will use &lt;code&gt;-o discard&lt;/code&gt;.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;troubleshooting&#34;&gt;Troubleshooting&lt;/h1&gt;
-&lt;p&gt;This section is aimed to help you troubleshoot issues in your cluster, whether
+        &lt;p&gt;This section is aimed to help you troubleshoot issues in your cluster, whether
 they are related to the Ondat installation, integration with
 orchestrators or common misconfigurations.&lt;/p&gt;
 &lt;h2 id=&#34;tools&#34;&gt;Tools&lt;/h2&gt;
@@ -2194,7 +2175,7 @@ to get in touch with us.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Uninstall Ondat</title>
       <link>/docs/operations/uninstall/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2202,8 +2183,7 @@ to get in touch with us.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;uninstall-ondat&#34;&gt;Uninstall Ondat&lt;/h1&gt;
-&lt;p&gt;This document details a step-by-step procedure on how to remove Ondat from a
+        &lt;p&gt;This document details a step-by-step procedure on how to remove Ondat from a
 Kubernetes cluster.&lt;/p&gt;
 &lt;p&gt;Remember that Ondat enables the stateful applications within your cluster.
 It&amp;rsquo;s very important to remove any applications that rely on Ondat before
@@ -2295,7 +2275,7 @@ $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Upgrade Ondat</title>
       <link>/docs/operations/upgrade/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2303,8 +2283,7 @@ $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
       <description>
         
         
-        &lt;h1 id=&#34;upgrade-ondat&#34;&gt;Upgrade Ondat&lt;/h1&gt;
-&lt;p&gt;This document details a step-by-step procedure to upgrade an Ondat v2 cluster.&lt;/p&gt;
+        &lt;p&gt;This document details a step-by-step procedure to upgrade an Ondat v2 cluster.&lt;/p&gt;
 &lt;p&gt;Keep in mind that upgrading a cluster will require minor downtime of
 applications using Ondat volumes. However we will take steps to minimize
 the required downtime as much as possible.&lt;/p&gt;
@@ -2378,7 +2357,7 @@ Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: User Management</title>
       <link>/docs/operations/users/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2386,8 +2365,7 @@ Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;
       <description>
         
         
-        &lt;h1 id=&#34;user-management&#34;&gt;User Management&lt;/h1&gt;
-&lt;p&gt;An Ondat cluster admin can create users and restrict their access rights to
+        &lt;p&gt;An Ondat cluster admin can create users and restrict their access rights to
 Ondat &lt;a href=&#34;/docs/operations/namespaces&#34;&gt;namespaces&lt;/a&gt; using
 &lt;a href=&#34;/docs/operations/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2406,7 +2384,7 @@ you to enter a password for the newly created user.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Volume Resize</title>
       <link>/docs/operations/resize/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2414,8 +2392,7 @@ you to enter a password for the newly created user.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;volume-resize&#34;&gt;Volume Resize&lt;/h1&gt;
-&lt;p&gt;Ondat supports offline resize of volumes, either through editing a PVC
+        &lt;p&gt;Ondat supports offline resize of volumes, either through editing a PVC
 storage request, or by updating the volume config via the CLI or UI. A volume
 cannot be resized while it is in use. To ensure that it is not, for a resize
 operation to take place the volume must not be attached to a node. This

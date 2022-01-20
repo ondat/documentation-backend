@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Overview</title>
       <link>/docs/introduction/overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;ondat-overview&#34;&gt;Ondat Overview&lt;/h1&gt;
-&lt;p&gt;Over the past several months, we&amp;rsquo;ve been hard at work on Ondat V2, which
+        &lt;p&gt;Over the past several months, we&amp;rsquo;ve been hard at work on Ondat V2, which
 contains some significant enhancements over our v1 product. We&amp;rsquo;ve built V2
 based on our observations of trends in the industry, as well as our own
 experience.&lt;/p&gt;
@@ -96,7 +95,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Quickstart</title>
       <link>/docs/introduction/quickstart/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -104,8 +103,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
       <description>
         
         
-        &lt;h1 id=&#34;quickstart&#34;&gt;Quickstart&lt;/h1&gt;
-&lt;ul&gt;
+        &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Start by &lt;a href=&#34;/docs/concepts/components&#34;&gt;understanding the architecture&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
@@ -125,7 +123,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Supported Platforms and Orchestrators</title>
       <link>/docs/introduction/platforms/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -133,8 +131,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
       <description>
         
         
-        &lt;h1 id=&#34;supported-platforms-and-orchestrators&#34;&gt;Supported Platforms and Orchestrators&lt;/h1&gt;
-&lt;h2 id=&#34;os&#34;&gt;OS&lt;/h2&gt;
+        &lt;h2 id=&#34;os&#34;&gt;OS&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Linux X86_64&lt;/li&gt;
 &lt;li&gt;Kernels satisfying our module &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites&lt;/a&gt;&lt;/li&gt;

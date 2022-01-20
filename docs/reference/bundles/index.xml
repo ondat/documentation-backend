@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Diagnostic bundle</title>
       <link>/docs/reference/bundles/diagnostic-bundle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;diagnostic-bundle&#34;&gt;Diagnostic bundle&lt;/h1&gt;
-&lt;p&gt;Ondat can generate a cluster diagnostic bundle from the GUI or CLI under
+        &lt;p&gt;Ondat can generate a cluster diagnostic bundle from the GUI or CLI under
 user request. The bundle packages the information needed for the engineering
 team to understand the context of your cluster and begin troubleshooting any
 issues you may be experiencing.&lt;/p&gt;
@@ -74,7 +73,7 @@ helping customers troubleshoot their issues.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Support bundle</title>
       <link>/docs/reference/bundles/support_bundle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -82,8 +81,7 @@ helping customers troubleshoot their issues.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;support-bundle&#34;&gt;Support bundle&lt;/h1&gt;
-&lt;p&gt;The support bundle is a tool that gathers information both about Ondat and
+        &lt;p&gt;The support bundle is a tool that gathers information both about Ondat and
 the environment in which it is operating. It provides information about the
 state and configuration of the cluster, nodes and other Kubernetes objects, as
 well as system performance metrics.&lt;/p&gt;

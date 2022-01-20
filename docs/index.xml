@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Install</title>
       <link>/docs/reference/cluster-operator/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;install&#34;&gt;Install&lt;/h1&gt;
-&lt;p&gt;To install the operator follow the installation page for your orchestrator.&lt;/p&gt;
+        &lt;p&gt;To install the operator follow the installation page for your orchestrator.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/install/kubernetes.md&#34;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/install/rancher.md&#34;&gt;Rancher&lt;/a&gt;&lt;/li&gt;
@@ -34,7 +33,7 @@
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Kubernetes</title>
       <link>/docs/install/kubernetes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -42,8 +41,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;kubernetes&#34;&gt;Kubernetes&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;Make sure the
 &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding.&lt;/p&gt;
@@ -302,7 +300,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Overview</title>
       <link>/docs/introduction/overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -310,8 +308,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;ondat-overview&#34;&gt;Ondat Overview&lt;/h1&gt;
-&lt;p&gt;Over the past several months, we&amp;rsquo;ve been hard at work on Ondat V2, which
+        &lt;p&gt;Over the past several months, we&amp;rsquo;ve been hard at work on Ondat V2, which
 contains some significant enhancements over our v1 product. We&amp;rsquo;ve built V2
 based on our observations of trends in the industry, as well as our own
 experience.&lt;/p&gt;
@@ -384,7 +381,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Configuration</title>
       <link>/docs/reference/cluster-operator/configuration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -392,8 +389,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
       <description>
         
         
-        &lt;h1 id=&#34;configuration&#34;&gt;Configuration&lt;/h1&gt;
-&lt;h2 id=&#34;storageoscluster-resource-configuration&#34;&gt;StorageOSCluster Resource Configuration&lt;/h2&gt;
+        &lt;h2 id=&#34;storageoscluster-resource-configuration&#34;&gt;StorageOSCluster Resource Configuration&lt;/h2&gt;
 &lt;p&gt;The following table lists the configurable spec parameters of the StorageOSCluster custom resource and their default values.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -636,7 +632,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: OpenShift</title>
       <link>/docs/install/openshift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -644,8 +640,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
       <description>
         
         
-        &lt;h1 id=&#34;openshift&#34;&gt;OpenShift&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;Make sure the
 &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding. Including the deployment of an etcd cluster and
@@ -961,7 +956,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Quickstart</title>
       <link>/docs/introduction/quickstart/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -969,8 +964,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;quickstart&#34;&gt;Quickstart&lt;/h1&gt;
-&lt;ul&gt;
+        &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Start by &lt;a href=&#34;/docs/concepts/components&#34;&gt;understanding the architecture&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
@@ -990,7 +984,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster Operator examples</title>
       <link>/docs/reference/cluster-operator/examples/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -998,8 +992,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;cluster-operator-examples&#34;&gt;Cluster Operator examples&lt;/h1&gt;
-&lt;p&gt;Before deploying a Ondat cluster, create a Secret to define the Ondat
+        &lt;p&gt;Before deploying a Ondat cluster, create a Secret to define the Ondat
 API Username and Password in base64 encoding.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: v1
@@ -1130,7 +1123,7 @@ documentation&lt;/a&gt;.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Rancher</title>
       <link>/docs/install/rancher/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1138,8 +1131,7 @@ documentation&lt;/a&gt;.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;rancher&#34;&gt;Rancher&lt;/h1&gt;
-&lt;p&gt;Ondat is a certified Rancher application. We offer two installation
+        &lt;p&gt;Ondat is a certified Rancher application. We offer two installation
 methods:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Rancher Catalogue - this is the easiest and requires just a few clicks&lt;/li&gt;
@@ -1356,7 +1348,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster Operator upgrade</title>
       <link>/docs/reference/cluster-operator/upgrade/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1364,8 +1356,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;operator-upgrade&#34;&gt;Operator upgrade&lt;/h1&gt;
-&lt;h2 id=&#34;upgrade-ondat-operator-from-yaml-manifest&#34;&gt;Upgrade Ondat operator from yaml manifest&lt;/h2&gt;
+        &lt;h2 id=&#34;upgrade-ondat-operator-from-yaml-manifest&#34;&gt;Upgrade Ondat operator from yaml manifest&lt;/h2&gt;
 &lt;p&gt;Upgrade the Ondat operator using the following yaml manifest.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://github.com/storageos/cluster-operator/releases/download/v2.4.4/storageos-operator.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
@@ -1397,7 +1388,7 @@ Operator is upgrading.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Supported Platforms and Orchestrators</title>
       <link>/docs/introduction/platforms/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1405,8 +1396,7 @@ Operator is upgrading.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;supported-platforms-and-orchestrators&#34;&gt;Supported Platforms and Orchestrators&lt;/h1&gt;
-&lt;h2 id=&#34;os&#34;&gt;OS&lt;/h2&gt;
+        &lt;h2 id=&#34;os&#34;&gt;OS&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Linux X86_64&lt;/li&gt;
 &lt;li&gt;Kernels satisfying our module &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites&lt;/a&gt;&lt;/li&gt;
@@ -1424,7 +1414,7 @@ Operator is upgrading.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: System Configuration</title>
       <link>/docs/prerequisites/systemconfiguration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1432,8 +1422,7 @@ Operator is upgrading.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;system-configuration&#34;&gt;System Configuration&lt;/h1&gt;
-&lt;p&gt;Ondat requires certain kernel modules to function. In particular it
+        &lt;p&gt;Ondat requires certain kernel modules to function. In particular it
 requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source
 implementation of the SCSI target, on all nodes that will execute Ondat
 (usually the workers).&lt;/p&gt;
@@ -1520,7 +1509,7 @@ the init container, perform the following steps:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Availability of IPv6</title>
       <link>/docs/prerequisites/ipv6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1528,8 +1517,7 @@ the init container, perform the following steps:&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;availability-of-ipv6&#34;&gt;Availability of IPv6&lt;/h1&gt;
-&lt;h2 id=&#34;availability-of-ipv6-address-family&#34;&gt;Availability of IPv6 Address Family&lt;/h2&gt;
+        &lt;h2 id=&#34;availability-of-ipv6-address-family&#34;&gt;Availability of IPv6 Address Family&lt;/h2&gt;
 &lt;p&gt;Certain Ondat components need to be able to listen on a standard
 dual-stack socket of type AF_INET6. The IPv6 address family must be supported
 on the server so that this socket can be allocated. Ondat does not require
@@ -1541,7 +1529,7 @@ kernel.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Firewalls</title>
       <link>/docs/prerequisites/firewalls/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1549,8 +1537,7 @@ kernel.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;firewalls&#34;&gt;Firewalls&lt;/h1&gt;
-&lt;h2 id=&#34;port-list&#34;&gt;Port list&lt;/h2&gt;
+        &lt;h2 id=&#34;port-list&#34;&gt;Port list&lt;/h2&gt;
 &lt;p&gt;Ondat daemons listen on specific ports, which we require to be accessible
 between all nodes in the cluster:&lt;/p&gt;
 &lt;table&gt;
@@ -1632,7 +1619,7 @@ default DROP or REJECT rules.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Mount Propagation</title>
       <link>/docs/prerequisites/mountpropagation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1640,8 +1627,7 @@ default DROP or REJECT rules.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;mount-propagation&#34;&gt;Mount Propagation&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;Modern versions of Kubernetes, Docker or other Container Runtimes enable
 mount propagation by default.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1676,7 +1662,7 @@ check and enable mount propagation where appropriate.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: PID Limits</title>
       <link>/docs/prerequisites/pidlimits/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1684,8 +1670,7 @@ check and enable mount propagation where appropriate.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;pid-limits&#34;&gt;PID Limits&lt;/h1&gt;
-&lt;p&gt;Ondat recommends that a &lt;a href=&#34;https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#pid&#34;&gt;PID
+        &lt;p&gt;Ondat recommends that a &lt;a href=&#34;https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#pid&#34;&gt;PID
 cgroup&lt;/a&gt;
 limit of 32768 be used for Ondat pods.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1726,7 +1711,7 @@ generally see the CRI-O documentation
     </item>
     
     <item>
-      <title>Docs: Best Practices</title>
+      <title>Docs: Ondat Best Practices</title>
       <link>/docs/best-practices/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1835,7 +1820,7 @@ nodes.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Max AIO</title>
       <link>/docs/prerequisites/max-aio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1843,8 +1828,7 @@ nodes.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;max-aio&#34;&gt;Max AIO&lt;/h1&gt;
-&lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
+        &lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
 Input Output) contexts to serve I/O requests without blocking. Ondat
 requires 4 AIO contexts per deployment (i.e. a Ondat volume deployment,
 whether master or replica).&lt;/p&gt;
@@ -1877,7 +1861,7 @@ example line:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Etcd</title>
       <link>/docs/prerequisites/etcd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1885,8 +1869,7 @@ example line:&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;etcd&#34;&gt;Etcd&lt;/h1&gt;
-&lt;p&gt;Ondat requires an etcd cluster in order to function. For more information
+        &lt;p&gt;Ondat requires an etcd cluster in order to function. For more information
 on why etcd is required please see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;We do not support using the Kubernetes etcd for Ondat installations.&lt;/p&gt;
 &lt;p&gt;We provide two methods for installing etcd. For those looking for a quick
@@ -2978,7 +2961,7 @@ is no replacement for testing actual production or production like workloads.&lt
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Admission Controller</title>
       <link>/docs/reference/scheduler/admission-controller/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2986,8 +2969,7 @@ is no replacement for testing actual production or production like workloads.&lt
       <description>
         
         
-        &lt;h1 id=&#34;admission-controller&#34;&gt;Admission Controller&lt;/h1&gt;
-&lt;p&gt;Ondat implements a &lt;code&gt;MutatingAdmissionWebhook&lt;/code&gt; &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks&#34;&gt;Admission
+        &lt;p&gt;Ondat implements a &lt;code&gt;MutatingAdmissionWebhook&lt;/code&gt; &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks&#34;&gt;Admission
 Controller&lt;/a&gt;
 to ensure that Pods using Ondat Volumes use the &lt;a href=&#34;/docs/reference/scheduler/_index&#34;&gt;storageos-scheduler&lt;/a&gt;. An admission controller intercepts
 requests to the Kubernetes API server prior to persistence of the object, but
@@ -3073,7 +3055,7 @@ following object exists.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Apply</title>
       <link>/docs/reference/cli/apply/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3081,8 +3063,7 @@ following object exists.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;apply&#34;&gt;Apply&lt;/h1&gt;
-&lt;h2 id=&#34;apply-changes-to-resources&#34;&gt;Apply changes to resources&lt;/h2&gt;
+        &lt;h2 id=&#34;apply-changes-to-resources&#34;&gt;Apply changes to resources&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos apply --help
 Make changes to existing resources
 
@@ -3149,7 +3130,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Attach</title>
       <link>/docs/reference/cli/attach/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3157,8 +3138,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;attach&#34;&gt;Attach&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos attach --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos attach --help
 
 Attach a volume to a node
 
@@ -3189,7 +3169,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Amazon EKS</title>
       <link>/docs/platforms/aws-eks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3197,10 +3177,9 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;aws-eks&#34;&gt;AWS EKS&lt;/h1&gt;
-&lt;p&gt;Ondat is fully compatible with AWS EKS. To install Ondat on EKS,
+        &lt;p&gt;Ondat is fully compatible with Amazon EKS. To install Ondat on EKS,
 follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;An EKS deployment of Kubernetes uses AWS Linux by default with an optimized
+&lt;p&gt;An Amazon EKS deployment of Kubernetes uses Amazon Linux by default with an optimized
 kernel. As the requisite kernel modules are not available for Ondat to use
 TCMU, FUSE will be used as a fallback. Using FUSE instead of TCMU has
 performance implications.&lt;/p&gt;
@@ -3211,7 +3190,7 @@ page.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Azure AKS</title>
       <link>/docs/platforms/azure-aks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3219,10 +3198,9 @@ page.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;azure-aks&#34;&gt;Azure AKS&lt;/h1&gt;
-&lt;p&gt;Ondat is fully compatible with Azure AKS. To install Ondat on AKS,
+        &lt;p&gt;Ondat is fully compatible with Azure AKS. To install Ondat on Azure AKS,
 follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;An AKS deployment of Kubernetes uses Ubuntu by default with an optimized
+&lt;p&gt;An Azure AKS deployment of Kubernetes uses Ubuntu by default with an optimized
 kernel. All versions of Ubuntu with a kernel version later
 than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;/p&gt;
 
@@ -3230,7 +3208,7 @@ than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster Health</title>
       <link>/docs/operations/health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3238,8 +3216,7 @@ than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;
       <description>
         
         
-        &lt;h1 id=&#34;cluster-health&#34;&gt;Cluster health&lt;/h1&gt;
-&lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
+        &lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/_index&#34;&gt;CLI&lt;/a&gt; displays the
 status of nodes in the cluster.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get nodes
@@ -3300,7 +3277,7 @@ retaining the utility of orchestrators for managing app lifecycle.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: ClusterID</title>
       <link>/docs/operations/cluster-id/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3308,8 +3285,7 @@ retaining the utility of orchestrators for managing app lifecycle.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;clusterid&#34;&gt;ClusterID&lt;/h1&gt;
-&lt;p&gt;Every Ondat cluster has a unique ClusterID generated at bootstrap. A
+        &lt;p&gt;Every Ondat cluster has a unique ClusterID generated at bootstrap. A
 Ondat Licence is specific for a ClusterID.&lt;/p&gt;
 &lt;h2 id=&#34;how-to-obtain-the-clusterid&#34;&gt;How to obtain the ClusterID&lt;/h2&gt;
 &lt;p&gt;You can obtain the ClusterID using either the CLI or GUI.&lt;/p&gt;
@@ -3396,7 +3372,7 @@ for a volume, blocks are compressed then encrypted.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Contributing to the documentation</title>
       <link>/docs/reference/contributing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3404,8 +3380,7 @@ for a volume, blocks are compressed then encrypted.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;contributing-to-the-docs&#34;&gt;Contributing to the docs&lt;/h1&gt;
-&lt;p&gt;We are always looking to improve our documentation. If you like to help people
+        &lt;p&gt;We are always looking to improve our documentation. If you like to help people
 and can write, read on for the process for submitting your contributions. If your
 guide is published, you&amp;rsquo;ll receive $250 per article by PayPal.&lt;/p&gt;
 &lt;h2 id=&#34;content-guidelines&#34;&gt;Content guidelines&lt;/h2&gt;
@@ -3446,7 +3421,7 @@ payment.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Create</title>
       <link>/docs/reference/cli/create/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3454,8 +3429,7 @@ payment.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;create&#34;&gt;Create&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create --help
 
 Create new resources
 
@@ -3615,7 +3589,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Delete</title>
       <link>/docs/reference/cli/delete/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3623,8 +3597,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;delete&#34;&gt;Delete&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete -h
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete -h
 
 Delete resources in the cluster
 
@@ -3808,7 +3781,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Deleting Ondat Objects</title>
       <link>/docs/operations/delete-stos-objects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3816,8 +3789,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;deleting-ondat-objects&#34;&gt;Deleting Ondat Objects&lt;/h1&gt;
-&lt;p&gt;When a Kubernetes object is deleted, Ondat controllers automatically sync
+        &lt;p&gt;When a Kubernetes object is deleted, Ondat controllers automatically sync
 this deletion to Ondat. For example, when a Kubernets node is deleted, this
 will automatically be mirrored in Ondat, likewise with Namespaces.&lt;/p&gt;
 &lt;ol&gt;
@@ -3904,7 +3876,7 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Describe</title>
       <link>/docs/reference/cli/describe/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -3912,8 +3884,7 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
       <description>
         
         
-        &lt;h1 id=&#34;describe&#34;&gt;Describe&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos describe --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos describe --help
 
 Fetch extended details &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; resources
 
@@ -4172,7 +4143,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Detach</title>
       <link>/docs/reference/cli/detach/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4180,8 +4151,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;detach-volume&#34;&gt;Detach Volume&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos detach --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos detach --help
 
 Detach a volume from its current location
 
@@ -4214,7 +4184,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Diagnostic bundle</title>
       <link>/docs/reference/bundles/diagnostic-bundle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4222,8 +4192,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;diagnostic-bundle&#34;&gt;Diagnostic bundle&lt;/h1&gt;
-&lt;p&gt;Ondat can generate a cluster diagnostic bundle from the GUI or CLI under
+        &lt;p&gt;Ondat can generate a cluster diagnostic bundle from the GUI or CLI under
 user request. The bundle packages the information needed for the engineering
 team to understand the context of your cluster and begin troubleshooting any
 issues you may be experiencing.&lt;/p&gt;
@@ -4274,7 +4243,7 @@ helping customers troubleshoot their issues.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Disk Full</title>
       <link>/docs/operations/disk-full/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4282,8 +4251,7 @@ helping customers troubleshoot their issues.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;disk-full&#34;&gt;Disk Full&lt;/h1&gt;
-&lt;p&gt;When the physical disks in your cluster get full, or start using disk space too
+        &lt;p&gt;When the physical disks in your cluster get full, or start using disk space too
 fast, Kubernetes will automatically apply the &lt;code&gt;DiskPressure:NoExecute&lt;/code&gt; taint.&lt;/p&gt;
 &lt;p&gt;The Ondat Daemonset has a toleration applied for this taint, so it will
 continue to run.&lt;/p&gt;
@@ -4344,7 +4312,7 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Docker Enterprise Edition</title>
       <link>/docs/platforms/dockeree/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4352,8 +4320,7 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
       <description>
         
         
-        &lt;h1 id=&#34;docker-enterprise-edition&#34;&gt;Docker Enterprise Edition&lt;/h1&gt;
-&lt;p&gt;To install Ondat on DockerEE, follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+        &lt;p&gt;To install Ondat on DockerEE, follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;Docker EE and the Universal Control Plane can run on different Linux
 distributions. Ondat supports RHEL, CentOS, Debian, and selected Ubuntu
 images. For more details, check out the supported OSs in the
@@ -4368,7 +4335,7 @@ stateful workloads.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Elasticsearch</title>
       <link>/docs/usecases/elasticsearch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4376,8 +4343,7 @@ stateful workloads.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;elasticsearch&#34;&gt;Elasticsearch&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/elasticsearch.png&#34; alt=&#34;elasticlogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/elasticsearch.png&#34; alt=&#34;elasticlogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Elasticsearch is a distributed, RESTful search and analytics engine, most
 popularly used to aggregate logs, but also to serve as a search backend to a
 number of different applications.&lt;/p&gt;
@@ -4515,7 +4481,7 @@ example of how this is done to monitor Ondat, please see &lt;a href=&#34;/docs/o
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Encryption</title>
       <link>/docs/operations/encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4523,8 +4489,7 @@ example of how this is done to monitor Ondat, please see &lt;a href=&#34;/docs/o
       <description>
         
         
-        &lt;h1 id=&#34;encryption&#34;&gt;Encryption&lt;/h1&gt;
-&lt;p&gt;For more detail on encryption at rest in Ondat, see &lt;a href=&#34;/docs/reference/encryption&#34;&gt;the reference page&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;For more detail on encryption at rest in Ondat, see &lt;a href=&#34;/docs/reference/encryption&#34;&gt;the reference page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;enabling-encryption-on-a-volume&#34;&gt;Enabling encryption on a volume&lt;/h2&gt;
 &lt;p&gt;Encrypting a volume is done by simply creating a volume with the
 &lt;code&gt;storageos.com/encryption=true&lt;/code&gt; label. This can be set on the PVC or on
@@ -4577,6 +4542,101 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
     </item>
     
     <item>
+      <title>Docs: Encryption</title>
+      <link>/docs/reference/encryption/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/reference/encryption/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat supports encryption for data-at-rest and data-in-transit.&lt;/p&gt;
+&lt;p&gt;Data-in-transit is data as it is travelling between nodes. It is encrypted by
+default with mTLS. Data-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files
+is optional and can be enabled by adding a label to your volume definitions
+before they&amp;rsquo;re provisioned.&lt;/p&gt;
+&lt;p&gt;For information on how to enable encryption on your volumes, please see our
+&lt;a href=&#34;/docs/operations/encryption&#34;&gt;Encryption Operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;h2 id=&#34;how-volumes-are-encrypted&#34;&gt;How volumes are encrypted&lt;/h2&gt;
+&lt;p&gt;Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as
+specified by IEEE Standard 1619-2007. There is a non-zero performance impact of
+using encrypted volumes. A 10-25% cost in read/write throughput can be
+expected from XTS-AES, dependent on workload. Thin provisioning still applies
+to encrypted volumes.&lt;/p&gt;
+&lt;h2 id=&#34;encryption-key-generation&#34;&gt;Encryption Key Generation&lt;/h2&gt;
+&lt;p&gt;On PVC creation, &lt;a href=&#34;/docs/reference/labels#storageos-volume-labels&#34;&gt;if encryption is enabled&lt;/a&gt;, Ondat will
+automatically generate up to two keys as Kubernetes secrets. Both keys are
+stored in the same namespace as the PVC.&lt;/p&gt;
+&lt;p&gt;Firstly, if it doesn&amp;rsquo;t already exist, a namespace key is generated. It is
+always named &lt;code&gt;storageos-namespace-key&lt;/code&gt; and only one exists per namespace.&lt;/p&gt;
+&lt;p&gt;Secondly a volume key is created for each encrypted volume. It has a name in
+the format &lt;code&gt;storageos-volume-key-&amp;lt;random-id&amp;gt;&lt;/code&gt;, with no connection to the name
+of the volume. The volume it is associated with can be determined by looking at
+the &lt;code&gt;storageos.com/pvc&lt;/code&gt; label on the secret. The
+&lt;code&gt;storageos.com/encryption-secret-name&lt;/code&gt; and
+&lt;code&gt;storageos.com/encryption-secret-namespace&lt;/code&gt; annotations are added to the PVC by
+an admission controller to map the PVC back to its secret.&lt;/p&gt;
+&lt;p&gt;The encryption key is passed to Ondat as part of the CSI volume creation
+request and is used to encrypt the volume.&lt;/p&gt;
+&lt;h2 id=&#34;encryption-key-use&#34;&gt;Encryption Key Use&lt;/h2&gt;
+&lt;p&gt;The volume specific secret is needed whenever a volume is attached to a node
+for use by a pod. When this happens, the Ondat node container&amp;rsquo;s Service
+Account reads the secret and passes it to the Ondat controlplane.&lt;/p&gt;
+&lt;p&gt;A volume missing its key or with a malformed key will be unable to attach.&lt;/p&gt;
+&lt;p&gt;The key is stored in memory by Ondat only on the node that the volume is
+being used on. As a result, encryption and decryption are performed where the
+data is consumed, rather than where it is stored.&lt;/p&gt;
+&lt;p&gt;Because of this, the use of encrypted volumes is transparent to the user.
+There is a complete integration between Kubernetes applications and
+Ondat encryption.&lt;/p&gt;
+&lt;h2 id=&#34;key-management-best-practices&#34;&gt;Key Management Best Practices&lt;/h2&gt;
+&lt;p&gt;Ondat saves encryption keys in Kubernetes Secrets.
+Backups are therefore imperative in case the Kubernetes Etcd is lost.
+&lt;strong&gt;Ondat has no ability to decrypt a volume whose encryption keys have been
+lost.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in the
+Kubernetes Etcd in simple Base64 encoding. As Ondat encryption keys are
+stored as Kubernetes Secrets, this means that anyone with access to a
+Kubernetes Etcd installation can read encryption keys and decrypt volumes,
+unless the cluster has an external secrets store.&lt;/p&gt;
+&lt;p&gt;For better security check Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;secret
+encryption&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Secrets are not garbage-collected by Ondat. To clean up completely upon
+deletion of a volume it is necessary to also delete that volume&amp;rsquo;s secret. There
+is no benefit to doing this, however.&lt;/p&gt;
+&lt;h2 id=&#34;key-management-with-kubernetes-kms-provider&#34;&gt;Key Management with Kubernetes KMS provider&lt;/h2&gt;
+&lt;p&gt;Ondat encryption keys are stored within Etcd as Kubernetes secrets. Whilst
+the Etcd and kubernetes secrets &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;can also be
+encrypted&lt;/a&gt;,
+many organisations choose to use an external KMS provider.&lt;/p&gt;
+&lt;p&gt;To address this from a Kubernetes limitations perspective and provide an
+agnostic solution, our encryption design allows the user to benefit from any
+Kubernetes KMS provider plugin to envelop the secrets into the KMS provider
+encryption scheme.&lt;/p&gt;
+&lt;p&gt;Ondat allows customers to transparently integrate any supported KMS plugin
+with Ondat encryption key management using the standard Kubernetes API and
+Kubernetes KMS provider framework. The below figure provides an overview of the
+process.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/kms-key-management.png&#34; alt=&#34;KMS Key Management&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The KMS plugin is deployed within the Kubernetes cluster.&lt;/li&gt;
+&lt;li&gt;The KMS plugin is configured to act as a broker between the Kubernetes API
+server and the KMS server API endpoint.&lt;/li&gt;
+&lt;li&gt;At volume creation, Ondat will create a Kubernetes secret using
+Kubernetes API calls&lt;/li&gt;
+&lt;li&gt;The KMS plugin will handle the Kubernetes API Secret creation call and
+interface to the KMS server instance.&lt;/li&gt;
+&lt;li&gt;The KMS server will return the secret using its encryption envelop scheme.&lt;/li&gt;
+&lt;li&gt;The KMS plugin will store the encrypted secret within the Kubernetes Etcd.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Contact the &lt;a href=&#34;mailto:sales@storageos.com&#34;&gt;Ondat sales team&lt;/a&gt; for more
+information about the dedicated Ondat Vault KMS plugin integration
+offering.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Etcd</title>
       <link>/docs/concepts/etcd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -4605,7 +4665,7 @@ to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Etcd node migration</title>
       <link>/docs/operations/etcd/migrate-etcd-cluster/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4613,8 +4673,7 @@ to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&
       <description>
         
         
-        &lt;h1 id=&#34;etcd-node-migration&#34;&gt;Etcd node migration&lt;/h1&gt;
-&lt;p&gt;This procedure explains how to add a new etcd member for your Ondat etcd
+        &lt;p&gt;This procedure explains how to add a new etcd member for your Ondat etcd
 cluster while removing one of the current members. This is useful when the
 nodes hosting etcd must be recycled.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4906,7 +4965,7 @@ file up to date.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Failure Modes</title>
       <link>/docs/operations/failure-modes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -4914,8 +4973,7 @@ file up to date.&lt;/p&gt;
       <description>
         
         
-        &lt;h2 id=&#34;failure-modes&#34;&gt;Failure Modes&lt;/h2&gt;
-&lt;p&gt;For more information about replication and failure modes, see our
+        &lt;p&gt;For more information about replication and failure modes, see our
 &lt;a href=&#34;/docs/concepts/replication&#34;&gt;Replication concepts page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The failure mode for a specific volume can be set using a label on a PVC or it
 can be set as a parameter on a &lt;a href=&#34;/docs/operations/storageclasses&#34;&gt;StorageClass&lt;/a&gt;. The PVC definition takes precedence over
@@ -4934,7 +4992,7 @@ the StorageClass.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;5Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;failure-modes-1&#34;&gt;Failure Modes&lt;/h2&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;failure-modes&#34;&gt;Failure Modes&lt;/h2&gt;
 &lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically
@@ -5089,7 +5147,7 @@ Operations&lt;/a&gt; page.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Fencing</title>
       <link>/docs/operations/fencing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5097,8 +5155,7 @@ Operations&lt;/a&gt; page.&lt;/p&gt;
       <description>
         
         
-        &lt;h2 id=&#34;fencing&#34;&gt;Fencing&lt;/h2&gt;
-&lt;p&gt;For information regarding the Ondat Fencing feature, see our
+        &lt;p&gt;For information regarding the Ondat Fencing feature, see our
 &lt;a href=&#34;/docs/concepts/fencing&#34;&gt;fencing concepts page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;labeling-a-pod-for-fencing&#34;&gt;Labeling a pod for fencing&lt;/h2&gt;
 &lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
@@ -5233,7 +5290,7 @@ mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;non
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Volume Guide</title>
       <link>/docs/operations/firstpvc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5241,8 +5298,7 @@ mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;non
       <description>
         
         
-        &lt;h1 id=&#34;first-pvc&#34;&gt;First PVC&lt;/h1&gt;
-&lt;p&gt;Follow the recipes on this page to create your first PVC (Persistent Volume
+        &lt;p&gt;Follow the recipes on this page to create your first PVC (Persistent Volume
 Claim) using Ondat. Ondat implements dynamic provisioning, so the
 creation of a PVC will automatically provision a PV (PersistentVolume) that can
 be used to persist data written by a Pod.&lt;/p&gt;
@@ -5374,7 +5430,7 @@ on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Get</title>
       <link>/docs/reference/cli/get/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5382,8 +5438,7 @@ on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;get&#34;&gt;Get&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get --help
 Fetch basic details &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; resources
 
 Usage:
@@ -5669,7 +5724,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Google GKE</title>
       <link>/docs/platforms/google-gke/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5677,11 +5732,10 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;google-gke&#34;&gt;Google GKE&lt;/h1&gt;
-&lt;p&gt;StorageOS is fully compatible with GKE when using the Ubunutu images. To
-install StorageOS on GKE, please follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+        &lt;p&gt;StorageOS is fully compatible with GKE when using the Ubunutu images. To
+install StorageOS on Google GKE, please follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;For StorageOS to work normally it is &lt;strong&gt;required to use the Ubuntu images&lt;/strong&gt; for
-the GKE node pools. The default container image does not fulfil the system
+the Google GKE node pools. The default container image does not fulfil the system
 requirements because of the lack of the TCMU kernel modules.&lt;/p&gt;
 &lt;p&gt;For more details about the OS Distributions check the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;google-anthos&#34;&gt;Google Anthos&lt;/h2&gt;
@@ -5689,43 +5743,6 @@ requirements because of the lack of the TCMU kernel modules.&lt;/p&gt;
 Linux image distribution used fulfils the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; prerequisites.&lt;/p&gt;
 &lt;p&gt;Once a Kubernetes cluster is provisioned, StorageOS can be installed following
 the &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;instructions&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: </title>
-      <link>/docs/reference/gui/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/gui/</guid>
-      <description>
-        
-        
-        &lt;h1 id=&#34;gui&#34;&gt;GUI&lt;/h1&gt;
-&lt;p&gt;Ondat provides a GUI for cluster and volume management.&lt;/p&gt;
-&lt;p&gt;The GUI is available at port 5705 on any of the nodes in the cluster. Initially
-you can log in as the default administrator, with the username and password
-from the &lt;code&gt;storageos-api&lt;/code&gt; Secret. By default &lt;code&gt;storageos&lt;/code&gt;, &lt;code&gt;storageos&lt;/code&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You can access the GUI by either port-forwarding with kubectl or using an
-Ingress rule. i.e &lt;code&gt;kubectl -n storageos port-forward svc/storageos 5705&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs//gui-v2/login.png&#34; alt=&#34;Logging in&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;nodes&#34;&gt;Nodes&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/nodes.png&#34; alt=&#34;Nodes&#34;&gt;
-&lt;img src=&#34;/images/docs/gui-v2/node-detail.png&#34; alt=&#34;Node detail&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;volumes&#34;&gt;Volumes&lt;/h2&gt;
-&lt;p&gt;You can create volumes, including replicated volumes, and view volume details:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/volumes.png&#34; alt=&#34;Viewing storage volumes&#34;&gt;
-&lt;img src=&#34;/images/docs/gui-v2/volume-detail.png&#34; alt=&#34;Viewing details of a volume&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;licensing&#34;&gt;Licensing&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/license.png&#34; alt=&#34;License&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;cluster-info&#34;&gt;Cluster info&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/cluster.png&#34; alt=&#34;Cluster&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;namespaces&#34;&gt;Namespaces&lt;/h2&gt;
-&lt;p&gt;Volumes can be namespaced across different projects or teams, and you can switch namespace using the left hand panel:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/namespaces.png&#34; alt=&#34;Viewing namespaces&#34;&gt;&lt;/p&gt;
 
       </description>
     </item>

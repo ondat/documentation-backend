@@ -27,7 +27,7 @@
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: API Reference</title>
       <link>/docs/reference/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -56,7 +56,7 @@ window.onload = function() {
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Command Line Interface</title>
       <link>/docs/reference/cli/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -64,8 +64,7 @@ window.onload = function() {
       <description>
         
         
-        &lt;h1 id=&#34;command-line-interface&#34;&gt;Command line interface&lt;/h1&gt;
-&lt;p&gt;The &lt;code&gt;storageos&lt;/code&gt; command line interface (CLI) is used to manage cluster-wide
+        &lt;p&gt;The &lt;code&gt;storageos&lt;/code&gt; command line interface (CLI) is used to manage cluster-wide
 configuration.&lt;/p&gt;
 &lt;p&gt;It is highly recommended to install the CLI, since it can be used to generate a
 lot of useful information about your Ondat cluster and significantly speed
@@ -265,7 +264,7 @@ that are passed to &lt;code&gt;--output&lt;/code&gt; are &amp;lsquo;json&amp;rsq
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cluster Operator</title>
       <link>/docs/reference/cluster-operator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -273,8 +272,7 @@ that are passed to &lt;code&gt;--output&lt;/code&gt; are &amp;lsquo;json&amp;rsq
       <description>
         
         
-        &lt;h1 id=&#34;cluster-operator&#34;&gt;Cluster Operator&lt;/h1&gt;
-&lt;p&gt;Our cluster operator is a &lt;a href=&#34;https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/&#34;&gt;Kubernetes native
+        &lt;p&gt;Our cluster operator is a &lt;a href=&#34;https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/&#34;&gt;Kubernetes native
 application&lt;/a&gt;
 developed to deploy and configure Ondat clusters, and assist with
 maintenance operations. We recommend its use for standard installations.&lt;/p&gt;
@@ -297,7 +295,7 @@ repository&lt;/a&gt;.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Contributing to the documentation</title>
       <link>/docs/reference/contributing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -305,8 +303,7 @@ repository&lt;/a&gt;.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;contributing-to-the-docs&#34;&gt;Contributing to the docs&lt;/h1&gt;
-&lt;p&gt;We are always looking to improve our documentation. If you like to help people
+        &lt;p&gt;We are always looking to improve our documentation. If you like to help people
 and can write, read on for the process for submitting your contributions. If your
 guide is published, you&amp;rsquo;ll receive $250 per article by PayPal.&lt;/p&gt;
 &lt;h2 id=&#34;content-guidelines&#34;&gt;Content guidelines&lt;/h2&gt;
@@ -347,7 +344,102 @@ payment.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Encryption</title>
+      <link>/docs/reference/encryption/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/reference/encryption/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat supports encryption for data-at-rest and data-in-transit.&lt;/p&gt;
+&lt;p&gt;Data-in-transit is data as it is travelling between nodes. It is encrypted by
+default with mTLS. Data-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files
+is optional and can be enabled by adding a label to your volume definitions
+before they&amp;rsquo;re provisioned.&lt;/p&gt;
+&lt;p&gt;For information on how to enable encryption on your volumes, please see our
+&lt;a href=&#34;/docs/operations/encryption&#34;&gt;Encryption Operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;h2 id=&#34;how-volumes-are-encrypted&#34;&gt;How volumes are encrypted&lt;/h2&gt;
+&lt;p&gt;Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as
+specified by IEEE Standard 1619-2007. There is a non-zero performance impact of
+using encrypted volumes. A 10-25% cost in read/write throughput can be
+expected from XTS-AES, dependent on workload. Thin provisioning still applies
+to encrypted volumes.&lt;/p&gt;
+&lt;h2 id=&#34;encryption-key-generation&#34;&gt;Encryption Key Generation&lt;/h2&gt;
+&lt;p&gt;On PVC creation, &lt;a href=&#34;/docs/reference/labels#storageos-volume-labels&#34;&gt;if encryption is enabled&lt;/a&gt;, Ondat will
+automatically generate up to two keys as Kubernetes secrets. Both keys are
+stored in the same namespace as the PVC.&lt;/p&gt;
+&lt;p&gt;Firstly, if it doesn&amp;rsquo;t already exist, a namespace key is generated. It is
+always named &lt;code&gt;storageos-namespace-key&lt;/code&gt; and only one exists per namespace.&lt;/p&gt;
+&lt;p&gt;Secondly a volume key is created for each encrypted volume. It has a name in
+the format &lt;code&gt;storageos-volume-key-&amp;lt;random-id&amp;gt;&lt;/code&gt;, with no connection to the name
+of the volume. The volume it is associated with can be determined by looking at
+the &lt;code&gt;storageos.com/pvc&lt;/code&gt; label on the secret. The
+&lt;code&gt;storageos.com/encryption-secret-name&lt;/code&gt; and
+&lt;code&gt;storageos.com/encryption-secret-namespace&lt;/code&gt; annotations are added to the PVC by
+an admission controller to map the PVC back to its secret.&lt;/p&gt;
+&lt;p&gt;The encryption key is passed to Ondat as part of the CSI volume creation
+request and is used to encrypt the volume.&lt;/p&gt;
+&lt;h2 id=&#34;encryption-key-use&#34;&gt;Encryption Key Use&lt;/h2&gt;
+&lt;p&gt;The volume specific secret is needed whenever a volume is attached to a node
+for use by a pod. When this happens, the Ondat node container&amp;rsquo;s Service
+Account reads the secret and passes it to the Ondat controlplane.&lt;/p&gt;
+&lt;p&gt;A volume missing its key or with a malformed key will be unable to attach.&lt;/p&gt;
+&lt;p&gt;The key is stored in memory by Ondat only on the node that the volume is
+being used on. As a result, encryption and decryption are performed where the
+data is consumed, rather than where it is stored.&lt;/p&gt;
+&lt;p&gt;Because of this, the use of encrypted volumes is transparent to the user.
+There is a complete integration between Kubernetes applications and
+Ondat encryption.&lt;/p&gt;
+&lt;h2 id=&#34;key-management-best-practices&#34;&gt;Key Management Best Practices&lt;/h2&gt;
+&lt;p&gt;Ondat saves encryption keys in Kubernetes Secrets.
+Backups are therefore imperative in case the Kubernetes Etcd is lost.
+&lt;strong&gt;Ondat has no ability to decrypt a volume whose encryption keys have been
+lost.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in the
+Kubernetes Etcd in simple Base64 encoding. As Ondat encryption keys are
+stored as Kubernetes Secrets, this means that anyone with access to a
+Kubernetes Etcd installation can read encryption keys and decrypt volumes,
+unless the cluster has an external secrets store.&lt;/p&gt;
+&lt;p&gt;For better security check Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;secret
+encryption&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Secrets are not garbage-collected by Ondat. To clean up completely upon
+deletion of a volume it is necessary to also delete that volume&amp;rsquo;s secret. There
+is no benefit to doing this, however.&lt;/p&gt;
+&lt;h2 id=&#34;key-management-with-kubernetes-kms-provider&#34;&gt;Key Management with Kubernetes KMS provider&lt;/h2&gt;
+&lt;p&gt;Ondat encryption keys are stored within Etcd as Kubernetes secrets. Whilst
+the Etcd and kubernetes secrets &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;can also be
+encrypted&lt;/a&gt;,
+many organisations choose to use an external KMS provider.&lt;/p&gt;
+&lt;p&gt;To address this from a Kubernetes limitations perspective and provide an
+agnostic solution, our encryption design allows the user to benefit from any
+Kubernetes KMS provider plugin to envelop the secrets into the KMS provider
+encryption scheme.&lt;/p&gt;
+&lt;p&gt;Ondat allows customers to transparently integrate any supported KMS plugin
+with Ondat encryption key management using the standard Kubernetes API and
+Kubernetes KMS provider framework. The below figure provides an overview of the
+process.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/kms-key-management.png&#34; alt=&#34;KMS Key Management&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The KMS plugin is deployed within the Kubernetes cluster.&lt;/li&gt;
+&lt;li&gt;The KMS plugin is configured to act as a broker between the Kubernetes API
+server and the KMS server API endpoint.&lt;/li&gt;
+&lt;li&gt;At volume creation, Ondat will create a Kubernetes secret using
+Kubernetes API calls&lt;/li&gt;
+&lt;li&gt;The KMS plugin will handle the Kubernetes API Secret creation call and
+interface to the KMS server instance.&lt;/li&gt;
+&lt;li&gt;The KMS server will return the secret using its encryption envelop scheme.&lt;/li&gt;
+&lt;li&gt;The KMS plugin will store the encrypted secret within the Kubernetes Etcd.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Contact the &lt;a href=&#34;mailto:sales@storageos.com&#34;&gt;Ondat sales team&lt;/a&gt; for more
+information about the dedicated Ondat Vault KMS plugin integration
+offering.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: GUI</title>
       <link>/docs/reference/gui/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -355,8 +447,7 @@ payment.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;gui&#34;&gt;GUI&lt;/h1&gt;
-&lt;p&gt;Ondat provides a GUI for cluster and volume management.&lt;/p&gt;
+        &lt;p&gt;Ondat provides a GUI for cluster and volume management.&lt;/p&gt;
 &lt;p&gt;The GUI is available at port 5705 on any of the nodes in the cluster. Initially
 you can log in as the default administrator, with the username and password
 from the &lt;code&gt;storageos-api&lt;/code&gt; Secret. By default &lt;code&gt;storageos&lt;/code&gt;, &lt;code&gt;storageos&lt;/code&gt;.&lt;/p&gt;
@@ -384,7 +475,7 @@ Ingress rule. i.e &lt;code&gt;kubectl -n storageos port-forward svc/storageos 57
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Init container</title>
       <link>/docs/reference/init-container/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -392,8 +483,7 @@ Ingress rule. i.e &lt;code&gt;kubectl -n storageos port-forward svc/storageos 57
       <description>
         
         
-        &lt;h1 id=&#34;init-container&#34;&gt;Init container&lt;/h1&gt;
-&lt;p&gt;Ondat has requirements for the configuration of host systems. As such,
+        &lt;p&gt;Ondat has requirements for the configuration of host systems. As such,
 Ondat starts an init container that sets the system configuration for
 Ondat. The container also manages configuration changes required when
 upgrading Ondat versions.&lt;/p&gt;
@@ -433,7 +523,7 @@ be used:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Kubectl plugin</title>
       <link>/docs/reference/kubectl-plugin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -441,8 +531,7 @@ be used:&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;kubectl-plugin&#34;&gt;Kubectl plugin&lt;/h1&gt;
-&lt;p&gt;Ondat has implemented a kubectl plugin to facilitate operations when
+        &lt;p&gt;Ondat has implemented a kubectl plugin to facilitate operations when
 installing and interacting with Ondat clusters.&lt;/p&gt;
 &lt;p&gt;The kubectl plugin accepts both declarative and imperative modes.&lt;/p&gt;
 &lt;h2 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h2&gt;
@@ -530,7 +619,7 @@ spec:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Kubernetes Object Sync</title>
       <link>/docs/reference/kubernetes-object-sync/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -538,8 +627,7 @@ spec:
       <description>
         
         
-        &lt;h1 id=&#34;kubernetes-object-sync&#34;&gt;Kubernetes Object Sync&lt;/h1&gt;
-&lt;p&gt;The below controllers are part of the &lt;a href=&#34;/docs/concepts/components&#34;&gt;Ondat API manager&lt;/a&gt;, and handle a variety of cases where
+        &lt;p&gt;The below controllers are part of the &lt;a href=&#34;/docs/concepts/components&#34;&gt;Ondat API manager&lt;/a&gt;, and handle a variety of cases where
 information about Kubernetes objects from your cluster needs to be synced to
 your Ondat cluster.&lt;/p&gt;
 &lt;p&gt;The CSI Driver annotation mentioned below is added to your PVC or Node
@@ -601,7 +689,7 @@ namespace deletion to Ondat namespace deletion.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Labels</title>
       <link>/docs/reference/labels/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -609,8 +697,7 @@ namespace deletion to Ondat namespace deletion.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;labels&#34;&gt;Labels&lt;/h1&gt;
-&lt;p&gt;Feature labels are a powerful and flexible way to control storage features.&lt;/p&gt;
+        &lt;p&gt;Feature labels are a powerful and flexible way to control storage features.&lt;/p&gt;
 &lt;p&gt;Applying specific feature labels triggers compression, replication and other
 storage features. No feature labels are present by default.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-node-labels&#34;&gt;Ondat Node labels&lt;/h2&gt;
@@ -797,7 +884,7 @@ spec:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Licence</title>
       <link>/docs/reference/licence/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -805,8 +892,7 @@ spec:
       <description>
         
         
-        &lt;h1 id=&#34;licence&#34;&gt;Licence&lt;/h1&gt;
-&lt;p&gt;A newly installed Ondat cluster does not include a licence. A cluster can
+        &lt;p&gt;A newly installed Ondat cluster does not include a licence. A cluster can
 run unlicensed for 24 hours. After that, new operations such as volume
 provisioning or adding nodes are not permitted. Normal functioning of the
 cluster can be unlocked by applying a Free Personal licence.&lt;/p&gt;
@@ -837,7 +923,7 @@ tied to the capacity of the backend disks on your nodes.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Open Source Software Attribution Notice</title>
       <link>/docs/reference/open_source_attribution/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -845,8 +931,7 @@ tied to the capacity of the backend disks on your nodes.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;ondat-open-source-software-attribution-notice&#34;&gt;Ondat Open Source Software Attribution Notice&lt;/h1&gt;
-&lt;p&gt;The following document lists the open source software attributions in the Ondat Control Plane, Data Plane and CLI.&lt;/p&gt;
+        &lt;p&gt;The following document lists the open source software attributions in the Ondat Control Plane, Data Plane and CLI.&lt;/p&gt;
 &lt;h2 id=&#34;cnats&#34;&gt;CNats&lt;/h2&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;The MIT License (MIT)
 
@@ -5629,7 +5714,7 @@ limitations under the License.
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Scheduler</title>
       <link>/docs/reference/scheduler/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5637,8 +5722,7 @@ limitations under the License.
       <description>
         
         
-        &lt;h1 id=&#34;ondat-scheduler&#34;&gt;Ondat Scheduler&lt;/h1&gt;
-&lt;p&gt;Ondat has the capacity to influence Kubernetes Pod placement decisions to
+        &lt;p&gt;Ondat has the capacity to influence Kubernetes Pod placement decisions to
 ensure that Pods are scheduled on the same nodes as their data. This
 functionality is known as &lt;code&gt;Pod Locality&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Ondat grants access to data by presenting, on local or remote nodes, the
@@ -5698,7 +5782,7 @@ fulfill the following prerequisites:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Ondat Telemetry</title>
       <link>/docs/reference/telemetry/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5706,8 +5790,7 @@ fulfill the following prerequisites:&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;ondat-telemetry&#34;&gt;Ondat Telemetry&lt;/h1&gt;
-&lt;p&gt;Ondat collects telemetry and error reports from Ondat clusters via two
+        &lt;p&gt;Ondat collects telemetry and error reports from Ondat clusters via two
 different methods for two different purposes.&lt;/p&gt;
 &lt;h2 id=&#34;telemetry&#34;&gt;Telemetry&lt;/h2&gt;
 &lt;ul&gt;
@@ -5819,103 +5902,7 @@ DISABLE_ERROR_REPORTING &lt;span style=&#34;color:#8f5902;font-style:italic&#34;
     </item>
     
     <item>
-      <title>Docs: </title>
-      <link>/docs/reference/encryption/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/encryption/</guid>
-      <description>
-        
-        
-        &lt;h1 id=&#34;encryption&#34;&gt;Encryption&lt;/h1&gt;
-&lt;p&gt;Ondat supports encryption for data-at-rest and data-in-transit.&lt;/p&gt;
-&lt;p&gt;Data-in-transit is data as it is travelling between nodes. It is encrypted by
-default with mTLS. Data-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files
-is optional and can be enabled by adding a label to your volume definitions
-before they&amp;rsquo;re provisioned.&lt;/p&gt;
-&lt;p&gt;For information on how to enable encryption on your volumes, please see our
-&lt;a href=&#34;/docs/operations/encryption&#34;&gt;Encryption Operations&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;how-volumes-are-encrypted&#34;&gt;How volumes are encrypted&lt;/h2&gt;
-&lt;p&gt;Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as
-specified by IEEE Standard 1619-2007. There is a non-zero performance impact of
-using encrypted volumes. A 10-25% cost in read/write throughput can be
-expected from XTS-AES, dependent on workload. Thin provisioning still applies
-to encrypted volumes.&lt;/p&gt;
-&lt;h2 id=&#34;encryption-key-generation&#34;&gt;Encryption Key Generation&lt;/h2&gt;
-&lt;p&gt;On PVC creation, &lt;a href=&#34;/docs/reference/labels#storageos-volume-labels&#34;&gt;if encryption is enabled&lt;/a&gt;, Ondat will
-automatically generate up to two keys as Kubernetes secrets. Both keys are
-stored in the same namespace as the PVC.&lt;/p&gt;
-&lt;p&gt;Firstly, if it doesn&amp;rsquo;t already exist, a namespace key is generated. It is
-always named &lt;code&gt;storageos-namespace-key&lt;/code&gt; and only one exists per namespace.&lt;/p&gt;
-&lt;p&gt;Secondly a volume key is created for each encrypted volume. It has a name in
-the format &lt;code&gt;storageos-volume-key-&amp;lt;random-id&amp;gt;&lt;/code&gt;, with no connection to the name
-of the volume. The volume it is associated with can be determined by looking at
-the &lt;code&gt;storageos.com/pvc&lt;/code&gt; label on the secret. The
-&lt;code&gt;storageos.com/encryption-secret-name&lt;/code&gt; and
-&lt;code&gt;storageos.com/encryption-secret-namespace&lt;/code&gt; annotations are added to the PVC by
-an admission controller to map the PVC back to its secret.&lt;/p&gt;
-&lt;p&gt;The encryption key is passed to Ondat as part of the CSI volume creation
-request and is used to encrypt the volume.&lt;/p&gt;
-&lt;h2 id=&#34;encryption-key-use&#34;&gt;Encryption Key Use&lt;/h2&gt;
-&lt;p&gt;The volume specific secret is needed whenever a volume is attached to a node
-for use by a pod. When this happens, the Ondat node container&amp;rsquo;s Service
-Account reads the secret and passes it to the Ondat controlplane.&lt;/p&gt;
-&lt;p&gt;A volume missing its key or with a malformed key will be unable to attach.&lt;/p&gt;
-&lt;p&gt;The key is stored in memory by Ondat only on the node that the volume is
-being used on. As a result, encryption and decryption are performed where the
-data is consumed, rather than where it is stored.&lt;/p&gt;
-&lt;p&gt;Because of this, the use of encrypted volumes is transparent to the user.
-There is a complete integration between Kubernetes applications and
-Ondat encryption.&lt;/p&gt;
-&lt;h2 id=&#34;key-management-best-practices&#34;&gt;Key Management Best Practices&lt;/h2&gt;
-&lt;p&gt;Ondat saves encryption keys in Kubernetes Secrets.
-Backups are therefore imperative in case the Kubernetes Etcd is lost.
-&lt;strong&gt;Ondat has no ability to decrypt a volume whose encryption keys have been
-lost.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in the
-Kubernetes Etcd in simple Base64 encoding. As Ondat encryption keys are
-stored as Kubernetes Secrets, this means that anyone with access to a
-Kubernetes Etcd installation can read encryption keys and decrypt volumes,
-unless the cluster has an external secrets store.&lt;/p&gt;
-&lt;p&gt;For better security check Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;secret
-encryption&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Secrets are not garbage-collected by Ondat. To clean up completely upon
-deletion of a volume it is necessary to also delete that volume&amp;rsquo;s secret. There
-is no benefit to doing this, however.&lt;/p&gt;
-&lt;h2 id=&#34;key-management-with-kubernetes-kms-provider&#34;&gt;Key Management with Kubernetes KMS provider&lt;/h2&gt;
-&lt;p&gt;Ondat encryption keys are stored within Etcd as Kubernetes secrets. Whilst
-the Etcd and kubernetes secrets &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;can also be
-encrypted&lt;/a&gt;,
-many organisations choose to use an external KMS provider.&lt;/p&gt;
-&lt;p&gt;To address this from a Kubernetes limitations perspective and provide an
-agnostic solution, our encryption design allows the user to benefit from any
-Kubernetes KMS provider plugin to envelop the secrets into the KMS provider
-encryption scheme.&lt;/p&gt;
-&lt;p&gt;Ondat allows customers to transparently integrate any supported KMS plugin
-with Ondat encryption key management using the standard Kubernetes API and
-Kubernetes KMS provider framework. The below figure provides an overview of the
-process.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/kms-key-management.png&#34; alt=&#34;KMS Key Management&#34;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The KMS plugin is deployed within the Kubernetes cluster.&lt;/li&gt;
-&lt;li&gt;The KMS plugin is configured to act as a broker between the Kubernetes API
-server and the KMS server API endpoint.&lt;/li&gt;
-&lt;li&gt;At volume creation, Ondat will create a Kubernetes secret using
-Kubernetes API calls&lt;/li&gt;
-&lt;li&gt;The KMS plugin will handle the Kubernetes API Secret creation call and
-interface to the KMS server instance.&lt;/li&gt;
-&lt;li&gt;The KMS server will return the secret using its encryption envelop scheme.&lt;/li&gt;
-&lt;li&gt;The KMS plugin will store the encrypted secret within the Kubernetes Etcd.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Contact the &lt;a href=&#34;mailto:sales@storageos.com&#34;&gt;Ondat sales team&lt;/a&gt; for more
-information about the dedicated Ondat Vault KMS plugin integration
-offering.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: </title>
+      <title>Docs: Release notes</title>
       <link>/docs/reference/release_notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -5923,8 +5910,7 @@ offering.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;release-notes&#34;&gt;Release notes&lt;/h1&gt;
-&lt;p&gt;We recommend always using &amp;ldquo;tagged&amp;rdquo; versions of Ondat rather than &amp;ldquo;latest&amp;rdquo;,
+        &lt;p&gt;We recommend always using &amp;ldquo;tagged&amp;rdquo; versions of Ondat rather than &amp;ldquo;latest&amp;rdquo;,
 and to perform upgrades only after reading the release notes.&lt;/p&gt;
 &lt;p&gt;The latest tagged release is &lt;code&gt;2.5.0&lt;/code&gt;. For
 installation instructions please see our
@@ -6804,7 +6790,7 @@ Blog&lt;/a&gt; for details.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Resource Requests and Limits</title>
       <link>/docs/reference/resource_requests_and_limits/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -6812,8 +6798,7 @@ Blog&lt;/a&gt; for details.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;resource-requests-and-limits&#34;&gt;Resource Requests and Limits&lt;/h1&gt;
-&lt;h2 id=&#34;managing-resources-for-ondat-containers&#34;&gt;Managing Resources for Ondat containers&lt;/h2&gt;
+        &lt;h2 id=&#34;managing-resources-for-ondat-containers&#34;&gt;Managing Resources for Ondat containers&lt;/h2&gt;
 &lt;p&gt;Kubernetes resource requests and limits are two optional Pod properties that
 allow you to specify how much of a resource a container in a Pod needs or can
 use. They are two main resources that you can specify requests and limits for,
@@ -6843,7 +6828,7 @@ documentation&lt;/a&gt;&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Supported File System</title>
       <link>/docs/reference/filesystems/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -6851,8 +6836,7 @@ documentation&lt;/a&gt;&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;supported-file-systems&#34;&gt;Supported File systems&lt;/h1&gt;
-&lt;h2 id=&#34;host-filesystems&#34;&gt;Host Filesystems&lt;/h2&gt;
+        &lt;h2 id=&#34;host-filesystems&#34;&gt;Host Filesystems&lt;/h2&gt;
 &lt;p&gt;Ondat will automatically use &lt;code&gt;/var/lib/storageos&lt;/code&gt; on each host as a base
 directory for storing &lt;a href=&#34;/docs/concepts/volumes#blob-files&#34;&gt;configuration and blob files&lt;/a&gt;.
 Supported host filesystem types
@@ -6871,7 +6855,7 @@ ext2, ext3, ext4 and xfs file systems.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Tolerations</title>
       <link>/docs/reference/tolerations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -6879,8 +6863,7 @@ ext2, ext3, ext4 and xfs file systems.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;tolerations&#34;&gt;Tolerations&lt;/h1&gt;
-&lt;h2 id=&#34;kubernetes-tolerations&#34;&gt;Kubernetes Tolerations&lt;/h2&gt;
+        &lt;h2 id=&#34;kubernetes-tolerations&#34;&gt;Kubernetes Tolerations&lt;/h2&gt;
 &lt;p&gt;Tolerations are a Kubernetes pod property that allow pods to tolerate certain
 node taints. Taints can be thought of as the opposite of Node affinity in that
 taints repel pods. Node taints are automatically applied by Kubernetes in
@@ -6924,7 +6907,7 @@ resource&lt;/a&gt;.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Topology-Aware Placement</title>
       <link>/docs/reference/tap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -6932,8 +6915,7 @@ resource&lt;/a&gt;.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;topology-aware-placement&#34;&gt;Topology-Aware Placement&lt;/h1&gt;
-&lt;p&gt;Ondat Topology-Aware Placement is a feature that enforces placement of data
+        &lt;p&gt;Ondat Topology-Aware Placement is a feature that enforces placement of data
 across failure domains to guarantee high availability. Topology-Aware Placement
 (TAP) is available from Ondat v2.5+.&lt;/p&gt;
 &lt;p&gt;TAP uses default labels on nodes to define failure domains. For instance, an

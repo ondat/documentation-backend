@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Kubernetes</title>
       <link>/docs/install/kubernetes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;kubernetes&#34;&gt;Kubernetes&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;Make sure the
 &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding.&lt;/p&gt;
@@ -282,7 +281,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: OpenShift</title>
       <link>/docs/install/openshift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -290,8 +289,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;openshift&#34;&gt;OpenShift&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;Make sure the
 &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding. Including the deployment of an etcd cluster and
@@ -607,7 +605,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Rancher</title>
       <link>/docs/install/rancher/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -615,8 +613,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;rancher&#34;&gt;Rancher&lt;/h1&gt;
-&lt;p&gt;Ondat is a certified Rancher application. We offer two installation
+        &lt;p&gt;Ondat is a certified Rancher application. We offer two installation
 methods:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Rancher Catalogue - this is the easiest and requires just a few clicks&lt;/li&gt;
