@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Elasticsearch</title>
       <link>/docs/usecases/elasticsearch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;elasticsearch&#34;&gt;Elasticsearch&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/elasticsearch.png&#34; alt=&#34;elasticlogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/elasticsearch.png&#34; alt=&#34;elasticlogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Elasticsearch is a distributed, RESTful search and analytics engine, most
 popularly used to aggregate logs, but also to serve as a search backend to a
 number of different applications.&lt;/p&gt;
@@ -161,7 +160,7 @@ example of how this is done to monitor Ondat, please see &lt;a href=&#34;/docs/o
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: InfluxDB</title>
       <link>/docs/usecases/influxdb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -169,8 +168,7 @@ example of how this is done to monitor Ondat, please see &lt;a href=&#34;/docs/o
       <description>
         
         
-        &lt;h1 id=&#34;influxdb&#34;&gt;InfluxDB&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/influxdb.png&#34; alt=&#34;influxdblogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/influxdb.png&#34; alt=&#34;influxdblogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;InfluxDB is a popular open source time series database application optimised
 for managing datasets consisting of many small measurements. Its advantages
 include the ability to handle very high write and query loads. Its uses include monitoring, analytics and the recording and analysis of data from sensors.&lt;/p&gt;
@@ -328,7 +326,7 @@ job.batch/backup created
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Jenkins</title>
       <link>/docs/usecases/jenkins/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -336,8 +334,7 @@ job.batch/backup created
       <description>
         
         
-        &lt;h1 id=&#34;jenkins&#34;&gt;Jenkins&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/jenkins.png&#34; alt=&#34;jenkinslog&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/jenkins.png&#34; alt=&#34;jenkinslog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This example shows an example of how to deploy Jenkins on Kubernetes with a
 Ondat persistent volume being mounted on &lt;code&gt;/var/jenkins_home&lt;/code&gt;. Deploying
 Jenkins using Ondat offers multiple benefits. Firstly Jenkins can spin up
@@ -400,7 +397,7 @@ scheduling a build of both projects at the same time.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Kafka</title>
       <link>/docs/usecases/kafka/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -408,8 +405,7 @@ scheduling a build of both projects at the same time.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;kafka&#34;&gt;Kafka&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/kafka.png&#34; alt=&#34;kafkalogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/kafka.png&#34; alt=&#34;kafkalogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Kafka is a popular stream processing platform combining features from pub/sub
 and traditional queues.&lt;/p&gt;
 &lt;p&gt;Using Ondat persistent volumes with Apache Kafka means that if a pod
@@ -529,7 +525,7 @@ its service endpoint&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Kubevirt</title>
       <link>/docs/usecases/kubevirt/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -537,8 +533,7 @@ its service endpoint&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;kubevirt&#34;&gt;Kubevirt&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/kubevirt.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/kubevirt.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://kubevirt.io&#34;&gt;Kubevirt&lt;/a&gt; is a CNCF sandbox project that allows the
 running of virtual machines (VMs) in Kubernetes pods.&lt;/p&gt;
 &lt;p&gt;Deploying Kubevirt using Ondat offers multiple benefits. Kubevirt can spin
@@ -677,7 +672,7 @@ the original volume to it.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: MS SQL</title>
       <link>/docs/usecases/mssql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -685,8 +680,7 @@ the original volume to it.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;ms-sql&#34;&gt;MS SQL&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/mssql.png&#34; alt=&#34;mssqllogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/mssql.png&#34; alt=&#34;mssqllogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Beginning with Microsoft SQL Server 2017, Microsoft has supported MSSQL on
 linux.&lt;/p&gt;
 &lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
@@ -771,7 +765,7 @@ with your desired MS SQL configuration settings.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: MySQL</title>
       <link>/docs/usecases/mysql/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -779,8 +773,7 @@ with your desired MS SQL configuration settings.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;mysql&#34;&gt;MySQL&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/mysqllogo.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/mysqllogo.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;MySQL is a popular SQL open source database for a wide range of popular
 web-based applications including WordPress.&lt;/p&gt;
 &lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
@@ -860,7 +853,7 @@ with your desired MySQL configuration settings.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: NGINX</title>
       <link>/docs/usecases/nginx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -868,8 +861,7 @@ with your desired MySQL configuration settings.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;nginx&#34;&gt;Nginx&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/nginx.png&#34; alt=&#34;nginxlogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/nginx.png&#34; alt=&#34;nginxlogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.nginx.com/&#34;&gt;Nginx&lt;/a&gt; is a popular web server that can be used as a reverse proxy, load
 balancer or even as a
 &lt;a href=&#34;https://github.com/kubernetes/ingress-nginx&#34;&gt;Kubernetes ingress controller.&lt;/a&gt;&lt;/p&gt;
@@ -966,7 +958,7 @@ with your desired Nginx configuration settings.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: PostgreSQL</title>
       <link>/docs/usecases/postgres/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -974,8 +966,7 @@ with your desired Nginx configuration settings.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;postgresql&#34;&gt;PostgreSQL&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/postgres.png&#34; alt=&#34;postgresqllogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/postgres.png&#34; alt=&#34;postgresqllogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;PostgreSQL or &amp;ldquo;Postgres&amp;rdquo; is an open source object-relational database management
 system (ORDBMS).&lt;/p&gt;
 &lt;p&gt;Postgres is deployed across a wide variety of platforms with a mix of workloads
@@ -1062,7 +1053,7 @@ with your desired PostgreSQL configuration settings.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Prometheus</title>
       <link>/docs/usecases/prometheus/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1070,8 +1061,7 @@ with your desired PostgreSQL configuration settings.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;prometheus&#34;&gt;Prometheus&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/prom.png&#34; alt=&#34;prometheuslogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/prom.png&#34; alt=&#34;prometheuslogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Prometheus is a popular application used for event monitoring and alerting in
 Kubernetes.&lt;/p&gt;
 &lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
@@ -1164,7 +1154,7 @@ check out the &lt;a href=&#34;https://prometheus.io/docs/&#34;&gt;prometheus doc
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Redis</title>
       <link>/docs/usecases/redis/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1172,8 +1162,7 @@ check out the &lt;a href=&#34;https://prometheus.io/docs/&#34;&gt;prometheus doc
       <description>
         
         
-        &lt;h1 id=&#34;redis&#34;&gt;Redis&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/redis.png&#34; alt=&#34;redislogo&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/redis.png&#34; alt=&#34;redislogo&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Redis is a popular networked, in-memory, key-value data store with optional durability to disk.&lt;/p&gt;
 &lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
 cluster. &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
@@ -1248,7 +1237,7 @@ with your desired Redis configuration settings.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Sidecar Backups</title>
       <link>/docs/usecases/sidecar-backups/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1256,8 +1245,7 @@ with your desired Redis configuration settings.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;sidecar-backups&#34;&gt;Sidecar Backups&lt;/h1&gt;
-&lt;p&gt;In this example use case we provide three different strategies for accessing
+        &lt;p&gt;In this example use case we provide three different strategies for accessing
 files that have been written to a Ondat  persistent volume.&lt;/p&gt;
 &lt;p&gt;In the following examples the &amp;ldquo;application&amp;rdquo; container is the container &lt;code&gt;main&lt;/code&gt;,
 which has a rsync, &lt;a href=&#34;https://www.nginx.com/&#34;&gt;Nginx&lt;/a&gt; or sftp sidecar container. The Ondat volume that
@@ -1444,7 +1432,7 @@ date.txt    lost+found
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Cassandra</title>
       <link>/docs/usecases/cassandra/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1452,8 +1440,7 @@ date.txt    lost+found
       <description>
         
         
-        &lt;h1 id=&#34;cassandra&#34;&gt;Cassandra&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/cassandralogo.png&#34; alt=&#34;cassandra log&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/cassandralogo.png&#34; alt=&#34;cassandra log&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Cassandra is a popular distributed NoSQL open source database.&lt;/p&gt;
 &lt;p&gt;Using Ondat persistent volumes with Cassandra means that if a Cassandra pod
 fails, the cluster is only in a degraded state for as long as it takes
@@ -1538,7 +1525,7 @@ cqlsh&amp;gt; SELECT cluster_name, listen_address FROM system.local&lt;span styl
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Velero Backups</title>
       <link>/docs/usecases/velero-backups/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1546,8 +1533,7 @@ cqlsh&amp;gt; SELECT cluster_name, listen_address FROM system.local&lt;span styl
       <description>
         
         
-        &lt;h1 id=&#34;velero-backups&#34;&gt;Velero Backups&lt;/h1&gt;
-&lt;h2 id=&#34;using-velero-to-backup-your-ondat-volumes&#34;&gt;Using Velero to backup your Ondat volumes&lt;/h2&gt;
+        &lt;h2 id=&#34;using-velero-to-backup-your-ondat-volumes&#34;&gt;Using Velero to backup your Ondat volumes&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://velero.io/&#34;&gt;Velero&lt;/a&gt; is an open source tool to safely backup and restore, perform disaster
 recovery, and migrate Kubernetes cluster resources and persistent volumes.&lt;/p&gt;
 &lt;p&gt;Velero consists of the following components:&lt;/p&gt;
@@ -1750,7 +1736,7 @@ mysql&amp;gt; &lt;span style=&#34;color:#204a87&#34;&gt;exit&lt;/span&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Zookeeper</title>
       <link>/docs/usecases/zookeeper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1758,8 +1744,7 @@ mysql&amp;gt; &lt;span style=&#34;color:#204a87&#34;&gt;exit&lt;/span&gt;
       <description>
         
         
-        &lt;h1 id=&#34;zookeeper&#34;&gt;Zookeeper&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/explore/zookeeper.png&#34; alt=&#34;zookeeperlog&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/zookeeper.png&#34; alt=&#34;zookeeperlog&#34;&gt;&lt;/p&gt;
 &lt;p&gt;ZooKeeper is a centralized service for maintaining configuration information,
 naming, providing distributed synchronization, and providing group services.&lt;/p&gt;
 &lt;p&gt;Using Ondat persistent volumes with Apache Zookeeper means that if a pod

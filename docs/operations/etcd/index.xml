@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title> – </title>
+    <title> – Etcd</title>
     <link>/docs/operations/etcd/</link>
-    <description>Recent content on </description>
+    <description>Recent content in Etcd on </description>
     <generator>Hugo -- gohugo.io</generator>
     
 	  <atom:link href="/docs/operations/etcd/index.xml" rel="self" type="application/rss+xml" />
@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Etcd node migration</title>
       <link>/docs/operations/etcd/migrate-etcd-cluster/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;etcd-node-migration&#34;&gt;Etcd node migration&lt;/h1&gt;
-&lt;p&gt;This procedure explains how to add a new etcd member for your Ondat etcd
+        &lt;p&gt;This procedure explains how to add a new etcd member for your Ondat etcd
 cluster while removing one of the current members. This is useful when the
 nodes hosting etcd must be recycled.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -315,7 +314,7 @@ file up to date.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Encryption communication with Etcd</title>
       <link>/docs/operations/etcd/storageos-secret-info/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -323,8 +322,7 @@ file up to date.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;encrypting-communication-with-etcd&#34;&gt;Encrypting communication with Etcd&lt;/h1&gt;
-&lt;p&gt;Ondat supports secure communication with an external etcd cluster using
+        &lt;p&gt;Ondat supports secure communication with an external etcd cluster using
 mutual TLS (mTLS). With mTLS both Ondat and etcd authenticate each other
 ensuring that communication only happens between mutually authenticated end
 points, and that all communication is encrypted.&lt;/p&gt;

@@ -20,20 +20,20 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title></title><meta property="og:title" content="" />
-<meta property="og:description" content="Update volume Usage: storageos update volume [command] Available Commands: description Updates a volume&#39;s description labels Updates a volume&#39;s labels replicas Updates a volume&#39;s target replica number size Updates a volume&#39;s size Flags: -h, --help help for volume Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/." />
+<title>Update | </title><meta property="og:title" content="Update" />
+<meta property="og:description" content="Usage: storageos update volume [command] Available Commands: description Updates a volume&#39;s description labels Updates a volume&#39;s labels replicas Updates a volume&#39;s target replica number size Updates a volume&#39;s size Flags: -h, --help help for volume Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/.config/storageos/config.yaml&#34;) --endpoints stringArray set the list of endpoints which are used when connecting to the Ondat API (default [http://localhost:5705]) -n, --namespace string specifies the namespace to operate within for commands that require one (default &#34;default&#34;) --no-auth-cache disable the CLI&#39;s caching of authentication sessions -o, --output string specifies the output format (one of [json yaml text]) (default &#34;text&#34;) --password string set the Ondat account password to authenticate with (default &#34;storageos&#34;) --timeout duration set the timeout duration to use for execution of the command (default 15s) --use-ids specify existing Ondat resources by their unique identifiers instead of by their names --username string set the Ondat account username to authenticate as (default &#34;storageos&#34;) Update volume description $ storageos update volume description -h Updates a volume&#39;s description Usage: storageos update volume description [volume name] [description] [flags] Examples: $ storageos update volume description my-volume-name &#34;Volume for production IO&#34; --namespace my-namespace-name Update volume labels $ storageos update volume labels -h Updates a volume&#39;s labels Usage: storageos update volume labels [volume name] [labels] [flags] Examples: $ storageos update volume labels my-volume-name tier=production,app=my-app --namespace my-namespace-name $ storageos update volume labels my-volume-name --delete app=my-app --upsert tier=production --namespace my-namespace-name $ storageos update volume labels my-volume-name --upsert tier=production --namespace my-namespace-name $ storageos update volume labels my-volume-name --delete app=my-app --namespace my-namespace-name Update volume replicas $ storageos update volume replicas -h Updates a volume&#39;s target replica number Usage: storageos update volume replicas [volume name] [target number] [flags] Examples: $ storageos update volume replicas my-volume-name 2 --namespace my-namespace-name Update volume size $ storageos update volume size -h Updates a volume&#39;s size Usage: storageos update volume size [volume name] [size] [flags] Examples: $ storageos update volume size my-volume-name 42GiB --namespace my-namespace-name $ storageos update volume size my-volume-name 42gib --namespace my-namespace-name " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/reference/cli/update/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="Update volume Usage: storageos update volume [command] Available Commands: description Updates a volume&#39;s description labels Updates a volume&#39;s labels replicas Updates a volume&#39;s target replica number size Updates a volume&#39;s size Flags: -h, --help help for volume Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/.">
+<meta itemprop="name" content="Update">
+<meta itemprop="description" content="Usage: storageos update volume [command] Available Commands: description Updates a volume&#39;s description labels Updates a volume&#39;s labels replicas Updates a volume&#39;s target replica number size Updates a volume&#39;s size Flags: -h, --help help for volume Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/.config/storageos/config.yaml&#34;) --endpoints stringArray set the list of endpoints which are used when connecting to the Ondat API (default [http://localhost:5705]) -n, --namespace string specifies the namespace to operate within for commands that require one (default &#34;default&#34;) --no-auth-cache disable the CLI&#39;s caching of authentication sessions -o, --output string specifies the output format (one of [json yaml text]) (default &#34;text&#34;) --password string set the Ondat account password to authenticate with (default &#34;storageos&#34;) --timeout duration set the timeout duration to use for execution of the command (default 15s) --use-ids specify existing Ondat resources by their unique identifiers instead of by their names --username string set the Ondat account username to authenticate as (default &#34;storageos&#34;) Update volume description $ storageos update volume description -h Updates a volume&#39;s description Usage: storageos update volume description [volume name] [description] [flags] Examples: $ storageos update volume description my-volume-name &#34;Volume for production IO&#34; --namespace my-namespace-name Update volume labels $ storageos update volume labels -h Updates a volume&#39;s labels Usage: storageos update volume labels [volume name] [labels] [flags] Examples: $ storageos update volume labels my-volume-name tier=production,app=my-app --namespace my-namespace-name $ storageos update volume labels my-volume-name --delete app=my-app --upsert tier=production --namespace my-namespace-name $ storageos update volume labels my-volume-name --upsert tier=production --namespace my-namespace-name $ storageos update volume labels my-volume-name --delete app=my-app --namespace my-namespace-name Update volume replicas $ storageos update volume replicas -h Updates a volume&#39;s target replica number Usage: storageos update volume replicas [volume name] [target number] [flags] Examples: $ storageos update volume replicas my-volume-name 2 --namespace my-namespace-name Update volume size $ storageos update volume size -h Updates a volume&#39;s size Usage: storageos update volume size [volume name] [size] [flags] Examples: $ storageos update volume size my-volume-name 42GiB --namespace my-namespace-name $ storageos update volume size my-volume-name 42gib --namespace my-namespace-name ">
 
-<meta itemprop="wordCount" content="355">
+<meta itemprop="wordCount" content="353">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="Update volume Usage: storageos update volume [command] Available Commands: description Updates a volume&#39;s description labels Updates a volume&#39;s labels replicas Updates a volume&#39;s target replica number size Updates a volume&#39;s size Flags: -h, --help help for volume Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/."/>
+<meta name="twitter:title" content="Update"/>
+<meta name="twitter:description" content="Usage: storageos update volume [command] Available Commands: description Updates a volume&#39;s description labels Updates a volume&#39;s labels replicas Updates a volume&#39;s target replica number size Updates a volume&#39;s size Flags: -h, --help help for volume Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/.config/storageos/config.yaml&#34;) --endpoints stringArray set the list of endpoints which are used when connecting to the Ondat API (default [http://localhost:5705]) -n, --namespace string specifies the namespace to operate within for commands that require one (default &#34;default&#34;) --no-auth-cache disable the CLI&#39;s caching of authentication sessions -o, --output string specifies the output format (one of [json yaml text]) (default &#34;text&#34;) --password string set the Ondat account password to authenticate with (default &#34;storageos&#34;) --timeout duration set the timeout duration to use for execution of the command (default 15s) --use-ids specify existing Ondat resources by their unique identifiers instead of by their names --username string set the Ondat account username to authenticate as (default &#34;storageos&#34;) Update volume description $ storageos update volume description -h Updates a volume&#39;s description Usage: storageos update volume description [volume name] [description] [flags] Examples: $ storageos update volume description my-volume-name &#34;Volume for production IO&#34; --namespace my-namespace-name Update volume labels $ storageos update volume labels -h Updates a volume&#39;s labels Usage: storageos update volume labels [volume name] [labels] [flags] Examples: $ storageos update volume labels my-volume-name tier=production,app=my-app --namespace my-namespace-name $ storageos update volume labels my-volume-name --delete app=my-app --upsert tier=production --namespace my-namespace-name $ storageos update volume labels my-volume-name --upsert tier=production --namespace my-namespace-name $ storageos update volume labels my-volume-name --delete app=my-app --namespace my-namespace-name Update volume replicas $ storageos update volume replicas -h Updates a volume&#39;s target replica number Usage: storageos update volume replicas [volume name] [target number] [flags] Examples: $ storageos update volume replicas my-volume-name 2 --namespace my-namespace-name Update volume size $ storageos update volume size -h Updates a volume&#39;s size Usage: storageos update volume size [volume name] [size] [flags] Examples: $ storageos update volume size my-volume-name 42GiB --namespace my-namespace-name $ storageos update volume size my-volume-name 42gib --namespace my-namespace-name "/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -74,7 +74,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title></title>
+    <title>Update | </title>
   </head>
   <body class="td-page">
     
@@ -151,7 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.26afd3834dfbb13fccf4f29e049a8ad62787253fdb97ee877a4e53264a40eb0d9a7c77726c52feb3b54136ed216610910de36e0eeea8f3946bd81d630ce86a06.json"
+  data-offline-search-index-json-src="/offline-search-index.34ac71447a0bffaa365c97edb6bbf88438db6667b7fe32ecf77ac6e471d3f3fb52ea372fae0695a7658532a6d680efe72478fcd8e17a3c5d48bd28b4bef4bc83.json"
   data-offline-search-base-href="/"
 >
 
@@ -299,7 +299,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.26afd3834dfbb13fccf4f29e049a8ad62787253fdb97ee877a4e53264a40eb0d9a7c77726c52feb3b54136ed216610910de36e0eeea8f3946bd81d630ce86a06.json"
+  data-offline-search-index-json-src="/offline-search-index.34ac71447a0bffaa365c97edb6bbf88438db6667b7fe32ecf77ac6e471d3f3fb52ea372fae0695a7658532a6d680efe72478fcd8e17a3c5d48bd28b4bef4bc83.json"
   data-offline-search-base-href="/"
 >
 
@@ -738,7 +738,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First Volume</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First PVC</a>
       
       
       
@@ -1141,6 +1141,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceencryption" href="/docs/reference/encryption/">Encryption</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencegui" href="/docs/reference/gui/">GUI</a>
       
       
@@ -1218,19 +1224,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceencryption" href="/docs/reference/encryption/">ontributing to the documentationC</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencerelease_notes" href="/docs/reference/release_notes/">Release notes</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceresource_requests_and_limits" href="/docs/reference/resource_requests_and_limits/">Resource Requests and Limites</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceresource_requests_and_limits" href="/docs/reference/resource_requests_and_limits/">Resource Requests and Limits</a>
       
       
       
@@ -1355,10 +1355,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1></h1>
+	<h1>Update</h1>
 	
-	<h1 id="update-volume">Update volume</h1>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Usage:
+	<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Usage:
   storageos update volume <span style="color:#ce5c00;font-weight:bold">[</span>command<span style="color:#ce5c00;font-weight:bold">]</span>
 
 Available Commands:

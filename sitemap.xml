@@ -112,6 +112,8 @@
   </url><url>
     <loc>/docs/operations/encryption/</loc>
   </url><url>
+    <loc>/docs/reference/encryption/</loc>
+  </url><url>
     <loc>/docs/concepts/etcd/</loc>
   </url><url>
     <loc>/docs/operations/etcd/</loc>
@@ -181,8 +183,6 @@
     <loc>/docs/reference/scheduler/</loc>
   </url><url>
     <loc>/docs/reference/telemetry/</loc>
-  </url><url>
-    <loc>/docs/reference/encryption/</loc>
   </url><url>
     <loc>/docs/platforms/openshift/</loc>
   </url><url>

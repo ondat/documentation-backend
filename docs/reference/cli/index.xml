@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title> – </title>
+    <title> – Command Line Interface</title>
     <link>/docs/reference/cli/</link>
-    <description>Recent content on </description>
+    <description>Recent content in Command Line Interface on </description>
     <generator>Hugo -- gohugo.io</generator>
     
 	  <atom:link href="/docs/reference/cli/index.xml" rel="self" type="application/rss+xml" />
@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Apply</title>
       <link>/docs/reference/cli/apply/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;apply&#34;&gt;Apply&lt;/h1&gt;
-&lt;h2 id=&#34;apply-changes-to-resources&#34;&gt;Apply changes to resources&lt;/h2&gt;
+        &lt;h2 id=&#34;apply-changes-to-resources&#34;&gt;Apply changes to resources&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos apply --help
 Make changes to existing resources
 
@@ -90,7 +89,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Attach</title>
       <link>/docs/reference/cli/attach/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -98,8 +97,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;attach&#34;&gt;Attach&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos attach --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos attach --help
 
 Attach a volume to a node
 
@@ -130,7 +128,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Create</title>
       <link>/docs/reference/cli/create/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -138,8 +136,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;create&#34;&gt;Create&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create --help
 
 Create new resources
 
@@ -299,7 +296,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Delete</title>
       <link>/docs/reference/cli/delete/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -307,8 +304,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;delete&#34;&gt;Delete&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete -h
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete -h
 
 Delete resources in the cluster
 
@@ -492,7 +488,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Describe</title>
       <link>/docs/reference/cli/describe/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -500,8 +496,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;describe&#34;&gt;Describe&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos describe --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos describe --help
 
 Fetch extended details &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; resources
 
@@ -760,7 +755,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Detach</title>
       <link>/docs/reference/cli/detach/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -768,8 +763,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;detach-volume&#34;&gt;Detach Volume&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos detach --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos detach --help
 
 Detach a volume from its current location
 
@@ -802,7 +796,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Get</title>
       <link>/docs/reference/cli/get/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -810,8 +804,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;get&#34;&gt;Get&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get --help
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get --help
 Fetch basic details &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; resources
 
 Usage:
@@ -1097,7 +1090,7 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Help</title>
       <link>/docs/reference/cli/help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1105,8 +1098,7 @@ Global Flags:
       <description>
         
         
-        &lt;h1 id=&#34;help&#34;&gt;Help&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt;
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt;
 
 Storage &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; Cloud Native Applications.
 
@@ -1155,7 +1147,7 @@ Use &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos [command] --hel
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Update</title>
       <link>/docs/reference/cli/update/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1163,8 +1155,7 @@ Use &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos [command] --hel
       <description>
         
         
-        &lt;h1 id=&#34;update-volume&#34;&gt;Update volume&lt;/h1&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Usage:
+        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Usage:
   storageos update volume &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;command&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
 
 Available Commands:

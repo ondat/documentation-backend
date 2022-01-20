@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: System Configuration</title>
       <link>/docs/prerequisites/systemconfiguration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,8 +22,7 @@
       <description>
         
         
-        &lt;h1 id=&#34;system-configuration&#34;&gt;System Configuration&lt;/h1&gt;
-&lt;p&gt;Ondat requires certain kernel modules to function. In particular it
+        &lt;p&gt;Ondat requires certain kernel modules to function. In particular it
 requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source
 implementation of the SCSI target, on all nodes that will execute Ondat
 (usually the workers).&lt;/p&gt;
@@ -110,7 +109,7 @@ the init container, perform the following steps:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Availability of IPv6</title>
       <link>/docs/prerequisites/ipv6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -118,8 +117,7 @@ the init container, perform the following steps:&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;availability-of-ipv6&#34;&gt;Availability of IPv6&lt;/h1&gt;
-&lt;h2 id=&#34;availability-of-ipv6-address-family&#34;&gt;Availability of IPv6 Address Family&lt;/h2&gt;
+        &lt;h2 id=&#34;availability-of-ipv6-address-family&#34;&gt;Availability of IPv6 Address Family&lt;/h2&gt;
 &lt;p&gt;Certain Ondat components need to be able to listen on a standard
 dual-stack socket of type AF_INET6. The IPv6 address family must be supported
 on the server so that this socket can be allocated. Ondat does not require
@@ -131,7 +129,7 @@ kernel.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Firewalls</title>
       <link>/docs/prerequisites/firewalls/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -139,8 +137,7 @@ kernel.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;firewalls&#34;&gt;Firewalls&lt;/h1&gt;
-&lt;h2 id=&#34;port-list&#34;&gt;Port list&lt;/h2&gt;
+        &lt;h2 id=&#34;port-list&#34;&gt;Port list&lt;/h2&gt;
 &lt;p&gt;Ondat daemons listen on specific ports, which we require to be accessible
 between all nodes in the cluster:&lt;/p&gt;
 &lt;table&gt;
@@ -222,7 +219,7 @@ default DROP or REJECT rules.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Mount Propagation</title>
       <link>/docs/prerequisites/mountpropagation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -230,8 +227,7 @@ default DROP or REJECT rules.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;mount-propagation&#34;&gt;Mount Propagation&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;Modern versions of Kubernetes, Docker or other Container Runtimes enable
 mount propagation by default.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -266,7 +262,7 @@ check and enable mount propagation where appropriate.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: PID Limits</title>
       <link>/docs/prerequisites/pidlimits/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -274,8 +270,7 @@ check and enable mount propagation where appropriate.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;pid-limits&#34;&gt;PID Limits&lt;/h1&gt;
-&lt;p&gt;Ondat recommends that a &lt;a href=&#34;https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#pid&#34;&gt;PID
+        &lt;p&gt;Ondat recommends that a &lt;a href=&#34;https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html#pid&#34;&gt;PID
 cgroup&lt;/a&gt;
 limit of 32768 be used for Ondat pods.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -316,7 +311,7 @@ generally see the CRI-O documentation
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Max AIO</title>
       <link>/docs/prerequisites/max-aio/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -324,8 +319,7 @@ generally see the CRI-O documentation
       <description>
         
         
-        &lt;h1 id=&#34;max-aio&#34;&gt;Max AIO&lt;/h1&gt;
-&lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
+        &lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
 Input Output) contexts to serve I/O requests without blocking. Ondat
 requires 4 AIO contexts per deployment (i.e. a Ondat volume deployment,
 whether master or replica).&lt;/p&gt;
@@ -358,7 +352,7 @@ example line:&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: </title>
+      <title>Docs: Etcd</title>
       <link>/docs/prerequisites/etcd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -366,8 +360,7 @@ example line:&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;etcd&#34;&gt;Etcd&lt;/h1&gt;
-&lt;p&gt;Ondat requires an etcd cluster in order to function. For more information
+        &lt;p&gt;Ondat requires an etcd cluster in order to function. For more information
 on why etcd is required please see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;We do not support using the Kubernetes etcd for Ondat installations.&lt;/p&gt;
 &lt;p&gt;We provide two methods for installing etcd. For those looking for a quick

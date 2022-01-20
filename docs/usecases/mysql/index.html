@@ -20,29 +20,32 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title></title><meta property="og:title" content="" />
-<meta property="og:description" content="MySQL MySQL is a popular SQL open source database for a wide range of popular web-based applications including WordPress.
+<title>MySQL | </title><meta property="og:title" content="MySQL" />
+<meta property="og:description" content="MySQL is a popular SQL open source database for a wide range of popular web-based applications including WordPress.
 Before you start, ensure you have Ondat installed and ready on a Kubernetes cluster. See our guide on how to install Ondat on Kubernetes for more information.
 Deploying MySQL on Kubernetes   You can find the latest files in the Ondat use cases repository
-git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion" />
+git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion
+apiversion:apps/v1kind:statefulsetmetadata:name:mysqlspec:selector:matchlabels:app:mysqlenv:prodservicename:mysqlreplicas:1...spec:serviceaccountname:mysql...volumemounts:- name:datamountpath:/var/lib/mysqlsubpath:mysql- name:confmountpath:/etc/mysql/mysql." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/usecases/mysql/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="MySQL MySQL is a popular SQL open source database for a wide range of popular web-based applications including WordPress.
+<meta itemprop="name" content="MySQL">
+<meta itemprop="description" content="MySQL is a popular SQL open source database for a wide range of popular web-based applications including WordPress.
 Before you start, ensure you have Ondat installed and ready on a Kubernetes cluster. See our guide on how to install Ondat on Kubernetes for more information.
 Deploying MySQL on Kubernetes   You can find the latest files in the Ondat use cases repository
-git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion">
+git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion
+apiversion:apps/v1kind:statefulsetmetadata:name:mysqlspec:selector:matchlabels:app:mysqlenv:prodservicename:mysqlreplicas:1...spec:serviceaccountname:mysql...volumemounts:- name:datamountpath:/var/lib/mysqlsubpath:mysql- name:confmountpath:/etc/mysql/mysql.">
 
-<meta itemprop="wordCount" content="199">
+<meta itemprop="wordCount" content="198">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="MySQL MySQL is a popular SQL open source database for a wide range of popular web-based applications including WordPress.
+<meta name="twitter:title" content="MySQL"/>
+<meta name="twitter:description" content="MySQL is a popular SQL open source database for a wide range of popular web-based applications including WordPress.
 Before you start, ensure you have Ondat installed and ready on a Kubernetes cluster. See our guide on how to install Ondat on Kubernetes for more information.
 Deploying MySQL on Kubernetes   You can find the latest files in the Ondat use cases repository
-git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion"/>
+git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion
+apiversion:apps/v1kind:statefulsetmetadata:name:mysqlspec:selector:matchlabels:app:mysqlenv:prodservicename:mysqlreplicas:1...spec:serviceaccountname:mysql...volumemounts:- name:datamountpath:/var/lib/mysqlsubpath:mysql- name:confmountpath:/etc/mysql/mysql."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -83,7 +86,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title></title>
+    <title>MySQL | </title>
   </head>
   <body class="td-page">
     
@@ -160,7 +163,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.26afd3834dfbb13fccf4f29e049a8ad62787253fdb97ee877a4e53264a40eb0d9a7c77726c52feb3b54136ed216610910de36e0eeea8f3946bd81d630ce86a06.json"
+  data-offline-search-index-json-src="/offline-search-index.34ac71447a0bffaa365c97edb6bbf88438db6667b7fe32ecf77ac6e471d3f3fb52ea372fae0695a7658532a6d680efe72478fcd8e17a3c5d48bd28b4bef4bc83.json"
   data-offline-search-base-href="/"
 >
 
@@ -308,7 +311,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.26afd3834dfbb13fccf4f29e049a8ad62787253fdb97ee877a4e53264a40eb0d9a7c77726c52feb3b54136ed216610910de36e0eeea8f3946bd81d630ce86a06.json"
+  data-offline-search-index-json-src="/offline-search-index.34ac71447a0bffaa365c97edb6bbf88438db6667b7fe32ecf77ac6e471d3f3fb52ea372fae0695a7658532a6d680efe72478fcd8e17a3c5d48bd28b4bef4bc83.json"
   data-offline-search-base-href="/"
 >
 
@@ -747,7 +750,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First Volume</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First PVC</a>
       
       
       
@@ -1150,6 +1153,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceencryption" href="/docs/reference/encryption/">Encryption</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencegui" href="/docs/reference/gui/">GUI</a>
       
       
@@ -1227,19 +1236,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceencryption" href="/docs/reference/encryption/">ontributing to the documentationC</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencerelease_notes" href="/docs/reference/release_notes/">Release notes</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceresource_requests_and_limits" href="/docs/reference/resource_requests_and_limits/">Resource Requests and Limites</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceresource_requests_and_limits" href="/docs/reference/resource_requests_and_limits/">Resource Requests and Limits</a>
       
       
       
@@ -1345,10 +1348,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1></h1>
+	<h1>MySQL</h1>
 	
-	<h1 id="mysql">MySQL</h1>
-<p><img src="/images/docs/explore/mysqllogo.png" alt="image"></p>
+	<p><img src="/images/docs/explore/mysqllogo.png" alt="image"></p>
 <p>MySQL is a popular SQL open source database for a wide range of popular
 web-based applications including WordPress.</p>
 <p>Before you start, ensure you have Ondat installed and ready on a Kubernetes
