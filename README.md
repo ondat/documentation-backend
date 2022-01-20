@@ -2,8 +2,7 @@
 
 # Documentation Backend
 Ondat documentation is leveraging the open source static site generator called Hugo. 
-
-*Note*: This repository does not have any of the documentation content.
+***Note*: This repository does not have any of the documentation content.**
 
 # How to contribute
 The documenation content is hosted on https://github.com/ondat/documentation. 
