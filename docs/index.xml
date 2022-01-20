@@ -2596,7 +2596,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:&amp;lt; param latest_cli_version &amp;gt;
+        image: storageos/cli:v2.5.0
         name: cli
 END
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
