@@ -35,7 +35,7 @@ platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
 &lt;p&gt;Ondat supports the five most recent Kubernetes releases, at minimum.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure to add a Ondat licence after installing.&lt;/p&gt;
+&lt;p&gt;Make sure to add an Ondat licence after installing.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-122&#34;&gt;Install ondat on kubernetes 1.22&lt;/h2&gt;
@@ -275,7 +275,7 @@ StorageOSCluster. Check the kubectl plugin reference for the
 &lt;a href=&#34;/docs/reference/kubectl-plugin#declarative-installation&#34;&gt;declarative installation&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat Volume guide&lt;/a&gt; for an example of how
-to mount a Ondat volume in a Pod.&lt;/p&gt;
+to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>
@@ -304,7 +304,7 @@ configuration of CRI-O PID limits.&lt;/p&gt;
 opened for the worker nodes&#39; security group.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure to add a Ondat licence after installing.&lt;/p&gt;
+&lt;p&gt;Make sure to add an Ondat licence after installing.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat v2 supports OpenShift v4. For more information, see the &lt;a href=&#34;/docs/platforms/openshift&#34;&gt;OpenShift platform&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;operatorhub&#34;&gt;OperatorHub&lt;/h2&gt;
@@ -599,7 +599,7 @@ check the &lt;a href=&#34;/docs/reference/licence&#34;&gt;reference licence page
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat volume guide&lt;/a&gt; for an example of how
-to mount a Ondat volume in a Pod.&lt;/p&gt;
+to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>
@@ -824,7 +824,7 @@ developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat Volume guide&lt;/a&gt; for an example of how
-to mount a Ondat volume in a Pod.&lt;/p&gt;
+to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>

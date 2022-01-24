@@ -54,7 +54,7 @@ platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
 &lt;p&gt;Ondat supports the five most recent Kubernetes releases, at minimum.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure to add a Ondat licence after installing.&lt;/p&gt;
+&lt;p&gt;Make sure to add an Ondat licence after installing.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-122&#34;&gt;Install ondat on kubernetes 1.22&lt;/h2&gt;
@@ -294,7 +294,7 @@ StorageOSCluster. Check the kubectl plugin reference for the
 &lt;a href=&#34;/docs/reference/kubectl-plugin#declarative-installation&#34;&gt;declarative installation&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat Volume guide&lt;/a&gt; for an example of how
-to mount a Ondat volume in a Pod.&lt;/p&gt;
+to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>
@@ -655,7 +655,7 @@ configuration of CRI-O PID limits.&lt;/p&gt;
 opened for the worker nodes&#39; security group.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure to add a Ondat licence after installing.&lt;/p&gt;
+&lt;p&gt;Make sure to add an Ondat licence after installing.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat v2 supports OpenShift v4. For more information, see the &lt;a href=&#34;/docs/platforms/openshift&#34;&gt;OpenShift platform&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;operatorhub&#34;&gt;OperatorHub&lt;/h2&gt;
@@ -950,7 +950,7 @@ check the &lt;a href=&#34;/docs/reference/licence&#34;&gt;reference licence page
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat volume guide&lt;/a&gt; for an example of how
-to mount a Ondat volume in a Pod.&lt;/p&gt;
+to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>
@@ -992,7 +992,7 @@ to mount a Ondat volume in a Pod.&lt;/p&gt;
       <description>
         
         
-        &lt;p&gt;Before deploying a Ondat cluster, create a Secret to define the Ondat
+        &lt;p&gt;Before deploying an Ondat cluster, create a Secret to define the Ondat
 API Username and Password in base64 encoding.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: v1
@@ -1342,7 +1342,7 @@ developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat Volume guide&lt;/a&gt; for an example of how
-to mount a Ondat volume in a Pod.&lt;/p&gt;
+to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>
@@ -1785,7 +1785,7 @@ generates a pseudo-random 24 character string, may be used:&lt;/p&gt;
 &lt;span style=&#34;color:#000&#34;&gt;BASE64PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; -n &lt;span style=&#34;color:#000&#34;&gt;$PASSWORD&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; base64&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that the Kubernetes secret containing a strong password &lt;em&gt;must&lt;/em&gt; be created
 before bootstrapping the cluster. Multiple installation procedures use this
-Secret to create a Ondat account when the cluster first starts.&lt;/p&gt;
+Secret to create an Ondat account when the cluster first starts.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-pod-placement&#34;&gt;Ondat Pod placement&lt;/h2&gt;
 &lt;p&gt;Ondat must run on all nodes that will contribute storage capacity to the
 cluster or that will host Pods which use Ondat volumes. For production
@@ -1830,7 +1830,7 @@ nodes.&lt;/p&gt;
         
         &lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
 Input Output) contexts to serve I/O requests without blocking. Ondat
-requires 4 AIO contexts per deployment (i.e. a Ondat volume deployment,
+requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment,
 whether master or replica).&lt;/p&gt;
 &lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite.&lt;/h2&gt;
 &lt;p&gt;By default there is a maximum number of AIO contexts that can be allocated at
@@ -2608,7 +2608,7 @@ kubectl -n storageos exec $POD -- storageos get licence
 &lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
 developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;operations/licensing.md&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;provision-a-ondat-volume&#34;&gt;Provision a Ondat Volume&lt;/h2&gt;
+&lt;h2 id=&#34;provision-an-ondat-volume&#34;&gt;Provision an Ondat Volume&lt;/h2&gt;
 &lt;p&gt;Now that we have a working Ondat cluster, we can provision a volume to test
 everything is working as expected.&lt;/p&gt;
 &lt;ol&gt;
@@ -2665,7 +2665,7 @@ everything is working as expected.&lt;/p&gt;
 &lt;p&gt;Check that the pod starts successfully. If the pod starts successfully then
 the Ondat cluster is working correctly&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get pod d1 -w
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The pod mounts a Ondat volume under &lt;code&gt;/mnt&lt;/code&gt; so any files written there
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The pod mounts an Ondat volume under &lt;code&gt;/mnt&lt;/code&gt; so any files written there
 will persist beyond the lifetime of the pod. This can be demonstrated using
 the following commands.&lt;/p&gt;
 &lt;/li&gt;
@@ -2913,7 +2913,7 @@ performance actual applications should be tested.&lt;/p&gt;
 best results, test using your application of choice with a representative
 configuration and real world data.&lt;/p&gt;
 &lt;p&gt;As an example of benchmarking an application the following steps lay out how to
-benchmark a Postgres database backed by a Ondat volume.&lt;/p&gt;
+benchmark a Postgres database backed by an Ondat volume.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Start by cloning the Ondat use cases repository. Note this is the same
@@ -2979,7 +2979,7 @@ to populate the &lt;code&gt;PodSpec.schedulerName&lt;/code&gt; field with the na
 Scheduler - &lt;code&gt;storageos-scheduler&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;During Pod creation, Kubernetes sends a web request to the Ondat
 WebHook with the Pod specification. The PodSpec is only altered to use the
-Ondat scheduler if the Pod uses a Ondat volume.&lt;/p&gt;
+Ondat scheduler if the Pod uses an Ondat volume.&lt;/p&gt;
 &lt;h2 id=&#34;web-server&#34;&gt;Web Server&lt;/h2&gt;
 &lt;p&gt;The Web Server hosting the web hook is executed in the Ondat Cluster
 Operator. Since only HTTPS requests are allowed, the Operator generates a
@@ -3109,8 +3109,8 @@ $ &lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#3
 
 Flags:
       --cas string         make changes to a resource conditional upon matching the provided version
-      --from-file string   reads a Ondat product licence from a specified file path
-      --from-stdin         reads a Ondat product licence from the standard input
+      --from-file string   reads an Ondat product licence from a specified file path
+      --from-stdin         reads an Ondat product licence from the standard input
   -h, --help               &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; licence
 
 Global Flags:
@@ -3223,7 +3223,7 @@ fails, the cluster is only in a degraded state for as long as it takes
 Kubernetes to restart the pod. When the pod comes back up the pod data is
 immediately available. Should Kubernetes schedule the Cassandra pod on a
 new node, Ondat allows for the data to be available to the pod,
-irrespective of whether or not a Ondat master is located on the same node.&lt;/p&gt;
+irrespective of whether or not an Ondat master is located on the same node.&lt;/p&gt;
 &lt;p&gt;As Cassandra has features to allow it to handle replication careful
 consideration of whether to allow Ondat or Cassandra to handle replication
 is required.&lt;/p&gt;
@@ -5258,7 +5258,7 @@ watches for node failures and determines if there are any pods targeted for
 fencing. In order for a pod to be fenced, the following criteria is required.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The pod must have the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The pod to be fenced must claim a Ondat volume&lt;/li&gt;
+&lt;li&gt;The pod to be fenced must claim an Ondat volume&lt;/li&gt;
 &lt;li&gt;The Ondat volume claimed by the pod needs to be &lt;code&gt;online&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If the node becomes offline and these criteria are met, the pod is deleted and

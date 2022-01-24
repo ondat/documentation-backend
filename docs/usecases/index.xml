@@ -29,7 +29,7 @@ fails, the cluster is only in a degraded state for as long as it takes
 Kubernetes to restart the pod. When the pod comes back up the pod data is
 immediately available. Should Kubernetes schedule the Cassandra pod on a
 new node, Ondat allows for the data to be available to the pod,
-irrespective of whether or not a Ondat master is located on the same node.&lt;/p&gt;
+irrespective of whether or not an Ondat master is located on the same node.&lt;/p&gt;
 &lt;p&gt;As Cassandra has features to allow it to handle replication careful
 consideration of whether to allow Ondat or Cassandra to handle replication
 is required.&lt;/p&gt;
@@ -639,7 +639,7 @@ running off the PersistentVolume. &lt;a href=&#34;https://github.com/kubevirt/co
 (CDI)&lt;/a&gt; can also be
 used to prepare Ondat volumes with disk images in an automated fashion.
 Simply by declaring that a &lt;code&gt;VirtualMachine&lt;/code&gt; will use a DataVolume and providing
-the disk image URL, a Ondat volume can be dynamically provisioned and
+the disk image URL, an Ondat volume can be dynamically provisioned and
 automatically prepared with the disk image.&lt;/p&gt;
 &lt;p&gt;This usecase will guide you through installing KubeVirt and CDI on your
 Kubernetes cluster, and create a VM. By the end of the guide you&amp;rsquo;ll be able to
@@ -708,7 +708,7 @@ Ondat backed PVC and download the image that the
 &lt;li&gt;
 &lt;p&gt;Check that the &lt;code&gt;VMI&lt;/code&gt; is running. Note that the
 &lt;code&gt;VMI&lt;/code&gt; will only be created after CDI has downloaded the
-Cirros disk image onto a Ondat persistent volume so depending on your
+Cirros disk image onto an Ondat persistent volume so depending on your
 connection speed this may take some time.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get vmi
 NAME     AGE   PHASE     IP            NODENAME
@@ -1339,14 +1339,14 @@ with your desired Redis configuration settings.&lt;/p&gt;
         
         
         &lt;p&gt;In this example use case we provide three different strategies for accessing
-files that have been written to a Ondat  persistent volume.&lt;/p&gt;
+files that have been written to an Ondat  persistent volume.&lt;/p&gt;
 &lt;p&gt;In the following examples the &amp;ldquo;application&amp;rdquo; container is the container &lt;code&gt;main&lt;/code&gt;,
 which has a rsync, &lt;a href=&#34;https://www.nginx.com/&#34;&gt;Nginx&lt;/a&gt; or sftp sidecar container. The Ondat volume that
 the application is writing to will be mounted into the sidecar container so
 files written by the application are available for export. Files can be
 exported using Nginx as a web file server, transferred using rsync or accessed
 via SFTP.&lt;/p&gt;
-&lt;p&gt;The files create a stateful set that can be used &lt;em&gt;AFTER&lt;/em&gt; a Ondat cluster
+&lt;p&gt;The files create a stateful set that can be used &lt;em&gt;AFTER&lt;/em&gt; an Ondat cluster
 has been created. &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
 information&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;clone-repository&#34;&gt;Clone Repository&lt;/h2&gt;
@@ -1568,7 +1568,7 @@ files into blobs which are then sent to MinIO.
 &lt;blockquote&gt;
 &lt;p&gt;Velero can also be installed from a helm chart&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;install-minio-with-a-ondat-volume&#34;&gt;Install MinIO with a Ondat volume&lt;/h2&gt;
+&lt;h2 id=&#34;install-minio-with-an-ondat-volume&#34;&gt;Install MinIO with an Ondat volume&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;First, make sure to clone the Ondat use cases repository and navigate to

@@ -321,7 +321,7 @@ generally see the CRI-O documentation
         
         &lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
 Input Output) contexts to serve I/O requests without blocking. Ondat
-requires 4 AIO contexts per deployment (i.e. a Ondat volume deployment,
+requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment,
 whether master or replica).&lt;/p&gt;
 &lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite.&lt;/h2&gt;
 &lt;p&gt;By default there is a maximum number of AIO contexts that can be allocated at

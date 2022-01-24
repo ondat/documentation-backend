@@ -528,7 +528,7 @@ watches for node failures and determines if there are any pods targeted for
 fencing. In order for a pod to be fenced, the following criteria is required.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The pod must have the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The pod to be fenced must claim a Ondat volume&lt;/li&gt;
+&lt;li&gt;The pod to be fenced must claim an Ondat volume&lt;/li&gt;
 &lt;li&gt;The Ondat volume claimed by the pod needs to be &lt;code&gt;online&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If the node becomes offline and these criteria are met, the pod is deleted and
@@ -978,7 +978,7 @@ Kubernetes Cluster needs to be synced to your Ondat cluster.&lt;/p&gt;
 &lt;h2 id=&#34;label-syncing-on-pvcs&#34;&gt;Label Syncing on PVCs&lt;/h2&gt;
 &lt;p&gt;The below guide shows how to apply a label to your PVCs, and how these labels
 sync through to your Ondat Volumes. This operation is used often - for
-example it is used here to add replicas to a Ondat Volume.&lt;/p&gt;
+example it is used here to add replicas to an Ondat Volume.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Create a PVC, following the instructions &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;here&lt;/a&gt;.
@@ -1311,7 +1311,7 @@ NaalLsK/96bJov6tpbg96g==
       <description>
         
         
-        &lt;p&gt;Namespaces help different projects or teams share a Ondat cluster. Only the
+        &lt;p&gt;Namespaces help different projects or teams share an Ondat cluster. Only the
 default namespace is created by default.&lt;/p&gt;
 &lt;p&gt;Namespaces apply to volumes.&lt;/p&gt;
 &lt;h2 id=&#34;managing-namespaces&#34;&gt;Managing Namespaces&lt;/h2&gt;
@@ -1652,7 +1652,7 @@ between the zones we just set.&lt;/p&gt;
         
         &lt;p&gt;Ondat volumes support TRIM/Unmap by default for all uncompressed volumes.
 Ondat creates uncompressed volumes by default so all of these volumes will
-support TRIM/Unmap calls. TRIM&amp;rsquo;ing a Ondat volume will release space taken
+support TRIM/Unmap calls. TRIM&amp;rsquo;ing an Ondat volume will release space taken
 up by deleted blocks in the Ondat volume blob files.&lt;/p&gt;
 &lt;p&gt;TRIM can either be called periodically via &lt;code&gt;fstrim&lt;/code&gt; or continously using the
 &lt;code&gt;-o discard&lt;/code&gt; mount option. Ondat recommends using periodic discard.&lt;/p&gt;
@@ -1660,7 +1660,7 @@ up by deleted blocks in the Ondat volume blob files.&lt;/p&gt;
 &lt;p&gt;In order to TRIM a volume you can run &lt;code&gt;fstrim&lt;/code&gt; against the volume filesystem.
 The volume filesystem will be presented at the mount point for the Ondat
 device.&lt;/p&gt;
-&lt;p&gt;The example below shows the effect of &lt;code&gt;fstrim&lt;/code&gt; on a Ondat volume mounted on
+&lt;p&gt;The example below shows the effect of &lt;code&gt;fstrim&lt;/code&gt; on an Ondat volume mounted on
 &lt;code&gt;/mnt&lt;/code&gt;.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# A Ondat volume with some data written to it.
 $ ls -ls --block-size 1 /var/lib/storageos/data/dev1/vol.211585.*.blob | awk &#39;!/^total/ {total = total + $1}END{print total}&#39;

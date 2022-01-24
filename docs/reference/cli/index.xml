@@ -68,8 +68,8 @@ $ &lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#3
 
 Flags:
       --cas string         make changes to a resource conditional upon matching the provided version
-      --from-file string   reads a Ondat product licence from a specified file path
-      --from-stdin         reads a Ondat product licence from the standard input
+      --from-file string   reads an Ondat product licence from a specified file path
+      --from-stdin         reads an Ondat product licence from the standard input
   -h, --help               &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; licence
 
 Global Flags:

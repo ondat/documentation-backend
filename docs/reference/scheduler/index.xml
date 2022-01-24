@@ -32,7 +32,7 @@ to populate the &lt;code&gt;PodSpec.schedulerName&lt;/code&gt; field with the na
 Scheduler - &lt;code&gt;storageos-scheduler&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;During Pod creation, Kubernetes sends a web request to the Ondat
 WebHook with the Pod specification. The PodSpec is only altered to use the
-Ondat scheduler if the Pod uses a Ondat volume.&lt;/p&gt;
+Ondat scheduler if the Pod uses an Ondat volume.&lt;/p&gt;
 &lt;h2 id=&#34;web-server&#34;&gt;Web Server&lt;/h2&gt;
 &lt;p&gt;The Web Server hosting the web hook is executed in the Ondat Cluster
 Operator. Since only HTTPS requests are allowed, the Operator generates a

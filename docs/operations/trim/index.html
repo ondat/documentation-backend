@@ -21,7 +21,7 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>TRIM | </title><meta property="og:title" content="TRIM" />
-<meta property="og:description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing a Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
+<meta property="og:description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
 TRIM can either be called periodically via fstrim or continously using the -o discard mount option. Ondat recommends using periodic discard.
 Periodic Discard In order to TRIM a volume you can run fstrim against the volume filesystem." />
 <meta property="og:type" content="article" />
@@ -30,14 +30,14 @@ Periodic Discard In order to TRIM a volume you can run fstrim against the volume
 
 
 <meta itemprop="name" content="TRIM">
-<meta itemprop="description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing a Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
+<meta itemprop="description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
 TRIM can either be called periodically via fstrim or continously using the -o discard mount option. Ondat recommends using periodic discard.
 Periodic Discard In order to TRIM a volume you can run fstrim against the volume filesystem.">
 
 <meta itemprop="wordCount" content="632">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TRIM"/>
-<meta name="twitter:description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing a Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
+<meta name="twitter:description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
 TRIM can either be called periodically via fstrim or continously using the -o discard mount option. Ondat recommends using periodic discard.
 Periodic Discard In order to TRIM a volume you can run fstrim against the volume filesystem."/>
 
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.3915e0e578772a03c564c0c5f1f88a77b85e2283783f372b3d32209d02ed338162ac88e8e9f0294fb91329cc18a9d595ffca7860c9de139e99dca85ac092258f.json"
+  data-offline-search-index-json-src="/offline-search-index.9e6c47d12a8d8cd6f7e618f35b111dd04629189f74fcb4b3e45d905347abb877be5bb66788ffb8bbae0f4e138049524974caf9a7c8898fd662a8d820c76c6a5c.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.3915e0e578772a03c564c0c5f1f88a77b85e2283783f372b3d32209d02ed338162ac88e8e9f0294fb91329cc18a9d595ffca7860c9de139e99dca85ac092258f.json"
+  data-offline-search-index-json-src="/offline-search-index.9e6c47d12a8d8cd6f7e618f35b111dd04629189f74fcb4b3e45d905347abb877be5bb66788ffb8bbae0f4e138049524974caf9a7c8898fd662a8d820c76c6a5c.json"
   data-offline-search-base-href="/"
 >
 
@@ -1373,7 +1373,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 	<p>Ondat volumes support TRIM/Unmap by default for all uncompressed volumes.
 Ondat creates uncompressed volumes by default so all of these volumes will
-support TRIM/Unmap calls. TRIM&rsquo;ing a Ondat volume will release space taken
+support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken
 up by deleted blocks in the Ondat volume blob files.</p>
 <p>TRIM can either be called periodically via <code>fstrim</code> or continously using the
 <code>-o discard</code> mount option. Ondat recommends using periodic discard.</p>
@@ -1381,7 +1381,7 @@ up by deleted blocks in the Ondat volume blob files.</p>
 <p>In order to TRIM a volume you can run <code>fstrim</code> against the volume filesystem.
 The volume filesystem will be presented at the mount point for the Ondat
 device.</p>
-<p>The example below shows the effect of <code>fstrim</code> on a Ondat volume mounted on
+<p>The example below shows the effect of <code>fstrim</code> on an Ondat volume mounted on
 <code>/mnt</code>.</p>
 <pre tabindex="0"><code># A Ondat volume with some data written to it.
 $ ls -ls --block-size 1 /var/lib/storageos/data/dev1/vol.211585.*.blob | awk '!/^total/ {total = total + $1}END{print total}'

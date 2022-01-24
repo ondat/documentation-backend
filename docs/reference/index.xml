@@ -277,13 +277,13 @@ application&lt;/a&gt;
 developed to deploy and configure Ondat clusters, and assist with
 maintenance operations. We recommend its use for standard installations.&lt;/p&gt;
 &lt;p&gt;The operator acts as a Kubernetes controller that watches the &lt;code&gt;StorageOSCluster&lt;/code&gt;
-CR (Custom Resource). Once the controller is ready, a Ondat cluster definition can be
-created. The operator will deploy a Ondat cluster based on the
+CR (Custom Resource). Once the controller is ready, an Ondat cluster definition can be
+created. The operator will deploy an Ondat cluster based on the
 configuration specified in the cluster definition.&lt;/p&gt;
 &lt;p&gt;You can find the source code in the &lt;a href=&#34;https://github.com/storageos/cluster-operator&#34;&gt;cluster-operator
 repository&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Install the operator following orchestrator specific procedure.&lt;/p&gt;
-&lt;p&gt;To deploy a Ondat cluster you will need to fulfil the following steps.&lt;/p&gt;
+&lt;p&gt;To deploy an Ondat cluster you will need to fulfil the following steps.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Install Etcd&lt;/li&gt;
 &lt;li&gt;Install operator&lt;/li&gt;
@@ -667,7 +667,7 @@ Ondat.&lt;/p&gt;
 triggered when the Kubernetes node is removed.&lt;/p&gt;
 &lt;p&gt;Whenever a node delete event occurs the Node Delete Controller will trigger if
 the node has the Ondat CSI driver annotation.&lt;/p&gt;
-&lt;p&gt;If the node holds a Ondat Volume without a replica then it cannot be
+&lt;p&gt;If the node holds an Ondat Volume without a replica then it cannot be
 deleted by this controller. The Volume must be deleted first and then the node.
 This is to prevent data loss by accidental deletion of a master volume.&lt;/p&gt;
 &lt;p&gt;A periodic garbage collection runs every hour (this is configurable via
@@ -5833,7 +5833,7 @@ Ondat upgrades are available in the Ondat GUI and in the logs.&lt;/p&gt;
 &lt;h2 id=&#34;once-per-day-report&#34;&gt;Once Per Day Report&lt;/h2&gt;
 &lt;p&gt;The once per day report contains information about the Ondat cluster and
 Kubernetes versions to help Ondat focus our development efforts on the most
-popular platforms. The once per day data is encrypted and sent to a Ondat
+popular platforms. The once per day data is encrypted and sent to an Ondat
 telemetry server so it is never processed outside of Ondat assets.&lt;/p&gt;
 &lt;p&gt;An exhaustive list of information included in the once per day report is below:&lt;/p&gt;
 &lt;ul&gt;
@@ -6806,9 +6806,9 @@ CPU and Memory.&lt;/p&gt;
 &lt;p&gt;As Ondat is an infrastructure component, the health of other applications
 depends on being able to write to the Ondat volumes. As such it is of
 paramount importance to avoid restarts of the Ondat DaemonSet Pods.
-Restarting a Ondat Pod results in the volumes of the node the Ondat Pod
+Restarting an Ondat Pod results in the volumes of the node the Ondat Pod
 is running on being marked as Read Only, and causes the failover of primary
-volumes on that node to their replicas. After a Ondat Pod restart, once the
+volumes on that node to their replicas. After an Ondat Pod restart, once the
 Ondat DaemonSet Pod is &amp;ldquo;READY&amp;rdquo;, the application Pods running on the node
 need to be restarted in order to trigger a mount of the filesystem hosted on
 the Ondat volume and resume normal operations. To avoid restarts of the
