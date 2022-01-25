@@ -1205,7 +1205,7 @@ block your current terminal session till the port-forward is stopped):&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://localhost:5705&lt;/code&gt; using the default
 &lt;code&gt;storageos-api&lt;/code&gt; secret defined during the installation as credentials (for
 example: login: storageos / password: storageos) when using the
-&lt;a href=&#34;/docs/self-eval&#34;&gt;Self-Evaliation Guide&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;/docs/self-eval&#34;&gt;self-evaluation guide&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Depending on the environment, connecting to the localhost might not work when
 using a remote administration machine. If this host has a private or public IP,
 this IP can be set with the address parameter as such:&lt;/p&gt;
