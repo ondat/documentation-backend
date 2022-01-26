@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Ondat V2 is built from the knowledge and experience of running stateful production workloads in the fast changing container world.
 ">
 
-<meta itemprop="wordCount" content="749">
+<meta itemprop="wordCount" content="751">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Overview"/>
 <meta name="twitter:description" content="Ondat V2 is built from the knowledge and experience of running stateful production workloads in the fast changing container world.
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1312,6 +1312,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#-upgraded-control-plane">🚀 Upgraded Control Plane</a></li>
+    <li><a href="#-upgraded-data-plane">🚀 Upgraded Data Plane</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1375,7 +1382,7 @@ clusters for HA or DR purposes.</p>
 <p>We&rsquo;ve built V2 with these architectures and design patterns in mind. Not only
 does it scale well, but it contains the foundations we need to implement a rich
 set of multi-cluster functionality.</p>
-<h2 id="upgraded-control-plane">Upgraded Control Plane</h2>
+<h2 id="-upgraded-control-plane">🚀 Upgraded Control Plane</h2>
 <p>At the heart of the V2 release is an upgraded control plane. We&rsquo;ve changed a
 lot here. Firstly, our usage of etcd is vastly improved. We&rsquo;ve learnt a lot
 about the subtleties of distributed consensus in the last year, particularly in
@@ -1410,7 +1417,7 @@ but that observability and diagnostics are equally important. All logs are now
 decorated with rich context to help you understand what is happening within
 your cluster, and we&rsquo;ll output in json by default, for easy ingestion into log
 aggregators such as Elasticsearch.</p>
-<h2 id="upgraded-data-plane">Upgraded Data Plane</h2>
+<h2 id="-upgraded-data-plane">🚀 Upgraded Data Plane</h2>
 <p>Not to be outdone, our data plane contains some significant improvements.</p>
 <p>Firstly, we&rsquo;ve completely re-written our sync algorithm (see <a href="/docs/concepts/volumes">Delta Sync</a>, used when seeding or catching up replicas
 that have been offline or partitioned. Our new algorithm uses a <a href="https://en.wikipedia.org/wiki/Hash_list">Hash

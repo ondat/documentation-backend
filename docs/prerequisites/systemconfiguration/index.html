@@ -23,7 +23,7 @@
 <title>System Configuration | </title><meta property="og:title" content="System Configuration" />
 <meta property="og:description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 We require the following modules to be loaded:
- target_core_mod tcm_loop target_core_file configfs target_core_user uio   N.B. Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE." />
+ target_core_mod tcm_loop target_core_file configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/prerequisites/systemconfiguration/" /><meta property="article:section" content="docs" />
 
@@ -32,14 +32,14 @@ We require the following modules to be loaded:
 <meta itemprop="name" content="System Configuration">
 <meta itemprop="description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 We require the following modules to be loaded:
- target_core_mod tcm_loop target_core_file configfs target_core_user uio   N.B. Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE.">
+ target_core_mod tcm_loop target_core_file configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE.">
 
-<meta itemprop="wordCount" content="436">
+<meta itemprop="wordCount" content="437">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="System Configuration"/>
 <meta name="twitter:description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 We require the following modules to be loaded:
- target_core_mod tcm_loop target_core_file configfs target_core_user uio   N.B. Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE."/>
+ target_core_mod tcm_loop target_core_file configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1384,7 +1384,7 @@ implementation of the SCSI target, on all nodes that will execute Ondat
 <li><code>uio</code></li>
 </ul>
 <blockquote>
-<p>N.B. Other applications utilising <a href="http://linux-iscsi.org/wiki/LIO">TCMU</a>
+<p>⚠️ Other applications utilising <a href="http://linux-iscsi.org/wiki/LIO">TCMU</a>
 cannot be run concurrently with Ondat. Doing so may result in corruption
 of data. On startup, Ondat will detect if other applications are using
 TCMU and fall back to FUSE. However if Ondat is started first there is no
@@ -1407,7 +1407,7 @@ installed.</p>
 </ul>
 <p>Ubuntu 16.04/18.04 requires the installation of additional packages.</p>
 <blockquote>
-<p>N.B. Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
+<p>⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
 necessary linux-image-extra package - <a href="/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels">see
 below</a> for more information</p>
 </blockquote>
@@ -1423,8 +1423,9 @@ sudo apt -y install linux-modules-extra-<span style="color:#204a87;font-weight:b
 <p><strong>Ubuntu 16.04/18.04 AWS</strong> and <strong>Ubuntu 18.04 GCE</strong> do not yet provide the
 linux-image-extra package. As such you should either use <strong>Debian</strong>, <strong>CentOS</strong>
 or <strong>RHEL</strong>, or install the non-cloud-provider optimised Ubuntu kernel.</p>
-<p>Installing the non-cloud-provider optimised Ubuntu kernel is something that
-should only be done with full understanding of potential ramifications.</p>
+<blockquote>
+<p>⚠️ Installing the non-cloud-provider optimised Ubuntu kernel is something that should only be done with full understanding of potential ramifications.</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt -y update
 sudo apt install -y linux-virtual linux-image-extra-virtual
 sudo apt purge -y linux*aws

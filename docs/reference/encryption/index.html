@@ -34,7 +34,7 @@ For information on how to enable encryption on your volumes, please see our Encr
 Data-in-transit is data as it is travelling between nodes. It is encrypted by default with mTLS. Data-at-rest is the data stored in your volumes as blob files. Encryption of these blob files is optional and can be enabled by adding a label to your volume definitions before they&rsquo;re provisioned.
 For information on how to enable encryption on your volumes, please see our Encryption Operations page.">
 
-<meta itemprop="wordCount" content="723">
+<meta itemprop="wordCount" content="724">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Encryption"/>
 <meta name="twitter:description" content="Ondat supports encryption for data-at-rest and data-in-transit.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1411,9 +1411,11 @@ There is a complete integration between Kubernetes applications and
 Ondat encryption.</p>
 <h2 id="key-management-best-practices">Key Management Best Practices</h2>
 <p>Ondat saves encryption keys in Kubernetes Secrets.
-Backups are therefore imperative in case the Kubernetes Etcd is lost.
-<strong>Ondat has no ability to decrypt a volume whose encryption keys have been
+Backups are therefore imperative in case the Kubernetes Etcd is lost.</p>
+<blockquote>
+<p>⚠️ <strong>Ondat has no ability to decrypt a volume whose encryption keys have been
 lost.</strong></p>
+</blockquote>
 <p>Secrets in Kubernetes are not encrypted by default, they are stored in the
 Kubernetes Etcd in simple Base64 encoding. As Ondat encryption keys are
 stored as Kubernetes Secrets, this means that anyone with access to a

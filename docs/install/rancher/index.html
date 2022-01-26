@@ -22,8 +22,8 @@
 
 <title>Rancher | </title><meta property="og:title" content="Rancher" />
 <meta property="og:description" content="Ondat is a certified Rancher application. We offer two installation methods:
- Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility  Before proceeding, ensure that you have followed our prerequisites. On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled.
-Catalog Install Ondat is a Certified application in the Rancher Catalog." />
+ Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility   ⚠️ Before proceeding, ensure that you have followed our prerequisites.
+  ⚠️ On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/rancher/" /><meta property="article:section" content="docs" />
 
@@ -31,15 +31,15 @@ Catalog Install Ondat is a Certified application in the Rancher Catalog." />
 
 <meta itemprop="name" content="Rancher">
 <meta itemprop="description" content="Ondat is a certified Rancher application. We offer two installation methods:
- Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility  Before proceeding, ensure that you have followed our prerequisites. On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled.
-Catalog Install Ondat is a Certified application in the Rancher Catalog.">
+ Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility   ⚠️ Before proceeding, ensure that you have followed our prerequisites.
+  ⚠️ On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled.">
 
-<meta itemprop="wordCount" content="1059">
+<meta itemprop="wordCount" content="1069">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rancher"/>
 <meta name="twitter:description" content="Ondat is a certified Rancher application. We offer two installation methods:
- Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility  Before proceeding, ensure that you have followed our prerequisites. On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled.
-Catalog Install Ondat is a Certified application in the Rancher Catalog."/>
+ Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility   ⚠️ Before proceeding, ensure that you have followed our prerequisites.
+  ⚠️ On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1386,10 +1386,14 @@ methods:</p>
 <li>Rancher Catalogue - this is the easiest and requires just a few clicks</li>
 <li>Manual - allowing more control and visibility</li>
 </ul>
-<p>Before proceeding, ensure that you have followed our <a href="/docs/prerequisites/_index">prerequisites</a>.
-On Rancher, pay particular attention to
+<blockquote>
+<p>⚠️ Before proceeding, ensure that you have followed our <a href="/docs/prerequisites/_index">prerequisites</a>.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ On Rancher, pay particular attention to
 the OS version and image used - some platforms require extra mainline kernel
 modules to be enabled.</p>
+</blockquote>
 <h2 id="catalog-install">Catalog Install</h2>
 <p>Ondat is a Certified application in the <a href="https://rancher.com/docs/rancher/v2.x/en/catalog/">Rancher
 Catalog</a>. You can install
@@ -1434,8 +1438,10 @@ Ondat Cluster&rsquo; to false and install a custom CR. See <a href="/docs/instal
 </li>
 <li>
 <p>License the newly installed cluster</p>
-<p>Newly installed Ondat clusters must be licensed within 24 hours. Our
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.</p>
+</blockquote>
 <p>You will need access to the Ondat API on port 5705 of any of your nodes.
 For convenience, it is often easiest to port forward the service using the
 following kubectl incantation (this will block, so a second terminal window may
@@ -1533,11 +1539,11 @@ spec:
         values:
         - <span style="color:#4e9a06">&#34;true&#34;</span>
 </code></pre></div><blockquote>
-<p>Additional <code>spec</code> parameters are available on the <a href="/docs/reference/cluster-operator/configuration">Cluster Operator
+<p>💡 Additional <code>spec</code> parameters are available on the <a href="/docs/reference/cluster-operator/configuration">Cluster Operator
 configuration</a> page.</p>
 </blockquote>
 <blockquote>
-<p>You can find more examples such as deployments referencing a external
+<p>💡 You can find more examples such as deployments referencing a external
 etcd kv store for Ondat in the <a href="/docs/reference/cluster-operator/examples">Cluster Operator examples</a> page.</p>
 </blockquote>
 </li>
@@ -1551,7 +1557,7 @@ etcd kv store for Ondat in the <a href="/docs/reference/cluster-operator/example
     &amp;&amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;&amp; rm kubectl-storageos.tar.gz
 </code></pre><blockquote>
-<p>You can find binaries for different architectures and systems in <a href="https://github.com/storageos/kubectl-storageos/releases">kubectl
+<p>💡 You can find binaries for different architectures and systems in <a href="https://github.com/storageos/kubectl-storageos/releases">kubectl
 plugin</a>.</p>
 </blockquote>
 <h3 id="install-ondat">Install Ondat</h3>
@@ -1560,10 +1566,10 @@ plugin</a>.</p>
 </span><span style="color:#4e9a06"></span>    --admin-username <span style="color:#4e9a06">&#34;myuser&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --admin-password <span style="color:#4e9a06">&#34;my-password&#34;</span>
 </code></pre></div><blockquote>
-<p>Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379</p>
+<p>💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379</p>
 </blockquote>
 <blockquote>
-<p>If the etcd endpoints are not defined, the plugin will promt you and
+<p>💡 If the etcd endpoints are not defined, the plugin will promt you and
 request the endpoints.</p>
 </blockquote>
 <p>For more details on the installation options, check the <a href="/docs/reference/kubectl-plugin">kubectl storageos plugin reference page</a>.</p>
@@ -1583,11 +1589,13 @@ storageos-node-zqkk7                     3/3     Running   <span style="color:#0
 storageos-operator-8f7c946f8-npj7l       2/2     Running   <span style="color:#0000cf;font-weight:bold">0</span>          64s
 storageos-scheduler-86b979c6df-wndj4     1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          64s
 </code></pre></div><blockquote>
-<p>Wait until all the pods are ready. It usually takes ~60 seconds to complete</p>
+<p>💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete</p>
 </blockquote>
 <h2 id="license-cluster">License cluster</h2>
-<p>Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.</p>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.</p>
+</blockquote>
 <p>To obtain a license, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 <h2 id="first-ondat-volume">First Ondat volume</h2>
 <p>If this is your first installation you may wish to follow the <a href="/docs/operations/firstpvc">Ondat Volume guide</a> for an example of how

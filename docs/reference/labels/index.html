@@ -34,7 +34,7 @@ Ondat Node labels Nodes do not have any feature labels present by default. When 
 Applying specific feature labels triggers compression, replication and other storage features. No feature labels are present by default.
 Ondat Node labels Nodes do not have any feature labels present by default. When Ondat is run within Kubernetes, the Ondat API Manager syncs any Kubernetes node labels to the corresponding Ondat node. The Kubernetes node labels act as the &ldquo;source of truth&rdquo;, so labels should be applied to the Kubernetes nodes rather than to Ondat nodes.">
 
-<meta itemprop="wordCount" content="649">
+<meta itemprop="wordCount" content="650">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Labels"/>
 <meta name="twitter:description" content="Feature labels are a powerful and flexible way to control storage features.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1403,7 +1403,7 @@ time of up to a minute (or less)).</p>
 </code></pre></div><h2 id="ondat-volume-labels">Ondat Volume labels</h2>
 <p>Volumes do not have any feature labels present by default.</p>
 <blockquote>
-<p><strong>WARNING</strong>: The encryption, caching and compression labels can only apply
+<p>⚠️ The encryption, caching and compression labels can only apply
 at provisioning time, they can&rsquo;t be changed during execution.</p>
 </blockquote>
 <table>
@@ -1498,7 +1498,7 @@ precedence over the StorageClass parameters.</p>
 </span></code></pre></div></li>
 </ul>
 <blockquote>
-<p>N.B. The Ondat API manager periodically syncs labels from Kubernetes PVCs
+<p>⚠️ The Ondat API manager periodically syncs labels from Kubernetes PVCs
 to the corresponding Ondat volume. Therefore changes to Ondat volume
 labels should be made to the corresponding Kubernetes PVC rather than to the
 Ondat volume directly.</p>
@@ -1523,7 +1523,7 @@ Ondat volume directly.</p>
 </tbody>
 </table>
 <blockquote>
-<p>For a pod to be fenced by Ondat, a few requirements described in the
+<p>⚠️ For a pod to be fenced by Ondat, a few requirements described in the
 <a href="/docs/operations/fencing">Fencing Operations</a> page need to be fulfilled.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl label pod <span style="color:#000">$POD</span> storageos.com/fenced<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>

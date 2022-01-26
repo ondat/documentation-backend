@@ -34,7 +34,7 @@ Extending Available Storage Ondat uses subdirectories of /var/lib/storageos/data
 To mitigate against problems caused by filling the host root disk, we recommend mounting a separate device into the /var/lib/storageos directory. Ondat is agnostic to the type of filesystem mounted in /var/lib/storageos.
 Extending Available Storage Ondat uses subdirectories of /var/lib/storageos/data to hold user data. By default, the directory /var/lib/storageos/data/dev1 will be created when a node is bootstrapped, and used for pool data.">
 
-<meta itemprop="wordCount" content="778">
+<meta itemprop="wordCount" content="781">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Host Storage"/>
 <meta name="twitter:description" content="Ondat uses the storage available on the nodes where it is installed to present as available for volumes.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1451,7 +1451,7 @@ root@node0:~# mount /dev/xvdf /var/lib/storageos/data/dev2
 </li>
 </ol>
 <blockquote>
-<p>Persist the mount at boot by adding the mount endpoint to <code>/etc/fstab</code></p>
+<p>💡 Persist the mount at boot by adding the mount endpoint to <code>/etc/fstab</code></p>
 </blockquote>
 <h2 id="option-2-expand-existing-devices-backed-by-lvm">Option 2: Expand Existing Devices Backed by LVM</h2>
 <p>This option enables operators to take advantage of LVM to manage disks.</p>
@@ -1496,7 +1496,7 @@ xvdg             202:96   0  100G  0 disk
 <li>
 <p>Resize the FileSystem</p>
 <blockquote>
-<p>Your filesystem must support the option to be expanded, and to do so
+<p>⚠️ Your filesystem must support the option to be expanded, and to do so
 while in use. Otherwise, you need to unmount first.</p>
 </blockquote>
 <pre tabindex="0"><code>root@node2:~# resize2fs /dev/storageos/data
@@ -1522,7 +1522,7 @@ Filesystem                  Size  Used Avail Use% Mounted on
 </code></pre></li>
 </ol>
 <blockquote>
-<p>Persist the mount at boot by adding the mount point to <code>/etc/fstab</code></p>
+<p>💡 Persist the mount at boot by adding the mount point to <code>/etc/fstab</code></p>
 </blockquote>
 
 	

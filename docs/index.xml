@@ -42,19 +42,19 @@
         
         
         &lt;blockquote&gt;
-&lt;p&gt;Make sure the
+&lt;p&gt;⚠️ Make sure the
 &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Any Kubernetes managed service such as EKS, AKS, GKE, DO or DockerEE
+&lt;p&gt;⚠️ Make sure to add a Ondat licence after installing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Any Kubernetes managed service such as EKS, AKS, GKE, DO or DockerEE
 platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Ondat supports the five most recent Kubernetes releases, at minimum.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Make sure to add an Ondat licence after installing.&lt;/p&gt;
+&lt;p&gt;💡 Ondat supports the five most recent Kubernetes releases, at minimum.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-122&#34;&gt;Install ondat on kubernetes 1.22&lt;/h2&gt;
@@ -66,7 +66,7 @@ platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;install-ondat&#34;&gt;Install Ondat&lt;/h3&gt;
@@ -75,10 +75,10 @@ plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
+&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If the etcd endpoints are not defined, the plugin will promt you and
+&lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will prompt you and
 request the endpoints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;verify-ondat-installation&#34;&gt;Verify Ondat installation&lt;/h3&gt;
@@ -100,8 +100,10 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h3&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-121&#34;&gt;Install Ondat on Kubernetes 1.21&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-1&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
@@ -112,7 +114,7 @@ developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;install-ondat-1&#34;&gt;Install Ondat&lt;/h3&gt;
@@ -121,10 +123,10 @@ plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
+&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If the etcd endpoints are not defined, the plugin will promt you and
+&lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will prompt you and
 request the endpoints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;verify-ondat-installation-1&#34;&gt;Verify Ondat installation&lt;/h3&gt;
@@ -146,8 +148,10 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;license-cluster-1&#34;&gt;License cluster&lt;/h3&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-120&#34;&gt;Install Ondat on Kubernetes 1.20&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-2&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
@@ -158,7 +162,7 @@ developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;install-ondat-2&#34;&gt;Install Ondat&lt;/h3&gt;
@@ -167,10 +171,10 @@ plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
+&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If the etcd endpoints are not defined, the plugin will promt you and
+&lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will prompt you and
 request the endpoints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;verify-ondat-installation-2&#34;&gt;Verify Ondat installation&lt;/h3&gt;
@@ -192,8 +196,10 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;license-cluster-2&#34;&gt;License cluster&lt;/h3&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-119&#34;&gt;Install Ondat on Kubernetes 1.19&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-3&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
@@ -204,7 +210,7 @@ developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;install-ondat-3&#34;&gt;Install Ondat&lt;/h3&gt;
@@ -213,10 +219,10 @@ plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
+&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If the etcd endpoints are not defined, the plugin will promt you and
+&lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will prompt you and
 request the endpoints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;verify-ondat-installation-3&#34;&gt;Verify Ondat installation&lt;/h3&gt;
@@ -238,8 +244,10 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;license-cluster-3&#34;&gt;License cluster&lt;/h3&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-118&#34;&gt;Install Ondat on Kubernetes 1.18&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-4&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
@@ -250,7 +258,7 @@ developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;install-ondat-4&#34;&gt;Install Ondat&lt;/h3&gt;
@@ -259,10 +267,10 @@ plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
+&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If the etcd endpoints are not defined, the plugin will promt you and
+&lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will prompt you and
 request the endpoints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;verify-ondat-installation-4&#34;&gt;Verify Ondat installation&lt;/h3&gt;
@@ -284,8 +292,10 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;license-cluster-4&#34;&gt;License cluster&lt;/h3&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;airgapped-clusters&#34;&gt;Airgapped clusters&lt;/h2&gt;
 &lt;p&gt;Airgapped clusters can install Ondat by defining the container images uploaded
@@ -326,7 +336,7 @@ clusters for HA or DR purposes.&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;ve built V2 with these architectures and design patterns in mind. Not only
 does it scale well, but it contains the foundations we need to implement a rich
 set of multi-cluster functionality.&lt;/p&gt;
-&lt;h2 id=&#34;upgraded-control-plane&#34;&gt;Upgraded Control Plane&lt;/h2&gt;
+&lt;h2 id=&#34;-upgraded-control-plane&#34;&gt;🚀 Upgraded Control Plane&lt;/h2&gt;
 &lt;p&gt;At the heart of the V2 release is an upgraded control plane. We&amp;rsquo;ve changed a
 lot here. Firstly, our usage of etcd is vastly improved. We&amp;rsquo;ve learnt a lot
 about the subtleties of distributed consensus in the last year, particularly in
@@ -361,7 +371,7 @@ but that observability and diagnostics are equally important. All logs are now
 decorated with rich context to help you understand what is happening within
 your cluster, and we&amp;rsquo;ll output in json by default, for easy ingestion into log
 aggregators such as Elasticsearch.&lt;/p&gt;
-&lt;h2 id=&#34;upgraded-data-plane&#34;&gt;Upgraded Data Plane&lt;/h2&gt;
+&lt;h2 id=&#34;-upgraded-data-plane&#34;&gt;🚀 Upgraded Data Plane&lt;/h2&gt;
 &lt;p&gt;Not to be outdone, our data plane contains some significant improvements.&lt;/p&gt;
 &lt;p&gt;Firstly, we&amp;rsquo;ve completely re-written our sync algorithm (see &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;Delta Sync&lt;/a&gt;, used when seeding or catching up replicas
 that have been offline or partitioned. Our new algorithm uses a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hash_list&#34;&gt;Hash
@@ -641,21 +651,21 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
         
         
         &lt;blockquote&gt;
-&lt;p&gt;Make sure the
+&lt;p&gt;⚠️ Make sure the
 &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding. Including the deployment of an etcd cluster and
 configuration of CRI-O PID limits.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;For OpenShift upgrades, refer to the
-&lt;a href=&#34;/docs/platforms/openshift#openshift-upgrades&#34;&gt;OpenShift platform page&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;If you have installed OpenShift in AWS ensure that the requisite ports are
+&lt;p&gt;⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are
 opened for the worker nodes&#39; security group.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure to add an Ondat licence after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add a Ondat licence after installing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 For OpenShift upgrades, refer to the
+&lt;a href=&#34;/docs/platforms/openshift#openshift-upgrades&#34;&gt;OpenShift platform page&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat v2 supports OpenShift v4. For more information, see the &lt;a href=&#34;/docs/platforms/openshift&#34;&gt;OpenShift platform&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;operatorhub&#34;&gt;OperatorHub&lt;/h2&gt;
@@ -664,7 +674,7 @@ opened for the worker nodes&#39; security group.&lt;/p&gt;
 &lt;p&gt;Select the &lt;code&gt;OperatorHub&lt;/code&gt; from the Catalog sub menu and search for Ondat&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/storageos-v2/000-operatorhub-find-storageos.png&#34; alt=&#34;install-0&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Choose between using the RedHat Market Place or the Community Operators
+&lt;p&gt;💡 Choose between using the RedHat Marketplace or the Community Operators
 installation.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -735,7 +745,7 @@ which project you created the secret in.&lt;/p&gt;
 &lt;p&gt;Go to the &amp;ldquo;Installed Operators&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/storageos-v2/090-operator-hub-installed.png&#34; alt=&#34;install-9&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Verify that the Ondat Cluster Operator is installed&lt;/p&gt;
+&lt;p&gt;💡 Verify that the Ondat Cluster Operator is installed&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -746,7 +756,7 @@ which project you created the secret in.&lt;/p&gt;
 &lt;p&gt;Create the Ondat Cluster&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/storageos-v2/110-create-storageos-cluster.png&#34; alt=&#34;install-11&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;A Ondat Cluster is defined using a Custom Resource Definition&lt;/p&gt;
+&lt;p&gt;💡 An Ondat Cluster is defined using a Custom Resource Definition&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -754,8 +764,9 @@ which project you created the secret in.&lt;/p&gt;
 &lt;p&gt;The Ondat cluster resource describes the Ondat cluster that will be
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
-&lt;p&gt;Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator
-configuration&lt;/a&gt; page.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator configuration&lt;/a&gt; page.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.com/v1&amp;#34;&lt;/span&gt;
 kind: StorageOSCluster
 metadata:
@@ -799,7 +810,7 @@ bootstrapped successfully.&lt;/p&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;red-hat-marketplace&#34;&gt;Red Hat Marketplace&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The installation of Ondat using the Red Hat Marketplace requires the
+&lt;p&gt;⚠️ The installation of Ondat using the Red Hat Marketplace requires the
 Openshift cluster to be registered to the Marketplace Portal, including the
 roll out of the PullSecret in your cluster. Failure to do so will result in a
 image pull authentication failure with the Red Hat registry.&lt;/p&gt;
@@ -809,7 +820,7 @@ image pull authentication failure with the Red Hat registry.&lt;/p&gt;
 &lt;p&gt;Select the &lt;code&gt;OperatorHub&lt;/code&gt; from the Catalog sub menu and search for Ondat.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/marketplace/1.png&#34; alt=&#34;install-0&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Choose the RedHat Marketplace option.&lt;/p&gt;
+&lt;p&gt;💡 Choose the RedHat Marketplace option.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -821,7 +832,7 @@ registered with the Red Hat Marketplace portal.&lt;/p&gt;
 &lt;p&gt;Select the most suitable install option.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/marketplace/3.png&#34; alt=&#34;install-2&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Project Edition is suitable for production workloads, Developer Edition
+&lt;p&gt;💡 Project Edition is suitable for production workloads, Developer Edition
 for personal experimentation and evaluation.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -882,7 +893,7 @@ which project you created the secret in.&lt;/p&gt;
 &lt;p&gt;Go to Ondat in your &amp;ldquo;Installed Operators&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/marketplace/8.png&#34; alt=&#34;install-9&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Verify that the Ondat Cluster Operator is installed&lt;/p&gt;
+&lt;p&gt;💡 Verify that the Ondat Cluster Operator is installed&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -893,7 +904,7 @@ which project you created the secret in.&lt;/p&gt;
 &lt;p&gt;Create the Ondat Cluster&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/storageos-v2/110-create-storageos-cluster.png&#34; alt=&#34;install-11&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;A Ondat Cluster is defined using a Custom Resource Definition&lt;/p&gt;
+&lt;p&gt;💡 An Ondat Cluster is defined using a Custom Resource Definition&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -901,8 +912,9 @@ which project you created the secret in.&lt;/p&gt;
 &lt;p&gt;The Ondat cluster resource describes the Ondat cluster that will be
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
-&lt;p&gt;Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator
-configuration&lt;/a&gt; page.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator configuration&lt;/a&gt; page.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.com/v1&amp;#34;&lt;/span&gt;
 kind: StorageOSCluster
 metadata:
@@ -932,21 +944,23 @@ spec:
 &lt;p&gt;Verify that the Ondat Cluster Resource enters a running state.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/storageos-v2/130-cr-created.png&#34; alt=&#34;install-13&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;It can take up to a minute to report the Ondat Pods ready&lt;/p&gt;
+&lt;p&gt;💡 It can take up to a minute to report the Ondat Pods ready&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Check the Ondat Pods in the &lt;code&gt;kube-system&lt;/code&gt; project&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/openshift4/storageos-v2/140-storageos-pods.png&#34; alt=&#34;install-14&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;A Status of 3/3 for the Daemonset Pods indicates that Ondat is
+&lt;p&gt;💡 A Status of 3/3 for the Daemonset Pods indicates that Ondat is
 bootstrapped successfully.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h2&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. For more information,
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. For more information,
 check the &lt;a href=&#34;/docs/reference/licence&#34;&gt;reference licence page&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat volume guide&lt;/a&gt; for an example of how
@@ -1137,10 +1151,14 @@ methods:&lt;/p&gt;
 &lt;li&gt;Rancher Catalogue - this is the easiest and requires just a few clicks&lt;/li&gt;
 &lt;li&gt;Manual - allowing more control and visibility&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Before proceeding, ensure that you have followed our &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites&lt;/a&gt;.
-On Rancher, pay particular attention to
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Before proceeding, ensure that you have followed our &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ On Rancher, pay particular attention to
 the OS version and image used - some platforms require extra mainline kernel
 modules to be enabled.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;catalog-install&#34;&gt;Catalog Install&lt;/h2&gt;
 &lt;p&gt;Ondat is a Certified application in the &lt;a href=&#34;https://rancher.com/docs/rancher/v2.x/en/catalog/&#34;&gt;Rancher
 Catalog&lt;/a&gt;. You can install
@@ -1185,8 +1203,10 @@ Ondat Cluster&amp;rsquo; to false and install a custom CR. See &lt;a href=&#34;/
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;License the newly installed cluster&lt;/p&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;You will need access to the Ondat API on port 5705 of any of your nodes.
 For convenience, it is often easiest to port forward the service using the
 following kubectl incantation (this will block, so a second terminal window may
@@ -1284,11 +1304,11 @@ spec:
         values:
         - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator
+&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator
 configuration&lt;/a&gt; page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You can find more examples such as deployments referencing a external
+&lt;p&gt;💡 You can find more examples such as deployments referencing a external
 etcd kv store for Ondat in the &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator examples&lt;/a&gt; page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -1302,7 +1322,7 @@ etcd kv store for Ondat in the &lt;a href=&#34;/docs/reference/cluster-operator/
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;install-ondat&#34;&gt;Install Ondat&lt;/h3&gt;
@@ -1311,10 +1331,10 @@ plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
+&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If the etcd endpoints are not defined, the plugin will promt you and
+&lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will promt you and
 request the endpoints.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;For more details on the installation options, check the &lt;a href=&#34;/docs/reference/kubectl-plugin&#34;&gt;kubectl storageos plugin reference page&lt;/a&gt;.&lt;/p&gt;
@@ -1334,11 +1354,13 @@ storageos-node-zqkk7                     3/3     Running   &lt;span style=&#34;c
 storageos-operator-8f7c946f8-npj7l       2/2     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          64s
 storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          64s
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
+&lt;p&gt;💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h2&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat Volume guide&lt;/a&gt; for an example of how
@@ -1360,7 +1382,7 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
 &lt;p&gt;Upgrade the Ondat operator using the following yaml manifest.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://github.com/storageos/cluster-operator/releases/download/v2.4.4/storageos-operator.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;When you run the above command Ondat Operator resources will be updated.
+&lt;p&gt;💡 When you run the above command Ondat Operator resources will be updated.
 Since, the Update Strategy of the Ondat Operator Deployment is set to
 rolling update, a new Ondat Operator Pod will be created. Only when
 the new Pod enters the Running Phase will the old Pod be deleted.
@@ -1376,7 +1398,7 @@ storageos-v1   4               DEPLOYED        storageos-operator-0.2.11       1
 &lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm repo update
 $ helm upgrade $NAME storageos/storageos-operator
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;When you run the above command Ondat Operator resources will be updated.
+&lt;p&gt;💡 When you run the above command Ondat Operator resources will be updated.
 Since, the Update Strategy of the Ondat Operator Deployment is set to
 rolling update, a new Ondat Operator Pod will be created. Only when
 the new Pod enters the Running Phase will the old Pod be deleted.
@@ -1436,7 +1458,7 @@ implementation of the SCSI target, on all nodes that will execute Ondat
 &lt;li&gt;&lt;code&gt;uio&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt;
+&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt;
 cannot be run concurrently with Ondat. Doing so may result in corruption
 of data. On startup, Ondat will detect if other applications are using
 TCMU and fall back to FUSE. However if Ondat is started first there is no
@@ -1459,7 +1481,7 @@ installed.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ubuntu 16.04/18.04 requires the installation of additional packages.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
+&lt;p&gt;⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
 necessary linux-image-extra package - &lt;a href=&#34;/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels&#34;&gt;see
 below&lt;/a&gt; for more information&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1475,8 +1497,9 @@ sudo apt -y install linux-modules-extra-&lt;span style=&#34;color:#204a87;font-w
 &lt;p&gt;&lt;strong&gt;Ubuntu 16.04/18.04 AWS&lt;/strong&gt; and &lt;strong&gt;Ubuntu 18.04 GCE&lt;/strong&gt; do not yet provide the
 linux-image-extra package. As such you should either use &lt;strong&gt;Debian&lt;/strong&gt;, &lt;strong&gt;CentOS&lt;/strong&gt;
 or &lt;strong&gt;RHEL&lt;/strong&gt;, or install the non-cloud-provider optimised Ubuntu kernel.&lt;/p&gt;
-&lt;p&gt;Installing the non-cloud-provider optimised Ubuntu kernel is something that
-should only be done with full understanding of potential ramifications.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Installing the non-cloud-provider optimised Ubuntu kernel is something that should only be done with full understanding of potential ramifications.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt -y update
 sudo apt install -y linux-virtual linux-image-extra-virtual
 sudo apt purge -y linux*aws
@@ -1581,9 +1604,11 @@ between all nodes in the cluster:&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Ondat also uses &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeral_port&#34;&gt;ephemeral&lt;/a&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Ondat also uses &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeral_port&#34;&gt;ephemeral&lt;/a&gt;
 ports to dial-out to these ports on other Ondat nodes. For this reason,
-outgoing traffic should be enabled.&lt;/p&gt;
+outgoing traffic should to other nodes be enabled.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;firewalls-and-vps-providers&#34;&gt;Firewalls and VPS providers&lt;/h2&gt;
 &lt;p&gt;Some VPS providers (such as Digital Ocean) ship default firewall rulesets which
 must be updated to allow Ondat to run. Some example rules are shown below -
@@ -1612,8 +1637,9 @@ iptables -I INPUT -p tcp --dport 25705:25960 -m comment --comment &lt;span style
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Outbound traffic&lt;/span&gt;
 iptables -I OUTPUT -o lo -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit loopback traffic&amp;#39;&lt;/span&gt; -j ACCEPT
 iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit outbound traffic&amp;#39;&lt;/span&gt; -j ACCEPT
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Please ensure that the iptables rules you have added above come before any
-default DROP or REJECT rules.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ Please ensure that the iptables rules you have added above come before any default DROP or REJECT rules.&lt;/p&gt;
+&lt;/blockquote&gt;
 
       </description>
     </item>
@@ -1628,7 +1654,7 @@ default DROP or REJECT rules.&lt;/p&gt;
         
         
         &lt;blockquote&gt;
-&lt;p&gt;Modern versions of Kubernetes, Docker or other Container Runtimes enable
+&lt;p&gt;💡 Modern versions of Kubernetes, Docker or other Container Runtimes enable
 mount propagation by default.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat requires mount propagation enabled to present devices as volumes for
@@ -1674,7 +1700,7 @@ check and enable mount propagation where appropriate.&lt;/p&gt;
 cgroup&lt;/a&gt;
 limit of 32768 be used for Ondat pods.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Most environments fulfill this prerequisite by default. Check the
+&lt;p&gt;💡 Most environments fulfill this prerequisite by default. Check the
 Ondat init container logs as shown below to ensure this is the case.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat pods running in Kubernetes are part of a PID cgroup that may limit
@@ -2074,7 +2100,7 @@ NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP PORT&lt
 service/storageos-etcd          ClusterIP   None             &amp;lt;none&amp;gt;      2379/TCP,2380/TCP   22h
 service/storageos-etcd-client   ClusterIP   172.30.132.255   &amp;lt;none&amp;gt;      2379/TCP            22h
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;The URL from the Service &lt;code&gt;storageos-etcd-client.storageos-etcd.svc:2379&lt;/code&gt;
+&lt;p&gt;💡 The URL from the Service &lt;code&gt;storageos-etcd-client.storageos-etcd.svc:2379&lt;/code&gt;
 will be used later in the Ondat Cluster CustomResource the
 &lt;code&gt;kvBackend.address&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2119,7 +2145,7 @@ installation directory to &lt;code&gt;/var/lib/storageos-etcd&lt;/code&gt;.&lt;/
 &lt;p&gt;This section documents the steps required for manual installation of etcd
 using standard package management commands and systemd manifests.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Repeat the following steps on all the nodes that will run etcd as a
+&lt;p&gt;⚠️ &lt;strong&gt;Repeat the following steps on all the nodes that will run etcd as a
 systemd service.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
@@ -2129,7 +2155,7 @@ systemd service.&lt;/strong&gt;&lt;/p&gt;
 &lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;CLIENT_PORT&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2379&amp;#34;&lt;/span&gt;
 &lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;PEERS_PORT&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2380&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If targeting Kubernetes Master nodes, you must change
+&lt;p&gt;⚠️ &lt;strong&gt;If targeting Kubernetes Master nodes, you must change
 &lt;code&gt;CLIENT_PORT&lt;/code&gt;, &lt;code&gt;PEERS_PORT&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -2214,14 +2240,14 @@ following information:&lt;/p&gt;
 &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;Install&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;WantedBy&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;multi-user.target
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;$NODE_IP&lt;/code&gt; is the IP address of the machine you are installing etcd on.`&lt;/p&gt;
+&lt;p&gt;💡 &lt;code&gt;$NODE_IP&lt;/code&gt; is the IP address of the machine you are installing etcd on.`&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note that setting the advertise-client-urls incorrectly will cause any
+&lt;p&gt;⚠️ Note that setting the advertise-client-urls incorrectly will cause any
 client connection to fail. Ondat will fail to communicate to Etcd.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If enabling TLS, it is recomended to generate your own CA certificate
+&lt;p&gt;⚠️ If enabling TLS, it is recomended to generate your own CA certificate
 and key. You will need to distribute the keys and certificates for the
 client auth on all etcd nodes. Moreover, the &lt;code&gt;ExecStart&lt;/code&gt; value should
 look as below:&lt;/p&gt;
@@ -2257,7 +2283,7 @@ $ systemctl start  etcd3.service
 &lt;li&gt;
 &lt;p&gt;Installation Verification&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The &lt;code&gt;etcdctl&lt;/code&gt; binary is installed at &lt;code&gt;/usr/local/bin&lt;/code&gt; on the nodes.&lt;/p&gt;
+&lt;p&gt;💡 The &lt;code&gt;etcdctl&lt;/code&gt; binary is installed at &lt;code&gt;/usr/local/bin&lt;/code&gt; on the nodes.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ssh &lt;span style=&#34;color:#000&#34;&gt;$NODE&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Any node running the new etcd&lt;/span&gt;
 $ &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt; etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;http://127.0.0.1:&lt;span style=&#34;color:#4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;CLIENT_PORT&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&lt;/span&gt; member list &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# $NODE_IP - the IP of the node&lt;/span&gt;
@@ -2265,7 +2291,7 @@ $ &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=
 17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
 8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Read the &lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;etcd operations&lt;/a&gt;
+&lt;p&gt;💡 Read the &lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;etcd operations&lt;/a&gt;
 page for our etcd recommendations.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -2283,7 +2309,7 @@ help you deploy etcd on standalone virtual machines.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Edit the inventory file&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The inventory file targets the nodes that will run etcd. The file
+&lt;p&gt;💡 The inventory file targets the nodes that will run etcd. The file
 &lt;code&gt;hosts&lt;/code&gt; is an example of such an inventory file.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat hosts
@@ -2295,7 +2321,7 @@ centos-3 &lt;span style=&#34;color:#000&#34;&gt;ip&lt;/span&gt;&lt;span style=&#
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Edit the inventory file&lt;/span&gt;
 $ vi hosts &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Or your own inventory file&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;The ip or fqdn are used to expose the advertise-client-urls of Etcd.
+&lt;p&gt;⚠️ The ip or fqdn are used to expose the advertise-client-urls of Etcd.
 Failing to provide valid ip/fqdn will cause any client connection to
 fail. Ondat will fail to communicate to Etcd.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2303,7 +2329,7 @@ fail. Ondat will fail to communicate to Etcd.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Edit the etcd configuration&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If targeting Kubernetes Master nodes, you must change
+&lt;p&gt;⚠️  &lt;strong&gt;If targeting Kubernetes Master nodes, you must change
 &lt;code&gt;etcd_port_client&lt;/code&gt;, &lt;code&gt;etcd_port_peers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat group_vars/all
@@ -2331,12 +2357,12 @@ tls:
 
 $ vi group_vars/all
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Choose between using IP addressing or FQDN in the &lt;code&gt;advertise_format&lt;/code&gt;
+&lt;p&gt;💡 Choose between using IP addressing or FQDN in the &lt;code&gt;advertise_format&lt;/code&gt;
 parameter. It allows you to decide how Etcd advertises its address to
 clients. This is particularly relevant when using TLS.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If enabling TLS, it is recomended to generate your own CA certificate
+&lt;p&gt;💡 If enabling TLS, it is recomended to generate your own CA certificate
 and key. You can do it by generating the CA from the machine running
 Ansible by: &lt;code&gt;ansible-playbook create_ca.yaml&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2348,7 +2374,7 @@ Ansible by: &lt;code&gt;ansible-playbook create_ca.yaml&lt;/code&gt;.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Installation Verification&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The playbook installs the &lt;code&gt;etcdctl&lt;/code&gt; binary on the nodes, at
+&lt;p&gt;💡 The playbook installs the &lt;code&gt;etcdctl&lt;/code&gt; binary on the nodes, at
 &lt;code&gt;/usr/local/bin&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ssh &lt;span style=&#34;color:#000&#34;&gt;$NODE&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Any node running the new etcd&lt;/span&gt;
@@ -2475,8 +2501,10 @@ Ondat. This guide is divided into three sections:&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Feature Testing&lt;/strong&gt; - short walkthrough of some of our features&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Benchmarking&lt;/strong&gt; - a recipe to benchmark Ondat on your infrastructure&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;For more comprehensive documentation including installation advice for complex
+&lt;blockquote&gt;
+&lt;p&gt;💡 For more comprehensive documentation including installation advice for complex
 setups, operational guides, and use-cases, please see our main &lt;a href=&#34;https://docs.ondat.io&#34;&gt;documentation site&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;support-for-self-evaluations&#34;&gt;Support for Self Evaluations&lt;/h2&gt;
 &lt;p&gt;Should you have questions or require support, there are several ways to get in
 touch with us. The fastest way to get in touch is to &lt;a href=&#34;https://slack.storageos.com&#34;&gt;join our public Slack channel&lt;/a&gt;. You can also get in touch via email to
@@ -2515,7 +2543,7 @@ managers. See our &lt;a href=&#34;prerequisites/systemconfiguration&#34;&gt;syst
 &lt;/ul&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Run the following command where &lt;code&gt;kubectl&lt;/code&gt; is installed and with the context
+&lt;p&gt;💡 Run the following command where &lt;code&gt;kubectl&lt;/code&gt; is installed and with the context
 set for your Kubernetes cluster&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
@@ -2525,15 +2553,16 @@ set for your Kubernetes cluster&lt;/p&gt;
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;prepare-etcd-storageclass&#34;&gt;Prepare Etcd StorageClass&lt;/h3&gt;
-&lt;p&gt;The following procedure deploys a local-path StorageClass for the Ondat Etcd.
-Note that this Etcd &lt;strong&gt;is suitable for evaluation purposes only&lt;/strong&gt;. Do not use
-this cluster for production workloads.&lt;/p&gt;
+&lt;p&gt;The following procedure deploys a local-path StorageClass for the Ondat Etcd.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️  Note that this Etcd &lt;strong&gt;is suitable for evaluation purposes only&lt;/strong&gt;. Do not use this cluster for production workloads.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The &lt;code&gt;local-path&lt;/code&gt; StorageClass does not guarantee data safety or availability.
+&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass does not guarantee data safety or availability.
 Therefore the Ondat cluster cannot operate normally if the Etcd cluster
 becomes unavailable. For a production Etcd install check the
 &lt;a href=&#34;prerequisites/etcd.md&#34;&gt;Etcd prerequisites page&lt;/a&gt;.&lt;/p&gt;
@@ -2561,7 +2590,7 @@ storageos-node-zqkk7                     3/3     Running   0          62s
 storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
 storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
+&lt;p&gt;💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;deploy-the-ondat-cli-as-a-container&#34;&gt;Deploy the Ondat CLI as a container&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl -n storageos create -f-&amp;lt;&amp;lt;END
@@ -2600,13 +2629,15 @@ spec:
         name: cli
 END
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;You can get the ClusterId required on the next step using the CLI pod&lt;/p&gt;
+&lt;p&gt;💡 You can get the ClusterId required on the next step using the CLI pod&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
 kubectl -n storageos exec $POD -- storageos get licence
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h3&gt;
-&lt;p&gt;Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;operations/licensing.md&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;provision-an-ondat-volume&#34;&gt;Provision an Ondat Volume&lt;/h2&gt;
 &lt;p&gt;Now that we have a working Ondat cluster, we can provision a volume to test
@@ -2718,8 +2749,10 @@ synthetic benchmarks.&lt;/p&gt;
 &lt;p&gt;Ondat features are all enabled/disabled by applying labels to volumes.
 These labels can be passed to Ondat via persistent volume claims (PVCs) or
 can be applied to volumes using the Ondat CLI or GUI.&lt;/p&gt;
-&lt;p&gt;The following is not an exhaustive feature list but outlines features which are
+&lt;blockquote&gt;
+&lt;p&gt;💡 The following is not an exhaustive feature list but outlines features which are
 commonly of use during a self-evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;volume-replication&#34;&gt;Volume Replication&lt;/h3&gt;
 &lt;p&gt;Ondat enables synchronous replication of volumes using the
 &lt;code&gt;storageos.com/replicas&lt;/code&gt; label.&lt;/p&gt;
@@ -2729,8 +2762,10 @@ replica cannot be placed on a node without a replica of the same volume, the
 volume will fail to be created. For example, in a three node Ondat cluster
 a volume with 3 replicas cannot be created as the third replica cannot be
 placed on a node that doesn&amp;rsquo;t already contain a replica of the same volume.&lt;/p&gt;
-&lt;p&gt;See our &lt;a href=&#34;concepts/replication&#34;&gt;replication documentation&lt;/a&gt; for more
+&lt;blockquote&gt;
+&lt;p&gt;💡 See our &lt;a href=&#34;concepts/replication&#34;&gt;replication documentation&lt;/a&gt; for more
 information on volume replication.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;To test volume replication create the following PersistentVolumeClaim&lt;/p&gt;
@@ -2750,7 +2785,7 @@ information on volume replication.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     storage: 5Gi
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;END&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that volume replication is enabled by setting the
+&lt;p&gt;💡 Note that volume replication is enabled by setting the
 &lt;code&gt;storageos.com/replicas&lt;/code&gt; label on the volume.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -2897,8 +2932,10 @@ low blocksize&lt;/li&gt;
 remote volumes both with and without a replica. Deploy the FIO tests for the
 four scenarios using the following command:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -sL https://raw.githubusercontent.com/ondat/use-cases/main/scripts/deploy-synthetic-benchmarks.sh &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; bash
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The script will take approximately 20 minutes to complete, and will print the
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 The script will take approximately 20 minutes to complete, and will print the
 results to STDOUT.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;The exact results observed will depend on the particular platform and
 environment, but the following trends should be observable:&lt;/p&gt;
 &lt;ul&gt;
@@ -2954,9 +2991,11 @@ kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt;
 &lt;/ol&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;After completing these steps you will have benchmark scores for Ondat.
-Please keep in mind that benchmarks are only part of the story and that there
+&lt;p&gt;After completing these steps you will have benchmark scores for Ondat.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Please keep in mind that benchmarks are only part of the story and that there
 is no replacement for testing actual production or production like workloads.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Ondat invites you to provide feedback on your self-evaluation to the &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack channel&lt;/a&gt; or by directly emailing us at &lt;a href=&#34;mailto:info@ondat.io&#34;&gt;info@ondat.io&lt;/a&gt;.&lt;/p&gt;
 
       </description>
@@ -3011,7 +3050,7 @@ be added to resources that use Ondat volumes.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;explicit-schedulername&#34;&gt;Explicit SchedulerName&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;It is not necessary to explicitly set the SchedulerName as the &lt;a href=&#34;admission-controller.md&#34;&gt;Admission
+&lt;p&gt;💡 It is not necessary to explicitly set the SchedulerName as the &lt;a href=&#34;admission-controller.md&#34;&gt;Admission
 Controller&lt;/a&gt;
 automatically populates the PodSpec field. Set the SchedulerName in your
 manifests, manually, only if you disable or can&amp;rsquo;t execute the Ondat
@@ -4297,7 +4336,7 @@ issues you may be experiencing.&lt;/p&gt;
 the bundle.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get diagnostics
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;The file generated is in the form of &lt;code&gt;diagnostics-${TIME_STAMP}.gz&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💡 The file generated is in the form of &lt;code&gt;diagnostics-${TIME_STAMP}.gz&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;gui&#34;&gt;GUI&lt;/h3&gt;
 &lt;p&gt;Or you can use the &lt;a href=&#34;/docs/reference/gui&#34;&gt;StoregeOS GUI&lt;/a&gt;.&lt;/p&gt;
@@ -4383,12 +4422,14 @@ remediating the disk space issue.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;To recover from a disk full error, you can either add new storage space
 into the affected node, or delete existing persistent volume claims.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;N.B.&lt;/strong&gt; However you choose to resolve the issue, the &lt;strong&gt;Ondat Daemonset
+&lt;p&gt;⚠️ However you choose to resolve the issue, the &lt;strong&gt;Ondat Daemonset
 Pod must be restarted&lt;/strong&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This is because the blob files disallow operations at runtime via the
+&lt;blockquote&gt;
+&lt;p&gt;💡 This is because the blob files disallow operations at runtime via the
 previously discussed error flag stored in memory. This flag does not survive
 boot cycles, so after the pod restarts, volumes can operate normally once more.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;adding-new-storage-space&#34;&gt;Adding New Storage Space&lt;/h3&gt;
 &lt;p&gt;If you choose to recover by expanding your capacity, you have two main options:&lt;/p&gt;
 &lt;ol&gt;
@@ -4686,9 +4727,11 @@ There is a complete integration between Kubernetes applications and
 Ondat encryption.&lt;/p&gt;
 &lt;h2 id=&#34;key-management-best-practices&#34;&gt;Key Management Best Practices&lt;/h2&gt;
 &lt;p&gt;Ondat saves encryption keys in Kubernetes Secrets.
-Backups are therefore imperative in case the Kubernetes Etcd is lost.
-&lt;strong&gt;Ondat has no ability to decrypt a volume whose encryption keys have been
+Backups are therefore imperative in case the Kubernetes Etcd is lost.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Ondat has no ability to decrypt a volume whose encryption keys have been
 lost.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in the
 Kubernetes Etcd in simple Base64 encoding. As Ondat encryption keys are
 stored as Kubernetes Secrets, this means that anyone with access to a
@@ -4750,7 +4793,7 @@ written to etcd before the request is completed. Using etcd as a configuration
 store allows nodes to retrieve the current cluster state after being offlined,
 allowing offlined nodes to rejoin the cluster.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Ondat v2.0 does not provide an embedded etcd server as previous
+&lt;p&gt;⚠️ Ondat v2.0 does not provide an embedded etcd server as previous
 versions did. You will need to setup an etcd server for Ondat to use
 prior to installation of Ondat. For more information on how
 to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites&lt;/a&gt; page.&lt;/p&gt;
@@ -4772,12 +4815,12 @@ to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&
 cluster while removing one of the current members. This is useful when the
 nodes hosting etcd must be recycled.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;It is assumed&lt;/strong&gt; that the Ondat etcd cluster is installed following the
+&lt;p&gt;⚠️ &lt;strong&gt;It is assumed&lt;/strong&gt; that the Ondat etcd cluster is installed following the
 &lt;a href=&#34;/docs/prerequisites/etcd#production&#34;&gt;production etcd installation&lt;/a&gt;
 page, where etcd nodes are installed on their own machines.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;It is also assumed&lt;/strong&gt; that etcd members are referenced from Kubernetes using a External
+&lt;p&gt;⚠️ &lt;strong&gt;It is also assumed&lt;/strong&gt; that etcd members are referenced from Kubernetes using a External
 Service. Example available in the &lt;a href=&#34;https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc&#34;&gt;etcd external
 Service&lt;/a&gt;
 example. This service should be referred to in the &lt;code&gt;spec.kvbackend.address&lt;/code&gt;
@@ -4837,14 +4880,14 @@ $ etcdctl endpoint status --endpoints $endpoints -wtable
 &lt;/ol&gt;
 &lt;h2 id=&#34;migration&#34;&gt;Migration&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;In the following procedure NODE4 is a new member to add to the cluster, while
+&lt;p&gt;💡 In the following procedure NODE4 is a new member to add to the cluster, while
 NODE1 ought to be removed.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Amend etcd configuration to reference the new node (NODE4)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make the following change on all running etcd members and NODE4&lt;/p&gt;
+&lt;p&gt;💡 Make the following change on all running etcd members and NODE4&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ # NODE4_IP is the NEW_NODE_ADDRESS
 $ echo &amp;quot;NODE4_IP=192.168.152.142&amp;quot; &amp;gt;&amp;gt; /etc/etcd.conf
@@ -4865,7 +4908,7 @@ NODE4_IP=192.168.152.142
 &lt;li&gt;
 &lt;p&gt;Amend SystemD service file on the new etcd node (NODE4)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The SystemD service file is expected in &lt;code&gt;/etc/systemd/system/etcd3.service&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💡 The SystemD service file is expected in &lt;code&gt;/etc/systemd/system/etcd3.service&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Change the &lt;code&gt;--initial-cluster-state&lt;/code&gt; to &lt;code&gt;existing&lt;/code&gt; and add the reference to
 NODE4 in the &lt;code&gt;--initial-cluster&lt;/code&gt; variable.&lt;/p&gt;
@@ -4885,7 +4928,7 @@ ExecStart=/usr/local/sbin/etcd3 --name etcd-${NODE_IP} \
 ...
 
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note the reference to NODE4 at the end of the &lt;code&gt;--initial-cluster&lt;/code&gt;
+&lt;p&gt;💡 Note the reference to NODE4 at the end of the &lt;code&gt;--initial-cluster&lt;/code&gt;
 variable&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Make sure etcd is not started on the new member NODE4&lt;/strong&gt;&lt;/p&gt;
@@ -4926,13 +4969,13 @@ $ etcdctl member list --endpoints $endpoints -wtable
 | e5d0f0e242014d3d |   started | etcd-192.168.174.117 | http://192.168.174.117:2380 | http://192.168.174.117:2379 |      false |
 +------------------+-----------+----------------------+-----------------------------+-----------------------------+------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that the learner is not started yet&lt;/p&gt;
+&lt;p&gt;💡 Note that the learner is not started yet&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Start etcd on the new node (NODE4)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure that &lt;code&gt;/etc/systemd/system/etcd.service&lt;/code&gt; only have &lt;strong&gt;currently
+&lt;p&gt;⚠️ Make sure that &lt;code&gt;/etc/systemd/system/etcd.service&lt;/code&gt; only have &lt;strong&gt;currently
 active&lt;/strong&gt; nodes specified in the &lt;code&gt;--initial-cluster&lt;/code&gt; flag.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# On the new node (NODE4)&lt;/span&gt;
@@ -4956,7 +4999,7 @@ $ etcdctl member list --endpoints $endpoints -wtable
 +------------------+---------+----------------------+-----------------------------+-----------------------------+------------+
 
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that the learner is started&lt;/p&gt;
+&lt;p&gt;💡 Note that the learner is started&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -4976,7 +5019,7 @@ etcdctl endpoint status --endpoints $endpoints -wtable
 | 192.168.152.142:2379| 52e5c9ac117b3df2 |   3.4.9 |  467 kB |     false |       true |         2 |      24570 |              24570 |        |
 +---------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Wait until the cluster has the learner ready, by ensuring that the
+&lt;p&gt;⚠️ Wait until the cluster has the learner ready, by ensuring that the
 RAFT TERM and RAFT INDEX of the learner node match the rest of the
 cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4984,7 +5027,7 @@ cluster.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Remove the node that needs to be evicted (NODE1)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Before promoting the learner to a full member, it is best to remove the
+&lt;p&gt;💡 Before promoting the learner to a full member, it is best to remove the
 node from the cluster that initially was selected to be decommissioned to
 avoid breaking quorum while having 4 nodes being part of the cluster. For
 more details, check the &lt;a href=&#34;https://etcd.io/docs/v3.4/faq/#should-i-add-a-member-before-removing-an-unhealthy-member&#34;&gt;official etcd
@@ -5009,7 +5052,7 @@ $ NODE4_MEMBER_ID=52e5c9ac117b3df2
 $ etcdctl member promote $NODE4_MEMBER_ID
 Member 52e5c9ac117b3df2 promoted in cluster b4f4ed717ea44b8d
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The promotion will fail if the learner is not in sync with the leader
+&lt;p&gt;⚠️ The promotion will fail if the learner is not in sync with the leader
 member.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -5035,14 +5078,14 @@ $ etcdctl endpoint status --endpoints $endpoints -wtable
 |192.168.152.142:2379 | 52e5c9ac117b3df2 |   3.4.9 |  467 kB |     false |      false |         3 |      35939 |              35939 |        |
 +---------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that NODE4 is now a full quorum member, while NODE1 is no longer
+&lt;p&gt;💡 Note that NODE4 is now a full quorum member, while NODE1 is no longer
 part of the cluster&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Edit Endpoints referencing the Kubernetes Service&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Remove the reference to NODE1 and add the IP for NODE4&lt;/p&gt;
+&lt;p&gt;💡 Remove the reference to NODE1 and add the IP for NODE4&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl edit -n storageos-etcd endpoints/storageos-etcd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
@@ -5050,7 +5093,7 @@ part of the cluster&lt;/p&gt;
 &lt;p&gt;Make amendments in the SystemD configuration files removing any reference to
 NODE1&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;It is not required to restart the etcd service, but to keep the service
+&lt;p&gt;💡 It is not required to restart the etcd service - this is just to keep the service
 file up to date.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -5206,7 +5249,7 @@ see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubern
 Safety&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The Ondat Fencing Controller is part of the Ondat API Manager which
+&lt;p&gt;💡 The Ondat Fencing Controller is part of the Ondat API Manager which
 is deployed in high availability when Ondat is installed.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;HA for StatefulSet applications can be achieved with the Ondat Fencing
@@ -5266,7 +5309,7 @@ fencing. In order for a pod to be fenced, the following criteria is required.&lt
 &lt;p&gt;If the node becomes offline and these criteria are met, the pod is deleted and
 rescheduled on another node.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;No changes are made to Pods that have Ondat volumes that are unhealthy.
+&lt;p&gt;💡 No changes are made to Pods that have Ondat volumes that are unhealthy.
 This is typically the case when a volume was configured to not have any
 replicas, and the node with the single copy of the data is offline. In this
 case it is better to wait for the Node to recover.&lt;/p&gt;
@@ -5275,7 +5318,7 @@ case it is better to wait for the Node to recover.&lt;/p&gt;
 &lt;p&gt;The following example shows how a Statefulset can enable fencing to all its
 pods.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note that the &lt;code&gt;fenced&lt;/code&gt; label is applied only in the
+&lt;p&gt;⚠️ Note that the &lt;code&gt;fenced&lt;/code&gt; label is applied only in the
 &lt;code&gt;.spec.template.metadata.label&lt;/code&gt; section, as the label must only be present on
 the Pod, but not on the PVC.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -5336,7 +5379,7 @@ $ kubectl -n mysql get pvc --show-labels -owide
 NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
 data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RWO            storageos      19m   Filesystem   app=mysql,env=prod,storageos.com/replicas=1
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that the mysql-0 pod has the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label.&lt;/p&gt;
+&lt;p&gt;💡 Note that the mysql-0 pod has the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -5365,7 +5408,7 @@ data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RW
 {&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.573478266Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;set scheduler&amp;quot;,&amp;quot;scheduler&amp;quot;:&amp;quot;storageos-scheduler&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql/mysql-0&amp;quot;}
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The Ondat API Manager detects all the pods that are on the failed
+&lt;p&gt;💡 The Ondat API Manager detects all the pods that are on the failed
 node, and selects only the ones that meet the fencing criteria as
 described above. In this case only &lt;code&gt;mysql-0&lt;/code&gt; is selected for fencing.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -5376,7 +5419,7 @@ described above. In this case only &lt;code&gt;mysql-0&lt;/code&gt; is selected 
 NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
 mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The pod &lt;code&gt;mysql-0&lt;/code&gt; started on a different node successfully.&lt;/p&gt;
+&lt;p&gt;💡 The pod &lt;code&gt;mysql-0&lt;/code&gt; started on a different node successfully.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;

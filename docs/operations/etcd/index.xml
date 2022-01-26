@@ -26,12 +26,12 @@
 cluster while removing one of the current members. This is useful when the
 nodes hosting etcd must be recycled.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;It is assumed&lt;/strong&gt; that the Ondat etcd cluster is installed following the
+&lt;p&gt;⚠️ &lt;strong&gt;It is assumed&lt;/strong&gt; that the Ondat etcd cluster is installed following the
 &lt;a href=&#34;/docs/prerequisites/etcd#production&#34;&gt;production etcd installation&lt;/a&gt;
 page, where etcd nodes are installed on their own machines.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;It is also assumed&lt;/strong&gt; that etcd members are referenced from Kubernetes using a External
+&lt;p&gt;⚠️ &lt;strong&gt;It is also assumed&lt;/strong&gt; that etcd members are referenced from Kubernetes using a External
 Service. Example available in the &lt;a href=&#34;https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc&#34;&gt;etcd external
 Service&lt;/a&gt;
 example. This service should be referred to in the &lt;code&gt;spec.kvbackend.address&lt;/code&gt;
@@ -91,14 +91,14 @@ $ etcdctl endpoint status --endpoints $endpoints -wtable
 &lt;/ol&gt;
 &lt;h2 id=&#34;migration&#34;&gt;Migration&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;In the following procedure NODE4 is a new member to add to the cluster, while
+&lt;p&gt;💡 In the following procedure NODE4 is a new member to add to the cluster, while
 NODE1 ought to be removed.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Amend etcd configuration to reference the new node (NODE4)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make the following change on all running etcd members and NODE4&lt;/p&gt;
+&lt;p&gt;💡 Make the following change on all running etcd members and NODE4&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ # NODE4_IP is the NEW_NODE_ADDRESS
 $ echo &amp;quot;NODE4_IP=192.168.152.142&amp;quot; &amp;gt;&amp;gt; /etc/etcd.conf
@@ -119,7 +119,7 @@ NODE4_IP=192.168.152.142
 &lt;li&gt;
 &lt;p&gt;Amend SystemD service file on the new etcd node (NODE4)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The SystemD service file is expected in &lt;code&gt;/etc/systemd/system/etcd3.service&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💡 The SystemD service file is expected in &lt;code&gt;/etc/systemd/system/etcd3.service&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Change the &lt;code&gt;--initial-cluster-state&lt;/code&gt; to &lt;code&gt;existing&lt;/code&gt; and add the reference to
 NODE4 in the &lt;code&gt;--initial-cluster&lt;/code&gt; variable.&lt;/p&gt;
@@ -139,7 +139,7 @@ ExecStart=/usr/local/sbin/etcd3 --name etcd-${NODE_IP} \
 ...
 
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note the reference to NODE4 at the end of the &lt;code&gt;--initial-cluster&lt;/code&gt;
+&lt;p&gt;💡 Note the reference to NODE4 at the end of the &lt;code&gt;--initial-cluster&lt;/code&gt;
 variable&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Make sure etcd is not started on the new member NODE4&lt;/strong&gt;&lt;/p&gt;
@@ -180,13 +180,13 @@ $ etcdctl member list --endpoints $endpoints -wtable
 | e5d0f0e242014d3d |   started | etcd-192.168.174.117 | http://192.168.174.117:2380 | http://192.168.174.117:2379 |      false |
 +------------------+-----------+----------------------+-----------------------------+-----------------------------+------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that the learner is not started yet&lt;/p&gt;
+&lt;p&gt;💡 Note that the learner is not started yet&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Start etcd on the new node (NODE4)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure that &lt;code&gt;/etc/systemd/system/etcd.service&lt;/code&gt; only have &lt;strong&gt;currently
+&lt;p&gt;⚠️ Make sure that &lt;code&gt;/etc/systemd/system/etcd.service&lt;/code&gt; only have &lt;strong&gt;currently
 active&lt;/strong&gt; nodes specified in the &lt;code&gt;--initial-cluster&lt;/code&gt; flag.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# On the new node (NODE4)&lt;/span&gt;
@@ -210,7 +210,7 @@ $ etcdctl member list --endpoints $endpoints -wtable
 +------------------+---------+----------------------+-----------------------------+-----------------------------+------------+
 
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that the learner is started&lt;/p&gt;
+&lt;p&gt;💡 Note that the learner is started&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -230,7 +230,7 @@ etcdctl endpoint status --endpoints $endpoints -wtable
 | 192.168.152.142:2379| 52e5c9ac117b3df2 |   3.4.9 |  467 kB |     false |       true |         2 |      24570 |              24570 |        |
 +---------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Wait until the cluster has the learner ready, by ensuring that the
+&lt;p&gt;⚠️ Wait until the cluster has the learner ready, by ensuring that the
 RAFT TERM and RAFT INDEX of the learner node match the rest of the
 cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -238,7 +238,7 @@ cluster.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Remove the node that needs to be evicted (NODE1)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Before promoting the learner to a full member, it is best to remove the
+&lt;p&gt;💡 Before promoting the learner to a full member, it is best to remove the
 node from the cluster that initially was selected to be decommissioned to
 avoid breaking quorum while having 4 nodes being part of the cluster. For
 more details, check the &lt;a href=&#34;https://etcd.io/docs/v3.4/faq/#should-i-add-a-member-before-removing-an-unhealthy-member&#34;&gt;official etcd
@@ -263,7 +263,7 @@ $ NODE4_MEMBER_ID=52e5c9ac117b3df2
 $ etcdctl member promote $NODE4_MEMBER_ID
 Member 52e5c9ac117b3df2 promoted in cluster b4f4ed717ea44b8d
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The promotion will fail if the learner is not in sync with the leader
+&lt;p&gt;⚠️ The promotion will fail if the learner is not in sync with the leader
 member.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -289,14 +289,14 @@ $ etcdctl endpoint status --endpoints $endpoints -wtable
 |192.168.152.142:2379 | 52e5c9ac117b3df2 |   3.4.9 |  467 kB |     false |      false |         3 |      35939 |              35939 |        |
 +---------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that NODE4 is now a full quorum member, while NODE1 is no longer
+&lt;p&gt;💡 Note that NODE4 is now a full quorum member, while NODE1 is no longer
 part of the cluster&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Edit Endpoints referencing the Kubernetes Service&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Remove the reference to NODE1 and add the IP for NODE4&lt;/p&gt;
+&lt;p&gt;💡 Remove the reference to NODE1 and add the IP for NODE4&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl edit -n storageos-etcd endpoints/storageos-etcd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
@@ -304,7 +304,7 @@ part of the cluster&lt;/p&gt;
 &lt;p&gt;Make amendments in the SystemD configuration files removing any reference to
 NODE1&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;It is not required to restart the etcd service, but to keep the service
+&lt;p&gt;💡 It is not required to restart the etcd service - this is just to keep the service
 file up to date.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;

@@ -217,12 +217,14 @@ remediating the disk space issue.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;To recover from a disk full error, you can either add new storage space
 into the affected node, or delete existing persistent volume claims.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;N.B.&lt;/strong&gt; However you choose to resolve the issue, the &lt;strong&gt;Ondat Daemonset
+&lt;p&gt;⚠️ However you choose to resolve the issue, the &lt;strong&gt;Ondat Daemonset
 Pod must be restarted&lt;/strong&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This is because the blob files disallow operations at runtime via the
+&lt;blockquote&gt;
+&lt;p&gt;💡 This is because the blob files disallow operations at runtime via the
 previously discussed error flag stored in memory. This flag does not survive
 boot cycles, so after the pod restarts, volumes can operate normally once more.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;adding-new-storage-space&#34;&gt;Adding New Storage Space&lt;/h3&gt;
 &lt;p&gt;If you choose to recover by expanding your capacity, you have two main options:&lt;/p&gt;
 &lt;ol&gt;
@@ -534,7 +536,7 @@ fencing. In order for a pod to be fenced, the following criteria is required.&lt
 &lt;p&gt;If the node becomes offline and these criteria are met, the pod is deleted and
 rescheduled on another node.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;No changes are made to Pods that have Ondat volumes that are unhealthy.
+&lt;p&gt;💡 No changes are made to Pods that have Ondat volumes that are unhealthy.
 This is typically the case when a volume was configured to not have any
 replicas, and the node with the single copy of the data is offline. In this
 case it is better to wait for the Node to recover.&lt;/p&gt;
@@ -543,7 +545,7 @@ case it is better to wait for the Node to recover.&lt;/p&gt;
 &lt;p&gt;The following example shows how a Statefulset can enable fencing to all its
 pods.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note that the &lt;code&gt;fenced&lt;/code&gt; label is applied only in the
+&lt;p&gt;⚠️ Note that the &lt;code&gt;fenced&lt;/code&gt; label is applied only in the
 &lt;code&gt;.spec.template.metadata.label&lt;/code&gt; section, as the label must only be present on
 the Pod, but not on the PVC.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -604,7 +606,7 @@ $ kubectl -n mysql get pvc --show-labels -owide
 NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
 data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RWO            storageos      19m   Filesystem   app=mysql,env=prod,storageos.com/replicas=1
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that the mysql-0 pod has the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label.&lt;/p&gt;
+&lt;p&gt;💡 Note that the mysql-0 pod has the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -633,7 +635,7 @@ data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RW
 {&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.573478266Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;set scheduler&amp;quot;,&amp;quot;scheduler&amp;quot;:&amp;quot;storageos-scheduler&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql/mysql-0&amp;quot;}
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The Ondat API Manager detects all the pods that are on the failed
+&lt;p&gt;💡 The Ondat API Manager detects all the pods that are on the failed
 node, and selects only the ones that meet the fencing criteria as
 described above. In this case only &lt;code&gt;mysql-0&lt;/code&gt; is selected for fencing.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -644,7 +646,7 @@ described above. In this case only &lt;code&gt;mysql-0&lt;/code&gt; is selected 
 NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
 mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The pod &lt;code&gt;mysql-0&lt;/code&gt; started on a different node successfully.&lt;/p&gt;
+&lt;p&gt;💡 The pod &lt;code&gt;mysql-0&lt;/code&gt; started on a different node successfully.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -884,7 +886,7 @@ root@node0:~# mount /dev/xvdf /var/lib/storageos/data/dev2
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Persist the mount at boot by adding the mount endpoint to &lt;code&gt;/etc/fstab&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💡 Persist the mount at boot by adding the mount endpoint to &lt;code&gt;/etc/fstab&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;option-2-expand-existing-devices-backed-by-lvm&#34;&gt;Option 2: Expand Existing Devices Backed by LVM&lt;/h2&gt;
 &lt;p&gt;This option enables operators to take advantage of LVM to manage disks.&lt;/p&gt;
@@ -929,7 +931,7 @@ xvdg             202:96   0  100G  0 disk
 &lt;li&gt;
 &lt;p&gt;Resize the FileSystem&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Your filesystem must support the option to be expanded, and to do so
+&lt;p&gt;⚠️ Your filesystem must support the option to be expanded, and to do so
 while in use. Otherwise, you need to unmount first.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;root@node2:~# resize2fs /dev/storageos/data
@@ -955,7 +957,7 @@ Filesystem                  Size  Used Avail Use% Mounted on
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Persist the mount at boot by adding the mount point to &lt;code&gt;/etc/fstab&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💡 Persist the mount at boot by adding the mount point to &lt;code&gt;/etc/fstab&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
       </description>
@@ -1247,7 +1249,7 @@ NaalLsK/96bJov6tpbg96g==
 &lt;li&gt;To apply the license click &lt;strong&gt;Upgrade&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note: It is crucial to paste all the licence text into the pop-up and not
+&lt;p&gt;⚠️ It is crucial to paste all the licence text into the pop-up and not
 just the signature. Keep in mind that the encoding of the file must not
 change.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1342,7 +1344,7 @@ Additionally user specific policies can be created to grant a user access to a
 namespace. Users can belong to any number of groups and have any number of
 user level policies configured.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note: Users are created with access to the default namespace. Policies cannot
+&lt;p&gt;⚠️ Users are created with access to the default namespace. Policies cannot
 be applied to the default namespace.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;managing-policies&#34;&gt;Managing Policies&lt;/h2&gt;
@@ -1369,7 +1371,7 @@ before deletion of the policy can be completed.&lt;/p&gt;
         
         
         &lt;blockquote&gt;
-&lt;p&gt;Note: Ondat Project edition is required to create RWX Volumes.&lt;/p&gt;
+&lt;p&gt;⚠️ Ondat Project edition is required to create RWX Volumes.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access mode&lt;/a&gt;
 Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
@@ -1568,7 +1570,7 @@ following guide demonstrates how to use topology-aware placement. We will
 enable Topology-Aware Placement on a PVC, set it to the &lt;code&gt;soft&lt;/code&gt; Failure Mode.&lt;/p&gt;
 &lt;h2 id=&#34;howto-enable-tap-per-volume&#34;&gt;HowTo enable TAP per volume&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note that labels can be applied to a PVC directly, or indirectly by adding them
+&lt;p&gt;💡 Labels can be applied to a PVC directly, or indirectly by adding them
 as parameters on a StorageClass.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
@@ -1576,7 +1578,7 @@ as parameters on a StorageClass.&lt;/p&gt;
 &lt;p&gt;Ensure that all nodes in your cluster have the topology key set. Here we
 will set a custom node zone label.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If PVC label &lt;code&gt;storageos.com/topology-key&lt;/code&gt; is not set, the node label
+&lt;p&gt;💡 If PVC label &lt;code&gt;storageos.com/topology-key&lt;/code&gt; is not set, the node label
 &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt; is used by default.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl label node worker-1 custom-region=1 
@@ -1606,7 +1608,7 @@ spec:
 this via the CLI for convenience.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl label pvc pvc-tap storageos.com/replicas=3
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
+&lt;p&gt;💡 To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
 replicas).&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -1723,7 +1725,7 @@ spec:
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Alternatively a cronjob on the node itself could be used to &lt;code&gt;fstrim&lt;/code&gt; mounted
 Ondat volumes using similar logic.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. TRIM can be an I/O intensive operation so care should be taken when
+&lt;p&gt;⚠️ TRIM can be an I/O intensive operation so care should be taken when
 running &lt;code&gt;fstrim&lt;/code&gt; against multiple volumes at once.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;continuous-discard&#34;&gt;Continuous discard&lt;/h2&gt;
@@ -1811,13 +1813,13 @@ the kubelet. Ondat can be configured to share the device directory.&lt;/p&gt;
   sharedDir: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Needed when Kubelet as a container&lt;/span&gt;
   ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;See example on how to configure the &lt;a href=&#34;/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container&#34;&gt;Ondat Custom
+&lt;p&gt;💡 See example on how to configure the &lt;a href=&#34;/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container&#34;&gt;Ondat Custom
 Resource&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;  &lt;!-- this is a blank line --&gt;&lt;/p&gt;
 &lt;p&gt;(Option 2) Mount propagation is not enabled.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Applies only if Option 1 is configured properly.&lt;/p&gt;
+&lt;p&gt;⚠️ Applies only if Option 1 is configured properly.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;assert-1&#34;&gt;Assert:&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;If not using the Kubelet as a container&lt;/strong&gt;, SSH into one of the nodes and check if
@@ -1883,7 +1885,7 @@ storageos-w98f5   0/1       Running   &lt;span style=&#34;color:#0000cf;font-wei
 serve hence PVC will remain in pending state until Ondat pods are
 available.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Kubernetes keeps trying to execute the action until it succeeds. If
+&lt;p&gt;💡 Kubernetes keeps trying to execute the action until it succeeds. If
 a PVC is created before Ondat finish starting, the PVC will be created
 eventually.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1935,7 +1937,7 @@ parameters:
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Note that the parameters specify &lt;code&gt;secret-namespace&lt;/code&gt; and &lt;code&gt;secret-name&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;💡 Note that the parameters specify &lt;code&gt;secret-namespace&lt;/code&gt; and &lt;code&gt;secret-name&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -1994,7 +1996,7 @@ show information from all known cluster members. If all the ports are blocked
 during the first bootstrap of the cluster, the diagnostics won&amp;rsquo;t show any data
 as nodes couldn&amp;rsquo;t register.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Ondat networks diagnostics are available for storageos-rc5 and
+&lt;p&gt;💡 Ondat networks diagnostics are available for storageos-rc5 and
 storageos-cli-rc3 and above.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Example:&lt;/span&gt;
@@ -2200,7 +2202,7 @@ errors.&lt;/p&gt;
 &lt;p&gt;Delete any Persistent Volume Claims that are using Ondat.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete pvc &lt;span style=&#34;color:#000&#34;&gt;$PVC&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;This will delete data held by Ondat and won&amp;rsquo;t be recoverable.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;This will delete data held by Ondat and won&amp;rsquo;t be recoverable.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -2218,16 +2220,16 @@ $ kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete stor
 &lt;/ol&gt;
 &lt;h2 id=&#34;uninstalling-the-ondat-operator&#34;&gt;Uninstalling the Ondat Operator&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Delete the Cluster Operator once the Ondat Pods are terminated&lt;/strong&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Delete the Cluster Operator once the Ondat Pods are terminated&lt;/strong&gt;
 &lt;strong&gt;The procedure is finished. Ondat is now uninstalled.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;removeing-ondat-contents-and-metadata-unrecoverable&#34;&gt;Removeing Ondat contents and metadata (unrecoverable)&lt;/h2&gt;
+&lt;h2 id=&#34;removing-ondat-contents-and-metadata-unrecoverable&#34;&gt;Removing Ondat contents and metadata (unrecoverable)&lt;/h2&gt;
 &lt;p&gt;The steps up until now have been recoverable - as long as the etcd backing
 Ondat and the contents of /var/lib/storageos on your nodes are safe then
 Ondat can be reinstalled. For complete removal and recovery of disk space,
 proceed as follows:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Warning: The following steps will delete all data held by Ondat and won&amp;rsquo;t be
+&lt;p&gt;⚠️ &lt;strong&gt;Warning: The following steps will delete all data held by Ondat and won&amp;rsquo;t be
 recoverable.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
@@ -2244,8 +2246,8 @@ $ sudo umount /var/lib/kubelet/plugins_registry/storageos
 &lt;p&gt;(Option 2) Execute the following command to deploy a DaemonSet that removes the
 Ondat data directory.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;N.B This step is irreversible and once the data is removed it cannot
-be recovered.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;⚠️ ** This step is irreversible and once the data is removed it cannot
+be recovered.**&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Run the following command where &lt;code&gt;kubectl&lt;/code&gt; is installed and with the
@@ -2257,7 +2259,9 @@ context set for your Kubernetes cluster.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Flush Etcd Data&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;This will remove any keys written by Ondat.&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;This will remove any keys written by Ondat.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;
 $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;http://&lt;span style=&#34;color:#000&#34;&gt;$ETCD_IP&lt;/span&gt;:2379 del --prefix &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If running Etcd with mTLS, you can set the certificates location with the
@@ -2288,12 +2292,12 @@ $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
 applications using Ondat volumes. However we will take steps to minimize
 the required downtime as much as possible.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat
+&lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat
 v2.3&lt;/a&gt; and that you check the
 init container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Warning: To reduce downtime, it is recommended to &lt;code&gt;docker pull&lt;/code&gt; the new
+&lt;p&gt;⚠️ To reduce downtime, it is recommended to &lt;code&gt;docker pull&lt;/code&gt; the new
 Ondat container image &lt;code&gt;storageos/node:&amp;lt; param latest_node_version &amp;gt;&lt;/code&gt;
 on the nodes beforehand so that the cluster spins up faster!&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2331,7 +2335,7 @@ image to:&lt;/p&gt;
 &lt;p&gt;Using the plugin, run the following command:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints &amp;quot;&amp;lt;ETCD-IP1&amp;gt;:2379,&amp;lt;ETCD-IP2&amp;gt;:2379,&amp;lt;ETCD-IP3&amp;gt;:2379&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;The plugin uses the &lt;code&gt;--uninstall-stos-operator-namespace&lt;/code&gt; argument
+&lt;p&gt;💡 The plugin uses the &lt;code&gt;--uninstall-stos-operator-namespace&lt;/code&gt; argument
 because it uninstalls the cluster first and then reinstalls it with the
 new version.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2339,7 +2343,7 @@ new version.&lt;/p&gt;
 &lt;code&gt;.spec.kvBackend&lt;/code&gt; section of StorageOS object in the
 &lt;code&gt;/tmp/storageos-config.yaml&lt;/code&gt; file.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If at any point something goes wrong with the upgrade process, backups of all the relevant
+&lt;p&gt;💡 If at any point something goes wrong with the upgrade process, backups of all the relevant
 Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -2369,7 +2373,7 @@ Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;
 Ondat &lt;a href=&#34;/docs/operations/namespaces&#34;&gt;namespaces&lt;/a&gt; using
 &lt;a href=&#34;/docs/operations/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note: Users are created with access to the default namespace. This access is
+&lt;p&gt;💡 Users are created with access to the default namespace. This access is
 only revoked when a policy is created for the user or their group.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;managing-users&#34;&gt;Managing users&lt;/h2&gt;
@@ -2419,7 +2423,7 @@ ensure that it is not in use.&lt;/p&gt;
 &lt;p&gt;In order to edit a PVC you can use &lt;code&gt;kubectl edit&lt;/code&gt; or &lt;code&gt;kubectl apply&lt;/code&gt; to make
 changes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Resizing a volume without updating the PVC directly will NOT result in
+&lt;p&gt;⚠️ Resizing a volume without updating the PVC directly will NOT result in
 the PVC being updated. The methods below are included for completeness. In
 Kubernetes environments editing the PVC is the preferred method for resizing
 a volume.&lt;/p&gt;

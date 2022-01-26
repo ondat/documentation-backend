@@ -657,7 +657,7 @@ cluster on VMs. As such nested virtualization or hardware emulation need to be
 enabled.&lt;/p&gt;
 &lt;h2 id=&#34;deploying-kubevirt-on-kubernetes&#34;&gt;Deploying KubeVirt on Kubernetes&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;For ease of installation we have enabled hardware emulation. If your VMs
+&lt;p&gt;💡 For ease of installation we have enabled hardware emulation. If your VMs
 support nested virtualization then edit the Kubevirt ConfigMap
 &lt;code&gt;./kubevirt-install/10-cm.yaml&lt;/code&gt;, removing the line &lt;code&gt;debug.useEmulation: &amp;quot;true&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -735,7 +735,7 @@ $
 cirros pvc, created as part of the vm-cirros.yaml file, exists before
 attempting to clone the volume.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Ensure that the &lt;code&gt;VMI&lt;/code&gt; is stopped before continuing!&lt;/p&gt;
+&lt;p&gt;⚠️ Ensure that the &lt;code&gt;VMI&lt;/code&gt; is stopped before continuing!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1355,7 +1355,7 @@ Kubernetes objects.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git clone https://github.com/storageos/use-cases.git storageos-usecases
 $ &lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-usecases/backup
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Before deploying the backup-example stateful set we recommend looking
+&lt;p&gt;💡 Before deploying the backup-example stateful set we recommend looking
 through the examples to understand how the different containers are
 configured&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1566,7 +1566,7 @@ files into blobs which are then sent to MinIO.
 &lt;li&gt;Velero cli installed &lt;a href=&#34;https://Velero.io/docs/main/basic-install/&#34;&gt;https://Velero.io/docs/main/basic-install/&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Velero can also be installed from a helm chart&lt;/p&gt;
+&lt;p&gt;💡 Velero can also be installed from a helm chart&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;install-minio-with-an-ondat-volume&#34;&gt;Install MinIO with an Ondat volume&lt;/h2&gt;
 &lt;ol&gt;
@@ -1597,7 +1597,7 @@ with this command:&lt;/p&gt;
 &lt;p&gt;Use the following command to install Velero via the Velero CLI or alternatively
 use the helm chart. To install it using the Velero cli, just run this command:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The AWS plugin is being used because MinIO implements the S3 API. This is
+&lt;p&gt;💡 The AWS plugin is being used because MinIO implements the S3 API. This is
 required even if you&amp;rsquo;re not using AWS.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;velero install                                                                                   &lt;span style=&#34;color:#4e9a06&#34;&gt;\
@@ -1699,7 +1699,7 @@ completed successfully:&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;After the backup is finished, delete the StatefulSet and PVC.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. It&amp;rsquo;s important to make sure that the StatefulSet is deleted because the
+&lt;p&gt;⚠️ It&amp;rsquo;s important to make sure that the StatefulSet is deleted because the
 restore would be unable to complete if a StatefulSet pod is recreated during
 the restore process.&lt;/p&gt;
 &lt;/blockquote&gt;

@@ -36,7 +36,7 @@ Tools To be able to troubleshoot issues the Ondat CLI is required.
 Pod in pending because of mount error Issue: The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
 root@node1:~# kubectl -n kube-system describe $POD_ID (.">
 
-<meta itemprop="wordCount" content="2774">
+<meta itemprop="wordCount" content="2779">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Troubleshooting"/>
 <meta name="twitter:description" content="This section is aimed to help you troubleshoot issues in your cluster, whether they are related to the Ondat installation, integration with orchestrators or common misconfigurations.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1479,13 +1479,13 @@ the kubelet. Ondat can be configured to share the device directory.</p>
   sharedDir: <span style="color:#4e9a06">&#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&#39;</span> <span style="color:#8f5902;font-style:italic"># Needed when Kubelet as a container</span>
   ...
 </code></pre></div><blockquote>
-<p>See example on how to configure the <a href="/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container">Ondat Custom
+<p>💡 See example on how to configure the <a href="/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container">Ondat Custom
 Resource</a>.</p>
 </blockquote>
 <p>  <!-- this is a blank line --></p>
 <p>(Option 2) Mount propagation is not enabled.</p>
 <blockquote>
-<p>Applies only if Option 1 is configured properly.</p>
+<p>⚠️ Applies only if Option 1 is configured properly.</p>
 </blockquote>
 <h3 id="assert-1">Assert:</h3>
 <p><strong>If not using the Kubelet as a container</strong>, SSH into one of the nodes and check if
@@ -1551,7 +1551,7 @@ storageos-w98f5   0/1       Running   <span style="color:#0000cf;font-weight:bol
 serve hence PVC will remain in pending state until Ondat pods are
 available.</p>
 <blockquote>
-<p>Kubernetes keeps trying to execute the action until it succeeds. If
+<p>💡 Kubernetes keeps trying to execute the action until it succeeds. If
 a PVC is created before Ondat finish starting, the PVC will be created
 eventually.</p>
 </blockquote>
@@ -1603,7 +1603,7 @@ parameters:
   csi.storage.k8s.io/secret-name: storageos-api
   csi.storage.k8s.io/secret-namespace: storageos
 </code></pre></div><blockquote>
-<p>Note that the parameters specify <code>secret-namespace</code> and <code>secret-name</code>.</p>
+<p>💡 Note that the parameters specify <code>secret-namespace</code> and <code>secret-name</code>.</p>
 </blockquote>
 </li>
 <li>
@@ -1662,7 +1662,7 @@ show information from all known cluster members. If all the ports are blocked
 during the first bootstrap of the cluster, the diagnostics won&rsquo;t show any data
 as nodes couldn&rsquo;t register.</p>
 <blockquote>
-<p>Ondat networks diagnostics are available for storageos-rc5 and
+<p>💡 Ondat networks diagnostics are available for storageos-rc5 and
 storageos-cli-rc3 and above.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Example:</span>

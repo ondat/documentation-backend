@@ -34,7 +34,7 @@ The Ondat Fencing Controller watches for node failures and determines if there a
 Labeling a pod for fencing When Ondat detects that a node has gone offline or become partitioned, it marks the node offline and performs volume failover operations.
 The Ondat Fencing Controller watches for node failures and determines if there are any pods targeted for fencing. In order for a pod to be fenced, the following criteria is required.">
 
-<meta itemprop="wordCount" content="572">
+<meta itemprop="wordCount" content="577">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fencing"/>
 <meta name="twitter:description" content="For information regarding the Ondat Fencing feature, see our fencing concepts page.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1388,7 +1388,7 @@ fencing. In order for a pod to be fenced, the following criteria is required.</p
 <p>If the node becomes offline and these criteria are met, the pod is deleted and
 rescheduled on another node.</p>
 <blockquote>
-<p>No changes are made to Pods that have Ondat volumes that are unhealthy.
+<p>💡 No changes are made to Pods that have Ondat volumes that are unhealthy.
 This is typically the case when a volume was configured to not have any
 replicas, and the node with the single copy of the data is offline. In this
 case it is better to wait for the Node to recover.</p>
@@ -1397,7 +1397,7 @@ case it is better to wait for the Node to recover.</p>
 <p>The following example shows how a Statefulset can enable fencing to all its
 pods.</p>
 <blockquote>
-<p>Note that the <code>fenced</code> label is applied only in the
+<p>⚠️ Note that the <code>fenced</code> label is applied only in the
 <code>.spec.template.metadata.label</code> section, as the label must only be present on
 the Pod, but not on the PVC.</p>
 </blockquote>
@@ -1458,7 +1458,7 @@ $ kubectl -n mysql get pvc --show-labels -owide
 NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
 data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RWO            storageos      19m   Filesystem   app=mysql,env=prod,storageos.com/replicas=1
 </code></pre><blockquote>
-<p>Note that the mysql-0 pod has the <code>storageos.com/fenced=true</code> label.</p>
+<p>💡 Note that the mysql-0 pod has the <code>storageos.com/fenced=true</code> label.</p>
 </blockquote>
 </li>
 <li>
@@ -1487,7 +1487,7 @@ data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RW
 {&quot;level&quot;:&quot;info&quot;,&quot;timestamp&quot;:&quot;2021-04-28T13:06:49.573478266Z&quot;,&quot;msg&quot;:&quot;set scheduler&quot;,&quot;scheduler&quot;:&quot;storageos-scheduler&quot;,&quot;pod&quot;:&quot;mysql/mysql-0&quot;}
 ...
 </code></pre><blockquote>
-<p>The Ondat API Manager detects all the pods that are on the failed
+<p>💡 The Ondat API Manager detects all the pods that are on the failed
 node, and selects only the ones that meet the fencing criteria as
 described above. In this case only <code>mysql-0</code> is selected for fencing.</p>
 </blockquote>
@@ -1498,7 +1498,7 @@ described above. In this case only <code>mysql-0</code> is selected for fencing.
 NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
 mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &lt;none&gt;           &lt;none&gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
 </code></pre><blockquote>
-<p>The pod <code>mysql-0</code> started on a different node successfully.</p>
+<p>💡 The pod <code>mysql-0</code> started on a different node successfully.</p>
 </blockquote>
 </li>
 </ol>

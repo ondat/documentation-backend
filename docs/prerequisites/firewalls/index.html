@@ -22,7 +22,7 @@
 
 <title>Firewalls | </title><meta property="og:title" content="Firewalls" />
 <meta property="og:description" content="Port list Ondat daemons listen on specific ports, which we require to be accessible between all nodes in the cluster:
-   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints    Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes." />
+   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/prerequisites/firewalls/" /><meta property="article:section" content="docs" />
 
@@ -30,13 +30,13 @@
 
 <meta itemprop="name" content="Firewalls">
 <meta itemprop="description" content="Port list Ondat daemons listen on specific ports, which we require to be accessible between all nodes in the cluster:
-   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints    Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes.">
+   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes.">
 
-<meta itemprop="wordCount" content="280">
+<meta itemprop="wordCount" content="285">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Firewalls"/>
 <meta name="twitter:description" content="Port list Ondat daemons listen on specific ports, which we require to be accessible between all nodes in the cluster:
-   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints    Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes."/>
+   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1414,9 +1414,11 @@ between all nodes in the cluster:</p>
 </tr>
 </tbody>
 </table>
-<p>Ondat also uses <a href="https://en.wikipedia.org/wiki/Ephemeral_port">ephemeral</a>
+<blockquote>
+<p>💡 Ondat also uses <a href="https://en.wikipedia.org/wiki/Ephemeral_port">ephemeral</a>
 ports to dial-out to these ports on other Ondat nodes. For this reason,
-outgoing traffic should be enabled.</p>
+outgoing traffic should to other nodes be enabled.</p>
+</blockquote>
 <h2 id="firewalls-and-vps-providers">Firewalls and VPS providers</h2>
 <p>Some VPS providers (such as Digital Ocean) ship default firewall rulesets which
 must be updated to allow Ondat to run. Some example rules are shown below -
@@ -1445,8 +1447,9 @@ iptables -I INPUT -p tcp --dport 25705:25960 -m comment --comment <span style="c
 <span style="color:#8f5902;font-style:italic"># Outbound traffic</span>
 iptables -I OUTPUT -o lo -m comment --comment <span style="color:#4e9a06">&#39;Permit loopback traffic&#39;</span> -j ACCEPT
 iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment <span style="color:#4e9a06">&#39;Permit outbound traffic&#39;</span> -j ACCEPT
-</code></pre></div><p>Please ensure that the iptables rules you have added above come before any
-default DROP or REJECT rules.</p>
+</code></pre></div><blockquote>
+<p>⚠️ Please ensure that the iptables rules you have added above come before any default DROP or REJECT rules.</p>
+</blockquote>
 
 	
 	

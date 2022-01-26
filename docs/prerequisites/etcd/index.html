@@ -34,7 +34,7 @@ We provide two methods for installing etcd. For those looking for a quick route 
 We do not support using the Kubernetes etcd for Ondat installations.
 We provide two methods for installing etcd. For those looking for a quick route to evaluating Ondat, our first method installs etcd into your Kubernetes cluster using the CoreOS operator. Due to limitations in the CoreOS operator, this installation is not backed by any persistent storage, and therefore is unsuitable for production installations.">
 
-<meta itemprop="wordCount" content="2075">
+<meta itemprop="wordCount" content="2089">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Etcd"/>
 <meta name="twitter:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required please see our etcd concepts page.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1587,7 +1587,7 @@ NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP PORT<sp
 service/storageos-etcd          ClusterIP   None             &lt;none&gt;      2379/TCP,2380/TCP   22h
 service/storageos-etcd-client   ClusterIP   172.30.132.255   &lt;none&gt;      2379/TCP            22h
 </code></pre></div><blockquote>
-<p>The URL from the Service <code>storageos-etcd-client.storageos-etcd.svc:2379</code>
+<p>💡 The URL from the Service <code>storageos-etcd-client.storageos-etcd.svc:2379</code>
 will be used later in the Ondat Cluster CustomResource the
 <code>kvBackend.address</code>.</p>
 </blockquote>
@@ -1632,7 +1632,7 @@ installation directory to <code>/var/lib/storageos-etcd</code>.</strong></p>
 <p>This section documents the steps required for manual installation of etcd
 using standard package management commands and systemd manifests.</p>
 <blockquote>
-<p><strong>Repeat the following steps on all the nodes that will run etcd as a
+<p>⚠️ <strong>Repeat the following steps on all the nodes that will run etcd as a
 systemd service.</strong></p>
 </blockquote>
 <ol>
@@ -1642,7 +1642,7 @@ systemd service.</strong></p>
 <span style="color:#204a87">export</span> <span style="color:#000">CLIENT_PORT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2379&#34;</span>
 <span style="color:#204a87">export</span> <span style="color:#000">PEERS_PORT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2380&#34;</span>
 </code></pre></div><blockquote>
-<p><strong>If targeting Kubernetes Master nodes, you must change
+<p>⚠️ <strong>If targeting Kubernetes Master nodes, you must change
 <code>CLIENT_PORT</code>, <code>PEERS_PORT</code></strong></p>
 </blockquote>
 </li>
@@ -1727,14 +1727,14 @@ following information:</p>
 <span style="color:#ce5c00;font-weight:bold">[</span>Install<span style="color:#ce5c00;font-weight:bold">]</span>
 <span style="color:#000">WantedBy</span><span style="color:#ce5c00;font-weight:bold">=</span>multi-user.target
 </code></pre></div><blockquote>
-<p><code>$NODE_IP</code> is the IP address of the machine you are installing etcd on.`</p>
+<p>💡 <code>$NODE_IP</code> is the IP address of the machine you are installing etcd on.`</p>
 </blockquote>
 <blockquote>
-<p>Note that setting the advertise-client-urls incorrectly will cause any
+<p>⚠️ Note that setting the advertise-client-urls incorrectly will cause any
 client connection to fail. Ondat will fail to communicate to Etcd.</p>
 </blockquote>
 <blockquote>
-<p>If enabling TLS, it is recomended to generate your own CA certificate
+<p>⚠️ If enabling TLS, it is recomended to generate your own CA certificate
 and key. You will need to distribute the keys and certificates for the
 client auth on all etcd nodes. Moreover, the <code>ExecStart</code> value should
 look as below:</p>
@@ -1770,7 +1770,7 @@ $ systemctl start  etcd3.service
 <li>
 <p>Installation Verification</p>
 <blockquote>
-<p>The <code>etcdctl</code> binary is installed at <code>/usr/local/bin</code> on the nodes.</p>
+<p>💡 The <code>etcdctl</code> binary is installed at <code>/usr/local/bin</code> on the nodes.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh <span style="color:#000">$NODE</span> <span style="color:#8f5902;font-style:italic"># Any node running the new etcd</span>
 $ <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span> etcdctl --endpoints<span style="color:#ce5c00;font-weight:bold">=</span>http://127.0.0.1:<span style="color:#4e9a06">${</span><span style="color:#000">CLIENT_PORT</span><span style="color:#4e9a06">}</span> member list <span style="color:#8f5902;font-style:italic"># $NODE_IP - the IP of the node</span>
@@ -1778,7 +1778,7 @@ $ <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-wei
 17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
 8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
 </code></pre></div><blockquote>
-<p>Read the <a href="/docs/operations/etcd/_index">etcd operations</a>
+<p>💡 Read the <a href="/docs/operations/etcd/_index">etcd operations</a>
 page for our etcd recommendations.</p>
 </blockquote>
 </li>
@@ -1796,7 +1796,7 @@ help you deploy etcd on standalone virtual machines.</p>
 <li>
 <p>Edit the inventory file</p>
 <blockquote>
-<p>The inventory file targets the nodes that will run etcd. The file
+<p>💡 The inventory file targets the nodes that will run etcd. The file
 <code>hosts</code> is an example of such an inventory file.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat hosts
@@ -1808,7 +1808,7 @@ centos-3 <span style="color:#000">ip</span><span style="color:#ce5c00;font-weigh
 <span style="color:#8f5902;font-style:italic"># Edit the inventory file</span>
 $ vi hosts <span style="color:#8f5902;font-style:italic"># Or your own inventory file</span>
 </code></pre></div><blockquote>
-<p>The ip or fqdn are used to expose the advertise-client-urls of Etcd.
+<p>⚠️ The ip or fqdn are used to expose the advertise-client-urls of Etcd.
 Failing to provide valid ip/fqdn will cause any client connection to
 fail. Ondat will fail to communicate to Etcd.</p>
 </blockquote>
@@ -1816,7 +1816,7 @@ fail. Ondat will fail to communicate to Etcd.</p>
 <li>
 <p>Edit the etcd configuration</p>
 <blockquote>
-<p><strong>If targeting Kubernetes Master nodes, you must change
+<p>⚠️  <strong>If targeting Kubernetes Master nodes, you must change
 <code>etcd_port_client</code>, <code>etcd_port_peers</code></strong></p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat group_vars/all
@@ -1844,12 +1844,12 @@ tls:
 
 $ vi group_vars/all
 </code></pre></div><blockquote>
-<p>Choose between using IP addressing or FQDN in the <code>advertise_format</code>
+<p>💡 Choose between using IP addressing or FQDN in the <code>advertise_format</code>
 parameter. It allows you to decide how Etcd advertises its address to
 clients. This is particularly relevant when using TLS.</p>
 </blockquote>
 <blockquote>
-<p>If enabling TLS, it is recomended to generate your own CA certificate
+<p>💡 If enabling TLS, it is recomended to generate your own CA certificate
 and key. You can do it by generating the CA from the machine running
 Ansible by: <code>ansible-playbook create_ca.yaml</code>.</p>
 </blockquote>
@@ -1861,7 +1861,7 @@ Ansible by: <code>ansible-playbook create_ca.yaml</code>.</p>
 <li>
 <p>Installation Verification</p>
 <blockquote>
-<p>The playbook installs the <code>etcdctl</code> binary on the nodes, at
+<p>💡 The playbook installs the <code>etcdctl</code> binary on the nodes, at
 <code>/usr/local/bin</code>.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh <span style="color:#000">$NODE</span> <span style="color:#8f5902;font-style:italic"># Any node running the new etcd</span>

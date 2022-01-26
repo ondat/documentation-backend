@@ -23,7 +23,7 @@
 <title>Upgrade Ondat | </title><meta property="og:title" content="Upgrade Ondat" />
 <meta property="og:description" content="This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
 Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
- Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly." />
+ ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/upgrade/" /><meta property="article:section" content="docs" />
 
@@ -32,14 +32,14 @@ Keep in mind that upgrading a cluster will require minor downtime of application
 <meta itemprop="name" content="Upgrade Ondat">
 <meta itemprop="description" content="This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
 Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
- Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly.">
+ ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly.">
 
-<meta itemprop="wordCount" content="384">
+<meta itemprop="wordCount" content="387">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Upgrade Ondat"/>
 <meta name="twitter:description" content="This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
 Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
- Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly."/>
+ ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1365,12 +1365,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 applications using Ondat volumes. However we will take steps to minimize
 the required downtime as much as possible.</p>
 <blockquote>
-<p>Ensure that you have read the <a href="/docs/prerequisites/pidlimits">PIDs prerequisite introduced in Ondat
+<p>⚠️ Ensure that you have read the <a href="/docs/prerequisites/pidlimits">PIDs prerequisite introduced in Ondat
 v2.3</a> and that you check the
 init container logs to ensure your environments PID limits are set correctly.</p>
 </blockquote>
 <blockquote>
-<p>Warning: To reduce downtime, it is recommended to <code>docker pull</code> the new
+<p>⚠️ To reduce downtime, it is recommended to <code>docker pull</code> the new
 Ondat container image <code>storageos/node:&lt; param latest_node_version &gt;</code>
 on the nodes beforehand so that the cluster spins up faster!</p>
 </blockquote>
@@ -1408,7 +1408,7 @@ image to:</p>
 <p>Using the plugin, run the following command:</p>
 <pre tabindex="0"><code>kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints &quot;&lt;ETCD-IP1&gt;:2379,&lt;ETCD-IP2&gt;:2379,&lt;ETCD-IP3&gt;:2379&quot;
 </code></pre><blockquote>
-<p>The plugin uses the <code>--uninstall-stos-operator-namespace</code> argument
+<p>💡 The plugin uses the <code>--uninstall-stos-operator-namespace</code> argument
 because it uninstalls the cluster first and then reinstalls it with the
 new version.</p>
 </blockquote>
@@ -1416,7 +1416,7 @@ new version.</p>
 <code>.spec.kvBackend</code> section of StorageOS object in the
 <code>/tmp/storageos-config.yaml</code> file.</p>
 <blockquote>
-<p>If at any point something goes wrong with the upgrade process, backups of all the relevant
+<p>💡 If at any point something goes wrong with the upgrade process, backups of all the relevant
 Kubernetes manifests can be found in <code>~/.kube/storageos/</code>.</p>
 </blockquote>
 </li>

@@ -36,7 +36,7 @@ Remember that Ondat enables the stateful applications within your cluster. It&rs
 Removing Stateful Workloads and Data   Delete any resources using Ondat volumes
 Delete any statefulsets, deployments or pods that are using Ondat Volumes.">
 
-<meta itemprop="wordCount" content="387">
+<meta itemprop="wordCount" content="392">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Uninstall Ondat"/>
 <meta name="twitter:description" content="This document details a step-by-step procedure on how to remove Ondat from a Kubernetes cluster.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#removing-stateful-workloads-and-data">Removing Stateful Workloads and Data</a></li>
     <li><a href="#removing-ondat-cluster">Removing Ondat Cluster</a></li>
     <li><a href="#uninstalling-the-ondat-operator">Uninstalling the Ondat Operator</a></li>
-    <li><a href="#removeing-ondat-contents-and-metadata-unrecoverable">Removeing Ondat contents and metadata (unrecoverable)</a></li>
+    <li><a href="#removing-ondat-contents-and-metadata-unrecoverable">Removing Ondat contents and metadata (unrecoverable)</a></li>
   </ul>
 </nav>
 
@@ -1389,7 +1389,7 @@ errors.</p>
 <p>Delete any Persistent Volume Claims that are using Ondat.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n <span style="color:#000">$NS</span> delete pvc <span style="color:#000">$PVC</span>
 </code></pre></div><blockquote>
-<p><strong>This will delete data held by Ondat and won&rsquo;t be recoverable.</strong></p>
+<p>⚠️ <strong>This will delete data held by Ondat and won&rsquo;t be recoverable.</strong></p>
 </blockquote>
 </li>
 </ol>
@@ -1407,16 +1407,16 @@ $ kubectl -n <span style="color:#000">$NS</span> delete storageoscluster --all  
 </ol>
 <h2 id="uninstalling-the-ondat-operator">Uninstalling the Ondat Operator</h2>
 <blockquote>
-<p><strong>Delete the Cluster Operator once the Ondat Pods are terminated</strong>
+<p>⚠️ <strong>Delete the Cluster Operator once the Ondat Pods are terminated</strong>
 <strong>The procedure is finished. Ondat is now uninstalled.</strong></p>
 </blockquote>
-<h2 id="removeing-ondat-contents-and-metadata-unrecoverable">Removeing Ondat contents and metadata (unrecoverable)</h2>
+<h2 id="removing-ondat-contents-and-metadata-unrecoverable">Removing Ondat contents and metadata (unrecoverable)</h2>
 <p>The steps up until now have been recoverable - as long as the etcd backing
 Ondat and the contents of /var/lib/storageos on your nodes are safe then
 Ondat can be reinstalled. For complete removal and recovery of disk space,
 proceed as follows:</p>
 <blockquote>
-<p><strong>Warning: The following steps will delete all data held by Ondat and won&rsquo;t be
+<p>⚠️ <strong>Warning: The following steps will delete all data held by Ondat and won&rsquo;t be
 recoverable.</strong></p>
 </blockquote>
 <ol>
@@ -1433,8 +1433,8 @@ $ sudo umount /var/lib/kubelet/plugins_registry/storageos
 <p>(Option 2) Execute the following command to deploy a DaemonSet that removes the
 Ondat data directory.</p>
 <blockquote>
-<p><strong>N.B This step is irreversible and once the data is removed it cannot
-be recovered.</strong></p>
+<p>⚠️ ** This step is irreversible and once the data is removed it cannot
+be recovered.**</p>
 </blockquote>
 <blockquote>
 <p>Run the following command where <code>kubectl</code> is installed and with the
@@ -1446,7 +1446,9 @@ context set for your Kubernetes cluster.</p>
 </li>
 <li>
 <p>Flush Etcd Data</p>
-<p><strong>This will remove any keys written by Ondat.</strong></p>
+<blockquote>
+<p>⚠️ <strong>This will remove any keys written by Ondat.</strong></p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#204a87">export</span> <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
 $ etcdctl --endpoints<span style="color:#ce5c00;font-weight:bold">=</span>http://<span style="color:#000">$ETCD_IP</span>:2379 del --prefix <span style="color:#4e9a06">&#34;storageos&#34;</span>
 </code></pre></div><p>If running Etcd with mTLS, you can set the certificates location with the

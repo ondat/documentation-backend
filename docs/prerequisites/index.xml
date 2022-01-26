@@ -36,7 +36,7 @@ implementation of the SCSI target, on all nodes that will execute Ondat
 &lt;li&gt;&lt;code&gt;uio&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt;
+&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt;
 cannot be run concurrently with Ondat. Doing so may result in corruption
 of data. On startup, Ondat will detect if other applications are using
 TCMU and fall back to FUSE. However if Ondat is started first there is no
@@ -59,7 +59,7 @@ installed.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ubuntu 16.04/18.04 requires the installation of additional packages.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
+&lt;p&gt;⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
 necessary linux-image-extra package - &lt;a href=&#34;/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels&#34;&gt;see
 below&lt;/a&gt; for more information&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -75,8 +75,9 @@ sudo apt -y install linux-modules-extra-&lt;span style=&#34;color:#204a87;font-w
 &lt;p&gt;&lt;strong&gt;Ubuntu 16.04/18.04 AWS&lt;/strong&gt; and &lt;strong&gt;Ubuntu 18.04 GCE&lt;/strong&gt; do not yet provide the
 linux-image-extra package. As such you should either use &lt;strong&gt;Debian&lt;/strong&gt;, &lt;strong&gt;CentOS&lt;/strong&gt;
 or &lt;strong&gt;RHEL&lt;/strong&gt;, or install the non-cloud-provider optimised Ubuntu kernel.&lt;/p&gt;
-&lt;p&gt;Installing the non-cloud-provider optimised Ubuntu kernel is something that
-should only be done with full understanding of potential ramifications.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Installing the non-cloud-provider optimised Ubuntu kernel is something that should only be done with full understanding of potential ramifications.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo apt -y update
 sudo apt install -y linux-virtual linux-image-extra-virtual
 sudo apt purge -y linux*aws
@@ -181,9 +182,11 @@ between all nodes in the cluster:&lt;/p&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;Ondat also uses &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeral_port&#34;&gt;ephemeral&lt;/a&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Ondat also uses &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeral_port&#34;&gt;ephemeral&lt;/a&gt;
 ports to dial-out to these ports on other Ondat nodes. For this reason,
-outgoing traffic should be enabled.&lt;/p&gt;
+outgoing traffic should to other nodes be enabled.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;firewalls-and-vps-providers&#34;&gt;Firewalls and VPS providers&lt;/h2&gt;
 &lt;p&gt;Some VPS providers (such as Digital Ocean) ship default firewall rulesets which
 must be updated to allow Ondat to run. Some example rules are shown below -
@@ -212,8 +215,9 @@ iptables -I INPUT -p tcp --dport 25705:25960 -m comment --comment &lt;span style
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Outbound traffic&lt;/span&gt;
 iptables -I OUTPUT -o lo -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit loopback traffic&amp;#39;&lt;/span&gt; -j ACCEPT
 iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit outbound traffic&amp;#39;&lt;/span&gt; -j ACCEPT
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Please ensure that the iptables rules you have added above come before any
-default DROP or REJECT rules.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ Please ensure that the iptables rules you have added above come before any default DROP or REJECT rules.&lt;/p&gt;
+&lt;/blockquote&gt;
 
       </description>
     </item>
@@ -228,7 +232,7 @@ default DROP or REJECT rules.&lt;/p&gt;
         
         
         &lt;blockquote&gt;
-&lt;p&gt;Modern versions of Kubernetes, Docker or other Container Runtimes enable
+&lt;p&gt;💡 Modern versions of Kubernetes, Docker or other Container Runtimes enable
 mount propagation by default.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat requires mount propagation enabled to present devices as volumes for
@@ -274,7 +278,7 @@ check and enable mount propagation where appropriate.&lt;/p&gt;
 cgroup&lt;/a&gt;
 limit of 32768 be used for Ondat pods.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Most environments fulfill this prerequisite by default. Check the
+&lt;p&gt;💡 Most environments fulfill this prerequisite by default. Check the
 Ondat init container logs as shown below to ensure this is the case.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat pods running in Kubernetes are part of a PID cgroup that may limit
@@ -565,7 +569,7 @@ NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP PORT&lt
 service/storageos-etcd          ClusterIP   None             &amp;lt;none&amp;gt;      2379/TCP,2380/TCP   22h
 service/storageos-etcd-client   ClusterIP   172.30.132.255   &amp;lt;none&amp;gt;      2379/TCP            22h
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;The URL from the Service &lt;code&gt;storageos-etcd-client.storageos-etcd.svc:2379&lt;/code&gt;
+&lt;p&gt;💡 The URL from the Service &lt;code&gt;storageos-etcd-client.storageos-etcd.svc:2379&lt;/code&gt;
 will be used later in the Ondat Cluster CustomResource the
 &lt;code&gt;kvBackend.address&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -610,7 +614,7 @@ installation directory to &lt;code&gt;/var/lib/storageos-etcd&lt;/code&gt;.&lt;/
 &lt;p&gt;This section documents the steps required for manual installation of etcd
 using standard package management commands and systemd manifests.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Repeat the following steps on all the nodes that will run etcd as a
+&lt;p&gt;⚠️ &lt;strong&gt;Repeat the following steps on all the nodes that will run etcd as a
 systemd service.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
@@ -620,7 +624,7 @@ systemd service.&lt;/strong&gt;&lt;/p&gt;
 &lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;CLIENT_PORT&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2379&amp;#34;&lt;/span&gt;
 &lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;PEERS_PORT&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2380&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If targeting Kubernetes Master nodes, you must change
+&lt;p&gt;⚠️ &lt;strong&gt;If targeting Kubernetes Master nodes, you must change
 &lt;code&gt;CLIENT_PORT&lt;/code&gt;, &lt;code&gt;PEERS_PORT&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -705,14 +709,14 @@ following information:&lt;/p&gt;
 &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;Install&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;WantedBy&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;multi-user.target
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;$NODE_IP&lt;/code&gt; is the IP address of the machine you are installing etcd on.`&lt;/p&gt;
+&lt;p&gt;💡 &lt;code&gt;$NODE_IP&lt;/code&gt; is the IP address of the machine you are installing etcd on.`&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note that setting the advertise-client-urls incorrectly will cause any
+&lt;p&gt;⚠️ Note that setting the advertise-client-urls incorrectly will cause any
 client connection to fail. Ondat will fail to communicate to Etcd.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If enabling TLS, it is recomended to generate your own CA certificate
+&lt;p&gt;⚠️ If enabling TLS, it is recomended to generate your own CA certificate
 and key. You will need to distribute the keys and certificates for the
 client auth on all etcd nodes. Moreover, the &lt;code&gt;ExecStart&lt;/code&gt; value should
 look as below:&lt;/p&gt;
@@ -748,7 +752,7 @@ $ systemctl start  etcd3.service
 &lt;li&gt;
 &lt;p&gt;Installation Verification&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The &lt;code&gt;etcdctl&lt;/code&gt; binary is installed at &lt;code&gt;/usr/local/bin&lt;/code&gt; on the nodes.&lt;/p&gt;
+&lt;p&gt;💡 The &lt;code&gt;etcdctl&lt;/code&gt; binary is installed at &lt;code&gt;/usr/local/bin&lt;/code&gt; on the nodes.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ssh &lt;span style=&#34;color:#000&#34;&gt;$NODE&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Any node running the new etcd&lt;/span&gt;
 $ &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt; etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;http://127.0.0.1:&lt;span style=&#34;color:#4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;CLIENT_PORT&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&lt;/span&gt; member list &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# $NODE_IP - the IP of the node&lt;/span&gt;
@@ -756,7 +760,7 @@ $ &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=
 17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
 8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Read the &lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;etcd operations&lt;/a&gt;
+&lt;p&gt;💡 Read the &lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;etcd operations&lt;/a&gt;
 page for our etcd recommendations.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -774,7 +778,7 @@ help you deploy etcd on standalone virtual machines.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Edit the inventory file&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The inventory file targets the nodes that will run etcd. The file
+&lt;p&gt;💡 The inventory file targets the nodes that will run etcd. The file
 &lt;code&gt;hosts&lt;/code&gt; is an example of such an inventory file.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat hosts
@@ -786,7 +790,7 @@ centos-3 &lt;span style=&#34;color:#000&#34;&gt;ip&lt;/span&gt;&lt;span style=&#
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Edit the inventory file&lt;/span&gt;
 $ vi hosts &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Or your own inventory file&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;The ip or fqdn are used to expose the advertise-client-urls of Etcd.
+&lt;p&gt;⚠️ The ip or fqdn are used to expose the advertise-client-urls of Etcd.
 Failing to provide valid ip/fqdn will cause any client connection to
 fail. Ondat will fail to communicate to Etcd.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -794,7 +798,7 @@ fail. Ondat will fail to communicate to Etcd.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Edit the etcd configuration&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If targeting Kubernetes Master nodes, you must change
+&lt;p&gt;⚠️  &lt;strong&gt;If targeting Kubernetes Master nodes, you must change
 &lt;code&gt;etcd_port_client&lt;/code&gt;, &lt;code&gt;etcd_port_peers&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cat group_vars/all
@@ -822,12 +826,12 @@ tls:
 
 $ vi group_vars/all
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Choose between using IP addressing or FQDN in the &lt;code&gt;advertise_format&lt;/code&gt;
+&lt;p&gt;💡 Choose between using IP addressing or FQDN in the &lt;code&gt;advertise_format&lt;/code&gt;
 parameter. It allows you to decide how Etcd advertises its address to
 clients. This is particularly relevant when using TLS.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;If enabling TLS, it is recomended to generate your own CA certificate
+&lt;p&gt;💡 If enabling TLS, it is recomended to generate your own CA certificate
 and key. You can do it by generating the CA from the machine running
 Ansible by: &lt;code&gt;ansible-playbook create_ca.yaml&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -839,7 +843,7 @@ Ansible by: &lt;code&gt;ansible-playbook create_ca.yaml&lt;/code&gt;.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Installation Verification&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The playbook installs the &lt;code&gt;etcdctl&lt;/code&gt; binary on the nodes, at
+&lt;p&gt;💡 The playbook installs the &lt;code&gt;etcdctl&lt;/code&gt; binary on the nodes, at
 &lt;code&gt;/usr/local/bin&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ ssh &lt;span style=&#34;color:#000&#34;&gt;$NODE&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Any node running the new etcd&lt;/span&gt;

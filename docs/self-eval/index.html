@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Step-by-step guide to installing and evaluating Ondat
 ">
 
-<meta itemprop="wordCount" content="2592">
+<meta itemprop="wordCount" content="2605">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Self Evaluation Guide"/>
 <meta name="twitter:description" content="Step-by-step guide to installing and evaluating Ondat
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1387,8 +1387,10 @@ Ondat. This guide is divided into three sections:</p>
 <li><strong>Feature Testing</strong> - short walkthrough of some of our features</li>
 <li><strong>Benchmarking</strong> - a recipe to benchmark Ondat on your infrastructure</li>
 </ul>
-<p>For more comprehensive documentation including installation advice for complex
+<blockquote>
+<p>💡 For more comprehensive documentation including installation advice for complex
 setups, operational guides, and use-cases, please see our main <a href="https://docs.ondat.io">documentation site</a>.</p>
+</blockquote>
 <h2 id="support-for-self-evaluations">Support for Self Evaluations</h2>
 <p>Should you have questions or require support, there are several ways to get in
 touch with us. The fastest way to get in touch is to <a href="https://slack.storageos.com">join our public Slack channel</a>. You can also get in touch via email to
@@ -1427,7 +1429,7 @@ managers. See our <a href="prerequisites/systemconfiguration">system configurati
 </ul>
 <h3 id="install-the-storageos-kubectl-plugin">Install the storageos kubectl plugin</h3>
 <blockquote>
-<p>Run the following command where <code>kubectl</code> is installed and with the context
+<p>💡 Run the following command where <code>kubectl</code> is installed and with the context
 set for your Kubernetes cluster</p>
 </blockquote>
 <pre tabindex="0"><code>curl -sSLo kubectl-storageos.tar.gz \
@@ -1437,15 +1439,16 @@ set for your Kubernetes cluster</p>
     &amp;&amp; sudo mv kubectl-storageos /usr/local/bin/ \
     &amp;&amp; rm kubectl-storageos.tar.gz
 </code></pre><blockquote>
-<p>You can find binaries for different architectures and systems in <a href="https://github.com/storageos/kubectl-storageos/releases">kubectl plugin</a>.</p>
+<p>💡 You can find binaries for different architectures and systems in <a href="https://github.com/storageos/kubectl-storageos/releases">kubectl plugin</a>.</p>
 </blockquote>
 <h3 id="prepare-etcd-storageclass">Prepare Etcd StorageClass</h3>
-<p>The following procedure deploys a local-path StorageClass for the Ondat Etcd.
-Note that this Etcd <strong>is suitable for evaluation purposes only</strong>. Do not use
-this cluster for production workloads.</p>
+<p>The following procedure deploys a local-path StorageClass for the Ondat Etcd.</p>
+<blockquote>
+<p>⚠️  Note that this Etcd <strong>is suitable for evaluation purposes only</strong>. Do not use this cluster for production workloads.</p>
+</blockquote>
 <pre tabindex="0"><code>kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
 </code></pre><blockquote>
-<p>The <code>local-path</code> StorageClass does not guarantee data safety or availability.
+<p>⚠️ The <code>local-path</code> StorageClass does not guarantee data safety or availability.
 Therefore the Ondat cluster cannot operate normally if the Etcd cluster
 becomes unavailable. For a production Etcd install check the
 <a href="prerequisites/etcd.md">Etcd prerequisites page</a>.</p>
@@ -1473,7 +1476,7 @@ storageos-node-zqkk7                     3/3     Running   0          62s
 storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
 storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
 </code></pre><blockquote>
-<p>Wait until all the pods are ready. It usually takes ~60 seconds to complete</p>
+<p>💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete</p>
 </blockquote>
 <h3 id="deploy-the-ondat-cli-as-a-container">Deploy the Ondat CLI as a container</h3>
 <pre tabindex="0"><code>kubectl -n storageos create -f-&lt;&lt;END
@@ -1512,13 +1515,15 @@ spec:
         name: cli
 END
 </code></pre><blockquote>
-<p>You can get the ClusterId required on the next step using the CLI pod</p>
+<p>💡 You can get the ClusterId required on the next step using the CLI pod</p>
 </blockquote>
 <pre tabindex="0"><code>POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
 kubectl -n storageos exec $POD -- storageos get licence
 </code></pre><h3 id="license-cluster">License cluster</h3>
-<p>Newly installed Ondat clusters must be licensed within 24 hours. Our
-developer license is free, and supports up to 5TiB of provisioned storage.</p>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
+personal license is free, and supports up to 1TiB of provisioned storage.</p>
+</blockquote>
 <p>To obtain a license, follow the instructions on our <a href="operations/licensing.md">licensing operations</a> page.</p>
 <h2 id="provision-an-ondat-volume">Provision an Ondat Volume</h2>
 <p>Now that we have a working Ondat cluster, we can provision a volume to test
@@ -1630,8 +1635,10 @@ synthetic benchmarks.</p>
 <p>Ondat features are all enabled/disabled by applying labels to volumes.
 These labels can be passed to Ondat via persistent volume claims (PVCs) or
 can be applied to volumes using the Ondat CLI or GUI.</p>
-<p>The following is not an exhaustive feature list but outlines features which are
+<blockquote>
+<p>💡 The following is not an exhaustive feature list but outlines features which are
 commonly of use during a self-evaluation.</p>
+</blockquote>
 <h3 id="volume-replication">Volume Replication</h3>
 <p>Ondat enables synchronous replication of volumes using the
 <code>storageos.com/replicas</code> label.</p>
@@ -1641,8 +1648,10 @@ replica cannot be placed on a node without a replica of the same volume, the
 volume will fail to be created. For example, in a three node Ondat cluster
 a volume with 3 replicas cannot be created as the third replica cannot be
 placed on a node that doesn&rsquo;t already contain a replica of the same volume.</p>
-<p>See our <a href="concepts/replication">replication documentation</a> for more
+<blockquote>
+<p>💡 See our <a href="concepts/replication">replication documentation</a> for more
 information on volume replication.</p>
+</blockquote>
 <ol>
 <li>
 <p>To test volume replication create the following PersistentVolumeClaim</p>
@@ -1662,7 +1671,7 @@ information on volume replication.</p>
 </span><span style="color:#4e9a06">     storage: 5Gi
 </span><span style="color:#4e9a06">END</span>
 </code></pre></div><blockquote>
-<p>Note that volume replication is enabled by setting the
+<p>💡 Note that volume replication is enabled by setting the
 <code>storageos.com/replicas</code> label on the volume.</p>
 </blockquote>
 </li>
@@ -1809,8 +1818,10 @@ low blocksize</li>
 remote volumes both with and without a replica. Deploy the FIO tests for the
 four scenarios using the following command:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -sL https://raw.githubusercontent.com/ondat/use-cases/main/scripts/deploy-synthetic-benchmarks.sh <span style="color:#000;font-weight:bold">|</span> bash
-</code></pre></div><p>The script will take approximately 20 minutes to complete, and will print the
+</code></pre></div><blockquote>
+<p>💡 The script will take approximately 20 minutes to complete, and will print the
 results to STDOUT.</p>
+</blockquote>
 <p>The exact results observed will depend on the particular platform and
 environment, but the following trends should be observable:</p>
 <ul>
@@ -1866,9 +1877,11 @@ kubectl -n storageos <span style="color:#204a87">exec</span> <span style="color:
 </ol>
 <p> </p>
 <h2 id="conclusion">Conclusion</h2>
-<p>After completing these steps you will have benchmark scores for Ondat.
-Please keep in mind that benchmarks are only part of the story and that there
+<p>After completing these steps you will have benchmark scores for Ondat.</p>
+<blockquote>
+<p>💡 Please keep in mind that benchmarks are only part of the story and that there
 is no replacement for testing actual production or production like workloads.</p>
+</blockquote>
 <p>Ondat invites you to provide feedback on your self-evaluation to the <a href="https://storageos.slack.com">slack channel</a> or by directly emailing us at <a href="mailto:info@ondat.io">info@ondat.io</a>.</p>
 
 	

@@ -38,7 +38,7 @@ Velero consists of the following components:
 And here&rsquo;s how Velero restores work:
 In our case, we will use MinIO in the Kubernetes cluster as the &ldquo;cloud provider&rdquo; pictured in the backup diagram.">
 
-<meta itemprop="wordCount" content="1003">
+<meta itemprop="wordCount" content="1005">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Velero Backups"/>
 <meta name="twitter:description" content="Using Velero to backup your Ondat volumes Velero is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes.
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1410,7 +1410,7 @@ files into blobs which are then sent to MinIO.
 <li>Velero cli installed <a href="https://Velero.io/docs/main/basic-install/">https://Velero.io/docs/main/basic-install/</a></li>
 </ol>
 <blockquote>
-<p>Velero can also be installed from a helm chart</p>
+<p>💡 Velero can also be installed from a helm chart</p>
 </blockquote>
 <h2 id="install-minio-with-an-ondat-volume">Install MinIO with an Ondat volume</h2>
 <ol>
@@ -1441,7 +1441,7 @@ with this command:</p>
 <p>Use the following command to install Velero via the Velero CLI or alternatively
 use the helm chart. To install it using the Velero cli, just run this command:</p>
 <blockquote>
-<p>The AWS plugin is being used because MinIO implements the S3 API. This is
+<p>💡 The AWS plugin is being used because MinIO implements the S3 API. This is
 required even if you&rsquo;re not using AWS.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">velero install                                                                                   <span style="color:#4e9a06">\
@@ -1543,7 +1543,7 @@ completed successfully:</p>
 <li>
 <p>After the backup is finished, delete the StatefulSet and PVC.</p>
 <blockquote>
-<p>N.B. It&rsquo;s important to make sure that the StatefulSet is deleted because the
+<p>⚠️ It&rsquo;s important to make sure that the StatefulSet is deleted because the
 restore would be unable to complete if a StatefulSet pod is recreated during
 the restore process.</p>
 </blockquote>

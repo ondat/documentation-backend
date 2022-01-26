@@ -133,7 +133,7 @@ written to etcd before the request is completed. Using etcd as a configuration
 store allows nodes to retrieve the current cluster state after being offlined,
 allowing offlined nodes to rejoin the cluster.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;N.B. Ondat v2.0 does not provide an embedded etcd server as previous
+&lt;p&gt;⚠️ Ondat v2.0 does not provide an embedded etcd server as previous
 versions did. You will need to setup an etcd server for Ondat to use
 prior to installation of Ondat. For more information on how
 to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites&lt;/a&gt; page.&lt;/p&gt;
@@ -195,7 +195,7 @@ see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubern
 Safety&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The Ondat Fencing Controller is part of the Ondat API Manager which
+&lt;p&gt;💡 The Ondat Fencing Controller is part of the Ondat API Manager which
 is deployed in high availability when Ondat is installed.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;HA for StatefulSet applications can be achieved with the Ondat Fencing
@@ -245,7 +245,7 @@ multiple projects.&lt;/p&gt;
 &lt;p&gt;It is not necessary to create Ondat namespaces manually, as Ondat maps
 Kubernetes namespaces on a one-to-one basis when PersistentVolumeClaims using
 the Ondat StorageClass are created.&lt;/p&gt;
-&lt;p&gt;Access to Namespaces is controlled through user or group level &lt;a href=&#34;/docs/concepts/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;💡 Access to Namespaces is controlled through user or group level &lt;a href=&#34;/docs/concepts/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
@@ -397,7 +397,7 @@ restarted on any node and access volumes transparently.&lt;/p&gt;
 access to a namespace, a policy needs to be created mapping the user or group
 to the namespace.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Note: Users always have access to the default namespace&lt;/p&gt;
+&lt;p&gt;💡 Users always have access to the default namespace&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;For more information on how to use policies, see the
 &lt;a href=&#34;/docs/operations/policies&#34;&gt;Policies operations&lt;/a&gt; page.&lt;/p&gt;
@@ -416,7 +416,7 @@ to the namespace.&lt;/p&gt;
         
         &lt;h1 id=&#34;readwritemany&#34;&gt;ReadWriteMany&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Please note: Ondat Project edition is required to create RWX Volumes.&lt;/p&gt;
+&lt;p&gt;⚠️ Ondat Project edition is required to create RWX Volumes.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access
 mode&lt;/a&gt;

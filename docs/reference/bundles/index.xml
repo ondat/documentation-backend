@@ -32,7 +32,7 @@ issues you may be experiencing.&lt;/p&gt;
 the bundle.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get diagnostics
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;The file generated is in the form of &lt;code&gt;diagnostics-${TIME_STAMP}.gz&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💡 The file generated is in the form of &lt;code&gt;diagnostics-${TIME_STAMP}.gz&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;gui&#34;&gt;GUI&lt;/h3&gt;
 &lt;p&gt;Or you can use the &lt;a href=&#34;/docs/reference/gui&#34;&gt;StoregeOS GUI&lt;/a&gt;.&lt;/p&gt;

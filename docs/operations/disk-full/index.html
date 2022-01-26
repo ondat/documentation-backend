@@ -36,7 +36,7 @@ The Ondat Daemonset has a toleration applied for this taint, so it will continue
 Detecting a full disk You will see the following when viewing the Ondat container logs on the affected node with kubectl logs storageos-daemonset-xxxx -c storageos:
 &#34;msg&#34;: &#34;StartAsyncFallocate: insufficient free space on file system free_space=1048305664 required_free_space=1073741824&#34;, &#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;, &#34;msg&#34;: &#34;Write: write failed volid=155051 error=all blob files are full - can not complete write&#34;, &#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;, &#34;msg&#34;: &#34;SCSI command failed type=write error=FATAL retries=0 time_to_deadline_secs=89&#34;, When trying to attach a volume to a node with a full disk you will see the following when running kubectl describe pod $POD_USING_VOLUME:">
 
-<meta itemprop="wordCount" content="508">
+<meta itemprop="wordCount" content="509">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Disk Full"/>
 <meta name="twitter:description" content="When the physical disks in your cluster get full, or start using disk space too fast, Kubernetes will automatically apply the DiskPressure:NoExecute taint.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1419,12 +1419,14 @@ remediating the disk space issue.</em></p>
 <p>To recover from a disk full error, you can either add new storage space
 into the affected node, or delete existing persistent volume claims.</p>
 <blockquote>
-<p><strong>N.B.</strong> However you choose to resolve the issue, the <strong>Ondat Daemonset
+<p>⚠️ However you choose to resolve the issue, the <strong>Ondat Daemonset
 Pod must be restarted</strong>.</p>
 </blockquote>
-<p>This is because the blob files disallow operations at runtime via the
+<blockquote>
+<p>💡 This is because the blob files disallow operations at runtime via the
 previously discussed error flag stored in memory. This flag does not survive
 boot cycles, so after the pod restarts, volumes can operate normally once more.</p>
+</blockquote>
 <h3 id="adding-new-storage-space">Adding New Storage Space</h3>
 <p>If you choose to recover by expanding your capacity, you have two main options:</p>
 <ol>

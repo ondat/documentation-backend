@@ -36,7 +36,7 @@ Red Hat OpenShift and Ondat communicate with each other to perform actions such 
 Installation Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.
 To install Ondat on Red Hat OpenShift, please follow our installation instructions page.">
 
-<meta itemprop="wordCount" content="311">
+<meta itemprop="wordCount" content="312">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenShift"/>
 <meta name="twitter:description" content="Ondat V2 supports Openshift v4.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.bd6f07a355d044e55f5692648155719862ab360a5fc499d1411df953f2763a2c03e692d3c3d54d479bdc38d3fa0eaacd4ed147cb445a1fc1459580e50e9c4e16.json"
+  data-offline-search-index-json-src="/offline-search-index.27216b77810c7c8778283b8b4e4e0e00ae14bae835d85a7c0d4bc743032050418602789aad0baa74e7be8c5bc9cb039bec3322ec1166c3a212b9e64933c9586d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1381,7 +1381,7 @@ communication between Red Hat OpenShift and Ondat.</p>
 <p>Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.</p>
 <p>To install Ondat on Red Hat OpenShift, please follow our <a href="/docs/install/openshift">installation instructions</a> page.</p>
 <blockquote>
-<p>N.B. Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID
+<p>⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID
 limit of 1024. Ondat recommends that the limit be raised to 32768.
 Please see our <a href="/docs/prerequisites/pidlimits">prerequisites</a> for more details.</p>
 </blockquote>
@@ -1394,7 +1394,7 @@ consideration. To avoid this issue, make sure all stateful workloads using
 Ondat Volumes are stopped - usually by scaling StatefulSets to 0. Please
 contact Ondat support for further advice if required.</p>
 <blockquote>
-<p>Red Hat OpenShift requires the internal registry to be available during the upgrade,
+<p>⚠️ Red Hat OpenShift requires the internal registry to be available during the upgrade,
 however Ondat volumes may not be available. Therefore using Ondat
 for the internal registry is <strong>not</strong> recommended.</p>
 </blockquote>
