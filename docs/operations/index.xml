@@ -1203,31 +1203,134 @@ approach on how to get this information.&lt;/p&gt;
 Kubernetes worker nodes. For convenience, it&amp;rsquo;s often the easiest to configure
 port forward to the service using the following kubectl incantation (this will
 block your current terminal session till the port-forward is stopped):&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl port-forward -n storageos svc/storageos 5705
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://localhost:5705&lt;/code&gt; using the default
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://localhost:5705&lt;/code&gt; using the default
 &lt;code&gt;storageos-api&lt;/code&gt; secret defined during the installation as credentials (for
 example: login: storageos / password: storageos) when using the
 &lt;a href=&#34;/docs/self-eval&#34;&gt;self-evaluation guide&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Depending on the environment, connecting to the localhost might not work when
 using a remote administration machine. If this host has a private or public IP,
 this IP can be set with the address parameter as such:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl port-forward -n storageos svc/storageos 5705 --address 10.20.20.20
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://10.20.20.20:5705&lt;/code&gt;  As an
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt; --address 10.20.20.20
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://10.20.20.20:5705&lt;/code&gt;  As an
 alternative, you may prefer to use an Ingress controller. You can retrieve the
 Ondat cluster by browsing the &lt;strong&gt;Licence&lt;/strong&gt; page as shown below:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/concepts/licensing.png&#34; alt=&#34;license&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;ondat-gui---obtaining-a-licence-via-the-gui&#34;&gt;Ondat GUI - Obtaining a Licence via the GUI&lt;/h2&gt;
-&lt;p&gt;Contact Ondat Customer Success team via &lt;a href=&#34;mailto:getstarted@ondat.io&#34;&gt;getstarted@ondat.io&lt;/a&gt; and provide the
-following information:&lt;/p&gt;
+&lt;h2 id=&#34;ondat-cli---running-the-cli&#34;&gt;Ondat CLI - Running the CLI&lt;/h2&gt;
+&lt;p&gt;In order to get the CLI running, you must launch it on the target Kubernetes
+cluster:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;kubectl -n storageos create -f-&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: apps/v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;kind: Deployment
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  name: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  namespace: storageos
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  labels:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    app: storageos
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    run: cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  replicas: 1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  selector:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    matchLabels:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      app: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      run: cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  template:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      labels:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        app: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        run: cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      containers:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      - command:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - /bin/sh
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - -c
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - &amp;#34;while true; do sleep 3600; done&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        env:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - name: STORAGEOS_END&lt;/span&gt;POINTS
+          value: http://storageos:5705
+        - name: STORAGEOS_USERNAME
+          value: storageos
+        - name: STORAGEOS_PASSWORD
+          value: storageos
+        image: storageos/cli:v2.5.0
+        name: cli
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ Be sure to edit the environment variables appropriately for your target cluster, eg. the
+username/password for the administrative user.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Once the pod is launched, you can retrieve it&amp;rsquo;s unique identifier:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;POD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl -n storageos get pod -ocustom-columns&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;_:.metadata.name --no-headers -lapp&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-cli&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that the &lt;code&gt;POD&lt;/code&gt; variable is set, the pod is accessible via that variable for the rest of the lifetime of
+that terminal. If you open a new terminal, you&amp;rsquo;ll need to run this command again to rediscover the ID of
+the pod.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-cli---retrieving-a-cluster-id-via-the-ondat-cli&#34;&gt;Ondat CLI - Retrieving a cluster ID via the Ondat CLI&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure that you have the CLI running, as described in the previous step!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; -- storageos get cluster
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ID:           704dd165-9580-4da4-a554-0acb96d328cb
+Created at:   2022-01-10T13:58:00Z (2 weeks ago)
+Updated at:   2022-01-10T14:05:27Z (2 weeks ago)
+Nodes:        3
+  Healthy:    3
+  Unhealthy:  0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The UUID in the &lt;code&gt;ID&lt;/code&gt; field is unique to your cluster and is the only information
+you need in order to obtain your first license.&lt;/p&gt;
+&lt;h2 id=&#34;ondat---obtaining-a-personal-licence&#34;&gt;Ondat - Obtaining a Personal Licence&lt;/h2&gt;
+&lt;p&gt;A personal license is aimed at individuals looking to try Ondat themselves before
+running it any business-critical situation. We&amp;rsquo;re happy to provide guidance and
+best-effort support with the Ondat community through our &lt;a href=&#34;https://storageos.slack.com/&#34;&gt;slack channel&lt;/a&gt;
+or directly by email via &lt;a href=&#34;mailto:info@ondat.io&#34;&gt;info@ondat.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To enable self-service for licenses, we provide a simple API. To request a license with curl, run:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -XPOST --data &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;clusterID&amp;#34;: &amp;#34;704dd165-9580-4da4-a554-0acb96d328cb&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;name&amp;#34;: &amp;#34;Sally Forth&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;country&amp;#34;: &amp;#34;GB&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;company&amp;#34;: &amp;#34;Acme Ltd&amp;#34;,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;companySize&amp;#34;: 100,
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;email&amp;#34;: &amp;#34;sally@acme.io&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&amp;#39;&lt;/span&gt; https://t.api.ondat.io/license
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
+  &amp;quot;code&amp;quot;: &amp;quot;200&amp;quot;,
+  &amp;quot;message&amp;quot;: &amp;quot;License processed, please check your email for a download link.&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ Be sure to change the details to reflect your own!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Do note that:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;First&lt;/strong&gt; and &lt;strong&gt;last&lt;/strong&gt; name&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Company&lt;/strong&gt; &lt;strong&gt;name&lt;/strong&gt; and &lt;strong&gt;role&lt;/strong&gt; (optional for Personal licence, mandatory
-for Commercial licence)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cluster ID&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;clusterID&lt;/code&gt; must be correct for your cluster, or the license won&amp;rsquo;t apply!&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;company&lt;/code&gt; and &lt;code&gt;companySize&lt;/code&gt; are totally optional, feel free to omit them&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country&lt;/code&gt; can be a country in ISO 3166 format or the English name of the country&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;email&lt;/code&gt; will be validated and must be available and non-disposable&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;In return to the registration, you will receive a licence file with a content
-similar to this one:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;clusterCapacityGiB: 5120 
+&lt;blockquote&gt;
+&lt;p&gt;💡 If you receive an &lt;code&gt;Internal Service Error&lt;/code&gt;, double-check that all the information you&amp;rsquo;ve
+submitted fits the above requirements!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now check your inbox! You will have received an automatically generated email with a link to
+your license file. If you don&amp;rsquo;t see it, be sure to give it a few minutes and check your spam folder!&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Download license&lt;/strong&gt; button on the email will work as many times as you&amp;rsquo;d like to retrieve the license -
+to renew, just submit another new license request!&lt;/p&gt;
+&lt;p&gt;Note that the resulting file is not the license itself - the license is wrapped in JSON, so you must use
+&lt;code&gt;jq&lt;/code&gt; or similar to unwrap it in order to activate it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;curl -XGET &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;https://t.api.ondat.io/license?email=sally@acme.io&amp;amp;payload=ABCC...&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; jq -r &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;.license&amp;#39;&lt;/span&gt; &amp;gt; license.dat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
+  &amp;quot;clusterID&amp;quot;: &amp;quot;704dd165-9580-4da4-a554-0acb96d328cb&amp;quot;,
+  &amp;quot;email&amp;quot;: &amp;quot;sally@acme.io&amp;quot;,
+  &amp;quot;license&amp;quot;: &amp;quot;...&amp;quot;
+  &amp;quot;expiryTime&amp;quot;: &amp;quot;2022-12-12T08:47:20.000Z&amp;quot;
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The above command will &amp;lsquo;unwrap&amp;rsquo; the license in raw mode and create the file &lt;code&gt;license.dat&lt;/code&gt; in the correct
+format to be imported by Ondat. The &lt;code&gt;jq&lt;/code&gt; command can be run directly through a &lt;code&gt;curl&lt;/code&gt; command or on a license
+file downloaded from the email (eg. via &amp;lsquo;Save Page As&amp;rsquo;), like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;jq -r &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;.license&amp;#39;&lt;/span&gt; email_license.json &amp;gt; license.dat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;ondat---the-license-file-format&#34;&gt;Ondat - The license file format&lt;/h2&gt;
+&lt;p&gt;A license contains a list of capabilities and capacities, the cluster ID, an expiry time,
+any extra features and a license type alongside a digital signature.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;cat license.dat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;clusterCapacityGiB: 5120 
 clusterID: 164237eb-f88a-4bb8-a7cf-a23d468e07c0 
 customerName: storageos
 expiresAt: &amp;quot;2021-11-15T14:00:00Z&amp;quot; 
@@ -1241,7 +1344,8 @@ V1HyjBlS3LjoB/MoagulTxIlZh/R8eRXCOQ46qNZ8Yb7+dHLdCVXBnRqZT11hLqZsMqIeO1y9f5dw65H
 kvl6vWW7YIS9r655S25jMMU7brrGDQVdjvU7tSA74BrnzDFHu7/poopIuFqcxZc/NLrKp/akkvyZI5Ex
 1wH7D4onjVG2pgi30Kia+mjbI1B9pxQyRppQQ4hNXy4qBUUNMFh0menh0wHdQoM1VLU4Il22PrkeICV0
 NaalLsK/96bJov6tpbg96g==
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;ondat-gui---applying-a-licence-via-the-ondat-gui-to-apply-a-licence&#34;&gt;Ondat GUI - Applying a Licence via the Ondat GUI To apply a licence:&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;ondat-gui---applying-a-licence-via-the-ondat-gui&#34;&gt;Ondat GUI - Applying a Licence via the Ondat GUI&lt;/h2&gt;
+&lt;p&gt;To apply a licence:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Browse the &lt;strong&gt;Licence&lt;/strong&gt; page of the Ondat GUI&lt;/li&gt;
 &lt;li&gt;Click the &lt;strong&gt;Upgrade&lt;/strong&gt; button, for the specific licence level you purchased&lt;/li&gt;
@@ -1254,52 +1358,31 @@ just the signature. Keep in mind that the encoding of the file must not
 change.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/operations/licensing/apply-licence-key.png&#34; alt=&#34;Apply Licence Key&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;ondat-cli---retrieving-a-cluster-id-via-the-ondat-cli&#34;&gt;Ondat CLI - Retrieving a cluster ID via the Ondat CLI&lt;/h2&gt;
-&lt;p&gt;For the purpose of this document, it is assumed that the Ondat CLI has been deployed locally on
-the same machine hosting kubectl. To retrieve the cluster ID using the Ondat
-CLI, perform the following:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ storageos get cluster
-ID:               704dd165-9580-4da4-a554-0acb96d328cb
-Licence:
-  expiration:     2021-03-25T13:48:46Z (1 year from now)
-  capacity:       5.0 TiB
-  kind:           professional
-  customer name:  storageos
-Created at:       2020-03-25T13:48:33Z (1 hour ago)
-Updated at:       2020-03-25T13:48:46Z (1 hour ago)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;N.B. All of this string is necessary to activate a licence - not just the
-signature.&lt;/p&gt;
-&lt;h2 id=&#34;ondat-cli---obtaining-a-licence-via-the-cli&#34;&gt;Ondat CLI - Obtaining a Licence via the CLI&lt;/h2&gt;
-&lt;p&gt;Contact Ondat Customer Success team via &lt;a href=&#34;mailto:getstarted@ondat.io&#34;&gt;getstarted@ondat.io&lt;/a&gt; and provide the
-following information:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;First&lt;/strong&gt; and &lt;strong&gt;last&lt;/strong&gt; name&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Company&lt;/strong&gt; &lt;strong&gt;name&lt;/strong&gt; and &lt;strong&gt;role&lt;/strong&gt; (optional for Personal licence, mandatory
-for Commercial licence)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Cluster ID&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In return to the registration, you will receive a licence file with a content
-similar to this one:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;clusterCapacityGiB: 5120
-clusterID: 164237eb-f88a-4bb8-a7cf-a23d468e07c0
-customerName: storageos
-expiresAt: &amp;quot;2021-11-15T14:00:00Z&amp;quot;
-features:
-- nfs
-kind: project
-
-------------- LICENCE SIGNATURE -------------
-KyjNleTcdmieZVLmZ/rg0SzdAM7I/CH0j22FIFJJSJaeB71OvQrTMtHGyL5TSFNMrEGbyh1HQlDgZb5A
-V1HyjBlS3LjoB/MoagulTxIlZh/R8eRXCOQ46qNZ8Yb7+dHLdCVXBnRqZT11hLqZsMqIeO1y9f5dw65H
-kvl6vWW7YIS9r655S25jMMU7brrGDQVdjvU7tSA74BrnzDFHu7/poopIuFqcxZc/NLrKp/akkvyZI5Ex
-1wH7D4onjVG2pgi30Kia+mjbI1B9pxQyRppQQ4hNXy4qBUUNMFh0menh0wHdQoM1VLU4Il22PrkeICV0
-NaalLsK/96bJov6tpbg96g==
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;ondat-cli----applying-a-licence-via-the-cli&#34;&gt;Ondat CLI  - Applying a licence via the CLI&lt;/h2&gt;
-&lt;p&gt;The following command will apply the licence key stored in
-&lt;code&gt;/path/to/storageos-licence.dat&lt;/code&gt;:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ storageos apply licence --from-file /path/to/storageos-licence.dat
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;For more information refer to the licence
+&lt;h2 id=&#34;ondat-cli---applying-a-licence-via-the-cli&#34;&gt;Ondat CLI - Applying a licence via the CLI&lt;/h2&gt;
+&lt;p&gt;The following command will apply the licence key stored in &lt;code&gt;/path/to/storageos-licence.dat&lt;/code&gt;,
+assuming that you have the CLI running as described in the sections above:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;cat /path/to/storageos-license.dat &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -it &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; -- storageos apply license --from-stdin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once the license has been applied, any extra features provided by your license will be listed with the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; -- storageos get license
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ClusterID:      033a4774-c18f-4d05-ba86-90b818957f34
+Expiration:     2024-01-01T23:59:59Z (2 years from now)
+Capacity:       15 TiB (16520591704064)
+Used:           0 B (0)
+Kind:           standard
+Features:       [nfs]
+Customer name:  Sally Forth
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 If you have any problems running this command, make sure that the CLI is
+running and that the POD variable is set as per the CLI instructions above&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Don&amp;rsquo;t worry if you don&amp;rsquo;t see all of these fields - some of them are only
+visible when they are relevant to your individual license.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 For more information refer to the licence
 &lt;a href=&#34;/docs/reference/cli&#34;&gt;CLI command&lt;/a&gt; reference documentation.&lt;/p&gt;
+&lt;/blockquote&gt;
 
       </description>
     </item>
