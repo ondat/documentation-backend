@@ -24,7 +24,7 @@
         
         &lt;p&gt;Ondat implements a &lt;code&gt;MutatingAdmissionWebhook&lt;/code&gt; &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks&#34;&gt;Admission
 Controller&lt;/a&gt;
-to ensure that Pods using Ondat Volumes use the &lt;a href=&#34;/docs/reference/scheduler/_index&#34;&gt;storageos-scheduler&lt;/a&gt;. An admission controller intercepts
+to ensure that Pods using Ondat Volumes use the &lt;a href=&#34;/docs/reference/scheduler/&#34;&gt;storageos-scheduler&lt;/a&gt;. An admission controller intercepts
 requests to the Kubernetes API server prior to persistence of the object, but
 after the request is authenticated and authorized.&lt;/p&gt;
 &lt;p&gt;The Admission Controller is responsible for mutating the PodSpec at creation time

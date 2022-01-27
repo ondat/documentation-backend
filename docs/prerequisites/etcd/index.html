@@ -34,7 +34,7 @@ We provide two methods for installing etcd. For those looking for a quick route 
 We do not support using the Kubernetes etcd for Ondat installations.
 We provide two methods for installing etcd. For those looking for a quick route to evaluating Ondat, our first method installs etcd into your Kubernetes cluster using the CoreOS operator. Due to limitations in the CoreOS operator, this installation is not backed by any persistent storage, and therefore is unsuitable for production installations.">
 
-<meta itemprop="wordCount" content="2089">
+<meta itemprop="wordCount" content="2088">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Etcd"/>
 <meta name="twitter:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required please see our etcd concepts page.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4ef9b52b27a8a58b55119585c6dcfa5973c636427c9401ee2b2a04713718f6b699747c13452eaba6567cea7c7c48f1409eff1450c1f9a466fc3693958790c9ff.json"
+  data-offline-search-index-json-src="/offline-search-index.9a0492ec33359d7de16da3554147c3ae616b740da8a8eb4f0bb26c738cda0b83376f6ad6e2ca944c5d0d30ec3ca18a00ac8226bb5ab17684b1b5abd886579f3a.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4ef9b52b27a8a58b55119585c6dcfa5973c636427c9401ee2b2a04713718f6b699747c13452eaba6567cea7c7c48f1409eff1450c1f9a466fc3693958790c9ff.json"
+  data-offline-search-index-json-src="/offline-search-index.9a0492ec33359d7de16da3554147c3ae616b740da8a8eb4f0bb26c738cda0b83376f6ad6e2ca944c5d0d30ec3ca18a00ac8226bb5ab17684b1b5abd886579f3a.json"
   data-offline-search-base-href="/"
 >
 
@@ -1396,7 +1396,7 @@ landscape is changing rapidly, watch this space), and our production guidance
 remains to install etcd on separate machines outside of your Kubernetes
 cluster. This method is the best way to ensure a stable Ondat cluster.
 Please see our etcd operations page for additional information on deployment
-<a href="/docs/operations/etcd/_index">best practices</a> and concerns.</p>
+<a href="/docs/operations/etcd/">best practices</a> and concerns.</p>
 <ol>
 <li>Ephemeral pods within Kubernetes (<em>Testing</em>)</li>
 <li>External Virtual Machines (<em>Production</em>)</li>
@@ -1614,7 +1614,7 @@ architecture in all environments, including those where Kubernetes is being
 deployed as a managed service.</p>
 <p>Ondat doesn&rsquo;t require a high performance etcd cluster, as the throughput
 of metadata to the cluster is low. However, we recommend a careful assessment
-of IOPS capacity <a href="/docs/operations/etcd/_index#iops-requirements">best practices</a> to ensure that etcd
+of IOPS capacity <a href="/docs/operations/etcd/">best practices</a> to ensure that etcd
 operates normally.</p>
 <p>Depending on the level of redundancy you feel comfortable with you can install
 etcd on the Kubernetes Master nodes. <strong>Take extreme care to avoid collisions
@@ -1778,7 +1778,7 @@ $ <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-wei
 17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
 8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
 </code></pre></div><blockquote>
-<p>💡 Read the <a href="/docs/operations/etcd/_index">etcd operations</a>
+<p>Read the <a href="/docs/operations/etcd/">etcd operations</a>
 page for our etcd recommendations.</p>
 </blockquote>
 </li>

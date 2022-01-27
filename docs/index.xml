@@ -990,7 +990,7 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Dive into our Use Case documentation for Workloads deployed in
-&lt;a href=&#34;/docs/usecases/_index&#34;&gt;Kubernetes&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;/docs/usecases/&#34;&gt;Kubernetes&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1152,7 +1152,7 @@ methods:&lt;/p&gt;
 &lt;li&gt;Manual - allowing more control and visibility&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Before proceeding, ensure that you have followed our &lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;⚠️ Before proceeding, ensure that you have followed our &lt;a href=&#34;/docs/prerequisites/&#34;&gt;prerequisites&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ On Rancher, pay particular attention to
@@ -1225,7 +1225,7 @@ customization of the Ondat installation.&lt;/p&gt;
 &lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-7.png&#34; alt=&#34;install-7&#34;&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cluster Operator namespace&lt;/strong&gt;
-: The Kubernetes namespace where the &lt;a href=&#34;/docs/reference/cluster-operator/_index&#34;&gt;Ondat Cluster Operator&lt;/a&gt; and other resources will be
+: The Kubernetes namespace where the &lt;a href=&#34;/docs/reference/cluster-operator/&#34;&gt;Ondat Cluster Operator&lt;/a&gt; and other resources will be
 created.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Container Images&lt;/strong&gt; : By default images are pulled from DockerHub, you can&lt;/li&gt;
 &lt;li&gt;specify the image URLs
@@ -1909,7 +1909,7 @@ landscape is changing rapidly, watch this space), and our production guidance
 remains to install etcd on separate machines outside of your Kubernetes
 cluster. This method is the best way to ensure a stable Ondat cluster.
 Please see our etcd operations page for additional information on deployment
-&lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;best practices&lt;/a&gt; and concerns.&lt;/p&gt;
+&lt;a href=&#34;/docs/operations/etcd/&#34;&gt;best practices&lt;/a&gt; and concerns.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Ephemeral pods within Kubernetes (&lt;em&gt;Testing&lt;/em&gt;)&lt;/li&gt;
 &lt;li&gt;External Virtual Machines (&lt;em&gt;Production&lt;/em&gt;)&lt;/li&gt;
@@ -2127,7 +2127,7 @@ architecture in all environments, including those where Kubernetes is being
 deployed as a managed service.&lt;/p&gt;
 &lt;p&gt;Ondat doesn&amp;rsquo;t require a high performance etcd cluster, as the throughput
 of metadata to the cluster is low. However, we recommend a careful assessment
-of IOPS capacity &lt;a href=&#34;/docs/operations/etcd/_index#iops-requirements&#34;&gt;best practices&lt;/a&gt; to ensure that etcd
+of IOPS capacity &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;best practices&lt;/a&gt; to ensure that etcd
 operates normally.&lt;/p&gt;
 &lt;p&gt;Depending on the level of redundancy you feel comfortable with you can install
 etcd on the Kubernetes Master nodes. &lt;strong&gt;Take extreme care to avoid collisions
@@ -2291,7 +2291,7 @@ $ &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=
 17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
 8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Read the &lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;etcd operations&lt;/a&gt;
+&lt;p&gt;Read the &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;etcd operations&lt;/a&gt;
 page for our etcd recommendations.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
@@ -3012,7 +3012,7 @@ is no replacement for testing actual production or production like workloads.&lt
         
         &lt;p&gt;Ondat implements a &lt;code&gt;MutatingAdmissionWebhook&lt;/code&gt; &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks&#34;&gt;Admission
 Controller&lt;/a&gt;
-to ensure that Pods using Ondat Volumes use the &lt;a href=&#34;/docs/reference/scheduler/_index&#34;&gt;storageos-scheduler&lt;/a&gt;. An admission controller intercepts
+to ensure that Pods using Ondat Volumes use the &lt;a href=&#34;/docs/reference/scheduler/&#34;&gt;storageos-scheduler&lt;/a&gt;. An admission controller intercepts
 requests to the Kubernetes API server prior to persistence of the object, but
 after the request is authenticated and authorized.&lt;/p&gt;
 &lt;p&gt;The Admission Controller is responsible for mutating the PodSpec at creation time
@@ -3351,7 +3351,7 @@ cqlsh&amp;gt; SELECT cluster_name, listen_address FROM system.local&lt;span styl
         
         
         &lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/_index&#34;&gt;CLI&lt;/a&gt; displays the
+&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/&#34;&gt;CLI&lt;/a&gt; displays the
 status of nodes in the cluster.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get nodes
 NAME        HEALTH  AGE             LABELS
@@ -4332,7 +4332,7 @@ team to understand the context of your cluster and begin troubleshooting any
 issues you may be experiencing.&lt;/p&gt;
 &lt;h2 id=&#34;generate-bundle&#34;&gt;Generate Bundle&lt;/h2&gt;
 &lt;h3 id=&#34;cli&#34;&gt;CLI&lt;/h3&gt;
-&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/_index&#34;&gt;CLI&lt;/a&gt; can generate
+&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/&#34;&gt;CLI&lt;/a&gt; can generate
 the bundle.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get diagnostics
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
@@ -5560,7 +5560,7 @@ Hello World!
 the PVC is being written to. If you were to kill the pod and start it again
 on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;If you wish to see more use cases with actual applications please see our
-&lt;a href=&#34;/docs/usecases/_index&#34;&gt;Use Cases&lt;/a&gt; documentation.&lt;/strong&gt;&lt;/p&gt;
+&lt;a href=&#34;/docs/usecases/&#34;&gt;Use Cases&lt;/a&gt; documentation.&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 

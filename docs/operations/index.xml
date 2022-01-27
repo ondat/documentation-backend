@@ -23,7 +23,7 @@
         
         
         &lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/_index&#34;&gt;CLI&lt;/a&gt; displays the
+&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/&#34;&gt;CLI&lt;/a&gt; displays the
 status of nodes in the cluster.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get nodes
 NAME        HEALTH  AGE             LABELS
@@ -347,7 +347,7 @@ performance, careful assessment is necessary to ensure sufficient capacity.&lt;/
 &lt;p&gt;The rate of etcd operations is affected by the number of nodes, volumes and
 replicas in the cluster, therefore the figure of 500 is provided as a
 guideline only. A development cluster with 5 nodes will not have the same etcd
-traffic as a production cluster with 100 nodes. Adding &lt;a href=&#34;/docs/operations/etcd/_index#monitoring&#34;&gt;monitoring&lt;/a&gt; to etcd will help to
+traffic as a production cluster with 100 nodes. Adding &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;monitoring&lt;/a&gt; to etcd will help to
 characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.&lt;/p&gt;
 &lt;h3 id=&#34;etcd-advertise-urls&#34;&gt;Etcd advertise urls&lt;/h3&gt;
@@ -787,7 +787,7 @@ Hello World!
 the PVC is being written to. If you were to kill the pod and start it again
 on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;If you wish to see more use cases with actual applications please see our
-&lt;a href=&#34;/docs/usecases/_index&#34;&gt;Use Cases&lt;/a&gt; documentation.&lt;/strong&gt;&lt;/p&gt;
+&lt;a href=&#34;/docs/usecases/&#34;&gt;Use Cases&lt;/a&gt; documentation.&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1864,7 +1864,7 @@ will use &lt;code&gt;-o discard&lt;/code&gt;.&lt;/p&gt;
 they are related to the Ondat installation, integration with
 orchestrators or common misconfigurations.&lt;/p&gt;
 &lt;h2 id=&#34;tools&#34;&gt;Tools&lt;/h2&gt;
-&lt;p&gt;To be able to troubleshoot issues the &lt;a href=&#34;/docs/reference/cli/_index&#34;&gt;Ondat CLI&lt;/a&gt; is required.&lt;/p&gt;
+&lt;p&gt;To be able to troubleshoot issues the &lt;a href=&#34;/docs/reference/cli/&#34;&gt;Ondat CLI&lt;/a&gt; is required.&lt;/p&gt;
 &lt;h2 id=&#34;pod-in-pending-because-of-mount-error&#34;&gt;Pod in pending because of mount error&lt;/h2&gt;
 &lt;h3 id=&#34;issue&#34;&gt;Issue:&lt;/h3&gt;
 &lt;p&gt;The output of &lt;code&gt;kubectl describe pod $POD_ID&lt;/code&gt; contains &lt;code&gt;no such file or directory&lt;/code&gt; and references the Ondat volume device file.&lt;/p&gt;

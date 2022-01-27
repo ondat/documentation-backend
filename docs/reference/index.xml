@@ -489,7 +489,7 @@ Ingress rule. i.e &lt;code&gt;kubectl -n storageos port-forward svc/storageos 57
 Ondat starts an init container that sets the system configuration for
 Ondat. The container also manages configuration changes required when
 upgrading Ondat versions.&lt;/p&gt;
-&lt;p&gt;The container belongs to the DaemonSet that the &lt;a href=&#34;/docs/reference/cluster-operator/_index.md&#34;&gt;Ondat Cluster
+&lt;p&gt;The container belongs to the DaemonSet that the &lt;a href=&#34;/docs/reference/cluster-operator/&#34;&gt;Ondat Cluster
 Operator&lt;/a&gt; starts when a
 &lt;code&gt;StorageOSCluster&lt;/code&gt; resource is created. The &lt;code&gt;storageos-init&lt;/code&gt; container is
 executed as an

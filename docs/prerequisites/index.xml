@@ -378,7 +378,7 @@ landscape is changing rapidly, watch this space), and our production guidance
 remains to install etcd on separate machines outside of your Kubernetes
 cluster. This method is the best way to ensure a stable Ondat cluster.
 Please see our etcd operations page for additional information on deployment
-&lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;best practices&lt;/a&gt; and concerns.&lt;/p&gt;
+&lt;a href=&#34;/docs/operations/etcd/&#34;&gt;best practices&lt;/a&gt; and concerns.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Ephemeral pods within Kubernetes (&lt;em&gt;Testing&lt;/em&gt;)&lt;/li&gt;
 &lt;li&gt;External Virtual Machines (&lt;em&gt;Production&lt;/em&gt;)&lt;/li&gt;
@@ -596,7 +596,7 @@ architecture in all environments, including those where Kubernetes is being
 deployed as a managed service.&lt;/p&gt;
 &lt;p&gt;Ondat doesn&amp;rsquo;t require a high performance etcd cluster, as the throughput
 of metadata to the cluster is low. However, we recommend a careful assessment
-of IOPS capacity &lt;a href=&#34;/docs/operations/etcd/_index#iops-requirements&#34;&gt;best practices&lt;/a&gt; to ensure that etcd
+of IOPS capacity &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;best practices&lt;/a&gt; to ensure that etcd
 operates normally.&lt;/p&gt;
 &lt;p&gt;Depending on the level of redundancy you feel comfortable with you can install
 etcd on the Kubernetes Master nodes. &lt;strong&gt;Take extreme care to avoid collisions
@@ -760,7 +760,7 @@ $ &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=
 17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
 8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Read the &lt;a href=&#34;/docs/operations/etcd/_index&#34;&gt;etcd operations&lt;/a&gt;
+&lt;p&gt;Read the &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;etcd operations&lt;/a&gt;
 page for our etcd recommendations.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
