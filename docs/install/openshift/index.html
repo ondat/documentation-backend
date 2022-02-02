@@ -36,7 +36,7 @@
   ⚠️ Make sure to add a Ondat licence after installing.
   💡 For OpenShift upgrades, refer to the OpenShift platform page.">
 
-<meta itemprop="wordCount" content="990">
+<meta itemprop="wordCount" content="987">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenShift"/>
 <meta name="twitter:description" content="⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.37198764fbb6e9821dc9940a0be395dbe132af9060b2a2fbe15e57663c7412465f24da593594e331e1d5763552154714851c81805ecc5699d439c36a8cad27ca.json"
+  data-offline-search-index-json-src="/offline-search-index.c6b3d9b14c1c5ba4d7777ed283abe9e29e29aeff70ede906415b62d065d1e1f81cd379641f2402333faee058e6332e009dca8397c9b767f10cd42064f524a205.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.37198764fbb6e9821dc9940a0be395dbe132af9060b2a2fbe15e57663c7412465f24da593594e331e1d5763552154714851c81805ecc5699d439c36a8cad27ca.json"
+  data-offline-search-index-json-src="/offline-search-index.c6b3d9b14c1c5ba4d7777ed283abe9e29e29aeff70ede906415b62d065d1e1f81cd379641f2402333faee058e6332e009dca8397c9b767f10cd42064f524a205.json"
   data-offline-search-base-href="/"
 >
 
@@ -1321,7 +1321,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav id="TableOfContents">
   <ul>
     <li><a href="#operatorhub">OperatorHub</a></li>
+    <li><a href="#authentication-operatorhub">Authentication (OperatorHub)</a></li>
     <li><a href="#red-hat-marketplace">Red Hat Marketplace</a></li>
+    <li><a href="#authentication-red-hat-marketplace">Authentication (Red Hat Marketplace)</a></li>
     <li><a href="#license-cluster">License cluster</a></li>
     <li><a href="#first-ondat-volume">First Ondat volume</a></li>
   </ul>
@@ -1374,7 +1376,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 	<blockquote>
 <p>⚠️ Make sure the
-<a href="/docs/prerequisites/_index">prerequisites for Ondat</a> are
+<a href="/docs/prerequisites/">prerequisites for Ondat</a> are
 satisfied before proceeding. Including the deployment of an etcd cluster and
 configuration of CRI-O PID limits.</p>
 </blockquote>
@@ -1393,55 +1395,41 @@ opened for the worker nodes' security group.</p>
 <h2 id="operatorhub">OperatorHub</h2>
 <ol>
 <li>
-<p>Select the <code>OperatorHub</code> from the Catalog sub menu and search for Ondat</p>
-<p><img src="/images/docs/openshift4/storageos-v2/000-operatorhub-find-storageos.png" alt="install-0"></p>
+<p>Select the <code>OperatorHub</code> from the Catalog sub menu and search for StorageOS</p>
 <blockquote>
 <p>💡 Choose between using the RedHat Marketplace or the Community Operators
 installation.</p>
 </blockquote>
 </li>
 <li>
-<p>Select Ondat and click install</p>
-<p><img src="/images/docs/openshift4/storageos-v2/010-install-operator-modal.png" alt="install-1"></p>
+<p>Select StorageOS and click <strong>Install</strong>.</p>
 </li>
 <li>
-<p>Select the install options</p>
-<p><img src="/images/docs/openshift4/storageos-v2/020-install-operator-options.png" alt="install-2"></p>
+<p>Select the relevant install options.</p>
 <blockquote>
-<p>Make sure the <code>Approval Strategy</code> is set to Manual. So the Ondat
+<p>Make sure the <code>Approval Strategy</code> is set to <strong>Manual</strong>. This option makes sure that the StorageOS
 Operator doesn&rsquo;t upgrade versions without explicit approval.</p>
 </blockquote>
 </li>
 <li>
-<p>Start the approval procedure</p>
-<p><img src="/images/docs/openshift4/storageos-v2/030-upgrade-operator-approval-0.png" alt="install-3"></p>
+<p>Start the approval procedure by clicking on the operator name.</p>
 </li>
 <li>
-<p>Follow the approval link</p>
-<p><img src="/images/docs/openshift4/storageos-v2/040-upgrade-operator-approval-1.png" alt="install-4"></p>
+<p>On <strong>Subscription Details</strong>, click the approval link.</p>
 </li>
 <li>
-<p>Approve the installation</p>
-<p><img src="/images/docs/openshift4/storageos-v2/050-approve-upgrade.png" alt="install-5"></p>
+<p>On <strong>Review Manual Install</strong> panel in the <strong>Components</strong> tab, click <strong>Approve</strong> to confirm the installation.</p>
 </li>
+</ol>
+<p>The Ondat Cluster Operator is installed along the required CRDs.</p>
+<h2 id="authentication-operatorhub">Authentication (OperatorHub)</h2>
+<ol>
 <li>
-<p>The Ondat Cluster Operator is installed along the required CRDs</p>
-<p><img src="/images/docs/openshift4/storageos-v2/060-installed-crds.png" alt="install-6"></p>
-</li>
-<li>
-<p>Create a Secret in the <code>openshift-operators</code> project</p>
-<p><img src="/images/docs/openshift4/storageos-v2/070-create-secret.png" alt="install-7"></p>
-</li>
-<li>
-<p>Use the YAML options to create a secret containing the <code>apiUsername</code> and an
-<code>apiPassword</code> key. The username and password defined in the secret will be
-used to authenticate when using the Ondat CLI and GUI. For the
-communication between Ondat and OpenShift, the CSI credentials
-<code>csiProvisionUsername</code>, <code>csiProvisionPassword</code>,
-<code>csiControllerPublishUsername</code>, <code>csiControllerPublishPassword</code>,
-<code>csiNodePublishUsername</code>, <code>csiNodePublishPassword</code> are needed. Take note of
+<p>Create a Secret in the <code>openshift-operators</code> project and select the YAML option to create a secret containing the <code>username</code> and an
+<code>password</code> key. The username and password defined in the secret will be
+used to authenticate when using the Ondat CLI and GUI. Take note of
 which project you created the secret in.</p>
-<p>Input the Secret as YAML for simplicity.</p>
+<p>Input the secret as YAML for simplicity.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Secret</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1450,40 +1438,26 @@ which project you created the secret in.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;kubernetes.io/storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># echo -n &#39;&lt;secret&gt;&#39; | base64</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">apiUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">apiPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># CSI Credentials</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiProvisionUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiProvisionPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerPublishUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerPublishPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiNodePublishUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiNodePublishPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerExpandUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerExpandPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p><img src="/images/docs/openshift4/storageos-v2/080-create-secret-yaml.png" alt="install-8"></p>
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">username</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Go to the <strong>Operators</strong>-&gt;<strong>Installed Operators</strong> and verify that the StorageOS Cluster Operator is installed.</p>
 </li>
 <li>
-<p>Go to the &ldquo;Installed Operators&rdquo;</p>
-<p><img src="/images/docs/openshift4/storageos-v2/090-operator-hub-installed.png" alt="install-9"></p>
-<blockquote>
-<p>💡 Verify that the Ondat Cluster Operator is installed</p>
-</blockquote>
+<p>Go to the <strong>StorageOS Cluster</strong> section.</p>
 </li>
 <li>
-<p>Go to the &ldquo;Ondat Cluster&rdquo; section</p>
-<p><img src="/images/docs/openshift4/storageos-v2/100-operator-details.png" alt="install-10"></p>
-</li>
-<li>
-<p>Create the Ondat Cluster</p>
-<p><img src="/images/docs/openshift4/storageos-v2/110-create-storageos-cluster.png" alt="install-11"></p>
+<p>Click <strong>Create StorageOSCluster</strong>.</p>
 <blockquote>
 <p>💡 An Ondat Cluster is defined using a Custom Resource Definition</p>
 </blockquote>
 </li>
 <li>
 <p>Create the Custom Resource</p>
-<p>The Ondat cluster resource describes the Ondat cluster that will be
+</li>
+</ol>
+<p>The StorageOS cluster resource describes the Ondat cluster that will be
 created. Parameters such as the <code>secretRefName</code>, the <code>secretRefNamespace</code> and
 the <code>kvBackend.address</code> are mandatory.</p>
 <blockquote>
@@ -1512,20 +1486,17 @@ spec:
   <span style="color:#8f5902;font-style:italic">#       operator: In</span>
   <span style="color:#8f5902;font-style:italic">#       values:</span>
   <span style="color:#8f5902;font-style:italic">#       - &#34;true&#34;</span>
-</code></pre></div><p><img src="/images/docs/openshift4/storageos-v2/120-create-cr-from-yaml.png" alt="install-12"></p>
-</li>
+</code></pre></div><ol start="6">
 <li>
-<p>Verify that the Ondat Cluster Resource enters a running state.</p>
-<p><img src="/images/docs/openshift4/storageos-v2/130-cr-created.png" alt="install-13"></p>
+<p>Verify that the StorageOS Cluster resource status is <strong>Running</strong>.</p>
 <blockquote>
-<p>It can take up to a minute to report the Ondat Pods ready</p>
+<p>It can take up to a minute to report the Ondat Pods ready.</p>
 </blockquote>
 </li>
 <li>
-<p>Check the Ondat Pods in the <code>kube-system</code> project</p>
-<p><img src="/images/docs/openshift4/storageos-v2/140-storageos-pods.png" alt="install-14"></p>
+<p>Check the StorageOS Pods in the <code>kube-system</code> project</p>
 <blockquote>
-<p>A Status of 3/3 for the Daemonset Pods indicates that Ondat is
+<p>A Status of 3/3 in the <strong>Ready</strong> column for the Daemonset Pods indicates that Ondat is
 bootstrapped successfully.</p>
 </blockquote>
 </li>
@@ -1534,25 +1505,22 @@ bootstrapped successfully.</p>
 <blockquote>
 <p>⚠️ The installation of Ondat using the Red Hat Marketplace requires the
 Openshift cluster to be registered to the Marketplace Portal, including the
-roll out of the PullSecret in your cluster. Failure to do so will result in a
+roll out of the <code>PullSecret</code> in your cluster. Failure to do so will result in a
 image pull authentication failure with the Red Hat registry.</p>
 </blockquote>
 <ol>
 <li>
-<p>Select the <code>OperatorHub</code> from the Catalog sub menu and search for Ondat.</p>
-<p><img src="/images/docs/openshift4/marketplace/1.png" alt="install-0"></p>
+<p>Select the <code>OperatorHub</code> from the Catalog sub menu and search for StorageOS.</p>
 <blockquote>
 <p>💡 Choose the RedHat Marketplace option.</p>
 </blockquote>
 </li>
 <li>
-<p>Select Ondat and click purchase. Note that Openshift needs to be
+<p>Select StorageOS and click <strong>Purchase</strong>. Note that Openshift needs to be
 registered with the Red Hat Marketplace portal.</p>
-<p><img src="/images/docs/openshift4/marketplace/2.png" alt="install-1"></p>
 </li>
 <li>
-<p>Select the most suitable install option.</p>
-<p><img src="/images/docs/openshift4/marketplace/3.png" alt="install-2"></p>
+<p>Select the relevant install option.</p>
 <blockquote>
 <p>💡 Project Edition is suitable for production workloads, Developer Edition
 for personal experimentation and evaluation.</p>
@@ -1560,36 +1528,25 @@ for personal experimentation and evaluation.</p>
 </li>
 <li>
 <p>Specify the product configuration to fit your needs.</p>
-<p><img src="/images/docs/openshift4/marketplace/4.png" alt="install-3"></p>
 </li>
 <li>
 <p>Navigate to your software within Red Hat Marketplace and install the
-Ondat software as specified in the image.</p>
-<p><img src="/images/docs/openshift4/marketplace/5.png" alt="install-4"></p>
+StorageOS software as specified in the image.</p>
 </li>
 <li>
-<p>Install the Operator. Set the update approval strategy to Automatic to
-ensure that you always have the latest version of Ondat installed.</p>
-<p><img src="/images/docs/openshift4/marketplace/6.png" alt="install-5"></p>
+<p>Install the Operator. Set the update approval strategy to <strong>Automatic</strong> to
+ensure that you always have the latest version of StorageOS installed.</p>
 </li>
-<li>
+</ol>
 <p>The Ondat Cluster Operator is installed into your specified cluster.</p>
-<p><img src="/images/docs/openshift4/marketplace/7.png" alt="install-6"></p>
-</li>
+<h2 id="authentication-red-hat-marketplace">Authentication (Red Hat Marketplace)</h2>
+<ol>
 <li>
-<p>Create a Secret in the <code>openshift-operators</code> project</p>
-<p><img src="/images/docs/openshift4/storageos-v2/070-create-secret.png" alt="install-7"></p>
-</li>
-<li>
-<p>Use the YAML options to create a secret containing the <code>apiUsername</code> and an
-<code>apiPassword</code> key. The username and password defined in the secret will be
-used to authenticate when using the Ondat CLI and GUI. For the
-communication between Ondat and OpenShift, the CSI credentials
-<code>csiProvisionUsername</code>, <code>csiProvisionPassword</code>,
-<code>csiControllerPublishUsername</code>, <code>csiControllerPublishPassword</code>,
-<code>csiNodePublishUsername</code>, <code>csiNodePublishPassword</code> are needed. Take note of
+<p>Create a Secret in the <code>openshift-operators</code> project and select the YAML option to create a secret containing the <code>username</code> and an
+<code>password</code> key. The username and password defined in the secret will be
+used to authenticate when using the Ondat CLI and GUI. Take note of
 which project you created the secret in.</p>
-<p>Input the Secret as YAML for simplicity.</p>
+<p>Input the secret as YAML for simplicity.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Secret</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1598,39 +1555,25 @@ which project you created the secret in.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;kubernetes.io/storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># echo -n &#39;&lt;secret&gt;&#39; | base64</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">apiUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">apiPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># CSI Credentials</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiProvisionUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiProvisionPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerPublishUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerPublishPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiNodePublishUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiNodePublishPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerExpandUsername</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csiControllerExpandPassword</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p><img src="/images/docs/openshift4/storageos-v2/080-create-secret-yaml.png" alt="install-8"></p>
-</li>
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">username</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
 <li>
-<p>Go to Ondat in your &ldquo;Installed Operators&rdquo;</p>
-<p><img src="/images/docs/openshift4/marketplace/8.png" alt="install-9"></p>
+<p>Navigate to StorageOS on your <strong>Installed Operators</strong> tab.</p>
 <blockquote>
-<p>💡 Verify that the Ondat Cluster Operator is installed</p>
+<p>💡 Verify that the StorageOS Cluster Operator is installed.</p>
 </blockquote>
 </li>
 <li>
-<p>Go to the &ldquo;Ondat Cluster&rdquo; section</p>
-<p><img src="/images/docs/openshift4/storageos-v2/100-operator-details.png" alt="install-10"></p>
-</li>
-<li>
-<p>Create the Ondat Cluster</p>
-<p><img src="/images/docs/openshift4/storageos-v2/110-create-storageos-cluster.png" alt="install-11"></p>
+<p>Open to the <strong>StorageOS Cluster</strong> tab and click <strong>Create StorageOSCluster</strong>.</p>
 <blockquote>
-<p>💡 An Ondat Cluster is defined using a Custom Resource Definition</p>
+<p>💡 A StorageOSCluster is defined using a Custom Resource(CR) Definition.</p>
 </blockquote>
 </li>
 <li>
-<p>Create the Custom Resource</p>
+<p>Create the CR Definition:</p>
+</li>
+</ol>
 <p>The Ondat cluster resource describes the Ondat cluster that will be
 created. Parameters such as the <code>secretRefName</code>, the <code>secretRefNamespace</code> and
 the <code>kvBackend.address</code> are mandatory.</p>
@@ -1660,20 +1603,17 @@ spec:
   <span style="color:#8f5902;font-style:italic">#       operator: In</span>
   <span style="color:#8f5902;font-style:italic">#       values:</span>
   <span style="color:#8f5902;font-style:italic">#       - &#34;true&#34;</span>
-</code></pre></div><p><img src="/images/docs/openshift4/storageos-v2/120-create-cr-from-yaml.png" alt="install-12"></p>
-</li>
+</code></pre></div><ol start="5">
 <li>
-<p>Verify that the Ondat Cluster Resource enters a running state.</p>
-<p><img src="/images/docs/openshift4/storageos-v2/130-cr-created.png" alt="install-13"></p>
+<p>Verify that the StorageOS Cluster status is <strong>Running</strong>.</p>
 <blockquote>
-<p>💡 It can take up to a minute to report the Ondat Pods ready</p>
+<p>💡 It can take up to a minute to report the Ondat Pods ready.</p>
 </blockquote>
 </li>
 <li>
-<p>Check the Ondat Pods in the <code>kube-system</code> project</p>
-<p><img src="/images/docs/openshift4/storageos-v2/140-storageos-pods.png" alt="install-14"></p>
+<p>Check the StorageOS Pods in the <code>kube-system</code> project.</p>
 <blockquote>
-<p>💡 A Status of 3/3 for the Daemonset Pods indicates that Ondat is
+<p>💡 A Status of 3/3 in the <strong>Ready</strong> column for the Daemonset Pods indicates that Ondat is
 bootstrapped successfully.</p>
 </blockquote>
 </li>
