@@ -84,7 +84,7 @@ stateful workloads.&lt;/p&gt;
       <description>
         
         
-        &lt;p&gt;StorageOS is fully compatible with GKE when using the Ubunutu images. To
+        &lt;p&gt;StorageOS is fully compatible with GKE when using the Ubuntu images. To
 install StorageOS on Google GKE, please follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;For StorageOS to work normally it is &lt;strong&gt;required to use the Ubuntu images&lt;/strong&gt; for
 the Google GKE node pools. The default container image does not fulfil the system
