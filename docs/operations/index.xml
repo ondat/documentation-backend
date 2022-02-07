@@ -2294,18 +2294,16 @@ errors.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Delete Ondat Cluster&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get storageoscluster --all-namespaces &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Find the namespace where the Custom Resource runs&lt;/span&gt;
-$ kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete storageoscluster --all  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Usually to be found in storageos-operator&lt;/span&gt;
+$ kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete storageoscluster --all  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# $NS is the namespace found via the above command&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Wait until the Ondat resources are gone&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n storageos get pod &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# NS: Namespace where Ondat Daemonset is running, usually &amp;#39;storageos&amp;#39;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n storageos get pod 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;uninstalling-the-ondat-operator&#34;&gt;Uninstalling the Ondat Operator&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ &lt;strong&gt;Delete the Cluster Operator once the Ondat Pods are terminated&lt;/strong&gt;
-&lt;strong&gt;The procedure is finished. Ondat is now uninstalled.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;Delete the Cluster Operator once the Ondat Pods are terminated.&lt;/p&gt;
+&lt;p&gt;The procedure is finished. Ondat is now uninstalled.&lt;/p&gt;
 &lt;h2 id=&#34;removing-ondat-contents-and-metadata-unrecoverable&#34;&gt;Removing Ondat contents and metadata (unrecoverable)&lt;/h2&gt;
 &lt;p&gt;The steps up until now have been recoverable - as long as the etcd backing
 Ondat and the contents of /var/lib/storageos on your nodes are safe then
