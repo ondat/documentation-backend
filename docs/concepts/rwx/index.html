@@ -21,28 +21,31 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>ReadWriteMany (RWX) | </title><meta property="og:title" content="ReadWriteMany (RWX)" />
-<meta property="og:description" content="ReadWriteMany  ⚠️ Ondat Project edition is required to create RWX Volumes.
+<meta property="og:description" content="⚠️ Ondat Project edition is required to create RWX Volumes.
  Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
 Ondat RWX Volumes are based on a shared filesystem - in the case of our implementation, this is NFS.
-Architecture For each RWX Volume, the following components are involved:" />
+Architecture For each RWX Volume, the following components are involved:
+Ondat ReadWriteOnly (RWO) Volume" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/rwx/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="ReadWriteMany (RWX)">
-<meta itemprop="description" content="ReadWriteMany  ⚠️ Ondat Project edition is required to create RWX Volumes.
+<meta itemprop="description" content="⚠️ Ondat Project edition is required to create RWX Volumes.
  Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
 Ondat RWX Volumes are based on a shared filesystem - in the case of our implementation, this is NFS.
-Architecture For each RWX Volume, the following components are involved:">
+Architecture For each RWX Volume, the following components are involved:
+Ondat ReadWriteOnly (RWO) Volume">
 
-<meta itemprop="wordCount" content="516">
+<meta itemprop="wordCount" content="515">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ReadWriteMany (RWX)"/>
-<meta name="twitter:description" content="ReadWriteMany  ⚠️ Ondat Project edition is required to create RWX Volumes.
+<meta name="twitter:description" content="⚠️ Ondat Project edition is required to create RWX Volumes.
  Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
 Ondat RWX Volumes are based on a shared filesystem - in the case of our implementation, this is NFS.
-Architecture For each RWX Volume, the following components are involved:"/>
+Architecture For each RWX Volume, the following components are involved:
+Ondat ReadWriteOnly (RWO) Volume"/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -176,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8215c6aab6f3ab860792442dbed28cec9458b6f339bf177532f945e5984c7a1f8cd7c43fa038a4e9b5aba0e14459f6db20ba2fb27b5942817d59a9ba03f6d048.json"
+  data-offline-search-index-json-src="/offline-search-index.267b95684bb5b5557bc9c55f48ce5c60718e5c3d81e9cb38f8617f65bf440293f211204244623a738fe2e9990e02c68666989486f2e677758d796a8c74f23276.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8215c6aab6f3ab860792442dbed28cec9458b6f339bf177532f945e5984c7a1f8cd7c43fa038a4e9b5aba0e14459f6db20ba2fb27b5942817d59a9ba03f6d048.json"
+  data-offline-search-index-json-src="/offline-search-index.267b95684bb5b5557bc9c55f48ce5c60718e5c3d81e9cb38f8617f65bf440293f211204244623a738fe2e9990e02c68666989486f2e677758d796a8c74f23276.json"
   data-offline-search-base-href="/"
 >
 
@@ -1372,8 +1375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>ReadWriteMany (RWX)</h1>
 	
-	<h1 id="readwritemany">ReadWriteMany</h1>
-<blockquote>
+	<blockquote>
 <p>⚠️ Ondat Project edition is required to create RWX Volumes.</p>
 </blockquote>
 <p>Ondat supports ReadWriteMany (RWX) <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes">access

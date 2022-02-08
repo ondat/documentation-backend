@@ -414,8 +414,7 @@ to the namespace.&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;readwritemany&#34;&gt;ReadWriteMany&lt;/h1&gt;
-&lt;blockquote&gt;
+        &lt;blockquote&gt;
 &lt;p&gt;⚠️ Ondat Project edition is required to create RWX Volumes.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access
