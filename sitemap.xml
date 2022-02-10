@@ -66,6 +66,8 @@
   </url><url>
     <loc>/docs/reference/api/</loc>
   </url><url>
+    <loc>/docs/concepts/portal/applications/</loc>
+  </url><url>
     <loc>/docs/reference/cli/apply/</loc>
   </url><url>
     <loc>/docs/reference/cli/attach/</loc>
@@ -93,6 +95,8 @@
     <loc>/docs/reference/contributing/</loc>
   </url><url>
     <loc>/docs/reference/cli/create/</loc>
+  </url><url>
+    <loc>/docs/concepts/portal/dashboard/</loc>
   </url><url>
     <loc>/docs/reference/cli/delete/</loc>
   </url><url>
@@ -181,6 +185,8 @@
     <loc>/docs/concepts/components/</loc>
   </url><url>
     <loc>/docs/reference/open_source_attribution/</loc>
+  </url><url>
+    <loc>/docs/concepts/portal/installation-portal/</loc>
   </url><url>
     <loc>/docs/reference/scheduler/</loc>
   </url><url>
