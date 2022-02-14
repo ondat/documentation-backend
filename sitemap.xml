@@ -10,11 +10,17 @@
   </url><url>
     <loc>/docs/introduction/overview/</loc>
   </url><url>
+    <loc>/docs/ondat-portal/installation-portal/</loc>
+  </url><url>
     <loc>/docs/reference/cluster-operator/configuration/</loc>
+  </url><url>
+    <loc>/docs/ondat-portal/dashboard/</loc>
   </url><url>
     <loc>/docs/install/openshift/</loc>
   </url><url>
     <loc>/docs/introduction/quickstart/</loc>
+  </url><url>
+    <loc>/docs/ondat-portal/applications/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/examples/</loc>
   </url><url>
@@ -60,13 +66,13 @@
   </url><url>
     <loc>/docs/self-eval/</loc>
   </url><url>
+    <loc>/docs/ondat-portal/</loc>
+  </url><url>
     <loc>/index.json</loc>
   </url><url>
     <loc>/docs/reference/scheduler/admission-controller/</loc>
   </url><url>
     <loc>/docs/reference/api/</loc>
-  </url><url>
-    <loc>/docs/concepts/portal/applications/</loc>
   </url><url>
     <loc>/docs/reference/cli/apply/</loc>
   </url><url>
@@ -95,8 +101,6 @@
     <loc>/docs/reference/contributing/</loc>
   </url><url>
     <loc>/docs/reference/cli/create/</loc>
-  </url><url>
-    <loc>/docs/concepts/portal/dashboard/</loc>
   </url><url>
     <loc>/docs/reference/cli/delete/</loc>
   </url><url>
@@ -185,8 +189,6 @@
     <loc>/docs/concepts/components/</loc>
   </url><url>
     <loc>/docs/reference/open_source_attribution/</loc>
-  </url><url>
-    <loc>/docs/concepts/portal/installation-portal/</loc>
   </url><url>
     <loc>/docs/reference/scheduler/</loc>
   </url><url>
