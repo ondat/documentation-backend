@@ -20,26 +20,29 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Licence | </title><meta property="og:title" content="Licence" />
-<meta property="og:description" content="A newly installed Ondat cluster does not include a licence. A cluster can run unlicensed for 24 hours. After that, new operations such as volume provisioning or adding nodes are not permitted. Normal functioning of the cluster can be unlocked by applying a Free Personal licence.
-To learn how to obtain and apply a licence to your cluster, check the operations licensing page.
-Free Personal licence The personal licence only requires the user to register and issue a licence through Ondat." />
+<title>Azure Kubernetes Service (AKS) | </title><meta property="og:title" content="Azure Kubernetes Service (AKS)" />
+<meta property="og:description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+    kubectl kubectl-storageos     You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/reference/licence/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/install/microsoft-azure-aks/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Licence">
-<meta itemprop="description" content="A newly installed Ondat cluster does not include a licence. A cluster can run unlicensed for 24 hours. After that, new operations such as volume provisioning or adding nodes are not permitted. Normal functioning of the cluster can be unlocked by applying a Free Personal licence.
-To learn how to obtain and apply a licence to your cluster, check the operations licensing page.
-Free Personal licence The personal licence only requires the user to register and issue a licence through Ondat.">
+<meta itemprop="name" content="Azure Kubernetes Service (AKS)">
+<meta itemprop="description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+    kubectl kubectl-storageos     You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster.">
 
-<meta itemprop="wordCount" content="247">
+<meta itemprop="wordCount" content="300">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Licence"/>
-<meta name="twitter:description" content="A newly installed Ondat cluster does not include a licence. A cluster can run unlicensed for 24 hours. After that, new operations such as volume provisioning or adding nodes are not permitted. Normal functioning of the cluster can be unlocked by applying a Free Personal licence.
-To learn how to obtain and apply a licence to your cluster, check the operations licensing page.
-Free Personal licence The personal licence only requires the user to register and issue a licence through Ondat."/>
+<meta name="twitter:title" content="Azure Kubernetes Service (AKS)"/>
+<meta name="twitter:description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+    kubectl kubectl-storageos     You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -80,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Licence | </title>
+    <title>Azure Kubernetes Service (AKS) | </title>
   </head>
   <body class="td-page">
     
@@ -567,10 +570,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstall">
+    <li class="collapse show" id="docsinstall">
       
       
       
@@ -595,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
       
       
     </li>
@@ -970,10 +973,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Reference</a>
+    <a  href="/docs/reference/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreference">
+    <li class="collapse " id="docsreference">
       
       
       
@@ -1193,7 +1196,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsreferencelicence" href="/docs/reference/licence/">Licence</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencelicence" href="/docs/reference/licence/">Licence</a>
       
       
       
@@ -1352,9 +1355,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#free-personal-licence">Free Personal licence</a></li>
-    <li><a href="#commercial-licences">Commercial licences</a></li>
-    <li><a href="#note-about-capacity-limits">Note about capacity limits</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
+        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
+        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -1386,14 +1396,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/reference/">Reference</a>
+	<a href="/docs/install/">Install</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/reference/licence/">Licence</a>
+	<a href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
 </li>
 
 	</ol>
@@ -1401,34 +1411,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Licence</h1>
+	<h1>Azure Kubernetes Service (AKS)</h1>
 	
-	<p>A newly installed Ondat cluster does not include a licence. A cluster can
-run unlicensed for 24 hours. After that, new operations such as volume
-provisioning or adding nodes are not permitted. Normal functioning of the
-cluster can be unlocked by applying a Free Personal licence.</p>
-<p>To learn how to obtain and apply a licence to your cluster, check the <a href="/docs/operations/licensing">operations
-licensing</a> page.</p>
-<h2 id="free-personal-licence">Free Personal licence</h2>
-<p>The personal licence only requires the user to register and issue a
-licence through Ondat.</p>
-<p>The personal licence is free and grants a licence for a 3 node Ondat
-cluster with 1TiB of provisioned capacity. It is designed to enable basic cloud
-native workflows in Kubernetes that require the persistence of stateful
-application data. Dynamic provisioning, distributed access to data and high
-availability of volumes through synchronous replication and automatic failover
-are some of the features that are available under the personal licence.</p>
-<h2 id="commercial-licences">Commercial licences</h2>
-<p>For information on our commercial offerings, including support, please contact
-<a href="mailto:getstarted@ondat.io">getstarted@ondat.io</a>.</p>
-<h2 id="note-about-capacity-limits">Note about capacity limits</h2>
-<p>Some Ondat licences have limits on capacity. Ondat allows provisioning
-volumes until the limit of the licence is reached. Only the size of the volume
-requested by the Persistent Volume Claim counts for the licence limit,
-regardless whether of whether the volume has replication enabled.</p>
-<p>Once the licence limit is reached, new volumes are not able to provision unless
-provisioned capacity is released, i.e deleting volumes. That behaviour is not
-tied to the capacity of the backend disks on your nodes.</p>
+	<h2 id="overview">Overview</h2>
+<p>This guide will walk through and demonstrate how to install Ondat onto a <a href="https://azure.microsoft.com/en-gb/services/kubernetes-service/">Microsoft Azure Kubernetes Service (AKS)</a> cluster using the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>
+<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="https://docs.ondat.io/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
+</li>
+<li>
+<p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</li>
+<li>
+<p>Your AKS clusters use <a href="https://ubuntu.com/">Ubuntu</a> as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than <code>4.15.0-1029-azure</code> is compatible with Ondat.</p>
+</li>
+</ul>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
+<ul>
+<li>Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
+</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+<ol>
+<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;admin&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;password&#34;</span>
+</code></pre></div><ol start="2">
+<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div><ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
+<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
+kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.</p>
+</blockquote>
+<p>To obtain a licence, follow the instructions on our <a href="https://docs.ondat.io/docs//operations/licensing">licensing operations</a> page.</p>
 
 	
 	
