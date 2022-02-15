@@ -24,7 +24,7 @@
 <meta property="og:description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
 Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   The following CLI utilities are installed on your local machine and are available in your $PATH:
-    kubectl kubectl-storageos     You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster." />
+   kubectl kubectl-storageos    You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/microsoft-azure-aks/" /><meta property="article:section" content="docs" />
 
@@ -34,7 +34,7 @@ Prerequisites   You have met the minimum resource requirements for Ondat to succ
 <meta itemprop="description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
 Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   The following CLI utilities are installed on your local machine and are available in your $PATH:
-    kubectl kubectl-storageos     You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster.">
+   kubectl kubectl-storageos    You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster.">
 
 <meta itemprop="wordCount" content="300">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
@@ -42,7 +42,7 @@ Prerequisites   You have met the minimum resource requirements for Ondat to succ
 <meta name="twitter:description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
 Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   The following CLI utilities are installed on your local machine and are available in your $PATH:
-    kubectl kubectl-storageos     You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster."/>
+   kubectl kubectl-storageos    You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d03fce3654edda93367218dd6dc778ccefb9ad361e1cc4c902a49bf890fe981418a7eb6abe995ea5e2720d001f91b9928dbcaf2fb99e669db8ffe7f44d319181.json"
+  data-offline-search-index-json-src="/offline-search-index.e7854a6a4d1aae8ac69afd9d038cdcc673db3d925fa0d7ac1a1e8e56e12c3eb69dc72dafeda353459802692c1e1c60cd54255b2e20951a60b7fc1daa854f11a6.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d03fce3654edda93367218dd6dc778ccefb9ad361e1cc4c902a49bf890fe981418a7eb6abe995ea5e2720d001f91b9928dbcaf2fb99e669db8ffe7f44d319181.json"
+  data-offline-search-index-json-src="/offline-search-index.e7854a6a4d1aae8ac69afd9d038cdcc673db3d925fa0d7ac1a1e8e56e12c3eb69dc72dafeda353459802692c1e1c60cd54255b2e20951a60b7fc1daa854f11a6.json"
   data-offline-search-base-href="/"
 >
 
@@ -1424,12 +1424,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
 </li>
 </ul>
-<blockquote>
 <ul>
 <li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
 <li><a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
 </ul>
-</blockquote>
 <ul>
 <li>
 <p>You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
@@ -1440,9 +1438,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <h2 id="procedure">Procedure</h2>
 <h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
-<ul>
-<li>Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
-</ul>
+<p>Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
 </code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
 <ol>
@@ -1458,12 +1454,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><ul>
-<li>The installation process may take a few minutes.</li>
-</ul>
+</code></pre></div><p>The installation process may take a few minutes.</p>
 <h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
 <p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all
+   --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> kubectl 
+get all 
+  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
 </code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
 <blockquote>
