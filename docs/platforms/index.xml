@@ -53,29 +53,6 @@ than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;
     </item>
     
     <item>
-      <title>Docs: Docker Enterprise Edition</title>
-      <link>/docs/platforms/dockeree/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/platforms/dockeree/</guid>
-      <description>
-        
-        
-        &lt;p&gt;To install Ondat on DockerEE, follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;Docker EE and the Universal Control Plane can run on different Linux
-distributions. Ondat supports RHEL, CentOS, Debian, and selected Ubuntu
-images. For more details, check out the supported OSs in the
-&lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites page&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Ondat only supports Kubernetes nodes managed by Docker Enterprise Edition,
-not those nodes running Swarm. Mixed nodes (those running Kubernetes and Swarm
-workloads) are not supported. As a consequence, Ondat volumes can only be
-provisioned on Kubernetes nodes, and only these nodes should be used for
-stateful workloads.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Google GKE</title>
       <link>/docs/platforms/google-gke/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
