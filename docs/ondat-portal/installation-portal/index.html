@@ -167,7 +167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e7854a6a4d1aae8ac69afd9d038cdcc673db3d925fa0d7ac1a1e8e56e12c3eb69dc72dafeda353459802692c1e1c60cd54255b2e20951a60b7fc1daa854f11a6.json"
+  data-offline-search-index-json-src="/offline-search-index.6cfd991d6c62b1e79f9bde3f89df5e5c0ec6573c8bf4a7bb60574b70ed222c43937f7682ec845f607b970ffae58ace06f8a34960d81bd0f9ed08a3745d53b713.json"
   data-offline-search-base-href="/"
 >
 
@@ -315,7 +315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e7854a6a4d1aae8ac69afd9d038cdcc673db3d925fa0d7ac1a1e8e56e12c3eb69dc72dafeda353459802692c1e1c60cd54255b2e20951a60b7fc1daa854f11a6.json"
+  data-offline-search-index-json-src="/offline-search-index.6cfd991d6c62b1e79f9bde3f89df5e5c0ec6573c8bf4a7bb60574b70ed222c43937f7682ec845f607b970ffae58ace06f8a34960d81bd0f9ed08a3745d53b713.json"
   data-offline-search-base-href="/"
 >
 
@@ -1399,12 +1399,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>Copy all information on the page, this will be the only time it will be visible. Make note of the API secret.</li>
 </ol>
 <h1 id="installing-ondat-on-your-cluster-using-the-ondat-portal-manager">Installing Ondat on Your Cluster Using the Ondat Portal Manager</h1>
-<p>Execute this command if you are configuring a cluster without having installed Ondat beforehand. You can use the credentials you have just created to execute the command below:
-<code>kubectl storageos install --include-etcd=true --stos-version=develop --enable-portal-manager --portal-client-id=&lt;clientid&gt; --portal-secret=&lt;secret&gt; --portal-api-url=&lt;api-url&gt; --portal-tenant-id=&lt;tenantId&gt;</code></p>
-<h1 id="installing-ondat-portal-manager">Installing Ondat Portal Manager</h1>
-<p>Execute this command if you are configuring a cluster in which Ondat has already been installed.
-<code>kubectl storageos install-portal --portal-client-id=&lt;clientid&gt; --portal-secret=&lt;secret&gt; --portal-api-url=&lt;api-url&gt; --portal-tenant-id=&lt;tenantId&gt;</code></p>
-
+<p>Execute this command if you are configuring a cluster without having installed Ondat beforehand. You can use the credentials you have just created to execute the command below:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install 
+        --include-etcd<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> 
+        --stos-version<span style="color:#ce5c00;font-weight:bold">=</span>develop 
+        --enable-portal-manager 
+        --portal-client-id<span style="color:#ce5c00;font-weight:bold">=</span>&lt;clientid&gt; 
+        --portal-secret<span style="color:#ce5c00;font-weight:bold">=</span>&lt;secret&gt; 
+        --portal-api-url<span style="color:#ce5c00;font-weight:bold">=</span>&lt;api-url&gt; 
+        --portal-tenant-id<span style="color:#ce5c00;font-weight:bold">=</span>&lt;tenantId&gt;
+</code></pre></div><h1 id="installing-ondat-portal-manager">Installing Ondat Portal Manager</h1>
+<p>Execute this command if you are configuring a cluster in which Ondat has already been installed.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install-portal 
+        --portal-client-id<span style="color:#ce5c00;font-weight:bold">=</span>&lt;clientid&gt; 
+        --portal-secret<span style="color:#ce5c00;font-weight:bold">=</span>&lt;secret&gt; 
+        --portal-api-url<span style="color:#ce5c00;font-weight:bold">=</span>&lt;api-url&gt; 
+        --portal-tenant-id<span style="color:#ce5c00;font-weight:bold">=</span>&lt;tenantId&gt;
+</code></pre></div>
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>

@@ -412,12 +412,23 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
 &lt;li&gt;Copy all information on the page, this will be the only time it will be visible. Make note of the API secret.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&#34;installing-ondat-on-your-cluster-using-the-ondat-portal-manager&#34;&gt;Installing Ondat on Your Cluster Using the Ondat Portal Manager&lt;/h1&gt;
-&lt;p&gt;Execute this command if you are configuring a cluster without having installed Ondat beforehand. You can use the credentials you have just created to execute the command below:
-&lt;code&gt;kubectl storageos install --include-etcd=true --stos-version=develop --enable-portal-manager --portal-client-id=&amp;lt;clientid&amp;gt; --portal-secret=&amp;lt;secret&amp;gt; --portal-api-url=&amp;lt;api-url&amp;gt; --portal-tenant-id=&amp;lt;tenantId&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;h1 id=&#34;installing-ondat-portal-manager&#34;&gt;Installing Ondat Portal Manager&lt;/h1&gt;
-&lt;p&gt;Execute this command if you are configuring a cluster in which Ondat has already been installed.
-&lt;code&gt;kubectl storageos install-portal --portal-client-id=&amp;lt;clientid&amp;gt; --portal-secret=&amp;lt;secret&amp;gt; --portal-api-url=&amp;lt;api-url&amp;gt; --portal-tenant-id=&amp;lt;tenantId&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
+&lt;p&gt;Execute this command if you are configuring a cluster without having installed Ondat beforehand. You can use the credentials you have just created to execute the command below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install 
+        --include-etcd&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt; 
+        --stos-version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;develop 
+        --enable-portal-manager 
+        --portal-client-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;clientid&amp;gt; 
+        --portal-secret&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;secret&amp;gt; 
+        --portal-api-url&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;api-url&amp;gt; 
+        --portal-tenant-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;tenantId&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;installing-ondat-portal-manager&#34;&gt;Installing Ondat Portal Manager&lt;/h1&gt;
+&lt;p&gt;Execute this command if you are configuring a cluster in which Ondat has already been installed.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install-portal 
+        --portal-client-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;clientid&amp;gt; 
+        --portal-secret&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;secret&amp;gt; 
+        --portal-api-url&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;api-url&amp;gt; 
+        --portal-tenant-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;tenantId&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       </description>
     </item>
     
