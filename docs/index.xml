@@ -1019,7 +1019,7 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Kind&lt;/strong&gt;&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;Indicates &amp;hellip;..&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Indicates the kind of application.&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Replica&lt;/strong&gt; &lt;br /&gt;  &lt;strong&gt;StatefulSet&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Deployment&lt;/strong&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
