@@ -34,7 +34,7 @@ apiVersion:v1kind:PersistentVolumeClaimmetadata:name:my-vol-1labels:storageos.co
 The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a StorageClass. The PVC definition takes precedence over the StorageClass.
 apiVersion:v1kind:PersistentVolumeClaimmetadata:name:my-vol-1labels:storageos.com/replicas:&#34;2&#34;storageos.com/failure-mode:&#34;soft&#34;spec:storageClassName:&#34;storageos&#34;accessModes:- ReadWriteOnceresources:requests:storage:5GiFailure Modes Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure.">
 
-<meta itemprop="wordCount" content="662">
+<meta itemprop="wordCount" content="661">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Failure Modes"/>
 <meta name="twitter:description" content="For more information about replication and failure modes, see our Replication concepts page.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -625,6 +625,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1431,7 +1437,7 @@ the StorageClass.</p>
 <p>Ondat failure modes offer different guarantees with regards to a volume&rsquo;s
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to <code>Hard</code>. Volume failure modes can be dynamically
-updated at run time.</p>
+updated at runtime.</p>
 <h3 id="hard">Hard</h3>
 <p>Hard failure mode requires that the number of declared replicas matches the
 available number of replicas at all times. If a replica fails Ondat will

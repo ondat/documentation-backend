@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1435,7 +1441,7 @@ touch with us. The fastest way to get in touch is to <a href="https://slack.stor
 purposes. The etcd we install uses a 3 node cluster with local storage, and
 as such is not suitable for production workloads. However, for evaluation
 purposes it should be sufficient. For production deployments, please see our
-main <a href="prerequisites/etcd.md">documentation pages</a>.</p>
+main <a href="/docs/prerequisites/etcd">documentation pages</a>.</p>
 <p>A standard Ondat installation uses the Ondat operator, which performs
 most platform-specific configuration for you. The Ondat operator has been
 certified by <a href="https://storageos.com/red-hat/">Red Hat</a> and is <a href="https://github.com/storageos/operator">open source</a>.</p>
@@ -1460,7 +1466,7 @@ linux-image-extra for Ubuntu.</li>
 <li>Mainline kernel modules <code>target_core_mod</code>, <code>tcp_loop</code>, <code>target_core_file</code>,
 <code>target_core_user</code>, <code>configfs</code>, and <code>ui</code>. These are present by default on
 most modern linux distributions, and can be installed with standard package
-managers. See our <a href="prerequisites/systemconfiguration">system configuration</a> page for instructions.</li>
+managers. See our <a href="/docs/prerequisites/systemconfiguration">system configuration</a> page for instructions.</li>
 </ul>
 <h3 id="install-the-storageos-kubectl-plugin">Install the storageos kubectl plugin</h3>
 <blockquote>
@@ -1486,7 +1492,7 @@ set for your Kubernetes cluster</p>
 <p>⚠️ The <code>local-path</code> StorageClass does not guarantee data safety or availability.
 Therefore the Ondat cluster cannot operate normally if the Etcd cluster
 becomes unavailable. For a production Etcd install check the
-<a href="prerequisites/etcd.md">Etcd prerequisites page</a>.</p>
+<a href="/docs/prerequisites/etcd">Etcd prerequisites page</a>.</p>
 </blockquote>
 <h3 id="install-ondat">Install Ondat</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install  <span style="color:#4e9a06">\
@@ -1559,7 +1565,7 @@ kubectl -n storageos exec $POD -- storageos get licence
 <p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.</p>
 </blockquote>
-<p>To obtain a license, follow the instructions on our <a href="operations/licensing.md">licensing operations</a> page.</p>
+<p>To obtain a license, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 <h2 id="provision-an-ondat-volume">Provision an Ondat Volume</h2>
 <p>Now that we have a working Ondat cluster, we can provision a volume to test
 everything is working as expected.</p>
@@ -1684,7 +1690,7 @@ volume will fail to be created. For example, in a three node Ondat cluster
 a volume with 3 replicas cannot be created as the third replica cannot be
 placed on a node that doesn&rsquo;t already contain a replica of the same volume.</p>
 <blockquote>
-<p>💡 See our <a href="concepts/replication">replication documentation</a> for more
+<p>💡 See our <a href="/docs/concepts/replication">replication documentation</a> for more
 information on volume replication.</p>
 </blockquote>
 <ol>

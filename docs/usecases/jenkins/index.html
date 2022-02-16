@@ -32,7 +32,7 @@ Using Ondat volume replicas allows for failure of nodes holding the PersistentVo
 <meta itemprop="description" content="This example shows an example of how to deploy Jenkins on Kubernetes with a Ondat persistent volume being mounted on /var/jenkins_home. Deploying Jenkins using Ondat offers multiple benefits. Firstly Jenkins can spin up multiple build pods at once to allow concurrent builds of different projects. Secondly Jenkins configuration is on a PersistentVolume so even if the Jenkins pod is rescheduled the configuration will persist.
 Using Ondat volume replicas allows for failure of nodes holding the PersistentVolume without interrupting Jenkins.">
 
-<meta itemprop="wordCount" content="414">
+<meta itemprop="wordCount" content="410">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Jenkins"/>
 <meta name="twitter:description" content="This example shows an example of how to deploy Jenkins on Kubernetes with a Ondat persistent volume being mounted on /var/jenkins_home. Deploying Jenkins using Ondat offers multiple benefits. Firstly Jenkins can spin up multiple build pods at once to allow concurrent builds of different projects. Secondly Jenkins configuration is on a PersistentVolume so even if the Jenkins pod is rescheduled the configuration will persist.
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1410,9 +1416,9 @@ cluster. <a href="/docs/install/kubernetes">See our guide on how to install Onda
 <li>
 <p>You can find the latest files in the Ondat example deployment
 repository.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/storageos/use-cases.git storageos-usecases
-$ <span style="color:#204a87">cd</span> storageos-usecases
-$ kubectl create -f ./jenkins
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/storageos/use-cases.git storageos-usecases
+<span style="color:#204a87">cd</span> storageos-usecases
+kubectl create -f ./jenkins
 </code></pre></div></li>
 <li>
 <p>Confirm that Jenkins is up and running</p>
@@ -1428,7 +1434,7 @@ network access to your Kubernetes nodes then you can create a NodePort service
 and access Jenkins like that. A NodePort service has been left in
 <code>10-service.yaml</code> commented out.</p>
 <p>To port-foward the Jenkins service use the following command.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl port-foward svc/jenkins <span style="color:#0000cf;font-weight:bold">8080</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-foward svc/jenkins <span style="color:#0000cf;font-weight:bold">8080</span>
 </code></pre></div><p>To login to the Jenkins UI use the credentials specified in
 <a href="https://github.com/storageos/use-cases/blob/master/jenkins/07-config.yaml"><code>07-config.yaml</code></a>,
 unless these have been changed from the defaults the username/password is

@@ -24,9 +24,9 @@
         
         &lt;p&gt;To install the operator follow the installation page for your orchestrator.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/install/kubernetes.md&#34;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/install/rancher.md&#34;&gt;Rancher&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/install/openshift.md&#34;&gt;OpenShift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/install/kubernetes&#34;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/install/rancher&#34;&gt;Rancher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/install/openshift&#34;&gt;OpenShift&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
       </description>
@@ -324,7 +324,7 @@ default), irrespective of what NameSpace the CR is defined in.&lt;/p&gt;
 &lt;h1 id=&#34;examples&#34;&gt;Examples&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can checkout all the parameters configurable in the
-&lt;a href=&#34;configuration.md&#34;&gt;configuration&lt;/a&gt;
+&lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;configuration&lt;/a&gt;
 page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;All examples must reference the &lt;code&gt;storageos-api&lt;/code&gt; Secret.&lt;/p&gt;
@@ -362,10 +362,8 @@ secret with the Etcd client certificate, client key and CA.&lt;/p&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;Different provisioners and Kubernetes distributions use node labels
 differently to specify master vs workers. Node Taints are not enough to
-make sure Ondat doesn&amp;rsquo;t start in a node. The
-&lt;a href=&#34;https://docs.storageos.com/docs/reference/clusterdiscovery&#34;&gt;JOIN&lt;/a&gt;
-variable is defined by the operator by selecting all the nodes that match the
-&lt;code&gt;nodeSelectorTerms&lt;/code&gt;.&lt;/p&gt;
+make sure Ondat doesn&amp;rsquo;t start in a node. The &lt;code&gt;JOIN&lt;/code&gt; variable is defined
+by the operator by selecting all the nodes that match the &lt;code&gt;nodeSelectorTerms&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;enabling-csi&#34;&gt;Enabling CSI&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -448,8 +446,8 @@ Operator is upgrading.&lt;/p&gt;
 
 NAME            REVISION        STATUS          CHART                           APP VERSION     NAMESPACE   
 storageos-v1   4               DEPLOYED        storageos-operator-0.2.11       1.3.0           storageos-operator
-&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm repo update
-$ helm upgrade $NAME storageos/storageos-operator
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;helm repo update
+helm upgrade $NAME storageos/storageos-operator
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;💡 When you run the above command Ondat Operator resources will be updated.
 Since, the Update Strategy of the Ondat Operator Deployment is set to

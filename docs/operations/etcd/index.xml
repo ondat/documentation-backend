@@ -48,12 +48,12 @@ page.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Back up etcd&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ export ETCDCTL_API=3
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCDCTL_API=3
 
-$ # Set all your endpoints
-$ export endpoints=&amp;quot;192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379&amp;quot;
+# Set all your endpoints
+export endpoints=&amp;quot;192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379&amp;quot;
 
-$ etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
+etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify etcd health&lt;/p&gt;
@@ -298,7 +298,7 @@ part of the cluster&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 Remove the reference to NODE1 and add the IP for NODE4&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl edit -n storageos-etcd endpoints/storageos-etcd
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl edit -n storageos-etcd endpoints/storageos-etcd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Make amendments in the SystemD configuration files removing any reference to

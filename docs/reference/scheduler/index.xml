@@ -62,7 +62,7 @@ be added to resources that use Ondat volumes.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;explicit-schedulername&#34;&gt;Explicit SchedulerName&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 It is not necessary to explicitly set the SchedulerName as the &lt;a href=&#34;admission-controller.md&#34;&gt;Admission
+&lt;p&gt;💡 It is not necessary to explicitly set the SchedulerName as the &lt;a href=&#34;/docs/reference/scheduler/admission-controller&#34;&gt;Admission
 Controller&lt;/a&gt;
 automatically populates the PodSpec field. Set the SchedulerName in your
 manifests, manually, only if you disable or can&amp;rsquo;t execute the Ondat

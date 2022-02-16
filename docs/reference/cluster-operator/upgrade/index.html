@@ -32,7 +32,7 @@ kubectl apply -f https://github.com/storageos/cluster-operator/releases/download
 <meta itemprop="description" content="Upgrade Ondat operator from yaml manifest Upgrade the Ondat operator using the following yaml manifest.
 kubectl apply -f https://github.com/storageos/cluster-operator/releases/download/v2.4.4/storageos-operator.yaml  💡 When you run the above command Ondat Operator resources will be updated. Since, the Update Strategy of the Ondat Operator Deployment is set to rolling update, a new Ondat Operator Pod will be created. Only when the new Pod enters the Running Phase will the old Pod be deleted. Your Ondat Cluster will not be affected while the Ondat Operator is upgrading.">
 
-<meta itemprop="wordCount" content="196">
+<meta itemprop="wordCount" content="194">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cluster Operator upgrade"/>
 <meta name="twitter:description" content="Upgrade Ondat operator from yaml manifest Upgrade the Ondat operator using the following yaml manifest.
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1426,8 +1432,8 @@ Operator is upgrading.</p>
 
 NAME            REVISION        STATUS          CHART                           APP VERSION     NAMESPACE   
 storageos-v1   4               DEPLOYED        storageos-operator-0.2.11       1.3.0           storageos-operator
-</code></pre><pre tabindex="0"><code>$ helm repo update
-$ helm upgrade $NAME storageos/storageos-operator
+</code></pre><pre tabindex="0"><code>helm repo update
+helm upgrade $NAME storageos/storageos-operator
 </code></pre><blockquote>
 <p>💡 When you run the above command Ondat Operator resources will be updated.
 Since, the Update Strategy of the Ondat Operator Deployment is set to

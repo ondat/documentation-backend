@@ -34,7 +34,7 @@
  ⚠️ It is assumed that the Ondat etcd cluster is installed following the production etcd installation page, where etcd nodes are installed on their own machines.
   ⚠️ It is also assumed that etcd members are referenced from Kubernetes using a External Service.">
 
-<meta itemprop="wordCount" content="1394">
+<meta itemprop="wordCount" content="1389">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Etcd node migration"/>
 <meta name="twitter:description" content="This procedure explains how to add a new etcd member for your Ondat etcd cluster while removing one of the current members. This is useful when the nodes hosting etcd must be recycled.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -625,6 +625,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1431,12 +1437,12 @@ page.</p>
 <ol>
 <li>
 <p>Back up etcd</p>
-<pre tabindex="0"><code>$ export ETCDCTL_API=3
+<pre tabindex="0"><code>export ETCDCTL_API=3
 
-$ # Set all your endpoints
-$ export endpoints=&quot;192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379&quot;
+# Set all your endpoints
+export endpoints=&quot;192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379&quot;
 
-$ etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
+etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
 </code></pre></li>
 <li>
 <p>Verify etcd health</p>
@@ -1681,7 +1687,7 @@ part of the cluster</p>
 <blockquote>
 <p>💡 Remove the reference to NODE1 and add the IP for NODE4</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl edit -n storageos-etcd endpoints/storageos-etcd
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl edit -n storageos-etcd endpoints/storageos-etcd
 </code></pre></div></li>
 <li>
 <p>Make amendments in the SystemD configuration files removing any reference to

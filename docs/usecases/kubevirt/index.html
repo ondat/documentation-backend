@@ -32,7 +32,7 @@ Deploying Kubevirt using Ondat offers multiple benefits. Kubevirt can spin up VM
 <meta itemprop="description" content="Kubevirt is a CNCF sandbox project that allows the running of virtual machines (VMs) in Kubernetes pods.
 Deploying Kubevirt using Ondat offers multiple benefits. Kubevirt can spin up VMs as Kubernetes pods, using images on Ondat persistent volumes. Doing this allows the VM data to persist through restarts and rescheduling. Using Ondat volume replicas also allows for failure of nodes holding the PersistentVolume without interrupting the VM running off the PersistentVolume.">
 
-<meta itemprop="wordCount" content="777">
+<meta itemprop="wordCount" content="770">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubevirt"/>
 <meta name="twitter:description" content="Kubevirt is a CNCF sandbox project that allows the running of virtual machines (VMs) in Kubernetes pods.
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1422,7 +1428,7 @@ launch a shell inside the KubeVirt VM that&rsquo;s running as a Kubernetes pod.<
 cluster. <a href="/docs/install/kubernetes">See our guide on how to install Ondat on Kubernetes for more
 information</a>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>Please ensure you have met the Kubevirt prerequisites, please see the <a href="https://kubevirt.io/user-guide/docs/latest/administration/intro.html">
+<p>Please ensure you have met the Kubevirt prerequisites, please see the <a href="https://kubevirt.io/user-guide/operations/installation/">
 Kubevirt installation instructions
 </a> for
 more information.</p>
@@ -1439,9 +1445,9 @@ support nested virtualization then edit the Kubevirt ConfigMap
 <li>
 <p>In order to deploy Kubevirt you just need to clone this repository and use
 kubectl to create the Kubernetes objects.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/storageos/use-cases.git storageos-usecases
-$ <span style="color:#204a87">cd</span> storageos-usecases/kubevirt
-$ kubectl create -f ./kubevirt-install
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/storageos/use-cases.git storageos-usecases
+<span style="color:#204a87">cd</span> storageos-usecases/kubevirt
+kubectl create -f ./kubevirt-install
 </code></pre></div></li>
 <li>
 <p>Check that the Kubevirt pods are running.</p>
@@ -1459,7 +1465,7 @@ $ kubectl create -f ./kubevirt-install
 </code></pre></div></li>
 <li>
 <p>Once Kubevirt is running install CDI.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create -f ./cdi
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f ./cdi
 </code></pre></div></li>
 <li>
 <p>Check that the CDI pods are running correctly.</p>
@@ -1477,7 +1483,7 @@ OS, will be created.  The <code>vm-cirros.yaml</code> manifest creates a
 <code>VirtualMachine</code> that uses a DataVolume. This means that CDI will create a
 Ondat backed PVC and download the image that the
 <code>VirtualMachineInstance</code> (VMI) will boot from onto the PVC.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create -f ./vm-cirros.yaml
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f ./vm-cirros.yaml
 </code></pre></div></li>
 <li>
 <p>Check that the <code>VMI</code> is running. Note that the
@@ -1522,11 +1528,11 @@ cirros  Bound    pvc-f4833060-5a77-420c-927e-6bc518d9df3c   12Gi       RWO      
 </code></pre></div></li>
 <li>
 <p>Once the PVC&rsquo;s existence is confirmed then create a new DataVolume that uses the cirros PVC as its source.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create -f ./cloned.yaml
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f ./cloned.yaml
 </code></pre></div></li>
 <li>
 <p>Watch as the CDI pods are created.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pods -w
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pods -w
 </code></pre></div><p>You&rsquo;ll see that a <code>cdi-upload-cloned-datavolume</code> pod is created and then a
 cdi-clone-source pod is created. The cdi-source pod mounts the original
 cirros volume and sends the contents of the volume to the cdi-upload pod.

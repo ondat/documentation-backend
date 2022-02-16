@@ -32,7 +32,7 @@ TAP uses default labels on nodes to define failure domains. For instance, an Ava
 <meta itemprop="description" content="Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
 TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. Also, TAP is an opt in feature per volume. The following guide demonstrates how to use topology-aware placement. We will enable Topology-Aware Placement on a PVC, set it to the soft Failure Mode.">
 
-<meta itemprop="wordCount" content="343">
+<meta itemprop="wordCount" content="337">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Topology-Aware Placement (TAP)"/>
 <meta name="twitter:description" content="Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1412,9 +1418,9 @@ will set a custom node zone label.</p>
 <p>💡 If PVC label <code>storageos.com/topology-key</code> is not set, the node label
 <code>topology.kubernetes.io/zone</code> is used by default.</p>
 </blockquote>
-<pre tabindex="0"><code>$ kubectl label node worker-1 custom-region=1 
-$ kubectl label node worker-2 custom-region=2
-$ kubectl label node worker-3 custom-region=3
+<pre tabindex="0"><code>kubectl label node worker-1 custom-region=1 
+kubectl label node worker-2 custom-region=2
+kubectl label node worker-3 custom-region=3
 </code></pre></li>
 <li>
 <p>Create a new PVC with no replicas.</p>
@@ -1437,7 +1443,7 @@ spec:
 <li>
 <p>Increase the number of replicas to match the number of zones. We will do
 this via the CLI for convenience.</p>
-<pre tabindex="0"><code>$ kubectl label pvc pvc-tap storageos.com/replicas=3
+<pre tabindex="0"><code>kubectl label pvc pvc-tap storageos.com/replicas=3
 </code></pre><blockquote>
 <p>💡 To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
 replicas).</p>
@@ -1449,11 +1455,11 @@ replicas).</p>
 replicas with the CLI. Note, that the replicas have been evenly distributed
 between the zones we just set.</p>
 <p>Get the volume name:</p>
-<pre tabindex="0"><code>$ kubectl get pvc pvc-tap-test-owide
+<pre tabindex="0"><code>kubectl get pvc pvc-tap-test-owide
 </code></pre><p>You will get the following:</p>
 <pre tabindex="0"><code>pvc-tap-test   Bound    pvc-49404512-7905-42a3-be94-a56854796bdd /docs.
 </code></pre><p>Now, you can look up that volume with the CLI:</p>
-<pre tabindex="0"><code>$ storageos describe volume pvc-49404512-7905-42a3-be94-a56854796bdd
+<pre tabindex="0"><code>storageos describe volume pvc-49404512-7905-42a3-be94-a56854796bdd
 </code></pre><pre tabindex="0"><code>    /docs.
     Master:
       ID                3ed41e62-a28b-4a93-bbf2-504de31ee848

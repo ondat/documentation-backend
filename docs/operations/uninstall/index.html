@@ -36,7 +36,7 @@ Remember that Ondat enables the stateful applications within your cluster. It&rs
 Removing Stateful Workloads and Data   Delete any resources using Ondat volumes
 Delete any statefulsets, deployments or pods that are using Ondat Volumes.">
 
-<meta itemprop="wordCount" content="384">
+<meta itemprop="wordCount" content="374">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Uninstall Ondat"/>
 <meta name="twitter:description" content="This document details a step-by-step procedure on how to remove Ondat from a Kubernetes cluster.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -628,6 +628,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1422,7 +1428,7 @@ errors.</p>
 <li>
 <p>Delete PVCs using Ondat</p>
 <p>Delete any Persistent Volume Claims that are using Ondat.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n <span style="color:#000">$NS</span> delete pvc <span style="color:#000">$PVC</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n <span style="color:#000">$NS</span> delete pvc <span style="color:#000">$PVC</span>
 </code></pre></div><blockquote>
 <p>⚠️ <strong>This will delete data held by Ondat and won&rsquo;t be recoverable.</strong></p>
 </blockquote>
@@ -1432,12 +1438,12 @@ errors.</p>
 <ol>
 <li>
 <p>Delete Ondat Cluster</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get storageoscluster --all-namespaces <span style="color:#8f5902;font-style:italic"># Find the namespace where the Custom Resource runs</span>
-$ kubectl -n <span style="color:#000">$NS</span> delete storageoscluster --all  <span style="color:#8f5902;font-style:italic"># $NS is the namespace found via the above command</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get storageoscluster --all-namespaces <span style="color:#8f5902;font-style:italic"># Find the namespace where the Custom Resource runs</span>
+kubectl -n <span style="color:#000">$NS</span> delete storageoscluster --all  <span style="color:#8f5902;font-style:italic"># $NS is the namespace found via the above command</span>
 </code></pre></div></li>
 <li>
 <p>Wait until the Ondat resources are gone</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n storageos get pod 
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos get pod 
 </code></pre></div></li>
 </ol>
 <h2 id="uninstalling-the-ondat-operator">Uninstalling the Ondat Operator</h2>
@@ -1459,21 +1465,21 @@ recoverable.</strong></p>
 <ol>
 <li>
 <p>(Option 1) Login in to the hosts and execute the following commands</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo rm -rf /var/lib/storageos
-$ sudo umount /var/lib/kubelet/plugins_registry/storageos
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo rm -rf /var/lib/storageos
+sudo umount /var/lib/kubelet/plugins_registry/storageos
 </code></pre></div></li>
 <li>
 <p>(Option 2) Execute the following command to deploy a DaemonSet that removes the
 Ondat data directory.</p>
 <blockquote>
-<p>⚠️ ** This step is irreversible and once the data is removed it cannot
-be recovered.**</p>
+<p>⚠️ <strong>This step is irreversible and once the data is removed it cannot
+be recovered.</strong></p>
 </blockquote>
 <blockquote>
 <p>Run the following command where <code>kubectl</code> is installed and with the
 context set for your Kubernetes cluster.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/permanently-delete-storageos-data.sh <span style="color:#000;font-weight:bold">|</span> bash
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/permanently-delete-storageos-data.sh <span style="color:#000;font-weight:bold">|</span> bash
 </code></pre></div></li>
 </ol>
 </li>
@@ -1482,8 +1488,8 @@ context set for your Kubernetes cluster.</p>
 <blockquote>
 <p>⚠️ <strong>This will remove any keys written by Ondat.</strong></p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#204a87">export</span> <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
-$ etcdctl --endpoints<span style="color:#ce5c00;font-weight:bold">=</span>http://<span style="color:#000">$ETCD_IP</span>:2379 del --prefix <span style="color:#4e9a06">&#34;storageos&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
+etcdctl --endpoints<span style="color:#ce5c00;font-weight:bold">=</span>http://<span style="color:#000">$ETCD_IP</span>:2379 del --prefix <span style="color:#4e9a06">&#34;storageos&#34;</span>
 </code></pre></div><p>If running Etcd with mTLS, you can set the certificates location with the
 following command.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#204a87">export</span> <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>

@@ -24,7 +24,7 @@
         
         &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure the
-&lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
+&lt;a href=&#34;/docs/prerequisites&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
@@ -88,7 +88,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-121&#34;&gt;Install Ondat on Kubernetes 1.21&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-1&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
@@ -136,7 +136,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-120&#34;&gt;Install Ondat on Kubernetes 1.20&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-2&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
@@ -184,7 +184,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-119&#34;&gt;Install Ondat on Kubernetes 1.19&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-3&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
@@ -383,8 +383,6 @@ which project you created the secret in.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create the Custom Resource&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;The StorageOS cluster resource describes the Ondat cluster that will be
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
@@ -414,7 +412,7 @@ spec:
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       operator: In&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       values:&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       - &amp;#34;true&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify that the StorageOS Cluster resource status is &lt;strong&gt;Running&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -500,8 +498,6 @@ which project you created the secret in.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create the CR Definition:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;The Ondat cluster resource describes the Ondat cluster that will be
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
@@ -531,7 +527,7 @@ spec:
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       operator: In&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       values:&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       - &amp;#34;true&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify that the StorageOS Cluster status is &lt;strong&gt;Running&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -583,7 +579,7 @@ the OS version and image used - some platforms require extra mainline kernel
 modules to be enabled.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;catalog-install&#34;&gt;Catalog Install&lt;/h2&gt;
-&lt;p&gt;Ondat is a Certified application in the &lt;a href=&#34;https://rancher.com/docs/rancher/v2.x/en/catalog/&#34;&gt;Rancher
+&lt;p&gt;Ondat is a Certified application in the &lt;a href=&#34;https://rancher.com/docs/rancher/v2.0-v2.4/en/helm-charts/&#34;&gt;Rancher
 Catalog&lt;/a&gt;. You can install
 Ondat using the Rancher application install.&lt;/p&gt;
 &lt;p&gt;Before completing the steps below, you will need an etcd cluster. For
@@ -634,7 +630,7 @@ personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&
 For convenience, it is often easiest to port forward the service using the
 following kubectl incantation (this will block, so a second terminal window may
 be advisable):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt;
 page to obtain and apply a license.&lt;/p&gt;
 &lt;p&gt;Installation of Ondat is now complete.&lt;/p&gt;
@@ -802,7 +798,7 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This guide will walk through and demonstrate how to install Ondat onto a &lt;a href=&#34;https://azure.microsoft.com/en-gb/services/kubernetes-service/&#34;&gt;Microsoft Azure Kubernetes Service (AKS)&lt;/a&gt; cluster using the &lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://azure.microsoft.com/en-gb/services/kubernetes-service/&#34;&gt;Microsoft Azure Kubernetes Service (AKS)&lt;/a&gt; cluster using the &lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -811,12 +807,12 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;The following CLI utilities are installed on your local machine and are available in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/li&gt;

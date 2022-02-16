@@ -34,7 +34,7 @@ Volumes are formatted using the linux standard ext4 filesystem by default." />
 Conceptually, Ondat volumes have a frontend presentation, which is what the application sees, and a backend presentation, which is the actual on-disk format. Depending on the configuration, frontend and backend components may be on the same or different hosts.
 Volumes are formatted using the linux standard ext4 filesystem by default.">
 
-<meta itemprop="wordCount" content="582">
+<meta itemprop="wordCount" content="581">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Volumes"/>
 <meta name="twitter:description" content="Ondat volumes are a logical construct which represent a writeable volume and exhibit standard POSIX semantics. Ondat presents volumes as mounts into containers via the Linux LIO subsystem.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -625,6 +625,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1456,7 +1462,7 @@ pod is terminated and the volume is detached from the node. The Ondat
 controlplane will then attach the volume to the node that holds the master
 deployment and resize the underlying block device and then run resize2fs to
 expand the filesystem.</p>
-<p>For a walk through of how to resize a volume please see the <a href="/docs/operations/resize">Volume Resize</a> operations page.</p>
+<p>For a walkthrough of how to resize a volume please see the <a href="/docs/operations/resize">Volume Resize</a> operations page.</p>
 <h2 id="volume-encryption">Volume Encryption</h2>
 <p>Volumes can be configured on creation to have encryption-at-rest. Data
 is encrypted with XTS-AES and decrypted upon use. Please see

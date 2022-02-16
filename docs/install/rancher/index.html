@@ -34,7 +34,7 @@
  Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility   ⚠️ Before proceeding, ensure that you have followed our prerequisites.
   ⚠️ On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled.">
 
-<meta itemprop="wordCount" content="1069">
+<meta itemprop="wordCount" content="1068">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rancher"/>
 <meta name="twitter:description" content="Ondat is a certified Rancher application. We offer two installation methods:
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -625,6 +625,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1430,7 +1436,7 @@ the OS version and image used - some platforms require extra mainline kernel
 modules to be enabled.</p>
 </blockquote>
 <h2 id="catalog-install">Catalog Install</h2>
-<p>Ondat is a Certified application in the <a href="https://rancher.com/docs/rancher/v2.x/en/catalog/">Rancher
+<p>Ondat is a Certified application in the <a href="https://rancher.com/docs/rancher/v2.0-v2.4/en/helm-charts/">Rancher
 Catalog</a>. You can install
 Ondat using the Rancher application install.</p>
 <p>Before completing the steps below, you will need an etcd cluster. For
@@ -1481,7 +1487,7 @@ personal license is free, and supports up to 1TiB of provisioned storage.</p>
 For convenience, it is often easiest to port forward the service using the
 following kubectl incantation (this will block, so a second terminal window may
 be advisable):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl port-forward -n storageos svc/storageos <span style="color:#0000cf;font-weight:bold">5705</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward -n storageos svc/storageos <span style="color:#0000cf;font-weight:bold">5705</span>
 </code></pre></div><p>Now follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a>
 page to obtain and apply a license.</p>
 <p>Installation of Ondat is now complete.</p>

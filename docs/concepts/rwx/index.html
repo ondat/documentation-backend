@@ -38,7 +38,7 @@ Ondat RWX Volumes are based on a shared filesystem - in the case of our implemen
 Architecture For each RWX Volume, the following components are involved:
 Ondat ReadWriteOnly (RWO) Volume">
 
-<meta itemprop="wordCount" content="515">
+<meta itemprop="wordCount" content="514">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ReadWriteMany (RWX)"/>
 <meta name="twitter:description" content="⚠️ Ondat Project edition is required to create RWX Volumes.
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -631,6 +631,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1452,7 +1458,7 @@ Ondat StorageClass.</li>
 Kubernetes).</li>
 <li>When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated
 on the same Node as the primary Volume. The NFS-Ganesha server thus uses the
-RWO Ondat Volume as its back end disk.</li>
+RWO Ondat Volume as its backend disk.</li>
 <li>The Ondat API Manager publishes the host IP and port for the NFS service
 endpoint, by creating a Kubernetes Service that points to the NFS-Ganesha
 server export endpoint.</li>
@@ -1472,7 +1478,7 @@ application Node (where the user&rsquo;s Pod is running) automatically reconnect
 <li>A Ondat RWX Volume is matched one-to-one with a PVC. Therefore the
 Ondat RWX Volume can only be accessed by Pods in the same Kubernetes
 namespace.</li>
-<li>Ondat RWX Volumes support volume resize. Refer to the <a href="/docs/operations/resize%22">resize</a>
+<li>Ondat RWX Volumes support volume resize. Refer to the <a href="/docs/operations/resize">resize</a>
 documentation for more details.</li>
 </ul>
 

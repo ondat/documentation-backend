@@ -327,7 +327,7 @@ generally see the CRI-O documentation
 Input Output) contexts to serve I/O requests without blocking. Ondat
 requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment,
 whether master or replica).&lt;/p&gt;
-&lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite.&lt;/h2&gt;
+&lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite&lt;/h2&gt;
 &lt;p&gt;By default there is a maximum number of AIO contexts that can be allocated at
 once.&lt;/p&gt;
 &lt;p&gt;The current and maximum number of AIO requests is visible in the virtual
@@ -342,7 +342,7 @@ EAGAIN. For more information please see the Linux kernel docs
 the number of volumes that can be deployed per node. Trying to provision
 additional deployments once the &lt;code&gt;aio-max-nr&lt;/code&gt; has been reached will fail as the
 kernel will be unable to create enough new AIO contexts.&lt;/p&gt;
-&lt;h2 id=&#34;increasing-your-aio-context-cap&#34;&gt;Increasing your AIO context cap.&lt;/h2&gt;
+&lt;h2 id=&#34;increasing-your-aio-context-cap&#34;&gt;Increasing your AIO context cap&lt;/h2&gt;
 &lt;p&gt;If your nodes &lt;code&gt;aio-max-nr&lt;/code&gt; is set too low you can either provision additional
 nodes to reduce the number of deployments per node, or increase the &lt;code&gt;aio-max-nr&lt;/code&gt;
 kernel parameter.&lt;/p&gt;
@@ -350,7 +350,7 @@ kernel parameter.&lt;/p&gt;
 example line:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;fs.aio-max-nr &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1048576&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To activate the new settings, run the following command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sysctl -p /etc/sysctl.conf
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sysctl -p /etc/sysctl.conf
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       </description>
     </item>
@@ -648,7 +648,7 @@ chmod &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0755&lt;/span&g
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create the systemd environment file&lt;/p&gt;
-&lt;p&gt;On all nodes that will run etcd create a systemd environemnt file
+&lt;p&gt;On all nodes that will run etcd create a systemd environment file
 &lt;code&gt;/etc/etcd.conf&lt;/code&gt; which has the IPs of all the nodes. The &lt;code&gt;NODE_IP&lt;/code&gt; will
 need to change to correspond to the node IP where the environment file
 resides. &lt;code&gt;NODE1_IP&lt;/code&gt;, &lt;code&gt;NODE2_IP&lt;/code&gt; and &lt;code&gt;NODE3_IP&lt;/code&gt; will remain the same across
@@ -745,9 +745,9 @@ look as below:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Reload and start the etc3 systemd service&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ systemctl daemon-reload
-$ systemctl &lt;span style=&#34;color:#204a87&#34;&gt;enable&lt;/span&gt; etcd3.service
-$ systemctl start  etcd3.service
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl daemon-reload
+systemctl &lt;span style=&#34;color:#204a87&#34;&gt;enable&lt;/span&gt; etcd3.service
+systemctl start  etcd3.service
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Installation Verification&lt;/p&gt;
@@ -869,7 +869,7 @@ having a network partition between them will result in quorum lost.&lt;/p&gt;
 &lt;h2 id=&#34;bind-etcd-ips-to-kubernetes-service&#34;&gt;Bind Etcd IPs to Kubernetes Service&lt;/h2&gt;
 &lt;p&gt;Kubernetes external services use a DNS name to reference external endpoints,
 making them easy to reference from inside the cluster.  You can use the
-example from the &lt;a href=&#34;https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc&#34;&gt;helper github repository&lt;/a&gt;
+example from the &lt;a href=&#34;https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc&#34;&gt;helper GitHub repository&lt;/a&gt;
 to deploy the external Service. Using an external service can make monitoring
 of etcd from Prometheus easier.&lt;/p&gt;
 &lt;h2 id=&#34;using-etcd-with-ondat&#34;&gt;Using Etcd with Ondat&lt;/h2&gt;

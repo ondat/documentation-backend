@@ -54,7 +54,7 @@ Ondat Licence is specific for a ClusterID.&lt;/p&gt;
 For convenience, it is often easiest to port forward the service using the
 following kubectl incantation (this will block, so a second terminal window may
 be advisable):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As an alternative, an Ingress controller may be preferred.&lt;/p&gt;
 &lt;p&gt;Once you have obtained access to the GUI, login using whatever credentials you
 used to create the cluster and go to the &amp;ldquo;Licence&amp;rdquo; section on the left
@@ -143,7 +143,7 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Delete the node.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl delete node worker1
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl delete node worker1
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify that the node has been deleted with &lt;code&gt;kubectl get nodes&lt;/code&gt; or
@@ -231,7 +231,7 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
 &lt;li&gt;Add new storage devices at &lt;code&gt;/var/lib/storageos/data/dev[0-9]+&lt;/code&gt; as described
 &lt;a href=&#34;/docs/operations/managing-host-storage#option-1-mount-additional-devices&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Expand the underlying filesystem that Ondat is using as described
-&lt;a href=&#34;/docs/operations/managing-host-storage%22#option-2-expand-existing-devices-backed-by-lvm&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;a href=&#34;/docs/operations/managing-host-storage#option-2-expand-existing-devices-backed-by-lvm&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;After expanding capacity remember to restart the Ondat daemonset pod.&lt;/p&gt;
 &lt;h3 id=&#34;deleting-existing-pvcs&#34;&gt;Deleting existing PVCs&lt;/h3&gt;
@@ -350,7 +350,7 @@ guideline only. A development cluster with 5 nodes will not have the same etcd
 traffic as a production cluster with 100 nodes. Adding &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;monitoring&lt;/a&gt; to etcd will help to
 characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.&lt;/p&gt;
-&lt;h3 id=&#34;etcd-advertise-urls&#34;&gt;Etcd advertise urls&lt;/h3&gt;
+&lt;h3 id=&#34;etcd-advertise-urls&#34;&gt;Etcd advertise URLs&lt;/h3&gt;
 &lt;p&gt;The etcd startup parameters &lt;code&gt;advertise-client-urls&lt;/code&gt; and
 &lt;code&gt;initial-advertise-peer-urls&lt;/code&gt; specify the addresses etcd clients or other etcd
 members should use to contact the etcd server. The advertised addresses must
@@ -449,7 +449,7 @@ the StorageClass.&lt;/p&gt;
 &lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically
-updated at run time.&lt;/p&gt;
+updated at runtime.&lt;/p&gt;
 &lt;h3 id=&#34;hard&#34;&gt;Hard&lt;/h3&gt;
 &lt;p&gt;Hard failure mode requires that the number of declared replicas matches the
 available number of replicas at all times. If a replica fails Ondat will
@@ -738,8 +738,8 @@ of keeping this example simple an unreplicated volume will be used.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Move into the examples folder and create a PVC using the PVC definition above.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# from storageos-usecases/00-basic&lt;/span&gt;
-$ kubectl create -f ./pvc-basic.yaml
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# from storageos-usecases/00-basic&lt;/span&gt;
+kubectl create -f ./pvc-basic.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can view the PVC that you have created with the command below&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get pvc
 NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
@@ -747,7 +747,7 @@ pvc-1        Bound    pvc-f8ffa027-e821-11e8-bc0b-0ac77ccc61fa   5Gi        RWO 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create a pod that mounts the PVC created in step 2.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl create -f ./pod.yaml
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f ./pod.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The command above creates a Pod that uses the PVC that was created in step 1.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Pod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -1018,7 +1018,7 @@ labels:
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Now, apply a label to the PVC.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl label pvc data-mysql-0 storageos.com/replicas=3
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl label pvc data-mysql-0 storageos.com/replicas=3
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;By using the Ondat CLI, you can verify that the label applied has
@@ -1127,7 +1127,7 @@ IPs:
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Now, apply the label to the node.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl label node worker1 storageos.com/computeonly=true
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl label node worker1 storageos.com/computeonly=true
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;The label has synced to the node and it has been set to &lt;code&gt;compute-only&lt;/code&gt;
@@ -1664,9 +1664,9 @@ will set a custom node zone label.&lt;/p&gt;
 &lt;p&gt;💡 If PVC label &lt;code&gt;storageos.com/topology-key&lt;/code&gt; is not set, the node label
 &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt; is used by default.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl label node worker-1 custom-region=1 
-$ kubectl label node worker-2 custom-region=2
-$ kubectl label node worker-3 custom-region=3
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl label node worker-1 custom-region=1 
+kubectl label node worker-2 custom-region=2
+kubectl label node worker-3 custom-region=3
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create a new PVC with no replicas.&lt;/p&gt;
@@ -1689,7 +1689,7 @@ spec:
 &lt;li&gt;
 &lt;p&gt;Increase the number of replicas to match the number of zones. We will do
 this via the CLI for convenience.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl label pvc pvc-tap storageos.com/replicas=3
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl label pvc pvc-tap storageos.com/replicas=3
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;💡 To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
 replicas).&lt;/p&gt;
@@ -1701,11 +1701,11 @@ replicas).&lt;/p&gt;
 replicas with the CLI. Note, that the replicas have been evenly distributed
 between the zones we just set.&lt;/p&gt;
 &lt;p&gt;Get the volume name:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl get pvc pvc-tap-test-owide
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl get pvc pvc-tap-test-owide
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You will get the following:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pvc-tap-test   Bound    pvc-49404512-7905-42a3-be94-a56854796bdd /docs.
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now, you can look up that volume with the CLI:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ storageos describe volume pvc-49404512-7905-42a3-be94-a56854796bdd
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;storageos describe volume pvc-49404512-7905-42a3-be94-a56854796bdd
 &lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;    /docs.
     Master:
       ID                3ed41e62-a28b-4a93-bbf2-504de31ee848
@@ -1866,7 +1866,7 @@ orchestrators or common misconfigurations.&lt;/p&gt;
 &lt;h2 id=&#34;tools&#34;&gt;Tools&lt;/h2&gt;
 &lt;p&gt;To be able to troubleshoot issues the &lt;a href=&#34;/docs/reference/cli/&#34;&gt;Ondat CLI&lt;/a&gt; is required.&lt;/p&gt;
 &lt;h2 id=&#34;pod-in-pending-because-of-mount-error&#34;&gt;Pod in pending because of mount error&lt;/h2&gt;
-&lt;h3 id=&#34;issue&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;The output of &lt;code&gt;kubectl describe pod $POD_ID&lt;/code&gt; contains &lt;code&gt;no such file or directory&lt;/code&gt; and references the Ondat volume device file.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@node1:~# kubectl -n kube-system describe &lt;span style=&#34;color:#000&#34;&gt;$POD_ID&lt;/span&gt;
 &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;...&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
@@ -1874,7 +1874,7 @@ Events:
   &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;...&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
   Normal   Scheduled         11s                default-scheduler  Successfully assigned default/d1 to node3
   Warning  FailedMount       4s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x4 over 9s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;    kubelet, node3     MountVolume.SetUp failed &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; volume &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;pvc-f2a49198-c00c-11e8-ba01-0800278dc04d&amp;#34;&lt;/span&gt; : stat /var/lib/storageos/volumes/d9df3549-26c0-4cfc-62b4-724b443069a1: no such file or directory
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;There are two main reasons this issue may arise:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The Ondat &lt;code&gt;DEVICE_DIR&lt;/code&gt; location is wrongly configured when using Kubelet
@@ -1887,10 +1887,10 @@ of OpenShift deploy the Kubelet as a container, because of this, the device
 files that Ondat creates to mount into the containers need to be visible to
 the kubelet. Ondat can be configured to share the device directory.&lt;/p&gt;
 &lt;p&gt;Modern installations use CSI, which handles the complexity internally.&lt;/p&gt;
-&lt;h3 id=&#34;assert&#34;&gt;Assert:&lt;/h3&gt;
+&lt;h3 id=&#34;assert&#34;&gt;Assert&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@node1:~# kubectl -n default describe stos &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Shared Dir&amp;#34;&lt;/span&gt;
   Shared Dir:      &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;lt;-- Shouldn&amp;#39;t be blank&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution&#34;&gt;Solution:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;The Cluster Operator Custom Definition should specify the SharedDir option as follows.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;spec:
   sharedDir: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Needed when Kubelet as a container&lt;/span&gt;
@@ -1904,7 +1904,7 @@ Resource&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Applies only if Option 1 is configured properly.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;assert-1&#34;&gt;Assert:&lt;/h3&gt;
+&lt;h3 id=&#34;assert-1&#34;&gt;Assert&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;If not using the Kubelet as a container&lt;/strong&gt;, SSH into one of the nodes and check if
 &lt;code&gt;/var/lib/storageos/volumes&lt;/code&gt; is empty. If so, exec into any Ondat pod and
 check the same directory.&lt;/p&gt;
@@ -1927,7 +1927,7 @@ d529b340-0189-15c7-f8f3-33bfc4cf03fa
 ff537c5b-e295-e518-a340-0b6308b69f74
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the directory inside the container and the device files are visible,
 disabled mount propagation is the cause.&lt;/p&gt;
-&lt;h3 id=&#34;solution-1&#34;&gt;Solution:&lt;/h3&gt;
+&lt;h3 id=&#34;solution-1&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Older versions of Kubernetes need to enable mount propagation as it is not
 enabled by default. Most Kubernetes distributions allow MountPropagation to be
 enabled using FeatureGates. Rancher specifically, needs to enable it in the
@@ -1936,7 +1936,7 @@ enabled using FeatureGates. Rancher specifically, needs to enable it in the
 &lt;h2 id=&#34;pvc-pending-state---failed-to-dial-ondat&#34;&gt;PVC pending state - Failed to dial Ondat&lt;/h2&gt;
 &lt;p&gt;A created PVC remains in pending state making pods that need to mount that PVC
 unable to start.&lt;/p&gt;
-&lt;h3 id=&#34;issue-1&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue-1&#34;&gt;Issue&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@node1:~/# kubectl get pvc
 NAME      STATUS        VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 vol-1     Pending                                                                            storageos       7s
@@ -1947,7 +1947,7 @@ Events:
   Type     Reason              Age               From                         Message
   ----     ------              ----              ----                         -------
   Warning  ProvisioningFailed  7s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x2 over 18s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  persistentvolume-controller  Failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;: Get http://storageos-cluster/version: failed to dial all known cluster members, &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;10.233.59.206:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-1&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-1&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;For non CSI installations of Ondat, Kubernetes uses the Ondat
 API endpoint to communicate. If that communication fails, relevant actions such
 as create or mount volume can&amp;rsquo;t be transmitted to Ondat, hence the PVC
@@ -1956,7 +1956,7 @@ so it never sent back an acknowledgement.&lt;/p&gt;
 &lt;p&gt;In this case, the Event message indicates that Ondat API is not responding,
 implying that Ondat is not running. For Kubernetes to define Ondat pods
 ready, the health check must pass.&lt;/p&gt;
-&lt;h3 id=&#34;assert-2&#34;&gt;Assert:&lt;/h3&gt;
+&lt;h3 id=&#34;assert-2&#34;&gt;Assert&lt;/h3&gt;
 &lt;p&gt;Check the status of Ondat pods.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@node1:~/# kubectl -n kube-system get pod --selector &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# for CSI add --selector kind=daemonset&lt;/span&gt;
 NAME              READY     STATUS    RESTARTS   AGE
@@ -1972,7 +1972,7 @@ available.&lt;/p&gt;
 a PVC is created before Ondat finish starting, the PVC will be created
 eventually.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;solution-2&#34;&gt;Solution:&lt;/h3&gt;
+&lt;h3 id=&#34;solution-2&#34;&gt;Solution&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Ondat health check takes 60 seconds of grace before reporting as READY.
 If Ondat is starting properly after that period, the volume will be
@@ -1983,7 +1983,7 @@ be to troubleshoot the installation.&lt;/li&gt;
 &lt;h2 id=&#34;pvc-pending-state---secret-missing&#34;&gt;PVC pending state - Secret Missing&lt;/h2&gt;
 &lt;p&gt;A created PVC remains in pending state making pods that need to mount that PVC
 unable to start.&lt;/p&gt;
-&lt;h3 id=&#34;issue-2&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue-2&#34;&gt;Issue&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl describe pvc &lt;span style=&#34;color:#000&#34;&gt;$PVC&lt;/span&gt;
 &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;...&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
 Events:
@@ -1991,7 +1991,7 @@ Events:
   ----     ------              ----               ----                         -------
   Warning  ProvisioningFailed  13s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x2 over 28s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  persistentvolume-controller  Failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;: failed to get secret from &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;/&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-api&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-2&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-2&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;For non CSI installations of Ondat, Kubernetes uses the Ondat
 API endpoint to communicate. If that communication fails, relevant actions such
 as create or mount a volume can&amp;rsquo;t be transmitted to Ondat, and the PVC
@@ -2002,7 +2002,7 @@ retrieves the API endpoint and the authentication parameters. If that secret is
 incorrect or missing, the connections won&amp;rsquo;t be established. It is common to see
 that the Secret has been deployed in a different namespace where the
 StorageClass expects it or that is has been deployed with a different name.&lt;/p&gt;
-&lt;h3 id=&#34;assert-3&#34;&gt;Assert:&lt;/h3&gt;
+&lt;h3 id=&#34;assert-3&#34;&gt;Assert&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Check the StorageClass parameters to know where the Secret is expected to be found.&lt;/p&gt;
@@ -2032,40 +2032,40 @@ Error from server &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&l
 the right location.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;solution-3&#34;&gt;Solution:&lt;/h3&gt;
+&lt;h3 id=&#34;solution-3&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Deploy Ondat following the &lt;a href=&#34;/docs/introduction/quickstart&#34;&gt;installation procedures&lt;/a&gt;. If you are using the manifests
 provided for Kubernetes to deploy Ondat rather than using automated
 provisioners, make sure that the StorageClass parameters and the Secret
 reference match.&lt;/p&gt;
 &lt;h2 id=&#34;node-name-different-from-hostname&#34;&gt;Node name different from Hostname&lt;/h2&gt;
-&lt;h4 id=&#34;issue-3&#34;&gt;Issue:&lt;/h4&gt;
+&lt;h4 id=&#34;issue-3&#34;&gt;Issue&lt;/h4&gt;
 &lt;p&gt;Ondat nodes can&amp;rsquo;t join the cluster showing the following log entries.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:47:02Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to start api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error verifying UUID: UUID aed3275f-846b-1f75-43a1-adbfec8bf974 has already been registered and has hostname &amp;#39;debian-4&amp;#39;, not &amp;#39;node4&amp;#39;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-3&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-3&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;The Ondat registration process to start the cluster uses the hostname of
 the node where the Ondat container is running, provided by the Kubelet.
 However, Ondat verifies the network hostname of the OS as a prestart check
 to make sure it can communicate with other nodes. If those names don&amp;rsquo;t match,
 Ondat will be unable to start.&lt;/p&gt;
-&lt;h3 id=&#34;solution-4&#34;&gt;Solution:&lt;/h3&gt;
+&lt;h3 id=&#34;solution-4&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Make sure the hostnames match with the Kubernetes advertised names. If
 you have changed the hostname of your nodes, make sure that you restart the
 nodes to apply the change.&lt;/p&gt;
 &lt;h2 id=&#34;peer-discovery---networking&#34;&gt;Peer discovery - Networking&lt;/h2&gt;
-&lt;h3 id=&#34;issue-4&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue-4&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;Ondat nodes can&amp;rsquo;t join the cluster showing the following logs after one
 minute of container uptime.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;not first cluster node, joining first node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;address&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.5 &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;host&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;node3 &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp &lt;span style=&#34;color:#000&#34;&gt;target&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.6
 &lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;could not retrieve cluster config from api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;status_code&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;503&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to join existing cluster&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;endpoint&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;503 Service Unavailable&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
 &lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;retrying cluster join in 5 seconds...&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-4&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-4&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;Ondat uses a gossip protocol to discover nodes in the cluster. When
 Ondat starts, one or more nodes can be referenced so new nodes can query
 existing nodes for the list of members. This error indicates that the node
 can&amp;rsquo;t connect to any of the nodes in the known list. The known list is defined
 in the &lt;code&gt;JOIN&lt;/code&gt; variable.&lt;/p&gt;
-&lt;h3 id=&#34;assert-4&#34;&gt;Assert:&lt;/h3&gt;
+&lt;h3 id=&#34;assert-4&#34;&gt;Assert&lt;/h3&gt;
 &lt;p&gt;It is likely that ports are block by a firewall.&lt;/p&gt;
 &lt;p&gt;SSH into one of your nodes and check connectivity to the rest of the nodes.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Successfull execution:&lt;/span&gt;
@@ -2130,16 +2130,16 @@ node2   node3.etcd      172.28.128.5:5707  1.270076ms   OK
 node2   node1.etcd      172.28.128.3:5707  1.218522ms   OK
 node2   node1.api       172.28.128.3:5705  1.363071ms   OK
 node2   node1.nats      172.28.128.3:5708  1.349383ms   OK
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-5&#34;&gt;Solution:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-5&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Open ports following the &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;prerequisites page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;peer-discovery---pod-allocation&#34;&gt;Peer discovery - Pod allocation&lt;/h2&gt;
-&lt;h3 id=&#34;issue-5&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue-5&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;Ondat nodes can&amp;rsquo;t join the cluster and show the following log entries.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;not first cluster node, joining first node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;address&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.5 &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;host&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;node3 &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp &lt;span style=&#34;color:#000&#34;&gt;target&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.6
 &lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;could not retrieve cluster config from api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;status_code&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;503&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to join existing cluster&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;endpoint&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;503 Service Unavailable&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
 &lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;retrying cluster join in 5 seconds...&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-5&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-5&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;Ondat uses a gossip protocol to discover the nodes in the cluster. When
 Ondat starts, one or more active nodes must be referenced so new nodes can
 query existing nodes for the list of members. This error indicates that the node
@@ -2154,26 +2154,26 @@ Ondat pods to master nodes, due to the presence of the
 &lt;code&gt;node-role.kubernetes.io/master:NoSchedule&lt;/code&gt; taint that is typically present. In
 such cases the &lt;code&gt;JOIN&lt;/code&gt; variable must not contain master nodes or the Ondat
 cluster will remain unable to start.&lt;/p&gt;
-&lt;h3 id=&#34;assert-5&#34;&gt;Assert:&lt;/h3&gt;
+&lt;h3 id=&#34;assert-5&#34;&gt;Assert&lt;/h3&gt;
 &lt;p&gt;Check that the first node of the &lt;code&gt;JOIN&lt;/code&gt; variable started properly.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;root@node1:~/# kubectl -n kube-system describe ds/storageos &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep JOIN
     JOIN:          172.28.128.3,172.28.128.4,172.28.128.5
 root@node1:~/# kubectl -n kube-system get pod -o wide &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep 172.28.128.3
 storageos-8zqxl   1/1       Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          2m        172.28.128.3   node1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-6&#34;&gt;Solution:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-6&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Make sure that the &lt;code&gt;JOIN&lt;/code&gt; variable doesn&amp;rsquo;t specify the master nodes. In case
 you are using the discovery service, it is necessary to ensure that the
 DaemonSet won&amp;rsquo;t allocate Pods on the masters. This can be achieved with taints,
 node selectors or labels.&lt;/p&gt;
 &lt;p&gt;For installations with the Ondat operator you can specify which nodes to
-deploy Ondat on using nodeSelectors. See examples in the &lt;a href=&#34;docs/reference/cluster-operator/examples/#installing-to-a-subset-of-nodes&#34;&gt;Cluster Operator
+deploy Ondat on using nodeSelectors. See examples in the &lt;a href=&#34;/docs/reference/cluster-operator/examples/#installing-to-a-subset-of-nodes&#34;&gt;Cluster Operator
 Examples
 page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For more advanced installations using compute-only and storage nodes, check the
 &lt;code&gt;storageos.com/deployment=computeonly&lt;/code&gt; label that can be added to the nodes
 through Kubernetes node labels, or Ondat in the &lt;a href=&#34;/docs/reference/labels&#34;&gt;Labels&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;lio-initerror&#34;&gt;LIO Init:Error&lt;/h2&gt;
-&lt;h3 id=&#34;issue-6&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue-6&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;Ondat pods not starting with &lt;code&gt;Init:Error&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl -n kube-system get pod
 NAME              READY     STATUS              RESTARTS   AGE
@@ -2181,7 +2181,7 @@ storageos-2kwqx   0/3       Init:Err             &lt;span style=&#34;color:#0000
 storageos-cffcr   0/3       Init:Err             &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
 storageos-d4f69   0/3       Init:Err             &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
 storageos-nhq7m   0/3       Init:Err             &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-6&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-6&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;This indicates that since the Linux open source SCSI drivers are not enabled,
 Ondat cannot start. The Ondat DaemonSet enables the required kernel
 modules on the host system. If you are seeing these errors it is because that
@@ -2198,30 +2198,30 @@ executing modprobe -b target_core_mod
 Module tcm_loop is not running
 executing modprobe -b tcm_loop
 modprobe: FATAL: Module tcm_loop not found.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-7&#34;&gt;Solution:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-7&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Install the required kernel modules (usually found in the
 &lt;code&gt;linux-image-extra-$(uname -r)&lt;/code&gt; package of your distribution) on your nodes
 following this &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites page&lt;/a&gt; and delete Ondat
 pods, allowing the DaemonSet to create the pods again.&lt;/p&gt;
 &lt;h2 id=&#34;lio-not-enabled&#34;&gt;LIO not enabled&lt;/h2&gt;
-&lt;h3 id=&#34;issue-7&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue-7&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;Ondat node can&amp;rsquo;t start and shows the following log entries.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T14:34:40Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;liocheck returned error&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;liocheck &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;exit status 1&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;dataplane &lt;span style=&#34;color:#000&#34;&gt;stderr&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Sysfs root &amp;#39;/sys/kernel/config/target&amp;#39; is missing, is kernel configfs present and target_core_mod loaded? category=fslio level=warn\nRuntime error checking stage &amp;#39;target_core_mod&amp;#39;: SysFs root missing category=fslio level=warn\nliocheck: FAIL (lio_capable_system() returns failure) category=fslio level=fatal\n&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;stdout&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T14:34:40Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to start dataplane services&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;system dependency check failed: exit status 1&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-7&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-7&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;This indicates that one or more kernel modules required for Ondat are
 not loaded.&lt;/p&gt;
 &lt;h3 id=&#34;assert-7&#34;&gt;Assert&lt;/h3&gt;
 &lt;p&gt;The following kernel modules must be enabled in the host.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;lsmod  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;^tcm_loop|^target_core_mod|^target_core_file|^configfs&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-8&#34;&gt;Solution:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-8&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Install the required kernel modules (usually found in the
 &lt;code&gt;linux-image-extra-$(uname -r)&lt;/code&gt; package of your distribution) on your nodes
 following this &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites page&lt;/a&gt; and restart the container.&lt;/p&gt;
 &lt;h2 id=&#34;openshift-ondat-pods-missing----daemonset-error&#34;&gt;(OpenShift) Ondat pods missing &amp;ndash; DaemonSet error&lt;/h2&gt;
 &lt;p&gt;Ondat DaemonSet doesn&amp;rsquo;t have any pod replicas. The DaemonSet couldn&amp;rsquo;t
 allocate any Pod due to security issues.&lt;/p&gt;
-&lt;h3 id=&#34;issue-8&#34;&gt;Issue:&lt;/h3&gt;
+&lt;h3 id=&#34;issue-8&#34;&gt;Issue&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;root@master02 standard&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# oc get pod&lt;/span&gt;
 No resources found.
 &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;root@master02 standard&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# oc describe daemonset storageos&lt;/span&gt;
@@ -2230,11 +2230,11 @@ Events:
   Type     Reason        Age                From                  Message
   ----     ------        ----               ----                  -------
   Warning  FailedCreate  0s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x12 over 10s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  daemonset-controller  Error creating: pods &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-&amp;#34;&lt;/span&gt; is forbidden: unable to validate against any security context constraint: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;provider restricted: .spec.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used provider restricted: .spec.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;2&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;3&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;SYS_ADMIN&amp;#34;&lt;/span&gt;: capability may not be added spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;SYS_ADMIN&amp;#34;&lt;/span&gt;: capability may not be added spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-8&#34;&gt;Reason:&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;reason-8&#34;&gt;Reason&lt;/h3&gt;
 &lt;p&gt;The OpenShift cluster has security context constraint policies enabled that
 forbid any pod, without an explicitly set policy for the service account, to
 be allocated.&lt;/p&gt;
-&lt;h3 id=&#34;assert-8&#34;&gt;Assert:&lt;/h3&gt;
+&lt;h3 id=&#34;assert-8&#34;&gt;Assert&lt;/h3&gt;
 &lt;p&gt;Check if the Ondat ServiceAccount can create pods with enough permissions&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;oc get scc privileged -o yaml &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Or custom scc with enough privileges&lt;/span&gt;
 &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;...&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
@@ -2247,7 +2247,7 @@ users:
 - system:serviceaccount:tiller:tiller
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If the Ondat sa system:serviceaccount:storageos:storageos is in the
 privileged scc it will be able to create pods.&lt;/p&gt;
-&lt;h3 id=&#34;solution-9&#34;&gt;Solution:&lt;/h3&gt;
+&lt;h3 id=&#34;solution-9&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Add the ServiceAccount system:serviceaccount:storageos:storageos to a scc with
 enough privileges.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;oc adm policy add-scc-to-user privileged system:serviceaccount:storageos:storageos
@@ -2283,7 +2283,7 @@ errors.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Delete PVCs using Ondat&lt;/p&gt;
 &lt;p&gt;Delete any Persistent Volume Claims that are using Ondat.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete pvc &lt;span style=&#34;color:#000&#34;&gt;$PVC&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete pvc &lt;span style=&#34;color:#000&#34;&gt;$PVC&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;This will delete data held by Ondat and won&amp;rsquo;t be recoverable.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2293,12 +2293,12 @@ errors.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Delete Ondat Cluster&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get storageoscluster --all-namespaces &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Find the namespace where the Custom Resource runs&lt;/span&gt;
-$ kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete storageoscluster --all  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# $NS is the namespace found via the above command&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get storageoscluster --all-namespaces &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Find the namespace where the Custom Resource runs&lt;/span&gt;
+kubectl -n &lt;span style=&#34;color:#000&#34;&gt;$NS&lt;/span&gt; delete storageoscluster --all  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# $NS is the namespace found via the above command&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Wait until the Ondat resources are gone&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n storageos get pod 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl -n storageos get pod 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;uninstalling-the-ondat-operator&#34;&gt;Uninstalling the Ondat Operator&lt;/h2&gt;
@@ -2320,21 +2320,21 @@ recoverable.&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;(Option 1) Login in to the hosts and execute the following commands&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sudo rm -rf /var/lib/storageos
-$ sudo umount /var/lib/kubelet/plugins_registry/storageos
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sudo rm -rf /var/lib/storageos
+sudo umount /var/lib/kubelet/plugins_registry/storageos
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;(Option 2) Execute the following command to deploy a DaemonSet that removes the
 Ondat data directory.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ ** This step is irreversible and once the data is removed it cannot
-be recovered.**&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;This step is irreversible and once the data is removed it cannot
+be recovered.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Run the following command where &lt;code&gt;kubectl&lt;/code&gt; is installed and with the
 context set for your Kubernetes cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/permanently-delete-storageos-data.sh &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; bash
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/permanently-delete-storageos-data.sh &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; bash
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
@@ -2343,8 +2343,8 @@ context set for your Kubernetes cluster.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;This will remove any keys written by Ondat.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;
-$ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;http://&lt;span style=&#34;color:#000&#34;&gt;$ETCD_IP&lt;/span&gt;:2379 del --prefix &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;
+etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;http://&lt;span style=&#34;color:#000&#34;&gt;$ETCD_IP&lt;/span&gt;:2379 del --prefix &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;If running Etcd with mTLS, you can set the certificates location with the
 following command.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ &lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCDCTL_API&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;
@@ -2461,7 +2461,7 @@ only revoked when a policy is created for the user or their group.&lt;/p&gt;
 &lt;p&gt;Users can be created and deleted by navigating to the &amp;ldquo;Users&amp;rdquo; section of the GUI.&lt;/p&gt;
 &lt;p&gt;Alternatively users can also be managed using the CLI.&lt;/p&gt;
 &lt;p&gt;To create a user with the CLI, run:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos user create jim
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos user create jim
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The above command will create a user named jim. The command will also prompt
 you to enter a password for the newly created user.&lt;/p&gt;
 

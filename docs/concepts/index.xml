@@ -51,7 +51,7 @@ fleet can be expanded with many new machines for computing, while maintaining a
 central data store not impacted by rapid and repeated cluster scaling.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/concepts/centralised.png&#34; alt=&#34;Centralised Model&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;high-performance-mode&#34;&gt;High Performance Mode&lt;/h2&gt;
-&lt;p&gt;In this mode we co-locate pods with the volumes they are using in order to take
+&lt;p&gt;In this mode we colocate pods with the volumes they are using in order to take
 advantage of the performance gains from running on the same node, while
 retaining the utility of orchestrators for managing app lifecycle.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/concepts/high-performance.png&#34; alt=&#34;High Performance Model&#34;&gt;&lt;/p&gt;
@@ -108,7 +108,7 @@ increased and CPU resources are not wasted on attempts to compress
 uncompressible blocks. Ondat&amp;rsquo;s patented on-disk format is used to tell
 whether individual blocks are compressed without overhead. As such volume
 compression can be dynamically enabled/disabled even while a volume is in use.&lt;/p&gt;
-&lt;p&gt;When compression and &lt;a href=&#34;/docs/concepts/encryption&#34;&gt;encryption&lt;/a&gt; are both enabled
+&lt;p&gt;When compression and &lt;a href=&#34;/docs/reference/encryption&#34;&gt;encryption&lt;/a&gt; are both enabled
 for a volume, blocks are compressed then encrypted.&lt;/p&gt;
 
       </description>
@@ -191,7 +191,7 @@ seconds.&lt;/p&gt;
 failover of a StatefulSet Pod. The Ondat Fencing Controller gives the
 capability to enable fast failover of workloads when a node goes offline.&lt;/p&gt;
 &lt;p&gt;For more information on the rationale behind the design of StatefulSets please
-see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/pod-safety&#34;&gt;Pod
+see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubernetes/design-proposals-archive/blob/main/storage/pod-safety.md&#34;&gt;Pod
 Safety&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -316,12 +316,12 @@ as described in &lt;a href=&#34;/docs/operations/managing-host-storage&#34;&gt;M
 &lt;p&gt;Ondat is agnostic to the underlying storage and runs equally well on
 bare metal, in virtual machines or on cloud providers.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/concepts/storageos-cluster.png&#34; alt=&#34;Ondat cluster components&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Read about &lt;a href=&#34;https://storageos.com/storageos-cloud-native-storage&#34;&gt;the cloud native storage principles behind
+&lt;p&gt;Read about &lt;a href=&#34;https://www.ondat.io/platform/platform-overview&#34;&gt;the cloud native storage principles behind
 Ondat&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;ondat-on-kubernetes&#34;&gt;Ondat on Kubernetes&lt;/h3&gt;
 &lt;p&gt;Ondat is architected as a series of containers that fulfil separate,
 discrete functions.&lt;/p&gt;
-&lt;p&gt;Links where appropriate have been given to our open-source GitHub repo.&lt;/p&gt;
+&lt;p&gt;Links where appropriate have been given to our open-source GitHub repository.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/storageos/operator&#34;&gt;Ondat Cluster Operator&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -456,7 +456,7 @@ Ondat StorageClass.&lt;/li&gt;
 Kubernetes).&lt;/li&gt;
 &lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated
 on the same Node as the primary Volume. The NFS-Ganesha server thus uses the
-RWO Ondat Volume as its back end disk.&lt;/li&gt;
+RWO Ondat Volume as its backend disk.&lt;/li&gt;
 &lt;li&gt;The Ondat API Manager publishes the host IP and port for the NFS service
 endpoint, by creating a Kubernetes Service that points to the NFS-Ganesha
 server export endpoint.&lt;/li&gt;
@@ -476,7 +476,7 @@ application Node (where the user&amp;rsquo;s Pod is running) automatically recon
 &lt;li&gt;A Ondat RWX Volume is matched one-to-one with a PVC. Therefore the
 Ondat RWX Volume can only be accessed by Pods in the same Kubernetes
 namespace.&lt;/li&gt;
-&lt;li&gt;Ondat RWX Volumes support volume resize. Refer to the &lt;a href=&#34;/docs/operations/resize%22&#34;&gt;resize&lt;/a&gt;
+&lt;li&gt;Ondat RWX Volumes support volume resize. Refer to the &lt;a href=&#34;/docs/operations/resize&#34;&gt;resize&lt;/a&gt;
 documentation for more details.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -542,7 +542,7 @@ Availability Zone. For more detail on TAP, check the
 &lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically
-updated at run time.&lt;/p&gt;
+updated at runtime.&lt;/p&gt;
 &lt;h3 id=&#34;hard&#34;&gt;Hard&lt;/h3&gt;
 &lt;p&gt;Hard failure mode requires that the number of declared replicas matches the
 available number of replicas at all times. If a replica fails Ondat will
@@ -600,7 +600,7 @@ to be available.&lt;/p&gt;
 the cost of reliability. The minimum node count here is 1 as the loss of all
 replicas will be tolerated.&lt;/p&gt;
 &lt;p&gt;Minimum number of storage nodes = 1 (primary)&lt;/p&gt;
-&lt;p&gt;For details about how to use the labels on the VolumesCheck, see the &lt;a href=&#34;/docs/operations/failure-modes%22&#34;&gt;failure modes operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;For details about how to use the labels on the VolumesCheck, see the &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;failure modes operations&lt;/a&gt; page.&lt;/p&gt;
 
       </description>
     </item>
@@ -666,7 +666,7 @@ pod is terminated and the volume is detached from the node. The Ondat
 controlplane will then attach the volume to the node that holds the master
 deployment and resize the underlying block device and then run resize2fs to
 expand the filesystem.&lt;/p&gt;
-&lt;p&gt;For a walk through of how to resize a volume please see the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/p&gt;
+&lt;p&gt;For a walkthrough of how to resize a volume please see the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/p&gt;
 &lt;h2 id=&#34;volume-encryption&#34;&gt;Volume Encryption&lt;/h2&gt;
 &lt;p&gt;Volumes can be configured on creation to have encryption-at-rest. Data
 is encrypted with XTS-AES and decrypted upon use. Please see

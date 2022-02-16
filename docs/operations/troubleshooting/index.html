@@ -23,7 +23,7 @@
 <title>Troubleshooting | </title><meta property="og:title" content="Troubleshooting" />
 <meta property="og:description" content="This section is aimed to help you troubleshoot issues in your cluster, whether they are related to the Ondat installation, integration with orchestrators or common misconfigurations.
 Tools To be able to troubleshoot issues the Ondat CLI is required.
-Pod in pending because of mount error Issue: The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
+Pod in pending because of mount error Issue The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
 root@node1:~# kubectl -n kube-system describe $POD_ID (." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/troubleshooting/" /><meta property="article:section" content="docs" />
@@ -33,7 +33,7 @@ root@node1:~# kubectl -n kube-system describe $POD_ID (." />
 <meta itemprop="name" content="Troubleshooting">
 <meta itemprop="description" content="This section is aimed to help you troubleshoot issues in your cluster, whether they are related to the Ondat installation, integration with orchestrators or common misconfigurations.
 Tools To be able to troubleshoot issues the Ondat CLI is required.
-Pod in pending because of mount error Issue: The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
+Pod in pending because of mount error Issue The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
 root@node1:~# kubectl -n kube-system describe $POD_ID (.">
 
 <meta itemprop="wordCount" content="2779">
@@ -41,7 +41,7 @@ root@node1:~# kubectl -n kube-system describe $POD_ID (.">
 <meta name="twitter:title" content="Troubleshooting"/>
 <meta name="twitter:description" content="This section is aimed to help you troubleshoot issues in your cluster, whether they are related to the Ondat installation, integration with orchestrators or common misconfigurations.
 Tools To be able to troubleshoot issues the Ondat CLI is required.
-Pod in pending because of mount error Issue: The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
+Pod in pending because of mount error Issue The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
 root@node1:~# kubectl -n kube-system describe $POD_ID (."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -628,6 +628,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1358,75 +1364,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#tools">Tools</a></li>
     <li><a href="#pod-in-pending-because-of-mount-error">Pod in pending because of mount error</a>
       <ul>
-        <li><a href="#issue">Issue:</a></li>
-        <li><a href="#reason">Reason:</a></li>
-        <li><a href="#assert">Assert:</a></li>
-        <li><a href="#solution">Solution:</a></li>
-        <li><a href="#assert-1">Assert:</a></li>
-        <li><a href="#solution-1">Solution:</a></li>
+        <li><a href="#issue">Issue</a></li>
+        <li><a href="#reason">Reason</a></li>
+        <li><a href="#assert">Assert</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#assert-1">Assert</a></li>
+        <li><a href="#solution-1">Solution</a></li>
       </ul>
     </li>
     <li><a href="#pvc-pending-state---failed-to-dial-ondat">PVC pending state - Failed to dial Ondat</a>
       <ul>
-        <li><a href="#issue-1">Issue:</a></li>
-        <li><a href="#reason-1">Reason:</a></li>
-        <li><a href="#assert-2">Assert:</a></li>
-        <li><a href="#solution-2">Solution:</a></li>
+        <li><a href="#issue-1">Issue</a></li>
+        <li><a href="#reason-1">Reason</a></li>
+        <li><a href="#assert-2">Assert</a></li>
+        <li><a href="#solution-2">Solution</a></li>
       </ul>
     </li>
     <li><a href="#pvc-pending-state---secret-missing">PVC pending state - Secret Missing</a>
       <ul>
-        <li><a href="#issue-2">Issue:</a></li>
-        <li><a href="#reason-2">Reason:</a></li>
-        <li><a href="#assert-3">Assert:</a></li>
-        <li><a href="#solution-3">Solution:</a></li>
+        <li><a href="#issue-2">Issue</a></li>
+        <li><a href="#reason-2">Reason</a></li>
+        <li><a href="#assert-3">Assert</a></li>
+        <li><a href="#solution-3">Solution</a></li>
       </ul>
     </li>
     <li><a href="#node-name-different-from-hostname">Node name different from Hostname</a>
       <ul>
         <li></li>
-        <li><a href="#reason-3">Reason:</a></li>
-        <li><a href="#solution-4">Solution:</a></li>
+        <li><a href="#reason-3">Reason</a></li>
+        <li><a href="#solution-4">Solution</a></li>
       </ul>
     </li>
     <li><a href="#peer-discovery---networking">Peer discovery - Networking</a>
       <ul>
-        <li><a href="#issue-4">Issue:</a></li>
-        <li><a href="#reason-4">Reason:</a></li>
-        <li><a href="#assert-4">Assert:</a></li>
-        <li><a href="#solution-5">Solution:</a></li>
+        <li><a href="#issue-4">Issue</a></li>
+        <li><a href="#reason-4">Reason</a></li>
+        <li><a href="#assert-4">Assert</a></li>
+        <li><a href="#solution-5">Solution</a></li>
       </ul>
     </li>
     <li><a href="#peer-discovery---pod-allocation">Peer discovery - Pod allocation</a>
       <ul>
-        <li><a href="#issue-5">Issue:</a></li>
-        <li><a href="#reason-5">Reason:</a></li>
-        <li><a href="#assert-5">Assert:</a></li>
-        <li><a href="#solution-6">Solution:</a></li>
+        <li><a href="#issue-5">Issue</a></li>
+        <li><a href="#reason-5">Reason</a></li>
+        <li><a href="#assert-5">Assert</a></li>
+        <li><a href="#solution-6">Solution</a></li>
       </ul>
     </li>
     <li><a href="#lio-initerror">LIO Init:Error</a>
       <ul>
-        <li><a href="#issue-6">Issue:</a></li>
-        <li><a href="#reason-6">Reason:</a></li>
+        <li><a href="#issue-6">Issue</a></li>
+        <li><a href="#reason-6">Reason</a></li>
         <li><a href="#assert-6">Assert</a></li>
-        <li><a href="#solution-7">Solution:</a></li>
+        <li><a href="#solution-7">Solution</a></li>
       </ul>
     </li>
     <li><a href="#lio-not-enabled">LIO not enabled</a>
       <ul>
-        <li><a href="#issue-7">Issue:</a></li>
-        <li><a href="#reason-7">Reason:</a></li>
+        <li><a href="#issue-7">Issue</a></li>
+        <li><a href="#reason-7">Reason</a></li>
         <li><a href="#assert-7">Assert</a></li>
-        <li><a href="#solution-8">Solution:</a></li>
+        <li><a href="#solution-8">Solution</a></li>
       </ul>
     </li>
     <li><a href="#openshift-ondat-pods-missing----daemonset-error">(OpenShift) Ondat pods missing &ndash; DaemonSet error</a>
       <ul>
-        <li><a href="#issue-8">Issue:</a></li>
-        <li><a href="#reason-8">Reason:</a></li>
-        <li><a href="#assert-8">Assert:</a></li>
-        <li><a href="#solution-9">Solution:</a></li>
+        <li><a href="#issue-8">Issue</a></li>
+        <li><a href="#reason-8">Reason</a></li>
+        <li><a href="#assert-8">Assert</a></li>
+        <li><a href="#solution-9">Solution</a></li>
       </ul>
     </li>
     <li><a href="#getting-help">Getting Help</a></li>
@@ -1484,7 +1490,7 @@ orchestrators or common misconfigurations.</p>
 <h2 id="tools">Tools</h2>
 <p>To be able to troubleshoot issues the <a href="/docs/reference/cli/">Ondat CLI</a> is required.</p>
 <h2 id="pod-in-pending-because-of-mount-error">Pod in pending because of mount error</h2>
-<h3 id="issue">Issue:</h3>
+<h3 id="issue">Issue</h3>
 <p>The output of <code>kubectl describe pod $POD_ID</code> contains <code>no such file or directory</code> and references the Ondat volume device file.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# kubectl -n kube-system describe <span style="color:#000">$POD_ID</span>
 <span style="color:#ce5c00;font-weight:bold">(</span>...<span style="color:#ce5c00;font-weight:bold">)</span>
@@ -1492,7 +1498,7 @@ Events:
   <span style="color:#ce5c00;font-weight:bold">(</span>...<span style="color:#ce5c00;font-weight:bold">)</span>
   Normal   Scheduled         11s                default-scheduler  Successfully assigned default/d1 to node3
   Warning  FailedMount       4s <span style="color:#ce5c00;font-weight:bold">(</span>x4 over 9s<span style="color:#ce5c00;font-weight:bold">)</span>    kubelet, node3     MountVolume.SetUp failed <span style="color:#204a87;font-weight:bold">for</span> volume <span style="color:#4e9a06">&#34;pvc-f2a49198-c00c-11e8-ba01-0800278dc04d&#34;</span> : stat /var/lib/storageos/volumes/d9df3549-26c0-4cfc-62b4-724b443069a1: no such file or directory
-</code></pre></div><h3 id="reason">Reason:</h3>
+</code></pre></div><h3 id="reason">Reason</h3>
 <p>There are two main reasons this issue may arise:</p>
 <ul>
 <li>The Ondat <code>DEVICE_DIR</code> location is wrongly configured when using Kubelet
@@ -1505,10 +1511,10 @@ of OpenShift deploy the Kubelet as a container, because of this, the device
 files that Ondat creates to mount into the containers need to be visible to
 the kubelet. Ondat can be configured to share the device directory.</p>
 <p>Modern installations use CSI, which handles the complexity internally.</p>
-<h3 id="assert">Assert:</h3>
+<h3 id="assert">Assert</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~# kubectl -n default describe stos <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;Shared Dir&#34;</span>
   Shared Dir:      <span style="color:#8f5902;font-style:italic"># &lt;-- Shouldn&#39;t be blank</span>
-</code></pre></div><h3 id="solution">Solution:</h3>
+</code></pre></div><h3 id="solution">Solution</h3>
 <p>The Cluster Operator Custom Definition should specify the SharedDir option as follows.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">spec:
   sharedDir: <span style="color:#4e9a06">&#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&#39;</span> <span style="color:#8f5902;font-style:italic"># Needed when Kubelet as a container</span>
@@ -1522,7 +1528,7 @@ Resource</a>.</p>
 <blockquote>
 <p>⚠️ Applies only if Option 1 is configured properly.</p>
 </blockquote>
-<h3 id="assert-1">Assert:</h3>
+<h3 id="assert-1">Assert</h3>
 <p><strong>If not using the Kubelet as a container</strong>, SSH into one of the nodes and check if
 <code>/var/lib/storageos/volumes</code> is empty. If so, exec into any Ondat pod and
 check the same directory.</p>
@@ -1545,7 +1551,7 @@ d529b340-0189-15c7-f8f3-33bfc4cf03fa
 ff537c5b-e295-e518-a340-0b6308b69f74
 </code></pre></div><p>If the directory inside the container and the device files are visible,
 disabled mount propagation is the cause.</p>
-<h3 id="solution-1">Solution:</h3>
+<h3 id="solution-1">Solution</h3>
 <p>Older versions of Kubernetes need to enable mount propagation as it is not
 enabled by default. Most Kubernetes distributions allow MountPropagation to be
 enabled using FeatureGates. Rancher specifically, needs to enable it in the
@@ -1554,7 +1560,7 @@ enabled using FeatureGates. Rancher specifically, needs to enable it in the
 <h2 id="pvc-pending-state---failed-to-dial-ondat">PVC pending state - Failed to dial Ondat</h2>
 <p>A created PVC remains in pending state making pods that need to mount that PVC
 unable to start.</p>
-<h3 id="issue-1">Issue:</h3>
+<h3 id="issue-1">Issue</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~/# kubectl get pvc
 NAME      STATUS        VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
 vol-1     Pending                                                                            storageos       7s
@@ -1565,7 +1571,7 @@ Events:
   Type     Reason              Age               From                         Message
   ----     ------              ----              ----                         -------
   Warning  ProvisioningFailed  7s <span style="color:#ce5c00;font-weight:bold">(</span>x2 over 18s<span style="color:#ce5c00;font-weight:bold">)</span>  persistentvolume-controller  Failed to provision volume with StorageClass <span style="color:#4e9a06">&#34;storageos&#34;</span>: Get http://storageos-cluster/version: failed to dial all known cluster members, <span style="color:#ce5c00;font-weight:bold">(</span>10.233.59.206:5705<span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><h3 id="reason-1">Reason:</h3>
+</code></pre></div><h3 id="reason-1">Reason</h3>
 <p>For non CSI installations of Ondat, Kubernetes uses the Ondat
 API endpoint to communicate. If that communication fails, relevant actions such
 as create or mount volume can&rsquo;t be transmitted to Ondat, hence the PVC
@@ -1574,7 +1580,7 @@ so it never sent back an acknowledgement.</p>
 <p>In this case, the Event message indicates that Ondat API is not responding,
 implying that Ondat is not running. For Kubernetes to define Ondat pods
 ready, the health check must pass.</p>
-<h3 id="assert-2">Assert:</h3>
+<h3 id="assert-2">Assert</h3>
 <p>Check the status of Ondat pods.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~/# kubectl -n kube-system get pod --selector <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#8f5902;font-style:italic"># for CSI add --selector kind=daemonset</span>
 NAME              READY     STATUS    RESTARTS   AGE
@@ -1590,7 +1596,7 @@ available.</p>
 a PVC is created before Ondat finish starting, the PVC will be created
 eventually.</p>
 </blockquote>
-<h3 id="solution-2">Solution:</h3>
+<h3 id="solution-2">Solution</h3>
 <ul>
 <li>Ondat health check takes 60 seconds of grace before reporting as READY.
 If Ondat is starting properly after that period, the volume will be
@@ -1601,7 +1607,7 @@ be to troubleshoot the installation.</li>
 <h2 id="pvc-pending-state---secret-missing">PVC pending state - Secret Missing</h2>
 <p>A created PVC remains in pending state making pods that need to mount that PVC
 unable to start.</p>
-<h3 id="issue-2">Issue:</h3>
+<h3 id="issue-2">Issue</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe pvc <span style="color:#000">$PVC</span>
 <span style="color:#ce5c00;font-weight:bold">(</span>...<span style="color:#ce5c00;font-weight:bold">)</span>
 Events:
@@ -1609,7 +1615,7 @@ Events:
   ----     ------              ----               ----                         -------
   Warning  ProvisioningFailed  13s <span style="color:#ce5c00;font-weight:bold">(</span>x2 over 28s<span style="color:#ce5c00;font-weight:bold">)</span>  persistentvolume-controller  Failed to provision volume with StorageClass <span style="color:#4e9a06">&#34;storageos&#34;</span>: failed to get secret from <span style="color:#ce5c00;font-weight:bold">[</span><span style="color:#4e9a06">&#34;storageos&#34;</span>/<span style="color:#4e9a06">&#34;storageos-api&#34;</span><span style="color:#ce5c00;font-weight:bold">]</span>
 
-</code></pre></div><h3 id="reason-2">Reason:</h3>
+</code></pre></div><h3 id="reason-2">Reason</h3>
 <p>For non CSI installations of Ondat, Kubernetes uses the Ondat
 API endpoint to communicate. If that communication fails, relevant actions such
 as create or mount a volume can&rsquo;t be transmitted to Ondat, and the PVC
@@ -1620,7 +1626,7 @@ retrieves the API endpoint and the authentication parameters. If that secret is
 incorrect or missing, the connections won&rsquo;t be established. It is common to see
 that the Secret has been deployed in a different namespace where the
 StorageClass expects it or that is has been deployed with a different name.</p>
-<h3 id="assert-3">Assert:</h3>
+<h3 id="assert-3">Assert</h3>
 <ol>
 <li>
 <p>Check the StorageClass parameters to know where the Secret is expected to be found.</p>
@@ -1650,40 +1656,40 @@ Error from server <span style="color:#ce5c00;font-weight:bold">(</span>NotFound<
 the right location.</p>
 </li>
 </ol>
-<h3 id="solution-3">Solution:</h3>
+<h3 id="solution-3">Solution</h3>
 <p>Deploy Ondat following the <a href="/docs/introduction/quickstart">installation procedures</a>. If you are using the manifests
 provided for Kubernetes to deploy Ondat rather than using automated
 provisioners, make sure that the StorageClass parameters and the Secret
 reference match.</p>
 <h2 id="node-name-different-from-hostname">Node name different from Hostname</h2>
-<h4 id="issue-3">Issue:</h4>
+<h4 id="issue-3">Issue</h4>
 <p>Ondat nodes can&rsquo;t join the cluster showing the following log entries.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:47:02Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;failed to start api&#34;</span> <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;error verifying UUID: UUID aed3275f-846b-1f75-43a1-adbfec8bf974 has already been registered and has hostname &#39;debian-4&#39;, not &#39;node4&#39;&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">command</span>
-</code></pre></div><h3 id="reason-3">Reason:</h3>
+</code></pre></div><h3 id="reason-3">Reason</h3>
 <p>The Ondat registration process to start the cluster uses the hostname of
 the node where the Ondat container is running, provided by the Kubelet.
 However, Ondat verifies the network hostname of the OS as a prestart check
 to make sure it can communicate with other nodes. If those names don&rsquo;t match,
 Ondat will be unable to start.</p>
-<h3 id="solution-4">Solution:</h3>
+<h3 id="solution-4">Solution</h3>
 <p>Make sure the hostnames match with the Kubernetes advertised names. If
 you have changed the hostname of your nodes, make sure that you restart the
 nodes to apply the change.</p>
 <h2 id="peer-discovery---networking">Peer discovery - Networking</h2>
-<h3 id="issue-4">Issue:</h3>
+<h3 id="issue-4">Issue</h3>
 <p>Ondat nodes can&rsquo;t join the cluster showing the following logs after one
 minute of container uptime.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>info <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;not first cluster node, joining first node&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">address</span><span style="color:#ce5c00;font-weight:bold">=</span>172.28.128.5 <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">host</span><span style="color:#ce5c00;font-weight:bold">=</span>node3 <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp <span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span>172.28.128.6
 <span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;could not retrieve cluster config from api&#34;</span> <span style="color:#000">status_code</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">503</span>
 <span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;failed to join existing cluster&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">endpoint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&#34;</span> <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;503 Service Unavailable&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp
 <span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>info <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;retrying cluster join in 5 seconds...&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp
-</code></pre></div><h3 id="reason-4">Reason:</h3>
+</code></pre></div><h3 id="reason-4">Reason</h3>
 <p>Ondat uses a gossip protocol to discover nodes in the cluster. When
 Ondat starts, one or more nodes can be referenced so new nodes can query
 existing nodes for the list of members. This error indicates that the node
 can&rsquo;t connect to any of the nodes in the known list. The known list is defined
 in the <code>JOIN</code> variable.</p>
-<h3 id="assert-4">Assert:</h3>
+<h3 id="assert-4">Assert</h3>
 <p>It is likely that ports are block by a firewall.</p>
 <p>SSH into one of your nodes and check connectivity to the rest of the nodes.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Successfull execution:</span>
@@ -1748,16 +1754,16 @@ node2   node3.etcd      172.28.128.5:5707  1.270076ms   OK
 node2   node1.etcd      172.28.128.3:5707  1.218522ms   OK
 node2   node1.api       172.28.128.3:5705  1.363071ms   OK
 node2   node1.nats      172.28.128.3:5708  1.349383ms   OK
-</code></pre></div><h3 id="solution-5">Solution:</h3>
+</code></pre></div><h3 id="solution-5">Solution</h3>
 <p>Open ports following the <a href="/docs/prerequisites/firewalls">prerequisites page</a>.</p>
 <h2 id="peer-discovery---pod-allocation">Peer discovery - Pod allocation</h2>
-<h3 id="issue-5">Issue:</h3>
+<h3 id="issue-5">Issue</h3>
 <p>Ondat nodes can&rsquo;t join the cluster and show the following log entries.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>info <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;not first cluster node, joining first node&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">address</span><span style="color:#ce5c00;font-weight:bold">=</span>172.28.128.5 <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">host</span><span style="color:#ce5c00;font-weight:bold">=</span>node3 <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp <span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span>172.28.128.6
 <span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;could not retrieve cluster config from api&#34;</span> <span style="color:#000">status_code</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">503</span>
 <span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;failed to join existing cluster&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">endpoint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&#34;</span> <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;503 Service Unavailable&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp
 <span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>info <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;retrying cluster join in 5 seconds...&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp
-</code></pre></div><h3 id="reason-5">Reason:</h3>
+</code></pre></div><h3 id="reason-5">Reason</h3>
 <p>Ondat uses a gossip protocol to discover the nodes in the cluster. When
 Ondat starts, one or more active nodes must be referenced so new nodes can
 query existing nodes for the list of members. This error indicates that the node
@@ -1772,26 +1778,26 @@ Ondat pods to master nodes, due to the presence of the
 <code>node-role.kubernetes.io/master:NoSchedule</code> taint that is typically present. In
 such cases the <code>JOIN</code> variable must not contain master nodes or the Ondat
 cluster will remain unable to start.</p>
-<h3 id="assert-5">Assert:</h3>
+<h3 id="assert-5">Assert</h3>
 <p>Check that the first node of the <code>JOIN</code> variable started properly.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">root@node1:~/# kubectl -n kube-system describe ds/storageos <span style="color:#000;font-weight:bold">|</span> grep JOIN
     JOIN:          172.28.128.3,172.28.128.4,172.28.128.5
 root@node1:~/# kubectl -n kube-system get pod -o wide <span style="color:#000;font-weight:bold">|</span> grep 172.28.128.3
 storageos-8zqxl   1/1       Running   <span style="color:#0000cf;font-weight:bold">0</span>          2m        172.28.128.3   node1
-</code></pre></div><h3 id="solution-6">Solution:</h3>
+</code></pre></div><h3 id="solution-6">Solution</h3>
 <p>Make sure that the <code>JOIN</code> variable doesn&rsquo;t specify the master nodes. In case
 you are using the discovery service, it is necessary to ensure that the
 DaemonSet won&rsquo;t allocate Pods on the masters. This can be achieved with taints,
 node selectors or labels.</p>
 <p>For installations with the Ondat operator you can specify which nodes to
-deploy Ondat on using nodeSelectors. See examples in the <a href="docs/reference/cluster-operator/examples/#installing-to-a-subset-of-nodes">Cluster Operator
+deploy Ondat on using nodeSelectors. See examples in the <a href="/docs/reference/cluster-operator/examples/#installing-to-a-subset-of-nodes">Cluster Operator
 Examples
 page</a>.</p>
 <p>For more advanced installations using compute-only and storage nodes, check the
 <code>storageos.com/deployment=computeonly</code> label that can be added to the nodes
 through Kubernetes node labels, or Ondat in the <a href="/docs/reference/labels">Labels</a> page.</p>
 <h2 id="lio-initerror">LIO Init:Error</h2>
-<h3 id="issue-6">Issue:</h3>
+<h3 id="issue-6">Issue</h3>
 <p>Ondat pods not starting with <code>Init:Error</code></p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n kube-system get pod
 NAME              READY     STATUS              RESTARTS   AGE
@@ -1799,7 +1805,7 @@ storageos-2kwqx   0/3       Init:Err             <span style="color:#0000cf;font
 storageos-cffcr   0/3       Init:Err             <span style="color:#0000cf;font-weight:bold">0</span>          6s
 storageos-d4f69   0/3       Init:Err             <span style="color:#0000cf;font-weight:bold">0</span>          6s
 storageos-nhq7m   0/3       Init:Err             <span style="color:#0000cf;font-weight:bold">0</span>          6s
-</code></pre></div><h3 id="reason-6">Reason:</h3>
+</code></pre></div><h3 id="reason-6">Reason</h3>
 <p>This indicates that since the Linux open source SCSI drivers are not enabled,
 Ondat cannot start. The Ondat DaemonSet enables the required kernel
 modules on the host system. If you are seeing these errors it is because that
@@ -1816,30 +1822,30 @@ executing modprobe -b target_core_mod
 Module tcm_loop is not running
 executing modprobe -b tcm_loop
 modprobe: FATAL: Module tcm_loop not found.
-</code></pre></div><h3 id="solution-7">Solution:</h3>
+</code></pre></div><h3 id="solution-7">Solution</h3>
 <p>Install the required kernel modules (usually found in the
 <code>linux-image-extra-$(uname -r)</code> package of your distribution) on your nodes
 following this <a href="/docs/prerequisites/systemconfiguration">prerequisites page</a> and delete Ondat
 pods, allowing the DaemonSet to create the pods again.</p>
 <h2 id="lio-not-enabled">LIO not enabled</h2>
-<h3 id="issue-7">Issue:</h3>
+<h3 id="issue-7">Issue</h3>
 <p>Ondat node can&rsquo;t start and shows the following log entries.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T14:34:40Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;liocheck returned error&#34;</span> <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>liocheck <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;exit status 1&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>dataplane <span style="color:#000">stderr</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;Sysfs root &#39;/sys/kernel/config/target&#39; is missing, is kernel configfs present and target_core_mod loaded? category=fslio level=warn\nRuntime error checking stage &#39;target_core_mod&#39;: SysFs root missing category=fslio level=warn\nliocheck: FAIL (lio_capable_system() returns failure) category=fslio level=fatal\n&#34;</span> <span style="color:#000">stdout</span><span style="color:#ce5c00;font-weight:bold">=</span>
 <span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T14:34:40Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;failed to start dataplane services&#34;</span> <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;system dependency check failed: exit status 1&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">command</span>
-</code></pre></div><h3 id="reason-7">Reason:</h3>
+</code></pre></div><h3 id="reason-7">Reason</h3>
 <p>This indicates that one or more kernel modules required for Ondat are
 not loaded.</p>
 <h3 id="assert-7">Assert</h3>
 <p>The following kernel modules must be enabled in the host.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsmod  <span style="color:#000;font-weight:bold">|</span> egrep <span style="color:#4e9a06">&#34;^tcm_loop|^target_core_mod|^target_core_file|^configfs&#34;</span>
-</code></pre></div><h3 id="solution-8">Solution:</h3>
+</code></pre></div><h3 id="solution-8">Solution</h3>
 <p>Install the required kernel modules (usually found in the
 <code>linux-image-extra-$(uname -r)</code> package of your distribution) on your nodes
 following this <a href="/docs/prerequisites/systemconfiguration">prerequisites page</a> and restart the container.</p>
 <h2 id="openshift-ondat-pods-missing----daemonset-error">(OpenShift) Ondat pods missing &ndash; DaemonSet error</h2>
 <p>Ondat DaemonSet doesn&rsquo;t have any pod replicas. The DaemonSet couldn&rsquo;t
 allocate any Pod due to security issues.</p>
-<h3 id="issue-8">Issue:</h3>
+<h3 id="issue-8">Issue</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ce5c00;font-weight:bold">[</span>root@master02 standard<span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#8f5902;font-style:italic"># oc get pod</span>
 No resources found.
 <span style="color:#ce5c00;font-weight:bold">[</span>root@master02 standard<span style="color:#ce5c00;font-weight:bold">]</span><span style="color:#8f5902;font-style:italic"># oc describe daemonset storageos</span>
@@ -1848,11 +1854,11 @@ Events:
   Type     Reason        Age                From                  Message
   ----     ------        ----               ----                  -------
   Warning  FailedCreate  0s <span style="color:#ce5c00;font-weight:bold">(</span>x12 over 10s<span style="color:#ce5c00;font-weight:bold">)</span>  daemonset-controller  Error creating: pods <span style="color:#4e9a06">&#34;storageos-&#34;</span> is forbidden: unable to validate against any security context constraint: <span style="color:#ce5c00;font-weight:bold">[</span>provider restricted: .spec.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used provider restricted: .spec.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>1<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>2<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>3<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: <span style="color:#4e9a06">&#34;SYS_ADMIN&#34;</span>: capability may not be added spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: <span style="color:#4e9a06">&#34;SYS_ADMIN&#34;</span>: capability may not be added spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used<span style="color:#ce5c00;font-weight:bold">]</span>
-</code></pre></div><h3 id="reason-8">Reason:</h3>
+</code></pre></div><h3 id="reason-8">Reason</h3>
 <p>The OpenShift cluster has security context constraint policies enabled that
 forbid any pod, without an explicitly set policy for the service account, to
 be allocated.</p>
-<h3 id="assert-8">Assert:</h3>
+<h3 id="assert-8">Assert</h3>
 <p>Check if the Ondat ServiceAccount can create pods with enough permissions</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc get scc privileged -o yaml <span style="color:#8f5902;font-style:italic"># Or custom scc with enough privileges</span>
 <span style="color:#ce5c00;font-weight:bold">(</span>...<span style="color:#ce5c00;font-weight:bold">)</span>
@@ -1865,7 +1871,7 @@ users:
 - system:serviceaccount:tiller:tiller
 </code></pre></div><p>If the Ondat sa system:serviceaccount:storageos:storageos is in the
 privileged scc it will be able to create pods.</p>
-<h3 id="solution-9">Solution:</h3>
+<h3 id="solution-9">Solution</h3>
 <p>Add the ServiceAccount system:serviceaccount:storageos:storageos to a scc with
 enough privileges.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc adm policy add-scc-to-user privileged system:serviceaccount:storageos:storageos

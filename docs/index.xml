@@ -24,9 +24,9 @@
         
         &lt;p&gt;To install the operator follow the installation page for your orchestrator.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/install/kubernetes.md&#34;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/install/rancher.md&#34;&gt;Rancher&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/install/openshift.md&#34;&gt;OpenShift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/install/kubernetes&#34;&gt;Kubernetes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/install/rancher&#34;&gt;Rancher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/install/openshift&#34;&gt;OpenShift&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
       </description>
@@ -43,7 +43,7 @@
         
         &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure the
-&lt;a href=&#34;/docs/prerequisites/_index&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
+&lt;a href=&#34;/docs/prerequisites&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
 satisfied before proceeding.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
@@ -107,7 +107,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-121&#34;&gt;Install Ondat on Kubernetes 1.21&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-1&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
@@ -155,7 +155,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-120&#34;&gt;Install Ondat on Kubernetes 1.20&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-2&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
@@ -203,7 +203,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;c
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs//operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-119&#34;&gt;Install Ondat on Kubernetes 1.19&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-3&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
@@ -347,7 +347,7 @@ noisy or unpredictable environments. Not only is Ondat V2 much lighter on
 your etcd cluster, but it&amp;rsquo;s a lot more tolerant of transient failure conditions
 that are often found in cloud environments, or clusters under heavy load.&lt;/p&gt;
 &lt;p&gt;We spent some time describing and testing our internal state machine using the
-&lt;a href=&#34;https://en.wikipedia.org/wiki/TLA%2B&#34;&gt;TLA+&lt;/a&gt; formal verification language. This
+&lt;a href=&#34;https://en.wikipedia.org/wiki/TLA+&#34;&gt;TLA+&lt;/a&gt; formal verification language. This
 allows us to have a much higher degree of confidence that our algorithms will
 behave correctly, particularly under hard-to-test edge cases and failure
 conditions.&lt;/p&gt;
@@ -800,8 +800,6 @@ which project you created the secret in.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create the Custom Resource&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;The StorageOS cluster resource describes the Ondat cluster that will be
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
@@ -831,7 +829,7 @@ spec:
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       operator: In&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       values:&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       - &amp;#34;true&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;6&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify that the StorageOS Cluster resource status is &lt;strong&gt;Running&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -917,8 +915,6 @@ which project you created the secret in.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create the CR Definition:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;The Ondat cluster resource describes the Ondat cluster that will be
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
@@ -948,7 +944,7 @@ spec:
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       operator: In&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       values:&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       - &amp;#34;true&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify that the StorageOS Cluster status is &lt;strong&gt;Running&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1107,7 +1103,7 @@ default), irrespective of what NameSpace the CR is defined in.&lt;/p&gt;
 &lt;h1 id=&#34;examples&#34;&gt;Examples&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can checkout all the parameters configurable in the
-&lt;a href=&#34;configuration.md&#34;&gt;configuration&lt;/a&gt;
+&lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;configuration&lt;/a&gt;
 page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;All examples must reference the &lt;code&gt;storageos-api&lt;/code&gt; Secret.&lt;/p&gt;
@@ -1145,10 +1141,8 @@ secret with the Etcd client certificate, client key and CA.&lt;/p&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;Different provisioners and Kubernetes distributions use node labels
 differently to specify master vs workers. Node Taints are not enough to
-make sure Ondat doesn&amp;rsquo;t start in a node. The
-&lt;a href=&#34;https://docs.storageos.com/docs/reference/clusterdiscovery&#34;&gt;JOIN&lt;/a&gt;
-variable is defined by the operator by selecting all the nodes that match the
-&lt;code&gt;nodeSelectorTerms&lt;/code&gt;.&lt;/p&gt;
+make sure Ondat doesn&amp;rsquo;t start in a node. The &lt;code&gt;JOIN&lt;/code&gt; variable is defined
+by the operator by selecting all the nodes that match the &lt;code&gt;nodeSelectorTerms&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;enabling-csi&#34;&gt;Enabling CSI&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -1229,7 +1223,7 @@ the OS version and image used - some platforms require extra mainline kernel
 modules to be enabled.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;catalog-install&#34;&gt;Catalog Install&lt;/h2&gt;
-&lt;p&gt;Ondat is a Certified application in the &lt;a href=&#34;https://rancher.com/docs/rancher/v2.x/en/catalog/&#34;&gt;Rancher
+&lt;p&gt;Ondat is a Certified application in the &lt;a href=&#34;https://rancher.com/docs/rancher/v2.0-v2.4/en/helm-charts/&#34;&gt;Rancher
 Catalog&lt;/a&gt;. You can install
 Ondat using the Rancher application install.&lt;/p&gt;
 &lt;p&gt;Before completing the steps below, you will need an etcd cluster. For
@@ -1280,7 +1274,7 @@ personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&
 For convenience, it is often easiest to port forward the service using the
 following kubectl incantation (this will block, so a second terminal window may
 be advisable):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt;
 page to obtain and apply a license.&lt;/p&gt;
 &lt;p&gt;Installation of Ondat is now complete.&lt;/p&gt;
@@ -1464,8 +1458,8 @@ Operator is upgrading.&lt;/p&gt;
 
 NAME            REVISION        STATUS          CHART                           APP VERSION     NAMESPACE   
 storageos-v1   4               DEPLOYED        storageos-operator-0.2.11       1.3.0           storageos-operator
-&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm repo update
-$ helm upgrade $NAME storageos/storageos-operator
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;helm repo update
+helm upgrade $NAME storageos/storageos-operator
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;💡 When you run the above command Ondat Operator resources will be updated.
 Since, the Update Strategy of the Ondat Operator Deployment is set to
@@ -1819,7 +1813,7 @@ generally see the CRI-O documentation
 metadata and manage distributed configuration state. For production environments
 and testing of production workloads, &lt;strong&gt;we recommend deploying an external etcd
 cluster.&lt;/strong&gt; For more details about, and an example of, how to run etcd, see the
-&lt;a href=&#34;/docs/operations/external-etcd&#34;&gt;External etcd Operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;a href=&#34;/docs/operations/etcd&#34;&gt;External etcd Operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;It is highly recommended to use external etcd for &lt;strong&gt;cloud environments&lt;/strong&gt; and
 place the etcd cluster on stable nodes. Placing the etcd on nodes that are
 recycled often might affect the normal operations of Ondat.&lt;/p&gt;
@@ -1834,7 +1828,7 @@ workloads apart from the etcd servers.&lt;/p&gt;
 &lt;p&gt;We recommend creating a separate filesystem for Ondat to mitigate the risk
 of filling the root filesystem on nodes. This has to be done for each node in
 the cluster.&lt;/p&gt;
-&lt;p&gt;Follow the &lt;a href=&#34;operations/managing-host-storage.md&#34;&gt;managing host storage&lt;/a&gt; best practices page for more
+&lt;p&gt;Follow the &lt;a href=&#34;/docs/operations/managing-host-storage&#34;&gt;managing host storage&lt;/a&gt; best practices page for more
 details.&lt;/p&gt;
 &lt;h2 id=&#34;resource-reservations&#34;&gt;Resource reservations&lt;/h2&gt;
 &lt;p&gt;Ondat resource consumption depends on the workloads and the Ondat
@@ -1864,7 +1858,7 @@ replica must have at least 3 storage nodes. When using Volumes with 2
 replicas, at least 4 storage nodes, 3 replicas, 5 nodes, etc.&lt;/p&gt;
 &lt;p&gt;Minimum number of storage nodes = 1 (primary) + N (replicas) + 1&lt;/p&gt;
 &lt;p&gt;For more information, see the section on
-&lt;a href=&#34;concepts/replication.md#number-of-nodes&#34;&gt;replication&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;/docs/concepts/replication#number-of-nodes&#34;&gt;replication&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-api-usernamepassword&#34;&gt;Ondat API username/password&lt;/h2&gt;
 &lt;p&gt;The API grants full access to Ondat functionality, therefore we recommend
 that the default administrative password of &amp;lsquo;storageos&amp;rsquo; is reset to something
@@ -1904,7 +1898,7 @@ define Ondat pools based on node selectors to collocate volumes.&lt;/p&gt;
 &lt;p&gt;Losing a few nodes at the same time could cause the loss of data even when
 volume replicas are being used.&lt;/p&gt;
 &lt;h2 id=&#34;port-blocking&#34;&gt;Port blocking&lt;/h2&gt;
-&lt;p&gt;Ondat exposes ports to operate. It is recommended that the &lt;a href=&#34;prerequisites/firewalls.md&#34;&gt;ports&lt;/a&gt; are not accessible from outside
+&lt;p&gt;Ondat exposes ports to operate. It is recommended that the &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;ports&lt;/a&gt; are not accessible from outside
 the scope of your cluster.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-in-docker-ee&#34;&gt;Ondat in Docker EE&lt;/h2&gt;
 &lt;p&gt;Ondat does not support running on Swarm nodes nor on mixed (Kubernetes and
@@ -1927,7 +1921,7 @@ nodes.&lt;/p&gt;
 Input Output) contexts to serve I/O requests without blocking. Ondat
 requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment,
 whether master or replica).&lt;/p&gt;
-&lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite.&lt;/h2&gt;
+&lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite&lt;/h2&gt;
 &lt;p&gt;By default there is a maximum number of AIO contexts that can be allocated at
 once.&lt;/p&gt;
 &lt;p&gt;The current and maximum number of AIO requests is visible in the virtual
@@ -1942,7 +1936,7 @@ EAGAIN. For more information please see the Linux kernel docs
 the number of volumes that can be deployed per node. Trying to provision
 additional deployments once the &lt;code&gt;aio-max-nr&lt;/code&gt; has been reached will fail as the
 kernel will be unable to create enough new AIO contexts.&lt;/p&gt;
-&lt;h2 id=&#34;increasing-your-aio-context-cap&#34;&gt;Increasing your AIO context cap.&lt;/h2&gt;
+&lt;h2 id=&#34;increasing-your-aio-context-cap&#34;&gt;Increasing your AIO context cap&lt;/h2&gt;
 &lt;p&gt;If your nodes &lt;code&gt;aio-max-nr&lt;/code&gt; is set too low you can either provision additional
 nodes to reduce the number of deployments per node, or increase the &lt;code&gt;aio-max-nr&lt;/code&gt;
 kernel parameter.&lt;/p&gt;
@@ -1950,7 +1944,7 @@ kernel parameter.&lt;/p&gt;
 example line:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;fs.aio-max-nr &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1048576&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To activate the new settings, run the following command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ sysctl -p /etc/sysctl.conf
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sysctl -p /etc/sysctl.conf
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       </description>
     </item>
@@ -2248,7 +2242,7 @@ chmod &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0755&lt;/span&g
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Create the systemd environment file&lt;/p&gt;
-&lt;p&gt;On all nodes that will run etcd create a systemd environemnt file
+&lt;p&gt;On all nodes that will run etcd create a systemd environment file
 &lt;code&gt;/etc/etcd.conf&lt;/code&gt; which has the IPs of all the nodes. The &lt;code&gt;NODE_IP&lt;/code&gt; will
 need to change to correspond to the node IP where the environment file
 resides. &lt;code&gt;NODE1_IP&lt;/code&gt;, &lt;code&gt;NODE2_IP&lt;/code&gt; and &lt;code&gt;NODE3_IP&lt;/code&gt; will remain the same across
@@ -2345,9 +2339,9 @@ look as below:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Reload and start the etc3 systemd service&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ systemctl daemon-reload
-$ systemctl &lt;span style=&#34;color:#204a87&#34;&gt;enable&lt;/span&gt; etcd3.service
-$ systemctl start  etcd3.service
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;systemctl daemon-reload
+systemctl &lt;span style=&#34;color:#204a87&#34;&gt;enable&lt;/span&gt; etcd3.service
+systemctl start  etcd3.service
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Installation Verification&lt;/p&gt;
@@ -2469,7 +2463,7 @@ having a network partition between them will result in quorum lost.&lt;/p&gt;
 &lt;h2 id=&#34;bind-etcd-ips-to-kubernetes-service&#34;&gt;Bind Etcd IPs to Kubernetes Service&lt;/h2&gt;
 &lt;p&gt;Kubernetes external services use a DNS name to reference external endpoints,
 making them easy to reference from inside the cluster.  You can use the
-example from the &lt;a href=&#34;https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc&#34;&gt;helper github repository&lt;/a&gt;
+example from the &lt;a href=&#34;https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc&#34;&gt;helper GitHub repository&lt;/a&gt;
 to deploy the external Service. Using an external service can make monitoring
 of etcd from Prometheus easier.&lt;/p&gt;
 &lt;h2 id=&#34;using-etcd-with-ondat&#34;&gt;Using Etcd with Ondat&lt;/h2&gt;
@@ -2540,7 +2534,7 @@ help speed up ticket triage and resolution considerably&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;ondat-support-bundle&#34;&gt;Ondat Support Bundle&lt;/h3&gt;
 &lt;p&gt;Ondat provides the ability to generate a support bundle that aggregates
-cluster information. See &lt;a href=&#34;reference/bundles/support_bundle.md&#34;&gt;Support Bundle&lt;/a&gt; for a list of what is
+cluster information. See &lt;a href=&#34;/docs/reference/bundles/support_bundle&#34;&gt;Support Bundle&lt;/a&gt; for a list of what is
 included.&lt;/p&gt;
 &lt;p&gt;Ondat engineers might ask for a support bundle to be generated
 during support cases.&lt;/p&gt;
@@ -2548,7 +2542,7 @@ during support cases.&lt;/p&gt;
 removed once it is no longer needed. If the information is sensitive and can&amp;rsquo;t
 be given to Ondat, please make sure that the support engineers have as
 much information about your environment as possible.&lt;/p&gt;
-&lt;p&gt;Refer to the &lt;a href=&#34;reference/bundles/support_bundle.md&#34;&gt;Support Bundle&lt;/a&gt; documentation page for details
+&lt;p&gt;Refer to the &lt;a href=&#34;/docs/reference/bundles/support_bundle&#34;&gt;Support Bundle&lt;/a&gt; documentation page for details
 of how to generate a bundle.&lt;/p&gt;
 
       </description>
@@ -2583,7 +2577,7 @@ touch with us. The fastest way to get in touch is to &lt;a href=&#34;https://sla
 purposes. The etcd we install uses a 3 node cluster with local storage, and
 as such is not suitable for production workloads. However, for evaluation
 purposes it should be sufficient. For production deployments, please see our
-main &lt;a href=&#34;prerequisites/etcd.md&#34;&gt;documentation pages&lt;/a&gt;.&lt;/p&gt;
+main &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;documentation pages&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;A standard Ondat installation uses the Ondat operator, which performs
 most platform-specific configuration for you. The Ondat operator has been
 certified by &lt;a href=&#34;https://storageos.com/red-hat/&#34;&gt;Red Hat&lt;/a&gt; and is &lt;a href=&#34;https://github.com/storageos/operator&#34;&gt;open source&lt;/a&gt;.&lt;/p&gt;
@@ -2608,7 +2602,7 @@ linux-image-extra for Ubuntu.&lt;/li&gt;
 &lt;li&gt;Mainline kernel modules &lt;code&gt;target_core_mod&lt;/code&gt;, &lt;code&gt;tcp_loop&lt;/code&gt;, &lt;code&gt;target_core_file&lt;/code&gt;,
 &lt;code&gt;target_core_user&lt;/code&gt;, &lt;code&gt;configfs&lt;/code&gt;, and &lt;code&gt;ui&lt;/code&gt;. These are present by default on
 most modern linux distributions, and can be installed with standard package
-managers. See our &lt;a href=&#34;prerequisites/systemconfiguration&#34;&gt;system configuration&lt;/a&gt; page for instructions.&lt;/li&gt;
+managers. See our &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;system configuration&lt;/a&gt; page for instructions.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -2634,7 +2628,7 @@ set for your Kubernetes cluster&lt;/p&gt;
 &lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass does not guarantee data safety or availability.
 Therefore the Ondat cluster cannot operate normally if the Etcd cluster
 becomes unavailable. For a production Etcd install check the
-&lt;a href=&#34;prerequisites/etcd.md&#34;&gt;Etcd prerequisites page&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;Etcd prerequisites page&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;install-ondat&#34;&gt;Install Ondat&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install  &lt;span style=&#34;color:#4e9a06&#34;&gt;\
@@ -2707,7 +2701,7 @@ kubectl -n storageos exec $POD -- storageos get licence
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;operations/licensing.md&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;provision-an-ondat-volume&#34;&gt;Provision an Ondat Volume&lt;/h2&gt;
 &lt;p&gt;Now that we have a working Ondat cluster, we can provision a volume to test
 everything is working as expected.&lt;/p&gt;
@@ -2832,7 +2826,7 @@ volume will fail to be created. For example, in a three node Ondat cluster
 a volume with 3 replicas cannot be created as the third replica cannot be
 placed on a node that doesn&amp;rsquo;t already contain a replica of the same volume.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 See our &lt;a href=&#34;concepts/replication&#34;&gt;replication documentation&lt;/a&gt; for more
+&lt;p&gt;💡 See our &lt;a href=&#34;/docs/concepts/replication&#34;&gt;replication documentation&lt;/a&gt; for more
 information on volume replication.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
@@ -3119,7 +3113,7 @@ be added to resources that use Ondat volumes.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;explicit-schedulername&#34;&gt;Explicit SchedulerName&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 It is not necessary to explicitly set the SchedulerName as the &lt;a href=&#34;admission-controller.md&#34;&gt;Admission
+&lt;p&gt;💡 It is not necessary to explicitly set the SchedulerName as the &lt;a href=&#34;/docs/reference/scheduler/admission-controller&#34;&gt;Admission
 Controller&lt;/a&gt;
 automatically populates the PodSpec field. Set the SchedulerName in your
 manifests, manually, only if you disable or can&amp;rsquo;t execute the Ondat
@@ -3300,6 +3294,24 @@ page.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Azure AKS</title>
+      <link>/docs/platforms/azure-aks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/platforms/azure-aks/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat is fully compatible with Azure AKS. To install Ondat on Azure AKS,
+follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;An Azure AKS deployment of Kubernetes uses Ubuntu by default with an optimized
+kernel. All versions of Ubuntu with a kernel version later
+than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Azure Kubernetes Service (AKS)</title>
       <link>/docs/install/microsoft-azure-aks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -3309,7 +3321,7 @@ page.&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This guide will walk through and demonstrate how to install Ondat onto a &lt;a href=&#34;https://azure.microsoft.com/en-gb/services/kubernetes-service/&#34;&gt;Microsoft Azure Kubernetes Service (AKS)&lt;/a&gt; cluster using the &lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://azure.microsoft.com/en-gb/services/kubernetes-service/&#34;&gt;Microsoft Azure Kubernetes Service (AKS)&lt;/a&gt; cluster using the &lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -3318,12 +3330,12 @@ page.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;The following CLI utilities are installed on your local machine and are available in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/li&gt;
@@ -3387,7 +3399,7 @@ irrespective of whether or not an Ondat master is located on the same node.&lt;/
 consideration of whether to allow Ondat or Cassandra to handle replication
 is required.&lt;/p&gt;
 &lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
-cluster. &lt;a href=&#34;/docs/install/kubernetes.md&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
+cluster. &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
 information&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;deploying-cassandra-on-kubernetes&#34;&gt;Deploying Cassandra on Kubernetes&lt;/h2&gt;
 &lt;ol&gt;
@@ -3520,7 +3532,7 @@ fleet can be expanded with many new machines for computing, while maintaining a
 central data store not impacted by rapid and repeated cluster scaling.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/concepts/centralised.png&#34; alt=&#34;Centralised Model&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;high-performance-mode&#34;&gt;High Performance Mode&lt;/h2&gt;
-&lt;p&gt;In this mode we co-locate pods with the volumes they are using in order to take
+&lt;p&gt;In this mode we colocate pods with the volumes they are using in order to take
 advantage of the performance gains from running on the same node, while
 retaining the utility of orchestrators for managing app lifecycle.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/concepts/high-performance.png&#34; alt=&#34;High Performance Model&#34;&gt;&lt;/p&gt;
@@ -3546,7 +3558,7 @@ Ondat Licence is specific for a ClusterID.&lt;/p&gt;
 For convenience, it is often easiest to port forward the service using the
 following kubectl incantation (this will block, so a second terminal window may
 be advisable):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As an alternative, an Ingress controller may be preferred.&lt;/p&gt;
 &lt;p&gt;Once you have obtained access to the GUI, login using whatever credentials you
 used to create the cluster and go to the &amp;ldquo;Licence&amp;rdquo; section on the left
@@ -3617,7 +3629,7 @@ increased and CPU resources are not wasted on attempts to compress
 uncompressible blocks. Ondat&amp;rsquo;s patented on-disk format is used to tell
 whether individual blocks are compressed without overhead. As such volume
 compression can be dynamically enabled/disabled even while a volume is in use.&lt;/p&gt;
-&lt;p&gt;When compression and &lt;a href=&#34;/docs/concepts/encryption&#34;&gt;encryption&lt;/a&gt; are both enabled
+&lt;p&gt;When compression and &lt;a href=&#34;/docs/reference/encryption&#34;&gt;encryption&lt;/a&gt; are both enabled
 for a volume, blocks are compressed then encrypted.&lt;/p&gt;
 
       </description>
@@ -3642,7 +3654,6 @@ task using Ondat. To be accepted, guides must be:&lt;/p&gt;
 &lt;li&gt;Written in English.&lt;/li&gt;
 &lt;li&gt;Relevant, accurate and complete.&lt;/li&gt;
 &lt;li&gt;Technically correct and thoroughly tested.&lt;/li&gt;
-&lt;li&gt;Follow the &lt;a href=&#34;https://github.com/ondat/documentationblob/main/CONTRIBUTING.md&#34;&gt;writing style guide&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Guides should avoid:&lt;/p&gt;
 &lt;ul&gt;
@@ -3651,7 +3662,7 @@ task using Ondat. To be accepted, guides must be:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;submission-and-review&#34;&gt;Submission and review&lt;/h2&gt;
 &lt;p&gt;You should submit your guide as a pull request to
-&lt;a href=&#34;https://github.com/ondat/documentation.git&#34;&gt;the GitHub repo&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://github.com/ondat/documentation.git&#34;&gt;the GitHub repository&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Your submission will be left open for community review for two weeks. After
 this, your submission will be reviewed internally for about another week.&lt;/p&gt;
 &lt;p&gt;If accepted, your pull request will be approved and you will have 36 hours to
@@ -4099,7 +4110,7 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Delete the node.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl delete node worker1
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl delete node worker1
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify that the node has been deleted with &lt;code&gt;kubectl get nodes&lt;/code&gt; or
@@ -4452,7 +4463,7 @@ issues you may be experiencing.&lt;/p&gt;
 &lt;h3 id=&#34;cli&#34;&gt;CLI&lt;/h3&gt;
 &lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/&#34;&gt;CLI&lt;/a&gt; can generate
 the bundle.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get diagnostics
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos get diagnostics
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;💡 The file generated is in the form of &lt;code&gt;diagnostics-${TIME_STAMP}.gz&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -4554,7 +4565,7 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
 &lt;li&gt;Add new storage devices at &lt;code&gt;/var/lib/storageos/data/dev[0-9]+&lt;/code&gt; as described
 &lt;a href=&#34;/docs/operations/managing-host-storage#option-1-mount-additional-devices&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Expand the underlying filesystem that Ondat is using as described
-&lt;a href=&#34;/docs/operations/managing-host-storage%22#option-2-expand-existing-devices-backed-by-lvm&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;a href=&#34;/docs/operations/managing-host-storage#option-2-expand-existing-devices-backed-by-lvm&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;After expanding capacity remember to restart the Ondat daemonset pod.&lt;/p&gt;
 &lt;h3 id=&#34;deleting-existing-pvcs&#34;&gt;Deleting existing PVCs&lt;/h3&gt;
@@ -4594,7 +4605,7 @@ information&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;deploying-elasticsearch-on-kubernetes&#34;&gt;Deploying Elasticsearch on Kubernetes&lt;/h2&gt;
 &lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h3&gt;
 &lt;p&gt;Some OS tuning is required, which is done automatically when using our example
-from the &lt;a href=&#34;https//github.com/storageos/use-cases.git&#34;&gt;use cases&lt;/a&gt; repository.&lt;/p&gt;
+from the &lt;a href=&#34;https://github.com/storageos/use-cases&#34;&gt;use cases&lt;/a&gt; repository.&lt;/p&gt;
 &lt;p&gt;Elasticsearch requires &lt;code&gt;vm.max_map_count&lt;/code&gt; to be increased to a minimum of
 &lt;code&gt;262144&lt;/code&gt;, which is a system wide setting. One way to achieve this is to
 run &lt;code&gt;sysctl -w vm.max_map_count=262144&lt;/code&gt; and update &lt;code&gt;/etc/sysctl.conf&lt;/code&gt;
@@ -4645,7 +4656,7 @@ provision the necessary storage, using the Ondat storage class.&lt;/p&gt;
 &lt;p&gt;Dynamic provisioning occurs as a volumeMount has been declared with the same
 name as a VolumeClaimTemplate.&lt;/p&gt;
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-&lt;h4 id=&#34;clone-the-use-cases-repo&#34;&gt;Clone the use cases repo&lt;/h4&gt;
+&lt;h4 id=&#34;clone-the-use-cases-repository&#34;&gt;Clone the use cases repository&lt;/h4&gt;
 &lt;p&gt;You can find the latest files in the Ondat use cases repostiory
 in &lt;code&gt;/elasticsearch/&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/storageos/use-cases.git storageos-usecases
@@ -4705,8 +4716,7 @@ by Prometheus on port 9108
 (see &lt;a href=&#34;https://github.com/storageos/use-cases/blob/master/elasticsearch/77-es-exporter.yaml&#34;&gt;77-es-exporter.yaml&lt;/a&gt;).
 This is enabled by default, and should work with the default Prometheus install
 via Helm. If you&amp;rsquo;re using the Prometheus service monitors, you can monitor
-this installation by creating a monitor for the &lt;code&gt;es-exporter&lt;/code&gt; service. For an
-example of how this is done to monitor Ondat, please see &lt;a href=&#34;/docs/operations/monitoring/prometheus-setup&#34;&gt;prometheus-setup&lt;/a&gt;.&lt;/p&gt;
+this installation by creating a monitor for the &lt;code&gt;es-exporter&lt;/code&gt; service.&lt;/p&gt;
 
       </description>
     </item>
@@ -4828,7 +4838,7 @@ Backups are therefore imperative in case the Kubernetes Etcd is lost.&lt;/p&gt;
 lost.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in the
-Kubernetes Etcd in simple Base64 encoding. As Ondat encryption keys are
+Kubernetes Etcd in simple base64 encoding. As Ondat encryption keys are
 stored as Kubernetes Secrets, this means that anyone with access to a
 Kubernetes Etcd installation can read encryption keys and decrypt volumes,
 unless the cluster has an external secrets store.&lt;/p&gt;
@@ -4932,12 +4942,12 @@ page.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Back up etcd&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ export ETCDCTL_API=3
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCDCTL_API=3
 
-$ # Set all your endpoints
-$ export endpoints=&amp;quot;192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379&amp;quot;
+# Set all your endpoints
+export endpoints=&amp;quot;192.168.174.117:2379,192.168.195.168:2379,192.168.174.117:2379&amp;quot;
 
-$ etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
+etcdctl --endpoints $endpoints snapshot save /var/tmp/etcd-snapshot.db
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Verify etcd health&lt;/p&gt;
@@ -5182,7 +5192,7 @@ part of the cluster&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 Remove the reference to NODE1 and add the IP for NODE4&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl edit -n storageos-etcd endpoints/storageos-etcd
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl edit -n storageos-etcd endpoints/storageos-etcd
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Make amendments in the SystemD configuration files removing any reference to
@@ -5229,7 +5239,7 @@ the StorageClass.&lt;/p&gt;
 &lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s
 mode of operation in the face of replica failure. If the failure mode is not
 specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically
-updated at run time.&lt;/p&gt;
+updated at runtime.&lt;/p&gt;
 &lt;h3 id=&#34;hard&#34;&gt;Hard&lt;/h3&gt;
 &lt;p&gt;Hard failure mode requires that the number of declared replicas matches the
 available number of replicas at all times. If a replica fails Ondat will
@@ -5340,7 +5350,7 @@ seconds.&lt;/p&gt;
 failover of a StatefulSet Pod. The Ondat Fencing Controller gives the
 capability to enable fast failover of workloads when a node goes offline.&lt;/p&gt;
 &lt;p&gt;For more information on the rationale behind the design of StatefulSets please
-see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/pod-safety&#34;&gt;Pod
+see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubernetes/design-proposals-archive/blob/main/storage/pod-safety.md&#34;&gt;Pod
 Safety&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -5375,149 +5385,6 @@ pre-provisioned volumes.&lt;/p&gt;
 volume, to enable fast failover.&lt;/p&gt;
 &lt;p&gt;For more information about how to enable pod fencing, see our &lt;a href=&#34;/docs/operations/fencing&#34;&gt;Fencing
 Operations&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Fencing</title>
-      <link>/docs/operations/fencing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/fencing/</guid>
-      <description>
-        
-        
-        &lt;p&gt;For information regarding the Ondat Fencing feature, see our
-&lt;a href=&#34;/docs/concepts/fencing&#34;&gt;fencing concepts page&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;labeling-a-pod-for-fencing&#34;&gt;Labeling a pod for fencing&lt;/h2&gt;
-&lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
-marks the node offline and performs volume failover operations.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/api-manager/tree/master/controllers/fencer&#34;&gt;Ondat Fencing Controller&lt;/a&gt;
-watches for node failures and determines if there are any pods targeted for
-fencing. In order for a pod to be fenced, the following criteria is required.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The pod must have the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The pod to be fenced must claim an Ondat volume&lt;/li&gt;
-&lt;li&gt;The Ondat volume claimed by the pod needs to be &lt;code&gt;online&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If the node becomes offline and these criteria are met, the pod is deleted and
-rescheduled on another node.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 No changes are made to Pods that have Ondat volumes that are unhealthy.
-This is typically the case when a volume was configured to not have any
-replicas, and the node with the single copy of the data is offline. In this
-case it is better to wait for the Node to recover.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;statefulset-example-with-fencing-enabled&#34;&gt;StatefulSet example with fencing enabled&lt;/h3&gt;
-&lt;p&gt;The following example shows how a Statefulset can enable fencing to all its
-pods.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Note that the &lt;code&gt;fenced&lt;/code&gt; label is applied only in the
-&lt;code&gt;.spec.template.metadata.label&lt;/code&gt; section, as the label must only be present on
-the Pod, but not on the PVC.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;apps/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StatefulSet&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;my-statefulset&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;selector&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;matchLabels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;serviceName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/fenced&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Fencing label&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;debian&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;debian:10-slim&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;command&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/bin/sleep&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;3600&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeMounts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-volume&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;mountPath&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;/mnt&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplates&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-volume&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;env&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;accessModes&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ReadWriteOnce&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageClassName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;10Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;fencing-trigger&#34;&gt;Fencing trigger&lt;/h2&gt;
-&lt;p&gt;The Ondat Fencing Controller checks the Ondat node health every 5 seconds.
-This is how quickly the fencing controller can react to node failures.&lt;/p&gt;
-&lt;p&gt;Pods assigned to unhealthy nodes will be evaluated immediately on state change,
-and then re-evaluated every hour, though this is configurable. This retry
-allows pods that had unhealthy volumes which have now recovered to eventually
-failover, or pods that were rescheduled on an unhealthy node to be re-evaluated
-for fencing.&lt;/p&gt;
-&lt;h2 id=&#34;fencing-example&#34;&gt;Fencing example&lt;/h2&gt;
-&lt;p&gt;The following example shows how the Ondat API manager fences a Pod.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Ensure the &lt;code&gt;storageos.com/fenced&lt;/code&gt; label is present&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n mysql get pod --show-labels -owide
-NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
-mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker1   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
-
-$ kubectl -n mysql get pvc --show-labels -owide
-NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
-data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RWO            storageos      19m   Filesystem   app=mysql,env=prod,storageos.com/replicas=1
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Note that the mysql-0 pod has the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Stop node hosting the &lt;code&gt;mysql-0&lt;/code&gt; pod&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;root@worker1:~# shutdown -h now
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Check logs from the Ondat API Manager&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n storageos logs storageos-api-manager-68759bbc78-7l5fw
-...
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.413811357Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;nginx-ingress-controller-xbqjf&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;ingress-nginx&amp;quot;}
-
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417605039Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-api-manager-68759bbc78-7l5fw&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417748651Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;coredns-7c5566588d-8g5xq&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417792281Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;metrics-server-6b55c64f86-cnwtk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417883383Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;default-http-backend-67cf578fc4-w8sm4&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;ingress-nginx&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417975663Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;coredns-autoscaler-65bfc8d47d-ph6pn&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418024204Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;canal-stzdv&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418065315Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-etcd-2hkff82fq2&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos-etcd&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418092165Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-daemonset-6zrkk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418182036Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;cattle-node-agent-sjspk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;cattle-system&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.439513312Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;pod has fenced label set and volume(s) still healthy after node failure, proceeding with fencing&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.495807296Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;pod deleted&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.505411162Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;volume attachment deleted&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;,&amp;quot;pvc&amp;quot;:&amp;quot;data-mysql-0&amp;quot;,&amp;quot;va&amp;quot;:&amp;quot;csi-c2b44cee5a647e20d77e0e217dfaec07afd592eae57bcccc09b3447de653ae8c&amp;quot;,&amp;quot;node&amp;quot;:&amp;quot;worker1&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.505439792Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;fenced pod&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.573478266Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;set scheduler&amp;quot;,&amp;quot;scheduler&amp;quot;:&amp;quot;storageos-scheduler&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql/mysql-0&amp;quot;}
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 The Ondat API Manager detects all the pods that are on the failed
-node, and selects only the ones that meet the fencing criteria as
-described above. In this case only &lt;code&gt;mysql-0&lt;/code&gt; is selected for fencing.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Check the pod&amp;rsquo;s new node&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n mysql get pod --show-labels -owide
-NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
-mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 The pod &lt;code&gt;mysql-0&lt;/code&gt; started on a different node successfully.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 
       </description>
     </item>

@@ -38,7 +38,7 @@ Velero consists of the following components:
 And here&rsquo;s how Velero restores work:
 In our case, we will use MinIO in the Kubernetes cluster as the &ldquo;cloud provider&rdquo; pictured in the backup diagram.">
 
-<meta itemprop="wordCount" content="1005">
+<meta itemprop="wordCount" content="1007">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Velero Backups"/>
 <meta name="twitter:description" content="Using Velero to backup your Ondat volumes Velero is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes.
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -631,6 +631,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1528,7 +1534,7 @@ restore from that backup. A simple form of quiescence is the unix command
 </span></code></pre></div><p>The first annotation specifies which volume to backup using restic. The other
 annotations are used to perform an fsfreeze on the volume mount point using pre
 and post backup hooks, for more details about Velero pre/post backup hooks
-please see their documentation <a href="https://Velero.io/docs/main/hooks/">here</a>.</p>
+please see their documentation <a href="https://velero.io/docs/main/restore-hooks/#docs">here</a> and <a href="https://velero.io/docs/main/backup-hooks/#docs">here</a>.</p>
 <p>We have to specify to use the <code>fsfreeze</code> ubuntu container since the MySQL
 container doesn&rsquo;t support fsfreeze</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">fsfreeze</span><span style="color:#f8f8f8;text-decoration:underline">

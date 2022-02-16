@@ -32,7 +32,7 @@ In the following examples the &ldquo;application&rdquo; container is the contain
 <meta itemprop="description" content="In this example use case we provide three different strategies for accessing files that have been written to an Ondat persistent volume.
 In the following examples the &ldquo;application&rdquo; container is the container main, which has a rsync, Nginx or sftp sidecar container. The Ondat volume that the application is writing to will be mounted into the sidecar container so files written by the application are available for export. Files can be exported using Nginx as a web file server, transferred using rsync or accessed via SFTP.">
 
-<meta itemprop="wordCount" content="907">
+<meta itemprop="wordCount" content="904">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Sidecar Backups"/>
 <meta name="twitter:description" content="In this example use case we provide three different strategies for accessing files that have been written to an Ondat persistent volume.
@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1419,8 +1425,8 @@ information</a>.</p>
 <h2 id="clone-repository">Clone Repository</h2>
 <p>In order to deploy the examples, clone this repository and use kubectl to create the
 Kubernetes objects.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git clone https://github.com/storageos/use-cases.git storageos-usecases
-$ <span style="color:#204a87">cd</span> storageos-usecases/backup
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/storageos/use-cases.git storageos-usecases
+<span style="color:#204a87">cd</span> storageos-usecases/backup
 </code></pre></div><blockquote>
 <p>💡 Before deploying the backup-example stateful set we recommend looking
 through the examples to understand how the different containers are
@@ -1533,7 +1539,7 @@ date.txt was synchronized to the rsync container.</p>
 <ol>
 <li>
 <p>Deploy the sftp example</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create -f sftp/
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f sftp/
 </code></pre></div></li>
 <li>
 <p>Exec into the <code>main</code> container and write some data to a file</p>

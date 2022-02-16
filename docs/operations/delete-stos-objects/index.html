@@ -34,7 +34,7 @@ $ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-da
   Here is an Ondat node, running on Kubernetes node worker1. An Ondat node is any machine that is running the Ondat daemonset pod. The node is visible below in kubectl.
 $ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-daemonset-6q4g8 Namespace: storageos Priority: 2000001000 Priority Class Name: system-node-critical Node: worker1/192.">
 
-<meta itemprop="wordCount" content="229">
+<meta itemprop="wordCount" content="228">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Deleting Ondat Objects"/>
 <meta name="twitter:description" content="When a Kubernetes object is deleted, Ondat controllers automatically sync this deletion to Ondat. For example, when a Kubernets node is deleted, this will automatically be mirrored in Ondat, likewise with Namespaces.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -625,6 +625,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1453,7 +1459,7 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
 </code></pre></li>
 <li>
 <p>Delete the node.</p>
-<pre tabindex="0"><code>$ kubectl delete node worker1
+<pre tabindex="0"><code>kubectl delete node worker1
 </code></pre></li>
 <li>
 <p>Verify that the node has been deleted with <code>kubectl get nodes</code> or

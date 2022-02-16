@@ -21,28 +21,31 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Azure Kubernetes Service (AKS) | </title><meta property="og:title" content="Azure Kubernetes Service (AKS)" />
-<meta property="og:description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
 Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   The following CLI utilities are installed on your local machine and are available in your $PATH:
-   kubectl kubectl-storageos    You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster." />
+  kubectl
+  kubectl-storageos" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/microsoft-azure-aks/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Azure Kubernetes Service (AKS)">
-<meta itemprop="description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
 Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   The following CLI utilities are installed on your local machine and are available in your $PATH:
-   kubectl kubectl-storageos    You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster.">
+  kubectl
+  kubectl-storageos">
 
-<meta itemprop="wordCount" content="300">
+<meta itemprop="wordCount" content="297">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Azure Kubernetes Service (AKS)"/>
-<meta name="twitter:description" content="Overview This guide will walk through and demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
 Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   The following CLI utilities are installed on your local machine and are available in your $PATH:
-   kubectl kubectl-storageos    You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster."/>
+  kubectl
+  kubectl-storageos"/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -176,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -628,6 +631,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1414,7 +1423,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h1>Azure Kubernetes Service (AKS)</h1>
 	
 	<h2 id="overview">Overview</h2>
-<p>This guide will walk through and demonstrate how to install Ondat onto a <a href="https://azure.microsoft.com/en-gb/services/kubernetes-service/">Microsoft Azure Kubernetes Service (AKS)</a> cluster using the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://azure.microsoft.com/en-gb/services/kubernetes-service/">Microsoft Azure Kubernetes Service (AKS)</a> cluster using the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>
@@ -1423,12 +1432,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>
 <p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
 </li>
-</ul>
-<ul>
-<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
-<li><a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
-</ul>
-<ul>
+<li>
+<p><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></p>
+</li>
+<li>
+<p><a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">kubectl-storageos</a></p>
+</li>
 <li>
 <p>You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
 </li>

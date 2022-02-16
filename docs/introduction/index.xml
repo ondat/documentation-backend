@@ -48,7 +48,7 @@ noisy or unpredictable environments. Not only is Ondat V2 much lighter on
 your etcd cluster, but it&amp;rsquo;s a lot more tolerant of transient failure conditions
 that are often found in cloud environments, or clusters under heavy load.&lt;/p&gt;
 &lt;p&gt;We spent some time describing and testing our internal state machine using the
-&lt;a href=&#34;https://en.wikipedia.org/wiki/TLA%2B&#34;&gt;TLA+&lt;/a&gt; formal verification language. This
+&lt;a href=&#34;https://en.wikipedia.org/wiki/TLA+&#34;&gt;TLA+&lt;/a&gt; formal verification language. This
 allows us to have a much higher degree of confidence that our algorithms will
 behave correctly, particularly under hard-to-test edge cases and failure
 conditions.&lt;/p&gt;

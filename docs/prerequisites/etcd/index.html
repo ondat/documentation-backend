@@ -34,7 +34,7 @@ We provide two methods for installing etcd. For those looking for a quick route 
 We do not support using the Kubernetes etcd for Ondat installations.
 We provide two methods for installing etcd. For those looking for a quick route to evaluating Ondat, our first method installs etcd into your Kubernetes cluster using the CoreOS operator. Due to limitations in the CoreOS operator, this installation is not backed by any persistent storage, and therefore is unsuitable for production installations.">
 
-<meta itemprop="wordCount" content="2088">
+<meta itemprop="wordCount" content="2085">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Etcd"/>
 <meta name="twitter:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required please see our etcd concepts page.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -625,6 +625,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1701,7 +1707,7 @@ chmod <span style="color:#0000cf;font-weight:bold">0755</span> /usr/local/sbin/e
 </code></pre></div></li>
 <li>
 <p>Create the systemd environment file</p>
-<p>On all nodes that will run etcd create a systemd environemnt file
+<p>On all nodes that will run etcd create a systemd environment file
 <code>/etc/etcd.conf</code> which has the IPs of all the nodes. The <code>NODE_IP</code> will
 need to change to correspond to the node IP where the environment file
 resides. <code>NODE1_IP</code>, <code>NODE2_IP</code> and <code>NODE3_IP</code> will remain the same across
@@ -1798,9 +1804,9 @@ look as below:</p>
 </code></pre></div></li>
 <li>
 <p>Reload and start the etc3 systemd service</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ systemctl daemon-reload
-$ systemctl <span style="color:#204a87">enable</span> etcd3.service
-$ systemctl start  etcd3.service
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl daemon-reload
+systemctl <span style="color:#204a87">enable</span> etcd3.service
+systemctl start  etcd3.service
 </code></pre></div></li>
 <li>
 <p>Installation Verification</p>
@@ -1922,7 +1928,7 @@ having a network partition between them will result in quorum lost.</p>
 <h2 id="bind-etcd-ips-to-kubernetes-service">Bind Etcd IPs to Kubernetes Service</h2>
 <p>Kubernetes external services use a DNS name to reference external endpoints,
 making them easy to reference from inside the cluster.  You can use the
-example from the <a href="https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc">helper github repository</a>
+example from the <a href="https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc">helper GitHub repository</a>
 to deploy the external Service. Using an external service can make monitoring
 of etcd from Prometheus easier.</p>
 <h2 id="using-etcd-with-ondat">Using Etcd with Ondat</h2>

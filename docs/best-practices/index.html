@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1403,7 +1409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 metadata and manage distributed configuration state. For production environments
 and testing of production workloads, <strong>we recommend deploying an external etcd
 cluster.</strong> For more details about, and an example of, how to run etcd, see the
-<a href="/docs/operations/external-etcd">External etcd Operations</a> page.</p>
+<a href="/docs/operations/etcd">External etcd Operations</a> page.</p>
 <p>It is highly recommended to use external etcd for <strong>cloud environments</strong> and
 place the etcd cluster on stable nodes. Placing the etcd on nodes that are
 recycled often might affect the normal operations of Ondat.</p>
@@ -1418,7 +1424,7 @@ workloads apart from the etcd servers.</p>
 <p>We recommend creating a separate filesystem for Ondat to mitigate the risk
 of filling the root filesystem on nodes. This has to be done for each node in
 the cluster.</p>
-<p>Follow the <a href="operations/managing-host-storage.md">managing host storage</a> best practices page for more
+<p>Follow the <a href="/docs/operations/managing-host-storage">managing host storage</a> best practices page for more
 details.</p>
 <h2 id="resource-reservations">Resource reservations</h2>
 <p>Ondat resource consumption depends on the workloads and the Ondat
@@ -1448,7 +1454,7 @@ replica must have at least 3 storage nodes. When using Volumes with 2
 replicas, at least 4 storage nodes, 3 replicas, 5 nodes, etc.</p>
 <p>Minimum number of storage nodes = 1 (primary) + N (replicas) + 1</p>
 <p>For more information, see the section on
-<a href="concepts/replication.md#number-of-nodes">replication</a>.</p>
+<a href="/docs/concepts/replication#number-of-nodes">replication</a>.</p>
 <h2 id="ondat-api-usernamepassword">Ondat API username/password</h2>
 <p>The API grants full access to Ondat functionality, therefore we recommend
 that the default administrative password of &lsquo;storageos&rsquo; is reset to something
@@ -1488,7 +1494,7 @@ define Ondat pools based on node selectors to collocate volumes.</p>
 <p>Losing a few nodes at the same time could cause the loss of data even when
 volume replicas are being used.</p>
 <h2 id="port-blocking">Port blocking</h2>
-<p>Ondat exposes ports to operate. It is recommended that the <a href="prerequisites/firewalls.md">ports</a> are not accessible from outside
+<p>Ondat exposes ports to operate. It is recommended that the <a href="/docs/prerequisites/firewalls">ports</a> are not accessible from outside
 the scope of your cluster.</p>
 <h2 id="ondat-in-docker-ee">Ondat in Docker EE</h2>
 <p>Ondat does not support running on Swarm nodes nor on mixed (Kubernetes and

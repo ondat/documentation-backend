@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -625,6 +625,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1448,7 +1454,7 @@ default), irrespective of what NameSpace the CR is defined in.</p>
 <h1 id="examples">Examples</h1>
 <blockquote>
 <p>You can checkout all the parameters configurable in the
-<a href="configuration.md">configuration</a>
+<a href="/docs/reference/cluster-operator/configuration">configuration</a>
 page.</p>
 </blockquote>
 <p>All examples must reference the <code>storageos-api</code> Secret.</p>
@@ -1486,10 +1492,8 @@ secret with the Etcd client certificate, client key and CA.</p>
 </span></code></pre></div><blockquote>
 <p>Different provisioners and Kubernetes distributions use node labels
 differently to specify master vs workers. Node Taints are not enough to
-make sure Ondat doesn&rsquo;t start in a node. The
-<a href="https://docs.storageos.com/docs/reference/clusterdiscovery">JOIN</a>
-variable is defined by the operator by selecting all the nodes that match the
-<code>nodeSelectorTerms</code>.</p>
+make sure Ondat doesn&rsquo;t start in a node. The <code>JOIN</code> variable is defined
+by the operator by selecting all the nodes that match the <code>nodeSelectorTerms</code>.</p>
 </blockquote>
 <h2 id="enabling-csi">Enabling CSI</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">

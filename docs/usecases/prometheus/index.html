@@ -36,7 +36,7 @@ Before you start, ensure you have Ondat installed and ready on a Kubernetes clus
 Deploying Prometheus on Kubernetes This is the Prometheus use case for Ondat. Following are the steps for creating a Prometheus StatefulSet and using Ondat to provide persistent storage.
   You can find the latest files in the Ondat use cases repository">
 
-<meta itemprop="wordCount" content="381">
+<meta itemprop="wordCount" content="378">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Prometheus"/>
 <meta name="twitter:description" content="Prometheus is a popular application used for event monitoring and alerting in Kubernetes.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.747038829f2329cdf575675dfa79de817f8712256218e6b67fad30cf121997c25be8708ed8a73f79f900fae2093baa4b506f3084c7ea5e6f0a3521de3bd00a91.json"
+  data-offline-search-index-json-src="/offline-search-index.827387ce68c7fdad3aa446cecff1096cd2aa5f6d4eb040311acdbbe91ebd3c9d96ecf0fafb6db48fa8fe5369697283b83cea201aba877ba7c60d94001136ed27.json"
   data-offline-search-base-href="/"
 >
 
@@ -628,6 +628,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsaws-eks" href="/docs/platforms/aws-eks/">AWS EKS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsazure-aks" href="/docs/platforms/azure-aks/">Azure AKS</a>
       
       
       
@@ -1450,8 +1456,8 @@ of the Prometheus resource.</p>
 <li>
 <p>Move into the Prometheus examples folder and install the Prometheus Operator
 and create a Prometheus resource.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ <span style="color:#204a87">cd</span> storageos-usecases/prometheus
-$ ./install-prometheus.sh
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> storageos-usecases/prometheus
+./install-prometheus.sh
 </code></pre></div></li>
 <li>
 <p>Confirm Prometheus is up and running.</p>
@@ -1483,7 +1489,7 @@ storageos-etcd   5d1h
 <li>
 <p>The Prometheus web ui can be accessed by port-forwarding the Prometheus pods
 port to localhost.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl port-forward prometheus-prometheus-storageos-0 <span style="color:#0000cf;font-weight:bold">9090</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward prometheus-prometheus-storageos-0 <span style="color:#0000cf;font-weight:bold">9090</span>
 </code></pre></div><p>Then launch a web browser and go to <code>localhost:9090</code> to access the
 Prometheus web ui. You can confirm that the storageos-etcd target is
 configured there.</p>

@@ -35,6 +35,24 @@ page.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Azure AKS</title>
+      <link>/docs/platforms/azure-aks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/platforms/azure-aks/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat is fully compatible with Azure AKS. To install Ondat on Azure AKS,
+follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;An Azure AKS deployment of Kubernetes uses Ubuntu by default with an optimized
+kernel. All versions of Ubuntu with a kernel version later
+than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Google GKE</title>
       <link>/docs/platforms/google-gke/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
