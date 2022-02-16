@@ -414,7 +414,7 @@ pods.&lt;/p&gt;
 all Ondat components; the Ondat daemonset, CSI helper and scheduler.&lt;/p&gt;
 &lt;p&gt;In the above example a toleration &lt;code&gt;key1=value1:EffectToTolerate&lt;/code&gt; would be
 tolerated and &lt;code&gt;key2&lt;/code&gt; would be tolerated regardless of the value and effect. For
-more information about tolerations please see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
+more information about tolerations, see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
 documentation&lt;/a&gt;.&lt;/p&gt;
 
       </description>

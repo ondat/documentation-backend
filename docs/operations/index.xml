@@ -786,7 +786,7 @@ Hello World!
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;By writing to /mnt inside the container, the Ondat volume created by
 the PVC is being written to. If you were to kill the pod and start it again
 on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;If you wish to see more use cases with actual applications please see our
+&lt;p&gt;&lt;strong&gt;If you wish to see more use cases with actual applications, see our
 &lt;a href=&#34;/docs/usecases/&#34;&gt;Use Cases&lt;/a&gt; documentation.&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
@@ -1182,8 +1182,8 @@ application data. Dynamic provisioning, distributed access to data and high
 availability of volumes through synchronous replication and automatic failover
 are some of the features that are available under the personal licence.&lt;/p&gt;
 &lt;h2 id=&#34;commercial-licence&#34;&gt;Commercial Licence&lt;/h2&gt;
-&lt;p&gt;For more information on our commercial offerings, including support, please
-contact &lt;a href=&#34;mailto:getstarted@ondat.io&#34;&gt;getstarted@ondat.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For more information on our commercial offerings, including support, contact
+&lt;a href=&#34;mailto:getstarted@ondat.io&#34;&gt;getstarted@ondat.io&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;capacity-limits&#34;&gt;Capacity limits&lt;/h2&gt;
 &lt;p&gt;Ondat offerings might have defined capacity limits. Ondat allows provisioning
 volumes until the limit of the licence is reached. Only the size of the volume

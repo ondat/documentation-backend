@@ -356,7 +356,7 @@ payment.&lt;/p&gt;
 default with mTLS. Data-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files
 is optional and can be enabled by adding a label to your volume definitions
 before they&amp;rsquo;re provisioned.&lt;/p&gt;
-&lt;p&gt;For information on how to enable encryption on your volumes, please see our
+&lt;p&gt;For information on how to enable encryption on your volumes, see our
 &lt;a href=&#34;/docs/operations/encryption&#34;&gt;Encryption Operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;how-volumes-are-encrypted&#34;&gt;How volumes are encrypted&lt;/h2&gt;
 &lt;p&gt;Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as
@@ -909,7 +909,7 @@ application data. Dynamic provisioning, distributed access to data and high
 availability of volumes through synchronous replication and automatic failover
 are some of the features that are available under the personal licence.&lt;/p&gt;
 &lt;h2 id=&#34;commercial-licences&#34;&gt;Commercial licences&lt;/h2&gt;
-&lt;p&gt;For information on our commercial offerings, including support, please contact
+&lt;p&gt;For information on our commercial offerings, including support, contact
 &lt;a href=&#34;mailto:getstarted@ondat.io&#34;&gt;getstarted@ondat.io&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;note-about-capacity-limits&#34;&gt;Note about capacity limits&lt;/h2&gt;
 &lt;p&gt;Some Ondat licences have limits on capacity. Ondat allows provisioning
@@ -6819,7 +6819,7 @@ addition to avoiding resource limits, Ondat uses a &lt;a href=&#34;https://kuber
 class&lt;/a&gt;
 when the DaemonSet is installed in the &amp;lsquo;storageos&amp;rsquo; namespace. That avoids the
 DaemonSet Pods of being evicted.&lt;/p&gt;
-&lt;p&gt;For more information about managing resources for containers please see the
+&lt;p&gt;For more information about managing resources for containers see the
 &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/&#34;&gt;Kubernetes
 documentation&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;defining-pod-resource-requests-and-reservations&#34;&gt;Defining Pod resource requests and reservations&lt;/h2&gt;
@@ -6841,7 +6841,7 @@ documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Ondat will automatically use &lt;code&gt;/var/lib/storageos&lt;/code&gt; on each host as a base
 directory for storing &lt;a href=&#34;/docs/concepts/volumes#blob-files&#34;&gt;configuration and blob files&lt;/a&gt;.
 Supported host filesystem types
-are &lt;code&gt;ext4&lt;/code&gt; and &lt;code&gt;xfs&lt;/code&gt;. If you require a specific filesystem please &lt;a href=&#34;/docs/support&#34;&gt;contact
+are &lt;code&gt;ext4&lt;/code&gt; and &lt;code&gt;xfs&lt;/code&gt;. If you require a specific filesystem, &lt;a href=&#34;/docs/support&#34;&gt;contact
 Ondat&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;persistent-volume-filesystems&#34;&gt;Persistent Volume Filesystems&lt;/h2&gt;
 &lt;p&gt;Ondat provides a block device on which a file system can be created. The
@@ -6874,7 +6874,7 @@ as any pods using Ondat volumes on the same node would need to be
 restarted.&lt;/p&gt;
 &lt;p&gt;As Ondat runs as a daemonset some Kubernetes tolerations are added by
 Kubernetes while others are automatically added by the Ondat operator.&lt;/p&gt;
-&lt;p&gt;For more information about tolerations please see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
+&lt;p&gt;For more information about tolerations, see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
 documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;tolerations&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The unreachable and not-ready tolerations are added by Kubernetes to daemonsets automatically&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;

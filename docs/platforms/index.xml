@@ -62,7 +62,7 @@ than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;
         
         
         &lt;p&gt;StorageOS is fully compatible with GKE when using the Ubuntu images. To
-install StorageOS on Google GKE, please follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+install StorageOS on Google GKE, follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;For StorageOS to work normally it is &lt;strong&gt;required to use the Ubuntu images&lt;/strong&gt; for
 the Google GKE node pools. The default container image does not fulfil the system
 requirements because of the lack of the TCMU kernel modules.&lt;/p&gt;
@@ -92,7 +92,7 @@ running in the Ondat Daemonset creates a Linux socket that allows the
 communication between Red Hat OpenShift and Ondat.&lt;/p&gt;
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 &lt;p&gt;Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.&lt;/p&gt;
-&lt;p&gt;To install Ondat on Red Hat OpenShift, please follow our &lt;a href=&#34;/docs/install/openshift&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To install Ondat on Red Hat OpenShift, follow our &lt;a href=&#34;/docs/install/openshift&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID
 limit of 1024. Ondat recommends that the limit be raised to 32768.
@@ -135,7 +135,7 @@ standard linux device files. Checkout &lt;a href=&#34;/docs/prerequisites/system
       <description>
         
         
-        &lt;p&gt;To install Ondat on Rancher, please follow our &lt;a href=&#34;/docs/install/rancher&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+        &lt;p&gt;To install Ondat on Rancher, follow our &lt;a href=&#34;/docs/install/rancher&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;Ondat transparently supports Rancher deployments using CentOS, RHEL or
 Debian and can support other Linux distributions detailed in the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;systems supported page&lt;/a&gt; if the
 appropriate kernel modules are present.&lt;/p&gt;

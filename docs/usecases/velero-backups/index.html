@@ -38,7 +38,7 @@ Velero consists of the following components:
 And here&rsquo;s how Velero restores work:
 In our case, we will use MinIO in the Kubernetes cluster as the &ldquo;cloud provider&rdquo; pictured in the backup diagram.">
 
-<meta itemprop="wordCount" content="1007">
+<meta itemprop="wordCount" content="1006">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Velero Backups"/>
 <meta name="twitter:description" content="Using Velero to backup your Ondat volumes Velero is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes.
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -1534,7 +1534,7 @@ restore from that backup. A simple form of quiescence is the unix command
 </span></code></pre></div><p>The first annotation specifies which volume to backup using restic. The other
 annotations are used to perform an fsfreeze on the volume mount point using pre
 and post backup hooks, for more details about Velero pre/post backup hooks
-please see their documentation <a href="https://velero.io/docs/main/restore-hooks/#docs">here</a> and <a href="https://velero.io/docs/main/backup-hooks/#docs">here</a>.</p>
+see their documentation <a href="https://velero.io/docs/main/restore-hooks/#docs">here</a> and <a href="https://velero.io/docs/main/backup-hooks/#docs">here</a>.</p>
 <p>We have to specify to use the <code>fsfreeze</code> ubuntu container since the MySQL
 container doesn&rsquo;t support fsfreeze</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">fsfreeze</span><span style="color:#f8f8f8;text-decoration:underline">

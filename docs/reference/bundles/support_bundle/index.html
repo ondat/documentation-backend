@@ -34,7 +34,7 @@ Install Kubectl Ondat plugin The support bundle is generated with the Ondat kube
 The support bundle is an addition rather than a replacement to the diagnostic bundle.
 Install Kubectl Ondat plugin The support bundle is generated with the Ondat kubectl plugin, which can be installed as follows:">
 
-<meta itemprop="wordCount" content="464">
+<meta itemprop="wordCount" content="466">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Support bundle"/>
 <meta name="twitter:description" content="The support bundle is a tool that gathers information both about Ondat and the environment in which it is operating. It provides information about the state and configuration of the cluster, nodes and other Kubernetes objects, as well as system performance metrics.
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -1459,7 +1459,7 @@ sudo mv <span style="color:#000">$TMP_DIR</span>/bin/kubectl-storageos-bundle /u
 be viewed and edited by obtaining the <code>bundle-configuration.yaml</code> file, which
 is publicly available.</p>
 <p>Ondat is usually installed in the kube-system namespace. If you have
-installed Ondat in a different namespace please replace the namespace in
+installed Ondat in a different namespace make sure to replace the namespace in
 the storage bundle config as below.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">STORAGEOS_NS</span><span style="color:#ce5c00;font-weight:bold">=</span>my-namespace
 curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/bundle-configuration.yaml <span style="color:#000;font-weight:bold">|</span> sed <span style="color:#4e9a06">&#34;s/kube-system/</span><span style="color:#000">$STORAGEOS_NS</span><span style="color:#4e9a06">/g&#34;</span> &gt; /tmp/storageos-kubectl-config.yaml

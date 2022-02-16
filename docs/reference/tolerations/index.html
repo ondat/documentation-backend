@@ -30,7 +30,7 @@
 <meta itemprop="name" content="Tolerations">
 <meta itemprop="description" content="Kubernetes Tolerations Tolerations are a Kubernetes pod property that allow pods to tolerate certain node taints. Taints can be thought of as the opposite of Node affinity in that taints repel pods. Node taints are automatically applied by Kubernetes in response to node resources coming under contention. As Ondat provides storage to pods it should not be evicted during periods of resource contention, as any pods using Ondat volumes on the same node would need to be restarted.">
 
-<meta itemprop="wordCount" content="160">
+<meta itemprop="wordCount" content="159">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tolerations"/>
 <meta name="twitter:description" content="Kubernetes Tolerations Tolerations are a Kubernetes pod property that allow pods to tolerate certain node taints. Taints can be thought of as the opposite of Node affinity in that taints repel pods. Node taints are automatically applied by Kubernetes in response to node resources coming under contention. As Ondat provides storage to pods it should not be evicted during periods of resource contention, as any pods using Ondat volumes on the same node would need to be restarted."/>
@@ -167,7 +167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -315,7 +315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -1412,7 +1412,7 @@ as any pods using Ondat volumes on the same node would need to be
 restarted.</p>
 <p>As Ondat runs as a daemonset some Kubernetes tolerations are added by
 Kubernetes while others are automatically added by the Ondat operator.</p>
-<p>For more information about tolerations please see the <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">Kubernetes
+<p>For more information about tolerations, see the <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">Kubernetes
 documentation</a>.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">tolerations</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The unreachable and not-ready tolerations are added by Kubernetes to daemonsets automatically</span><span style="color:#f8f8f8;text-decoration:underline">

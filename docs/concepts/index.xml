@@ -666,7 +666,7 @@ pod is terminated and the volume is detached from the node. The Ondat
 controlplane will then attach the volume to the node that holds the master
 deployment and resize the underlying block device and then run resize2fs to
 expand the filesystem.&lt;/p&gt;
-&lt;p&gt;For a walkthrough of how to resize a volume please see the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/p&gt;
+&lt;p&gt;For a walkthrough of how to resize a volume, see the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/p&gt;
 &lt;h2 id=&#34;volume-encryption&#34;&gt;Volume Encryption&lt;/h2&gt;
 &lt;p&gt;Volumes can be configured on creation to have encryption-at-rest. Data
 is encrypted with XTS-AES and decrypted upon use. Please see

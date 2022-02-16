@@ -216,7 +216,7 @@ iptables -I INPUT -p tcp --dport 25705:25960 -m comment --comment &lt;span style
 iptables -I OUTPUT -o lo -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit loopback traffic&amp;#39;&lt;/span&gt; -j ACCEPT
 iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit outbound traffic&amp;#39;&lt;/span&gt; -j ACCEPT
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;⚠️ Please ensure that the iptables rules you have added above come before any default DROP or REJECT rules.&lt;/p&gt;
+&lt;p&gt;⚠️  Make sure that the iptables rules you have added above come before any default DROP or REJECT rules.&lt;/p&gt;
 &lt;/blockquote&gt;
 
       </description>
@@ -333,9 +333,9 @@ once.&lt;/p&gt;
 &lt;p&gt;The current and maximum number of AIO requests is visible in the virtual
 files &lt;code&gt;/proc/sys/fs/aio-nr&lt;/code&gt; and &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The default context limit has been set at 2^16 or 65536. This figure may vary
-so please check your &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;&lt;/p&gt;
+so do check your &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;When &lt;code&gt;aio-nr&lt;/code&gt; reaches &lt;code&gt;aio-max-nr&lt;/code&gt; the &lt;code&gt;io_setup&lt;/code&gt; syscall will fail with
-EAGAIN. For more information please see the Linux kernel docs
+EAGAIN. For more information see the Linux kernel docs
 &lt;a href=&#34;https://www.kernel.org/doc/Documentation/sysctl/fs.txt&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;why-is-this-relevant&#34;&gt;Why is this relevant?&lt;/h2&gt;
 &lt;p&gt;As Ondat requires 4 AIO contexts per deployed volume, there is a limit to
@@ -365,7 +365,7 @@ example line:&lt;/p&gt;
         
         
         &lt;p&gt;Ondat requires an etcd cluster in order to function. For more information
-on why etcd is required please see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
+on why etcd is required, see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;We do not support using the Kubernetes etcd for Ondat installations.&lt;/p&gt;
 &lt;p&gt;We provide two methods for installing etcd. For those looking for a quick
 route to evaluating Ondat, our first method installs etcd into your

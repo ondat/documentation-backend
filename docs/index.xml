@@ -1193,7 +1193,7 @@ pods.&lt;/p&gt;
 all Ondat components; the Ondat daemonset, CSI helper and scheduler.&lt;/p&gt;
 &lt;p&gt;In the above example a toleration &lt;code&gt;key1=value1:EffectToTolerate&lt;/code&gt; would be
 tolerated and &lt;code&gt;key2&lt;/code&gt; would be tolerated regardless of the value and effect. For
-more information about tolerations please see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
+more information about tolerations, see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
 documentation&lt;/a&gt;.&lt;/p&gt;
 
       </description>
@@ -1701,7 +1701,7 @@ iptables -I INPUT -p tcp --dport 25705:25960 -m comment --comment &lt;span style
 iptables -I OUTPUT -o lo -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit loopback traffic&amp;#39;&lt;/span&gt; -j ACCEPT
 iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;Permit outbound traffic&amp;#39;&lt;/span&gt; -j ACCEPT
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;⚠️ Please ensure that the iptables rules you have added above come before any default DROP or REJECT rules.&lt;/p&gt;
+&lt;p&gt;⚠️  Make sure that the iptables rules you have added above come before any default DROP or REJECT rules.&lt;/p&gt;
 &lt;/blockquote&gt;
 
       </description>
@@ -1927,9 +1927,9 @@ once.&lt;/p&gt;
 &lt;p&gt;The current and maximum number of AIO requests is visible in the virtual
 files &lt;code&gt;/proc/sys/fs/aio-nr&lt;/code&gt; and &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;The default context limit has been set at 2^16 or 65536. This figure may vary
-so please check your &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;&lt;/p&gt;
+so do check your &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;When &lt;code&gt;aio-nr&lt;/code&gt; reaches &lt;code&gt;aio-max-nr&lt;/code&gt; the &lt;code&gt;io_setup&lt;/code&gt; syscall will fail with
-EAGAIN. For more information please see the Linux kernel docs
+EAGAIN. For more information see the Linux kernel docs
 &lt;a href=&#34;https://www.kernel.org/doc/Documentation/sysctl/fs.txt&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;why-is-this-relevant&#34;&gt;Why is this relevant?&lt;/h2&gt;
 &lt;p&gt;As Ondat requires 4 AIO contexts per deployed volume, there is a limit to
@@ -1959,7 +1959,7 @@ example line:&lt;/p&gt;
         
         
         &lt;p&gt;Ondat requires an etcd cluster in order to function. For more information
-on why etcd is required please see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
+on why etcd is required, see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;We do not support using the Kubernetes etcd for Ondat installations.&lt;/p&gt;
 &lt;p&gt;We provide two methods for installing etcd. For those looking for a quick
 route to evaluating Ondat, our first method installs etcd into your
@@ -2483,7 +2483,7 @@ Ondat operator is used to specify the address of the etcd cluster. See the
       <description>
         
         
-        &lt;p&gt;When you need support, please raise a ticket via our &lt;a href=&#34;https://support.storageos.com&#34;&gt;Help Desk
+        &lt;p&gt;When you need support, raise a ticket via our &lt;a href=&#34;https://support.storageos.com&#34;&gt;Help Desk
 portal&lt;/a&gt;. It is important to select the priority
 of your ticket in accordance with the severity:&lt;/p&gt;
 &lt;ul&gt;
@@ -2496,11 +2496,11 @@ of your ticket in accordance with the severity:&lt;/p&gt;
 definitions of our support severity levels on our
 &lt;a href=&#34;https://storageos.com/support&#34;&gt;website&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Responses to tickets will be cc&amp;rsquo;d via email.&lt;/p&gt;
-&lt;p&gt;For personal support and general enquiries, please join our &lt;a href=&#34;https://slack.storageos.com&#34;&gt;public Slack channel&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For personal support and general enquiries, join our &lt;a href=&#34;https://slack.storageos.com&#34;&gt;public Slack channel&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;information-to-include-in-tickets&#34;&gt;Information to include in tickets&lt;/h2&gt;
 &lt;p&gt;To help us provide effective support, we request that you provide as much
 information as possible when contacting us. The list below is a suggested
-starting point. Additionally, please include anything specific, such as log
+starting point. Additionally, include anything specific, such as log
 entries, that may help us debug your issue.&lt;/p&gt;
 &lt;h3 id=&#34;platform&#34;&gt;Platform&lt;/h3&gt;
 &lt;ul&gt;
@@ -2540,7 +2540,7 @@ included.&lt;/p&gt;
 during support cases.&lt;/p&gt;
 &lt;p&gt;The information in the bundle is used only for support purposes, and will be
 removed once it is no longer needed. If the information is sensitive and can&amp;rsquo;t
-be given to Ondat, please make sure that the support engineers have as
+be given to Ondat, make sure that the support engineers have as
 much information about your environment as possible.&lt;/p&gt;
 &lt;p&gt;Refer to the &lt;a href=&#34;/docs/reference/bundles/support_bundle&#34;&gt;Support Bundle&lt;/a&gt; documentation page for details
 of how to generate a bundle.&lt;/p&gt;
@@ -2566,7 +2566,7 @@ Ondat. This guide is divided into three sections:&lt;/p&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 For more comprehensive documentation including installation advice for complex
-setups, operational guides, and use-cases, please see our main &lt;a href=&#34;https://docs.ondat.io&#34;&gt;documentation site&lt;/a&gt;.&lt;/p&gt;
+setups, operational guides, and use-cases, see our main &lt;a href=&#34;https://docs.ondat.io&#34;&gt;documentation site&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;support-for-self-evaluations&#34;&gt;Support for Self Evaluations&lt;/h2&gt;
 &lt;p&gt;Should you have questions or require support, there are several ways to get in
@@ -2576,7 +2576,7 @@ touch with us. The fastest way to get in touch is to &lt;a href=&#34;https://sla
 &lt;p&gt;In this document we detail a simple installation suitable for evaluation
 purposes. The etcd we install uses a 3 node cluster with local storage, and
 as such is not suitable for production workloads. However, for evaluation
-purposes it should be sufficient. For production deployments, please see our
+purposes it should be sufficient. For production deployments, see our
 main &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;documentation pages&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;A standard Ondat installation uses the Ondat operator, which performs
 most platform-specific configuration for you. The Ondat operator has been
@@ -3056,7 +3056,7 @@ kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt;
 &lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;After completing these steps you will have benchmark scores for Ondat.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Please keep in mind that benchmarks are only part of the story and that there
+&lt;p&gt;💡 Do keep in mind that benchmarks are only part of the story and that there
 is no replacement for testing actual production or production like workloads.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat invites you to provide feedback on your self-evaluation to the &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack channel&lt;/a&gt; or by directly emailing us at &lt;a href=&#34;mailto:info@ondat.io&#34;&gt;info@ondat.io&lt;/a&gt;.&lt;/p&gt;
@@ -4796,7 +4796,7 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
 default with mTLS. Data-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files
 is optional and can be enabled by adding a label to your volume definitions
 before they&amp;rsquo;re provisioned.&lt;/p&gt;
-&lt;p&gt;For information on how to enable encryption on your volumes, please see our
+&lt;p&gt;For information on how to enable encryption on your volumes, see our
 &lt;a href=&#34;/docs/operations/encryption&#34;&gt;Encryption Operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;how-volumes-are-encrypted&#34;&gt;How volumes are encrypted&lt;/h2&gt;
 &lt;p&gt;Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as

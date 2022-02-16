@@ -34,7 +34,7 @@ The current and maximum number of AIO requests is visible in the virtual files /
 Max AIO prerequisite By default there is a maximum number of AIO contexts that can be allocated at once.
 The current and maximum number of AIO requests is visible in the virtual files /proc/sys/fs/aio-nr and /proc/sys/fs/aio-max-nr.">
 
-<meta itemprop="wordCount" content="228">
+<meta itemprop="wordCount" content="227">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Max AIO"/>
 <meta name="twitter:description" content="As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous Input Output) contexts to serve I/O requests without blocking. Ondat requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment, whether master or replica).
@@ -173,7 +173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.205f067ac67cff78fa0eeba570c4a2c958a27e416793679672de068990b4b7f2dce3b7b23651b55b43e2309f8296e288ab390414e9bf1b77951e911152c94090.json"
+  data-offline-search-index-json-src="/offline-search-index.dd17e0131160815631e4f9bfa26ed658b9d0cde017768ab127620dca3f8a2c659223acdee64cb572c06a2f704319b73f3681ab748039421773e1ef78157ddeaa.json"
   data-offline-search-base-href="/"
 >
 
@@ -1419,9 +1419,9 @@ once.</p>
 <p>The current and maximum number of AIO requests is visible in the virtual
 files <code>/proc/sys/fs/aio-nr</code> and <code>/proc/sys/fs/aio-max-nr</code>.</p>
 <p>The default context limit has been set at 2^16 or 65536. This figure may vary
-so please check your <code>/proc/sys/fs/aio-max-nr</code></p>
+so do check your <code>/proc/sys/fs/aio-max-nr</code></p>
 <p>When <code>aio-nr</code> reaches <code>aio-max-nr</code> the <code>io_setup</code> syscall will fail with
-EAGAIN. For more information please see the Linux kernel docs
+EAGAIN. For more information see the Linux kernel docs
 <a href="https://www.kernel.org/doc/Documentation/sysctl/fs.txt">here.</a></p>
 <h2 id="why-is-this-relevant">Why is this relevant?</h2>
 <p>As Ondat requires 4 AIO contexts per deployed volume, there is a limit to

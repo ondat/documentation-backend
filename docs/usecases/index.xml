@@ -519,7 +519,7 @@ information&lt;/a&gt;.&lt;/p&gt;
 exist and be accessible within the Kubernetes cluster as &lt;code&gt;zookeeper&lt;/code&gt;, see how
 to run Zookeeper with Ondat
 &lt;a href=&#34;/docs/usecases/zookeeper&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Ondat is assumed to have been installed; please check for the latest
+&lt;li&gt;Ondat is assumed to have been installed; check for the latest
 available version &lt;a href=&#34;/docs/reference/release_notes&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Kafka pods require 1536 MB of memory for successful scheduling&lt;/li&gt;
 &lt;/ul&gt;
@@ -647,7 +647,7 @@ launch a shell inside the KubeVirt VM that&amp;rsquo;s running as a Kubernetes p
 cluster. &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
 information&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
-&lt;p&gt;Please ensure you have met the Kubevirt prerequisites, please see the &lt;a href=&#34;https://kubevirt.io/user-guide/operations/installation/&#34;&gt;
+&lt;p&gt;Ensure you have met the Kubevirt prerequisites, see the &lt;a href=&#34;https://kubevirt.io/user-guide/operations/installation/&#34;&gt;
 Kubevirt installation instructions
 &lt;/a&gt; for
 more information.&lt;/p&gt;
@@ -1065,7 +1065,7 @@ system (ORDBMS).&lt;/p&gt;
 ranging from small, single-node use cases to large internet-facing clusters
 with many concurrent users.&lt;/p&gt;
 &lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
-cluster. If you need to setup Ondat on Kubernetes then please see our guide
+cluster. If you need to setup Ondat on Kubernetes then see our guide
 to &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installing Ondat on Kubernetes&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;deploying-postgresql-on-kubernetes&#34;&gt;Deploying PostgreSQL on Kubernetes&lt;/h2&gt;
 &lt;ol&gt;
@@ -1648,7 +1648,7 @@ restore from that backup. A simple form of quiescence is the unix command
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first annotation specifies which volume to backup using restic. The other
 annotations are used to perform an fsfreeze on the volume mount point using pre
 and post backup hooks, for more details about Velero pre/post backup hooks
-please see their documentation &lt;a href=&#34;https://velero.io/docs/main/restore-hooks/#docs&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://velero.io/docs/main/backup-hooks/#docs&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+see their documentation &lt;a href=&#34;https://velero.io/docs/main/restore-hooks/#docs&#34;&gt;here&lt;/a&gt; and &lt;a href=&#34;https://velero.io/docs/main/backup-hooks/#docs&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We have to specify to use the &lt;code&gt;fsfreeze&lt;/code&gt; ubuntu container since the MySQL
 container doesn&amp;rsquo;t support fsfreeze&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;fsfreeze&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -1761,7 +1761,7 @@ information&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;deploying-zookeeper-on-kubernetes&#34;&gt;Deploying Zookeeper on Kubernetes&lt;/h2&gt;
 &lt;h3 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Ondat is assumed to have been installed; please check for the latest
+&lt;li&gt;Ondat is assumed to have been installed; check for the latest
 available version &lt;a href=&#34;/docs/reference/release_notes&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;helm&#34;&gt;Helm&lt;/h3&gt;
