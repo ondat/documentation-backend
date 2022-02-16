@@ -60,7 +60,7 @@ platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
 &lt;p&gt;Ondat also has an official Helm chart, see &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat-operator&#34;&gt;the charts repository&lt;/a&gt; for instructions.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; &lt;/p&gt;
-&lt;h2 id=&#34;install-ondat-on-kubernetes-122&#34;&gt;Install ondat on kubernetes 1.22&lt;/h2&gt;
+&lt;h2 id=&#34;install-ondat-on-kubernetes-122&#34;&gt;Install Ondat on Kubernetes 1.22&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
     https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
