@@ -44,7 +44,7 @@ platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-122&#34;&gt;Install ondat on kubernetes 1.22&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
     &amp;amp;&amp;amp; tar -xf kubectl-storageos.tar.gz \
     &amp;amp;&amp;amp; chmod +x kubectl-storageos \
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
@@ -92,7 +92,7 @@ personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&
 &lt;h2 id=&#34;install-ondat-on-kubernetes-121&#34;&gt;Install Ondat on Kubernetes 1.21&lt;/h2&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin-1&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
     &amp;amp;&amp;amp; tar -xf kubectl-storageos.tar.gz \
     &amp;amp;&amp;amp; chmod +x kubectl-storageos \
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
