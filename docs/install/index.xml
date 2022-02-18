@@ -38,7 +38,7 @@ platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
 &lt;p&gt;💡 Ondat supports the five most recent Kubernetes releases, at minimum.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Ondat also has an official Helm chart, see &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat-operator&#34;&gt;the charts repository&lt;/a&gt; for instructions.&lt;/p&gt;
+&lt;p&gt;💡 Ondat also has an official Helm chart, see &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat-operator&#34;&gt;the charts repository&lt;/a&gt; for instructions.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;h2 id=&#34;install-ondat-on-kubernetes-122&#34;&gt;Install Ondat on Kubernetes 1.22&lt;/h2&gt;
@@ -53,7 +53,18 @@ platform can use the following Kubernetes guide to install Ondat.&lt;/p&gt;
 &lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;install-ondat&#34;&gt;Install Ondat&lt;/h3&gt;
+&lt;h3 id=&#34;option-a-install-ondat-embedded-etcd&#34;&gt;Option A: Install Ondat (embedded etcd)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 This is the easiest way to get up and running with Ondat, though
+do note that we currently recommend having an out-of-cluster etcd
+in production for maximum performance and stability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;option-b-install-ondat-bring-your-own-etcd&#34;&gt;Option B: Install Ondat (bring-your-own etcd)&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.storageos-etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
@@ -101,7 +112,18 @@ personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&
 &lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;install-ondat-1&#34;&gt;Install Ondat&lt;/h3&gt;
+&lt;h3 id=&#34;option-a-install-ondat-embedded-etcd-1&#34;&gt;Option A: Install Ondat (embedded etcd)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 This is the easiest way to get up and running with Ondat, though
+do note that we currently recommend having an out-of-cluster etcd
+in production for maximum performance and stability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;option-b-install-ondat-bring-your-own-etcd-1&#34;&gt;Option B: Install Ondat (bring-your-own etcd)&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.storageos-etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
@@ -149,7 +171,18 @@ personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&
 &lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;install-ondat-2&#34;&gt;Install Ondat&lt;/h3&gt;
+&lt;h3 id=&#34;option-a-install-ondat-embedded-etcd-2&#34;&gt;Option A: Install Ondat (embedded etcd)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 This is the easiest way to get up and running with Ondat, though
+do note that we currently recommend having an out-of-cluster etcd
+in production for maximum performance and stability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;option-b-install-ondat-bring-your-own-etcd-2&#34;&gt;Option B: Install Ondat (bring-your-own etcd)&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.storageos-etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
@@ -197,7 +230,18 @@ personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&
 &lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;install-ondat-3&#34;&gt;Install Ondat&lt;/h3&gt;
+&lt;h3 id=&#34;option-a-install-ondat-embedded-etcd-3&#34;&gt;Option A: Install Ondat (embedded etcd)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 This is the easiest way to get up and running with Ondat, though
+do note that we currently recommend having an out-of-cluster etcd
+in production for maximum performance and stability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;option-b-install-ondat-bring-your-own-etcd-3&#34;&gt;Option B: Install Ondat (bring-your-own etcd)&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.storageos-etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
@@ -245,7 +289,18 @@ personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&
 &lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
 plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;install-ondat-4&#34;&gt;Install Ondat&lt;/h3&gt;
+&lt;h3 id=&#34;option-a-install-ondat-embedded-etcd-4&#34;&gt;Option A: Install Ondat (embedded etcd)&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 This is the easiest way to get up and running with Ondat, though
+do note that we currently recommend having an out-of-cluster etcd
+in production for maximum performance and stability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;option-b-install-ondat-bring-your-own-etcd-4&#34;&gt;Option B: Install Ondat (bring-your-own etcd)&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.storageos-etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
