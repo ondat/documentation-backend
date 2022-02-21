@@ -312,7 +312,7 @@ applications in Kubernetes.&lt;/p&gt;
 Ondat cluster to create and present virtual volumes into containers. Space
 on the host is consumed from the mount point &lt;code&gt;/var/lib/storageos/data&lt;/code&gt;, so it
 is therefore recommended that disk devices are used exclusively for Ondat,
-as described in &lt;a href=&#34;/docs/operations/managing-host-storage&#34;&gt;Managing Host Storage &lt;/a&gt;&lt;/p&gt;
+as described in &lt;a href=&#34;/docs/operations/managing-host-storage&#34;&gt;Managing Host Storage&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Ondat is agnostic to the underlying storage and runs equally well on
 bare metal, in virtual machines or on cloud providers.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/concepts/storageos-cluster.png&#34; alt=&#34;Ondat cluster components&#34;&gt;&lt;/p&gt;

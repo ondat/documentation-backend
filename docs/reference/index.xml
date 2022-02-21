@@ -6030,7 +6030,7 @@ unmount on error.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v240---released-2021-05-27&#34;&gt;v2.4.0 - Released 2021-05-27&lt;/h2&gt;
-&lt;p&gt;This release adds production-grade &lt;a href=&#34;/docs/reference/encryption&#34;&gt;encryption at rest &lt;/a&gt; for Ondat volumes, as well as:&lt;/p&gt;
+&lt;p&gt;This release adds production-grade &lt;a href=&#34;/docs/reference/encryption&#34;&gt;encryption at rest&lt;/a&gt; for Ondat volumes, as well as:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/concepts/fencing&#34;&gt;Fencing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/operations/trim&#34;&gt;TRIM&lt;/a&gt;&lt;/li&gt;
