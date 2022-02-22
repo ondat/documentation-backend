@@ -20,26 +20,35 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Google GKE | </title><meta property="og:title" content="Google GKE" />
-<meta property="og:description" content="StorageOS is fully compatible with GKE when using the Ubuntu images. To install StorageOS on Google GKE, follow our Kubernetes installation instructions page.
-For StorageOS to work normally it is required to use the Ubuntu images for the Google GKE node pools. The default container image does not fulfil the system requirements because of the lack of the TCMU kernel modules.
-For more details about the OS Distributions check the System Configuration page." />
+<title>Amazon Web Services Elastic Kubernetes Service (AWS EKS) | </title><meta property="og:title" content="Amazon Web Services Elastic Kubernetes Service (AWS EKS)" />
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl
+  kubectl-storageos
+  aws" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/platforms/google-gke/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/install/amazon-web-services-eks/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Google GKE">
-<meta itemprop="description" content="StorageOS is fully compatible with GKE when using the Ubuntu images. To install StorageOS on Google GKE, follow our Kubernetes installation instructions page.
-For StorageOS to work normally it is required to use the Ubuntu images for the Google GKE node pools. The default container image does not fulfil the system requirements because of the lack of the TCMU kernel modules.
-For more details about the OS Distributions check the System Configuration page.">
+<meta itemprop="name" content="Amazon Web Services Elastic Kubernetes Service (AWS EKS)">
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl
+  kubectl-storageos
+  aws">
 
-<meta itemprop="wordCount" content="110">
+<meta itemprop="wordCount" content="757">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Google GKE"/>
-<meta name="twitter:description" content="StorageOS is fully compatible with GKE when using the Ubuntu images. To install StorageOS on Google GKE, follow our Kubernetes installation instructions page.
-For StorageOS to work normally it is required to use the Ubuntu images for the Google GKE node pools. The default container image does not fulfil the system requirements because of the lack of the TCMU kernel modules.
-For more details about the OS Distributions check the System Configuration page."/>
+<meta name="twitter:title" content="Amazon Web Services Elastic Kubernetes Service (AWS EKS)"/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl
+  kubectl-storageos
+  aws"/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -80,7 +89,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Google GKE | </title>
+    <title>Amazon Web Services Elastic Kubernetes Service (AWS EKS) | </title>
   </head>
   <body class="td-page">
     
@@ -567,10 +576,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstall">
+    <li class="collapse show" id="docsinstall">
       
       
       
@@ -595,7 +604,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Web Services Elastic Kubernetes Service (AWS EKS)</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Web Services Elastic Kubernetes Service (AWS EKS)</a>
       
       
       
@@ -620,10 +629,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/platforms/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Platforms</a>
+    <a  href="/docs/platforms/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Platforms</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsplatforms">
+    <li class="collapse " id="docsplatforms">
       
       
       
@@ -642,7 +651,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsplatformsgoogle-gke" href="/docs/platforms/google-gke/">Google GKE</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsgoogle-gke" href="/docs/platforms/google-gke/">Google GKE</a>
       
       
       
@@ -1362,6 +1371,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
+        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
+        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1390,14 +1414,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/platforms/">Platforms</a>
+	<a href="/docs/install/">Install</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/platforms/google-gke/">Google GKE</a>
+	<a href="/docs/install/amazon-web-services-eks/">Amazon Web Services Elastic Kubernetes Service (AWS EKS)</a>
 </li>
 
 	</ol>
@@ -1405,19 +1429,141 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Google GKE</h1>
+	<h1>Amazon Web Services Elastic Kubernetes Service (AWS EKS)</h1>
 	
-	<p>StorageOS is fully compatible with GKE when using the Ubuntu images. To
-install StorageOS on Google GKE, follow our Kubernetes <a href="/docs/install/kubernetes">installation instructions</a> page.</p>
-<p>For StorageOS to work normally it is <strong>required to use the Ubuntu images</strong> for
-the Google GKE node pools. The default container image does not fulfil the system
-requirements because of the lack of the TCMU kernel modules.</p>
-<p>For more details about the OS Distributions check the <a href="/docs/prerequisites/systemconfiguration">System Configuration</a> page.</p>
-<h2 id="google-anthos">Google Anthos</h2>
-<p>Ondat is compatible with Google Anthos. However it is required that the
-Linux image distribution used fulfils the <a href="/docs/prerequisites/systemconfiguration">System Configuration</a> prerequisites.</p>
-<p>Once a Kubernetes cluster is provisioned, StorageOS can be installed following
-the <a href="/docs/install/kubernetes">instructions</a> page.</p>
+	<h2 id="overview">Overview</h2>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://aws.amazon.com/eks/">Elastic Kubernetes Service</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>
+<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
+</li>
+<li>
+<p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></p>
+</li>
+<li>
+<p><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/cli/">aws</a></p>
+</li>
+<li>
+<p><a href="https://eksctl.io/">eksctl</a>, at least version <code>&gt;=0.83.0</code></p>
+</li>
+<li>
+<p>You have a running EKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</li>
+<li>
+<p>Your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for EKS</a> as the default node operating system with an optimised kernel. For kernel versions below <code>linux-aws-5.4.0-1066.69</code> or <code>linux-aws-5.13.0-1014.15</code>, the module <code>tcm_loop</code> is not included in the base kernel distribution. In that case, the package <code>linux-modules-extra-$(uname -r)</code> is additionally required on each of the nodes - this can be installed automatically by adding it to the node&rsquo;s user data as in the example below.</p>
+</li>
+</ul>
+<p>To find the latest Ubuntu for EKS AMI, search your region for the image:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">AWS_REGION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;eu-west-2&#34;</span> <span style="color:#8f5902;font-style:italic"># Insert your preferred region here</span>
+aws ec2 describe-images <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--filters <span style="color:#4e9a06">&#34;Name=owner-id,Values=099720109477&#34;</span> <span style="color:#4e9a06">&#34;Name=architecture,Values=x86_64&#34;</span> <span style="color:#4e9a06">&#34;Name=root-device-type,Values=ebs&#34;</span> <span style="color:#4e9a06">&#34;Name=virtualization-type,Values=hvm&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--query <span style="color:#4e9a06">&#39;Images[?contains(Name, `ubuntu-eks`)] | [?contains(Name, `testing`) == `false`] | [?contains(Name, `minimal`) == `false`] | [?contains(Name, `hvm-ssd`) == `true`] | sort_by(@, &amp;CreationDate)| [-1].ImageId&#39;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--output text <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div><p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to create a cluster with 3 nodes of size <code>t3.large</code> running Ubuntu for EKS in the <code>eu-west-2</code> region. We have provided <code>100 GB</code> of disk space for each node. Note that by default, Ondat will store data locally in the node&rsquo;s file system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged mode</a>. In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount our volumes under data device directories</a> with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># cluster.yaml</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">eksctl.io/v1alpha5</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ClusterConfig</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-cluster</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">region</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">eu-west-2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">addons</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">aws-ebs-csi-driver</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">iam</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">withOIDC</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">managedNodeGroups</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-ng</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">minSize</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">maxSize</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">instanceType</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">t3.large</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">ami</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ami-0cb2cb474d9e4e075</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>{<span style="color:#204a87;font-weight:bold">ondat</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node}</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeSize</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">100</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/dev/xvda</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeEncrypted</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">disableIMDSv1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">iam</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">withAddonPolicies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">ebs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">overrideBootstrapCommand</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">|</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">      #!/bin/bash
+</span><span style="color:#8f5902;font-style:italic">      mkdir -p /var/lib/storageos
+</span><span style="color:#8f5902;font-style:italic">      echo &#34;/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1&#34; &gt;&gt; /etc/fstab
+</span><span style="color:#8f5902;font-style:italic">      mkfs.ext4 /dev/nvme1n1
+</span><span style="color:#8f5902;font-style:italic">      mount /var/lib/storageos
+</span><span style="color:#8f5902;font-style:italic">      sudo apt-get update
+</span><span style="color:#8f5902;font-style:italic">      sudo apt-get install -y linux-modules-extra-$(uname -r)
+</span><span style="color:#8f5902;font-style:italic">      /etc/eks/bootstrap.sh ondat-cluster</span><span style="color:#f8f8f8;text-decoration:underline">      
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">eksctl create cluster --config-file<span style="color:#ce5c00;font-weight:bold">=</span>cluster.yaml
+</code></pre></div><blockquote>
+<p>⚠️ With the above configuration, volumes will be deleted when the nodes they
+are attached to are terminated. Be sure to keep snapshots, for example by using
+<a href="https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/">Data Lifecycle Manager</a></p>
+</blockquote>
+<h2 id="procedure">Procedure</h2>
+<p>First, provision your <code>kubeconfig</code> for <code>kubectl</code> and test that you can connect to Kubernetes:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws eks update-kubeconfig --region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span> --name ondat-cluster
+kubectl get nodes
+</code></pre></div><p>If you receive the message <code>No resources found</code> or see nodes marked as <code>NotReady</code>, wait for 2-3 minutes in order for your nodes to transition to <code>Ready</code> and check again to ensure they are running before proceeding through the next steps.</p>
+<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
+<p>Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
+</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+<ol>
+<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance. Set the <code>StorageClass</code> for etcd to use (this cannot be Ondat, as Ondat is dependent upon etcd). On AWS EKS, we suggest <code>gp3</code> for a good balance of performance and resilience or <code>io2</code> where top performance is essential.</li>
+</ol>
+<p>The default <code>StorageClass</code> in EKS is <code>gp2</code> which is not recommended, instead we will create a <code>gp3</code> <code>StorageClass</code> and set it as default, at least until we install Ondat:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f - <span style="color:#4e9a06">&lt;&lt;EOF
+</span><span style="color:#4e9a06">kind: StorageClass
+</span><span style="color:#4e9a06">apiVersion: storage.k8s.io/v1
+</span><span style="color:#4e9a06">metadata:
+</span><span style="color:#4e9a06">  name: gp3
+</span><span style="color:#4e9a06">  annotations:
+</span><span style="color:#4e9a06">    storageclass.kubernetes.io/is-default-class: &#34;true&#34;
+</span><span style="color:#4e9a06">allowVolumeExpansion: true
+</span><span style="color:#4e9a06">provisioner: ebs.csi.aws.com
+</span><span style="color:#4e9a06">volumeBindingMode: WaitForFirstConsumer
+</span><span style="color:#4e9a06">parameters:
+</span><span style="color:#4e9a06">  type: gp3
+</span><span style="color:#4e9a06">EOF</span>
+</code></pre></div><blockquote>
+<p>💡 This <code>StorageClass</code> requires the AWS EBS EKS addon we specified in the <code>eksctl</code> cluster configuration above</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;gp3&#34;</span>
+</code></pre></div><ol start="2">
+<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-storage-class <span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div><p>The installation process may take a few minutes.</p>
+<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
+kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.</p>
+</blockquote>
+<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 
 	
 	

@@ -38,7 +38,7 @@ Prerequisites   You have met the minimum resource requirements for Ondat to succ
   kubectl
   kubectl-storageos">
 
-<meta itemprop="wordCount" content="297">
+<meta itemprop="wordCount" content="296">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Azure Kubernetes Service (AKS)"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.01481a874694cfee50ae475f3da6d59424d4bd4d8e1c4befed36b918e139a8792eefdbeec4f09eac424e9d72f96e04ce9336763e7e915fcbcb3838477bc14d11.json"
+  data-offline-search-index-json-src="/offline-search-index.bceadd8d62457461ed33345d28e34de958c8fd35e55ce6fd774efffcf1e04f439120e1044db5e35a535f31ad498524af5795e724d7d7f3af6f2f02905c095428.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.01481a874694cfee50ae475f3da6d59424d4bd4d8e1c4befed36b918e139a8792eefdbeec4f09eac424e9d72f96e04ce9336763e7e915fcbcb3838477bc14d11.json"
+  data-offline-search-index-json-src="/offline-search-index.bceadd8d62457461ed33345d28e34de958c8fd35e55ce6fd774efffcf1e04f439120e1044db5e35a535f31ad498524af5795e724d7d7f3af6f2f02905c095428.json"
   data-offline-search-base-href="/"
 >
 
@@ -596,6 +596,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher" href="/docs/install/rancher/">Rancher</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Web Services Elastic Kubernetes Service (AWS EKS)</a>
       
       
       
@@ -1423,11 +1429,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h1>Azure Kubernetes Service (AKS)</h1>
 	
 	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to install Ondat onto a <a href="https://azure.microsoft.com/en-gb/services/kubernetes-service/">Microsoft Azure Kubernetes Service (AKS)</a> cluster using the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://azure.microsoft.com/en-gb/services/kubernetes-service/">Microsoft Azure Kubernetes Service (AKS)</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>
-<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="https://docs.ondat.io/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
+<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
 </li>
 <li>
 <p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
@@ -1436,7 +1442,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></p>
 </li>
 <li>
-<p><a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">kubectl-storageos</a></p>
+<p><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></p>
 </li>
 <li>
 <p>You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
@@ -1453,8 +1459,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ol>
 <li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;admin&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;password&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
 </code></pre></div><ol start="2">
 <li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
 </ol>
@@ -1466,16 +1472,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre></div><p>The installation process may take a few minutes.</p>
 <h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
 <p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all
-   --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> kubectl 
-get all 
-  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
 </code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
 <blockquote>
 <p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.</p>
 </blockquote>
-<p>To obtain a licence, follow the instructions on our <a href="https://docs.ondat.io/docs//operations/licensing">licensing operations</a> page.</p>
+<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 
 	
 	
