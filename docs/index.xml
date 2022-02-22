@@ -3256,45 +3256,6 @@ Global Flags:
     </item>
     
     <item>
-      <title>Docs: Amazon EKS</title>
-      <link>/docs/platforms/aws-eks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/platforms/aws-eks/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat is fully compatible with Amazon EKS. To install Ondat on EKS,
-follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;An Amazon EKS deployment of Kubernetes uses Amazon Linux by default with an optimized
-kernel. As the requisite kernel modules are not available for Ondat to use
-TCMU, FUSE will be used as a fallback. Using FUSE instead of TCMU has
-performance implications.&lt;/p&gt;
-&lt;p&gt;For more details about the OS Distributions, see the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt;
-page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Azure AKS</title>
-      <link>/docs/platforms/azure-aks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/platforms/azure-aks/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat is fully compatible with Azure AKS. To install Ondat on Azure AKS,
-follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;An Azure AKS deployment of Kubernetes uses Ubuntu by default with an optimized
-kernel. All versions of Ubuntu with a kernel version later
-than&lt;code&gt;4.15.0-1029-azure&lt;/code&gt; meet the Ondat prerequisites.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Azure Kubernetes Service (AKS)</title>
       <link>/docs/install/microsoft-azure-aks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -5278,6 +5239,237 @@ to be available.&lt;/p&gt;
 the cost of reliability. The minimum node count here is 1 as the loss of all
 replicas will be tolerated.&lt;/p&gt;
 &lt;p&gt;Minimum number of storage nodes = 1 (primary)&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Fencing</title>
+      <link>/docs/concepts/fencing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/fencing/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;statefulset-behaviour&#34;&gt;StatefulSet behaviour&lt;/h2&gt;
+&lt;p&gt;In order to understand what Ondat Fencing for Kubernetes is and when it is
+needed, it is required to first understand the behaviour of StatefulSets.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/&#34;&gt;StatefulSets&lt;/a&gt;
+are the de facto Kubernetes controller to use for stateful applications. The
+StatefulSet controller offers guarantees around pod uniqueness, sticky
+identities and the persistence of PVCs beyond the lifetime of their pods. As
+such, StatefulSets have different characteristics and provide different
+guarantees than Deployments.&lt;/p&gt;
+&lt;p&gt;Deployments guarantee the amount of healthy replicas by reconciling towards the
+deployment desired  state. Attempts to align the number of healthy pods with
+the deployment&amp;rsquo;s desired state happen as fast as possible by aggressively
+initializing and terminating pods. If one pod is terminating, another will be
+automatically scheduled to start even if the first pod is not yet completely
+terminated. Stateless applications benefit from this behaviour as one pod
+executes the same work as any other in the deployment.&lt;/p&gt;
+&lt;p&gt;StatefulSets, on the other hand, guarantee that every pod scheduled has a
+unique identity, which is to say that only a single copy of a pod is running in
+the cluster at any one time. Whenever scheduling decisions are made, the
+StatefulSet controller ensures that only one copy of this pod is running at any
+time. If a pod is deleted, a new pod will not be scheduled until the first pod
+is fully terminated. This is an important guarantee as FileSystems need to be
+unmounted before they can be remounted in a new pod. Any ReadWriteOnce PVC
+defining a device requires this behaviour to ensure the consistency of the data
+and thus the PVC.&lt;/p&gt;
+&lt;p&gt;To protect data integrity, Kubernetes guarantees that there will never be more
+than one instance of a StatefulSet Pod running at a time. It assumes that when
+a node is determined to be offline it may still be running the workload but
+partitioned from the network. Since Kubernetes is unable to
+verify that the Pod has been stopped it errs on the side of caution and does
+not allow a replacement to start on another node.&lt;/p&gt;
+&lt;p&gt;Kubernetes does reschedule pods from some controllers when nodes become
+unavailable. The default behaviour is that when a node becomes unavailable its
+status becomes &amp;ldquo;Unknown&amp;rdquo; and after the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; has passed pods
+are scheduled for deletion. By default, the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; is 300
+seconds.&lt;/p&gt;
+&lt;p&gt;For this reason, Kubernetes requires manual intervention to initiate timely
+failover of a StatefulSet Pod. The Ondat Fencing Controller gives the
+capability to enable fast failover of workloads when a node goes offline.&lt;/p&gt;
+&lt;p&gt;For more information on the rationale behind the design of StatefulSets please
+see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubernetes/design-proposals-archive/blob/main/storage/pod-safety.md&#34;&gt;Pod
+Safety&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The Ondat Fencing Controller is part of the Ondat API Manager which
+is deployed in high availability when Ondat is installed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;HA for StatefulSet applications can be achieved with the Ondat Fencing
+feature&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Since Ondat is able to determine when a node is no longer able to access a
+volume and has protections in place to ensure that a partitioned or formerly
+partitioned node can not continue to write data, it can work with Kubernetes to
+perform safe, fast failovers of Pods, including those running in StatefulSets.&lt;/p&gt;
+&lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
+marks the node offline and performs volume failover operations.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/api-manager/tree/master/controllers/fencer&#34;&gt;Ondat Fencing
+Controller&lt;/a&gt;
+watches for these node failures and determines if there are any pods assigned
+to the failed node with the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;, and if the pods
+have any PVCs backed by Ondat volumes.&lt;/p&gt;
+&lt;p&gt;When a Pod has Ondat volumes and if they are all healthy, the Ondat
+fencing controller deletes the Pod to allow it to be rescheduled on another
+node. It also deletes the VolumeAtachments for the corresponding volumes so
+that they can be immediately attached to the new node.&lt;/p&gt;
+&lt;p&gt;No changes are made to Pods that have Ondat volumes that are unhealthy.
+This is usually because a volume was configured to not have any replicas, and the
+node with the single copy of the data is offline. In this case it is better to
+wait for the node to recover.&lt;/p&gt;
+&lt;p&gt;Fencing works with both dynamically provisioned PVCs and PVCs referencing
+pre-provisioned volumes.&lt;/p&gt;
+&lt;p&gt;The fencing feature is opt-in and Pods must have the
+&lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label set, and be using at least one Ondat
+volume, to enable fast failover.&lt;/p&gt;
+&lt;p&gt;For more information about how to enable pod fencing, see our &lt;a href=&#34;/docs/operations/fencing&#34;&gt;Fencing
+Operations&lt;/a&gt; page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Fencing</title>
+      <link>/docs/operations/fencing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/fencing/</guid>
+      <description>
+        
+        
+        &lt;p&gt;For information regarding the Ondat Fencing feature, see our
+&lt;a href=&#34;/docs/concepts/fencing&#34;&gt;fencing concepts page&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;labeling-a-pod-for-fencing&#34;&gt;Labeling a pod for fencing&lt;/h2&gt;
+&lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
+marks the node offline and performs volume failover operations.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/api-manager/tree/master/controllers/fencer&#34;&gt;Ondat Fencing Controller&lt;/a&gt;
+watches for node failures and determines if there are any pods targeted for
+fencing. In order for a pod to be fenced, the following criteria is required.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The pod must have the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The pod to be fenced must claim an Ondat volume&lt;/li&gt;
+&lt;li&gt;The Ondat volume claimed by the pod needs to be &lt;code&gt;online&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the node becomes offline and these criteria are met, the pod is deleted and
+rescheduled on another node.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 No changes are made to Pods that have Ondat volumes that are unhealthy.
+This is typically the case when a volume was configured to not have any
+replicas, and the node with the single copy of the data is offline. In this
+case it is better to wait for the Node to recover.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;statefulset-example-with-fencing-enabled&#34;&gt;StatefulSet example with fencing enabled&lt;/h3&gt;
+&lt;p&gt;The following example shows how a Statefulset can enable fencing to all its
+pods.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Note that the &lt;code&gt;fenced&lt;/code&gt; label is applied only in the
+&lt;code&gt;.spec.template.metadata.label&lt;/code&gt; section, as the label must only be present on
+the Pod, but not on the PVC.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;apps/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StatefulSet&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;my-statefulset&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;selector&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;matchLabels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;serviceName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/fenced&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Fencing label&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;debian&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;debian:10-slim&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;command&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/bin/sleep&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;3600&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeMounts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-volume&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;mountPath&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;/mnt&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplates&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-volume&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;env&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;accessModes&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ReadWriteOnce&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageClassName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;10Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;fencing-trigger&#34;&gt;Fencing trigger&lt;/h2&gt;
+&lt;p&gt;The Ondat Fencing Controller checks the Ondat node health every 5 seconds.
+This is how quickly the fencing controller can react to node failures.&lt;/p&gt;
+&lt;p&gt;Pods assigned to unhealthy nodes will be evaluated immediately on state change,
+and then re-evaluated every hour, though this is configurable. This retry
+allows pods that had unhealthy volumes which have now recovered to eventually
+failover, or pods that were rescheduled on an unhealthy node to be re-evaluated
+for fencing.&lt;/p&gt;
+&lt;h2 id=&#34;fencing-example&#34;&gt;Fencing example&lt;/h2&gt;
+&lt;p&gt;The following example shows how the Ondat API manager fences a Pod.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure the &lt;code&gt;storageos.com/fenced&lt;/code&gt; label is present&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n mysql get pod --show-labels -owide
+NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
+mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker1   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
+
+$ kubectl -n mysql get pvc --show-labels -owide
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
+data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RWO            storageos      19m   Filesystem   app=mysql,env=prod,storageos.com/replicas=1
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 Note that the mysql-0 pod has the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Stop node hosting the &lt;code&gt;mysql-0&lt;/code&gt; pod&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;root@worker1:~# shutdown -h now
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check logs from the Ondat API Manager&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n storageos logs storageos-api-manager-68759bbc78-7l5fw
+...
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.413811357Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;nginx-ingress-controller-xbqjf&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;ingress-nginx&amp;quot;}
+
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417605039Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-api-manager-68759bbc78-7l5fw&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417748651Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;coredns-7c5566588d-8g5xq&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417792281Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;metrics-server-6b55c64f86-cnwtk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417883383Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;default-http-backend-67cf578fc4-w8sm4&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;ingress-nginx&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417975663Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;coredns-autoscaler-65bfc8d47d-ph6pn&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418024204Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;canal-stzdv&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418065315Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-etcd-2hkff82fq2&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos-etcd&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418092165Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-daemonset-6zrkk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418182036Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;cattle-node-agent-sjspk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;cattle-system&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.439513312Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;pod has fenced label set and volume(s) still healthy after node failure, proceeding with fencing&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.495807296Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;pod deleted&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.505411162Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;volume attachment deleted&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;,&amp;quot;pvc&amp;quot;:&amp;quot;data-mysql-0&amp;quot;,&amp;quot;va&amp;quot;:&amp;quot;csi-c2b44cee5a647e20d77e0e217dfaec07afd592eae57bcccc09b3447de653ae8c&amp;quot;,&amp;quot;node&amp;quot;:&amp;quot;worker1&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.505439792Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;fenced pod&amp;quot;}
+{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.573478266Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;set scheduler&amp;quot;,&amp;quot;scheduler&amp;quot;:&amp;quot;storageos-scheduler&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql/mysql-0&amp;quot;}
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 The Ondat API Manager detects all the pods that are on the failed
+node, and selects only the ones that meet the fencing criteria as
+described above. In this case only &lt;code&gt;mysql-0&lt;/code&gt; is selected for fencing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check the pod&amp;rsquo;s new node&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n mysql get pod --show-labels -owide
+NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
+mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 The pod &lt;code&gt;mysql-0&lt;/code&gt; started on a different node successfully.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 
       </description>
     </item>
