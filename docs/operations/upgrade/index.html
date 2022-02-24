@@ -34,7 +34,7 @@ Keep in mind that upgrading a cluster will require minor downtime of application
 Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
  ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly.">
 
-<meta itemprop="wordCount" content="387">
+<meta itemprop="wordCount" content="381">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Upgrade Ondat"/>
 <meta name="twitter:description" content="This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
@@ -154,7 +154,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.4">v2.4</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.5</a></li>
+            <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.6</a></li>
             
           </ul>
         </li>
@@ -173,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -1406,7 +1408,7 @@ init container logs to ensure your environments PID limits are set correctly.</p
 </blockquote>
 <blockquote>
 <p>⚠️ To reduce downtime, it is recommended to <code>docker pull</code> the new
-Ondat container image <code>storageos/node:&lt; param latest_node_version &gt;</code>
+Ondat container image <code>storageos/node:v2.6.0</code>
 on the nodes beforehand so that the cluster spins up faster!</p>
 </blockquote>
 <ol>
@@ -1434,7 +1436,7 @@ authentication Secret object and the StorageOS CR object.</p>
 removing all images in the image section and modify the <code>storageos/node</code>
 image to:</p>
 <pre tabindex="0"><code>images:
-    nodeContainer: &quot;storageos/node:&lt; param latest_node_version &gt;&quot;
+    nodeContainer: &quot;storageos/node:v2.6.0&quot;
 </code></pre></li>
 <li>
 <p>Scale all stateful applications that use Ondat volumes to 0.</p>

@@ -34,7 +34,7 @@
  Rancher Catalogue - this is the easiest and requires just a few clicks Manual - allowing more control and visibility   ⚠️ Before proceeding, ensure that you have followed our prerequisites.
   ⚠️ On Rancher, pay particular attention to the OS version and image used - some platforms require extra mainline kernel modules to be enabled.">
 
-<meta itemprop="wordCount" content="1068">
+<meta itemprop="wordCount" content="1065">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rancher"/>
 <meta name="twitter:description" content="Ondat is a certified Rancher application. We offer two installation methods:
@@ -154,7 +154,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.4">v2.4</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.5</a></li>
+            <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.6</a></li>
             
           </ul>
         </li>
@@ -173,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -1559,7 +1561,7 @@ spec:
   k8sDistro: <span style="color:#4e9a06">&#34;rancher&#34;</span>
   storageClassName: <span style="color:#4e9a06">&#34;ondat&#34;</span> <span style="color:#8f5902;font-style:italic"># The storage class created by the Ondat operator is configurable</span>
   images:
-    nodeContainer: <span style="color:#4e9a06">&#34;storageos/node:&lt; param latest_node_version &gt;&#34;</span> <span style="color:#8f5902;font-style:italic"># Ondat version</span>
+    nodeContainer: <span style="color:#4e9a06">&#34;storageos/node:v2.6.0&#34;</span> <span style="color:#8f5902;font-style:italic"># Ondat version</span>
   kvBackend:
     address: <span style="color:#4e9a06">&#39;storageos-etcd-client.etcd:2379&#39;</span> <span style="color:#8f5902;font-style:italic"># Example address, change for your etcd endpoint</span>
   <span style="color:#8f5902;font-style:italic"># address: &#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&#39; # You can set ETCD server ips</span>

@@ -22,7 +22,10 @@
       <description>
         
         
-        &lt;h1 id=&#34;creating-credentials-for-your-cluster&#34;&gt;Creating Credentials for Your Cluster&lt;/h1&gt;
+        &lt;blockquote&gt;
+&lt;p&gt;⚠️ Warning: As a prerequisite, you need to enable port 8883 for egress in your ACLs if a VPC is used.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;creating-credentials-for-your-cluster&#34;&gt;Creating Credentials for Your Cluster&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;Open &lt;a href=&#34;https://portal.ondat.io/dashboard&#34;&gt;Ondat Portal&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Log into your account using your account&amp;rsquo;s credentials.&lt;/li&gt;

@@ -21,19 +21,22 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Ondat Portal Installation Guide | </title><meta property="og:title" content="Ondat Portal Installation Guide" />
-<meta property="og:description" content="Creating Credentials for Your Cluster  Open Ondat Portal. Log into your account using your account&rsquo;s credentials. On the lower left-hand side of the screen, open the Organization tab. Open the API Tokens tab and select Create API Token. Enter a name for the API token. Note that, if there is another API Token with the same description that token will be replaced by this one. Copy all information on the page, this will be the only time it will be visible." />
+<meta property="og:description" content="⚠️ Warning: As a prerequisite, you need to enable port 8883 for egress in your ACLs if a VPC is used.
+ Creating Credentials for Your Cluster  Open Ondat Portal. Log into your account using your account&rsquo;s credentials. On the lower left-hand side of the screen, open the Organization tab. Open the API Tokens tab and select Create API Token. Enter a name for the API token. Note that, if there is another API Token with the same description that token will be replaced by this one." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/ondat-portal/installation-portal/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Ondat Portal Installation Guide">
-<meta itemprop="description" content="Creating Credentials for Your Cluster  Open Ondat Portal. Log into your account using your account&rsquo;s credentials. On the lower left-hand side of the screen, open the Organization tab. Open the API Tokens tab and select Create API Token. Enter a name for the API token. Note that, if there is another API Token with the same description that token will be replaced by this one. Copy all information on the page, this will be the only time it will be visible.">
+<meta itemprop="description" content="⚠️ Warning: As a prerequisite, you need to enable port 8883 for egress in your ACLs if a VPC is used.
+ Creating Credentials for Your Cluster  Open Ondat Portal. Log into your account using your account&rsquo;s credentials. On the lower left-hand side of the screen, open the Organization tab. Open the API Tokens tab and select Create API Token. Enter a name for the API token. Note that, if there is another API Token with the same description that token will be replaced by this one.">
 
-<meta itemprop="wordCount" content="162">
+<meta itemprop="wordCount" content="183">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Portal Installation Guide"/>
-<meta name="twitter:description" content="Creating Credentials for Your Cluster  Open Ondat Portal. Log into your account using your account&rsquo;s credentials. On the lower left-hand side of the screen, open the Organization tab. Open the API Tokens tab and select Create API Token. Enter a name for the API token. Note that, if there is another API Token with the same description that token will be replaced by this one. Copy all information on the page, this will be the only time it will be visible."/>
+<meta name="twitter:description" content="⚠️ Warning: As a prerequisite, you need to enable port 8883 for egress in your ACLs if a VPC is used.
+ Creating Credentials for Your Cluster  Open Ondat Portal. Log into your account using your account&rsquo;s credentials. On the lower left-hand side of the screen, open the Organization tab. Open the API Tokens tab and select Create API Token. Enter a name for the API token. Note that, if there is another API Token with the same description that token will be replaced by this one."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -148,7 +151,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.4">v2.4</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.5</a></li>
+            <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.6</a></li>
             
           </ul>
         </li>
@@ -167,7 +172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -315,7 +320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -1389,7 +1394,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Ondat Portal Installation Guide</h1>
 	
-	<h1 id="creating-credentials-for-your-cluster">Creating Credentials for Your Cluster</h1>
+	<blockquote>
+<p>⚠️ Warning: As a prerequisite, you need to enable port 8883 for egress in your ACLs if a VPC is used.</p>
+</blockquote>
+<h1 id="creating-credentials-for-your-cluster">Creating Credentials for Your Cluster</h1>
 <ol>
 <li>Open <a href="https://portal.ondat.io/dashboard">Ondat Portal</a>.</li>
 <li>Log into your account using your account&rsquo;s credentials.</li>

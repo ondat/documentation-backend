@@ -2379,7 +2379,7 @@ init container logs to ensure your environments PID limits are set correctly.&lt
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ To reduce downtime, it is recommended to &lt;code&gt;docker pull&lt;/code&gt; the new
-Ondat container image &lt;code&gt;storageos/node:&amp;lt; param latest_node_version &amp;gt;&lt;/code&gt;
+Ondat container image &lt;code&gt;storageos/node:v2.6.0&lt;/code&gt;
 on the nodes beforehand so that the cluster spins up faster!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ol&gt;
@@ -2407,7 +2407,7 @@ authentication Secret object and the StorageOS CR object.&lt;/p&gt;
 removing all images in the image section and modify the &lt;code&gt;storageos/node&lt;/code&gt;
 image to:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;images:
-    nodeContainer: &amp;quot;storageos/node:&amp;lt; param latest_node_version &amp;gt;&amp;quot;
+    nodeContainer: &amp;quot;storageos/node:v2.6.0&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Scale all stateful applications that use Ondat volumes to 0.&lt;/p&gt;

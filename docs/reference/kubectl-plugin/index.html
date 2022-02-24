@@ -36,7 +36,7 @@ The kubectl plugin accepts both declarative and imperative modes.
 Install the storageos kubectl plugin curl -sSLo kubectl-storageos.tar.gz \ https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \ &amp;&amp; tar -xf kubectl-storageos.tar.gz \ &amp;&amp; chmod &#43;x kubectl-storageos \ &amp;&amp; sudo mv kubectl-storageos /usr/local/bin/ \ &amp;&amp; rm kubectl-storageos.tar.gz  💡 You can find binaries for different architectures and systems in kubectl plugin.
  Examples Basic installation kubectl storageos install  💡 The plugin will prompt you to get the url/s for etcd.">
 
-<meta itemprop="wordCount" content="277">
+<meta itemprop="wordCount" content="379">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubectl plugin"/>
 <meta name="twitter:description" content="Ondat has implemented a kubectl plugin to facilitate operations when installing and interacting with Ondat clusters.
@@ -157,7 +157,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.4">v2.4</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.5</a></li>
+            <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.6</a></li>
             
           </ul>
         </li>
@@ -176,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -1437,11 +1439,11 @@ plugin</a>.</p>
 </span><span style="color:#4e9a06"></span>    --admin-username <span style="color:#4e9a06">&#34;myuser&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --admin-password <span style="color:#4e9a06">&#34;my-password&#34;</span>
 </code></pre></div><h3 id="declarative-installation">Declarative installation</h3>
-<p>The Ondat kubectl plugin allows to define the StorageOSCluster Custom
-Resource declaratively, as a yaml.</p>
-<ol>
+<p>The Ondat kubectl plugin allows you to define the StorageOSCluster Custom
+Resource declaratively, as a YAML. You can do this using one of the following options:</p>
+<ul>
 <li>
-<p>Create a file <code>StorageOSCluster.yaml</code> with the Secret and StorageOSCluster CR</p>
+<p>Create a file <code>StorageOSCluster.yaml</code> with the Secret and StorageOSCluster CR:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">---
 <span style="color:#8f5902;font-style:italic"># Secret</span>
 apiVersion: v1
@@ -1467,15 +1469,15 @@ spec:
   k8sDistro: <span style="color:#4e9a06">&#34;upstream&#34;</span>
   storageClassName: <span style="color:#4e9a06">&#34;ondat&#34;</span> <span style="color:#8f5902;font-style:italic"># The storage class created by the Ondat operator is configurable</span>
   images:
-    nodeContainer: <span style="color:#4e9a06">&#34;storageos/node:&lt; param latest_node_version &gt;&#34;</span>
-    apiManagerContainer: storageos/api-manager:v2.5.0-sync
+    nodeContainer: <span style="color:#4e9a06">&#34;storageos/node:v2.6.0&#34;</span>
+    apiManagerContainer: storageos/api-manager:v1.2.2
     initContainer: storageos/init:v2.1.0
     csiNodeDriverRegistrarContainer: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
     csiExternalProvisionerContainer: storageos/csi-provisioner:v2.1.1-patched
     csiExternalAttacherContainer: quay.io/k8scsi/csi-attacher:v3.1.0
     csiExternalResizerContainer: quay.io/k8scsi/csi-resizer:v1.1.0
     csiLivenessProbeContainer: quay.io/k8scsi/livenessprobe:v2.2.0
-    kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.20.5
+    kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.21.5
   kvBackend:
     address: <span style="color:#4e9a06">&#34;storageos-etcd-client.storageos-etcd:2379&#34;</span>
   resources:
@@ -1488,12 +1490,29 @@ spec:
 <span style="color:#8f5902;font-style:italic">#        operator: In</span>
 <span style="color:#8f5902;font-style:italic">#        values:</span>
 <span style="color:#8f5902;font-style:italic">#        - &#34;true&#34;</span>
+</code></pre></div><p>and install a cluster</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--stos-cluster-yaml StorageOSCluster.yaml <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--etcd-endpoints <span style="color:#4e9a06">&#34;storageos-etcd-client.storageos-etcd:2379&#34;</span>
 </code></pre></div></li>
 <li>
-<p>Install cluster</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install --stos-cluster-yaml StorageOSCluster.yaml --etcd-endpoints <span style="color:#4e9a06">&#34;storageos-etcd-client.storageos-etcd:2379&#34;</span>
-</code></pre></div></li>
-</ol>
+<p>Create a YAML to describe the cluster&rsquo;s resources using a <a href="https://github.com/storageos/charts/pull/129">Helm
+chart</a> or use the <code>kubectl plugin</code> with the <code>dry-run</code> flags enabled:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install
+    --dry-run
+    --username storageos
+    --password storageos
+    --include-etcd ...
+</code></pre></div><blockquote>
+<p>Note, that when <code>--dry-run</code> is set for an install command, no installation
+takes place. Instead, the installation manifests that would have been
+installed under normal circumstances are written locally to
+<code>./storageos-dry-run/</code>.</p>
+</blockquote>
+</li>
+</ul>
+<p>That generates YAML files that can be used in a GitOps pipeline (your
+installation is fully-declarative). At the end, the CI/CD tool runs <code>kubectl create -f ./path/to/yamls</code>.</p>
 
 	
 	

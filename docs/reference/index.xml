@@ -72,13 +72,13 @@ up resolution times for support issues.&lt;/p&gt;
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# linux/amd64&lt;/span&gt;
 curl -sSLo storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\ &lt;/span&gt;
-    https://github.com/storageos/go-cli/releases/download/v2.5.0/storageos_linux_amd64 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+    https://github.com/storageos/go-cli/releases/download/v2.6.0/storageos_linux_amd64 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo mv storageos /usr/local/bin/
 
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# MacOS&lt;/span&gt;
 curl -sSLo storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    https://github.com/storageos/go-cli/releases/download/v2.5.0/storageos_darwin_amd64 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    https://github.com/storageos/go-cli/releases/download/v2.6.0/storageos_darwin_amd64 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo mv storageos /usr/local/bin/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You will need to provide the correct credentials to connect to the API. The
@@ -116,7 +116,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:&amp;lt; param latest_cli_version &amp;gt;
+      - image: storageos/cli:v2.6.0
         command:
           - &amp;quot;/bin/sh&amp;quot;
           - &amp;quot;-c&amp;quot;
@@ -137,8 +137,8 @@ spec:
 &lt;p&gt;You can also run the cli as a container in your Kubernetes cluster. Then exec
 into it to run commands.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl -n storageos run &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --image storageos/cli:&amp;lt; param latest_cli_version &amp;gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --restart&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;Never                          &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --image storageos/cli:v2.6.0
+    --restart&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;Never                          &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --env &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos:5705 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --env &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos       &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --env &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos       &lt;span style=&#34;color:#4e9a06&#34;&gt;\
@@ -558,11 +558,11 @@ plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;declarative-installation&#34;&gt;Declarative installation&lt;/h3&gt;
-&lt;p&gt;The Ondat kubectl plugin allows to define the StorageOSCluster Custom
-Resource declaratively, as a yaml.&lt;/p&gt;
-&lt;ol&gt;
+&lt;p&gt;The Ondat kubectl plugin allows you to define the StorageOSCluster Custom
+Resource declaratively, as a YAML. You can do this using one of the following options:&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Create a file &lt;code&gt;StorageOSCluster.yaml&lt;/code&gt; with the Secret and StorageOSCluster CR&lt;/p&gt;
+&lt;p&gt;Create a file &lt;code&gt;StorageOSCluster.yaml&lt;/code&gt; with the Secret and StorageOSCluster CR:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;---
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Secret&lt;/span&gt;
 apiVersion: v1
@@ -588,15 +588,15 @@ spec:
   k8sDistro: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;upstream&amp;#34;&lt;/span&gt;
   storageClassName: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ondat&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The storage class created by the Ondat operator is configurable&lt;/span&gt;
   images:
-    nodeContainer: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/node:&amp;lt; param latest_node_version &amp;gt;&amp;#34;&lt;/span&gt;
-    apiManagerContainer: storageos/api-manager:v2.5.0-sync
+    nodeContainer: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/node:v2.6.0&amp;#34;&lt;/span&gt;
+    apiManagerContainer: storageos/api-manager:v1.2.2
     initContainer: storageos/init:v2.1.0
     csiNodeDriverRegistrarContainer: quay.io/k8scsi/csi-node-driver-registrar:v2.1.0
     csiExternalProvisionerContainer: storageos/csi-provisioner:v2.1.1-patched
     csiExternalAttacherContainer: quay.io/k8scsi/csi-attacher:v3.1.0
     csiExternalResizerContainer: quay.io/k8scsi/csi-resizer:v1.1.0
     csiLivenessProbeContainer: quay.io/k8scsi/livenessprobe:v2.2.0
-    kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.20.5
+    kubeSchedulerContainer: k8s.gcr.io/kube-scheduler:v1.21.5
   kvBackend:
     address: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-etcd-client.storageos-etcd:2379&amp;#34;&lt;/span&gt;
   resources:
@@ -609,12 +609,29 @@ spec:
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#        operator: In&lt;/span&gt;
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#        values:&lt;/span&gt;
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#        - &amp;#34;true&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and install a cluster&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;--stos-cluster-yaml StorageOSCluster.yaml &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;--etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-etcd-client.storageos-etcd:2379&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Install cluster&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install --stos-cluster-yaml StorageOSCluster.yaml --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-etcd-client.storageos-etcd:2379&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Create a YAML to describe the cluster&amp;rsquo;s resources using a &lt;a href=&#34;https://github.com/storageos/charts/pull/129&#34;&gt;Helm
+chart&lt;/a&gt; or use the &lt;code&gt;kubectl plugin&lt;/code&gt; with the &lt;code&gt;dry-run&lt;/code&gt; flags enabled:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install
+    --dry-run
+    --username storageos
+    --password storageos
+    --include-etcd ...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Note, that when &lt;code&gt;--dry-run&lt;/code&gt; is set for an install command, no installation
+takes place. Instead, the installation manifests that would have been
+installed under normal circumstances are written locally to
+&lt;code&gt;./storageos-dry-run/&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That generates YAML files that can be used in a GitOps pipeline (your
+installation is fully-declarative). At the end, the CI/CD tool runs &lt;code&gt;kubectl create -f ./path/to/yamls&lt;/code&gt;.&lt;/p&gt;
 
       </description>
     </item>
@@ -5913,13 +5930,44 @@ DISABLE_ERROR_REPORTING &lt;span style=&#34;color:#8f5902;font-style:italic&#34;
         
         &lt;p&gt;We recommend always using &amp;ldquo;tagged&amp;rdquo; versions of Ondat rather than &amp;ldquo;latest&amp;rdquo;,
 and to perform upgrades only after reading the release notes.&lt;/p&gt;
-&lt;p&gt;The latest tagged release is &lt;code&gt;2.5.0&lt;/code&gt;. For
-installation instructions please see our
+&lt;p&gt;The latest tagged release is &lt;code&gt;2.6.0&lt;/code&gt;. For
+installation instructions see our
 &lt;a href=&#34;/docs/reference/cluster-operator/install&#34;&gt;Install&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;The latest CLI release is &lt;code&gt;2.5.0&lt;/code&gt;, available from
+&lt;p&gt;The latest CLI release is &lt;code&gt;2.6.0&lt;/code&gt;, available from
 &lt;a href=&#34;https://github.com/storageos/go-cli/releases&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;upgrading&#34;&gt;Upgrading&lt;/h1&gt;
-&lt;p&gt;To upgrade from version 1.x to 2.x, please contact &lt;a href=&#34;/docs/support&#34;&gt;support&lt;/a&gt; for assistance.&lt;/p&gt;
+&lt;p&gt;To upgrade from version 1.x to 2.x, contact Ondat &lt;a href=&#34;/docs/support&#34;&gt;support&lt;/a&gt; for assistance.&lt;/p&gt;
+&lt;h2 id=&#34;260---released-2022-02-14&#34;&gt;2.6.0 - Released 2022-02-14&lt;/h2&gt;
+&lt;h3 id=&#34;new&#34;&gt;New&lt;/h3&gt;
+&lt;p&gt;Portal Manager:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Initial release of the Portal Manager, which supports the connection to Ondat
+SaaS Platform.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kubectl Plugin:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We have added a &lt;code&gt;--dry-run&lt;/code&gt; flag into install command, so you can view the
+installation manifests written locally to &lt;code&gt;./storageos-dry-run/&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;We have added capability for conducting an airgapped installation. The new
+options can also be used outside of an airgapped cluster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Operator:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We have defined the resource requests and resource limits for the Ondat
+components (csi-attacher, csi-provisioner, csi-resizer, api-manager,
+cluster-operator and ondat-scheduler).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kubernetes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ondat supports Kubernetes v1.23&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Components&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We have added a new component called upgrade guard that once enabled allows
+you to do rolling upgrades to the orchestrator without any downtime. This
+component is disabled by default and we do not recommend using the feature
+for production workloads as it is a technical preview feature.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;25---released-2021-12-06&#34;&gt;2.5 - Released 2021-12-06&lt;/h2&gt;
 &lt;h3 id=&#34;fixed&#34;&gt;Fixed&lt;/h3&gt;
 &lt;p&gt;Dataplane:&lt;/p&gt;
@@ -5939,7 +5987,7 @@ used to extract volume data in disaster recovery scenarios. There was an
 issue that prevented the tool from running whilst the Dataplane was running.
 This has been fixed.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-1&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;Dataplane:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Faster replica syncing - new replicas can be provisioned faster and rejoining
@@ -6003,7 +6051,7 @@ level on an individual node.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v241---released-2021-06-30&#34;&gt;v2.4.1 - Released 2021-06-30&lt;/h2&gt;
-&lt;h3 id=&#34;new-1&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-2&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Cluster-wide log level configuration via Custom Resource.&lt;/li&gt;
 &lt;/ul&gt;
@@ -6038,7 +6086,7 @@ unmount on error.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubernetes-object-sync&#34;&gt;Kubernetes object sync&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Note: v2.4.0 &lt;em&gt;requires&lt;/em&gt; Kubernetes 1.17 or newer.&lt;/p&gt;
-&lt;h3 id=&#34;new-2&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-3&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Volume encryption-at-rest.&lt;/li&gt;
 &lt;li&gt;Fencing support.&lt;/li&gt;
@@ -6509,7 +6557,7 @@ exist.&lt;/p&gt;
 customers.&lt;/li&gt;
 &lt;li&gt;Quality-of-life fixes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-3&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-4&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;operator: Use CSI attacher v3 for k8s 1.17+.&lt;/li&gt;
 &lt;li&gt;controlplane/csi: ListVolumes support.&lt;/li&gt;
@@ -6546,7 +6594,7 @@ technology preview in v1.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The &lt;code&gt;v2.3.0&lt;/code&gt; operator is no longer able to run Ondat v1.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-4&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-5&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Adds support for &lt;code&gt;ReadWriteMany&lt;/code&gt; shared volumes.  See
 &lt;a href=&#34;/docs/concepts/rwx&#34;&gt;ReadWriteMany&lt;/a&gt;.&lt;/li&gt;
@@ -6627,7 +6675,7 @@ look at the &lt;a href=&#34;/docs/self-eval#Benchmarking&#34;&gt;Benchmarking&lt
 self-evaluation guide and consider sharing
 your results. Our PRE engineers are available to discuss in our &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack
 channel&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;new-5&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-6&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Data engine revamp focused on provable consistency and performance. Key
@@ -6692,7 +6740,7 @@ operations, rather than filling target disk to capacity.&lt;/li&gt;
 after a restart. This resulted in multiple entries in &lt;code&gt;/proc/mounts&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v210---released-2020-06-26&#34;&gt;v2.1.0 - Released 2020-06-26&lt;/h2&gt;
-&lt;h3 id=&#34;new-6&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-7&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;csi: Volume expansion now supported in offline mode. To expand a volume, stop
 any workloads accessing the volume, then edit the PVC to increase the
@@ -6729,7 +6777,7 @@ immediately.&lt;/li&gt;
 &lt;li&gt;operator: During uninstall a ClusterRoleBinding was not removed.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v200---released-2020-05-05&#34;&gt;v2.0.0 - Released 2020-05-05&lt;/h2&gt;
-&lt;h3 id=&#34;new-7&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-8&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;operator: Ondat containers now run in the &lt;code&gt;kube-system&lt;/code&gt; namespace by
 default to allow the &lt;code&gt;system-node-critical&lt;/code&gt; priority class to be set. This

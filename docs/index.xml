@@ -239,7 +239,10 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
       <description>
         
         
-        &lt;h1 id=&#34;creating-credentials-for-your-cluster&#34;&gt;Creating Credentials for Your Cluster&lt;/h1&gt;
+        &lt;blockquote&gt;
+&lt;p&gt;⚠️ Warning: As a prerequisite, you need to enable port 8883 for egress in your ACLs if a VPC is used.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;creating-credentials-for-your-cluster&#34;&gt;Creating Credentials for Your Cluster&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;Open &lt;a href=&#34;https://portal.ondat.io/dashboard&#34;&gt;Ondat Portal&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Log into your account using your account&amp;rsquo;s credentials.&lt;/li&gt;
@@ -397,7 +400,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;images.nodeContainer&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;Ondat node container image&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos/node:v2.5.0&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos/node:v2.6.0&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;ingress.annotations&lt;/code&gt;&lt;/td&gt;
@@ -1189,7 +1192,7 @@ spec:
   k8sDistro: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rancher&amp;#34;&lt;/span&gt;
   storageClassName: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ondat&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The storage class created by the Ondat operator is configurable&lt;/span&gt;
   images:
-    nodeContainer: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/node:&amp;lt; param latest_node_version &amp;gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ondat version&lt;/span&gt;
+    nodeContainer: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/node:v2.6.0&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ondat version&lt;/span&gt;
   kvBackend:
     address: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Example address, change for your etcd endpoint&lt;/span&gt;
   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# address: &amp;#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&amp;#39; # You can set ETCD server ips&lt;/span&gt;

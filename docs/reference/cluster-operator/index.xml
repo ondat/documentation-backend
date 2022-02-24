@@ -160,7 +160,7 @@
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;images.nodeContainer&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;Ondat node container image&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos/node:v2.5.0&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos/node:v2.6.0&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;ingress.annotations&lt;/code&gt;&lt;/td&gt;

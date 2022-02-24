@@ -34,7 +34,7 @@ How to create the certificates Secret The client auth certificates need the foll
 Ondat uses the certificates and keys from a Secret to cypher and authenticate Etcd traffic.
 How to create the certificates Secret The client auth certificates need the following file names, in the Secret.">
 
-<meta itemprop="wordCount" content="319">
+<meta itemprop="wordCount" content="318">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Encryption communication with Etcd"/>
 <meta name="twitter:description" content="Ondat supports secure communication with an external etcd cluster using mutual TLS (mTLS). With mTLS both Ondat and etcd authenticate each other ensuring that communication only happens between mutually authenticated end points, and that all communication is encrypted.
@@ -154,7 +154,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.4">v2.4</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.5</a></li>
+            <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.6</a></li>
             
           </ul>
         </li>
@@ -173,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -321,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f4008f7047262911b444332a403ebb097dcfecfd79d23032e2842ba428cadceec05fc0d84ff532f89e192e42bddc2a158d5222a2d94564cef65b78e1c571b1f1.json"
+  data-offline-search-index-json-src="/offline-search-index.e76f48238e5e729253d45eb54b74b0acef9272d5da33bdb8e50b911141f9952e778abf7839a9b31557929ad4ada303c5c58a854741dfc69bc43b7e41fd952213.json"
   data-offline-search-base-href="/"
 >
 
@@ -1442,8 +1444,8 @@ Ondat with etcd using mTLS.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">secretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos-api&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;ondat&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># The storage class created by the Ondat operator is configurable</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">images</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">nodeContainer</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos/node:&lt; param latest_node_version &gt;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">nodeContainer</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos/node:v2.6.0&#34;&#34;
+</span><span style="color:#4e9a06">  namespace: &#34;</span><span style="color:#000">storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># External mTLS secured etcd cluster specific properties</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;etcd-client-tls&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                   </span><span style="color:#8f5902;font-style:italic"># Secret containing etcd client certificates</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefNamespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                    </span><span style="color:#8f5902;font-style:italic"># Make sure the NS of the Secret is the same as the Ondat cluster</span><span style="color:#f8f8f8;text-decoration:underline">
