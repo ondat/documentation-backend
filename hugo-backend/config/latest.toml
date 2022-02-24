@@ -165,6 +165,9 @@ no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY
     url = '/v2.4'
 [[params.versions]]
     version = "v2.5"
+    url = '/v2.5'
+[[params.versions]]
+    version = 'v2.6'
     url = '/'
 
 # Main menu needs dropdown sections. It has been built with a specific template
