@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – Platforms</title>
-    <link>/docs/platforms/</link>
+    <link>https://docs.ondat.io/v2.5/docs/platforms/</link>
     <description>Recent content in Platforms on </description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="/docs/platforms/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://docs.ondat.io/v2.5/docs/platforms/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,34 +15,34 @@
     
     <item>
       <title>Docs: Google GKE</title>
-      <link>/docs/platforms/google-gke/</link>
+      <link>https://docs.ondat.io/v2.5/docs/platforms/google-gke/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/platforms/google-gke/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/platforms/google-gke/</guid>
       <description>
         
         
         &lt;p&gt;StorageOS is fully compatible with GKE when using the Ubuntu images. To
-install StorageOS on Google GKE, follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+install StorageOS on Google GKE, follow our Kubernetes &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;For StorageOS to work normally it is &lt;strong&gt;required to use the Ubuntu images&lt;/strong&gt; for
 the Google GKE node pools. The default container image does not fulfil the system
 requirements because of the lack of the TCMU kernel modules.&lt;/p&gt;
-&lt;p&gt;For more details about the OS Distributions check the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;For more details about the OS Distributions check the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;google-anthos&#34;&gt;Google Anthos&lt;/h2&gt;
 &lt;p&gt;Ondat is compatible with Google Anthos. However it is required that the
-Linux image distribution used fulfils the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; prerequisites.&lt;/p&gt;
+Linux image distribution used fulfils the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; prerequisites.&lt;/p&gt;
 &lt;p&gt;Once a Kubernetes cluster is provisioned, StorageOS can be installed following
-the &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;instructions&lt;/a&gt; page.&lt;/p&gt;
+the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/install/kubernetes&#34;&gt;instructions&lt;/a&gt; page.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: OpenShift</title>
-      <link>/docs/platforms/openshift/</link>
+      <link>https://docs.ondat.io/v2.5/docs/platforms/openshift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/platforms/openshift/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/platforms/openshift/</guid>
       <description>
         
         
@@ -53,11 +53,11 @@ running in the Ondat Daemonset creates a Linux socket that allows the
 communication between Red Hat OpenShift and Ondat.&lt;/p&gt;
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
 &lt;p&gt;Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.&lt;/p&gt;
-&lt;p&gt;To install Ondat on Red Hat OpenShift, follow our &lt;a href=&#34;/docs/install/openshift&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;To install Ondat on Red Hat OpenShift, follow our &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/install/openshift&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID
 limit of 1024. Ondat recommends that the limit be raised to 32768.
-Please see our &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;prerequisites&lt;/a&gt; for more details.&lt;/p&gt;
+Please see our &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/pidlimits&#34;&gt;prerequisites&lt;/a&gt; for more details.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;red-hat-openshift-upgrades&#34;&gt;Red Hat OpenShift Upgrades&lt;/h2&gt;
 &lt;p&gt;Red Hat OpenShift provides an upgrade operator that automates the process of
@@ -82,23 +82,23 @@ Red Hat OpenShift controlplane.&lt;/p&gt;
 &lt;p&gt;The user can provide standard PVC definitions and Ondat will dynamically
 provision them. Ondat presents volumes to containers with standard POSIX
 mount targets. This enables the Kubelet to mount Ondat volumes using
-standard linux device files. Checkout &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;device presentation&lt;/a&gt; for more details.&lt;/p&gt;
+standard linux device files. Checkout &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/systemconfiguration&#34;&gt;device presentation&lt;/a&gt; for more details.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: Rancher</title>
-      <link>/docs/platforms/rancher/</link>
+      <link>https://docs.ondat.io/v2.5/docs/platforms/rancher/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/platforms/rancher/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/platforms/rancher/</guid>
       <description>
         
         
-        &lt;p&gt;To install Ondat on Rancher, follow our &lt;a href=&#34;/docs/install/rancher&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
+        &lt;p&gt;To install Ondat on Rancher, follow our &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/install/rancher&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;Ondat transparently supports Rancher deployments using CentOS, RHEL or
-Debian and can support other Linux distributions detailed in the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;systems supported page&lt;/a&gt; if the
+Debian and can support other Linux distributions detailed in the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/systemconfiguration&#34;&gt;systems supported page&lt;/a&gt; if the
 appropriate kernel modules are present.&lt;/p&gt;
 
       </description>

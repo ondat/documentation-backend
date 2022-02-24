@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – Operations</title>
-    <link>/docs/operations/</link>
+    <link>https://docs.ondat.io/v2.5/docs/operations/</link>
     <description>Recent content in Operations on </description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="/docs/operations/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="https://docs.ondat.io/v2.5/docs/operations/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,15 +15,15 @@
     
     <item>
       <title>Docs: Cluster Health</title>
-      <link>/docs/operations/health/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/health/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/health/</guid>
       <description>
         
         
         &lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/&#34;&gt;CLI&lt;/a&gt; displays the
+&lt;p&gt;The &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/cli/&#34;&gt;CLI&lt;/a&gt; displays the
 status of nodes in the cluster.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get nodes
 NAME        HEALTH  AGE             LABELS
@@ -38,10 +38,10 @@ node5       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4
     
     <item>
       <title>Docs: ClusterID</title>
-      <link>/docs/operations/cluster-id/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/cluster-id/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/cluster-id/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/cluster-id/</guid>
       <description>
         
         
@@ -59,7 +59,7 @@ be advisable):&lt;/p&gt;
 &lt;p&gt;Once you have obtained access to the GUI, login using whatever credentials you
 used to create the cluster and go to the &amp;ldquo;Licence&amp;rdquo; section on the left
 navigation menu.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/licensing/licence-page.png&#34; alt=&#34;Licence page&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://docs.ondat.io/v2.5/images/docs/operations/licensing/licence-page.png&#34; alt=&#34;Licence page&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;cli&#34;&gt;CLI&lt;/h3&gt;
 &lt;p&gt;This CLI command can print the cluster ID:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get cluster
@@ -78,10 +78,10 @@ Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-we
     
     <item>
       <title>Docs: Deleting Ondat Objects</title>
-      <link>/docs/operations/delete-stos-objects/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/delete-stos-objects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/delete-stos-objects/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/delete-stos-objects/</guid>
       <description>
         
         
@@ -173,10 +173,10 @@ worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,
     
     <item>
       <title>Docs: Disk Full</title>
-      <link>/docs/operations/disk-full/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/disk-full/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/disk-full/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/disk-full/</guid>
       <description>
         
         
@@ -229,9 +229,9 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
 &lt;p&gt;If you choose to recover by expanding your capacity, you have two main options:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Add new storage devices at &lt;code&gt;/var/lib/storageos/data/dev[0-9]+&lt;/code&gt; as described
-&lt;a href=&#34;/docs/operations/managing-host-storage#option-1-mount-additional-devices&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/managing-host-storage#option-1-mount-additional-devices&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;Expand the underlying filesystem that Ondat is using as described
-&lt;a href=&#34;/docs/operations/managing-host-storage#option-2-expand-existing-devices-backed-by-lvm&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/managing-host-storage#option-2-expand-existing-devices-backed-by-lvm&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;After expanding capacity remember to restart the Ondat daemonset pod.&lt;/p&gt;
 &lt;h3 id=&#34;deleting-existing-pvcs&#34;&gt;Deleting existing PVCs&lt;/h3&gt;
@@ -244,14 +244,14 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
     
     <item>
       <title>Docs: Encryption</title>
-      <link>/docs/operations/encryption/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/encryption/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/encryption/</guid>
       <description>
         
         
-        &lt;p&gt;For more detail on encryption at rest in Ondat, see &lt;a href=&#34;/docs/reference/encryption&#34;&gt;the reference page&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;For more detail on encryption at rest in Ondat, see &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/encryption&#34;&gt;the reference page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;enabling-encryption-on-a-volume&#34;&gt;Enabling encryption on a volume&lt;/h2&gt;
 &lt;p&gt;Encrypting a volume is done by simply creating a volume with the
 &lt;code&gt;storageos.com/encryption=true&lt;/code&gt; label. This can be set on the PVC or on
@@ -305,18 +305,18 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
     
     <item>
       <title>Docs: Etcd</title>
-      <link>/docs/operations/etcd/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/etcd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/etcd/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/etcd/</guid>
       <description>
         
         
-        &lt;p&gt;Check the &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites page&lt;/a&gt;
+        &lt;p&gt;Check the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/etcd&#34;&gt;etcd prerequisites page&lt;/a&gt;
 for a step by step installation of etcd.&lt;/p&gt;
 &lt;h2 id=&#34;best-practices&#34;&gt;Best practices&lt;/h2&gt;
 &lt;p&gt;Ondat uses etcd as a service, whether it is deployed following the
-&lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;step by step&lt;/a&gt; instructions or as a custom
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/etcd&#34;&gt;step by step&lt;/a&gt; instructions or as a custom
 installation. It is expected that the user maintains the availability and
 integrity of the etcd cluster.&lt;/p&gt;
 &lt;p&gt;It is highly recommended to keep the cluster backed up and ensure high
@@ -347,7 +347,7 @@ performance, careful assessment is necessary to ensure sufficient capacity.&lt;/
 &lt;p&gt;The rate of etcd operations is affected by the number of nodes, volumes and
 replicas in the cluster, therefore the figure of 500 is provided as a
 guideline only. A development cluster with 5 nodes will not have the same etcd
-traffic as a production cluster with 100 nodes. Adding &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;monitoring&lt;/a&gt; to etcd will help to
+traffic as a production cluster with 100 nodes. Adding &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/etcd/&#34;&gt;monitoring&lt;/a&gt; to etcd will help to
 characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.&lt;/p&gt;
 &lt;h3 id=&#34;etcd-advertise-urls&#34;&gt;Etcd advertise URLs&lt;/h3&gt;
@@ -419,17 +419,17 @@ after a failure of etcd, contact the Ondat support team.&lt;/p&gt;
     
     <item>
       <title>Docs: Failure Modes</title>
-      <link>/docs/operations/failure-modes/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/failure-modes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/failure-modes/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/failure-modes/</guid>
       <description>
         
         
         &lt;p&gt;For more information about replication and failure modes, see our
-&lt;a href=&#34;/docs/concepts/replication&#34;&gt;Replication concepts page&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/concepts/replication&#34;&gt;Replication concepts page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The failure mode for a specific volume can be set using a label on a PVC or it
-can be set as a parameter on a &lt;a href=&#34;/docs/operations/storageclasses&#34;&gt;StorageClass&lt;/a&gt;. The PVC definition takes precedence over
+can be set as a parameter on a &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/storageclasses&#34;&gt;StorageClass&lt;/a&gt;. The PVC definition takes precedence over
 the StorageClass.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;PersistentVolumeClaim&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -513,15 +513,15 @@ replicas will be tolerated.&lt;/p&gt;
     
     <item>
       <title>Docs: Fencing</title>
-      <link>/docs/operations/fencing/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/fencing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/fencing/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/fencing/</guid>
       <description>
         
         
         &lt;p&gt;For information regarding the Ondat Fencing feature, see our
-&lt;a href=&#34;/docs/concepts/fencing&#34;&gt;fencing concepts page&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/concepts/fencing&#34;&gt;fencing concepts page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;labeling-a-pod-for-fencing&#34;&gt;Labeling a pod for fencing&lt;/h2&gt;
 &lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
 marks the node offline and performs volume failover operations.&lt;/p&gt;
@@ -656,10 +656,10 @@ mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;non
     
     <item>
       <title>Docs: Ondat Volume Guide</title>
-      <link>/docs/operations/firstpvc/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/firstpvc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/firstpvc/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/firstpvc/</guid>
       <description>
         
         
@@ -787,7 +787,7 @@ Hello World!
 the PVC is being written to. If you were to kill the pod and start it again
 on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;If you wish to see more use cases with actual applications, see our
-&lt;a href=&#34;/docs/usecases/&#34;&gt;Use Cases&lt;/a&gt; documentation.&lt;/strong&gt;&lt;/p&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/usecases/&#34;&gt;Use Cases&lt;/a&gt; documentation.&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -796,10 +796,10 @@ on a new node, the helloworld file would still be avaliable.&lt;/p&gt;
     
     <item>
       <title>Docs: Host Storage</title>
-      <link>/docs/operations/managing-host-storage/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/managing-host-storage/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/managing-host-storage/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/managing-host-storage/</guid>
       <description>
         
         
@@ -965,15 +965,15 @@ Filesystem                  Size  Used Avail Use% Mounted on
     
     <item>
       <title>Docs: Labeling Ondat Objects</title>
-      <link>/docs/operations/label-stos-objects/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/label-stos-objects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/label-stos-objects/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/label-stos-objects/</guid>
       <description>
         
         
         &lt;p&gt;For more information regarding the Ondat Label Sync feature, see our
-&lt;a href=&#34;/docs/reference/kubernetes-object-sync&#34;&gt;Kubernetes Object Sync reference page.&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/kubernetes-object-sync&#34;&gt;Kubernetes Object Sync reference page.&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;label-syncing&#34;&gt;Label Syncing&lt;/h2&gt;
 &lt;p&gt;The Ondat API Manager handles cases where information from objects in your
 Kubernetes Cluster needs to be synced to your Ondat cluster.&lt;/p&gt;
@@ -983,7 +983,7 @@ sync through to your Ondat Volumes. This operation is used often - for
 example it is used here to add replicas to an Ondat Volume.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Create a PVC, following the instructions &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;here&lt;/a&gt;.
+&lt;p&gt;Create a PVC, following the instructions &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/firstpvc&#34;&gt;here&lt;/a&gt;.
 When you create a PVC, Ondat
 automatically provisions an Ondat volume for it. An example PVC and
 Ondat volume can be seen below. Note the labels &lt;code&gt;app=mysql&lt;/code&gt; and &lt;code&gt;env=prod&lt;/code&gt;
@@ -1157,10 +1157,10 @@ Labels                                  beta.kubernetes.io/arch=amd64,
     
     <item>
       <title>Docs: Licensing</title>
-      <link>/docs/operations/licensing/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/licensing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/licensing/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/licensing/</guid>
       <description>
         
         
@@ -1207,7 +1207,7 @@ block your current terminal session till the port-forward is stopped):&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://localhost:5705&lt;/code&gt; using the default
 &lt;code&gt;storageos-api&lt;/code&gt; secret defined during the installation as credentials (for
 example: login: storageos / password: storageos) when using the
-&lt;a href=&#34;/docs/self-eval&#34;&gt;self-evaluation guide&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/self-eval&#34;&gt;self-evaluation guide&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Depending on the environment, connecting to the localhost might not work when
 using a remote administration machine. If this host has a private or public IP,
 this IP can be set with the address parameter as such:&lt;/p&gt;
@@ -1215,7 +1215,7 @@ this IP can be set with the address parameter as such:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://10.20.20.20:5705&lt;/code&gt;  As an
 alternative, you may prefer to use an Ingress controller. You can retrieve the
 Ondat cluster by browsing the &lt;strong&gt;Licence&lt;/strong&gt; page as shown below:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/licensing.png&#34; alt=&#34;license&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://docs.ondat.io/v2.5/images/docs/concepts/licensing.png&#34; alt=&#34;license&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;ondat-cli---running-the-cli&#34;&gt;Ondat CLI - Running the CLI&lt;/h2&gt;
 &lt;p&gt;In order to get the CLI running, you must launch it on the target Kubernetes
 cluster:&lt;/p&gt;
@@ -1357,7 +1357,7 @@ NaalLsK/96bJov6tpbg96g==
 just the signature. Keep in mind that the encoding of the file must not
 change.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/licensing/apply-licence-key.png&#34; alt=&#34;Apply Licence Key&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://docs.ondat.io/v2.5/images/docs/operations/licensing/apply-licence-key.png&#34; alt=&#34;Apply Licence Key&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;ondat-cli---applying-a-licence-via-the-cli&#34;&gt;Ondat CLI - Applying a licence via the CLI&lt;/h2&gt;
 &lt;p&gt;The following command will apply the licence key stored in &lt;code&gt;/path/to/storageos-licence.dat&lt;/code&gt;,
 assuming that you have the CLI running as described in the sections above:&lt;/p&gt;
@@ -1381,7 +1381,7 @@ visible when they are relevant to your individual license.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 For more information refer to the licence
-&lt;a href=&#34;/docs/reference/cli&#34;&gt;CLI command&lt;/a&gt; reference documentation.&lt;/p&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/cli&#34;&gt;CLI command&lt;/a&gt; reference documentation.&lt;/p&gt;
 &lt;/blockquote&gt;
 
       </description>
@@ -1389,10 +1389,10 @@ visible when they are relevant to your individual license.&lt;/p&gt;
     
     <item>
       <title>Docs: Namespaces</title>
-      <link>/docs/operations/namespaces/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/namespaces/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/namespaces/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/namespaces/</guid>
       <description>
         
         
@@ -1413,10 +1413,10 @@ before the namespace can be deleted.&lt;/p&gt;
     
     <item>
       <title>Docs: Policies</title>
-      <link>/docs/operations/policies/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/policies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/policies/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/policies/</guid>
       <description>
         
         
@@ -1433,8 +1433,8 @@ be applied to the default namespace.&lt;/p&gt;
 &lt;h2 id=&#34;managing-policies&#34;&gt;Managing Policies&lt;/h2&gt;
 &lt;p&gt;To start creating policies, at least one custom namespace and user are
 required. For more information on how to create namespaces, see our
-&lt;a href=&#34;/docs/operations/namespaces&#34;&gt;Namespace guide&lt;/a&gt;, and for users see
-our &lt;a href=&#34;/docs/reference/cli/create&#34;&gt;Users CLI reference&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/namespaces&#34;&gt;Namespace guide&lt;/a&gt;, and for users see
+our &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/cli/create&#34;&gt;Users CLI reference&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In order to create a policy navigate to &amp;ldquo;Policies&amp;rdquo; in the GUI and select
 &amp;ldquo;Create Policy&amp;rdquo;. A policy controls access to a variety of Ondat resources
 and is applied to a user, by placing the user in the policies group.&lt;/p&gt;
@@ -1446,10 +1446,10 @@ before deletion of the policy can be completed.&lt;/p&gt;
     
     <item>
       <title>Docs: ReadWriteMany</title>
-      <link>/docs/operations/rwx/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/rwx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/rwx/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/rwx/</guid>
       <description>
         
         
@@ -1462,7 +1462,7 @@ same Kubernetes namespace for read and write operations.&lt;/p&gt;
 &lt;p&gt;Ondat RWX Volumes are based on a shared filesystem.&lt;/p&gt;
 &lt;p&gt;To create a ReadWriteMany (RWX) volume with Ondat, create a Persistent
 Volume Claim (PVC) with an access mode of &lt;code&gt;ReadWriteMany&lt;/code&gt; (see the
-&lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;First PVC&lt;/a&gt; documentation for
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/firstpvc&#34;&gt;First PVC&lt;/a&gt; documentation for
 examples of creating standard PVCs with Ondat).&lt;/p&gt;
 &lt;p&gt;The following YAML manifest files provide an example:&lt;/p&gt;
 &lt;p&gt;A 5Gi PVC with the Ondat &lt;code&gt;storageClassName&lt;/code&gt; of &lt;code&gt;storageos&lt;/code&gt;, with an
@@ -1536,10 +1536,10 @@ attached.&lt;/p&gt;
     
     <item>
       <title>Docs: StorageClasses</title>
-      <link>/docs/operations/storageclasses/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/storageclasses/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/storageclasses/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/storageclasses/</guid>
       <description>
         
         
@@ -1602,8 +1602,8 @@ StorageClass have the same labels.&lt;/p&gt;
 &lt;p&gt;You can also choose to add the label in the PVC definition rather than the
 StorageClass. The PVC definition takes precedence over the StorageClass.&lt;/p&gt;
 &lt;h3 id=&#34;topology-aware-storage-class&#34;&gt;Topology Aware Storage Class&lt;/h3&gt;
-&lt;p&gt;StorageClass that enables &lt;a href=&#34;/docs/reference/tap&#34;&gt;Topology Aware Placement&lt;/a&gt;
-and replication with &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;soft mode&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;StorageClass that enables &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/tap&#34;&gt;Topology Aware Placement&lt;/a&gt;
+and replication with &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/failure-modes&#34;&gt;soft mode&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storage.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StorageClass&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -1637,10 +1637,10 @@ and replication with &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;soft
     
     <item>
       <title>Docs: Topology-Aware Placement (TAP)</title>
-      <link>/docs/operations/tap/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/tap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/tap/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/tap/</guid>
       <description>
         
         
@@ -1728,10 +1728,10 @@ between the zones we just set.&lt;/p&gt;
     
     <item>
       <title>Docs: TRIM</title>
-      <link>/docs/operations/trim/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/trim/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/trim/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/trim/</guid>
       <description>
         
         
@@ -1853,10 +1853,10 @@ will use &lt;code&gt;-o discard&lt;/code&gt;.&lt;/p&gt;
     
     <item>
       <title>Docs: Troubleshooting</title>
-      <link>/docs/operations/troubleshooting/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/troubleshooting/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/troubleshooting/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/troubleshooting/</guid>
       <description>
         
         
@@ -1864,7 +1864,7 @@ will use &lt;code&gt;-o discard&lt;/code&gt;.&lt;/p&gt;
 they are related to the Ondat installation, integration with
 orchestrators or common misconfigurations.&lt;/p&gt;
 &lt;h2 id=&#34;tools&#34;&gt;Tools&lt;/h2&gt;
-&lt;p&gt;To be able to troubleshoot issues the &lt;a href=&#34;/docs/reference/cli/&#34;&gt;Ondat CLI&lt;/a&gt; is required.&lt;/p&gt;
+&lt;p&gt;To be able to troubleshoot issues the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/cli/&#34;&gt;Ondat CLI&lt;/a&gt; is required.&lt;/p&gt;
 &lt;h2 id=&#34;pod-in-pending-because-of-mount-error&#34;&gt;Pod in pending because of mount error&lt;/h2&gt;
 &lt;h3 id=&#34;issue&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;The output of &lt;code&gt;kubectl describe pod $POD_ID&lt;/code&gt; contains &lt;code&gt;no such file or directory&lt;/code&gt; and references the Ondat volume device file.&lt;/p&gt;
@@ -1896,7 +1896,7 @@ the kubelet. Ondat can be configured to share the device directory.&lt;/p&gt;
   sharedDir: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Needed when Kubelet as a container&lt;/span&gt;
   ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 See example on how to configure the &lt;a href=&#34;/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container&#34;&gt;Ondat Custom
+&lt;p&gt;💡 See example on how to configure the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/cluster-operator/examples/#specifying-a-shared-directory-for-use-with-kubelet-as-a-container&#34;&gt;Ondat Custom
 Resource&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;  &lt;!-- this is a blank line --&gt;&lt;/p&gt;
@@ -2033,7 +2033,7 @@ the right location.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;solution-3&#34;&gt;Solution&lt;/h3&gt;
-&lt;p&gt;Deploy Ondat following the &lt;a href=&#34;/docs/introduction/quickstart&#34;&gt;installation procedures&lt;/a&gt;. If you are using the manifests
+&lt;p&gt;Deploy Ondat following the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/introduction/quickstart&#34;&gt;installation procedures&lt;/a&gt;. If you are using the manifests
 provided for Kubernetes to deploy Ondat rather than using automated
 provisioners, make sure that the StorageClass parameters and the Secret
 reference match.&lt;/p&gt;
@@ -2131,7 +2131,7 @@ node2   node1.etcd      172.28.128.3:5707  1.218522ms   OK
 node2   node1.api       172.28.128.3:5705  1.363071ms   OK
 node2   node1.nats      172.28.128.3:5708  1.349383ms   OK
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-5&#34;&gt;Solution&lt;/h3&gt;
-&lt;p&gt;Open ports following the &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;prerequisites page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Open ports following the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/firewalls&#34;&gt;prerequisites page&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;peer-discovery---pod-allocation&#34;&gt;Peer discovery - Pod allocation&lt;/h2&gt;
 &lt;h3 id=&#34;issue-5&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;Ondat nodes can&amp;rsquo;t join the cluster and show the following log entries.&lt;/p&gt;
@@ -2166,12 +2166,12 @@ you are using the discovery service, it is necessary to ensure that the
 DaemonSet won&amp;rsquo;t allocate Pods on the masters. This can be achieved with taints,
 node selectors or labels.&lt;/p&gt;
 &lt;p&gt;For installations with the Ondat operator you can specify which nodes to
-deploy Ondat on using nodeSelectors. See examples in the &lt;a href=&#34;/docs/reference/cluster-operator/examples/#installing-to-a-subset-of-nodes&#34;&gt;Cluster Operator
+deploy Ondat on using nodeSelectors. See examples in the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/cluster-operator/examples/#installing-to-a-subset-of-nodes&#34;&gt;Cluster Operator
 Examples
 page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For more advanced installations using compute-only and storage nodes, check the
 &lt;code&gt;storageos.com/deployment=computeonly&lt;/code&gt; label that can be added to the nodes
-through Kubernetes node labels, or Ondat in the &lt;a href=&#34;/docs/reference/labels&#34;&gt;Labels&lt;/a&gt; page.&lt;/p&gt;
+through Kubernetes node labels, or Ondat in the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/reference/labels&#34;&gt;Labels&lt;/a&gt; page.&lt;/p&gt;
 &lt;h2 id=&#34;lio-initerror&#34;&gt;LIO Init:Error&lt;/h2&gt;
 &lt;h3 id=&#34;issue-6&#34;&gt;Issue&lt;/h3&gt;
 &lt;p&gt;Ondat pods not starting with &lt;code&gt;Init:Error&lt;/code&gt;&lt;/p&gt;
@@ -2201,7 +2201,7 @@ modprobe: FATAL: Module tcm_loop not found.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-7&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Install the required kernel modules (usually found in the
 &lt;code&gt;linux-image-extra-$(uname -r)&lt;/code&gt; package of your distribution) on your nodes
-following this &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites page&lt;/a&gt; and delete Ondat
+following this &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites page&lt;/a&gt; and delete Ondat
 pods, allowing the DaemonSet to create the pods again.&lt;/p&gt;
 &lt;h2 id=&#34;lio-not-enabled&#34;&gt;LIO not enabled&lt;/h2&gt;
 &lt;h3 id=&#34;issue-7&#34;&gt;Issue&lt;/h3&gt;
@@ -2217,7 +2217,7 @@ not loaded.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;solution-8&#34;&gt;Solution&lt;/h3&gt;
 &lt;p&gt;Install the required kernel modules (usually found in the
 &lt;code&gt;linux-image-extra-$(uname -r)&lt;/code&gt; package of your distribution) on your nodes
-following this &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites page&lt;/a&gt; and restart the container.&lt;/p&gt;
+following this &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites page&lt;/a&gt; and restart the container.&lt;/p&gt;
 &lt;h2 id=&#34;openshift-ondat-pods-missing----daemonset-error&#34;&gt;(OpenShift) Ondat pods missing &amp;ndash; DaemonSet error&lt;/h2&gt;
 &lt;p&gt;Ondat DaemonSet doesn&amp;rsquo;t have any pod replicas. The DaemonSet couldn&amp;rsquo;t
 allocate any Pod due to security issues.&lt;/p&gt;
@@ -2253,7 +2253,7 @@ enough privileges.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;oc adm policy add-scc-to-user privileged system:serviceaccount:storageos:storageos
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;getting-help&#34;&gt;Getting Help&lt;/h2&gt;
 &lt;p&gt;If our troubleshooting guides do not help resolve your issue, see our
-&lt;a href=&#34;/docs/support&#34;&gt;support section&lt;/a&gt; for details on how
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/support&#34;&gt;support section&lt;/a&gt; for details on how
 to get in touch with us.&lt;/p&gt;
 
       </description>
@@ -2261,10 +2261,10 @@ to get in touch with us.&lt;/p&gt;
     
     <item>
       <title>Docs: Uninstall Ondat</title>
-      <link>/docs/operations/uninstall/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/uninstall/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/uninstall/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/uninstall/</guid>
       <description>
         
         
@@ -2361,10 +2361,10 @@ $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
     
     <item>
       <title>Docs: Upgrade Ondat</title>
-      <link>/docs/operations/upgrade/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/upgrade/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/upgrade/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/upgrade/</guid>
       <description>
         
         
@@ -2373,7 +2373,7 @@ $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
 applications using Ondat volumes. However we will take steps to minimize
 the required downtime as much as possible.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat
+&lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat
 v2.3&lt;/a&gt; and that you check the
 init container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2443,16 +2443,16 @@ Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;
     
     <item>
       <title>Docs: User Management</title>
-      <link>/docs/operations/users/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/users/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/users/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/users/</guid>
       <description>
         
         
         &lt;p&gt;An Ondat cluster admin can create users and restrict their access rights to
-Ondat &lt;a href=&#34;/docs/operations/namespaces&#34;&gt;namespaces&lt;/a&gt; using
-&lt;a href=&#34;/docs/operations/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
+Ondat &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/namespaces&#34;&gt;namespaces&lt;/a&gt; using
+&lt;a href=&#34;https://docs.ondat.io/v2.5/docs/operations/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 Users are created with access to the default namespace. This access is
 only revoked when a policy is created for the user or their group.&lt;/p&gt;
@@ -2470,10 +2470,10 @@ you to enter a password for the newly created user.&lt;/p&gt;
     
     <item>
       <title>Docs: Volume Resize</title>
-      <link>/docs/operations/resize/</link>
+      <link>https://docs.ondat.io/v2.5/docs/operations/resize/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/operations/resize/</guid>
+      <guid>https://docs.ondat.io/v2.5/docs/operations/resize/</guid>
       <description>
         
         
@@ -2484,7 +2484,7 @@ operation to take place the volume must not be attached to a node. This
 requires that any pods using a volume be scaled down for the resize to take
 place.&lt;/p&gt;
 &lt;p&gt;Note, that Ondat only supports increasing volume size. For more
-information on how the resize works, see our &lt;a href=&#34;/docs/concepts/volumes#volume-resize&#34;&gt;Resize Concepts&lt;/a&gt; page.&lt;/p&gt;
+information on how the resize works, see our &lt;a href=&#34;https://docs.ondat.io/v2.5/docs/concepts/volumes#volume-resize&#34;&gt;Resize Concepts&lt;/a&gt; page.&lt;/p&gt;
 &lt;h3 id=&#34;resizing-a-volume&#34;&gt;Resizing a Volume&lt;/h3&gt;
 &lt;p&gt;In order to resize a PVC the storage request field must be updated.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: v1
@@ -2528,7 +2528,7 @@ Labels:
 Volume pvc-a47cfa03-cc92-4ec9-84ab-00e5516c64fa &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;925e667f-91d3-465a-9391-8fdb56d0c9ff&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; updated. Size changed.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To resize a volume using the Ondat UI, navigate to the volumes section and
 click the edit pencil in order to update the volume config.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/resize/resize-vol.png&#34; alt=&#34;Ondat Resize&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://docs.ondat.io/v2.5/images/docs/operations/resize/resize-vol.png&#34; alt=&#34;Ondat Resize&#34;&gt;&lt;/p&gt;
 
       </description>
     </item>
