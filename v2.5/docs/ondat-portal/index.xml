@@ -1,0 +1,145 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Ondat SaaS Platform</title>
+    <link>/docs/ondat-portal/</link>
+    <description>Recent content in Ondat SaaS Platform on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/ondat-portal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Ondat Portal Installation Guide</title>
+      <link>/docs/ondat-portal/installation-portal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/ondat-portal/installation-portal/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;creating-credentials-for-your-cluster&#34;&gt;Creating Credentials for Your Cluster&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Open &lt;a href=&#34;https://portal.ondat.io/dashboard&#34;&gt;Ondat Portal&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Log into your account using your account&amp;rsquo;s credentials.&lt;/li&gt;
+&lt;li&gt;On the lower left-hand side of the screen, open the &lt;strong&gt;Organization&lt;/strong&gt; tab.&lt;/li&gt;
+&lt;li&gt;Open the &lt;strong&gt;API Tokens&lt;/strong&gt; tab and select &lt;strong&gt;Create API Token&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Enter a name for the API token. Note that, if there is another API Token with the same description that token will be replaced by this one.&lt;/li&gt;
+&lt;li&gt;Copy all information on the page, this will be the only time it will be visible. Make note of the API secret.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;installing-ondat-on-your-cluster-using-the-ondat-portal-manager&#34;&gt;Installing Ondat on Your Cluster Using the Ondat Portal Manager&lt;/h1&gt;
+&lt;p&gt;Execute this command if you are configuring a cluster without having installed Ondat beforehand. You can use the credentials you have just created to execute the command below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install 
+        --include-etcd&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt; 
+        --stos-version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;develop 
+        --enable-portal-manager 
+        --portal-client-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;clientid&amp;gt; 
+        --portal-secret&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;secret&amp;gt; 
+        --portal-api-url&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;api-url&amp;gt; 
+        --portal-tenant-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;tenantId&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;installing-ondat-portal-manager&#34;&gt;Installing Ondat Portal Manager&lt;/h1&gt;
+&lt;p&gt;Execute this command if you are configuring a cluster in which Ondat has already been installed.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install-portal 
+        --portal-client-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;clientid&amp;gt; 
+        --portal-secret&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;secret&amp;gt; 
+        --portal-api-url&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;api-url&amp;gt; 
+        --portal-tenant-id&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&amp;lt;tenantId&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs:  Dashboard Page Reference</title>
+      <link>/docs/ondat-portal/dashboard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/ondat-portal/dashboard/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The &lt;strong&gt;Dashboard&lt;/strong&gt; gives you an unified and summarised view of the application you have deployed. If there are any persistent volumes in error this will be indicated on the dashboard as a red side line next to the application name and will also give you the number of affected volumes.&lt;/p&gt;
+&lt;p&gt;Your deployed application can be one of the following types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Replica&lt;/strong&gt; - ensures that one or more pods are running at any given time, according to configuration. Usually, &lt;code&gt;ReplicaSets&lt;/code&gt; are managed by Deployments.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;StatefulSet&lt;/strong&gt; - represents a stateful application that both manages one or more pods, ensures that they are running at any given time and provides certain guarantees about the order and uniqueness of the pods.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Deployment&lt;/strong&gt; - provides a desired state for one or more sets of pods without guaranteeing order or uniqueness.&lt;/p&gt;
+&lt;p&gt;To view more details about each application, go to the &lt;strong&gt;Applications&lt;/strong&gt; tab.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs:  Applications Page Reference</title>
+      <link>/docs/ondat-portal/applications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/ondat-portal/applications/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The &lt;strong&gt;Applications&lt;/strong&gt; tab displays all of your applications. For a detailed explanation of the view, refer to the table below:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Column&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Possible Values&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;App Name&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The name of the app&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;String&lt;/code&gt; (can contain special characters)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Kind&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Indicates the kind of application.&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Replica&lt;/strong&gt; &lt;br /&gt;  &lt;strong&gt;StatefulSet&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Deployment&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Pods&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;The number of pods for your application&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;Integer&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Pod Status&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Indicates the number of pods that are ready/syncing or with unknown/failed status&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Ready&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Syncing&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Unknown&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Failed&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;PV Amount&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Indicates the amount of PVs taken up by the app&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;Integer&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;PVs Size&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Indicates the size of all Persistent volumes as a percentage of all available storage on all pods&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Available GB on the pods&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;PVs Status&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Indicates the number of PVs that are ready/syncing or with unknown/failed status&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;strong&gt;Ready&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Syncing&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Unknown&lt;/strong&gt; &lt;br /&gt; &lt;strong&gt;Failed&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;detailed-view-of-the-application&#34;&gt;Detailed View of the Application&lt;/h2&gt;
+&lt;p&gt;To view more details of your application, click &lt;strong&gt;View Details&lt;/strong&gt; and you will be given an overview of the status of the app.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
