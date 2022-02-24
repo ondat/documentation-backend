@@ -20,32 +20,29 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>MS SQL | </title><meta property="og:title" content="MS SQL" />
-<meta property="og:description" content="Beginning with Microsoft SQL Server 2017, Microsoft has supported MSSQL on linux.
-Before you start, ensure you have Ondat installed and ready on a Kubernetes cluster. See our guide on how to install Ondat on Kubernetes for more information.
-Deploying MS SQL on Kubernetes   You can find the latest files in the Ondat use cases repository
-git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion
-kind:StatefulSetmetadata:name:mssqlspec:selector:matchLabels:app:mssqlenv:prodserviceName:mssqlreplicas:1...spec:serviceAccountName:mssql...volumeMounts:- name:datamountPath:/var/opt/mssql...volumeClaimTemplates:- metadata:name:datalabels:env:prodspec:accessModes:[&#34;ReadWriteOnce&#34;]storageClassName:&#34;storageos&#34;# Ondat storageClass resources:requests:storage:5GiThis excerpt is from the StatefulSet definition." />
+<title>Anthos | </title><meta property="og:title" content="Anthos" />
+<meta property="og:description" content="Overview This guide will walk you through installing Ondat onto an Anthos cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+    kubectl kubectl-storageos     You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/usecases/mssql/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/install/anthos/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="MS SQL">
-<meta itemprop="description" content="Beginning with Microsoft SQL Server 2017, Microsoft has supported MSSQL on linux.
-Before you start, ensure you have Ondat installed and ready on a Kubernetes cluster. See our guide on how to install Ondat on Kubernetes for more information.
-Deploying MS SQL on Kubernetes   You can find the latest files in the Ondat use cases repository
-git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion
-kind:StatefulSetmetadata:name:mssqlspec:selector:matchLabels:app:mssqlenv:prodserviceName:mssqlreplicas:1...spec:serviceAccountName:mssql...volumeMounts:- name:datamountPath:/var/opt/mssql...volumeClaimTemplates:- metadata:name:datalabels:env:prodspec:accessModes:[&#34;ReadWriteOnce&#34;]storageClassName:&#34;storageos&#34;# Ondat storageClass resources:requests:storage:5GiThis excerpt is from the StatefulSet definition.">
+<meta itemprop="name" content="Anthos">
+<meta itemprop="description" content="Overview This guide will walk you through installing Ondat onto an Anthos cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+    kubectl kubectl-storageos     You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster.">
 
-<meta itemprop="wordCount" content="243">
+<meta itemprop="wordCount" content="289">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="MS SQL"/>
-<meta name="twitter:description" content="Beginning with Microsoft SQL Server 2017, Microsoft has supported MSSQL on linux.
-Before you start, ensure you have Ondat installed and ready on a Kubernetes cluster. See our guide on how to install Ondat on Kubernetes for more information.
-Deploying MS SQL on Kubernetes   You can find the latest files in the Ondat use cases repository
-git clone https://github.com/storageos/use-cases.git storageos-usecases StatefulSet defintion
-kind:StatefulSetmetadata:name:mssqlspec:selector:matchLabels:app:mssqlenv:prodserviceName:mssqlreplicas:1...spec:serviceAccountName:mssql...volumeMounts:- name:datamountPath:/var/opt/mssql...volumeClaimTemplates:- metadata:name:datalabels:env:prodspec:accessModes:[&#34;ReadWriteOnce&#34;]storageClassName:&#34;storageos&#34;# Ondat storageClass resources:requests:storage:5GiThis excerpt is from the StatefulSet definition."/>
+<meta name="twitter:title" content="Anthos"/>
+<meta name="twitter:description" content="Overview This guide will walk you through installing Ondat onto an Anthos cluster using the Ondat kubectl plugin.
+Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  The following CLI utilities are installed on your local machine and are available in your $PATH:
+    kubectl kubectl-storageos     You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -86,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>MS SQL | </title>
+    <title>Anthos | </title>
   </head>
   <body class="td-page">
     
@@ -575,10 +572,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstall">
+    <li class="collapse show" id="docsinstall">
       
       
       
@@ -591,7 +588,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
       
       
       
@@ -871,10 +868,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/usecases/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Use Cases</a>
+    <a  href="/docs/usecases/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Use Cases</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsusecases">
+    <li class="collapse " id="docsusecases">
       
       
       
@@ -917,7 +914,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsusecasesmssql" href="/docs/usecases/mssql/">MS SQL</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsusecasesmssql" href="/docs/usecases/mssql/">MS SQL</a>
       
       
       
@@ -1364,6 +1361,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
+        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
+        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1392,14 +1404,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/usecases/">Use Cases</a>
+	<a href="/docs/install/">Install</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/usecases/mssql/">MS SQL</a>
+	<a href="/docs/install/anthos/">Anthos</a>
 </li>
 
 	</ol>
@@ -1407,88 +1419,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>MS SQL</h1>
+	<h1>Anthos</h1>
 	
-	<p><img src="/images/docs/explore/mssql.png" alt="mssqllogo"></p>
-<p>Beginning with Microsoft SQL Server 2017, Microsoft has supported MSSQL on
-linux.</p>
-<p>Before you start, ensure you have Ondat installed and ready on a Kubernetes
-cluster. <a href="/docs/install/kubernetes">See our guide on how to install Ondat on Kubernetes for more
-information</a>.</p>
-<h2 id="deploying-ms-sql-on-kubernetes">Deploying MS SQL on Kubernetes</h2>
-<ol>
+	<h2 id="overview">Overview</h2>
+<p>This guide will walk you through installing Ondat onto an <a href="https://cloud.google.com/anthos">Anthos cluster</a> using the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
 <li>
-<p>You can find the latest files in the Ondat use cases repository</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/storageos/use-cases.git storageos-usecases
-</code></pre></div><p>StatefulSet defintion</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StatefulSet</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mssql</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mssql</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">env</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">prod</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">serviceName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mssql</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">...</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">serviceAccountName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mssql</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">...</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">       </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/var/opt/mssql</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#000">...</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">volumeClaimTemplates</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"> </span>- <span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#204a87;font-weight:bold">env</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">prod</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;ReadWriteOnce&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Ondat storageClass </span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>This excerpt is from the StatefulSet definition. This file contains the
-VolumeClaim template that will dynamically provision storage, using the
-Ondat storage class. Dynamic provisioning occurs as a volumeMount has
-been declared with the same name as a VolumeClaim.</p>
+<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="https://docs.ondat.io/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
 </li>
 <li>
-<p>Move into the MS SQL examples folder and create the objects</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> storageos-usecases
-kubectl create -f ./mssql
-</code></pre></div></li>
+<p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
+</ul>
+</blockquote>
+<ul>
 <li>
-<p>Confirm MS SQL is up and running.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pods -w -l <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">=</span>mssql
-NAME        READY    STATUS    RESTARTS    AGE
-mssql-0     1/1      Running    <span style="color:#0000cf;font-weight:bold">0</span>          1m
-</code></pre></div></li>
+<p>You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</li>
 <li>
-<p>Connect to the MS SQL client pod and connect to the MS SQL server through the
-service</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> $ kubectl <span style="color:#204a87">exec</span> -it mssql-0 -- /opt/mssql-tools/bin/sqlcmd -S mssql-0.mssql -U SA -P <span style="color:#4e9a06">&#39;Password15&#39;</span>
- 1&gt; USE master<span style="color:#000;font-weight:bold">;</span>
- 2&gt; GO
- Changed database context to <span style="color:#4e9a06">&#39;master&#39;</span>.
- 1&gt; SELECT name, database_id, create_date FROM sys.databases <span style="color:#000;font-weight:bold">;</span>
- 2&gt; GO
- name                        database_id create_date            
- --------------------------- ----------- -----------------------
- master                                <span style="color:#0000cf;font-weight:bold">1</span> 2003-04-08 09:13:36.390
- tempdb                                <span style="color:#0000cf;font-weight:bold">2</span> 2018-11-02 16:30:37.907
- model                                 <span style="color:#0000cf;font-weight:bold">3</span> 2003-04-08 09:13:36.390
- msdb                                  <span style="color:#0000cf;font-weight:bold">4</span> 2018-10-19 01:18:57.300
-
- <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">4</span> rows affected<span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div></li>
+<p>Your Anthos clusters use <a href="https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd">ubuntu_containerd</a> as the default node operating system. This version was chosen as the image includes the native Linux components required for Ondat.</p>
+</li>
+</ul>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
+<ul>
+<li>Run the following command to conduct preflight checks against the Anthos cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
+</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+<ol>
+<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
 </ol>
-<h2 id="configuration">Configuration</h2>
-<p>If you need custom startup options, you can edit the ConfigMap file
-<a href="https://github.com/storageos/use-cases/blob/master/mssql/15-mssql-configmap.yaml">15-mssql-configmap.yaml</a>
-with your desired MS SQL configuration settings.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;admin&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;password&#34;</span>
+</code></pre></div><ol start="2">
+<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div><ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
+<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
+kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.
+To obtain a licence, follow the instructions on our <a href="https://docs.ondat.io/docs//operations/licensing">licensing operations</a> page.</p>
+</blockquote>
 
 	
 	
