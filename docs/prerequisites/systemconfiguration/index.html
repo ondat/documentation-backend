@@ -34,7 +34,7 @@ We require the following modules to be loaded:
 We require the following modules to be loaded:
  target_core_mod tcm_loop target_core_file configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE.">
 
-<meta itemprop="wordCount" content="437">
+<meta itemprop="wordCount" content="402">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="System Configuration"/>
 <meta name="twitter:description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
@@ -175,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.968205194e25df3576a954778dd894cc306eeac6833b3fb423c645200badf599d04a0fce15132b859570a341cd008b199993c4375248993b04c9b4e06003999a.json"
+  data-offline-search-index-json-src="/offline-search-index.0f584c635ec63b2aad826bca4616af492342a8af1a639c38502496fd90efc03e8d044add91605a81109527170cc611f22677be4a84f7a14be0a934b41e777134.json"
   data-offline-search-base-href="/"
 >
 
@@ -323,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.968205194e25df3576a954778dd894cc306eeac6833b3fb423c645200badf599d04a0fce15132b859570a341cd008b199993c4375248993b04c9b4e06003999a.json"
+  data-offline-search-index-json-src="/offline-search-index.0f584c635ec63b2aad826bca4616af492342a8af1a639c38502496fd90efc03e8d044add91605a81109527170cc611f22677be4a84f7a14be0a934b41e777134.json"
   data-offline-search-base-href="/"
 >
 
@@ -1478,18 +1478,9 @@ sudo shutdown -r now
 </code></pre></div><h2 id="automatic-configuration">Automatic Configuration</h2>
 <p>Once required kernel modules are installed on the system, for convenience we
 provide a container which will ensure the appropriate modules are loaded and
-ready for use at runtime. On Docker installations, you will need to run the
-init container prior to starting Ondat. Our installation guides for
-Kubernetes and OpenShift include this step.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Load the required kernel modules. The Kubernetes and OpenShift installations include this step.</span>
-docker run --name enable_lio                  <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>           --privileged                       <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>           --rm                               <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>           --cap-add<span style="color:#ce5c00;font-weight:bold">=</span>SYS_ADMIN                <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>           -v /lib/modules:/lib/modules       <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>           -v /sys:/sys:rshared               <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>           storageos/init:0.2
-</code></pre></div><h2 id="manual-configuration">Manual Configuration</h2>
+ready for use at runtime. You will need to run the init container prior to starting Ondat.<br>
+Our installation guides for Kubernetes and OpenShift include this step.</p>
+<h2 id="manual-configuration">Manual Configuration</h2>
 <p>For those wishing to manage their own kernel configuration, rather than using
 the init container, perform the following steps:</p>
 <ul>

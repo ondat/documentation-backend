@@ -2378,7 +2378,7 @@ v2.3&lt;/a&gt; and that you check the
 init container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ To reduce downtime, it is recommended to &lt;code&gt;docker pull&lt;/code&gt; the new
+&lt;p&gt;⚠️ To reduce downtime, it is recommended to pull the new
 Ondat container image &lt;code&gt;storageos/node:v2.6.0&lt;/code&gt;
 on the nodes beforehand so that the cluster spins up faster!&lt;/p&gt;
 &lt;/blockquote&gt;
