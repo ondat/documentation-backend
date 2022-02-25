@@ -47,7 +47,7 @@
 satisfied before proceeding.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an Ondat licence after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 Any Kubernetes managed service such as EKS, AKS, GKE, RKE or DO
@@ -107,7 +107,7 @@ nodes and is not recommended for production installations.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. &lt;code&gt;10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;💡 You can also define the etcd endpoints as a comma delimited list, e.g. &lt;code&gt;10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will prompt you and
