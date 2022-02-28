@@ -1825,10 +1825,6 @@ volume replicas are being used.&lt;/p&gt;
 &lt;h2 id=&#34;port-blocking&#34;&gt;Port blocking&lt;/h2&gt;
 &lt;p&gt;Ondat exposes ports to operate. It is recommended that the &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;ports&lt;/a&gt; are not accessible from outside
 the scope of your cluster.&lt;/p&gt;
-&lt;h2 id=&#34;ondat-in-docker-ee&#34;&gt;Ondat in Docker EE&lt;/h2&gt;
-&lt;p&gt;Ondat does not support running on Swarm nodes nor on mixed (Kubernetes and
-Swarm) nodes. Ondat volumes have to be provisioned and used from Kubernetes
-nodes.&lt;/p&gt;
 
       </description>
     </item>
