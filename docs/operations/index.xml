@@ -1207,7 +1207,7 @@ block your current terminal session till the port-forward is stopped):&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The Ondat GUI can then be accessed from &lt;code&gt;http://localhost:5705&lt;/code&gt; using the default
 &lt;code&gt;storageos-api&lt;/code&gt; secret defined during the installation as credentials (for
 example: login: storageos / password: storageos) when using the
-&lt;a href=&#34;/docs/self-eval&#34;&gt;self-evaluation guide&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;/docs/introduction/self-eval/&#34;&gt;self-evaluation guide&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Depending on the environment, connecting to the localhost might not work when
 using a remote administration machine. If this host has a private or public IP,
 this IP can be set with the address parameter as such:&lt;/p&gt;
@@ -1882,7 +1882,7 @@ as a container&lt;/li&gt;
 &lt;li&gt;Mount Propagation is not enabled&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;(Option 1) Misconfiguration of the DeviceDir/SharedDir&lt;/p&gt;
-&lt;p&gt;Some Kubernetes distributions such as Rancher, DockerEE or some installations
+&lt;p&gt;Some Kubernetes distributions such as Rancher, or some installations
 of OpenShift deploy the Kubelet as a container, because of this, the device
 files that Ondat creates to mount into the containers need to be visible to
 the kubelet. Ondat can be configured to share the device directory.&lt;/p&gt;
@@ -2033,7 +2033,7 @@ the right location.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;solution-3&#34;&gt;Solution&lt;/h3&gt;
-&lt;p&gt;Deploy Ondat following the &lt;a href=&#34;/docs/introduction/quickstart&#34;&gt;installation procedures&lt;/a&gt;. If you are using the manifests
+&lt;p&gt;Deploy Ondat following the &lt;a href=&#34;/docs/introduction/self-eval/&#34;&gt;installation procedures&lt;/a&gt;. If you are using the manifests
 provided for Kubernetes to deploy Ondat rather than using automated
 provisioners, make sure that the StorageClass parameters and the Secret
 reference match.&lt;/p&gt;

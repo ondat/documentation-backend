@@ -20,8 +20,6 @@
   </url><url>
     <loc>/docs/install/openshift/</loc>
   </url><url>
-    <loc>/docs/introduction/quickstart/</loc>
-  </url><url>
     <loc>/docs/ondat-portal/applications/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/examples/</loc>
@@ -66,7 +64,7 @@
   </url><url>
     <loc>/docs/support/</loc>
   </url><url>
-    <loc>/docs/self-eval/</loc>
+    <loc>/docs/introduction/self-eval/</loc>
   </url><url>
     <loc>/docs/ondat-portal/</loc>
   </url><url>

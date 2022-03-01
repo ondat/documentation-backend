@@ -6671,7 +6671,7 @@ improvements across the board. Of particular note:&lt;/p&gt;
 &lt;li&gt;I/O for large block sizes (128K) has improved by up to 353%&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;We are extremely proud of our performance and we love to talk about it. Have a
-look at the &lt;a href=&#34;/docs/self-eval#Benchmarking&#34;&gt;Benchmarking&lt;/a&gt; section of the
+look at the &lt;a href=&#34;/docs/introduction/self-eval#Benchmarking&#34;&gt;Benchmarking&lt;/a&gt; section of the
 self-evaluation guide and consider sharing
 your results. Our PRE engineers are available to discuss in our &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack
 channel&lt;/a&gt;.&lt;/p&gt;
