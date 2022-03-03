@@ -34,7 +34,7 @@ How to create the certificates Secret The client auth certificates need the foll
 Ondat uses the certificates and keys from a Secret to cypher and authenticate Etcd traffic.
 How to create the certificates Secret The client auth certificates need the following file names, in the Secret.">
 
-<meta itemprop="wordCount" content="318">
+<meta itemprop="wordCount" content="307">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Encryption communication with Etcd"/>
 <meta name="twitter:description" content="Ondat supports secure communication with an external etcd cluster using mutual TLS (mTLS). With mTLS both Ondat and etcd authenticate each other ensuring that communication only happens between mutually authenticated end points, and that all communication is encrypted.
@@ -175,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0f2ed894cbee62a56ac825e888fab286c7083561432e4f71c8df8e44c85496d8ba243c96babf8b0a4b53fe695e1b7f33b0591e9fd2a23f87ece4d66dc263a618.json"
+  data-offline-search-index-json-src="/offline-search-index.c019d60c0781f275a0c735c41a0220941a04d10ced5704fd71ecf731893126f8f79104b7918c3dea704b1e281356a39c770c4ff7c22830d11c9e06a2c691a932.json"
   data-offline-search-base-href="/"
 >
 
@@ -323,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0f2ed894cbee62a56ac825e888fab286c7083561432e4f71c8df8e44c85496d8ba243c96babf8b0a4b53fe695e1b7f33b0591e9fd2a23f87ece4d66dc263a618.json"
+  data-offline-search-index-json-src="/offline-search-index.c019d60c0781f275a0c735c41a0220941a04d10ced5704fd71ecf731893126f8f79104b7918c3dea704b1e281356a39c770c4ff7c22830d11c9e06a2c691a932.json"
   data-offline-search-base-href="/"
 >
 
@@ -1447,8 +1447,7 @@ Ondat with etcd using mTLS.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">nodeContainer</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos/node:v2.6.0&#34;&#34;
 </span><span style="color:#4e9a06">  namespace: &#34;</span><span style="color:#000">storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># External mTLS secured etcd cluster specific properties</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;etcd-client-tls&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                   </span><span style="color:#8f5902;font-style:italic"># Secret containing etcd client certificates</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefNamespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                    </span><span style="color:#8f5902;font-style:italic"># Make sure the NS of the Secret is the same as the Ondat cluster</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;etcd-client-tls&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                   </span><span style="color:#8f5902;font-style:italic"># Secret containing etcd client certificates in the same</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">address</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;https://storageos-etcd-cluster-client.storagos-etcd.svc:2379&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Etcd client service address.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">backend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;etcd&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                                         </span><span style="color:#8f5902;font-style:italic"># Backend type</span><span style="color:#f8f8f8;text-decoration:underline">

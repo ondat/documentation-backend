@@ -34,7 +34,7 @@ kubectl create -f - &lt;&lt;END apiVersion: v1 kind: Secret metadata: name: &#34
 kubectl create -f - &lt;&lt;END apiVersion: v1 kind: Secret metadata: name: &#34;storageos-api&#34; namespace: &#34;default&#34; labels: app: &#34;storageos&#34; type: &#34;kubernetes.io/storageos&#34; data: username: c3RvcmFnZW9z password: c3RvcmFnZW9z END This example contains a default password, for production installations, use a unique, strong password.
  Make sure that the encoding of the credentials doesn&rsquo;t have special characters such as &lsquo;\n&rsquo;.">
 
-<meta itemprop="wordCount" content="444">
+<meta itemprop="wordCount" content="430">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cluster Operator examples"/>
 <meta name="twitter:description" content="Before deploying an Ondat cluster, create a Secret to define the Ondat API Username and Password in base64 encoding.
@@ -175,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0f2ed894cbee62a56ac825e888fab286c7083561432e4f71c8df8e44c85496d8ba243c96babf8b0a4b53fe695e1b7f33b0591e9fd2a23f87ece4d66dc263a618.json"
+  data-offline-search-index-json-src="/offline-search-index.c019d60c0781f275a0c735c41a0220941a04d10ced5704fd71ecf731893126f8f79104b7918c3dea704b1e281356a39c770c4ff7c22830d11c9e06a2c691a932.json"
   data-offline-search-base-href="/"
 >
 
@@ -323,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0f2ed894cbee62a56ac825e888fab286c7083561432e4f71c8df8e44c85496d8ba243c96babf8b0a4b53fe695e1b7f33b0591e9fd2a23f87ece4d66dc263a618.json"
+  data-offline-search-index-json-src="/offline-search-index.c019d60c0781f275a0c735c41a0220941a04d10ced5704fd71ecf731893126f8f79104b7918c3dea704b1e281356a39c770c4ff7c22830d11c9e06a2c691a932.json"
   data-offline-search-base-href="/"
 >
 
@@ -1356,7 +1356,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul>
     <li><a href="#installing-with-an-external-etcd">Installing with an external etcd</a></li>
     <li><a href="#installing-to-a-subset-of-nodes">Installing to a subset of nodes</a></li>
-    <li><a href="#enabling-csi">Enabling CSI</a></li>
     <li><a href="#specifying-a-shared-directory-for-use-with-kubelet-as-a-container">Specifying a shared directory for use with kubelet as a container</a></li>
     <li><a href="#defining-pod-resource-requests-and-reservations">Defining pod resource requests and reservations</a></li>
     <li><a href="#specifying-custom-tolerations">Specifying custom Tolerations</a></li>
@@ -1463,12 +1462,12 @@ examples</a> for full CR files.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">address</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;10.43.93.95:2379&#39;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># IP of the SVC that exposes ETCD</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># address: &#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&#39; # You can specify individual IPs of the etcd servers</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>If using Etcd with mTLS, you need to specify the secret that hold the
-certificates with the following parameters:</p>
+</span></code></pre></div><p>If using Etcd with mTLS, it is required to create the secret with the TLS
+material on the same namespace as the StorageOSCluster resource. Reference it&rsquo;s
+name with the following parameter:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># External mTLS secured etcd cluster specific properties</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos-etcd-secret&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Secret containing etcd client certificates</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefNamespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#8f5902;font-style:italic"># Make sure that the etcd secret is in the same NS as the Ondat cluster</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos-etcd-secret&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Secret containing etcd client certificates, within the StorageOSCluster CR namespace</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p>Follow the <a href="/docs/operations/etcd/storageos-secret-info">etcd operations</a> page to setup the
 secret with the Etcd client certificate, client key and CA.</p>
 <h2 id="installing-to-a-subset-of-nodes">Installing to a subset of nodes</h2>
@@ -1491,29 +1490,7 @@ differently to specify master vs workers. Node Taints are not enough to
 make sure Ondat doesn&rsquo;t start in a node. The <code>JOIN</code> variable is defined
 by the operator by selecting all the nodes that match the <code>nodeSelectorTerms</code>.</p>
 </blockquote>
-<h2 id="enabling-csi">Enabling CSI</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">enable</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">deploymentStrategy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">deployment</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">enableProvisionCreds</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">enableControllerPublishCreds</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">enableNodePublishCreds</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">enableControllerExpandCreds</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>The credentials must be defined in the <code>storageos-api</code> Secret</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Secret</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos-api&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;kubernetes.io/storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># echo -n &#39;&lt;secret&gt;&#39; | base64</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">username</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><h2 id="specifying-a-shared-directory-for-use-with-kubelet-as-a-container">Specifying a shared directory for use with kubelet as a container</h2>
+<h2 id="specifying-a-shared-directory-for-use-with-kubelet-as-a-container">Specifying a shared directory for use with kubelet as a container</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">sharedDir</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&#39;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><h2 id="defining-pod-resource-requests-and-reservations">Defining pod resource requests and reservations</h2>

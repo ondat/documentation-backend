@@ -22,7 +22,7 @@
 
 <title>Configuration | </title><meta property="og:title" content="Configuration" />
 <meta property="og:description" content="StorageOSCluster Resource Configuration The following table lists the configurable spec parameters of the StorageOSCluster custom resource and their default values.
-   Parameter Description Default     csi.deploymentStrategy CSI helper deployment strategy (statefulset or deployment) statefulset   csi.enable Enable CSI setup false   csi.enableControllerPublishCreds Enable CSI controller publish credentials false   csi.enableNodePublishCreds Enable CSI node publish credentials false   csi.enableProvisionCreds Enable CSI provision credentials false   debug Enable debug mode for all the cluster nodes false   disableFencing Disable Pod fencing false   disableScheduler Disable Ondat scheduler false   disableTCMU Disable TCMU to allow co-existence with other TCMU users." />
+   Parameter Description Default     csi.deploymentStrategy CSI helper deployment strategy (statefulset or deployment) statefulset   csi.enable Enable CSI setup false   csi.enableControllerPublishCreds Enable CSI controller publish credentials false   csi.enableNodePublishCreds Enable CSI node publish credentials false   csi.enableProvisionCreds Enable CSI provision credentials false   debug Enable debug mode for all the cluster nodes false   disableTelemetry Disable telemetry reports false   images." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/reference/cluster-operator/configuration/" /><meta property="article:section" content="docs" />
 
@@ -30,13 +30,13 @@
 
 <meta itemprop="name" content="Configuration">
 <meta itemprop="description" content="StorageOSCluster Resource Configuration The following table lists the configurable spec parameters of the StorageOSCluster custom resource and their default values.
-   Parameter Description Default     csi.deploymentStrategy CSI helper deployment strategy (statefulset or deployment) statefulset   csi.enable Enable CSI setup false   csi.enableControllerPublishCreds Enable CSI controller publish credentials false   csi.enableNodePublishCreds Enable CSI node publish credentials false   csi.enableProvisionCreds Enable CSI provision credentials false   debug Enable debug mode for all the cluster nodes false   disableFencing Disable Pod fencing false   disableScheduler Disable Ondat scheduler false   disableTCMU Disable TCMU to allow co-existence with other TCMU users.">
+   Parameter Description Default     csi.deploymentStrategy CSI helper deployment strategy (statefulset or deployment) statefulset   csi.enable Enable CSI setup false   csi.enableControllerPublishCreds Enable CSI controller publish credentials false   csi.enableNodePublishCreds Enable CSI node publish credentials false   csi.enableProvisionCreds Enable CSI provision credentials false   debug Enable debug mode for all the cluster nodes false   disableTelemetry Disable telemetry reports false   images.">
 
-<meta itemprop="wordCount" content="406">
+<meta itemprop="wordCount" content="312">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Configuration"/>
 <meta name="twitter:description" content="StorageOSCluster Resource Configuration The following table lists the configurable spec parameters of the StorageOSCluster custom resource and their default values.
-   Parameter Description Default     csi.deploymentStrategy CSI helper deployment strategy (statefulset or deployment) statefulset   csi.enable Enable CSI setup false   csi.enableControllerPublishCreds Enable CSI controller publish credentials false   csi.enableNodePublishCreds Enable CSI node publish credentials false   csi.enableProvisionCreds Enable CSI provision credentials false   debug Enable debug mode for all the cluster nodes false   disableFencing Disable Pod fencing false   disableScheduler Disable Ondat scheduler false   disableTCMU Disable TCMU to allow co-existence with other TCMU users."/>
+   Parameter Description Default     csi.deploymentStrategy CSI helper deployment strategy (statefulset or deployment) statefulset   csi.enable Enable CSI setup false   csi.enableControllerPublishCreds Enable CSI controller publish credentials false   csi.enableNodePublishCreds Enable CSI node publish credentials false   csi.enableProvisionCreds Enable CSI provision credentials false   debug Enable debug mode for all the cluster nodes false   disableTelemetry Disable telemetry reports false   images."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -172,7 +172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0f2ed894cbee62a56ac825e888fab286c7083561432e4f71c8df8e44c85496d8ba243c96babf8b0a4b53fe695e1b7f33b0591e9fd2a23f87ece4d66dc263a618.json"
+  data-offline-search-index-json-src="/offline-search-index.c019d60c0781f275a0c735c41a0220941a04d10ced5704fd71ecf731893126f8f79104b7918c3dea704b1e281356a39c770c4ff7c22830d11c9e06a2c691a932.json"
   data-offline-search-base-href="/"
 >
 
@@ -320,7 +320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0f2ed894cbee62a56ac825e888fab286c7083561432e4f71c8df8e44c85496d8ba243c96babf8b0a4b53fe695e1b7f33b0591e9fd2a23f87ece4d66dc263a618.json"
+  data-offline-search-index-json-src="/offline-search-index.c019d60c0781f275a0c735c41a0220941a04d10ced5704fd71ecf731893126f8f79104b7918c3dea704b1e281356a39c770c4ff7c22830d11c9e06a2c691a932.json"
   data-offline-search-base-href="/"
 >
 
@@ -1446,28 +1446,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td style="text-align:left"><code>false</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>disableFencing</code></td>
-<td style="text-align:left">Disable Pod fencing</td>
-<td style="text-align:left"><code>false</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>disableScheduler</code></td>
-<td style="text-align:left">Disable Ondat scheduler</td>
-<td style="text-align:left"><code>false</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>disableTCMU</code></td>
-<td style="text-align:left">Disable TCMU to allow co-existence with other TCMU users. Disabling TCMU degrades performance</td>
-<td style="text-align:left"><code>false</code></td>
-</tr>
-<tr>
 <td style="text-align:left"><code>disableTelemetry</code></td>
 <td style="text-align:left">Disable telemetry reports</td>
-<td style="text-align:left"><code>false</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>forceTCMU</code></td>
-<td style="text-align:left">Forces TCMU to be enabled or causes Ondat to abort startup</td>
 <td style="text-align:left"><code>false</code></td>
 </tr>
 <tr>
@@ -1526,26 +1506,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td style="text-align:left"><code>storageos/node:v2.6.0</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>ingress.annotations</code></td>
-<td style="text-align:left">Annotations of the ingress used by the cluster</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ingress.enable</code></td>
-<td style="text-align:left">Enable ingress for the cluster</td>
-<td style="text-align:left"><code>false</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ingress.hostname</code></td>
-<td style="text-align:left">Hostname to be used in cluster ingress</td>
-<td style="text-align:left"><code>storageos.local</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>ingress.tls</code></td>
-<td style="text-align:left">Enable TLS for the ingress</td>
-<td style="text-align:left"><code>false</code></td>
-</tr>
-<tr>
 <td style="text-align:left"><code>k8sDistro</code></td>
 <td style="text-align:left">The name of the Kubernetes distribution is use, e.g. <code>rancher</code> or <code>eks</code></td>
 <td></td>
@@ -1561,19 +1521,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td style="text-align:left"><code>embedded</code></td>
 </tr>
 <tr>
-<td style="text-align:left"><code>namespace</code></td>
-<td style="text-align:left">Namespace where storageos cluster resources are created</td>
-<td style="text-align:left"><code>kube-system</code></td>
-</tr>
-<tr>
 <td style="text-align:left"><code>nodeSelectorTerms</code></td>
 <td style="text-align:left">Set node selector for storageos pod placement</td>
 <td></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>pause</code></td>
-<td style="text-align:left">Pause the operator for cluster maintenance</td>
-<td style="text-align:left"><code>false</code></td>
 </tr>
 <tr>
 <td style="text-align:left"><code>resources</code></td>
@@ -1582,12 +1532,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 <tr>
 <td style="text-align:left"><code>secretRefName</code></td>
-<td style="text-align:left">Reference name of storageos secret</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>secretRefNamespace</code></td>
-<td style="text-align:left">Namespace of storageos secret</td>
+<td style="text-align:left">Reference name of storageos secret within the namespace</td>
 <td></td>
 </tr>
 <tr>
@@ -1628,11 +1573,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <tr>
 <td style="text-align:left"><code>tlsEtcdSecretRefName</code></td>
 <td style="text-align:left">Secret containing etcd client certificates</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"><code>tlsEtcdSecretRefNamespace</code></td>
-<td style="text-align:left">Namespace of the tlsEtcdSecretRefName</td>
 <td></td>
 </tr>
 <tr>
