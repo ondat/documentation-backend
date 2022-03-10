@@ -2969,7 +2969,7 @@ following object exists.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: Amazon Web Services Elastic Kubernetes Service (AWS EKS)</title>
+      <title>Docs: Amazon Elastic Kubernetes Service (EKS)</title>
       <link>/docs/install/amazon-web-services-eks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -2978,7 +2978,7 @@ following object exists.&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://aws.amazon.com/eks/&#34;&gt;Elastic Kubernetes Service&lt;/a&gt; cluster using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This guide will demonstrate how to install Ondat onto an &lt;a href=&#34;https://aws.amazon.com/eks/&#34;&gt;Amazon Elastic Kubernetes Service&lt;/a&gt; cluster using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
