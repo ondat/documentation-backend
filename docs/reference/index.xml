@@ -97,7 +97,7 @@ your cli container.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cli
+  name: storageos-cli
   namespace: storageos
   labels:
     app: storageos-cli
