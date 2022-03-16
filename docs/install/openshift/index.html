@@ -21,28 +21,28 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>OpenShift | </title><meta property="og:title" content="OpenShift" />
-<meta property="og:description" content="⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto an Openshift cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
   ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes&#39; security group.
-  ⚠️ Make sure to add a Ondat licence after installing.
-  💡 For OpenShift upgrades, refer to the OpenShift platform page." />
+  ⚠️ Make sure to add a Ondat licence after installing." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/openshift/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="OpenShift">
-<meta itemprop="description" content="⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto an Openshift cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
   ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes&#39; security group.
-  ⚠️ Make sure to add a Ondat licence after installing.
-  💡 For OpenShift upgrades, refer to the OpenShift platform page.">
+  ⚠️ Make sure to add a Ondat licence after installing.">
 
-<meta itemprop="wordCount" content="987">
+<meta itemprop="wordCount" content="1021">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenShift"/>
-<meta name="twitter:description" content="⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto an Openshift cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
   ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes&#39; security group.
-  ⚠️ Make sure to add a Ondat licence after installing.
-  💡 For OpenShift upgrades, refer to the OpenShift platform page."/>
+  ⚠️ Make sure to add a Ondat licence after installing."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.b475abf640a345e2a7ee15b6588958e33accf310b211be4a232d7100fa45a0b40c461973bd190ea1a22517eb1a1f0158ad1137c77b1581b662c61ed5e4cd7ba6.json"
+  data-offline-search-index-json-src="/offline-search-index.159bfb53063397aaf2681e3cf81a0ad30f91eac61740ee522857cef0da71cc2aa2e54caac75b5ce630676e6b0546705c961205f4b976e9a3ab8d3d13d5ad7b91.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.b475abf640a345e2a7ee15b6588958e33accf310b211be4a232d7100fa45a0b40c461973bd190ea1a22517eb1a1f0158ad1137c77b1581b662c61ed5e4cd7ba6.json"
+  data-offline-search-index-json-src="/offline-search-index.159bfb53063397aaf2681e3cf81a0ad30f91eac61740ee522857cef0da71cc2aa2e54caac75b5ce630676e6b0546705c961205f4b976e9a3ab8d3d13d5ad7b91.json"
   data-offline-search-base-href="/"
 >
 
@@ -588,13 +588,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallopenshift" href="/docs/install/openshift/">OpenShift</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
       
       
       
@@ -1357,10 +1357,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#operatorhub">OperatorHub</a></li>
-    <li><a href="#authentication-operatorhub">Authentication (OperatorHub)</a></li>
-    <li><a href="#red-hat-marketplace">Red Hat Marketplace</a></li>
-    <li><a href="#authentication-red-hat-marketplace">Authentication (Red Hat Marketplace)</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#option-a-via-operatorhub">Option A: Via Operatorhub</a></li>
+        <li><a href="#option-b-via-red-hat-marketplace">Option B: Via Red Hat Marketplace</a></li>
+      </ul>
+    </li>
     <li><a href="#license-cluster">License cluster</a></li>
     <li><a href="#first-ondat-volume">First Ondat volume</a></li>
   </ul>
@@ -1411,7 +1415,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>OpenShift</h1>
 	
-	<blockquote>
+	<h2 id="overview">Overview</h2>
+<p>This guide will demonstrate how to install Ondat onto an <a href="/docs/platforms/openshift">Openshift</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<blockquote>
 <p>⚠️ Make sure the
 <a href="/docs/prerequisites/">prerequisites for Ondat</a> are
 satisfied before proceeding. Including the deployment of an etcd cluster and
@@ -1422,14 +1429,16 @@ configuration of CRI-O PID limits.</p>
 opened for the worker nodes' security group.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Make sure to add a Ondat licence after installing.</p>
+<p>⚠️ Make sure to add a <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
 </blockquote>
 <blockquote>
 <p>💡 For OpenShift upgrades, refer to the
 <a href="/docs/platforms/openshift#openshift-upgrades">OpenShift platform page</a>.</p>
 </blockquote>
 <p>Ondat v2 supports OpenShift v4. For more information, see the <a href="/docs/platforms/openshift">OpenShift platform</a> page.</p>
-<h2 id="operatorhub">OperatorHub</h2>
+<h2 id="procedure">Procedure</h2>
+<h3 id="option-a-via-operatorhub">Option A: Via Operatorhub</h3>
+<h4 id="step-1-operatorhub">Step 1: Operatorhub</h4>
 <ol>
 <li>
 <p>Select the <code>OperatorHub</code> from the Catalog sub menu and search for StorageOS</p>
@@ -1459,7 +1468,7 @@ Operator doesn&rsquo;t upgrade versions without explicit approval.</p>
 </li>
 </ol>
 <p>The Ondat Cluster Operator is installed along the required CRDs.</p>
-<h2 id="authentication-operatorhub">Authentication (OperatorHub)</h2>
+<h4 id="step-2-authentication">Step 2: Authentication</h4>
 <ol>
 <li>
 <p>Create a Secret in the <code>openshift-operators</code> project and select the YAML option to create a secret containing the <code>username</code> and an
@@ -1536,7 +1545,8 @@ bootstrapped successfully.</p>
 </blockquote>
 </li>
 </ol>
-<h2 id="red-hat-marketplace">Red Hat Marketplace</h2>
+<h3 id="option-b-via-red-hat-marketplace">Option B: Via Red Hat Marketplace</h3>
+<h4 id="step-1-red-hat-markerplace">Step 1: Red Hat Markerplace</h4>
 <blockquote>
 <p>⚠️ The installation of Ondat using the Red Hat Marketplace requires the
 Openshift cluster to be registered to the Marketplace Portal, including the
@@ -1574,7 +1584,7 @@ ensure that you always have the latest version of StorageOS installed.</p>
 </li>
 </ol>
 <p>The Ondat Cluster Operator is installed into your specified cluster.</p>
-<h2 id="authentication-red-hat-marketplace">Authentication (Red Hat Marketplace)</h2>
+<h4 id="step-2-authentication-1">Step 2: Authentication</h4>
 <ol>
 <li>
 <p>Create a Secret in the <code>openshift-operators</code> project and select the YAML option to create a secret containing the <code>username</code> and an

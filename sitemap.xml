@@ -8,6 +8,8 @@
   </url><url>
     <loc>/docs/install/kubernetes/</loc>
   </url><url>
+    <loc>/docs/install/openshift/</loc>
+  </url><url>
     <loc>/docs/introduction/overview/</loc>
   </url><url>
     <loc>/docs/ondat-portal/installation-portal/</loc>
@@ -17,8 +19,6 @@
     <loc>/docs/reference/cluster-operator/configuration/</loc>
   </url><url>
     <loc>/docs/ondat-portal/dashboard/</loc>
-  </url><url>
-    <loc>/docs/install/openshift/</loc>
   </url><url>
     <loc>/docs/ondat-portal/applications/</loc>
   </url><url>
