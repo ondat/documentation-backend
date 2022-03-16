@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/docs/install/amazon-web-services-eks/</loc>
+  </url><url>
     <loc>/docs/reference/cluster-operator/install/</loc>
   </url><url>
     <loc>/docs/introduction/</loc>
@@ -71,8 +73,6 @@
     <loc>/index.json</loc>
   </url><url>
     <loc>/docs/reference/scheduler/admission-controller/</loc>
-  </url><url>
-    <loc>/docs/install/amazon-web-services-eks/</loc>
   </url><url>
     <loc>/docs/reference/api/</loc>
   </url><url>

@@ -22,11 +22,9 @@
 
 <title>Amazon Elastic Kubernetes Service (EKS) | </title><meta property="og:title" content="Amazon Elastic Kubernetes Service (EKS)" />
 <meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl
-  kubectl-storageos
-  aws" />
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos aws eksctl, at least version &gt;=0." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/amazon-web-services-eks/" /><meta property="article:section" content="docs" />
 
@@ -34,21 +32,17 @@ Prerequisites   You have met the minimum resource requirements for Ondat to succ
 
 <meta itemprop="name" content="Amazon Elastic Kubernetes Service (EKS)">
 <meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl
-  kubectl-storageos
-  aws">
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos aws eksctl, at least version &gt;=0.">
 
-<meta itemprop="wordCount" content="758">
+<meta itemprop="wordCount" content="780">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Amazon Elastic Kubernetes Service (EKS)"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl
-  kubectl-storageos
-  aws"/>
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos aws eksctl, at least version &gt;=0."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -184,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.159bfb53063397aaf2681e3cf81a0ad30f91eac61740ee522857cef0da71cc2aa2e54caac75b5ce630676e6b0546705c961205f4b976e9a3ab8d3d13d5ad7b91.json"
+  data-offline-search-index-json-src="/offline-search-index.4265dba4601f8b014bdf88910bada9930ce17536c275bae127a01f9562e0c16e0dcd3b1c8a2397b5f572a8e3ad046d7335ddd484854235a060400a8400b46377.json"
   data-offline-search-base-href="/"
 >
 
@@ -332,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.159bfb53063397aaf2681e3cf81a0ad30f91eac61740ee522857cef0da71cc2aa2e54caac75b5ce630676e6b0546705c961205f4b976e9a3ab8d3d13d5ad7b91.json"
+  data-offline-search-index-json-src="/offline-search-index.4265dba4601f8b014bdf88910bada9930ce17536c275bae127a01f9562e0c16e0dcd3b1c8a2397b5f572a8e3ad046d7335ddd484854235a060400a8400b46377.json"
   data-offline-search-base-href="/"
 >
 
@@ -588,6 +582,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallkubernetes" href="/docs/install/kubernetes/">Kubernetes</a>
       
       
@@ -607,12 +607,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher" href="/docs/install/rancher/">Rancher</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
       
       
       
@@ -1424,40 +1418,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h2 id="overview">Overview</h2>
 <p>This guide will demonstrate how to install Ondat onto an <a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
+<blockquote>
+<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</blockquote>
 <ul>
-<li>
-<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
-</li>
-<li>
-<p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
-</li>
-<li>
-<p><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></p>
-</li>
-<li>
-<p><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></p>
-</li>
-<li>
-<p><a href="https://aws.amazon.com/cli/">aws</a></p>
-</li>
-<li>
-<p><a href="https://eksctl.io/">eksctl</a>, at least version <code>&gt;=0.83.0</code></p>
-</li>
-<li>
-<p>You have a running EKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
-</li>
-<li>
-<p>Your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for EKS</a> as the default node operating system with an optimised kernel. For kernel versions below <code>linux-aws-5.4.0-1066.69</code> or <code>linux-aws-5.13.0-1014.15</code>, the module <code>tcm_loop</code> is not included in the base kernel distribution. In that case, the package <code>linux-modules-extra-$(uname -r)</code> is additionally required on each of the nodes - this can be installed automatically by adding it to the node&rsquo;s user data as in the example below.</p>
-</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
+<li><a href="https://aws.amazon.com/cli/">aws</a></li>
+<li><a href="https://eksctl.io/">eksctl</a>, at least version <code>&gt;=0.83.0</code></li>
 </ul>
+<blockquote>
+<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for EKS</a> as the default node operating system with an optimised kernel. For kernel versions below <code>linux-aws-5.4.0-1066.69</code> or <code>linux-aws-5.13.0-1014.15</code>, the module <code>tcm_loop</code> is not included in the base kernel distribution. In that case, the package <code>linux-modules-extra-$(uname -r)</code> is additionally required on each of the nodes - this can be installed automatically by adding it to the node&rsquo;s user data as in the example below.</p>
+</blockquote>
+<blockquote>
 <p>To find the latest Ubuntu for EKS AMI, search your region for the image:</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">AWS_REGION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;eu-west-2&#34;</span> <span style="color:#8f5902;font-style:italic"># Insert your preferred region here</span>
 aws ec2 describe-images <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>--filters <span style="color:#4e9a06">&#34;Name=owner-id,Values=099720109477&#34;</span> <span style="color:#4e9a06">&#34;Name=architecture,Values=x86_64&#34;</span> <span style="color:#4e9a06">&#34;Name=root-device-type,Values=ebs&#34;</span> <span style="color:#4e9a06">&#34;Name=virtualization-type,Values=hvm&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>--query <span style="color:#4e9a06">&#39;Images[?contains(Name, `ubuntu-eks`)] | [?contains(Name, `testing`) == `false`] | [?contains(Name, `minimal`) == `false`] | [?contains(Name, `hvm-ssd`) == `true`] | sort_by(@, &amp;CreationDate)| [-1].ImageId&#39;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>--output text <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>--region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to create a cluster with 3 nodes of size <code>t3.large</code> running Ubuntu for EKS in the <code>eu-west-2</code> region. We have provided <code>100 GB</code> of disk space for each node. Note that by default, Ondat will store data locally in the node&rsquo;s file system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged mode</a>. In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount our volumes under data device directories</a> with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.</p>
+</code></pre></div><blockquote>
+<p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to create a cluster with 3 nodes of size <code>t3.large</code> running Ubuntu for EKS in the <code>eu-west-2</code> region. We have provided <code>100 GB</code> of disk space for each node. Note that by default, Ondat will store data locally in the node&rsquo;s file system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged mode</a>. In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount our volumes under data device directories</a> with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># cluster.yaml</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">eksctl.io/v1alpha5</span><span style="color:#f8f8f8;text-decoration:underline">
