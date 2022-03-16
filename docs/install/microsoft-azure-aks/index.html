@@ -22,10 +22,9 @@
 
 <title>Azure Kubernetes Service (AKS) | </title><meta property="og:title" content="Azure Kubernetes Service (AKS)" />
 <meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl
-  kubectl-storageos" />
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/microsoft-azure-aks/" /><meta property="article:section" content="docs" />
 
@@ -33,19 +32,17 @@ Prerequisites   You have met the minimum resource requirements for Ondat to succ
 
 <meta itemprop="name" content="Azure Kubernetes Service (AKS)">
 <meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl
-  kubectl-storageos">
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing.">
 
-<meta itemprop="wordCount" content="296">
+<meta itemprop="wordCount" content="318">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Azure Kubernetes Service (AKS)"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Microsoft Azure Kubernetes Service (AKS) cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl
-  kubectl-storageos"/>
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -181,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4265dba4601f8b014bdf88910bada9930ce17536c275bae127a01f9562e0c16e0dcd3b1c8a2397b5f572a8e3ad046d7335ddd484854235a060400a8400b46377.json"
+  data-offline-search-index-json-src="/offline-search-index.ec74dc0fd1af964cdfdf3c6ddca427cfaa7ea2c341dbc8c82b57263adfd7f1b8c5671d1654bf4faf23c85f3e8099f7d0dc8fd23d852e318e5914c83ff936af1f.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4265dba4601f8b014bdf88910bada9930ce17536c275bae127a01f9562e0c16e0dcd3b1c8a2397b5f572a8e3ad046d7335ddd484854235a060400a8400b46377.json"
+  data-offline-search-index-json-src="/offline-search-index.ec74dc0fd1af964cdfdf3c6ddca427cfaa7ea2c341dbc8c82b57263adfd7f1b8c5671d1654bf4faf23c85f3e8099f7d0dc8fd23d852e318e5914c83ff936af1f.json"
   data-offline-search-base-href="/"
 >
 
@@ -591,6 +588,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallkubernetes" href="/docs/install/kubernetes/">Kubernetes</a>
       
       
@@ -610,12 +613,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher" href="/docs/install/rancher/">Rancher</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
       
       
     </li>
@@ -1421,26 +1418,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h2 id="overview">Overview</h2>
 <p>This guide will demonstrate how to install Ondat onto a <a href="https://azure.microsoft.com/en-gb/services/kubernetes-service/">Microsoft Azure Kubernetes Service (AKS)</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
+<blockquote>
+<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</blockquote>
 <ul>
-<li>
-<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
-</li>
-<li>
-<p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
-</li>
-<li>
-<p><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></p>
-</li>
-<li>
-<p><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></p>
-</li>
-<li>
-<p>You have a running AKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
-</li>
-<li>
-<p>Your AKS clusters use <a href="https://ubuntu.com/">Ubuntu</a> as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than <code>4.15.0-1029-azure</code> is compatible with Ondat.</p>
-</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
 </ul>
+<blockquote>
+<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure you have a running AKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure your AKS clusters use <a href="https://ubuntu.com/">Ubuntu</a> as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than <code>4.15.0-1029-azure</code> is compatible with Ondat.</p>
+</blockquote>
 <h2 id="procedure">Procedure</h2>
 <h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
 <p>Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</p>

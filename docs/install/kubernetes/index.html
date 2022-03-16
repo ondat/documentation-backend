@@ -21,31 +21,31 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Kubernetes | </title><meta property="og:title" content="Kubernetes" />
-<meta property="og:description" content="⚠️ Make sure that the prerequisites for Ondat are satisfied before proceeding.
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure that the prerequisites for Ondat are satisfied before proceeding.
   ⚠️ Make sure to add an Ondat licence after installing.
   💡 Any Kubernetes managed service such as EKS, AKS, GKE, RKE or DO platform can use the following Kubernetes guide to install Ondat.
-  💡 Ondat supports at least the five most recent Kubernetes releases.
-  💡 Ondat also has an official Helm chart, see the charts repository for instructions." />
+  💡 Ondat supports at least the five most recent Kubernetes releases." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/kubernetes/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Kubernetes">
-<meta itemprop="description" content="⚠️ Make sure that the prerequisites for Ondat are satisfied before proceeding.
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure that the prerequisites for Ondat are satisfied before proceeding.
   ⚠️ Make sure to add an Ondat licence after installing.
   💡 Any Kubernetes managed service such as EKS, AKS, GKE, RKE or DO platform can use the following Kubernetes guide to install Ondat.
-  💡 Ondat supports at least the five most recent Kubernetes releases.
-  💡 Ondat also has an official Helm chart, see the charts repository for instructions.">
+  💡 Ondat supports at least the five most recent Kubernetes releases.">
 
-<meta itemprop="wordCount" content="525">
+<meta itemprop="wordCount" content="557">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes"/>
-<meta name="twitter:description" content="⚠️ Make sure that the prerequisites for Ondat are satisfied before proceeding.
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure that the prerequisites for Ondat are satisfied before proceeding.
   ⚠️ Make sure to add an Ondat licence after installing.
   💡 Any Kubernetes managed service such as EKS, AKS, GKE, RKE or DO platform can use the following Kubernetes guide to install Ondat.
-  💡 Ondat supports at least the five most recent Kubernetes releases.
-  💡 Ondat also has an official Helm chart, see the charts repository for instructions."/>
+  💡 Ondat supports at least the five most recent Kubernetes releases."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4265dba4601f8b014bdf88910bada9930ce17536c275bae127a01f9562e0c16e0dcd3b1c8a2397b5f572a8e3ad046d7335ddd484854235a060400a8400b46377.json"
+  data-offline-search-index-json-src="/offline-search-index.ec74dc0fd1af964cdfdf3c6ddca427cfaa7ea2c341dbc8c82b57263adfd7f1b8c5671d1654bf4faf23c85f3e8099f7d0dc8fd23d852e318e5914c83ff936af1f.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4265dba4601f8b014bdf88910bada9930ce17536c275bae127a01f9562e0c16e0dcd3b1c8a2397b5f572a8e3ad046d7335ddd484854235a060400a8400b46377.json"
+  data-offline-search-index-json-src="/offline-search-index.ec74dc0fd1af964cdfdf3c6ddca427cfaa7ea2c341dbc8c82b57263adfd7f1b8c5671d1654bf4faf23c85f3e8099f7d0dc8fd23d852e318e5914c83ff936af1f.json"
   data-offline-search-base-href="/"
 >
 
@@ -591,6 +591,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallkubernetes" href="/docs/install/kubernetes/">Kubernetes</a>
       
       
@@ -610,12 +616,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher" href="/docs/install/rancher/">Rancher</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
       
       
     </li>
@@ -1360,14 +1360,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#install-ondat-on-kubernetes">Install Ondat on Kubernetes</a>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
       <ul>
-        <li><a href="#install-the-storageos-kubectl-plugin">Install the storageos kubectl plugin</a></li>
-        <li><a href="#smoke-test">Smoke test</a></li>
-        <li><a href="#option-a-install-ondat-embedded-etcd-for-development-and-testing">Option A: Install Ondat (embedded etcd, for development and testing)</a></li>
-        <li><a href="#option-b-install-ondat-bring-your-own-etcd-for-production">Option B: Install Ondat (bring-your-own etcd, for production)</a></li>
-        <li><a href="#verify-ondat-installation">Verify Ondat installation</a></li>
-        <li><a href="#license-cluster">License cluster</a></li>
+        <li><a href="#step-1-install-the-storageos-kubectl-plugin">Step 1: Install the storageos kubectl plugin</a></li>
+        <li><a href="#step-2-smoke-test">Step 2: Smoke test</a></li>
+        <li><a href="#step-3---option-a-install-ondat-embedded-etcd-for-development-and-testing">Step 3 - Option A: Install Ondat (embedded etcd, for development and testing)</a></li>
+        <li><a href="#step-3---option-b-install-ondat-bring-your-own-etcd-for-production">Step 3 - Option B: Install Ondat (bring-your-own etcd, for production)</a></li>
+        <li><a href="#step-4---verify-ondat-installation">Step 4 - Verify Ondat installation</a></li>
+        <li><a href="#step-5---license-cluster">Step 5 - License cluster</a></li>
       </ul>
     </li>
     <li><a href="#airgapped-clusters">Airgapped clusters</a></li>
@@ -1420,7 +1422,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Kubernetes</h1>
 	
-	<blockquote>
+	<h2 id="overview">Overview</h2>
+<p>This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<blockquote>
 <p>⚠️ Make sure that the
 <a href="/docs/prerequisites">prerequisites for Ondat</a> are
 satisfied before proceeding.</p>
@@ -1439,8 +1444,8 @@ platform can use the following Kubernetes guide to install Ondat.</p>
 <p>💡 Ondat also has an official Helm chart, see <a href="https://github.com/ondat/charts/tree/main/charts/ondat-operator">the charts repository</a> for instructions.</p>
 </blockquote>
 <p> </p>
-<h2 id="install-ondat-on-kubernetes">Install Ondat on Kubernetes</h2>
-<h3 id="install-the-storageos-kubectl-plugin">Install the storageos kubectl plugin</h3>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1-install-the-storageos-kubectl-plugin">Step 1: Install the storageos kubectl plugin</h3>
 <pre tabindex="0"><code>curl -sSLo kubectl-storageos.tar.gz \
     https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
     &amp;&amp; tar -xf kubectl-storageos.tar.gz \
@@ -1451,7 +1456,7 @@ platform can use the following Kubernetes guide to install Ondat.</p>
 <p>💡 You can find binaries for different architectures and systems in <a href="https://github.com/storageos/kubectl-storageos/releases">kubectl
 plugin</a>.</p>
 </blockquote>
-<h3 id="smoke-test">Smoke test</h3>
+<h3 id="step-2-smoke-test">Step 2: Smoke test</h3>
 <pre tabindex="0"><code>kubectl storageos preflight
 </code></pre><blockquote>
 <p>💡 This command will check that some of the core requirements are met for
@@ -1463,7 +1468,7 @@ and a valid container runtime.</p>
 test for - refer to <a href="/docs/prerequisites">prerequisites</a> for a full list
 and be sure to verify that your infrastructure meets them.</p>
 </blockquote>
-<h3 id="option-a-install-ondat-embedded-etcd-for-development-and-testing">Option A: Install Ondat (embedded etcd, for development and testing)</h3>
+<h3 id="step-3---option-a-install-ondat-embedded-etcd-for-development-and-testing">Step 3 - Option A: Install Ondat (embedded etcd, for development and testing)</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --include-etcd <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --etcd-tls-enabled <span style="color:#4e9a06">\
@@ -1480,7 +1485,7 @@ If the default isn&rsquo;t set, you may need to set up the <a href="https://raw.
 <code>StorageClass</code>. Note that this stores all data locally on the individual
 nodes and is not recommended for production installations.</p>
 </blockquote>
-<h3 id="option-b-install-ondat-bring-your-own-etcd-for-production">Option B: Install Ondat (bring-your-own etcd, for production)</h3>
+<h3 id="step-3---option-b-install-ondat-bring-your-own-etcd-for-production">Step 3 - Option B: Install Ondat (bring-your-own etcd, for production)</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --etcd-endpoints <span style="color:#4e9a06">&#39;storageos-etcd-client.storageos-etcd:2379&#39;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --admin-username <span style="color:#4e9a06">&#34;myuser&#34;</span> <span style="color:#4e9a06">\
@@ -1492,7 +1497,7 @@ nodes and is not recommended for production installations.</p>
 <p>💡 If the etcd endpoints are not defined, the plugin will prompt you and
 request the endpoints.</p>
 </blockquote>
-<h3 id="verify-ondat-installation">Verify Ondat installation</h3>
+<h3 id="step-4---verify-ondat-installation">Step 4 - Verify Ondat installation</h3>
 <p>Ondat installs all its components in the <code>storageos</code> namespace.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n storageos get pod -w
 NAME                                     READY   STATUS    RESTARTS   AGE
@@ -1510,7 +1515,7 @@ storageos-scheduler-86b979c6df-wndj4     1/1     Running   <span style="color:#0
 </code></pre></div><blockquote>
 <p>Wait until all the pods are ready. It usually takes ~60 seconds to complete</p>
 </blockquote>
-<h3 id="license-cluster">License cluster</h3>
+<h3 id="step-5---license-cluster">Step 5 - License cluster</h3>
 <blockquote>
 <p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
 personal license is free, and supports up to 1TiB of provisioned storage.</p>
