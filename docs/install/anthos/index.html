@@ -22,9 +22,9 @@
 
 <title>Anthos | </title><meta property="og:title" content="Anthos" />
 <meta property="og:description" content="Overview This guide will walk you through installing Ondat onto an Anthos cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-    kubectl kubectl-storageos     You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster." />
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/anthos/" /><meta property="article:section" content="docs" />
 
@@ -32,17 +32,17 @@ Prerequisites   You have met the minimum resource requirements for Ondat to succ
 
 <meta itemprop="name" content="Anthos">
 <meta itemprop="description" content="Overview This guide will walk you through installing Ondat onto an Anthos cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-    kubectl kubectl-storageos     You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster.">
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing.">
 
-<meta itemprop="wordCount" content="289">
+<meta itemprop="wordCount" content="311">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Anthos"/>
 <meta name="twitter:description" content="Overview This guide will walk you through installing Ondat onto an Anthos cluster using the Ondat kubectl plugin.
-Prerequisites   You have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  The following CLI utilities are installed on your local machine and are available in your $PATH:
-    kubectl kubectl-storageos     You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster."/>
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ec74dc0fd1af964cdfdf3c6ddca427cfaa7ea2c341dbc8c82b57263adfd7f1b8c5671d1654bf4faf23c85f3e8099f7d0dc8fd23d852e318e5914c83ff936af1f.json"
+  data-offline-search-index-json-src="/offline-search-index.bb54d759267d44f4d6d97407f5ab3fb4fac950379d4a57fe25fca2633412a8f04caeeb2b4518b1ee7995d295e675f65d9b6f4b6c65562d6c0dc59fa31d92ab2b.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ec74dc0fd1af964cdfdf3c6ddca427cfaa7ea2c341dbc8c82b57263adfd7f1b8c5671d1654bf4faf23c85f3e8099f7d0dc8fd23d852e318e5914c83ff936af1f.json"
+  data-offline-search-index-json-src="/offline-search-index.bb54d759267d44f4d6d97407f5ab3fb4fac950379d4a57fe25fca2633412a8f04caeeb2b4518b1ee7995d295e675f65d9b6f4b6c65562d6c0dc59fa31d92ab2b.json"
   data-offline-search-base-href="/"
 >
 
@@ -588,6 +588,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
       
       
@@ -601,12 +607,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallopenshift" href="/docs/install/openshift/">OpenShift</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
       
       
       
@@ -1418,28 +1418,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h2 id="overview">Overview</h2>
 <p>This guide will walk you through installing Ondat onto an <a href="https://cloud.google.com/anthos">Anthos cluster</a> using the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<ul>
-<li>
-<p>You have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="https://docs.ondat.io/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
-</li>
-<li>
-<p>The following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
-</li>
-</ul>
 <blockquote>
+<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="https://docs.ondat.io/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</blockquote>
 <ul>
 <li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
 <li><a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
 </ul>
+<blockquote>
+<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
 </blockquote>
-<ul>
-<li>
-<p>You have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
-</li>
-<li>
-<p>Your Anthos clusters use <a href="https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd">ubuntu_containerd</a> as the default node operating system. This version was chosen as the image includes the native Linux components required for Ondat.</p>
-</li>
-</ul>
+<blockquote>
+<p>⚠️ Make sure you have a running Anthos user cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure your Anthos clusters use <a href="https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd">ubuntu_containerd</a> as the default node operating system. This version was chosen as the image includes the native Linux components required for Ondat.</p>
+</blockquote>
 <h2 id="procedure">Procedure</h2>
 <h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
 <ul>

@@ -4,6 +4,8 @@
   <url>
     <loc>/docs/install/amazon-web-services-eks/</loc>
   </url><url>
+    <loc>/docs/install/anthos/</loc>
+  </url><url>
     <loc>/docs/install/microsoft-azure-aks/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/install/</loc>
@@ -17,8 +19,6 @@
     <loc>/docs/introduction/overview/</loc>
   </url><url>
     <loc>/docs/ondat-portal/installation-portal/</loc>
-  </url><url>
-    <loc>/docs/install/anthos/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/configuration/</loc>
   </url><url>
