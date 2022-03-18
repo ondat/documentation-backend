@@ -1554,6 +1554,254 @@ Operator is upgrading.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Airgapped installation</title>
+      <link>/docs/install/airgapped-clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/airgapped-clusters/</guid>
+      <description>
+        
+        
+        &lt;blockquote&gt;
+&lt;p&gt;The following page is for advanced users. The full procedure is estimated to
+take ~60 minutes to complete.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Clusters without access to the internet require you to explicitly specify the
+resources to be installed. For that reason the &lt;code&gt;storageos&lt;/code&gt; kubectl plugin
+&lt;code&gt;--dry-run&lt;/code&gt; flag generates all the yamls for your cluster. You can amend them
+with the images pulled to your private registry. To install Ondat on an
+airgapped cluster, you need&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the &lt;code&gt;storageos&lt;/code&gt; kubectl plugin&lt;/li&gt;
+&lt;li&gt;Generate yaml manifests and amend for your use case&lt;/li&gt;
+&lt;li&gt;Pull OCI images to private registries.&lt;/li&gt;
+&lt;li&gt;Install Ondat on your cluster&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are the following sets of images to pull that will be shown along the
+following steps.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the Ondat operator image&lt;/li&gt;
+&lt;li&gt;the images in the StorageOSCluster definition that define the images for each
+component of the cluster&lt;/li&gt;
+&lt;li&gt;(if applicable) the images to run Etcd as Pods using the Etcd operator
+deployed by Ondat&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;step-1-install-storageos-kubectl-plugin&#34;&gt;Step 1. Install storageos kubectl plugin&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -sSLo kubectl-storageos.tar.gz &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; tar -xf kubectl-storageos.tar.gz &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x kubectl-storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo mv kubectl-storageos /usr/local/bin/ &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; rm kubectl-storageos.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
+plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;step-2-generate-yaml-manifests&#34;&gt;Step 2. Generate yaml manifests&lt;/h2&gt;
+&lt;h3 id=&#34;option-1-with-etcd-in-kubernetes&#34;&gt;Option 1: With Etcd in Kubernetes&lt;/h3&gt;
+&lt;p&gt;The etcd cluster in Kubernetes requires a StorageClass. If you are running on a
+cloud provider, you can use existing StorageClasses for it, for example &lt;code&gt;gp3&lt;/code&gt;
+(AWS) or &lt;code&gt;standard&lt;/code&gt; (GCE). Or you can create the &lt;code&gt;local-path&lt;/code&gt; StorageClass.
+It&amp;rsquo;s recommended to give Etcd a backend disk that can sustain at least 800
+IOPS. It&amp;rsquo;s best to use provisioned IOPS when possible, otherwise make sure the
+size of the disk is big enough to fulfil the IOPS requirement when performance
+depends on IOPS per GB.  For example, AWS would require a burstable EBS bigger
+than 256G to fulfil the IOPS requirement.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create StorageClass (if you don&amp;rsquo;t have one available)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️  The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended for &lt;strong&gt;non production&lt;/strong&gt;
+clusters as the data of the etcd peers is susceptible to being lost on node
+failure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Local-path StorageClass&lt;/span&gt;
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Not for production workloads&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Pull yaml&lt;/span&gt;
+curl -SsLo local-path.yaml https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Pull the following images into your registry&lt;/span&gt;
+grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;image:&amp;#34;&lt;/span&gt; local-path.yaml
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Add registry URL to the image&lt;/span&gt;
+vi local-path.yaml
+...
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Create the storageclass&lt;/span&gt;
+kubectl apply -f local-path.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Generate yaml manifests&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The following command generates a directory called &lt;code&gt;storageos-dry-run&lt;/code&gt;
+with the manifests.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Generate yamls&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;my-storage-class
+&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.6.0
+&lt;span style=&#34;color:#000&#34;&gt;K8S_VERSTION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v1.22.6
+&lt;span style=&#34;color:#000&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+&lt;span style=&#34;color:#000&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+
+kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-storage-class &lt;span style=&#34;color:#000&#34;&gt;$ETCD_STORAGECLASS&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --skip-etcd-endpoints-validation &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --k8s-version &lt;span style=&#34;color:#000&#34;&gt;$K8S_VERSION&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --dry-run
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Amend the file &lt;code&gt;etcd-operator.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-dry-run
+vi etcd-operator.yaml
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Edit the file &lt;code&gt;etcd-operator.yaml&lt;/code&gt; and change:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Find the 2 deployments &lt;code&gt;storageos-etcd-controller-manager&lt;/code&gt; and
+&lt;code&gt;storageos-etcd-proxy&lt;/code&gt; and edit the images to set the registry url
+prefix.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add the flag &lt;code&gt;--etcd-repository=$REGISTRY/quay.io/coreos/etcd&lt;/code&gt;  in the
+args of the &lt;code&gt;manager&lt;/code&gt; container.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;REGISTRY&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;my-registry-url
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Old&lt;/span&gt;
+      - args:
+        - --enable-leader-election
+        - --proxy-url&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-proxy.storageos-etcd.svc
+        command:
+        - /manager
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# New&lt;/span&gt;
+      - args:
+        - --enable-leader-election
+        - --proxy-url&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-proxy.storageos-etcd.svc
+        - --etcd-repository&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$REGISTRY&lt;/span&gt;/quay.io/coreos/etcd &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Edit this line with your registry url&lt;/span&gt;
+        command:
+        - /manager
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Amend the file &lt;code&gt;etcd-cluster.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;vi etcd-cluster.yaml
+...
+    volumeClaimTemplate:
+      resources:
+        requests:
+          storage: 256Gi
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Define the &lt;code&gt;storge&lt;/code&gt; size of the Etcd volumes. The backend disk requires at
+least 800 IOPS for etcd to work normally. If you are on a cloud provider
+that enables IOPSxGB, it is recommended to use a big enough volume. For
+instance, on AWS a 256GiB or a 50GiB GCE SSD persistent disk.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;option-2-with-external-etcd&#34;&gt;Option 2: With external Etcd&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Generate yaml manifests&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The following command generates a directory called &lt;code&gt;storageos-dry-run&lt;/code&gt;
+with the manifests.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Set etcd url&lt;/span&gt;
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# You can define multiple etcd urls separated by commas&lt;/span&gt;
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# http://peer1:2379,http://peer2:2379,http://peer3:2379&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;ETCD_URL&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;http://etcd-url-or-ips:2379
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Generate yamls&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;my-storage-class
+&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.6.0
+&lt;span style=&#34;color:#000&#34;&gt;K8S_VERSTION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v1.22.6
+&lt;span style=&#34;color:#000&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+&lt;span style=&#34;color:#000&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+
+kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-endpoints &lt;span style=&#34;color:#000&#34;&gt;$ETCD_URL&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --skip-etcd-endpoints-validation &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --k8s-version &lt;span style=&#34;color:#000&#34;&gt;$K8S_VERSION&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --dry-run
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-3-amend-manifests&#34;&gt;Step 3. Amend manifests&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Amend the file &lt;code&gt;storageos-operator.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-dry-run
+vi storageos-operator.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Edit the file &lt;code&gt;storageos-operator.yaml&lt;/code&gt; and change:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Find the &lt;code&gt;ConfigMap&lt;/code&gt; called &lt;code&gt;storageos-related-images&lt;/code&gt; and change the
+URLs of the images adding your registry URL prefix.&lt;/li&gt;
+&lt;li&gt;Find the &lt;code&gt;Deployment&lt;/code&gt; called &lt;code&gt;storageos-operator&lt;/code&gt; and change the &lt;code&gt;images&lt;/code&gt;
+of the 2 containers on it adding your registry URL prefix. They are the
+containers &lt;code&gt;manager&lt;/code&gt; and &lt;code&gt;kube-rbac-proxy&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;(Optional) Amend the file &lt;code&gt;storageos-cluster.yaml&lt;/code&gt;
+The StorageOSCluster definition depends on your cluster. For all available
+options, check the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;operator
+reference&lt;/a&gt;. You can add
+options such as tolerations, nodeSelectors, etc.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-4-pulling-images-into-a-private-registry&#34;&gt;Step 4. Pulling images into a private registry&lt;/h2&gt;
+&lt;p&gt;The images set on the previous steps need to be added to your registry. You can
+find them with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;grep -E  &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;RELATED|image:&amp;#34;&lt;/span&gt; *.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;step-5-install-ondat&#34;&gt;Step 5. Install Ondat&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Create the operators and CRDs first&lt;/span&gt;
+find . -name &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;*-operator.yaml&amp;#39;&lt;/span&gt;  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; xargs -I&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt; kubectl create -f &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Create the CustomResources&lt;/span&gt;
+find . -name &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;*-cluster.yaml&amp;#39;&lt;/span&gt;  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; xargs -I&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt; kubectl create -f &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;verify-the-installation&#34;&gt;Verify the installation&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Etcd&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n storageos-etcd get pod
+NAME                                                READY   STATUS    RESTARTS   AGE
+storageos-etcd-0-l4scc                              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          2m19s
+storageos-etcd-1-mzrv7                              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          2m19s
+storageos-etcd-2-bq596                              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          2m19s
+storageos-etcd-controller-manager-f89d9dc47-dlvgb   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          2m34s
+storageos-etcd-proxy-55479b544c-qm6nf               1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          2m34s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ondat&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n storageos get pod
+NAME                                     READY   STATUS    RESTARTS        AGE
+storageos-api-manager-54df545cbf-fn9cq   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;               113s
+storageos-api-manager-54df545cbf-vmc56   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;106s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;    113s
+storageos-csi-helper-65db657d7c-52rkj    3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;               115s
+storageos-node-v6tbg                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;2m17s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   2m30s
+storageos-node-wg9rq                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;2m18s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   2m30s
+storageos-node-zhhkz                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;2m17s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   2m30s
+storageos-operator-6fc687d97b-fjqhd      2/2     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;               2m55s
+storageos-scheduler-7d66d44694-6n99d     1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;               2m38s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;The &lt;code&gt;storageos-node&lt;/code&gt; damonset pods will restart until they can connect to
+etcd&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-6-licese-the-cluster&#34;&gt;Step 6. Licese the cluster&lt;/h2&gt;
+&lt;p&gt;A cluster can operate without a licence for 24h. Follow the
+&lt;a href=&#34;/docs/operations/licensing/&#34;&gt;licensing&lt;/a&gt; page to apply a licence to your cluster.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: System Configuration</title>
       <link>/docs/prerequisites/systemconfiguration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -5304,149 +5552,6 @@ pre-provisioned volumes.&lt;/p&gt;
 volume, to enable fast failover.&lt;/p&gt;
 &lt;p&gt;For more information about how to enable pod fencing, see our &lt;a href=&#34;/docs/operations/fencing&#34;&gt;Fencing
 Operations&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Fencing</title>
-      <link>/docs/operations/fencing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/fencing/</guid>
-      <description>
-        
-        
-        &lt;p&gt;For information regarding the Ondat Fencing feature, see our
-&lt;a href=&#34;/docs/concepts/fencing&#34;&gt;fencing concepts page&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;labeling-a-pod-for-fencing&#34;&gt;Labeling a pod for fencing&lt;/h2&gt;
-&lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
-marks the node offline and performs volume failover operations.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/api-manager/tree/master/controllers/fencer&#34;&gt;Ondat Fencing Controller&lt;/a&gt;
-watches for node failures and determines if there are any pods targeted for
-fencing. In order for a pod to be fenced, the following criteria is required.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The pod must have the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The pod to be fenced must claim an Ondat volume&lt;/li&gt;
-&lt;li&gt;The Ondat volume claimed by the pod needs to be &lt;code&gt;online&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;If the node becomes offline and these criteria are met, the pod is deleted and
-rescheduled on another node.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 No changes are made to Pods that have Ondat volumes that are unhealthy.
-This is typically the case when a volume was configured to not have any
-replicas, and the node with the single copy of the data is offline. In this
-case it is better to wait for the Node to recover.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;statefulset-example-with-fencing-enabled&#34;&gt;StatefulSet example with fencing enabled&lt;/h3&gt;
-&lt;p&gt;The following example shows how a Statefulset can enable fencing to all its
-pods.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Note that the &lt;code&gt;fenced&lt;/code&gt; label is applied only in the
-&lt;code&gt;.spec.template.metadata.label&lt;/code&gt; section, as the label must only be present on
-the Pod, but not on the PVC.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;apps/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StatefulSet&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;my-statefulset&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;selector&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;matchLabels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;serviceName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/fenced&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Fencing label&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;debian&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;debian:10-slim&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;command&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/bin/sleep&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;3600&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeMounts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-volume&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;mountPath&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;/mnt&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplates&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-volume&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;env&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;accessModes&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ReadWriteOnce&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageClassName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;10Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;fencing-trigger&#34;&gt;Fencing trigger&lt;/h2&gt;
-&lt;p&gt;The Ondat Fencing Controller checks the Ondat node health every 5 seconds.
-This is how quickly the fencing controller can react to node failures.&lt;/p&gt;
-&lt;p&gt;Pods assigned to unhealthy nodes will be evaluated immediately on state change,
-and then re-evaluated every hour, though this is configurable. This retry
-allows pods that had unhealthy volumes which have now recovered to eventually
-failover, or pods that were rescheduled on an unhealthy node to be re-evaluated
-for fencing.&lt;/p&gt;
-&lt;h2 id=&#34;fencing-example&#34;&gt;Fencing example&lt;/h2&gt;
-&lt;p&gt;The following example shows how the Ondat API manager fences a Pod.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Ensure the &lt;code&gt;storageos.com/fenced&lt;/code&gt; label is present&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n mysql get pod --show-labels -owide
-NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
-mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker1   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
-
-$ kubectl -n mysql get pvc --show-labels -owide
-NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
-data-mysql-0   Bound    pvc-5d7b23a6-e754-4998-98fd-318b3f9382bb   5Gi        RWO            storageos      19m   Filesystem   app=mysql,env=prod,storageos.com/replicas=1
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Note that the mysql-0 pod has the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Stop node hosting the &lt;code&gt;mysql-0&lt;/code&gt; pod&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;root@worker1:~# shutdown -h now
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Check logs from the Ondat API Manager&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n storageos logs storageos-api-manager-68759bbc78-7l5fw
-...
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.413811357Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;nginx-ingress-controller-xbqjf&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;ingress-nginx&amp;quot;}
-
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417605039Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-api-manager-68759bbc78-7l5fw&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417748651Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;coredns-7c5566588d-8g5xq&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417792281Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;metrics-server-6b55c64f86-cnwtk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417883383Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;default-http-backend-67cf578fc4-w8sm4&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;ingress-nginx&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.417975663Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;coredns-autoscaler-65bfc8d47d-ph6pn&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418024204Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;canal-stzdv&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418065315Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-etcd-2hkff82fq2&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos-etcd&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418092165Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;storageos-daemonset-6zrkk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;storageos&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.418182036Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;skipping pod without storageos.com/fenced=true label set&amp;quot;,&amp;quot;name&amp;quot;:&amp;quot;cattle-node-agent-sjspk&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;cattle-system&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.439513312Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;pod has fenced label set and volume(s) still healthy after node failure, proceeding with fencing&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.495807296Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;pod deleted&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.505411162Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;volume attachment deleted&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql-0&amp;quot;,&amp;quot;namespace&amp;quot;:&amp;quot;mysql&amp;quot;,&amp;quot;pvc&amp;quot;:&amp;quot;data-mysql-0&amp;quot;,&amp;quot;va&amp;quot;:&amp;quot;csi-c2b44cee5a647e20d77e0e217dfaec07afd592eae57bcccc09b3447de653ae8c&amp;quot;,&amp;quot;node&amp;quot;:&amp;quot;worker1&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.505439792Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;fenced pod&amp;quot;}
-{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;timestamp&amp;quot;:&amp;quot;2021-04-28T13:06:49.573478266Z&amp;quot;,&amp;quot;msg&amp;quot;:&amp;quot;set scheduler&amp;quot;,&amp;quot;scheduler&amp;quot;:&amp;quot;storageos-scheduler&amp;quot;,&amp;quot;pod&amp;quot;:&amp;quot;mysql/mysql-0&amp;quot;}
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 The Ondat API Manager detects all the pods that are on the failed
-node, and selects only the ones that meet the fencing criteria as
-described above. In this case only &lt;code&gt;mysql-0&lt;/code&gt; is selected for fencing.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Check the pod&amp;rsquo;s new node&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n mysql get pod --show-labels -owide
-NAME      READY   STATUS    RESTARTS   AGE     IP          NODE             NOMINATED NODE   READINESS GATES   LABELS
-mysql-0   1/1     Running   0          6m33s   10.42.3.7   worker2   &amp;lt;none&amp;gt;           &amp;lt;none&amp;gt;            app=mysql,controller-revision-hash=mysql-799fd74b87,env=prod,statefulset.kubernetes.io/pod-name=mysql-0,storageos.com/fenced=true
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 The pod &lt;code&gt;mysql-0&lt;/code&gt; started on a different node successfully.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
 
       </description>
     </item>
