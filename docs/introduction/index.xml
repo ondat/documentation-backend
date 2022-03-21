@@ -195,7 +195,7 @@ set for your Kubernetes cluster&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️  Note that this Etcd &lt;strong&gt;is suitable for evaluation purposes only&lt;/strong&gt;. Do not use this cluster for production workloads.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass does not guarantee data safety or availability.
 Therefore the Ondat cluster cannot operate normally if the Etcd cluster

@@ -376,7 +376,7 @@ in production for best possible performance and stability.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ This requires a default &lt;code&gt;StorageClass&lt;/code&gt; in the Kubernetes cluster.
-If the default isn&amp;rsquo;t set, you may need to set up the &lt;a href=&#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml&#34;&gt;local-path&lt;/a&gt;
+If the default isn&amp;rsquo;t set, you may need to set up the &lt;a href=&#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml&#34;&gt;local-path&lt;/a&gt;
 &lt;code&gt;StorageClass&lt;/code&gt;. Note that this stores all data locally on the individual
 nodes and is not recommended for production installations.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1622,7 +1622,7 @@ failure.&lt;/p&gt;
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Not for production workloads&lt;/span&gt;
 
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Pull yaml&lt;/span&gt;
-curl -SsLo local-path.yaml https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+curl -SsLo local-path.yaml https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
 
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Pull the following images into your registry&lt;/span&gt;
 grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;image:&amp;#34;&lt;/span&gt; local-path.yaml
@@ -2899,7 +2899,7 @@ set for your Kubernetes cluster&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️  Note that this Etcd &lt;strong&gt;is suitable for evaluation purposes only&lt;/strong&gt;. Do not use this cluster for production workloads.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass does not guarantee data safety or availability.
 Therefore the Ondat cluster cannot operate normally if the Etcd cluster
