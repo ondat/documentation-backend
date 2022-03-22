@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="generator" content="Hugo 0.91.0" />
 
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+<META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
 
 
@@ -21,22 +21,24 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Cluster Topologies | </title><meta property="og:title" content="Cluster Topologies" />
-<meta property="og:description" content="Ondat makes it possible for you to organise your cluster in multiple ways, depending on your priorities and needs. The approaches below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.
-Ondat performs file I/O over the network, which is how we ensure that your data is always available throughout your cluster. This also affords the user certain possibilities for organising your cluster, as we suggest below." />
+<meta property="og:description" content="Overview Ondat makes it possible for cluster administrators to design and implement different cluster topologies, depending on types of workloads, use cases, priorities and needs. The topology approaches recommended below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.
+Ondat performs file Input/Output (I/O) operations over the network, which is how the platform ensures that data is always available throughout your cluster. This also affords cluster administrators certain possibilities of organising their clusters in ways explained below." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/cluster-topologies/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Cluster Topologies">
-<meta itemprop="description" content="Ondat makes it possible for you to organise your cluster in multiple ways, depending on your priorities and needs. The approaches below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.
-Ondat performs file I/O over the network, which is how we ensure that your data is always available throughout your cluster. This also affords the user certain possibilities for organising your cluster, as we suggest below.">
+<meta itemprop="description" content="Overview Ondat makes it possible for cluster administrators to design and implement different cluster topologies, depending on types of workloads, use cases, priorities and needs. The topology approaches recommended below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.
+Ondat performs file Input/Output (I/O) operations over the network, which is how the platform ensures that data is always available throughout your cluster. This also affords cluster administrators certain possibilities of organising their clusters in ways explained below.">
 
-<meta itemprop="wordCount" content="310">
+<meta itemprop="wordCount" content="438">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cluster Topologies"/>
-<meta name="twitter:description" content="Ondat makes it possible for you to organise your cluster in multiple ways, depending on your priorities and needs. The approaches below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.
-Ondat performs file I/O over the network, which is how we ensure that your data is always available throughout your cluster. This also affords the user certain possibilities for organising your cluster, as we suggest below."/>
+<meta name="twitter:description" content="Overview Ondat makes it possible for cluster administrators to design and implement different cluster topologies, depending on types of workloads, use cases, priorities and needs. The topology approaches recommended below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.
+Ondat performs file Input/Output (I/O) operations over the network, which is how the platform ensures that data is always available throughout your cluster. This also affords cluster administrators certain possibilities of organising their clusters in ways explained below."/>
+
+
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -172,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.83a931a05f5cffc1cd379d0f7506ae3efd14d7c4451c822a00ff8efd8c565ea247da485c6f1aafd90bf30644d150233a1e555250995411192f3693b04e1ac4ac.json"
+  data-offline-search-index-json-src="/offline-search-index.9a3ee43cfc3c1bba9479cd5f2755b3bd5df4a5b53972dd34eac7c33cdb5184f52ea60b7315e7c2ddb11ec6f047a9e6ebe895c4db25bacabf50e12cab5ea1788d.json"
   data-offline-search-base-href="/"
 >
 
@@ -320,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.83a931a05f5cffc1cd379d0f7506ae3efd14d7c4451c822a00ff8efd8c565ea247da485c6f1aafd90bf30644d150233a1e555250995411192f3693b04e1ac4ac.json"
+  data-offline-search-index-json-src="/offline-search-index.9a3ee43cfc3c1bba9479cd5f2755b3bd5df4a5b53972dd34eac7c33cdb5184f52ea60b7315e7c2ddb11ec6f047a9e6ebe895c4db25bacabf50e12cab5ea1788d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1363,9 +1365,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#hyperconverged-model">Hyperconverged Model</a></li>
-    <li><a href="#centralised-storage-model">Centralised Storage Model</a></li>
-    <li><a href="#high-performance-mode">High Performance Mode</a></li>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#hyper-converged-cluster-topology">Hyper-converged Cluster Topology</a></li>
+        <li><a href="#centralised-cluster-topology">Centralised Cluster Topology</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -1414,39 +1419,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Cluster Topologies</h1>
 	
-	<p>Ondat makes it possible for you to organise your cluster in multiple ways,
-depending on your priorities and needs. The approaches below are idealised
-representations of possible Ondat clusters and can be mixed, modified and
-changed at execution time.</p>
-<p>Ondat performs file I/O over the network, which is how we ensure that your
-data is always available throughout your cluster. This also affords the user
-certain possibilities for organising your cluster, as we suggest below.</p>
-<h2 id="hyperconverged-model">Hyperconverged Model</h2>
-<p>In this topology all nodes can store data and present data. This gives maximum
-flexibility to the Ondat and Kubernetes schedulers, and maximum choice for
-pod placement. No matter how you deploy your workloads they will be able to
-store and access data on every node.</p>
-<p>By default we place workloads locally where possible - this means that we
-default to a hybrid of the hyperconverged/high-performance models, maximising
-performance without extra effort.</p>
-<p><img src="/images/docs/concepts/hyperconverged.png" alt="Hyperconverged Model"></p>
-<h2 id="centralised-storage-model">Centralised Storage Model</h2>
-<p>In this cluster topology volume data is placed on a particular subset of nodes,
-while the remaining nodes in your cluster are set to <code>computeonly</code>, allowing
-access to data hosted on other nodes, while consuming no storage themselves.
-This model can be advantageous if, for example, you want to take advantage of
-the hardware characteristics of particular nodes. A centralised storage model
-can also help avoid problems with naive resource allocation, since storage
-nodes and compute workloads can be kept apart.</p>
-<p>This mode is also very suitable for elastic fleets with burstable workloads. A
-fleet can be expanded with many new machines for computing, while maintaining a
-central data store not impacted by rapid and repeated cluster scaling.</p>
-<p><img src="/images/docs/concepts/centralised.png" alt="Centralised Model"></p>
-<h2 id="high-performance-mode">High Performance Mode</h2>
-<p>In this mode we colocate pods with the volumes they are using in order to take
-advantage of the performance gains from running on the same node, while
-retaining the utility of orchestrators for managing app lifecycle.</p>
-<p><img src="/images/docs/concepts/high-performance.png" alt="High Performance Model"></p>
+	<h2 id="overview">Overview</h2>
+<p>Ondat makes it possible for cluster administrators to design and implement different cluster topologies, depending on types of workloads, use cases, priorities and needs. The topology approaches recommended below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.</p>
+<p>Ondat performs file Input/Output (I/O) operations over the network, which is how the platform ensures that data is always available throughout your cluster. This also affords cluster administrators certain possibilities of organising their clusters in ways explained below.</p>
+<h3 id="hyper-converged-cluster-topology">Hyper-converged Cluster Topology</h3>
+<p><img src="/images/docs/concepts/hyperconverged.png" alt="Hyper-converged Cluster Topology"></p>
+<ul>
+<li>The <a href="https://en.wikipedia.org/wiki/Hyper-converged_infrastructure"><em>hyper-converged</em></a> cluster topology model leverages the available block storage attached to all the worker nodes in a Kubernetes cluster, creating a single storage pool that stores and present data for stateful workloads deployed and running.
+<ul>
+<li>This cluster topology gives the best flexibility to Ondat and Kubernetes schedulers, and provides maximum choice for optimal pod placement when pods are being assigned to nodes in a cluster.</li>
+</ul>
+</li>
+<li>No matter how or where workloads are deployed on worker nodes, Ondat will ensure that the data from workloads is stored, persistent and always accessible.</li>
+<li>New Ondat deployments will place workloads locally where possible using this hyper-converged cluster topology out of the box.</li>
+</ul>
+<h3 id="centralised-cluster-topology">Centralised Cluster Topology</h3>
+<p><img src="/images/docs/concepts/centralised.png" alt="Centralised Cluster Topology"></p>
+<ul>
+<li>The <em>centralised</em> cluster topology model leverages the available block storage attached to only a <em>subset</em> of worker nodes (creating a dedicated, storage-optimised <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools">node pool</a>) in a Kubernetes cluster, whilst the rest of the worker nodes are dedicated to running general and compute-intensive workloads,
+<ul>
+<li>Deployed workloads in centralised cluster that require data persistency will access a dedicated storage pool that is located on the declared subset of worker nodes.</li>
+</ul>
+</li>
+<li>This cluster topology can be beneficial if, for example, cluster administers want to take advantage and effectively utilise high performance-optimised hardware components of a particular set of worker nodes for different types of workloads being deployed.</li>
+<li>The cluster topology can also aid in avoiding downtime issues that can arise from unaccounted resource/capacity planning and allocation for workloads, since storage-optimised nodes and compute-optimised workloads are compartmentalised.</li>
+<li>In addition, another suitable use case for this topology is for elastic worker node fleets with burst-able workloads. A fleet can be quickly expanded with new worker nodes for compute-intensive workloads on demand, whilst maintaining a centralised data storage pool that is not impacted by rapid auto cluster scaling.</li>
+<li>To configure this cluster topology for a new Ondat deployment, cluster administrators would need to apply an Ondat node label called <code>storageos.com/computeonly</code> to nodes, which would inform Ondat that it <em>should not</em> use the nodes to join a storage pool.
+<ul>
+<li>Review the <a href="https://docs.ondat.io/docs/reference/labels/">Feature Labels</a> reference page for more information on how to enable Ondat features correctly.</li>
+</ul>
+</li>
+</ul>
 
 	
 	
