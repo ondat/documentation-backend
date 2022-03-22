@@ -20,23 +20,29 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Etcd | </title><meta property="og:title" content="Etcd" />
-<meta property="og:description" content="Etcd is an open-source distributed, strongly consistent key value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.
-Ondat uses etcd as the single source of truth for all Ondat objects. Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed." />
+<title>DigitalOcean Kubernetes (DOKS) | </title><meta property="og:title" content="DigitalOcean Kubernetes (DOKS)" />
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/concepts/etcd/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/install/digitalocean-kubernetes/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Etcd">
-<meta itemprop="description" content="Etcd is an open-source distributed, strongly consistent key value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.
-Ondat uses etcd as the single source of truth for all Ondat objects. Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed.">
+<meta itemprop="name" content="DigitalOcean Kubernetes (DOKS)">
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing.">
 
-<meta itemprop="wordCount" content="143">
+<meta itemprop="wordCount" content="313">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Etcd"/>
-<meta name="twitter:description" content="Etcd is an open-source distributed, strongly consistent key value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.
-Ondat uses etcd as the single source of truth for all Ondat objects. Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed."/>
+<meta name="twitter:title" content="DigitalOcean Kubernetes (DOKS)"/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing."/>
 
 <link rel="stylesheet"  href="/css/font-awesome.css?ver=5.4.1" type="text/css" media="all">
 
@@ -77,7 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Etcd | </title>
+    <title>DigitalOcean Kubernetes (DOKS) | </title>
   </head>
   <body class="td-page">
     
@@ -406,10 +412,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Concepts</a>
+    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Concepts</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsconcepts">
+    <li class="collapse " id="docsconcepts">
       
       
       
@@ -434,7 +440,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptsetcd" href="/docs/concepts/etcd/">Etcd</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsetcd" href="/docs/concepts/etcd/">Etcd</a>
       
       
       
@@ -566,10 +572,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstall">
+    <li class="collapse show" id="docsinstall">
       
       
       
@@ -588,7 +594,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitalocean-kubernetes" href="/docs/install/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstalldigitalocean-kubernetes" href="/docs/install/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
       
       
       
@@ -1361,6 +1367,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
+        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
+        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1389,14 +1410,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/concepts/">Concepts</a>
+	<a href="/docs/install/">Install</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/concepts/etcd/">Etcd</a>
+	<a href="/docs/install/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
 </li>
 
 	</ol>
@@ -1404,23 +1425,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Etcd</h1>
+	<h1>DigitalOcean Kubernetes (DOKS)</h1>
 	
-	<p><a href="https://etcd.io">Etcd</a> is an open-source distributed, strongly consistent key
-value store that is used by Ondat to durably persist the Ondat cluster
-state. As the backing store for Kubernetes, Ondat uses etcd for many of the
-same reasons.</p>
-<p>Ondat uses etcd as the single source of truth for all Ondat objects.
-Whenever a request is made to create, update or delete an object the result is
-written to etcd before the request is completed. Using etcd as a configuration
-store allows nodes to retrieve the current cluster state after being offlined,
-allowing offlined nodes to rejoin the cluster.</p>
+	<h2 id="overview">Overview</h2>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://www.digitalocean.com/products/kubernetes">DigitalOcean Managed Kubernetes (DOKS)</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <blockquote>
-<p>⚠️ Ondat v2.0 does not provide an embedded etcd server as previous
-versions did. You will need to setup an etcd server for Ondat to use
-prior to installation of Ondat. For more information on how
-to install and configure etcd, see our <a href="/docs/prerequisites/etcd">etcd prerequisites</a> page.</p>
+<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
 </blockquote>
+<blockquote>
+<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</blockquote>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
+</ul>
+<blockquote>
+<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure you have a running DOKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure your DOKS cluster version is greater than or equal to <code>v1.21.10</code> or <code>v1.22.7</code> as they will have the required kernel modules available for Ondat to run successfully.</p>
+</blockquote>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
+<ul>
+<li>Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
+</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+<ol>
+<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><ol start="2">
+<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div><ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
+<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
+<ul>
+<li>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
+kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.</p>
+</blockquote>
+<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 
 	
 	

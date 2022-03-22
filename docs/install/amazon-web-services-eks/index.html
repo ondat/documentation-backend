@@ -36,7 +36,7 @@ Prerequisites  ⚠️ Make sure you have met the minimum resource requirements f
   ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
   kubectl kubectl-storageos aws eksctl, at least version &gt;=0.">
 
-<meta itemprop="wordCount" content="780">
+<meta itemprop="wordCount" content="781">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Amazon Elastic Kubernetes Service (EKS)"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e3dbabc6a211c6b367e2b86ed7c8eeb3bf09377263411c492e5e49a645d93742985953ebf5bf88e4f7571d3884d8daf8e8eb42c87eddcba6a05126005108b788.json"
+  data-offline-search-index-json-src="/offline-search-index.83a931a05f5cffc1cd379d0f7506ae3efd14d7c4451c822a00ff8efd8c565ea247da485c6f1aafd90bf30644d150233a1e555250995411192f3693b04e1ac4ac.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e3dbabc6a211c6b367e2b86ed7c8eeb3bf09377263411c492e5e49a645d93742985953ebf5bf88e4f7571d3884d8daf8e8eb42c87eddcba6a05126005108b788.json"
+  data-offline-search-index-json-src="/offline-search-index.83a931a05f5cffc1cd379d0f7506ae3efd14d7c4451c822a00ff8efd8c565ea247da485c6f1aafd90bf30644d150233a1e555250995411192f3693b04e1ac4ac.json"
   data-offline-search-base-href="/"
 >
 
@@ -588,13 +588,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitalocean-kubernetes" href="/docs/install/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Google Anthos</a>
       
       
       
@@ -1443,7 +1449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Make sure your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for EKS</a> as the default node operating system with an optimised kernel. For kernel versions below <code>linux-aws-5.4.0-1066.69</code> or <code>linux-aws-5.13.0-1014.15</code>, the module <code>tcm_loop</code> is not included in the base kernel distribution. In that case, the package <code>linux-modules-extra-$(uname -r)</code> is additionally required on each of the nodes - this can be installed automatically by adding it to the node&rsquo;s user data as in the example below.</p>
+<p>⚠️ Make sure your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for EKS</a> as the default node operating system with an optimised kernel. For kernel versions below <code>linux-aws-5.4.0-1066.69</code> or <code>linux-aws-5.13.0-1014.15</code>, the module <code>tcm_loop</code> is not included in the base kernel distribution. In that case, the package <code>linux-modules-extra-$(uname -r)</code> is additionally required on each of the nodes - this can be installed automatically by adding it to the node&rsquo;s user data, as in the example below.</p>
 </blockquote>
 <blockquote>
 <p>To find the latest Ubuntu for EKS AMI, search your region for the image:</p>
@@ -1455,7 +1461,10 @@ aws ec2 describe-images <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>--output text <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>--region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span>
 </code></pre></div><blockquote>
-<p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to create a cluster with 3 nodes of size <code>t3.large</code> running Ubuntu for EKS in the <code>eu-west-2</code> region. We have provided <code>100 GB</code> of disk space for each node. Note that by default, Ondat will store data locally in the node&rsquo;s file system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged mode</a>. In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount our volumes under data device directories</a> with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.</p>
+<p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to create a cluster with 3 nodes of size <code>t3.large</code> running Ubuntu for EKS in the <code>eu-west-2</code> region. We have provided <code>100 GB</code> of disk space for each node. Note that by default, Ondat will store data locally in the node&rsquo;s file system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged mode</a>.</p>
+</blockquote>
+<blockquote>
+<p>In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount our volumes under data device directories</a> with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># cluster.yaml</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1507,13 +1516,21 @@ are attached to are terminated. Be sure to keep snapshots, for example by using
 kubectl get nodes
 </code></pre></div><p>If you receive the message <code>No resources found</code> or see nodes marked as <code>NotReady</code>, wait for 2-3 minutes in order for your nodes to transition to <code>Ready</code> and check again to ensure they are running before proceeding through the next steps.</p>
 <h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
-<p>Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.</p>
+<ul>
+<li>Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
 </code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
 <ol>
-<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance. Set the <code>StorageClass</code> for etcd to use (this cannot be Ondat, as Ondat is dependent upon etcd). On AWS EKS, we suggest <code>gp3</code> for a good balance of performance and resilience or <code>io2</code> where top performance is essential.</li>
+<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
+<li>Set the <code>StorageClass</code> for etcd to use.</li>
 </ol>
-<p>The default <code>StorageClass</code> in EKS is <code>gp2</code> which is not recommended, instead we will create a <code>gp3</code> <code>StorageClass</code> and set it as default, at least until we install Ondat:</p>
+<blockquote>
+<p>💡 This cannot be Ondat, as Ondat is dependent upon etcd. On AWS EKS, we suggest <code>gp3</code> for a good balance of performance and resilience, or <code>io2</code> where top performance is essential.</p>
+</blockquote>
+<blockquote>
+<p>💡 The default <code>StorageClass</code> in EKS is <code>gp2</code> which is not recommended, instead we will create a <code>gp3</code> <code>StorageClass</code> and set it as default, at least until we install Ondat:</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f - <span style="color:#4e9a06">&lt;&lt;EOF
 </span><span style="color:#4e9a06">kind: StorageClass
 </span><span style="color:#4e9a06">apiVersion: storage.k8s.io/v1
@@ -1539,12 +1556,16 @@ kubectl get nodes
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-storage-class <span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-storage-class<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><p>The installation process may take a few minutes.</p>
+</code></pre></div><ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
 <h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
-<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<ul>
+<li>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
 kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>

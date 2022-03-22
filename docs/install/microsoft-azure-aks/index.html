@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e3dbabc6a211c6b367e2b86ed7c8eeb3bf09377263411c492e5e49a645d93742985953ebf5bf88e4f7571d3884d8daf8e8eb42c87eddcba6a05126005108b788.json"
+  data-offline-search-index-json-src="/offline-search-index.83a931a05f5cffc1cd379d0f7506ae3efd14d7c4451c822a00ff8efd8c565ea247da485c6f1aafd90bf30644d150233a1e555250995411192f3693b04e1ac4ac.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e3dbabc6a211c6b367e2b86ed7c8eeb3bf09377263411c492e5e49a645d93742985953ebf5bf88e4f7571d3884d8daf8e8eb42c87eddcba6a05126005108b788.json"
+  data-offline-search-index-json-src="/offline-search-index.83a931a05f5cffc1cd379d0f7506ae3efd14d7c4451c822a00ff8efd8c565ea247da485c6f1aafd90bf30644d150233a1e555250995411192f3693b04e1ac4ac.json"
   data-offline-search-base-href="/"
 >
 
@@ -588,13 +588,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Anthos</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitalocean-kubernetes" href="/docs/install/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Google Anthos</a>
       
       
       
@@ -1441,11 +1447,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>⚠️ Make sure you have a running AKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Make sure your AKS clusters use <a href="https://ubuntu.com/">Ubuntu</a> as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than <code>4.15.0-1029-azure</code> is compatible with Ondat.</p>
+<p>⚠️ Make sure your AKS cluster uses <a href="https://ubuntu.com/">Ubuntu</a> as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than <code>4.15.0-1029-azure</code> is compatible with Ondat.</p>
 </blockquote>
 <h2 id="procedure">Procedure</h2>
 <h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
-<p>Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</p>
+<ul>
+<li>Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
 </code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
 <ol>
@@ -1461,9 +1469,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><p>The installation process may take a few minutes.</p>
+</code></pre></div><ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
 <h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
-<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<ul>
+<li>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
 kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
