@@ -394,6 +394,9 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://cloud.google.com/kubernetes-engine&#34;&gt;Google Kubernetes Engine (GKE)&lt;/a&gt; cluster using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 For users who are looking to deploy Ondat onto a &lt;a href=&#34;https://cloud.google.com/anthos&#34;&gt;Google Anthos&lt;/a&gt; cluster, a recommendation would be to review &lt;a href=&#34;https://docs.ondat.io/docs/install/anthos/&#34;&gt;Google Anthos installation guide&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main &lt;a href=&#34;/docs/prerequisites/&#34;&gt;Ondat prerequisites&lt;/a&gt; page for more information.&lt;/p&gt;
