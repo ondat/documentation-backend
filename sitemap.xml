@@ -10,6 +10,8 @@
   </url><url>
     <loc>/docs/install/anthos/</loc>
   </url><url>
+    <loc>/docs/install/google-kubernetes-engine-gke/</loc>
+  </url><url>
     <loc>/docs/reference/cluster-operator/install/</loc>
   </url><url>
     <loc>/docs/introduction/</loc>
@@ -141,8 +143,6 @@
     <loc>/docs/operations/firstpvc/</loc>
   </url><url>
     <loc>/docs/reference/cli/get/</loc>
-  </url><url>
-    <loc>/docs/platforms/google-gke/</loc>
   </url><url>
     <loc>/docs/reference/gui/</loc>
   </url><url>

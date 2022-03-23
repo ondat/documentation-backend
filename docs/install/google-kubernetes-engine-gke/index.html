@@ -7,7 +7,6 @@
 
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
-<link rel="alternate" type="application/rss&#43;xml" href="/docs/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -21,15 +20,29 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Documentation | </title><meta property="og:title" content="Documentation" />
-<meta property="og:description" content="Ondat Documentation" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/" />
+<title>Google Kubernetes Engine (GKE) | </title><meta property="og:title" content="Google Kubernetes Engine (GKE)" />
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Google Kubernetes Engine (GKE) cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/install/google-kubernetes-engine-gke/" /><meta property="article:section" content="docs" />
 
-<meta itemprop="name" content="Documentation">
-<meta itemprop="description" content="Ondat Documentation"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Documentation"/>
-<meta name="twitter:description" content="Ondat Documentation"/>
+
+
+<meta itemprop="name" content="Google Kubernetes Engine (GKE)">
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Google Kubernetes Engine (GKE) cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing.">
+
+<meta itemprop="wordCount" content="313">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Google Kubernetes Engine (GKE)"/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Google Kubernetes Engine (GKE) cluster using the Ondat kubectl plugin.
+Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
+  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing."/>
 
 
 
@@ -72,9 +85,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Documentation | </title>
+    <title>Google Kubernetes Engine (GKE) | </title>
   </head>
-  <body class="td-section">
+  <body class="td-page">
     
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXRX3CX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -343,7 +356,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Documentation</a>
+    <a  href="/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
   </li>
   <ul>
     <li class="collapse show" id="docs">
@@ -561,10 +574,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstall">
+    <li class="collapse show" id="docsinstall">
       
       
       
@@ -595,7 +608,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgoogle-kubernetes-engine-gke" href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallgoogle-kubernetes-engine-gke" href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
       
       
       
@@ -1356,6 +1369,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
+        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
+        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1370,8 +1398,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<li class="breadcrumb-item active" aria-current="page">
+
+
+
+
+
+
+<li class="breadcrumb-item" >
 	<a href="/docs/">Documentation</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="/docs/install/">Install</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
 </li>
 
 	</ol>
@@ -1379,350 +1427,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Documentation</h1>
+	<h1>Google Kubernetes Engine (GKE)</h1>
 	
-	
-        <div class="section-index">
-    
-    
-    
-    
-    <hr class="panel-line">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/introduction/">Introduction</a>
-                    </h5>
-                    <p>This documentation is aimed at architects, engineers, developers, sysadmins and anybody who wants to understand how to use Ondat. It assumes some knowledge of containers and orchestrators.</p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/concepts/">Concepts</a>
-                    </h5>
-                    <p>High level overview of Ondat concepts and features.</p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/prerequisites/">Prerequisites</a>
-                    </h5>
-                    <p>Ondat requirements to be executed. Hardware, Network rules, Operative System Distribution, Kernel modules, etc.</p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/install/">Install</a>
-                    </h5>
-                    <p>Ondat is platform agnostic, however, there are details on different providers and Kubernetes distributions to take in consideration. Follow the instructions to Install, Provision or Troubleshoot according to your providers.</p>
-                </div>
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/platforms/">Platforms</a>
-                    </h5>
-                    <p>Ondat specific notes for supported platforms.</p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/best-practices/">Ondat Best Practices</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/operations/">Operations</a>
-                    </h5>
-                    <p>Ondat most common operations.</p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/usecases/">Use Cases: Install applications on Kubernetes with Ondat</a>
-                    </h5>
-                    <p>Examples on how to deploy stateful applications into a Kubernetes cluster using Ondat to persist data.</p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/">Reference</a>
-                    </h5>
-                    <p>Ondat reference section</p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/support/">Support</a>
-                    </h5>
-                    <p>How to ask for Ondat support.</p>
-                </div>
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/ondat-portal/">Ondat SaaS Platform</a>
-                    </h5>
-                    <p>This documentation is aimed at architects, engineers, developers, sysadmins and anybody who wants to understand how to use Ondat SaaS Platform. It assumes some knowledge of containers and orchestrators.</p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    
-</div>
+	<h2 id="overview">Overview</h2>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<blockquote>
+<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+</blockquote>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
+</ul>
+<blockquote>
+<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure you have a running GKE cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure your GKE cluster uses  <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu"><code>ubuntu_containerd</code></a> as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.</p>
+</blockquote>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
+<ul>
+<li>Run the following command to conduct preflight checks against the GKE cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
+</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+<ol>
+<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><ol start="2">
+<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div><ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
+<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
+<ul>
+<li>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
+kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.</p>
+</blockquote>
+<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
 </div>
+
 
           </main>
         </div>
@@ -1830,4 +1599,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </body>
 </html>
-

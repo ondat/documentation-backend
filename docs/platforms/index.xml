@@ -14,30 +14,6 @@
     
     
     <item>
-      <title>Docs: Google GKE</title>
-      <link>/docs/platforms/google-gke/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/platforms/google-gke/</guid>
-      <description>
-        
-        
-        &lt;p&gt;StorageOS is fully compatible with GKE when using the Ubuntu images. To
-install StorageOS on Google GKE, follow our Kubernetes &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;For StorageOS to work normally it is &lt;strong&gt;required to use the Ubuntu images&lt;/strong&gt; for
-the Google GKE node pools. The default container image does not fulfil the system
-requirements because of the lack of the TCMU kernel modules.&lt;/p&gt;
-&lt;p&gt;For more details about the OS Distributions check the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;google-anthos&#34;&gt;Google Anthos&lt;/h2&gt;
-&lt;p&gt;Ondat is compatible with Google Anthos. However it is required that the
-Linux image distribution used fulfils the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;System Configuration&lt;/a&gt; prerequisites.&lt;/p&gt;
-&lt;p&gt;Once a Kubernetes cluster is provisioned, StorageOS can be installed following
-the &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;instructions&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: OpenShift</title>
       <link>/docs/platforms/openshift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
