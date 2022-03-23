@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5821518430c0c06e470c95b08701219f76f6b623ff5bdba5e7bb2f568b72d346dc7d528b6e08ae8d159c00c6b5c7826e4ba47a8a3cbcaef07a6f224e4e77d3ed.json"
+  data-offline-search-index-json-src="/offline-search-index.5ae1622b7f8135ce00c9c73628e6f63f1238ac63a0e8d69e66e24f12732f260f2b02f586e7d7c60536dff660f57b24d2e9be281af9bf814be925286596a4eeb0.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5821518430c0c06e470c95b08701219f76f6b623ff5bdba5e7bb2f568b72d346dc7d528b6e08ae8d159c00c6b5c7826e4ba47a8a3cbcaef07a6f224e4e77d3ed.json"
+  data-offline-search-index-json-src="/offline-search-index.5ae1622b7f8135ce00c9c73628e6f63f1238ac63a0e8d69e66e24f12732f260f2b02f586e7d7c60536dff660f57b24d2e9be281af9bf814be925286596a4eeb0.json"
   data-offline-search-base-href="/"
 >
 
@@ -1394,33 +1394,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Prerequisites</h1>
 	<div class="lead">Ondat requirements to be executed. Hardware, Network rules, Operative System Distribution, Kernel modules, etc.</div>
-	<h1 id="prerequisites">Prerequisites</h1>
+	<h1 id="prerequisites-for-using-ondat">Prerequisites for using Ondat</h1>
 <h2 id="minimum-requirements">Minimum requirements</h2>
 <p>One machine with the following:</p>
-<ol>
-<li>Minimum two core with 4GB RAM.</li>
-<li>Linux with a 64-bit architecture.</li>
+<ul>
+<li>Minimum two core with 4GB RAM</li>
+<li>Linux with a 64-bit architecture</li>
 <li>Kubernetes 1.19 - 1.23</li>
-<li>Container Runtime Engine: CRI-O, Containerd or Docker 1.10+ with <a href="/docs/prerequisites/mountpropagation">mount propagation</a> enabled.</li>
-<li>The necessary ports should be open. See the <a href="/docs/prerequisites/firewalls">ports and firewall settings</a>.</li>
+<li>Container Runtime Engine: CRI-O, Containerd or Docker 1.10+ with <a href="/docs/prerequisites/mountpropagation">mount propagation</a> enabled</li>
+<li>The necessary ports should be open. See the <a href="/docs/prerequisites/firewalls">ports and firewall settings</a></li>
 <li><a href="/docs/prerequisites/etcd">Etcd cluster</a> for Ondat</li>
-<li>A mechanism for <a href="/docs/prerequisites/systemconfiguration">device presentation</a>.</li>
-</ol>
+<li>A mechanism for <a href="/docs/prerequisites/systemconfiguration">device presentation</a></li>
+</ul>
 <h2 id="recommended">Recommended</h2>
-<ol>
-<li>At least three nodes for replication and high availability.</li>
-<li>Kubernetes 1.18 to 1.22</li>
-<li><a href="/docs/reference/cli/">Install the Ondat CLI</a>.</li>
-<li>If using Helm2, make sure the tiller ServiceAccount has enough privileges to
-create resources such as Namespaces, ClusterRoles, etc. For instance, following this <a href="https://v2.helm.sh/docs/using_helm/#role-based-access-control">installation
-procedure</a>.</li>
-<li>System clocks synchronized using NTP or similar methods. While our
-distributed consensus algorithm does not require synchronised clocks, it
-does help to more easily correlate logs across multiple nodes.</li>
-<li>A PID cgroup limit of 32768.</li>
-<li>Some aspects of product operation require kernel support for IPv6. See the
-<a href="/docs/prerequisites/ipv6">IPv6 prequisites</a> page.</li>
-</ol>
+<ul>
+<li>At least three nodes for replication and high availability</li>
+<li><a href="/docs/reference/cli/">Install the Ondat CLI</a></li>
+<li>If using Helm2, make sure the tiller ServiceAccount has enough privileges to create resources such as Namespaces, ClusterRoles, etc. For instance, following this <a href="https://v2.helm.sh/docs/using_helm/#role-based-access-control">installation procedure</a></li>
+<li>System clocks synchronized using NTP or similar methods. While our distributed consensus algorithm does not require synchronised clocks, it does help to more easily correlate logs across multiple nodes</li>
+<li>A PID cgroup limit of 32768</li>
+<li>Some aspects of product operation require kernel support for IPv6. See the <a href="/docs/prerequisites/ipv6">IPv6 prequisites</a> page</li>
+</ul>
 
         <div class="section-index">
     
