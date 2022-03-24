@@ -277,7 +277,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
 &lt;h3 id=&#34;step-1---conducting-preflight-checks&#34;&gt;Step 1 - Conducting Preflight Checks&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Run the following command to conduct preflight checks against the AKS cluster to validate that Ondat prerequisites have been met before attempting an installation.&lt;/li&gt;
+&lt;li&gt;Run the following command to conduct preflight checks against the DOKS cluster to validate that Ondat prerequisites have been met before attempting an installation.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos preflight
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-2---installing-ondat&#34;&gt;Step 2 - Installing Ondat&lt;/h3&gt;
