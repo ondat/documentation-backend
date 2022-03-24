@@ -113,7 +113,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
 &lt;/ul&gt;
 &lt;h2 id=&#34;orchestrators&#34;&gt;Orchestrators&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Kubernetes 1.18 to 1.22&lt;/li&gt;
+&lt;li&gt;Kubernetes 1.19 to 1.23&lt;/li&gt;
 &lt;li&gt;OpenShift 4.0+&lt;/li&gt;
 &lt;/ul&gt;
 

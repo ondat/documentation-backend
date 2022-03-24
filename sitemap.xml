@@ -42,6 +42,8 @@
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
   </url><url>
+    <loc>/docs/release-notes/</loc>
+  </url><url>
     <loc>/docs/prerequisites/ipv6/</loc>
   </url><url>
     <loc>/docs/concepts/</loc>
@@ -213,8 +215,6 @@
     <loc>/docs/concepts/rwx/</loc>
   </url><url>
     <loc>/docs/usecases/redis/</loc>
-  </url><url>
-    <loc>/docs/reference/release_notes/</loc>
   </url><url>
     <loc>/docs/concepts/replication/</loc>
   </url><url>
