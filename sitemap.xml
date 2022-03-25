@@ -14,8 +14,6 @@
   </url><url>
     <loc>/docs/reference/cluster-operator/install/</loc>
   </url><url>
-    <loc>/docs/install/</loc>
-  </url><url>
     <loc>/docs/introduction/</loc>
   </url><url>
     <loc>/docs/install/kubernetes/</loc>
@@ -55,6 +53,8 @@
     <loc>/docs/prerequisites/mountpropagation/</loc>
   </url><url>
     <loc>/docs/prerequisites/</loc>
+  </url><url>
+    <loc>/docs/install/</loc>
   </url><url>
     <loc>/docs/prerequisites/pidlimits/</loc>
   </url><url>
