@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.c4a9ecdc1c1c69ae747edd3b8ce785c3e0402a9c368f09cf49398f326ca08ab9bb224ec08663abcad675d4c0f021a5a5b44347be5b7cf0bfe880e9ecafe2a259.json"
+  data-offline-search-index-json-src="/offline-search-index.88ce21397b757fae857ff2b74f6da00da613c980fab31f80a52aecde60d12c58eda031345938399f4a9aea31f2fa3c6f87662aa5adb6bbc09c70d70f4d14cfe2.json"
   data-offline-search-base-href="/"
 >
 
@@ -318,7 +318,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.c4a9ecdc1c1c69ae747edd3b8ce785c3e0402a9c368f09cf49398f326ca08ab9bb224ec08663abcad675d4c0f021a5a5b44347be5b7cf0bfe880e9ecafe2a259.json"
+  data-offline-search-index-json-src="/offline-search-index.88ce21397b757fae857ff2b74f6da00da613c980fab31f80a52aecde60d12c58eda031345938399f4a9aea31f2fa3c6f87662aa5adb6bbc09c70d70f4d14cfe2.json"
   data-offline-search-base-href="/"
 >
 
@@ -1395,6 +1395,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h1>Introduction</h1>
 	<div class="lead">This documentation is aimed at architects, engineers, developers, sysadmins and anybody who wants to understand how to use Ondat. It assumes some knowledge of containers and orchestrators.</div>
 	<h2 id="what-is-ondat">What is Ondat</h2>
+<p><img src="/images/docs/concepts/ondat-layer.png" alt="How Ondat fits in"></p>
 <p>So you run workloads, either in-house developed or using Consumer Off The Shelf (COTS) platforms. You also recognise that operationally, you want to run them on Kubernetes as my “cloud operating system” of choice. This gives you freedom to deploy and operate your workloads anywhere Kubernetes runs based on business criteria such as cost, locality, compliance needs and risk appetite.</p>
 <p>You have been running stateless workloads in such a way for years, now your developers/suppliers have decided to move the application state (database/message queue/ flat files/ key-value store…) into your Kubernetes clusters as well. They are proposing to do this to reduce operational toil as they can leverage “Operators” to deliver domain specific knowledge in the running of these components.</p>
 <p>State now matters in your Kubernetes cluster, but hang on, how do we deliver the same operational paradigm that we are used to for these stateful workloads?</p>
@@ -1407,18 +1408,6 @@ Topology aware placement of volumes to align with your availability zones and ph
 Replication of data at a Kubernetes Volume making sure that the data you need is protected to deliver the business resilience required.</p>
 <p>Using Ondat, any storage on any node in your Kubernetes cluster can be delivered to the applications that need it anywhere in the cluster. Intelligent placement makes sure that your workload is always optimised, and by deploying the Ondat data mesh your Kubernetes platforms are responsive to your business applications with compute and storage able to grow independently as your workloads change.</p>
 <p>This is Ondat, a data mesh to deliver the reality of stateful workloads to any Kubernetes platform, delivering the next generation of stateful workloads to your customers.</p>
-<h2 id="sections">Sections</h2>
-<p>Our documentation is arranged into sections, accessible from the navigation bar
-on the left.</p>
-<p><strong>Introduction</strong> - Self-evaluation guide to serve as a quickstart and support information.</p>
-<p><strong>Concepts</strong> - Architectural and deep technical information.</p>
-<p><strong>Prerequisites</strong> - We require certain prerequisites to be met for the product to function
-correctly. Do make sure to read these carefully and ensure that they are implemented.</p>
-<p><strong>Platforms</strong> - Due to differences in the various orchestrators that Ondat can run under,
-we list install guides and other platform specific operations here.</p>
-<p><strong>Operations</strong> - Platform agnostic operations.</p>
-<p><strong>Use Cases</strong> - A set of examples to get up and running with Ondat quickly.</p>
-<p><strong>Reference</strong> - Information on our GUI, CLI, and other important information.</p>
 
         <div class="section-index">
     
