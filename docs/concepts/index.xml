@@ -66,13 +66,10 @@
       <description>
         
         
-        &lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed
-control plane.&lt;/p&gt;
-&lt;p&gt;Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar
-orchestrator) cluster, and we expect our daemonset to run on all worker
-nodes within the cluster that will consume or present storage.&lt;/p&gt;
-&lt;p&gt;Clusters use etcd to maintain state and manage distributed consensus between
-nodes.&lt;/p&gt;
+        &lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed control plane.&lt;/p&gt;
+&lt;p&gt;Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar orchestrator) cluster, and we expect our daemonset to run on all worker nodes within the cluster that will consume or present storage.&lt;/p&gt;
+&lt;p&gt;Clusters use etcd to maintain state and manage distributed consensus between nodes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/ondat-cluster.png&#34; alt=&#34;Ondat Cluster&#34;&gt;&lt;/p&gt;
 
       </description>
     </item>
@@ -313,7 +310,7 @@ is therefore recommended that disk devices are used exclusively for Ondat,
 as described in &lt;a href=&#34;/docs/operations/managing-host-storage&#34;&gt;Managing Host Storage&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Ondat is agnostic to the underlying storage and runs equally well on
 bare metal, in virtual machines or on cloud providers.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/storageos-cluster.png&#34; alt=&#34;Ondat cluster components&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/ondat-deployment.png&#34; alt=&#34;Ondat cluster components&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Read about &lt;a href=&#34;https://www.ondat.io/platform/platform-overview&#34;&gt;the cloud native storage principles behind
 Ondat&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;ondat-on-kubernetes&#34;&gt;Ondat on Kubernetes&lt;/h3&gt;
