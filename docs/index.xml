@@ -3846,25 +3846,14 @@ Ondat operator is used to specify the address of the etcd cluster. See the
       <description>
         
         
-        &lt;p&gt;When you need support, raise a ticket via our &lt;a href=&#34;https://support.storageos.com&#34;&gt;Help Desk
-portal&lt;/a&gt;. It is important to select the priority
-of your ticket in accordance with the severity:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Severity 1 - Urgent&lt;/li&gt;
-&lt;li&gt;Severity 2 - High&lt;/li&gt;
-&lt;li&gt;Severity 3 - Medium&lt;/li&gt;
-&lt;li&gt;Severity 4 - Low&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This helps us route and prioritise the ticket accordingly. You can find
-definitions of our support severity levels on our
-&lt;a href=&#34;https://storageos.com/support&#34;&gt;website&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;When you need support, raise a ticket via our &lt;a href=&#34;https://support.ondat.io/&#34;&gt;Help Desk
+portal&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is important to select the priority of your ticket in accordance with the severity. This helps us to route and prioritise your ticket accordingly.&lt;/p&gt;
 &lt;p&gt;Responses to tickets will be cc&amp;rsquo;d via email.&lt;/p&gt;
 &lt;p&gt;For personal support and general enquiries, join our &lt;a href=&#34;https://slack.storageos.com&#34;&gt;public Slack channel&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;information-to-include-in-tickets&#34;&gt;Information to include in tickets&lt;/h2&gt;
-&lt;p&gt;To help us provide effective support, we request that you provide as much
-information as possible when contacting us. The list below is a suggested
-starting point. Additionally, include anything specific, such as log
-entries, that may help us debug your issue.&lt;/p&gt;
+&lt;p&gt;To help us provide effective support, we request that you provide as much information as possible when contacting us. The list below is a suggested
+starting point. Additionally, include anything specific, such as log entries, that may help us debug your issue.&lt;/p&gt;
 &lt;h3 id=&#34;platform&#34;&gt;Platform&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Cloud provider/Bare metal&lt;/li&gt;
@@ -3895,17 +3884,10 @@ maintenance, node reboots, network failures, etcd outage, etc.. This can
 help speed up ticket triage and resolution considerably&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;ondat-support-bundle&#34;&gt;Ondat Support Bundle&lt;/h3&gt;
-&lt;p&gt;Ondat provides the ability to generate a support bundle that aggregates
-cluster information. See &lt;a href=&#34;/docs/reference/bundles/support_bundle&#34;&gt;Support Bundle&lt;/a&gt; for a list of what is
-included.&lt;/p&gt;
-&lt;p&gt;Ondat engineers might ask for a support bundle to be generated
-during support cases.&lt;/p&gt;
-&lt;p&gt;The information in the bundle is used only for support purposes, and will be
-removed once it is no longer needed. If the information is sensitive and can&amp;rsquo;t
-be given to Ondat, make sure that the support engineers have as
-much information about your environment as possible.&lt;/p&gt;
-&lt;p&gt;Refer to the &lt;a href=&#34;/docs/reference/bundles/support_bundle&#34;&gt;Support Bundle&lt;/a&gt; documentation page for details
-of how to generate a bundle.&lt;/p&gt;
+&lt;p&gt;Ondat provides the ability to generate a support bundle that aggregates cluster information. See &lt;a href=&#34;/docs/reference/bundles/support_bundle&#34;&gt;Support Bundle&lt;/a&gt; for a list of what is included.&lt;/p&gt;
+&lt;p&gt;Ondat engineers might ask for a support bundle to be generated during support cases.&lt;/p&gt;
+&lt;p&gt;The information in the bundle is used only for support purposes, and will be removed once it is no longer needed. If the information is sensitive and can&amp;rsquo;t be given to Ondat, make sure that the support engineers have as much information about your environment as possible.&lt;/p&gt;
+&lt;p&gt;Refer to the &lt;a href=&#34;/docs/reference/bundles/support_bundle&#34;&gt;Support Bundle&lt;/a&gt; documentation page for details of how to generate a bundle.&lt;/p&gt;
 
       </description>
     </item>
