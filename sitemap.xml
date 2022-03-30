@@ -22,6 +22,8 @@
   </url><url>
     <loc>/docs/install/openshift/</loc>
   </url><url>
+    <loc>/docs/install/rancher/</loc>
+  </url><url>
     <loc>/docs/introduction/overview/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/configuration/</loc>
@@ -31,8 +33,6 @@
     <loc>/docs/ondat-portal/applications/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/examples/</loc>
-  </url><url>
-    <loc>/docs/install/rancher/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/upgrade/</loc>
   </url><url>

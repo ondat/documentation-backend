@@ -909,6 +909,212 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Rancher Kubernetes Engine (RKE)</title>
+      <link>/docs/install/rancher/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/rancher/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://rancher.com/products/rke&#34;&gt;Rancher Kubernetes Engine (RKE)&lt;/a&gt; cluster. Ondat can be installed on a RKE cluster through two different methods;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Using &lt;a href=&#34;https://github.com/rancher/partner-charts/tree/main/charts/ondat-operator/ondat-operator&#34;&gt;Ondat&amp;rsquo;s Helm chart&lt;/a&gt; through &lt;a href=&#34;https://rancher.com/docs/rancher/v2.6/en/helm-charts/&#34;&gt;Rancher&amp;rsquo;s Apps &amp;amp; Marketplace&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main &lt;a href=&#34;/docs/prerequisites/&#34;&gt;Ondat prerequisites&lt;/a&gt; page for more information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure the following CLI utility is installed on your local machine and is available in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure you have a running RKE cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure your RKE cluster uses a Linux distribution that is officially supported by Rancher as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review &lt;a href=&#34;https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/&#34;&gt;SUSE Rancher Support Matrix&lt;/a&gt; documentation to ensure that you are using a supported Linux distribution.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
+&lt;h3 id=&#34;option-a---using-ondat-kubectl-plugin&#34;&gt;Option A - Using Ondat Kubectl Plugin&lt;/h3&gt;
+&lt;h4 id=&#34;step-1---install-ondat-kubectl-plugin&#34;&gt;Step 1 - Install Ondat Kubectl Plugin&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your &lt;code&gt;$PATH&lt;/code&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;step-2---install-local-path-provisioner&#34;&gt;Step 2 - Install Local Path Provisioner&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a &lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt; to provide local storage for Ondat&amp;rsquo;s embedded &lt;code&gt;etcd&lt;/code&gt; cluster operator deployment.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply --filename&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Define and export the &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt; environment variable so that value is &lt;code&gt;local-path&lt;/code&gt;, which is the default StorageClass name for the Local Path Provisioner.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;local-path&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt;  status, run the following  &lt;code&gt;kubectl&lt;/code&gt;  commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage
+kubectl get storageclass
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended for &lt;strong&gt;non production&lt;/strong&gt; clusters as this stores all the data of the &lt;code&gt;etcd&lt;/code&gt; peers locally which makes it susceptible to state being lost on node failures.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;step-3---conducting-preflight-checks&#34;&gt;Step 3 - Conducting Preflight Checks&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following command to conduct preflight checks against the RKE cluster to validate that Ondat prerequisites have been met before attempting an installation.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos preflight
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;step-4---installing-ondat&#34;&gt;Step 4 - Installing Ondat&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Define and export the &lt;code&gt;STORAGEOS_USERNAME&lt;/code&gt; and &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; environment variables that will be used to manage your Ondat instance.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following  &lt;code&gt;kubectl-storageos&lt;/code&gt; plugin command to install Ondat.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-storage-class&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-username&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-password&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;The installation process may take a few minutes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;step-5---verifying-ondat-installation&#34;&gt;Step 5 - Verifying Ondat Installation&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following &lt;code&gt;kubectl&lt;/code&gt; commands to inspect Ondat&amp;rsquo;s resources (the core components should all be in a &lt;code&gt;RUNNING&lt;/code&gt; status)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-etcd
+kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;option-b---using-ranchers-apps--marketplace&#34;&gt;Option B - Using Rancher&amp;rsquo;s Apps &amp;amp; Marketplace&lt;/h3&gt;
+&lt;h4 id=&#34;step-1---setup-an-etcd-cluster&#34;&gt;Step 1 - Setup An &lt;code&gt;etcd&lt;/code&gt; Cluster&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure that you have an &lt;code&gt;etcd&lt;/code&gt; cluster deployed first before installing Ondat through the Helm chart located on Apps &amp;amp; Marketplace. There are two different methods listed below with instructions on how to deploy an &lt;code&gt;etcd&lt;/code&gt; cluster;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/etcd/#testing---installing-etcd-into-your-kubernetes-cluster&#34;&gt;Embedded Deployment&lt;/a&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster operator into your RKE cluster, recommended for &lt;strong&gt;non production&lt;/strong&gt; environments.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines&#34;&gt;External Deployment&lt;/a&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster in dedicated virtual machines, recommended for &lt;strong&gt;production&lt;/strong&gt; environments.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once you have an &lt;code&gt;etcd&lt;/code&gt; cluster up and running, ensure that you note down the list of &lt;code&gt;etcd&lt;/code&gt; endpoints as comma-separated values that will be used when configuring Ondat in &lt;strong&gt;Step 3&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For example, &lt;code&gt;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;step-2---locate-ondat-operator-helm-chart&#34;&gt;Step 2 - Locate Ondat Operator Helm Chart&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;In the Rancher UI, under the RKE cluster where Ondat will be deployed - select the &lt;strong&gt;Menu&lt;/strong&gt; button in the top-left corner of the page and then select &lt;strong&gt;Apps &amp;amp; Marketplace&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Under &lt;strong&gt;Apps &amp;amp; Marketplace&lt;/strong&gt;, a &lt;strong&gt;Charts&lt;/strong&gt; page will be displayed where you can locate the &lt;a href=&#34;https://github.com/rancher/partner-charts/tree/main/charts/ondat-operator/ondat-operator&#34;&gt;Ondat Operator Helm chart&lt;/a&gt; by searching for &amp;ldquo;&lt;strong&gt;Ondat&lt;/strong&gt;&amp;rdquo; in the search filter box.&lt;/li&gt;
+&lt;li&gt;Once you have located the Ondat Operator Helm chart, select the chart. This will direct you to a page showing you more information about the Ondat Operator and how to install it.&lt;/li&gt;
+&lt;li&gt;Select the &lt;strong&gt;Install&lt;/strong&gt; button.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;step-3---customising--installing-the-helm-chart&#34;&gt;Step 3 - Customising &amp;amp; Installing The Helm Chart&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Upon selecting the &lt;strong&gt;Install&lt;/strong&gt; button in the previous step, you will be directed to a page to configure the &lt;strong&gt;Application Metadata&lt;/strong&gt;. Define the namespace and application name where Ondat will be deployed and click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Parameter&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Namespace&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;storageos&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Namespace name for the deployment.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;ondat-operator&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Application name for the deployment.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The next page will allow you to configure the Ondat Operator through Helm chart values. Under &lt;strong&gt;Edit Options&lt;/strong&gt;, you are provided with 3 configurable sections called;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Questions&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Container Images&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;StorageOS Cluster&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Select the &lt;strong&gt;StorageOS Cluster&lt;/strong&gt; section. This will show you a form with configurable parameters that have predefined values for an Ondat deployment. Below are following parameters that will need to be populated before beginning the installation;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Parameter&lt;/th&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Password&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Password of the StorageOS administrator account. Must be at least 8 characters long, for example &amp;gt; &lt;code&gt;storageos&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;External &lt;code&gt;etcd&lt;/code&gt; address(es)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;List of &lt;code&gt;etcd&lt;/code&gt; endpoints as comma-separated values. Prefer multiple direct endpoints over a single load-balanced endpoint, for example &amp;gt; &lt;code&gt;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or import your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat Operator &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once the parameters have been successfully populated, select &lt;strong&gt;Install&lt;/strong&gt; to deploy Ondat.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;step-4---verifying-ondat-installation&#34;&gt;Step 4 - Verifying Ondat Installation&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following &lt;code&gt;kubectl&lt;/code&gt; commands to inspect Ondat&amp;rsquo;s resources (the core components should all be in a &lt;code&gt;RUNNING&lt;/code&gt; status)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-etcd  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# only if the etcd cluster was deployed inside the RKE cluster.&lt;/span&gt;
+kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;applying-a-licence-to-the-cluster&#34;&gt;Applying a Licence to the Cluster&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To obtain a licence, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Overview</title>
       <link>/docs/introduction/overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1420,239 +1626,6 @@ all Ondat components; the Ondat daemonset, CSI helper and scheduler.&lt;/p&gt;
 tolerated and &lt;code&gt;key2&lt;/code&gt; would be tolerated regardless of the value and effect. For
 more information about tolerations see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
 documentation&lt;/a&gt;.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Rancher</title>
-      <link>/docs/install/rancher/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/install/rancher/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat is a certified Rancher application. We offer two installation
-methods:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Rancher Catalogue - this is the easiest and requires just a few clicks&lt;/li&gt;
-&lt;li&gt;Manual - allowing more control and visibility&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Before proceeding, ensure that you have followed our &lt;a href=&#34;/docs/prerequisites/&#34;&gt;prerequisites&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ On Rancher, pay particular attention to
-the OS version and image used - some platforms require extra mainline kernel
-modules to be enabled.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;catalog-install&#34;&gt;Catalog Install&lt;/h2&gt;
-&lt;p&gt;Ondat is a Certified application in the &lt;a href=&#34;https://rancher.com/docs/rancher/v2.0-v2.4/en/helm-charts/&#34;&gt;Rancher
-Catalog&lt;/a&gt;. You can install
-Ondat using the Rancher application install.&lt;/p&gt;
-&lt;p&gt;Before completing the steps below, you will need an etcd cluster. For
-evaluation use our simple &lt;a href=&#34;/docs/prerequisites/etcd#testing&#34;&gt;test&lt;/a&gt; recipe.
-For production installations, follow our &lt;a href=&#34;/docs/prerequisites/etcd#production&#34;&gt;production&lt;/a&gt; recipe.
-Make a note of the etcd endpoint URL in either case.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Select the &lt;code&gt;System&lt;/code&gt; project of your cluster&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-1.png&#34; alt=&#34;install-1&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Select the &lt;code&gt;Apps&lt;/code&gt; tab and click &lt;code&gt;Launch&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-2.png&#34; alt=&#34;install-2&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Search for Ondat and click on the App&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-3.png&#34; alt=&#34;install-3&#34;&gt;&lt;/p&gt;
-&lt;p&gt;This will install the Ondat operator, which manages the Ondat
-DaemonSet.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Check and ammend installation options&lt;/p&gt;
-&lt;p&gt;A generic configuration for Ondat is preset using the default values in
-the form. Be sure to check the etcd address and ensure it matches the value
-you noted at the beginning of this guide.&lt;/p&gt;
-&lt;p&gt;The catalog form exposes several useful parameters - documented
-&lt;a href=&#34;/docs/install/rancher#simplecustomization%7D&#34;&gt;below&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For further customization, you can opt to set the option to &amp;lsquo;Install
-Ondat Cluster&amp;rsquo; to false and install a custom CR. See &lt;a href=&#34;/docs/install/rancher#advancedcustomization&#34;&gt;below&lt;/a&gt; for this.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-4.png&#34; alt=&#34;install-4&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Launch the Ondat cluster&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-8.png&#34; alt=&#34;install-8&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Verify the cluster bootstrap has successfully completed&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-81.png&#34; alt=&#34;install-81&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;License the newly installed cluster&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;You will need access to the Ondat API on port 5705 of any of your nodes.
-For convenience, it is often easiest to port forward the service using the
-following kubectl incantation (this will block, so a second terminal window may
-be advisable):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward -n storageos svc/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt;
-page to obtain and apply a license.&lt;/p&gt;
-&lt;p&gt;Installation of Ondat is now complete.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;simple-customization---modify-catalog-form&#34;&gt;Simple Customization - Modify Catalog Form&lt;/h3&gt;
-&lt;p&gt;The following options are exposed by the catalog form to allow some simple
-customization of the Ondat installation.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-5.png&#34; alt=&#34;install-5&#34;&gt;
-&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-6.png&#34; alt=&#34;install-6&#34;&gt;
-&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-7.png&#34; alt=&#34;install-7&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Cluster Operator namespace&lt;/strong&gt;
-: The Kubernetes namespace where the &lt;a href=&#34;/docs/reference/cluster-operator/&#34;&gt;Ondat Cluster Operator&lt;/a&gt; and other resources will be
-created.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Container Images&lt;/strong&gt; : By default images are pulled from DockerHub, you can&lt;/li&gt;
-&lt;li&gt;specify the image URLs
-when using private registries.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Install Ondat cluster&lt;/strong&gt;
-: Controls the automatic deployment of Ondat after installing the Cluster
-Operator. If set to &lt;code&gt;false&lt;/code&gt;, the Operator will be created, but a Custom Resource will
-not be applied to the cluster. Launch the operator and proceed to the section
-&lt;a href=&#34;/docs/install/rancher#advancedcustomization&#34;&gt;Advanced Customization&lt;/a&gt; below.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Namespace&lt;/strong&gt; : The Kubernetes namespace where Ondat will be
-installed. By default, Ondat installs into the &lt;code&gt;storageos&lt;/code&gt; namespace,
-which will add a priority class to ensure high priority resource allocation.
-Installing Ondat with the priority class prevents Ondat from being
-evicted during periods of resource contention. It is inadvisable to modify this
-under normal circumstances.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Username/Password&lt;/strong&gt; : Default Username and Password for the admin account
-to be created at Ondat bootstrap. A random password will be generated by
-leaving the field empty or clicking the &lt;code&gt;Generate&lt;/code&gt; button.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;External etcd address(es)&lt;/strong&gt; : Connection and configuration details for an
-external Etcd cluster.See our documentation &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Node Selectors and Tolerations&lt;/strong&gt;
-: Control placement of Ondat DaemonSet Pods. Ondat will only be
-installed on the selected nodes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Tolerations&lt;/strong&gt; : Define any tolerations you wish the DaemonSet to observe.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;advanced-customization---apply-custom-cr&#34;&gt;Advanced Customization - Apply Custom CR&lt;/h3&gt;
-&lt;p&gt;If &lt;code&gt;Install Ondat Cluster&lt;/code&gt; was set to &lt;code&gt;false&lt;/code&gt;, Ondat will not be
-bootstrapped automatically. After the Ondat Operator is installed, you can
-now create a Custom Resource that describes the Ondat cluster.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Select the &lt;code&gt;System Workloads&lt;/code&gt; and &lt;code&gt;Import YAML&lt;/code&gt;
-&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-9.png&#34; alt=&#34;install-9&#34;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Create the &lt;code&gt;Secret&lt;/code&gt; and &lt;code&gt;CustomResource&lt;/code&gt;
-&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-10.png&#34; alt=&#34;install-10&#34;&gt;
-&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-11.png&#34; alt=&#34;install-11&#34;&gt;
-&lt;img src=&#34;/images/docs/rancher-ui-v2/rancher-12.png&#34; alt=&#34;install-12&#34;&gt;&lt;/p&gt;
-&lt;p&gt;This is an example.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-api&amp;#34;&lt;/span&gt;
-  labels:
-    app: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-type: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;kubernetes.io/storageos&amp;#34;&lt;/span&gt;
-data:
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# echo -n &amp;#39;&amp;lt;secret&amp;gt;&amp;#39; | base64&lt;/span&gt;
-  username: c3RvcmFnZW9z
-  password: c3RvcmFnZW9z
----
-apiVersion: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.com/v1&amp;#34;&lt;/span&gt;
-kind: StorageOSCluster
-metadata:
-  name: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-spec:
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ondat Pods are in storageos NS by default&lt;/span&gt;
-  secretRefName: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Reference from the Secret created in the previous step&lt;/span&gt;
-  k8sDistro: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rancher&amp;#34;&lt;/span&gt;
-  storageClassName: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ondat&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The storage class created by the Ondat operator is configurable&lt;/span&gt;
-  images:
-    nodeContainer: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/node:v2.6.0&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ondat version&lt;/span&gt;
-  kvBackend:
-    address: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Example address, change for your etcd endpoint&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# address: &amp;#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&amp;#39; # You can set ETCD server ips&lt;/span&gt;
-  sharedDir: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Needed when Kubelet as a container&lt;/span&gt;
-  resources:
-    requests:
-      memory: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;512Mi&amp;#34;&lt;/span&gt;
-  nodeSelectorTerms:
-    - matchExpressions:
-      - key: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;node-role.kubernetes.io/worker&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Compute node label will vary according to your installation&lt;/span&gt;
-        operator: In
-        values:
-        - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator
-configuration&lt;/a&gt; page.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 You can find more examples such as deployments referencing a external
-etcd kv store for Ondat in the &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator examples&lt;/a&gt; page.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;manual-installation&#34;&gt;Manual Installation&lt;/h2&gt;
-&lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.0.0/kubectl-storageos_1.0.0_linux_amd64.tar.gz \
-    &amp;amp;&amp;amp; tar -xf kubectl-storageos.tar.gz \
-    &amp;amp;&amp;amp; chmod +x kubectl-storageos \
-    &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
-    &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl
-plugin&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;install-ondat&#34;&gt;Install Ondat&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.storageos-etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;myuser&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-password&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Define the etcd endpoints as a comma delimited list, e.g. 10.42.3.10:2379,10.42.1.8:2379,10.42.2.8:2379&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 If the etcd endpoints are not defined, the plugin will promt you and
-request the endpoints.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;For more details on the installation options, check the &lt;a href=&#34;/docs/reference/kubectl-plugin&#34;&gt;kubectl storageos plugin reference page&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;verify-ondat-installation&#34;&gt;Verify Ondat installation&lt;/h2&gt;
-&lt;p&gt;Ondat installs all its components in the &lt;code&gt;storageos&lt;/code&gt; namespace.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl -n storageos get pod -w
-NAME                                     READY   STATUS    RESTARTS   AGE
-storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          36s
-storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          36s
-storageos-csi-helper-65dc8ff9d8-ddsh9    3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          36s
-storageos-node-4njd4                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          55s
-storageos-node-5qnl7                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          56s
-storageos-node-7xc4s                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          52s
-storageos-node-bkzkx                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          58s
-storageos-node-gwp52                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          62s
-storageos-node-zqkk7                     3/3     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          62s
-storageos-operator-8f7c946f8-npj7l       2/2     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          64s
-storageos-scheduler-86b979c6df-wndj4     1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          64s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-personal license is free, and supports up to 1TiB of provisioned storage.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
-&lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat Volume guide&lt;/a&gt; for an example of how
-to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>
