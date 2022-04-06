@@ -2025,7 +2025,7 @@ etcd&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;step-6-licese-the-cluster&#34;&gt;Step 6. Licese the cluster&lt;/h2&gt;
+&lt;h2 id=&#34;step-6-licence-the-cluster&#34;&gt;Step 6. Licence the cluster&lt;/h2&gt;
 &lt;p&gt;A cluster can operate without a licence for 24h. Follow the
 &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;licensing&lt;/a&gt; page to apply a licence to your cluster.&lt;/p&gt;
 
