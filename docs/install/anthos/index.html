@@ -36,7 +36,7 @@ Prerequisites  ⚠️ Make sure you have met the minimum resource requirements f
   ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
   kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing.">
 
-<meta itemprop="wordCount" content="314">
+<meta itemprop="wordCount" content="339">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Google Anthos"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Google Anthos cluster using the Ondat kubectl plugin.
@@ -180,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f3dc0b8a5f7618e23c55b6eb8a886c12b4aebbeb9d42755fa7e329b926d4a96bb40cbaf49e46593817e3e5cd97668790f45fa10f28a078858b0d5321201614aa.json"
+  data-offline-search-index-json-src="/offline-search-index.8077d2e05956ef1a0a57d58800ddca6a569c84382116c40760dfd986cb1f06a23479f54d486cc04459adf530ae0872526ca33b4a810bb1470a8a817108b5d317.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.f3dc0b8a5f7618e23c55b6eb8a886c12b4aebbeb9d42755fa7e329b926d4a96bb40cbaf49e46593817e3e5cd97668790f45fa10f28a078858b0d5321201614aa.json"
+  data-offline-search-index-json-src="/offline-search-index.8077d2e05956ef1a0a57d58800ddca6a569c84382116c40760dfd986cb1f06a23479f54d486cc04459adf530ae0872526ca33b4a810bb1470a8a817108b5d317.json"
   data-offline-search-base-href="/"
 >
 
@@ -1472,6 +1472,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre></div><ol start="2">
 <li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
 </ol>
+<blockquote>
+<p>⚠️ If you are installing Ondat and connecting to an <em>existing etcd cluster</em>, then you must include the <code>--skip-etcd-endpoints-validation</code> flag in the bash script below.</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
