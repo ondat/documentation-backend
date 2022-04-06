@@ -21,25 +21,28 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Upgrade Ondat | </title><meta property="og:title" content="Upgrade Ondat" />
-<meta property="og:description" content="This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
-Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
- ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly." />
+<meta property="og:description" content="Overview This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
+Prerequisites  ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly.
+  💡 Pull the new Ondat container image storageos/node:v2.6.0 on the nodes beforehand so that the cluster spins up faster!
+  💡 Speak with our support team here so we can assist you with your upgrade." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/upgrade/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Upgrade Ondat">
-<meta itemprop="description" content="This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
-Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
- ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly.">
+<meta itemprop="description" content="Overview This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
+Prerequisites  ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly.
+  💡 Pull the new Ondat container image storageos/node:v2.6.0 on the nodes beforehand so that the cluster spins up faster!
+  💡 Speak with our support team here so we can assist you with your upgrade.">
 
-<meta itemprop="wordCount" content="380">
+<meta itemprop="wordCount" content="361">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Upgrade Ondat"/>
-<meta name="twitter:description" content="This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
-Keep in mind that upgrading a cluster will require minor downtime of applications using Ondat volumes. However we will take steps to minimize the required downtime as much as possible.
- ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly."/>
+<meta name="twitter:description" content="Overview This document details a step-by-step procedure to upgrade an Ondat v2 cluster.
+Prerequisites  ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you check the init container logs to ensure your environments PID limits are set correctly.
+  💡 Pull the new Ondat container image storageos/node:v2.6.0 on the nodes beforehand so that the cluster spins up faster!
+  💡 Speak with our support team here so we can assist you with your upgrade."/>
 
 
 
@@ -177,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8077d2e05956ef1a0a57d58800ddca6a569c84382116c40760dfd986cb1f06a23479f54d486cc04459adf530ae0872526ca33b4a810bb1470a8a817108b5d317.json"
+  data-offline-search-index-json-src="/offline-search-index.cc7afe14b680e62a05d554514b21e7abd88d373fb6e4aecd2c74ad94b8c05912f9c742115f9e2f43244b78997a1258bfce380ae82dd4154485fda7f461daefac.json"
   data-offline-search-base-href="/"
 >
 
@@ -325,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8077d2e05956ef1a0a57d58800ddca6a569c84382116c40760dfd986cb1f06a23479f54d486cc04459adf530ae0872526ca33b4a810bb1470a8a817108b5d317.json"
+  data-offline-search-index-json-src="/offline-search-index.cc7afe14b680e62a05d554514b21e7abd88d373fb6e4aecd2c74ad94b8c05912f9c742115f9e2f43244b78997a1258bfce380ae82dd4154485fda7f461daefac.json"
   data-offline-search-base-href="/"
 >
 
@@ -1417,20 +1420,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Upgrade Ondat</h1>
 	
-	<p>This document details a step-by-step procedure to upgrade an Ondat v2 cluster.</p>
-<p>Keep in mind that upgrading a cluster will require minor downtime of
-applications using Ondat volumes. However we will take steps to minimize
-the required downtime as much as possible.</p>
+	<h1 id="overview">Overview</h1>
+<p>This document details a step-by-step procedure to upgrade an Ondat v2 cluster.</p>
+<h1 id="prerequisites">Prerequisites</h1>
 <blockquote>
-<p>⚠️ Ensure that you have read the <a href="/docs/prerequisites/pidlimits">PIDs prerequisite introduced in Ondat
-v2.3</a> and that you check the
-init container logs to ensure your environments PID limits are set correctly.</p>
+<p>⚠️ Ensure that you have read the <a href="/docs/prerequisites/pidlimits">PIDs prerequisite introduced in Ondat v2.3</a> and that you check the init container logs to ensure your environments PID limits are set correctly.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ To reduce downtime, it is recommended to pull the new
-Ondat container image <code>storageos/node:v2.6.0</code>
-on the nodes beforehand so that the cluster spins up faster!</p>
+<p>💡 Pull the new Ondat container image <code>storageos/node:v2.6.0</code> on the nodes beforehand so that the cluster spins up faster!</p>
 </blockquote>
+<blockquote>
+<p>💡 Speak with our support team <a href="/docs/support/">here</a> so we can assist you with your upgrade.</p>
+</blockquote>
+<h1 id="procedures">Procedures</h1>
 <ol>
 <li>
 <p>Make sure you keep a backup of all the Ondat yaml files. You can also backup
