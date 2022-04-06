@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Rancher Kubernetes Engine (RKE) cluster. Ondat can be installed on a RKE cluster through two different methods;
  Using the Ondat kubectl plugin. Using Ondat&rsquo;s Helm chart through Rancher&rsquo;s Apps &amp; Marketplace.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.">
 
-<meta itemprop="wordCount" content="1035">
+<meta itemprop="wordCount" content="1037">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rancher Kubernetes Engine (RKE)"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Rancher Kubernetes Engine (RKE) cluster. Ondat can be installed on a RKE cluster through two different methods;
@@ -174,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5d8960f1f95e9a18eaded941f4bf6050801c69eb202ec5a7cb8218368fd74940d87ba397860ccbcf4cdf604922a285e2995928008be193fb4e40ccf60c9ddb50.json"
+  data-offline-search-index-json-src="/offline-search-index.f3dc0b8a5f7618e23c55b6eb8a886c12b4aebbeb9d42755fa7e329b926d4a96bb40cbaf49e46593817e3e5cd97668790f45fa10f28a078858b0d5321201614aa.json"
   data-offline-search-base-href="/"
 >
 
@@ -322,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5d8960f1f95e9a18eaded941f4bf6050801c69eb202ec5a7cb8218368fd74940d87ba397860ccbcf4cdf604922a285e2995928008be193fb4e40ccf60c9ddb50.json"
+  data-offline-search-index-json-src="/offline-search-index.f3dc0b8a5f7618e23c55b6eb8a886c12b4aebbeb9d42755fa7e329b926d4a96bb40cbaf49e46593817e3e5cd97668790f45fa10f28a078858b0d5321201614aa.json"
   data-offline-search-base-href="/"
 >
 
@@ -641,6 +641,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallairgapped-clusters" href="/docs/install/airgapped-clusters/">Airgapped installation</a>
       
       
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
+      
+      
     </li>
   </ul>
 </ul>
@@ -668,12 +674,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsopenshift" href="/docs/platforms/openshift/">OpenShift</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsrancher" href="/docs/platforms/rancher/">Rancher</a>
       
       
     </li>
@@ -1010,6 +1010,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Ondat Kubectl Plugin</a>
+      
+      
+      
+      
 
 
 
@@ -1206,12 +1212,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Kubectl plugin</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubernetes-object-sync" href="/docs/reference/kubernetes-object-sync/">Kubernetes Object Sync</a>
       
       
@@ -1377,9 +1377,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <ul>
         <li><a href="#option-a---using-ondat-kubectl-plugin">Option A - Using Ondat Kubectl Plugin</a></li>
         <li><a href="#option-b---using-ranchers-apps--marketplace">Option B - Using Rancher&rsquo;s Apps &amp; Marketplace</a></li>
-        <li><a href="#applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</a></li>
       </ul>
     </li>
+    <li><a href="#applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</a></li>
   </ul>
 </nav>
 
@@ -1589,12 +1589,12 @@ kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> gr
 <tbody>
 <tr>
 <td>Password</td>
-<td></td>
+<td><code>$STORAGEOS_PASSWORD</code></td>
 <td>Password of the StorageOS administrator account. Must be at least 8 characters long, for example &gt; <code>storageos</code></td>
 </tr>
 <tr>
 <td>External <code>etcd</code> address(es)</td>
-<td></td>
+<td><code>$ETCD_ENDPOINTS</code></td>
 <td>List of <code>etcd</code> endpoints as comma-separated values. Prefer multiple direct endpoints over a single load-balanced endpoint, for example &gt; <code>203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</code></td>
 </tr>
 </tbody>
@@ -1616,7 +1616,7 @@ kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
 </code></pre></div></li>
 </ul>
-<h3 id="applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</h3>
+<h2 id="applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</h2>
 <blockquote>
 <p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.</p>
 </blockquote>

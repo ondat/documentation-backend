@@ -18,6 +18,8 @@
   </url><url>
     <loc>/docs/install/kubernetes/</loc>
   </url><url>
+    <loc>/docs/reference/kubectl-plugin/</loc>
+  </url><url>
     <loc>/docs/ondat-portal/installation-portal/</loc>
   </url><url>
     <loc>/docs/install/openshift/</loc>
@@ -41,6 +43,8 @@
     <loc>/docs/introduction/platforms/</loc>
   </url><url>
     <loc>/docs/install/airgapped-clusters/</loc>
+  </url><url>
+    <loc>/docs/install/declarative-install/</loc>
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
   </url><url>
@@ -162,8 +166,6 @@
   </url><url>
     <loc>/docs/usecases/kafka/</loc>
   </url><url>
-    <loc>/docs/reference/kubectl-plugin/</loc>
-  </url><url>
     <loc>/docs/reference/kubernetes-object-sync/</loc>
   </url><url>
     <loc>/docs/usecases/kubevirt/</loc>
@@ -209,8 +211,6 @@
     <loc>/docs/usecases/postgres/</loc>
   </url><url>
     <loc>/docs/usecases/prometheus/</loc>
-  </url><url>
-    <loc>/docs/platforms/rancher/</loc>
   </url><url>
     <loc>/docs/operations/rwx/</loc>
   </url><url>

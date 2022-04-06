@@ -20,29 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Amazon Elastic Kubernetes Service (EKS) | </title><meta property="og:title" content="Amazon Elastic Kubernetes Service (EKS)" />
-<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl kubectl-storageos aws eksctl, at least version &gt;=0." />
+<title>Declarative Install | </title><meta property="og:title" content="Declarative Install" />
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;
+ Using the Ondat kubectl plugin. Using the Ondat Operator Helm chart.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your $PATH:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/install/amazon-web-services-eks/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/install/declarative-install/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Amazon Elastic Kubernetes Service (EKS)">
-<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl kubectl-storageos aws eksctl, at least version &gt;=0.">
+<meta itemprop="name" content="Declarative Install">
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;
+ Using the Ondat kubectl plugin. Using the Ondat Operator Helm chart.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your $PATH:">
 
-<meta itemprop="wordCount" content="781">
+<meta itemprop="wordCount" content="1281">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Amazon Elastic Kubernetes Service (EKS)"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl kubectl-storageos aws eksctl, at least version &gt;=0."/>
+<meta name="twitter:title" content="Declarative Install"/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;
+ Using the Ondat kubectl plugin. Using the Ondat Operator Helm chart.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
+  ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your $PATH:"/>
 
 
 
@@ -85,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Amazon Elastic Kubernetes Service (EKS) | </title>
+    <title>Declarative Install | </title>
   </head>
   <body class="td-page">
     
@@ -590,7 +587,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
       
       
       
@@ -650,7 +647,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
       
       
     </li>
@@ -1381,12 +1378,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#procedure">Procedure</a>
       <ul>
-        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
-        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
-        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
-        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+        <li><a href="#option-a---using-ondat-kubectl-plugin">Option A - Using Ondat Kubectl Plugin</a></li>
+        <li><a href="#option-b---using-ondats-operator-helm-chart">Option B - Using Ondat&rsquo;s Operator Helm Chart</a></li>
       </ul>
     </li>
+    <li><a href="#applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</a></li>
   </ul>
 </nav>
 
@@ -1425,7 +1421,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
+	<a href="/docs/install/declarative-install/">Declarative Install</a>
 </li>
 
 	</ol>
@@ -1433,151 +1429,225 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Amazon Elastic Kubernetes Service (EKS)</h1>
+	<h1>Declarative Install</h1>
 	
 	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to install Ondat onto an <a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<p>This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;</p>
+<ol>
+<li>Using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</li>
+<li>Using the <a href="https://github.com/ondat/charts/tree/main/charts/ondat-operator">Ondat Operator Helm chart</a>.</li>
+</ol>
 <h2 id="prerequisites">Prerequisites</h2>
 <blockquote>
 <p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
+<p>⚠️ Make sure the following CLI utility is installed on your local machine and is available in your <code>$PATH</code>:</p>
 </blockquote>
 <ul>
 <li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
-<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
-<li><a href="https://aws.amazon.com/cli/">aws</a></li>
-<li><a href="https://eksctl.io/">eksctl</a>, at least version <code>&gt;=0.83.0</code></li>
 </ul>
 <blockquote>
 <p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+<p>⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Make sure your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for EKS</a> as the default node operating system with an optimised kernel. For kernel versions below <code>linux-aws-5.4.0-1066.69</code> or <code>linux-aws-5.13.0-1014.15</code>, the module <code>tcm_loop</code> is not included in the base kernel distribution. In that case, the package <code>linux-modules-extra-$(uname -r)</code> is additionally required on each of the nodes - this can be installed automatically by adding it to the node&rsquo;s user data, as in the example below.</p>
-</blockquote>
-<blockquote>
-<p>To find the latest Ubuntu for EKS AMI, search your region for the image:</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">AWS_REGION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;eu-west-2&#34;</span> <span style="color:#8f5902;font-style:italic"># Insert your preferred region here</span>
-aws ec2 describe-images <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--filters <span style="color:#4e9a06">&#34;Name=owner-id,Values=099720109477&#34;</span> <span style="color:#4e9a06">&#34;Name=architecture,Values=x86_64&#34;</span> <span style="color:#4e9a06">&#34;Name=root-device-type,Values=ebs&#34;</span> <span style="color:#4e9a06">&#34;Name=virtualization-type,Values=hvm&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--query <span style="color:#4e9a06">&#39;Images[?contains(Name, `ubuntu-eks`)] | [?contains(Name, `testing`) == `false`] | [?contains(Name, `minimal`) == `false`] | [?contains(Name, `hvm-ssd`) == `true`] | sort_by(@, &amp;CreationDate)| [-1].ImageId&#39;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--output text <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><blockquote>
-<p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to create a cluster with 3 nodes of size <code>t3.large</code> running Ubuntu for EKS in the <code>eu-west-2</code> region. We have provided <code>100 GB</code> of disk space for each node. Note that by default, Ondat will store data locally in the node&rsquo;s file system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged mode</a>.</p>
-</blockquote>
-<blockquote>
-<p>In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount our volumes under data device directories</a> with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># cluster.yaml</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">eksctl.io/v1alpha5</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ClusterConfig</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-cluster</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">region</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">eu-west-2</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">addons</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">aws-ebs-csi-driver</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">iam</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">withOIDC</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">managedNodeGroups</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-ng</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">minSize</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">maxSize</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">instanceType</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">t3.large</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">ami</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ami-0cb2cb474d9e4e075</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>{<span style="color:#204a87;font-weight:bold">ondat</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node}</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeSize</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">100</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/dev/xvda</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeEncrypted</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">disableIMDSv1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">iam</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">withAddonPolicies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">ebs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">overrideBootstrapCommand</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">|</span><span style="color:#8f5902;font-style:italic">
-</span><span style="color:#8f5902;font-style:italic">      #!/bin/bash
-</span><span style="color:#8f5902;font-style:italic">      mkdir -p /var/lib/storageos
-</span><span style="color:#8f5902;font-style:italic">      echo &#34;/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1&#34; &gt;&gt; /etc/fstab
-</span><span style="color:#8f5902;font-style:italic">      mkfs.ext4 /dev/nvme1n1
-</span><span style="color:#8f5902;font-style:italic">      mount /var/lib/storageos
-</span><span style="color:#8f5902;font-style:italic">      sudo apt-get update
-</span><span style="color:#8f5902;font-style:italic">      sudo apt-get install -y linux-modules-extra-$(uname -r)
-</span><span style="color:#8f5902;font-style:italic">      /etc/eks/bootstrap.sh ondat-cluster</span><span style="color:#f8f8f8;text-decoration:underline">      
-</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">eksctl create cluster --config-file<span style="color:#ce5c00;font-weight:bold">=</span>cluster.yaml
-</code></pre></div><blockquote>
-<p>⚠️ With the above configuration, volumes will be deleted when the nodes they
-are attached to are terminated. Be sure to keep snapshots, for example by using
-<a href="https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/">Data Lifecycle Manager</a></p>
+<p>⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully.</p>
 </blockquote>
 <h2 id="procedure">Procedure</h2>
-<p>First, provision your <code>kubeconfig</code> for <code>kubectl</code> and test that you can connect to Kubernetes:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws eks update-kubeconfig --region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span> --name ondat-cluster
-kubectl get nodes
-</code></pre></div><p>If you receive the message <code>No resources found</code> or see nodes marked as <code>NotReady</code>, wait for 2-3 minutes in order for your nodes to transition to <code>Ready</code> and check again to ensure they are running before proceeding through the next steps.</p>
-<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
+<h3 id="option-a---using-ondat-kubectl-plugin">Option A - Using Ondat Kubectl Plugin</h3>
+<h4 id="step-1---install-ondat-kubectl-plugin">Step 1 - Install Ondat Kubectl Plugin</h4>
 <ul>
-<li>Run the following command to conduct preflight checks against the EKS cluster to ensure that Ondat prerequisites are in place before continuing with installation.</li>
+<li>Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your <code>$PATH</code>:
+<ul>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
-</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+</li>
+</ul>
+<h4 id="step-2---install-local-path-provisioner">Step 2 - Install Local Path Provisioner</h4>
 <ol>
-<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
-<li>Set the <code>StorageClass</code> for etcd to use.</li>
+<li>
+<p>By default, a newly provisioned Kubernetes cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a <a href="https://github.com/rancher/local-path-provisioner">Local Path Provisioner</a> to provide local storage for Ondat&rsquo;s embedded <code>etcd</code> cluster operator deployment.</p>
+<blockquote>
+<p>💡 Different Kubernetes distributions may include a CSI driver as part of the deployment. Cluster administrators can leverage the CSI driver provided by their distribution if they don&rsquo;t want to use a Local Path Provisioner. If so, ensure that the <code>ETCD_STORAGECLASS</code> environment variable points to the correct value for your Kubernetes distribution&rsquo;s default StorageClass name.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply --filename<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Define and export the <code>ETCD_STORAGECLASS</code> environment variable so that value is <code>local-path</code>, which is the default StorageClass name for the Local Path Provisioner.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;local-path&#34;</span>
+</code></pre></div></li>
+<li>
+<p>To verify that the Local Path Provisioner was successfully deployed and ensure that the deployment is in a  <code>RUNNING</code>  status, run the following  <code>kubectl</code>  commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>local-path-storage
+kubectl get storageclass
+</code></pre></div></li>
 </ol>
 <blockquote>
-<p>💡 This cannot be Ondat, as Ondat is dependent upon etcd. On AWS EKS, we suggest <code>gp3</code> for a good balance of performance and resilience, or <code>io2</code> where top performance is essential.</p>
+<p>⚠️ The <code>local-path</code> StorageClass is only recommended for <strong>non production</strong> clusters, as this stores all the data of the <code>etcd</code> peers locally, which makes it susceptible to state being lost on node failures.</p>
 </blockquote>
-<blockquote>
-<p>💡 The default <code>StorageClass</code> in EKS is <code>gp2</code> which is not recommended, instead we will create a <code>gp3</code> <code>StorageClass</code> and set it as default, at least until we install Ondat:</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f - <span style="color:#4e9a06">&lt;&lt;EOF
-</span><span style="color:#4e9a06">kind: StorageClass
-</span><span style="color:#4e9a06">apiVersion: storage.k8s.io/v1
-</span><span style="color:#4e9a06">metadata:
-</span><span style="color:#4e9a06">  name: gp3
-</span><span style="color:#4e9a06">  annotations:
-</span><span style="color:#4e9a06">    storageclass.kubernetes.io/is-default-class: &#34;true&#34;
-</span><span style="color:#4e9a06">allowVolumeExpansion: true
-</span><span style="color:#4e9a06">provisioner: ebs.csi.aws.com
-</span><span style="color:#4e9a06">volumeBindingMode: WaitForFirstConsumer
-</span><span style="color:#4e9a06">parameters:
-</span><span style="color:#4e9a06">  type: gp3
-</span><span style="color:#4e9a06">EOF</span>
-</code></pre></div><blockquote>
-<p>💡 This <code>StorageClass</code> requires the AWS EBS EKS addon we specified in the <code>eksctl</code> cluster configuration above</p>
-</blockquote>
+<h4 id="step-3---conducting-preflight-checks">Step 3 - Conducting Preflight Checks</h4>
+<ul>
+<li>
+<p>Run the following command to conduct preflight checks against the Kubernetes cluster to validate that Ondat prerequisites have been met before attempting an installation.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
+</code></pre></div></li>
+</ul>
+<h4 id="step-4---generate-ondat-yaml-kubernetes-manifests">Step 4 - Generate Ondat YAML Kubernetes Manifests</h4>
+<ol>
+<li>
+<p>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance. In addition, define and export a <code>KUBERNETES_VERSION</code> environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, <code>v1.23.5</code>.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
 <span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;gp3&#34;</span>
-</code></pre></div><ol start="2">
-<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
-</ol>
+<span style="color:#204a87">export</span> <span style="color:#000">KUBERNETES_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;v1.23.5&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Run the following  <code>kubectl-storageos</code> plugin command with the <code>--dry-run</code> flag to generate the Ondat YAML Kubernetes manifests in a directory, called <code>storageos-dry-run</code>.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --dry-run <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --etcd-storage-class<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --k8s-version<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$KUBERNETES_VERSION</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><ul>
+</code></pre></div></li>
+<li>
+<p>To review the list of manifests generated in the newly created <code>storageos-dry-run</code> directory run the following commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> storageos-dry-run/
+ls storageos-dry-run/
+</code></pre></div></li>
+</ol>
+<h4 id="step-4---installing-ondat">Step 4 - Installing Ondat</h4>
+<ol>
+<li>
+<p>Run the following  <code>kubectl</code> command to install Ondat with the generated manifests in the <code>storageos-dry-run</code> directory. The manifests  can also be used in your <a href="https://www.weave.works/technologies/gitops/">GitOps</a> workflow to deploy Ondat, enabling you to have a fully declarative approach towards managing your infrastructure deployments.</p>
+<blockquote>
+<p>💡 <strong>Advanced Users</strong> - For users who are looking to make further customisations to their <code>StorageOSCluster</code> custom resource manifest, review the <a href="/docs/reference/cluster-operator/configuration">Cluster Operator Configuration</a> and  <a href="/docs/reference/cluster-operator/examples">Cluster Operator Examples</a> reference pages for more information.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Apply the Operators and CustomResourceDefinitions (CRDs) first.</span>
+find . -name <span style="color:#4e9a06">&#39;*-operator.yaml&#39;</span> <span style="color:#000;font-weight:bold">|</span> xargs -I<span style="color:#ce5c00;font-weight:bold">{}</span> kubectl apply --filename <span style="color:#ce5c00;font-weight:bold">{}</span>
+
+<span style="color:#8f5902;font-style:italic"># Apply the Custom Resources next.</span>
+find . -name <span style="color:#4e9a06">&#39;*-cluster.yaml&#39;</span> <span style="color:#000;font-weight:bold">|</span> xargs -I<span style="color:#ce5c00;font-weight:bold">{}</span> kubectl apply --filename <span style="color:#ce5c00;font-weight:bold">{}</span>
+</code></pre></div></li>
+</ol>
+<ul>
 <li>The installation process may take a few minutes.</li>
 </ul>
-<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
+<h4 id="step-5---verifying-ondat-installation">Step 5 - Verifying Ondat Installation</h4>
 <ul>
-<li>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</li>
-</ul>
+<li>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
 kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
+</code></pre></div></li>
+</ul>
+<h3 id="option-b---using-ondats-operator-helm-chart">Option B - Using Ondat&rsquo;s Operator Helm Chart</h3>
+<h4 id="step-1---install-helm">Step 1 - Install Helm</h4>
+<ul>
+<li>Ensure that the <a href="https://helm.sh/">Helm 3</a> CLI utility is installed on your local machine and is available in your <code>$PATH</code>:
+<ul>
+<li><a href="https://helm.sh/docs/intro/install/">helm</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="step-2---setup-an-etcd-cluster">Step 2 - Setup An <code>etcd</code> Cluster</h4>
+<ul>
+<li>
+<p>Ensure that you have an <code>etcd</code> cluster deployed first before installing Ondat through the Helm chart. There are two different methods listed below with instructions on how to deploy an <code>etcd</code> cluster;</p>
+<ol>
+<li><a href="https://docs.ondat.io/docs/prerequisites/etcd/#testing---installing-etcd-into-your-kubernetes-cluster">Embedded Deployment</a> - deploy an <code>etcd</code> cluster operator into your Kubernetes cluster, recommended for <strong>non production</strong> environments.</li>
+<li><a href="https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines">External Deployment</a> - deploy an <code>etcd</code> cluster in dedicated virtual machines, recommended for <strong>production</strong> environments.</li>
+</ol>
+</li>
+<li>
+<p>Once you have an <code>etcd</code> cluster up and running, ensure that you note down the list of <code>etcd</code> endpoints as comma-separated values that will be used when configuring Ondat in <strong>Step 4</strong>.</p>
+<ul>
+<li>For example, <code>203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="step-3---configure-ondats-helm-chart-repository">Step 3 - Configure Ondat&rsquo;s Helm Chart Repository</h4>
+<ol>
+<li>
+<p>Add the Ondat Helm chart repository, update the local Helm repository index using the following <code>helm repo</code> commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add ondat https://ondat.github.io/charts
+helm repo update
+</code></pre></div></li>
+<li>
+<p>Check to confirm that the Ondat Helm chart repository is available using the following <code>helm</code> commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo list
+helm search repo <span style="color:#4e9a06">&#34;ondat&#34;</span>
+</code></pre></div></li>
+</ol>
+<h4 id="step-4---customising--installing-ondats-operator-helm-chart">Step 4 - Customising &amp; Installing Ondat&rsquo;s Operator Helm Chart</h4>
+<ul>
+<li>There are two ways to conduct an installation with Helm, <strong>declaratively</strong> by creating a custom <code>values.yaml</code> and (recommended method) or <strong>interactively</strong> by using the <code>--set</code> flags to overwrite specific values for the deployment.</li>
+</ul>
+<blockquote>
+<p>💡 <strong>Advanced Users</strong> - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own <code>StorageOSCluster</code> custom resource manifest, review the Ondat Operator <a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md">README.md</a> document, <a href="/docs/reference/cluster-operator/configuration">Cluster Operator Configuration</a> and  <a href="/docs/reference/cluster-operator/examples">Cluster Operator Examples</a> reference pages for more information.</p>
+</blockquote>
+<h5 id="declarative-recommended">Declarative (Recommended)</h5>
+<ol>
+<li>
+<p>Make a copy of the <a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml"><code>values.yaml</code></a> configuration file, rename it to <code>custom-values.yaml</code>, then ensure that the following configurable parameters have been populated before beginning the installation.</p>
+<ul>
+<li><a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62"><code>cluster.admin.password</code></a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># Password to authenticate to the StorageOS API with. This must be at least</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># 8 characters long.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># for example -&gt; storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><ul>
+<li><a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62"><code>cluster.kvBackend.address</code></a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># Key-Value store backend.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">address</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># for example -&gt; 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Once the parameters above have been defined, run the following  <code>helm install</code>  command to install Ondat using the Helm chart. Ensure that you use the <code>--values=</code> flag with your <code>custom-values.yaml</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat-operator ondat/ondat-operator <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --create-namespace <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --values<span style="color:#ce5c00;font-weight:bold">=</span>custom-values.yaml
+</code></pre></div></li>
+</ol>
+<ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
+<h5 id="interactive">Interactive</h5>
+<ol>
+<li>
+<p>Define and export the <code>STORAGEOS_PASSWORD</code> environment variable that will be used to manage your Ondat instance. In addition, define and export a <code>ETCD_ENDPOINTS</code> environment variable, where the value will be a list of <code>etcd</code> endpoints as comma-separated values noted down earlier in <strong>Step 2</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">ETCD_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Run the following  <code>helm install</code>  command to install Ondat using the Helm chart.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat-operator ondat/ondat-operator <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --create-namespace <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set cluster.admin.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set cluster.kvBackend.address<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_ENDPOINTS</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div></li>
+</ol>
+<ul>
+<li>The installation process may take a few minutes.</li>
+</ul>
+<h4 id="step-5---verifying-ondat-installation-1">Step 5 - Verifying Ondat Installation</h4>
+<ul>
+<li>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd  <span style="color:#8f5902;font-style:italic"># only if the etcd cluster was deployed inside the Kubernetes cluster.</span>
+kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div></li>
+</ul>
+<h2 id="applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</h2>
 <blockquote>
 <p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our personal licence is free, and supports up to 1 TiB of provisioned storage.</p>
 </blockquote>

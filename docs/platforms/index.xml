@@ -63,22 +63,5 @@ standard linux device files. Checkout &lt;a href=&#34;/docs/prerequisites/system
       </description>
     </item>
     
-    <item>
-      <title>Docs: Rancher</title>
-      <link>/docs/platforms/rancher/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/platforms/rancher/</guid>
-      <description>
-        
-        
-        &lt;p&gt;To install Ondat on Rancher, follow our &lt;a href=&#34;/docs/install/rancher&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;Ondat transparently supports Rancher deployments using CentOS, RHEL or
-Debian and can support other Linux distributions detailed in the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;systems supported page&lt;/a&gt; if the
-appropriate kernel modules are present.&lt;/p&gt;
-
-      </description>
-    </item>
-    
   </channel>
 </rss>
