@@ -22,8 +22,9 @@
 
 <title>ClusterID | </title><meta property="og:title" content="ClusterID" />
 <meta property="og:description" content="Every Ondat cluster has a unique ClusterID generated at bootstrap. A Ondat Licence is specific for a ClusterID.
-How to obtain the ClusterID You can obtain the ClusterID using either the CLI or GUI.
-GUI You will need access to the Ondat GUI on port 5705 of any of your nodes. For convenience, it is often easiest to port forward the service using the following kubectl incantation (this will block, so a second terminal window may be advisable):" />
+How to obtain the ClusterID You can obtain the ClusterID using the CLI.
+This CLI command can print the cluster ID:
+$ storageos get cluster ID: 704dd165-9580-4da4-a554-0acb96d328cb Licence: expiration: 2021-03-25T13:48:46Z (1 year from now) capacity: 5.0 TiB kind: professional customer name: storageos Created at: 2020-03-25T13:48:33Z (1 hour ago) Updated at: 2020-03-25T13:48:46Z (1 hour ago) Given the Cluster ID, the Ondat team can generate a licence." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/cluster-id/" /><meta property="article:section" content="docs" />
 
@@ -31,15 +32,17 @@ GUI You will need access to the Ondat GUI on port 5705 of any of your nodes. For
 
 <meta itemprop="name" content="ClusterID">
 <meta itemprop="description" content="Every Ondat cluster has a unique ClusterID generated at bootstrap. A Ondat Licence is specific for a ClusterID.
-How to obtain the ClusterID You can obtain the ClusterID using either the CLI or GUI.
-GUI You will need access to the Ondat GUI on port 5705 of any of your nodes. For convenience, it is often easiest to port forward the service using the following kubectl incantation (this will block, so a second terminal window may be advisable):">
+How to obtain the ClusterID You can obtain the ClusterID using the CLI.
+This CLI command can print the cluster ID:
+$ storageos get cluster ID: 704dd165-9580-4da4-a554-0acb96d328cb Licence: expiration: 2021-03-25T13:48:46Z (1 year from now) capacity: 5.0 TiB kind: professional customer name: storageos Created at: 2020-03-25T13:48:33Z (1 hour ago) Updated at: 2020-03-25T13:48:46Z (1 hour ago) Given the Cluster ID, the Ondat team can generate a licence.">
 
-<meta itemprop="wordCount" content="175">
+<meta itemprop="wordCount" content="83">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ClusterID"/>
 <meta name="twitter:description" content="Every Ondat cluster has a unique ClusterID generated at bootstrap. A Ondat Licence is specific for a ClusterID.
-How to obtain the ClusterID You can obtain the ClusterID using either the CLI or GUI.
-GUI You will need access to the Ondat GUI on port 5705 of any of your nodes. For convenience, it is often easiest to port forward the service using the following kubectl incantation (this will block, so a second terminal window may be advisable):"/>
+How to obtain the ClusterID You can obtain the ClusterID using the CLI.
+This CLI command can print the cluster ID:
+$ storageos get cluster ID: 704dd165-9580-4da4-a554-0acb96d328cb Licence: expiration: 2021-03-25T13:48:46Z (1 year from now) capacity: 5.0 TiB kind: professional customer name: storageos Created at: 2020-03-25T13:48:33Z (1 hour ago) Updated at: 2020-03-25T13:48:46Z (1 hour ago) Given the Cluster ID, the Ondat team can generate a licence."/>
 
 
 
@@ -177,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4a0bfb3041c59cfca8ef45884c2a13f229534e1cacd0a58a9951d013e4114af7776239915afea4c6327994871ae41261388d536c14c85a1f5f51e7c300e1574c.json"
+  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
   data-offline-search-base-href="/"
 >
 
@@ -325,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4a0bfb3041c59cfca8ef45884c2a13f229534e1cacd0a58a9951d013e4114af7776239915afea4c6327994871ae41261388d536c14c85a1f5f51e7c300e1574c.json"
+  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
   data-offline-search-base-href="/"
 >
 
@@ -1366,17 +1369,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#how-to-obtain-the-clusterid">How to obtain the ClusterID</a>
-      <ul>
-        <li><a href="#gui">GUI</a></li>
-        <li><a href="#cli">CLI</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
 
 
           </div>
@@ -1425,19 +1417,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<p>Every Ondat cluster has a unique ClusterID generated at bootstrap. A
 Ondat Licence is specific for a ClusterID.</p>
 <h2 id="how-to-obtain-the-clusterid">How to obtain the ClusterID</h2>
-<p>You can obtain the ClusterID using either the CLI or GUI.</p>
-<h3 id="gui">GUI</h3>
-<p>You will need access to the Ondat GUI on port 5705 of any of your nodes.
-For convenience, it is often easiest to port forward the service using the
-following kubectl incantation (this will block, so a second terminal window may
-be advisable):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl port-forward -n storageos svc/storageos <span style="color:#0000cf;font-weight:bold">5705</span>
-</code></pre></div><p>As an alternative, an Ingress controller may be preferred.</p>
-<p>Once you have obtained access to the GUI, login using whatever credentials you
-used to create the cluster and go to the &ldquo;Licence&rdquo; section on the left
-navigation menu.</p>
-<p><img src="/images/docs/operations/licensing/licence-page.png" alt="Licence page"></p>
-<h3 id="cli">CLI</h3>
+<p>You can obtain the ClusterID using the CLI.</p>
 <p>This CLI command can print the cluster ID:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos get cluster
 ID:               704dd165-9580-4da4-a554-0acb96d328cb
