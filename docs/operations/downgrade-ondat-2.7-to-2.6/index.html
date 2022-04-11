@@ -20,26 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Deleting Ondat Objects | </title><meta property="og:title" content="Deleting Ondat Objects" />
-<meta property="og:description" content="When a Kubernetes object is deleted, Ondat controllers automatically sync this deletion to Ondat. For example, when a Kubernets node is deleted, this will automatically be mirrored in Ondat, likewise with Namespaces.
-  Here is an Ondat node, running on Kubernetes node worker1. An Ondat node is any machine that is running the Ondat daemonset pod. The node is visible below in kubectl.
-$ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-daemonset-6q4g8 Namespace: storageos Priority: 2000001000 Priority Class Name: system-node-critical Node: worker1/192." />
+<title>Downgrade Ondat from 2.7.0 to 2.6.0 | </title><meta property="og:title" content="Downgrade Ondat from 2.7.0 to 2.6.0" />
+<meta property="og:description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.
+As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/operations/delete-stos-objects/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/operations/downgrade-ondat-2.7-to-2.6/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Deleting Ondat Objects">
-<meta itemprop="description" content="When a Kubernetes object is deleted, Ondat controllers automatically sync this deletion to Ondat. For example, when a Kubernets node is deleted, this will automatically be mirrored in Ondat, likewise with Namespaces.
-  Here is an Ondat node, running on Kubernetes node worker1. An Ondat node is any machine that is running the Ondat daemonset pod. The node is visible below in kubectl.
-$ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-daemonset-6q4g8 Namespace: storageos Priority: 2000001000 Priority Class Name: system-node-critical Node: worker1/192.">
+<meta itemprop="name" content="Downgrade Ondat from 2.7.0 to 2.6.0">
+<meta itemprop="description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.
+As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.">
 
-<meta itemprop="wordCount" content="228">
+<meta itemprop="wordCount" content="355">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Deleting Ondat Objects"/>
-<meta name="twitter:description" content="When a Kubernetes object is deleted, Ondat controllers automatically sync this deletion to Ondat. For example, when a Kubernets node is deleted, this will automatically be mirrored in Ondat, likewise with Namespaces.
-  Here is an Ondat node, running on Kubernetes node worker1. An Ondat node is any machine that is running the Ondat daemonset pod. The node is visible below in kubectl.
-$ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-daemonset-6q4g8 Namespace: storageos Priority: 2000001000 Priority Class Name: system-node-critical Node: worker1/192."/>
+<meta name="twitter:title" content="Downgrade Ondat from 2.7.0 to 2.6.0"/>
+<meta name="twitter:description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.
+As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format."/>
 
 
 
@@ -82,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Deleting Ondat Objects | </title>
+    <title>Downgrade Ondat from 2.7.0 to 2.6.0 | </title>
   </head>
   <body class="td-page">
     
@@ -719,7 +716,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
       
       
       
@@ -737,7 +734,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsdelete-stos-objects" href="/docs/operations/delete-stos-objects/">Deleting Ondat Objects</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdelete-stos-objects" href="/docs/operations/delete-stos-objects/">Deleting Ondat Objects</a>
       
       
       
@@ -1386,6 +1383,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1---uninstall-ondat-v270-as-if-you-are-starting-an-upgrade">Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade</a></li>
+    <li><a href="#step-2---run-our-downgrade-script">Step 2 - Run our downgrade script</a></li>
+    <li><a href="#step-3---install-ondat-v260">Step 3 - Install Ondat v2.6.0</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1421,7 +1426,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/delete-stos-objects/">Deleting Ondat Objects</a>
+	<a href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
 </li>
 
 	</ol>
@@ -1429,90 +1434,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Deleting Ondat Objects</h1>
+	<h1>Downgrade Ondat from 2.7.0 to 2.6.0</h1>
 	
-	<p>When a Kubernetes object is deleted, Ondat controllers automatically sync
-this deletion to Ondat. For example, when a Kubernets node is deleted, this
-will automatically be mirrored in Ondat, likewise with Namespaces.</p>
+	<h1 id="overview">Overview</h1>
+<p>This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.</p>
+<p>As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.</p>
+<p>As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however it is not usual operation, so it is necessary to raise a proactive support case <a href="/docs/support/">here</a> and work with the customer success team as part of the downgrade process.</p>
+<p>For those curious, in the past Ondat supported other Container Orchestrators (CO) and therefore used an internal UUID reference for these blob files. With the focus on only K8s now, we are removing this abstraction layer and the naming will reflect the K8s objects.</p>
+<h1 id="prerequisites">Prerequisites</h1>
+<blockquote>
+<p>⚠️ Make sure all workloads using Ondat volumes are scaled down to zero.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Update the CLI_TOOL variable if you do not have access to kubectl.</p>
+</blockquote>
+<blockquote>
+<p>💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.</p>
+</blockquote>
+<h1 id="procedure">Procedure</h1>
+<h2 id="step-1---uninstall-ondat-v270-as-if-you-are-starting-an-upgrade">Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade</h2>
+<ol>
+<li>Delete your storageoscluster CR</li>
+<li>Delete your storageos operator deployment</li>
+<li>Make sure to leave your Ondat etcd alone</li>
+</ol>
+<h2 id="step-2---run-our-downgrade-script">Step 2 - Run our downgrade script</h2>
 <ol>
 <li>
-<p>Here is an Ondat node, running on Kubernetes node worker1. An Ondat
-node is any machine that is running the Ondat daemonset pod. The node is
-visible below in kubectl.</p>
-<pre tabindex="0"><code>$ kubectl describe -n storageos pod storageos-daemonset-6q4g8
-Name:                 storageos-daemonset-6q4g8
-Namespace:            storageos
-Priority:             2000001000
-Priority Class Name:  system-node-critical
-Node:                 worker1/192.168.152.238
-Start Time:           Thu, 06 May 2021 15:53:34 +0100
-Labels:               app=storageos
-                      app.kubernetes.io/component=storageos-daemonset
-                      app.kubernetes.io/instance=example-ondat
-                      app.kubernetes.io/managed-by=storageos-operator
-                      app.kubernetes.io/name=storageos
-                      app.kubernetes.io/part-of=storageos
-                      controller-revision-hash=f5dcf577d
-                      kind=daemonset
-                      pod-template-generation=1
-                      storageos_cr=example-ondat
-Annotations:          kubectl.kubernetes.io/default-logs-container: storageos
-Status:               Running
-IP:                   192.168.152.238
-...
-</code></pre><p>The nodes in your cluster can be seen with <code>storageos get nodes</code>.</p>
-<pre tabindex="0"><code>$ storageos get nodes
-NAME          HEALTH  AGE        LABELS                              
-worker1       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker1,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true
-                                 storageos.com/computeonly=true 
-worker2       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker2,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker3,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true
-...
+<p>Download the following script and edit it to match your cluster&rsquo;s specifications.</p>
+<pre tabindex="0"><code>curl -sO https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
 </code></pre></li>
 <li>
-<p>Delete the node.</p>
-<pre tabindex="0"><code>kubectl delete node worker1
-</code></pre></li>
-<li>
-<p>Verify that the node has been deleted with <code>kubectl get nodes</code> or
-<code>storageos get nodes</code>. The node has now disappeared from Ondat.</p>
-<pre tabindex="0"><code>$ storageos get nodes
-NAME          HEALTH  AGE        LABELS                              
-worker2       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker2,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker3,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-...
+<p>Run the script below, with your Kubernetes CLI tool&rsquo;s context set to target your cluster:</p>
+<pre tabindex="0"><code>./downgrade-db-2-7-to-2-6.sh
 </code></pre></li>
 </ol>
+<p>This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.</p>
+<h2 id="step-3---install-ondat-v260">Step 3 - Install Ondat v2.6.0</h2>
+<p>You will now be able to use Ondat v2.6.0.</p>
 
 	
 	

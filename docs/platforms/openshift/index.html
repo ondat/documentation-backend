@@ -21,28 +21,28 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>OpenShift | </title><meta property="og:title" content="OpenShift" />
-<meta property="og:description" content="Ondat V2 supports Openshift v4.
+<meta property="og:description" content="Ondat V2 supports Openshift v4.0&#43;.
 Red Hat OpenShift and Ondat communicate with each other to perform actions such as creation, deletion and mounting of volumes through CSI. The CSI container running in the Ondat Daemonset creates a Linux socket that allows the communication between Red Hat OpenShift and Ondat.
-Installation Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.
-To install Ondat on Red Hat OpenShift, follow our installation instructions page." />
+Installation To install Ondat on Red Hat OpenShift, follow our installation instructions page.
+ ⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID limit of 1024." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/platforms/openshift/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="OpenShift">
-<meta itemprop="description" content="Ondat V2 supports Openshift v4.
+<meta itemprop="description" content="Ondat V2 supports Openshift v4.0&#43;.
 Red Hat OpenShift and Ondat communicate with each other to perform actions such as creation, deletion and mounting of volumes through CSI. The CSI container running in the Ondat Daemonset creates a Linux socket that allows the communication between Red Hat OpenShift and Ondat.
-Installation Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.
-To install Ondat on Red Hat OpenShift, follow our installation instructions page.">
+Installation To install Ondat on Red Hat OpenShift, follow our installation instructions page.
+ ⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID limit of 1024.">
 
-<meta itemprop="wordCount" content="311">
+<meta itemprop="wordCount" content="270">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenShift"/>
-<meta name="twitter:description" content="Ondat V2 supports Openshift v4.
+<meta name="twitter:description" content="Ondat V2 supports Openshift v4.0&#43;.
 Red Hat OpenShift and Ondat communicate with each other to perform actions such as creation, deletion and mounting of volumes through CSI. The CSI container running in the Ondat Daemonset creates a Linux socket that allows the communication between Red Hat OpenShift and Ondat.
-Installation Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.
-To install Ondat on Red Hat OpenShift, follow our installation instructions page."/>
+Installation To install Ondat on Red Hat OpenShift, follow our installation instructions page.
+ ⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID limit of 1024."/>
 
 
 
@@ -161,7 +161,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.6</a></li>
+            <li><a class="dropdown-item" href="/v2.6">v2.6</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.7</a></li>
             
           </ul>
         </li>
@@ -180,7 +182,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -491,6 +493,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrolling-upgrades" href="/docs/concepts/rolling-upgrades/">Rolling Upgrades to Orchestrator</a>
       
       
       
@@ -714,6 +722,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -816,6 +830,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsnamespaces" href="/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1182,7 +1202,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Contributing to the documentation</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
       
       
     </li>
@@ -1373,7 +1393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#red-hat-openshift-upgrades">Red Hat OpenShift Upgrades</a></li>
-    <li><a href="#csi-container-storage-interface-note">CSI (Container Storage Interface) Note</a></li>
+    <li><a href="#csi-container-storage-interface">CSI (Container Storage Interface)</a></li>
     <li><a href="#ondat-persistentvolumeclaims">Ondat PersistentVolumeClaims</a></li>
   </ul>
 </nav>
@@ -1423,13 +1443,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>OpenShift</h1>
 	
-	<p>Ondat V2 supports Openshift v4.</p>
+	<p>Ondat V2 supports Openshift v4.0+.</p>
 <p>Red Hat OpenShift and Ondat communicate with each other to perform actions such as
 creation, deletion and mounting of volumes through CSI. The CSI container
 running in the Ondat Daemonset creates a Linux socket that allows the
 communication between Red Hat OpenShift and Ondat.</p>
 <h2 id="installation">Installation</h2>
-<p>Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.</p>
 <p>To install Ondat on Red Hat OpenShift, follow our <a href="/docs/install/openshift">installation instructions</a> page.</p>
 <blockquote>
 <p>⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID
@@ -1437,19 +1456,14 @@ limit of 1024. Ondat recommends that the limit be raised to 32768.
 Please see our <a href="/docs/prerequisites/pidlimits">prerequisites</a> for more details.</p>
 </blockquote>
 <h2 id="red-hat-openshift-upgrades">Red Hat OpenShift Upgrades</h2>
-<p>Red Hat OpenShift provides an upgrade operator that automates the process of
-orchestrator version changes.</p>
-<p>This procedure can cause Ondat to malfunction due to sequential node
-restarts not taking the presence of stateful application data into
-consideration. To avoid this issue, make sure all stateful workloads using
-Ondat Volumes are stopped - usually by scaling StatefulSets to 0. Please
-contact Ondat support for further advice if required.</p>
+<p>Red Hat OpenShift provides an upgrade operator that automates the process of orchestrator version changes.</p>
 <blockquote>
-<p>⚠️ Red Hat OpenShift requires the internal registry to be available during the upgrade,
-however Ondat volumes may not be available. Therefore using Ondat
-for the internal registry is <strong>not</strong> recommended.</p>
+<p>⚠️ Use the <a href="/docs/operations/using-rolling-upgrades">rolling upgrade feature</a> to protect your cluster from major incidents during an upgrade. Please contact Ondat support for further advice if required.</p>
 </blockquote>
-<h2 id="csi-container-storage-interface-note">CSI (Container Storage Interface) Note</h2>
+<blockquote>
+<p>⚠️ Red Hat OpenShift requires the internal registry to be available during the upgrade, however Ondat volumes may not be available. Therefore using Ondat for the internal registry is <strong>not</strong> recommended.</p>
+</blockquote>
+<h2 id="csi-container-storage-interface">CSI (Container Storage Interface)</h2>
 <p>CSI is the standard that enables storage drivers to release on their own
 schedule. This allows storage vendors to upgrade, update, and enhance their
 drivers without the need to update Kubernetes source code, or follow Kubernetes

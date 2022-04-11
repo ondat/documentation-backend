@@ -36,7 +36,7 @@ Tools To be able to troubleshoot issues the Ondat CLI is required.
 Pod in pending because of mount error Issue The output of kubectl describe pod $POD_ID contains no such file or directory and references the Ondat volume device file.
 root@node1:~# kubectl -n kube-system describe $POD_ID (.">
 
-<meta itemprop="wordCount" content="2778">
+<meta itemprop="wordCount" content="2755">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Troubleshooting"/>
 <meta name="twitter:description" content="This section is aimed to help you troubleshoot issues in your cluster, whether they are related to the Ondat installation, integration with orchestrators or common misconfigurations.
@@ -161,7 +161,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.6</a></li>
+            <li><a class="dropdown-item" href="/v2.6">v2.6</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.7</a></li>
             
           </ul>
         </li>
@@ -180,7 +182,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +330,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -491,6 +493,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrolling-upgrades" href="/docs/concepts/rolling-upgrades/">Rolling Upgrades to Orchestrator</a>
       
       
       
@@ -714,6 +722,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -816,6 +830,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsnamespaces" href="/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1182,7 +1202,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Contributing to the documentation</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
       
       
     </li>
@@ -1840,14 +1860,13 @@ pods, allowing the DaemonSet to create the pods again.</p>
 <h2 id="lio-not-enabled">LIO not enabled</h2>
 <h3 id="issue-7">Issue</h3>
 <p>Ondat node can&rsquo;t start and shows the following log entries.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T14:34:40Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;liocheck returned error&#34;</span> <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>liocheck <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;exit status 1&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>dataplane <span style="color:#000">stderr</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;Sysfs root &#39;/sys/kernel/config/target&#39; is missing, is kernel configfs present and target_core_mod loaded? category=fslio level=warn\nRuntime error checking stage &#39;target_core_mod&#39;: SysFs root missing category=fslio level=warn\nliocheck: FAIL (lio_capable_system() returns failure) category=fslio level=fatal\n&#34;</span> <span style="color:#000">stdout</span><span style="color:#ce5c00;font-weight:bold">=</span>
-<span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T14:34:40Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;failed to start dataplane services&#34;</span> <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;system dependency check failed: exit status 1&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">command</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>lio <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>WARN   <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;Runtime error checking stage &#39;Start TCMU and create device&#39;: /sys/module/target_core_user is missing, is kernel configfs present and target_core_user loaded?&#34;</span>
+<span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>lio <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>FATAL  <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;liocheck: FAIL (platform not supported, see previous error messages)&#34;</span>
 </code></pre></div><h3 id="reason-7">Reason</h3>
-<p>This indicates that one or more kernel modules required for Ondat are
-not loaded.</p>
+<p>This indicates that one or more kernel modules required for Ondat are not loaded.</p>
 <h3 id="assert-7">Assert</h3>
 <p>The following kernel modules must be enabled in the host.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsmod  <span style="color:#000;font-weight:bold">|</span> egrep <span style="color:#4e9a06">&#34;^tcm_loop|^target_core_mod|^target_core_file|^configfs&#34;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">lsmod  <span style="color:#000;font-weight:bold">|</span> egrep <span style="color:#4e9a06">&#34;^tcm_loop|^target_core_mod|^target_core_user|^configfs|^uio&#34;</span>
 </code></pre></div><h3 id="solution-8">Solution</h3>
 <p>Install the required kernel modules (usually found in the
 <code>linux-image-extra-$(uname -r)</code> package of your distribution) on your nodes

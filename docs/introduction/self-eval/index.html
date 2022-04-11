@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Step-by-step guide to installing and evaluating Ondat
 ">
 
-<meta itemprop="wordCount" content="2601">
+<meta itemprop="wordCount" content="2600">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Self Evaluation Guide"/>
 <meta name="twitter:description" content="Step-by-step guide to installing and evaluating Ondat
@@ -155,7 +155,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.6</a></li>
+            <li><a class="dropdown-item" href="/v2.6">v2.6</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.7</a></li>
             
           </ul>
         </li>
@@ -174,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -322,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -485,6 +487,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrolling-upgrades" href="/docs/concepts/rolling-upgrades/">Rolling Upgrades to Orchestrator</a>
       
       
       
@@ -708,6 +716,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -810,6 +824,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsnamespaces" href="/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1176,7 +1196,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Contributing to the documentation</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
       
       
     </li>
@@ -1483,10 +1503,7 @@ modern distributions:</p>
 <li>A 64bit supported operating system - Ondat can run without additional
 packages in Debian 9, RancherOS, RHEL7.5,8 and CentOS7,8 and need the package
 linux-image-extra for Ubuntu.</li>
-<li>Mainline kernel modules <code>target_core_mod</code>, <code>tcp_loop</code>, <code>target_core_file</code>,
-<code>target_core_user</code>, <code>configfs</code>, and <code>ui</code>. These are present by default on
-most modern linux distributions, and can be installed with standard package
-managers. See our <a href="/docs/prerequisites/systemconfiguration">system configuration</a> page for instructions.</li>
+<li>Mainline kernel modules <code>target_core_mod</code>, <code>tcp_loop</code>, <code>target_core_user</code>, <code>configfs</code>, and <code>ui</code>. These are present by default on most modern linux distributions, and can be installed with standard package managers. See our <a href="/docs/prerequisites/systemconfiguration">system configuration</a> page for instructions.</li>
 </ul>
 <h3 id="install-the-storageos-kubectl-plugin">Install the storageos kubectl plugin</h3>
 <blockquote>
@@ -1572,7 +1589,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.6.0
+        image: storageos/cli:v2.7.0
         name: cli
 END
 </code></pre><blockquote>

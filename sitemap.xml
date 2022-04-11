@@ -48,6 +48,8 @@
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
   </url><url>
+    <loc>/docs/operations/downgrade-ondat-2.7-to-2.6/</loc>
+  </url><url>
     <loc>/docs/release-notes/</loc>
   </url><url>
     <loc>/docs/prerequisites/ipv6/</loc>
@@ -202,6 +204,8 @@
   </url><url>
     <loc>/docs/platforms/openshift/</loc>
   </url><url>
+    <loc>/docs/operations/using-rolling-upgrades/</loc>
+  </url><url>
     <loc>/docs/concepts/policies/</loc>
   </url><url>
     <loc>/docs/operations/policies/</loc>
@@ -219,6 +223,8 @@
     <loc>/docs/concepts/replication/</loc>
   </url><url>
     <loc>/docs/reference/resource_requests_and_limits/</loc>
+  </url><url>
+    <loc>/docs/concepts/rolling-upgrades/</loc>
   </url><url>
     <loc>/search/</loc>
   </url><url>

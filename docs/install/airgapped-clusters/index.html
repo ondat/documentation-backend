@@ -155,7 +155,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.6</a></li>
+            <li><a class="dropdown-item" href="/v2.6">v2.6</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.7</a></li>
             
           </ul>
         </li>
@@ -174,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -322,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -485,6 +487,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrolling-upgrades" href="/docs/concepts/rolling-upgrades/">Rolling Upgrades to Orchestrator</a>
       
       
       
@@ -708,6 +716,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -810,6 +824,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsnamespaces" href="/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1176,7 +1196,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Contributing to the documentation</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
       
       
     </li>
@@ -1502,7 +1522,7 @@ with the manifests.</p>
 </blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Generate yamls</span>
 <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span>my-storage-class
-<span style="color:#000">ONDAT_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span>v2.6.0
+<span style="color:#000">ONDAT_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span>v2.7.0
 <span style="color:#000">K8S_VERSTION</span><span style="color:#ce5c00;font-weight:bold">=</span>v1.22.6
 <span style="color:#000">USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
 <span style="color:#000">PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
@@ -1580,7 +1600,7 @@ with the manifests.</p>
 
 <span style="color:#8f5902;font-style:italic"># Generate yamls</span>
 <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span>my-storage-class
-<span style="color:#000">ONDAT_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span>v2.6.0
+<span style="color:#000">ONDAT_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span>v2.7.0
 <span style="color:#000">K8S_VERSTION</span><span style="color:#ce5c00;font-weight:bold">=</span>v1.22.6
 <span style="color:#000">USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
 <span style="color:#000">PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos

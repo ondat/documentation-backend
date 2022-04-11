@@ -23,7 +23,7 @@
 <title>System Configuration | </title><meta property="og:title" content="System Configuration" />
 <meta property="og:description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 We require the following modules to be loaded:
- target_core_mod tcm_loop target_core_file configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE." />
+ target_core_mod tcm_loop configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/prerequisites/systemconfiguration/" /><meta property="article:section" content="docs" />
 
@@ -32,14 +32,14 @@ We require the following modules to be loaded:
 <meta itemprop="name" content="System Configuration">
 <meta itemprop="description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 We require the following modules to be loaded:
- target_core_mod tcm_loop target_core_file configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE.">
+ target_core_mod tcm_loop configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.">
 
-<meta itemprop="wordCount" content="402">
+<meta itemprop="wordCount" content="374">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="System Configuration"/>
 <meta name="twitter:description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 We require the following modules to be loaded:
- target_core_mod tcm_loop target_core_file configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU and fall back to FUSE."/>
+ target_core_mod tcm_loop configfs target_core_user uio   ⚠️ Other applications utilising TCMU cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU."/>
 
 
 
@@ -158,7 +158,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.6</a></li>
+            <li><a class="dropdown-item" href="/v2.6">v2.6</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.7</a></li>
             
           </ul>
         </li>
@@ -177,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -325,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -488,6 +490,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrolling-upgrades" href="/docs/concepts/rolling-upgrades/">Rolling Upgrades to Orchestrator</a>
       
       
       
@@ -711,6 +719,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -813,6 +827,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsnamespaces" href="/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1179,7 +1199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Contributing to the documentation</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
       
       
     </li>
@@ -1421,32 +1441,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>System Configuration</h1>
 	
-	<p>Ondat requires certain kernel modules to function. In particular it
-requires <a href="http://linux-iscsi.org/wiki/Main_Page">Linux-IO</a>, an open-source
-implementation of the SCSI target, on all nodes that will execute Ondat
-(usually the workers).</p>
+	<p>Ondat requires certain kernel modules to function. In particular it requires <a href="http://linux-iscsi.org/wiki/Main_Page">Linux-IO</a>, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).</p>
 <p>We require the following modules to be loaded:</p>
 <ul>
 <li><code>target_core_mod</code></li>
 <li><code>tcm_loop</code></li>
-<li><code>target_core_file</code></li>
 <li><code>configfs</code></li>
 <li><code>target_core_user</code></li>
 <li><code>uio</code></li>
 </ul>
 <blockquote>
-<p>⚠️ Other applications utilising <a href="http://linux-iscsi.org/wiki/LIO">TCMU</a>
-cannot be run concurrently with Ondat. Doing so may result in corruption
-of data. On startup, Ondat will detect if other applications are using
-TCMU and fall back to FUSE. However if Ondat is started first there is no
-mechanism for Ondat to fallback to FUSE if another application begins to
-use TCMU. TCMU can be disabled using the
-<a href="/docs/reference/cluster-operator/configuration">DISABLE_TCMU</a>
-StorageOSCluster spec parameter.</p>
+<p>⚠️ Other applications utilising <a href="http://linux-iscsi.org/wiki/LIO">TCMU</a> cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.</p>
 </blockquote>
-<p>Depending on the distribution, the modules are shipped as part of the
-base kernel package or as part of a kernel extras package which needs to be
-installed.</p>
+<blockquote>
+<p>⚠️ TCMU can be disabled using the <a href="/docs/reference/cluster-operator/configuration">DISABLE_TCMU</a> StorageOSCluster spec parameter.</p>
+</blockquote>
+<p>Depending on the distribution, the modules are shipped as part of the base kernel package or as part of a kernel extras package which needs to be installed.</p>
 <h2 id="distribution-specifics">Distribution Specifics</h2>
 <p>The following distributions are supported by default:</p>
 <ul>
@@ -1458,9 +1468,7 @@ installed.</p>
 </ul>
 <p>Ubuntu 16.04/18.04 requires the installation of additional packages.</p>
 <blockquote>
-<p>⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
-necessary linux-image-extra package - <a href="/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels">see
-below</a> for more information</p>
+<p>⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the necessary linux-image-extra package - <a href="/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels">see below</a> for more information</p>
 </blockquote>
 <h2 id="ubuntu-package-installation">Ubuntu Package Installation</h2>
 <p><strong>Ubuntu 16.04/18.04 Generic</strong> and <strong>Ubuntu 16.04 GCE</strong> require extra packages:</p>

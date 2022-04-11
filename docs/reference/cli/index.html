@@ -148,7 +148,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.6</a></li>
+            <li><a class="dropdown-item" href="/v2.6">v2.6</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.7</a></li>
             
           </ul>
         </li>
@@ -167,7 +169,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -315,7 +317,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -478,6 +480,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrolling-upgrades" href="/docs/concepts/rolling-upgrades/">Rolling Upgrades to Orchestrator</a>
       
       
       
@@ -701,6 +709,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -803,6 +817,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsnamespaces" href="/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1169,7 +1189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Contributing to the documentation</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
       
       
     </li>
@@ -1423,13 +1443,13 @@ up resolution times for support issues.</p>
 <h2 id="installation">Installation</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># linux/amd64</span>
 curl -sSLo storageos <span style="color:#4e9a06">\ </span>
-    https://github.com/storageos/go-cli/releases/download/v2.6.0/storageos_linux_amd64 <span style="color:#4e9a06">\
+    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_linux_amd64 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/
 
 <span style="color:#8f5902;font-style:italic"># MacOS</span>
 curl -sSLo storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    https://github.com/storageos/go-cli/releases/download/v2.6.0/storageos_darwin_amd64 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_darwin_amd64 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/
 </code></pre></div><p>You will need to provide the correct credentials to connect to the API. The
@@ -1467,7 +1487,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:v2.6.0
+      - image: storageos/cli:v2.7.0
         command:
           - &quot;/bin/sh&quot;
           - &quot;-c&quot;
@@ -1488,7 +1508,7 @@ spec:
 <p>You can also run the cli as a container in your Kubernetes cluster. Then exec
 into it to run commands.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos run <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.6.0
+</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.7.0
     --restart<span style="color:#ce5c00;font-weight:bold">=</span>Never                          <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos:5705 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos       <span style="color:#4e9a06">\
@@ -1707,6 +1727,8 @@ that are passed to <code>--output</code> are &lsquo;json&rsquo;, &lsquo;yaml&rsq
             
         
             
+        
+            
                 <div class="entry">
                     <h5>
                         <a href="/docs/reference/cli/apply/">Apply</a>
@@ -1824,6 +1846,10 @@ that are passed to <code>--output</code> are &lsquo;json&rsquo;, &lsquo;yaml&rsq
                     </h5>
                     <p></p>
                 </div>
+            
+        
+            
+        
             
         
             

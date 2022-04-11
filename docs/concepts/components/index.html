@@ -21,7 +21,7 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Ondat Components | </title><meta property="og:title" content="Ondat Components" />
-<meta property="og:description" content="Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
+<meta property="og:description" content="Overview Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
 Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster to create and present virtual volumes into containers. Space on the host is consumed from the mount point /var/lib/storageos/data, so it is therefore recommended that disk devices are used exclusively for Ondat, as described in Managing Host Storage
 Ondat is agnostic to the underlying storage and runs equally well on bare metal, in virtual machines or on cloud providers." />
 <meta property="og:type" content="article" />
@@ -30,14 +30,14 @@ Ondat is agnostic to the underlying storage and runs equally well on bare metal,
 
 
 <meta itemprop="name" content="Ondat Components">
-<meta itemprop="description" content="Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
+<meta itemprop="description" content="Overview Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
 Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster to create and present virtual volumes into containers. Space on the host is consumed from the mount point /var/lib/storageos/data, so it is therefore recommended that disk devices are used exclusively for Ondat, as described in Managing Host Storage
 Ondat is agnostic to the underlying storage and runs equally well on bare metal, in virtual machines or on cloud providers.">
 
-<meta itemprop="wordCount" content="508">
+<meta itemprop="wordCount" content="823">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Components"/>
-<meta name="twitter:description" content="Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
+<meta name="twitter:description" content="Overview Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
 Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster to create and present virtual volumes into containers. Space on the host is consumed from the mount point /var/lib/storageos/data, so it is therefore recommended that disk devices are used exclusively for Ondat, as described in Managing Host Storage
 Ondat is agnostic to the underlying storage and runs equally well on bare metal, in virtual machines or on cloud providers."/>
 
@@ -158,7 +158,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <li><a class="dropdown-item" href="/v2.5">v2.5</a></li>
             
-            <li><a class="dropdown-item" href="/">v2.6</a></li>
+            <li><a class="dropdown-item" href="/v2.6">v2.6</a></li>
+            
+            <li><a class="dropdown-item" href="/">v2.7</a></li>
             
           </ul>
         </li>
@@ -177,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -325,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0244719320bfe6e80adfb523edd11a84ebd941fd08e188dc5a53e94f98c8b8417d8f929f40ff4885977c79a7611402f4a8e96dae71e7441cac73d7935cac4d5e.json"
+  data-offline-search-index-json-src="/offline-search-index.b2bb7b555bd94f8c21fe60eb408fcb82a1acc675a7900929ec8566b1046625f9d496d8fab5597c887fd665c42b42f4572b91f7878c120afb2cbc5dcec24a0bfd.json"
   data-offline-search-base-href="/"
 >
 
@@ -488,6 +490,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrolling-upgrades" href="/docs/concepts/rolling-upgrades/">Rolling Upgrades to Orchestrator</a>
       
       
       
@@ -711,6 +719,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -813,6 +827,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsnamespaces" href="/docs/operations/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1179,7 +1199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Contributing to the documentation</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
       
       
     </li>
@@ -1366,6 +1386,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#ondat-cluster-operatorhttpsgithubcomstorageosoperator"><a href="https://github.com/storageos/operator">Ondat Cluster Operator</a></a></li>
+    <li><a href="#ondat-controlplane">Ondat Controlplane</a></li>
+    <li><a href="#ondat-dataplane">Ondat Dataplane</a></li>
+    <li><a href="#ondat-scheduler">Ondat Scheduler</a></li>
+    <li><a href="#csi-helperhttpsgithubcomstorageosexternal-provisioner"><a href="https://github.com/storageos/external-provisioner">CSI helper</a></a></li>
+    <li><a href="#ondat-api-managerhttpsgithubcomstorageosapi-manager"><a href="https://github.com/storageos/api-manager">Ondat API manager</a></a></li>
+    <li><a href="#ondat-upgrade-guard">Ondat Upgrade Guard</a></li>
+    <li><a href="#ondat-node-manager">Ondat Node Manager</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1411,58 +1444,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Ondat Components</h1>
 	
-	<p>Ondat is a software-defined storage platform for running stateful
-applications in Kubernetes.</p>
-<p>Fundamentally, Ondat uses the storage attached to the nodes in the
-Ondat cluster to create and present virtual volumes into containers. Space
-on the host is consumed from the mount point <code>/var/lib/storageos/data</code>, so it
-is therefore recommended that disk devices are used exclusively for Ondat,
-as described in <a href="/docs/operations/managing-host-storage">Managing Host Storage</a></p>
+	<h1 id="overview">Overview</h1>
+<p>Ondat is a software-defined storage platform for running stateful applications in Kubernetes.</p>
+<p>Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster to create and present virtual volumes into containers. Space on the host is consumed from the mount point <code>/var/lib/storageos/data</code>, so it is therefore recommended that disk devices are used exclusively for Ondat, as described in <a href="/docs/operations/managing-host-storage">Managing Host Storage</a></p>
 <p>Ondat is agnostic to the underlying storage and runs equally well on
 bare metal, in virtual machines or on cloud providers.</p>
 <p><img src="/images/docs/concepts/ondat-deployment.png" alt="Ondat cluster components"></p>
 <p>Read about <a href="https://www.ondat.io/platform/platform-overview">the cloud native storage principles behind
 Ondat</a>.</p>
-<h3 id="ondat-on-kubernetes">Ondat on Kubernetes</h3>
+<h1 id="ondat-on-kubernetes">Ondat on Kubernetes</h1>
 <p>Ondat is architected as a series of containers that fulfil separate,
 discrete functions.</p>
 <p>Links where appropriate have been given to our open-source GitHub repository.</p>
-<ul>
-<li><a href="https://github.com/storageos/operator">Ondat Cluster Operator</a></li>
-</ul>
+<h2 id="ondat-cluster-operatorhttpsgithubcomstorageosoperator"><a href="https://github.com/storageos/operator">Ondat Cluster Operator</a></h2>
 <p>Responsible for the creation and maintenance of the Ondat cluster. This
 operator is primarily responsible for ensuring that all the relevant
 applications are running in your cluster.</p>
-<ul>
-<li>Ondat Controlplane</li>
-</ul>
+<h2 id="ondat-controlplane">Ondat Controlplane</h2>
 <p>Responsible for monitoring and maintaining the state of volumes and nodes
 in the cluster. The Controlplane and the Dataplane run together in a single
 container, managed by a daemonset. The Controlplane works with etcd to maintain
 state consensus in your cluster.</p>
-<ul>
-<li>Ondat Dataplane</li>
-</ul>
+<h2 id="ondat-dataplane">Ondat Dataplane</h2>
 <p>Responsible for all I/O path related tasks; reading, writing, compression
 and caching.</p>
-<ul>
-<li>Ondat Scheduler</li>
-</ul>
+<h2 id="ondat-scheduler">Ondat Scheduler</h2>
 <p>Responsible for scheduling applications on the same node as an application&rsquo;s
 volumes. Ondat uses a custom Kubernetes scheduler to handle pod placement,
 ensuring that volumes are deployed on the same nodes as the relevant workloads
 as often as possible.</p>
-<ul>
-<li><a href="https://github.com/storageos/external-provisioner">CSI helper</a></li>
-</ul>
+<h2 id="csi-helperhttpsgithubcomstorageosexternal-provisioner"><a href="https://github.com/storageos/external-provisioner">CSI helper</a></h2>
 <p>Responsible for registering Ondat with Kubernetes as a CSI driver. It
 is necessary because the internal persistent volume controller running in
 Kubernetes controller-manager does not have any direct interfaces to CSI
 drivers. It monitors PVC objects created by users and creates/deletes volumes
 for them.</p>
-<ul>
-<li><a href="https://github.com/storageos/api-manager">Ondat API manager</a></li>
-</ul>
+<h2 id="ondat-api-managerhttpsgithubcomstorageosapi-manager"><a href="https://github.com/storageos/api-manager">Ondat API manager</a></h2>
 <p>Acts as a middle-man between various APIs. It has all the capabilities of a
 Kubernetes Operator and is also able to communicate with the Ondat control
 plane API. This application handles typical operator tasks like labelling or
@@ -1484,6 +1501,18 @@ reduce network traffic.</p>
 running Ondat, regardless of whether the pod and volume are
 collocated on the same node. Therefore, applications may be started or
 restarted on any node and access volumes transparently.</p>
+<h2 id="ondat-upgrade-guard">Ondat Upgrade Guard</h2>
+<p>The upgrade guard is a key component of the rolling upgrade feature. It blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.</p>
+<p>The upgrade guard will detect if a volume is reconciling (for example, one that does not have enough synced replicas), at which point a node manager pod on the same node as the reconciling volume&rsquo;s master and replicas become unready. Ondat uses a PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. This prevents the rolling upgrade from continuing until the PDB is satisfied and all volumes have fully reconciled</p>
+<p>If the PDB is set to 1 and a Control Plane volume on a node is not ready for a long period of time, this will stop the upgrade process. The <code>api-managercomponent</code> will be able to dynamically set the PDB value if it can determine the health of the volume. If the <code>api-managercomponent</code> knows that a volume will not be ready, it can increase the PDB <code>maxUnavailable</code> value, allowing the upgrade to continue. The upgrade guard container will log when it is available to upgrade, it will also log the reason if upgrade is not possible.</p>
+<blockquote>
+<p>⚠️ The upgrade guard container only monitors volumes that host a deployment on its node (for example, it doesn’t care if a volume is unhealthy if the node it&rsquo;s running on hosts none of the volumes primary and replicas)</p>
+</blockquote>
+<blockquote>
+<p>⚠️ There is some latency between a volume becoming unhealthy and the upgrade guard noticing, due to the polling nature of both the <code>api-managercomponent</code> volume sync Kubernetes readiness endpoints)</p>
+</blockquote>
+<h2 id="ondat-node-manager">Ondat Node Manager</h2>
+<p>The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the <code>StorageOS</code> node container and is a separate pod so that it can be restarted independently of the node container.</p>
 
 	
 	

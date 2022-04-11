@@ -20,26 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Deleting Ondat Objects | </title><meta property="og:title" content="Deleting Ondat Objects" />
-<meta property="og:description" content="When a Kubernetes object is deleted, Ondat controllers automatically sync this deletion to Ondat. For example, when a Kubernets node is deleted, this will automatically be mirrored in Ondat, likewise with Namespaces.
-  Here is an Ondat node, running on Kubernetes node worker1. An Ondat node is any machine that is running the Ondat daemonset pod. The node is visible below in kubectl.
-$ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-daemonset-6q4g8 Namespace: storageos Priority: 2000001000 Priority Class Name: system-node-critical Node: worker1/192." />
+<title></title><meta property="og:title" content="" />
+<meta property="og:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+ ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
+ Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/operations/delete-stos-objects/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/operations/using-rolling-upgrades/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Deleting Ondat Objects">
-<meta itemprop="description" content="When a Kubernetes object is deleted, Ondat controllers automatically sync this deletion to Ondat. For example, when a Kubernets node is deleted, this will automatically be mirrored in Ondat, likewise with Namespaces.
-  Here is an Ondat node, running on Kubernetes node worker1. An Ondat node is any machine that is running the Ondat daemonset pod. The node is visible below in kubectl.
-$ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-daemonset-6q4g8 Namespace: storageos Priority: 2000001000 Priority Class Name: system-node-critical Node: worker1/192.">
+<meta itemprop="name" content="">
+<meta itemprop="description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+ ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
+ Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB).">
 
-<meta itemprop="wordCount" content="228">
+<meta itemprop="wordCount" content="275">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Deleting Ondat Objects"/>
-<meta name="twitter:description" content="When a Kubernetes object is deleted, Ondat controllers automatically sync this deletion to Ondat. For example, when a Kubernets node is deleted, this will automatically be mirrored in Ondat, likewise with Namespaces.
-  Here is an Ondat node, running on Kubernetes node worker1. An Ondat node is any machine that is running the Ondat daemonset pod. The node is visible below in kubectl.
-$ kubectl describe -n storageos pod storageos-daemonset-6q4g8 Name: storageos-daemonset-6q4g8 Namespace: storageos Priority: 2000001000 Priority Class Name: system-node-critical Node: worker1/192."/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+ ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
+ Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB)."/>
 
 
 
@@ -82,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Deleting Ondat Objects | </title>
+    <title></title>
   </head>
   <body class="td-page">
     
@@ -737,7 +737,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsdelete-stos-objects" href="/docs/operations/delete-stos-objects/">Deleting Ondat Objects</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdelete-stos-objects" href="/docs/operations/delete-stos-objects/">Deleting Ondat Objects</a>
       
       
       
@@ -832,7 +832,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsusing-rolling-upgrades" href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
       
       
       
@@ -1386,6 +1386,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#step-1---enable-node-manager-and-upgrade-guard">Step 1 - Enable Node Manager and Upgrade Guard</a></li>
+    <li><a href="#step-2---rolling-upgrade-ready">Step 2 - Rolling upgrade ready</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1421,7 +1428,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/delete-stos-objects/">Deleting Ondat Objects</a>
+	<a href="/docs/operations/using-rolling-upgrades/">Platform Upgrade</a>
 </li>
 
 	</ol>
@@ -1429,90 +1436,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Deleting Ondat Objects</h1>
+	<h1></h1>
 	
-	<p>When a Kubernetes object is deleted, Ondat controllers automatically sync
-this deletion to Ondat. For example, when a Kubernets node is deleted, this
-will automatically be mirrored in Ondat, likewise with Namespaces.</p>
-<ol>
+	<h1 id="overview">Overview</h1>
+<p>This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the <a href="/docs/concepts/rolling-upgrades/#upgrade-guard">Upgrade Guard</a> and <a href="/docs/concepts/rolling-upgrades/#node-manager">Node Manager</a>. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.</p>
+<blockquote>
+<p>⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.</p>
+</blockquote>
+<h1 id="prerequisites">Prerequisites</h1>
+<blockquote>
+<p>⚠️ Make sure you have met the requirements of <a href="https://kubernetes.io/docs/tasks/run-application/configure-pdb/">configuring a Pod Disruption Budget (PDB)</a>.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ If your volume does not have any replicas, the rolling upgrades feature will not start on any StorageOS node until you have one or more replicas on all your volumes.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ This feature supports the following platforms: Google Anthos, Google GKE with future support to be expanded to Amazon EKS, Openshift and Rancher.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.</p>
+</blockquote>
+<h1 id="procedure">Procedure</h1>
+<h2 id="step-1---enable-node-manager-and-upgrade-guard">Step 1 - Enable Node Manager and Upgrade Guard</h2>
+<ul>
+<li>Add the following lines to the StorageOSCluster spec:</li>
+</ul>
+<pre tabindex="0"><code> nodeManagerFeatures:
+   upgradeGuard: &quot;true&quot;
+</code></pre><ul>
 <li>
-<p>Here is an Ondat node, running on Kubernetes node worker1. An Ondat
-node is any machine that is running the Ondat daemonset pod. The node is
-visible below in kubectl.</p>
-<pre tabindex="0"><code>$ kubectl describe -n storageos pod storageos-daemonset-6q4g8
-Name:                 storageos-daemonset-6q4g8
-Namespace:            storageos
-Priority:             2000001000
-Priority Class Name:  system-node-critical
-Node:                 worker1/192.168.152.238
-Start Time:           Thu, 06 May 2021 15:53:34 +0100
-Labels:               app=storageos
-                      app.kubernetes.io/component=storageos-daemonset
-                      app.kubernetes.io/instance=example-ondat
-                      app.kubernetes.io/managed-by=storageos-operator
-                      app.kubernetes.io/name=storageos
-                      app.kubernetes.io/part-of=storageos
-                      controller-revision-hash=f5dcf577d
-                      kind=daemonset
-                      pod-template-generation=1
-                      storageos_cr=example-ondat
-Annotations:          kubectl.kubernetes.io/default-logs-container: storageos
-Status:               Running
-IP:                   192.168.152.238
-...
-</code></pre><p>The nodes in your cluster can be seen with <code>storageos get nodes</code>.</p>
-<pre tabindex="0"><code>$ storageos get nodes
-NAME          HEALTH  AGE        LABELS                              
-worker1       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker1,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true
-                                 storageos.com/computeonly=true 
-worker2       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker2,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker3,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true
-...
+<p>Alternatively, you can run the following command:</p>
+<pre tabindex="0"><code>kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &quot;true&quot;|' | kubectl apply -f - 
 </code></pre></li>
-<li>
-<p>Delete the node.</p>
-<pre tabindex="0"><code>kubectl delete node worker1
-</code></pre></li>
-<li>
-<p>Verify that the node has been deleted with <code>kubectl get nodes</code> or
-<code>storageos get nodes</code>. The node has now disappeared from Ondat.</p>
-<pre tabindex="0"><code>$ storageos get nodes
-NAME          HEALTH  AGE        LABELS                              
-worker2       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker2,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker3,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-...
-</code></pre></li>
-</ol>
+</ul>
+<p>You will see new pods getting created, where one pod per node in a cluster called Node Manager.</p>
+<h2 id="step-2---rolling-upgrade-ready">Step 2 - Rolling upgrade ready</h2>
+<p>Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!</p>
+<blockquote>
+<p>⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ EKS takes care on PDB for 50 mins, after this period upgrade would fail unless it was forced.</p>
+</blockquote>
 
 	
 	

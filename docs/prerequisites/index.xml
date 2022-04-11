@@ -22,32 +22,22 @@
       <description>
         
         
-        &lt;p&gt;Ondat requires certain kernel modules to function. In particular it
-requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source
-implementation of the SCSI target, on all nodes that will execute Ondat
-(usually the workers).&lt;/p&gt;
+        &lt;p&gt;Ondat requires certain kernel modules to function. In particular it requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).&lt;/p&gt;
 &lt;p&gt;We require the following modules to be loaded:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;target_core_mod&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;tcm_loop&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;target_core_file&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;configfs&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;target_core_user&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;uio&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt;
-cannot be run concurrently with Ondat. Doing so may result in corruption
-of data. On startup, Ondat will detect if other applications are using
-TCMU and fall back to FUSE. However if Ondat is started first there is no
-mechanism for Ondat to fallback to FUSE if another application begins to
-use TCMU. TCMU can be disabled using the
-&lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;DISABLE_TCMU&lt;/a&gt;
-StorageOSCluster spec parameter.&lt;/p&gt;
+&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt; cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Depending on the distribution, the modules are shipped as part of the
-base kernel package or as part of a kernel extras package which needs to be
-installed.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ TCMU can be disabled using the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;DISABLE_TCMU&lt;/a&gt; StorageOSCluster spec parameter.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Depending on the distribution, the modules are shipped as part of the base kernel package or as part of a kernel extras package which needs to be installed.&lt;/p&gt;
 &lt;h2 id=&#34;distribution-specifics&#34;&gt;Distribution Specifics&lt;/h2&gt;
 &lt;p&gt;The following distributions are supported by default:&lt;/p&gt;
 &lt;ul&gt;
@@ -59,9 +49,7 @@ installed.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ubuntu 16.04/18.04 requires the installation of additional packages.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
-necessary linux-image-extra package - &lt;a href=&#34;/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels&#34;&gt;see
-below&lt;/a&gt; for more information&lt;/p&gt;
+&lt;p&gt;⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the necessary linux-image-extra package - &lt;a href=&#34;/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels&#34;&gt;see below&lt;/a&gt; for more information&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;ubuntu-package-installation&#34;&gt;Ubuntu Package Installation&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Ubuntu 16.04/18.04 Generic&lt;/strong&gt; and &lt;strong&gt;Ubuntu 16.04 GCE&lt;/strong&gt; require extra packages:&lt;/p&gt;

@@ -1254,7 +1254,7 @@ with the manifests.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Generate yamls&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;my-storage-class
-&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.6.0
+&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.7.0
 &lt;span style=&#34;color:#000&#34;&gt;K8S_VERSTION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v1.22.6
 &lt;span style=&#34;color:#000&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
 &lt;span style=&#34;color:#000&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
@@ -1332,7 +1332,7 @@ with the manifests.&lt;/p&gt;
 
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Generate yamls&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;my-storage-class
-&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.6.0
+&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.7.0
 &lt;span style=&#34;color:#000&#34;&gt;K8S_VERSTION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v1.22.6
 &lt;span style=&#34;color:#000&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
 &lt;span style=&#34;color:#000&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos

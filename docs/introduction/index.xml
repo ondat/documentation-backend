@@ -171,10 +171,7 @@ modern distributions:&lt;/p&gt;
 &lt;li&gt;A 64bit supported operating system - Ondat can run without additional
 packages in Debian 9, RancherOS, RHEL7.5,8 and CentOS7,8 and need the package
 linux-image-extra for Ubuntu.&lt;/li&gt;
-&lt;li&gt;Mainline kernel modules &lt;code&gt;target_core_mod&lt;/code&gt;, &lt;code&gt;tcp_loop&lt;/code&gt;, &lt;code&gt;target_core_file&lt;/code&gt;,
-&lt;code&gt;target_core_user&lt;/code&gt;, &lt;code&gt;configfs&lt;/code&gt;, and &lt;code&gt;ui&lt;/code&gt;. These are present by default on
-most modern linux distributions, and can be installed with standard package
-managers. See our &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;system configuration&lt;/a&gt; page for instructions.&lt;/li&gt;
+&lt;li&gt;Mainline kernel modules &lt;code&gt;target_core_mod&lt;/code&gt;, &lt;code&gt;tcp_loop&lt;/code&gt;, &lt;code&gt;target_core_user&lt;/code&gt;, &lt;code&gt;configfs&lt;/code&gt;, and &lt;code&gt;ui&lt;/code&gt;. These are present by default on most modern linux distributions, and can be installed with standard package managers. See our &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;system configuration&lt;/a&gt; page for instructions.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -260,7 +257,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.6.0
+        image: storageos/cli:v2.7.0
         name: cli
 END
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;

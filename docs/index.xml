@@ -1508,7 +1508,7 @@ board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&g
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;images.nodeContainer&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;Ondat node container image&lt;/td&gt;
-&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos/node:v2.6.0&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos/node:v2.7.0&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;k8sDistro&lt;/code&gt;&lt;/td&gt;
@@ -1987,7 +1987,7 @@ with the manifests.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Generate yamls&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;my-storage-class
-&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.6.0
+&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.7.0
 &lt;span style=&#34;color:#000&#34;&gt;K8S_VERSTION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v1.22.6
 &lt;span style=&#34;color:#000&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
 &lt;span style=&#34;color:#000&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
@@ -2065,7 +2065,7 @@ with the manifests.&lt;/p&gt;
 
 &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Generate yamls&lt;/span&gt;
 &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;my-storage-class
-&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.6.0
+&lt;span style=&#34;color:#000&#34;&gt;ONDAT_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v2.7.0
 &lt;span style=&#34;color:#000&#34;&gt;K8S_VERSTION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;v1.22.6
 &lt;span style=&#34;color:#000&#34;&gt;USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
 &lt;span style=&#34;color:#000&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
@@ -2392,32 +2392,22 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
       <description>
         
         
-        &lt;p&gt;Ondat requires certain kernel modules to function. In particular it
-requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source
-implementation of the SCSI target, on all nodes that will execute Ondat
-(usually the workers).&lt;/p&gt;
+        &lt;p&gt;Ondat requires certain kernel modules to function. In particular it requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).&lt;/p&gt;
 &lt;p&gt;We require the following modules to be loaded:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;target_core_mod&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;tcm_loop&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;target_core_file&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;configfs&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;target_core_user&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;uio&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt;
-cannot be run concurrently with Ondat. Doing so may result in corruption
-of data. On startup, Ondat will detect if other applications are using
-TCMU and fall back to FUSE. However if Ondat is started first there is no
-mechanism for Ondat to fallback to FUSE if another application begins to
-use TCMU. TCMU can be disabled using the
-&lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;DISABLE_TCMU&lt;/a&gt;
-StorageOSCluster spec parameter.&lt;/p&gt;
+&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt; cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Depending on the distribution, the modules are shipped as part of the
-base kernel package or as part of a kernel extras package which needs to be
-installed.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ TCMU can be disabled using the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;DISABLE_TCMU&lt;/a&gt; StorageOSCluster spec parameter.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Depending on the distribution, the modules are shipped as part of the base kernel package or as part of a kernel extras package which needs to be installed.&lt;/p&gt;
 &lt;h2 id=&#34;distribution-specifics&#34;&gt;Distribution Specifics&lt;/h2&gt;
 &lt;p&gt;The following distributions are supported by default:&lt;/p&gt;
 &lt;ul&gt;
@@ -2429,9 +2419,7 @@ installed.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Ubuntu 16.04/18.04 requires the installation of additional packages.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the
-necessary linux-image-extra package - &lt;a href=&#34;/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels&#34;&gt;see
-below&lt;/a&gt; for more information&lt;/p&gt;
+&lt;p&gt;⚠️ Ubuntu 16.04/18.04 AWS and Ubuntu 18.04 GCE do not provide the necessary linux-image-extra package - &lt;a href=&#34;/docs/prerequisites/systemconfiguration#ubuntu-with-aws-or-gce-kernels&#34;&gt;see below&lt;/a&gt; for more information&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;ubuntu-package-installation&#34;&gt;Ubuntu Package Installation&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Ubuntu 16.04/18.04 Generic&lt;/strong&gt; and &lt;strong&gt;Ubuntu 16.04 GCE&lt;/strong&gt; require extra packages:&lt;/p&gt;
@@ -2471,6 +2459,58 @@ the init container, perform the following steps:&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Downgrade Ondat from 2.7.0 to 2.6.0</title>
+      <link>/docs/operations/downgrade-ondat-2.7-to-2.6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/downgrade-ondat-2.7-to-2.6/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.&lt;/p&gt;
+&lt;p&gt;As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.&lt;/p&gt;
+&lt;p&gt;As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however it is not usual operation, so it is necessary to raise a proactive support case &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; and work with the customer success team as part of the downgrade process.&lt;/p&gt;
+&lt;p&gt;For those curious, in the past Ondat supported other Container Orchestrators (CO) and therefore used an internal UUID reference for these blob files. With the focus on only K8s now, we are removing this abstraction layer and the naming will reflect the K8s objects.&lt;/p&gt;
+&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure all workloads using Ondat volumes are scaled down to zero.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Update the CLI_TOOL variable if you do not have access to kubectl.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;procedure&#34;&gt;Procedure&lt;/h1&gt;
+&lt;h2 id=&#34;step-1---uninstall-ondat-v270-as-if-you-are-starting-an-upgrade&#34;&gt;Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Delete your storageoscluster CR&lt;/li&gt;
+&lt;li&gt;Delete your storageos operator deployment&lt;/li&gt;
+&lt;li&gt;Make sure to leave your Ondat etcd alone&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-2---run-our-downgrade-script&#34;&gt;Step 2 - Run our downgrade script&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Download the following script and edit it to match your cluster&amp;rsquo;s specifications.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sO https://docs.ondat.io/v2.7/sh/downgrade-db-2-7-to-2-6.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the script below, with your Kubernetes CLI tool&amp;rsquo;s context set to target your cluster:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./downgrade-db-2-7-to-2-6.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.&lt;/p&gt;
+&lt;h2 id=&#34;step-3---install-ondat-v260&#34;&gt;Step 3 - Install Ondat v2.6.0&lt;/h2&gt;
+&lt;p&gt;You will now be able to use Ondat v2.6.0.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Release Notes</title>
       <link>/docs/release-notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2481,15 +2521,67 @@ the init container, perform the following steps:&lt;/p&gt;
         
         &lt;p&gt;We recommend always using &amp;ldquo;tagged&amp;rdquo; versions of Ondat rather than &amp;ldquo;latest&amp;rdquo;,
 and to perform upgrades only after reading the release notes.&lt;/p&gt;
-&lt;p&gt;The latest tagged release is &lt;code&gt;2.6.0&lt;/code&gt;. For
+&lt;p&gt;The latest tagged release is &lt;code&gt;2.7.0&lt;/code&gt;. For
 installation instructions see our
 &lt;a href=&#34;/docs/reference/cluster-operator/install&#34;&gt;Install&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;The latest CLI release is &lt;code&gt;2.6.0&lt;/code&gt;, available from
+&lt;p&gt;The latest CLI release is &lt;code&gt;2.7.0&lt;/code&gt;, available from
 &lt;a href=&#34;https://github.com/storageos/go-cli/releases&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;upgrading&#34;&gt;Upgrading&lt;/h1&gt;
 &lt;p&gt;To upgrade from version 1.x to 2.x, contact Ondat &lt;a href=&#34;/docs/support&#34;&gt;support&lt;/a&gt; for assistance.&lt;/p&gt;
-&lt;h2 id=&#34;260---released-2022-02-14&#34;&gt;2.6.0 - Released 2022-02-14&lt;/h2&gt;
+&lt;h2 id=&#34;270---released-2022-04-07&#34;&gt;2.7.0 - Released 2022-04-07&lt;/h2&gt;
 &lt;h3 id=&#34;new&#34;&gt;New&lt;/h3&gt;
+&lt;p&gt;k8s &amp;amp; Orchestrator Rolling Upgrade&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tech Preview: Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ This is a tech preview, we only recommend using this feature on your test clusters&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Operator&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated memory limit&lt;/li&gt;
+&lt;li&gt;Introduced topology spread constraint with &lt;code&gt;ScheduledAnyway&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;API Manager&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adds a feature so when a PVC is not found scheduling will not be blocked&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Control Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;Only_Numeric_Owners&lt;/code&gt; to true on NFSv4 setting on Ganesha&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Data Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Removed support for FUSE. Ondat now only supports TCMU. &lt;code&gt;target_core_user&lt;/code&gt; must now be used. Read &lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/systemconfiguration/&#34;&gt;System Configuration&lt;/a&gt; for more information&lt;/li&gt;
+&lt;li&gt;Rewrote the RPC interface between the Control Plane and the Data Plane. All of the old &lt;code&gt;ctl&lt;/code&gt; tools have been removed&lt;/li&gt;
+&lt;li&gt;Removed the 32-bit mappings and uses the UUIDs passed by the CP directly to address presentations and deployments
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ If you decide to upgrade to 2.7.0 and want to downgrade, you can only roll back to 2.6.0, not earlier versions. Roll back instruction can be found &lt;a href=&#34;/docs/operations/downgrade-ondat-2.7-to-2.6&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fixed&#34;&gt;Fixed&lt;/h3&gt;
+&lt;p&gt;Operator&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a bug that sometimes caused the operator to enter a deadlock state after Ondat cluster CR object deletion&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Control Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue where Ondat was not able to unmount volumes in rare instances, then occasionally causing volumes to become unhealthy&lt;/li&gt;
+&lt;li&gt;Fixed an issue that caused replicas to go into the “unknown” state during failover in somne rare instances&lt;/li&gt;
+&lt;li&gt;Fixed an issue to now display output all dataplane logs even if they don&amp;rsquo;t have the expected syntax&lt;/li&gt;
+&lt;li&gt;Fixed an issue so Ondat would speculatively configure the replica in the dataplane before we advertise ourselves to the master&lt;/li&gt;
+&lt;li&gt;Fix an issue where goroutines attempting to dial remote nodes could be blocked&lt;/li&gt;
+&lt;li&gt;Fix an issue so Ondat volume would remain mounted and online during temporary network issues when pod is on remote, master and replica&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Data Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix non-null terminated buffer which could lead to garbled logs&lt;/li&gt;
+&lt;li&gt;Fix client-server network to improve robustness&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;260---released-2022-02-14&#34;&gt;2.6.0 - Released 2022-02-14&lt;/h2&gt;
+&lt;h3 id=&#34;new-1&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;Portal Manager:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Initial release of the Portal Manager, which supports the connection to Ondat
@@ -2520,7 +2612,7 @@ component is disabled by default and we do not recommend using the feature
 for production workloads as it is a technical preview feature.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;25---released-2021-12-06&#34;&gt;2.5 - Released 2021-12-06&lt;/h2&gt;
-&lt;h3 id=&#34;fixed&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-1&#34;&gt;Fixed&lt;/h3&gt;
 &lt;p&gt;Dataplane:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Deadlock with unordered UNMAP commands.&lt;/li&gt;
@@ -2538,7 +2630,7 @@ used to extract volume data in disaster recovery scenarios. There was an
 issue that prevented the tool from running whilst the Dataplane was running.
 This has been fixed.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-1&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-2&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;Dataplane:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Faster replica syncing - new replicas can be provisioned faster and rejoining
@@ -2570,7 +2662,7 @@ port to new operator and we have given users increased flexibility for users
 to configure StorageOS images.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;244---released-2021-09-08&#34;&gt;2.4.4 - Released 2021-09-08&lt;/h2&gt;
-&lt;h3 id=&#34;fixed-1&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-2&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;controlplane: Fix an issue with timeouts when opening gRPC connections to
 other nodes in the cluster.&lt;/li&gt;
@@ -2582,7 +2674,7 @@ erroneously restarted while we are trying to shutdown.&lt;/li&gt;
 &lt;li&gt;k8s: Node label sync could fail to apply updated label.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v242---released-2021-07-15&#34;&gt;v2.4.2 - Released 2021-07-15&lt;/h2&gt;
-&lt;h3 id=&#34;fixed-2&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-3&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;controlplane: Improve error message when unable to set the cluster-wide log
@@ -2602,11 +2694,11 @@ level on an individual node.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v241---released-2021-06-30&#34;&gt;v2.4.1 - Released 2021-06-30&lt;/h2&gt;
-&lt;h3 id=&#34;new-2&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-3&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Cluster-wide log level configuration via Custom Resource.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-3&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-4&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;controlplane: Improve error message during failed &lt;code&gt;--label&lt;/code&gt; argument parsing.&lt;/p&gt;
@@ -2637,7 +2729,7 @@ unmount on error.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubernetes-object-sync&#34;&gt;Kubernetes object sync&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Note: v2.4.0 &lt;em&gt;requires&lt;/em&gt; Kubernetes 1.17 or newer.&lt;/p&gt;
-&lt;h3 id=&#34;new-3&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-4&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Volume encryption-at-rest.&lt;/li&gt;
 &lt;li&gt;Fencing support.&lt;/li&gt;
@@ -2646,7 +2738,7 @@ unmount on error.&lt;/p&gt;
 &lt;li&gt;Kubernetes node and namespace delete sync.&lt;/li&gt;
 &lt;li&gt;Failure tolerance threshold support.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-4&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-5&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;controlplane/api: Compression is not disabled by default when provisioning
@@ -3108,12 +3200,12 @@ exist.&lt;/p&gt;
 customers.&lt;/li&gt;
 &lt;li&gt;Quality-of-life fixes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-4&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-5&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;operator: Use CSI attacher v3 for k8s 1.17+.&lt;/li&gt;
 &lt;li&gt;controlplane/csi: ListVolumes support.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-5&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-6&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;api-manager: Reset API after token refresh error.&lt;/li&gt;
 &lt;li&gt;operator: Set scheduler when PVCs use default StorageClass.&lt;/li&gt;
@@ -3123,7 +3215,7 @@ customers.&lt;/li&gt;
 &lt;li&gt;controlplane/fsm: Perform state match check before version check.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v232---released-2020-11-25&#34;&gt;v2.3.2 - Released 2020-11-25&lt;/h2&gt;
-&lt;h3 id=&#34;fixed-6&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-7&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;controlplane/rejoin: Failure to delete data causes re-advertise loop.&lt;/li&gt;
 &lt;li&gt;controlplane/rejoin: Handle timeout waiting for progress report.&lt;/li&gt;
@@ -3134,7 +3226,7 @@ customers.&lt;/li&gt;
 &lt;li&gt;Allows access to &lt;code&gt;ReadWriteMany&lt;/code&gt; shared volumes when running containers as a
 non-root user.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-7&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-8&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;nfs: root squash to uid=0 is now configured on all shared volumes.&lt;/li&gt;
 &lt;/ul&gt;
@@ -3145,7 +3237,7 @@ technology preview in v1.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The &lt;code&gt;v2.3.0&lt;/code&gt; operator is no longer able to run Ondat v1.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-5&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-6&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Adds support for &lt;code&gt;ReadWriteMany&lt;/code&gt; shared volumes.  See
 &lt;a href=&#34;/docs/concepts/rwx&#34;&gt;ReadWriteMany&lt;/a&gt;.&lt;/li&gt;
@@ -3201,7 +3293,7 @@ Openshift have a much lower default value (1024).  Consult
 &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;prerequisites&lt;/a&gt; for more
 information.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-8&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-9&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;dataplane: Fixes &lt;code&gt;transport endpoint is not connected&lt;/code&gt; on startup after an
 unclean shutdown.&lt;/li&gt;
@@ -3226,7 +3318,7 @@ look at the &lt;a href=&#34;/docs/introduction/self-eval#Benchmarking&#34;&gt;Be
 self-evaluation guide and consider sharing
 your results. Our PRE engineers are available to discuss in our &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack
 channel&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;new-6&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-7&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Data engine revamp focused on provable consistency and performance. Key
@@ -3278,7 +3370,7 @@ This allows the scheduler to work in clusters with custom DNS configuration.&lt;
 &lt;li&gt;operator: Defaults are now set for most CSI configuration options in the
 StorageOSCluster custom resource.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-9&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-10&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;csi: When unmount request is received for a volume that has already been
 unmounted, return success.&lt;/li&gt;
@@ -3291,7 +3383,7 @@ operations, rather than filling target disk to capacity.&lt;/li&gt;
 after a restart. This resulted in multiple entries in &lt;code&gt;/proc/mounts&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v210---released-2020-06-26&#34;&gt;v2.1.0 - Released 2020-06-26&lt;/h2&gt;
-&lt;h3 id=&#34;new-7&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-8&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;csi: Volume expansion now supported in offline mode. To expand a volume, stop
 any workloads accessing the volume, then edit the PVC to increase the
@@ -3321,14 +3413,14 @@ and replica nodes are offline. This allows cleanup of orphaned volumes.&lt;/li&g
 &lt;li&gt;api: When a new node is added to the cluster, its capacity is available to use
 immediately.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-10&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-11&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;ui: Favicon was missing.&lt;/li&gt;
 &lt;li&gt;ui: Duplicate volumes could be shown on the node details page.&lt;/li&gt;
 &lt;li&gt;operator: During uninstall a ClusterRoleBinding was not removed.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v200---released-2020-05-05&#34;&gt;v2.0.0 - Released 2020-05-05&lt;/h2&gt;
-&lt;h3 id=&#34;new-8&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-9&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;operator: Ondat containers now run in the &lt;code&gt;kube-system&lt;/code&gt; namespace by
 default to allow the &lt;code&gt;system-node-critical&lt;/code&gt; priority class to be set. This
@@ -3376,7 +3468,7 @@ that the CSI endpoint can be seen on systems with SELinux enabled.&lt;/li&gt;
 &lt;li&gt;scheduler: return error for namespace/volume not found&lt;/li&gt;
 &lt;li&gt;dataplane: start gRPC threads separately from rest of the supervisor.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-11&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-12&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;ui: centre licence types.&lt;/li&gt;
 &lt;li&gt;ui: capacity in ui is per namespace.&lt;/li&gt;
@@ -4355,10 +4447,7 @@ modern distributions:&lt;/p&gt;
 &lt;li&gt;A 64bit supported operating system - Ondat can run without additional
 packages in Debian 9, RancherOS, RHEL7.5,8 and CentOS7,8 and need the package
 linux-image-extra for Ubuntu.&lt;/li&gt;
-&lt;li&gt;Mainline kernel modules &lt;code&gt;target_core_mod&lt;/code&gt;, &lt;code&gt;tcp_loop&lt;/code&gt;, &lt;code&gt;target_core_file&lt;/code&gt;,
-&lt;code&gt;target_core_user&lt;/code&gt;, &lt;code&gt;configfs&lt;/code&gt;, and &lt;code&gt;ui&lt;/code&gt;. These are present by default on
-most modern linux distributions, and can be installed with standard package
-managers. See our &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;system configuration&lt;/a&gt; page for instructions.&lt;/li&gt;
+&lt;li&gt;Mainline kernel modules &lt;code&gt;target_core_mod&lt;/code&gt;, &lt;code&gt;tcp_loop&lt;/code&gt;, &lt;code&gt;target_core_user&lt;/code&gt;, &lt;code&gt;configfs&lt;/code&gt;, and &lt;code&gt;ui&lt;/code&gt;. These are present by default on most modern linux distributions, and can be installed with standard package managers. See our &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;system configuration&lt;/a&gt; page for instructions.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -4444,7 +4533,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.6.0
+        image: storageos/cli:v2.7.0
         name: cli
 END
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
@@ -6204,151 +6293,6 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
 &lt;p&gt;If you choose to recover by deleting existing persistent volume claims simply:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;kubectl delete pvc &amp;lt;PVCOnFullNodeName&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Then restart the Ondat daemonset pod.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Elasticsearch</title>
-      <link>/docs/usecases/elasticsearch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/usecases/elasticsearch/</guid>
-      <description>
-        
-        
-        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/elasticsearch.png&#34; alt=&#34;elasticlogo&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Elasticsearch is a distributed, RESTful search and analytics engine, most
-popularly used to aggregate logs, but also to serve as a search backend to a
-number of different applications.&lt;/p&gt;
-&lt;p&gt;Using Ondat persistent volumes with ElasticSearch (ES) means that if a pod
-fails, the cluster is only in a degraded state for as long as it takes
-Kubernetes to restart the pod. When the pod comes back up, the pod data is
-immediately available. Should Kubernetes schedule the Elasticsearch pod on a
-new node, Ondat allows for the data to be available to the pod,
-irrespective of whether or not the original Ondat master volume
-is located on the same node.&lt;/p&gt;
-&lt;p&gt;Elasticsearch has features to allow it to handle data replication, and as such
-careful consideration of whether to allow Ondat or Elasticsearch to handle
-replication is required.&lt;/p&gt;
-&lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
-cluster. &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
-information&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;deploying-elasticsearch-on-kubernetes&#34;&gt;Deploying Elasticsearch on Kubernetes&lt;/h2&gt;
-&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h3&gt;
-&lt;p&gt;Some OS tuning is required, which is done automatically when using our example
-from the &lt;a href=&#34;https://github.com/storageos/use-cases&#34;&gt;use cases&lt;/a&gt; repository.&lt;/p&gt;
-&lt;p&gt;Elasticsearch requires &lt;code&gt;vm.max_map_count&lt;/code&gt; to be increased to a minimum of
-&lt;code&gt;262144&lt;/code&gt;, which is a system wide setting. One way to achieve this is to
-run &lt;code&gt;sysctl -w vm.max_map_count=262144&lt;/code&gt; and update &lt;code&gt;/etc/sysctl.conf&lt;/code&gt;
-to ensure it persists over a reboot. See ElasicSearch reference
-&lt;a href=&#34;https://www.elastic.co/guide/en/elasticsearch/reference/7.0/vm-max-map-count.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Administrators should be aware that this impacts the behaviour of nodes and
-that there may be collisions with other application settings. Administrators
-are advised to centrally collate sysctl settings using the tooling of their
-choice.&lt;/p&gt;
-&lt;h3 id=&#34;deployment-of-the-application&#34;&gt;Deployment of the application&lt;/h3&gt;
-&lt;h4 id=&#34;statefulset-defintion&#34;&gt;StatefulSet defintion&lt;/h4&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;---&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;apps/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StatefulSet&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;esdata&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;serviceAccountName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;elasticsearch&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;elasticsearch:6.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;imagePullPolicy&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;IfNotPresent&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeMounts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;              &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;mountPath&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;/usr/share/elasticsearch/data/data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplates&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;data&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;accessModes&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ReadWriteOnce&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageClassName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;lt;--- default Ondat storage class name&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;10Gi  &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;lt;--- change this to the appropriate value&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This excerpt is from the StatefulSet definition
-(&lt;code&gt;/elasticsearch/10-es-data.yaml&lt;/code&gt;). The file contains the
-PersistentVolumeClaim template that will dynamically
-provision the necessary storage, using the Ondat storage class.&lt;/p&gt;
-&lt;p&gt;Dynamic provisioning occurs as a volumeMount has been declared with the same
-name as a VolumeClaimTemplate.&lt;/p&gt;
-&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-&lt;h4 id=&#34;clone-the-use-cases-repository&#34;&gt;Clone the use cases repository&lt;/h4&gt;
-&lt;p&gt;You can find the latest files in the Ondat use cases repostiory
-in &lt;code&gt;/elasticsearch/&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/storageos/use-cases.git storageos-usecases
-&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-usecases
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create the kubernetes objects&lt;/p&gt;
-&lt;p&gt;This will install an ES cluster with 3 master, 3 data and 3 coordinator
-nodes. Combined they will require ~ 14 GiB of available memory in your
-cluster, however, more may be used as the application is being used&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f ./elasticsearch/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once completed, an internal service object will have been created making the
-cluster available as &lt;code&gt;http://elasticsearch:9200/&lt;/code&gt; which is the default Kibana
-(when installed via Helm) will be using.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Confirm Elasticsearch is up and running&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pods -l &lt;span style=&#34;color:#000&#34;&gt;component&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;elasticsearch
-
-NAME                                    READY   STATUS    RESTARTS   AGE
-elasticsearch-exporter-d86ffd94-zw45l   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-coordinator-b7b984dd4-7wlz5          1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-coordinator-b7b984dd4-89w26          1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-coordinator-b7b984dd4-b4t6j          1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-master-78dfd5b49f-9gf5c              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-master-78dfd5b49f-smsbw              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-master-78dfd5b49f-z4qpj              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-esdata-0                                1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-esdata-1                                1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          4m34s
-esdata-2                                1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          3m22s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Connect to ElasticSearch&lt;/p&gt;
-&lt;p&gt;To connect to ES directly, you can use the following port-forward command&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward svc/elasticsearch &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;9200&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then access it via &lt;a href=&#34;http://localhost:9200&#34;&gt;http://localhost:9200&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;kibana-optional&#34;&gt;Kibana (optional)&lt;/h2&gt;
-&lt;p&gt;One of the most popular uses of ES is to use it for log aggregation and
-indexing, Kibana helps us visualize the data in these indices and can be
-easily used when installed via its Helm chart&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Install the helm chart.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm install stable/kibana
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Once installed, use a port-foward to Kibana instead of directly to ES&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward --namespace default &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get pods --namespace default -l &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;app=kibana&amp;#34;&lt;/span&gt; -o &lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;{.items[0].metadata.name}&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5601&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then access it via &lt;a href=&#34;http://localhost:5601&#34;&gt;http://localhost:5601&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;monitoring-optional&#34;&gt;Monitoring (optional)&lt;/h2&gt;
-&lt;p&gt;As part of the example deployment, ES metrics are exposed and can be scraped
-by Prometheus on port 9108
-(see &lt;a href=&#34;https://github.com/storageos/use-cases/blob/master/elasticsearch/77-es-exporter.yaml&#34;&gt;77-es-exporter.yaml&lt;/a&gt;).
-This is enabled by default, and should work with the default Prometheus install
-via Helm. If you&amp;rsquo;re using the Prometheus service monitors, you can monitor
-this installation by creating a monitor for the &lt;code&gt;es-exporter&lt;/code&gt; service.&lt;/p&gt;
 
       </description>
     </item>

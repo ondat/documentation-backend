@@ -22,13 +22,12 @@
       <description>
         
         
-        &lt;p&gt;Ondat V2 supports Openshift v4.&lt;/p&gt;
+        &lt;p&gt;Ondat V2 supports Openshift v4.0+.&lt;/p&gt;
 &lt;p&gt;Red Hat OpenShift and Ondat communicate with each other to perform actions such as
 creation, deletion and mounting of volumes through CSI. The CSI container
 running in the Ondat Daemonset creates a Linux socket that allows the
 communication between Red Hat OpenShift and Ondat.&lt;/p&gt;
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-&lt;p&gt;Ondat v2 supports Red Hat OpenShift 4.0, 4.1, 4.2, 4.3, 4.4 and 4.5.&lt;/p&gt;
 &lt;p&gt;To install Ondat on Red Hat OpenShift, follow our &lt;a href=&#34;/docs/install/openshift&#34;&gt;installation instructions&lt;/a&gt; page.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Red Hat Openshift 4 uses the CRI-O container runtime that sets a default PID
@@ -36,19 +35,14 @@ limit of 1024. Ondat recommends that the limit be raised to 32768.
 Please see our &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;prerequisites&lt;/a&gt; for more details.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;red-hat-openshift-upgrades&#34;&gt;Red Hat OpenShift Upgrades&lt;/h2&gt;
-&lt;p&gt;Red Hat OpenShift provides an upgrade operator that automates the process of
-orchestrator version changes.&lt;/p&gt;
-&lt;p&gt;This procedure can cause Ondat to malfunction due to sequential node
-restarts not taking the presence of stateful application data into
-consideration. To avoid this issue, make sure all stateful workloads using
-Ondat Volumes are stopped - usually by scaling StatefulSets to 0. Please
-contact Ondat support for further advice if required.&lt;/p&gt;
+&lt;p&gt;Red Hat OpenShift provides an upgrade operator that automates the process of orchestrator version changes.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Red Hat OpenShift requires the internal registry to be available during the upgrade,
-however Ondat volumes may not be available. Therefore using Ondat
-for the internal registry is &lt;strong&gt;not&lt;/strong&gt; recommended.&lt;/p&gt;
+&lt;p&gt;⚠️ Use the &lt;a href=&#34;/docs/operations/using-rolling-upgrades&#34;&gt;rolling upgrade feature&lt;/a&gt; to protect your cluster from major incidents during an upgrade. Please contact Ondat support for further advice if required.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;csi-container-storage-interface-note&#34;&gt;CSI (Container Storage Interface) Note&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Red Hat OpenShift requires the internal registry to be available during the upgrade, however Ondat volumes may not be available. Therefore using Ondat for the internal registry is &lt;strong&gt;not&lt;/strong&gt; recommended.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;csi-container-storage-interface&#34;&gt;CSI (Container Storage Interface)&lt;/h2&gt;
 &lt;p&gt;CSI is the standard that enables storage drivers to release on their own
 schedule. This allows storage vendors to upgrade, update, and enhance their
 drivers without the need to update Kubernetes source code, or follow Kubernetes
