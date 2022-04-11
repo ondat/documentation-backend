@@ -2429,7 +2429,7 @@ $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
 &lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat v2.3&lt;/a&gt; and that you check the init container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Pull the new Ondat container image &lt;code&gt;storageos/node:v2.6.0&lt;/code&gt; on the nodes beforehand so that the cluster spins up faster!&lt;/p&gt;
+&lt;p&gt;💡 Pull the new Ondat container image &lt;code&gt;storageos/node:v2.7.0&lt;/code&gt; on the nodes beforehand so that the cluster spins up faster!&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 Speak with our support team &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; so we can assist you with your upgrade.&lt;/p&gt;
