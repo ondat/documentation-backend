@@ -2528,7 +2528,7 @@ installation instructions see our
 &lt;a href=&#34;https://github.com/storageos/go-cli/releases&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;upgrading&#34;&gt;Upgrading&lt;/h1&gt;
 &lt;p&gt;To upgrade from version 1.x to 2.x, contact Ondat &lt;a href=&#34;/docs/support&#34;&gt;support&lt;/a&gt; for assistance.&lt;/p&gt;
-&lt;h2 id=&#34;270---released-2022-04-07&#34;&gt;2.7.0 - Released 2022-04-07&lt;/h2&gt;
+&lt;h2 id=&#34;270---released-2022-04-11&#34;&gt;2.7.0 - Released 2022-04-11&lt;/h2&gt;
 &lt;h3 id=&#34;new&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;k8s &amp;amp; Orchestrator Rolling Upgrade&lt;/p&gt;
 &lt;ul&gt;
