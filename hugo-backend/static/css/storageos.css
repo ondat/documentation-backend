@@ -436,7 +436,11 @@ big {
   background-color: #fff;
   background-image: none;
   border-color: #fff;
+<<<<<<< HEAD
   color: #081D60;
+=======
+  color: #081A51;
+>>>>>>> main
   font-size: 12px;
   letter-spacing: 4px;
   margin-right: 20px;
@@ -445,9 +449,15 @@ big {
 }
 
 .get-started .vc_btn3-style-modern {
+<<<<<<< HEAD
   background-color: #081D60 !important;
   background-image: none !important;
   border-color: #081D60 !important;
+=======
+  background-color: #081A51 !important;
+  background-image: none !important;
+  border-color: #081A51 !important;
+>>>>>>> main
   color: #fff !important;
   font-size: 12px !important;
   letter-spacing: 4px !important;
@@ -638,7 +648,11 @@ big {
   background-color: #fff;
   background-image: none;
   border-color: #fff;
+<<<<<<< HEAD
   color: #081D60;
+=======
+  color: #081A51;
+>>>>>>> main
   font-size: 12px;
   letter-spacing: 4px;
   margin-right: 20px;
@@ -925,8 +939,13 @@ footer .col-sm-2 {
   position: fixed;
   bottom: 20px;
   right: 20px;
+<<<<<<< HEAD
   background-color: #081D60 !important;
   border-color: #081D60 !important;
+=======
+  background-color: #081A51 !important;
+  border-color: #081A51 !important;
+>>>>>>> main
   color: #fff !important;
   font-size: 11px !important;
   letter-spacing: 4px !important;
@@ -956,7 +975,11 @@ footer .col-sm-2 {
 }
 
 .blog-banner-text p strong em {
+<<<<<<< HEAD
   color: #081D60;
+=======
+  color: #081A51;
+>>>>>>> main
   font-style: normal;
 }
 
@@ -1142,7 +1165,11 @@ footer .col-sm-2 {
   background-color: #fff !important;
   background-image: none !important;
   border-color: #fff !important;
+<<<<<<< HEAD
   color: #081D60 !important;
+=======
+  color: #081A51 !important;
+>>>>>>> main
   font-size: 12px !important;
   letter-spacing: 4px !important;
   margin-right: 0px !important;
@@ -1662,7 +1689,11 @@ q {
   padding: 0 0 0 1rem;
   margin-bottom: 2rem;
   color: #888;
+<<<<<<< HEAD
   border-left: 6px solid #081D60;
+=======
+  border-left: 6px solid #081A51;
+>>>>>>> main
   margin-left: 0;
   margin-top: 2rem;
   quotes: """";
@@ -2800,7 +2831,11 @@ header .td-search-input {
   position: fixed;
   right: 30px;
   bottom: 30px;
+<<<<<<< HEAD
   background-color: #081D60;
+=======
+  background-color: #081A51;
+>>>>>>> main
   color: #fff;
   border-radius: 50%;
   width: 30px;
