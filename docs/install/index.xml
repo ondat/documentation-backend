@@ -44,7 +44,7 @@
 &lt;p&gt;⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure your EKS clusters use &lt;a href=&#34;https://cloud-images.ubuntu.com/docs/aws/eks/&#34;&gt;Ubuntu for EKS&lt;/a&gt; as the default node operating system with an optimised kernel. For kernel versions below &lt;code&gt;linux-aws-5.4.0-1066.69&lt;/code&gt; or &lt;code&gt;linux-aws-5.13.0-1014.15&lt;/code&gt;, the module &lt;code&gt;tcm_loop&lt;/code&gt; is not included in the base kernel distribution. In that case, the package &lt;code&gt;linux-modules-extra-$(uname -r)&lt;/code&gt; is additionally required on each of the nodes - this can be installed automatically by adding it to the node&amp;rsquo;s user data, as in the example below.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure your EKS clusters use &lt;a href=&#34;https://cloud-images.ubuntu.com/docs/aws/eks/&#34;&gt;Ubuntu for EKS&lt;/a&gt; as the default node operating system with an optimised kernel. For kernel versions below &lt;code&gt;linux-aws-5.4.0-1066.69&lt;/code&gt; or &lt;code&gt;linux-aws-5.13.0-1014.15&lt;/code&gt;, the module &lt;code&gt;tcm_loop&lt;/code&gt; is not included in the base kernel distribution. In that case, the package &lt;code&gt;linux-modules-extra-$(uname -r)&lt;/code&gt; is additionally required on each of the nodes - this can be installed automatically by adding extra steps to the node&amp;rsquo;s user data.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;To find the latest Ubuntu for EKS AMI, search your region for the image:&lt;/p&gt;
@@ -96,8 +96,6 @@ aws ec2 describe-images &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;      echo &amp;#34;/dev/nvme1n1 /var/lib/storageos ext4 defaults,discard 0 1&amp;#34; &amp;gt;&amp;gt; /etc/fstab
 &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;      mkfs.ext4 /dev/nvme1n1
 &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;      mount /var/lib/storageos
-&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;      sudo apt-get update
-&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;      sudo apt-get install -y linux-modules-extra-$(uname -r)
 &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;      /etc/eks/bootstrap.sh ondat-cluster&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;eksctl create cluster --config-file&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cluster.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
