@@ -34,7 +34,7 @@
  Using the Ondat kubectl plugin. Using the Ondat Operator Helm chart.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your $PATH:">
 
-<meta itemprop="wordCount" content="1279">
+<meta itemprop="wordCount" content="1278">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Declarative Install"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.462007208e45fdda659ca6a1e9ef93f9583cf7dc4ded9ec92d1b478a43b0eef54bb150334e1e252beca1c950c99910babea5ef53446de8495e32425c8cca33bc.json"
+  data-offline-search-index-json-src="/offline-search-index.c2c63d2988f342a4074cbf206a28e36a64f5d19537652450bd6c8b2e65c17390e2c6cfd045326110ab9359bfd23a36251d5806ab0df52f06cb3e9d4219b9b8dd.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.462007208e45fdda659ca6a1e9ef93f9583cf7dc4ded9ec92d1b478a43b0eef54bb150334e1e252beca1c950c99910babea5ef53446de8495e32425c8cca33bc.json"
+  data-offline-search-index-json-src="/offline-search-index.c2c63d2988f342a4074cbf206a28e36a64f5d19537652450bd6c8b2e65c17390e2c6cfd045326110ab9359bfd23a36251d5806ab0df52f06cb3e9d4219b9b8dd.json"
   data-offline-search-base-href="/"
 >
 
@@ -1600,7 +1600,7 @@ helm search repo <span style="color:#4e9a06">&#34;ondat&#34;</span>
 </ol>
 <h4 id="step-4---customising--installing-ondats-operator-helm-chart">Step 4 - Customising &amp; Installing Ondat&rsquo;s Operator Helm Chart</h4>
 <ul>
-<li>There are two ways to conduct an installation with Helm, <strong>declaratively</strong> by creating a custom <code>values.yaml</code> and (recommended method) or <strong>interactively</strong> by using the <code>--set</code> flags to overwrite specific values for the deployment.</li>
+<li>There are two ways to conduct an installation with Helm, <strong>declaratively</strong> by creating a custom <code>values.yaml</code> (recommended method) or <strong>interactively</strong> by using the <code>--set</code> flags to overwrite specific values for the deployment.</li>
 </ul>
 <blockquote>
 <p>💡 <strong>Advanced Users</strong> - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own <code>StorageOSCluster</code> custom resource manifest, review the Ondat Operator <a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md">README.md</a> document, <a href="/docs/reference/cluster-operator/configuration">Cluster Operator Configuration</a> and  <a href="/docs/reference/cluster-operator/examples">Cluster Operator Examples</a> reference pages for more information.</p>
@@ -1616,7 +1616,7 @@ helm search repo <span style="color:#4e9a06">&#34;ondat&#34;</span>
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># 8 characters long.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># for example -&gt; storageos</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><ul>
-<li><a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62"><code>cluster.kvBackend.address</code></a></li>
+<li><a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L71-L72"><code>cluster.kvBackend.address</code></a></li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># Key-Value store backend.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">

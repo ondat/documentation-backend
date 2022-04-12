@@ -598,7 +598,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;applying-a-licence-to-the-cluster&#34;&gt;Applying a Licence to the Cluster&lt;/h3&gt;
+&lt;h2 id=&#34;applying-a-licence-to-the-cluster&#34;&gt;Applying a Licence to the Cluster&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1580,7 +1580,7 @@ helm search repo &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ondat&amp;#3
 &lt;/ol&gt;
 &lt;h4 id=&#34;step-4---customising--installing-ondats-operator-helm-chart&#34;&gt;Step 4 - Customising &amp;amp; Installing Ondat&amp;rsquo;s Operator Helm Chart&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;There are two ways to conduct an installation with Helm, &lt;strong&gt;declaratively&lt;/strong&gt; by creating a custom &lt;code&gt;values.yaml&lt;/code&gt; and (recommended method) or &lt;strong&gt;interactively&lt;/strong&gt; by using the &lt;code&gt;--set&lt;/code&gt; flags to overwrite specific values for the deployment.&lt;/li&gt;
+&lt;li&gt;There are two ways to conduct an installation with Helm, &lt;strong&gt;declaratively&lt;/strong&gt; by creating a custom &lt;code&gt;values.yaml&lt;/code&gt; (recommended method) or &lt;strong&gt;interactively&lt;/strong&gt; by using the &lt;code&gt;--set&lt;/code&gt; flags to overwrite specific values for the deployment.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat Operator &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
@@ -1596,7 +1596,7 @@ helm search repo &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ondat&amp;#3
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# 8 characters long.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;password&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# for example -&amp;gt; storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62&#34;&gt;&lt;code&gt;cluster.kvBackend.address&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L71-L72&#34;&gt;&lt;code&gt;cluster.kvBackend.address&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Key-Value store backend.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kvBackend&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
