@@ -89,34 +89,6 @@ node5       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4
     </item>
     
     <item>
-      <title>Docs: ClusterID</title>
-      <link>/docs/operations/cluster-id/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/cluster-id/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Every Ondat cluster has a unique ClusterID generated at bootstrap. A
-Ondat Licence is specific for a ClusterID.&lt;/p&gt;
-&lt;h2 id=&#34;how-to-obtain-the-clusterid&#34;&gt;How to obtain the ClusterID&lt;/h2&gt;
-&lt;p&gt;You can obtain the ClusterID using the CLI.&lt;/p&gt;
-&lt;p&gt;This CLI command can print the cluster ID:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get cluster
-ID:               704dd165-9580-4da4-a554-0acb96d328cb
-Licence:
-  expiration:     2021-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; year from now&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  capacity:       5.0 TiB
-  kind:           professional
-  customer name:  storageos
-Created at:       2020-03-25T13:48:33Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; hour ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; hour ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Given the Cluster ID, the Ondat team can generate a licence.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Deleting Ondat Objects</title>
       <link>/docs/operations/delete-stos-objects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1408,6 +1380,33 @@ the Volume in the same namespace. Namespaces are created by Ondat to fulfil
 the RBAC rules enforced by Kubernetes roles.&lt;/p&gt;
 &lt;p&gt;In order to delete a namespace, all volumes must be deleted from the namespace
 before the namespace can be deleted.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Obtain a ClusterID</title>
+      <link>/docs/operations/cluster-id/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/cluster-id/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Every Ondat cluster has a unique ClusterID generated at bootstrap. An Ondat Licence is specific for a ClusterID.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-obtain-the-clusterid&#34;&gt;How to obtain the ClusterID&lt;/h2&gt;
+&lt;p&gt;You can obtain the ClusterID using the CLI.&lt;/p&gt;
+&lt;p&gt;This CLI command can print the cluster ID:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get cluster
+ID:               704dd165-9580-4da4-a554-0acb96d328cb
+Licence:
+  expiration:     2021-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; year from now&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+  capacity:       5.0 TiB
+  kind:           professional
+  customer name:  storageos
+Created at:       2020-03-25T13:48:33Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; hour ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; hour ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Given the Cluster ID, you can generate a license on the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;SaaS Platform&lt;/a&gt; following &lt;a href=&#34;/docs/operations/licensing/#procedure&#34;&gt;this procedure&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
