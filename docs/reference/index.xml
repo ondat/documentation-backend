@@ -535,29 +535,8 @@ offering.&lt;/p&gt;
       <description>
         
         
-        &lt;p&gt;Ondat provides a GUI for cluster and volume management.&lt;/p&gt;
-&lt;p&gt;The GUI is available at port 5705 on any of the nodes in the cluster. Initially
-you can log in as the default administrator, with the username and password
-from the &lt;code&gt;storageos-api&lt;/code&gt; Secret. By default &lt;code&gt;storageos&lt;/code&gt;, &lt;code&gt;storageos&lt;/code&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;You can access the GUI by either port-forwarding with kubectl or using an
-Ingress rule. i.e &lt;code&gt;kubectl -n storageos port-forward svc/storageos 5705&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs//gui-v2/login.png&#34; alt=&#34;Logging in&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;nodes&#34;&gt;Nodes&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/nodes.png&#34; alt=&#34;Nodes&#34;&gt;
-&lt;img src=&#34;/images/docs/gui-v2/node-detail.png&#34; alt=&#34;Node detail&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;volumes&#34;&gt;Volumes&lt;/h2&gt;
-&lt;p&gt;You can create volumes, including replicated volumes, and view volume details:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/volumes.png&#34; alt=&#34;Viewing storage volumes&#34;&gt;
-&lt;img src=&#34;/images/docs/gui-v2/volume-detail.png&#34; alt=&#34;Viewing details of a volume&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;licensing&#34;&gt;Licensing&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/license.png&#34; alt=&#34;License&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;cluster-info&#34;&gt;Cluster info&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/cluster.png&#34; alt=&#34;Cluster&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;namespaces&#34;&gt;Namespaces&lt;/h2&gt;
-&lt;p&gt;Volumes can be namespaced across different projects or teams, and you can switch namespace using the left hand panel:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/namespaces.png&#34; alt=&#34;Viewing namespaces&#34;&gt;&lt;/p&gt;
+        &lt;p&gt;Ondat provides a &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;SaaS Platform&lt;/a&gt; to view and manage your clusters.&lt;/p&gt;
+&lt;p&gt;The legacy GUI has been decommissioned. You can view the archived documentation &lt;a href=&#34;https://docs.ondat.io/v2.6/docs/reference/gui/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
