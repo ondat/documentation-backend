@@ -14,58 +14,6 @@
     
     
     <item>
-      <title>Docs: Downgrade Ondat from 2.7.0 to 2.6.0</title>
-      <link>/docs/operations/downgrade-ondat-2.7-to-2.6/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/downgrade-ondat-2.7-to-2.6/</guid>
-      <description>
-        
-        
-        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-&lt;p&gt;This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.&lt;/p&gt;
-&lt;p&gt;As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.&lt;/p&gt;
-&lt;p&gt;As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however it is not usual operation, so it is necessary to raise a proactive support case &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; and work with the customer success team as part of the downgrade process.&lt;/p&gt;
-&lt;p&gt;For those curious, in the past Ondat supported other Container Orchestrators (CO) and therefore used an internal UUID reference for these blob files. With the focus on only K8s now, we are removing this abstraction layer and the naming will reflect the K8s objects.&lt;/p&gt;
-&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure all workloads using Ondat volumes are scaled down to zero.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Update the CLI_TOOL variable if you do not have access to kubectl.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;procedure&#34;&gt;Procedure&lt;/h1&gt;
-&lt;h2 id=&#34;step-1---uninstall-ondat-v270-as-if-you-are-starting-an-upgrade&#34;&gt;Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Delete your storageoscluster CR&lt;/li&gt;
-&lt;li&gt;Delete your storageos operator deployment&lt;/li&gt;
-&lt;li&gt;Make sure to leave your Ondat etcd alone&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;step-2---run-our-downgrade-script&#34;&gt;Step 2 - Run our downgrade script&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Download the following script and edit it to match your cluster&amp;rsquo;s specifications.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sO https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run the script below, with your Kubernetes CLI tool&amp;rsquo;s context set to target your cluster:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./downgrade-db-2-7-to-2-6.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.&lt;/p&gt;
-&lt;h2 id=&#34;step-3---install-ondat-v260&#34;&gt;Step 3 - Install Ondat v2.6.0&lt;/h2&gt;
-&lt;p&gt;You will now be able to use Ondat v2.6.0.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Cluster Health</title>
       <link>/docs/operations/health/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -250,6 +198,58 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
 &lt;p&gt;If you choose to recover by deleting existing persistent volume claims simply:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;kubectl delete pvc &amp;lt;PVCOnFullNodeName&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Then restart the Ondat daemonset pod.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Downgrade Ondat from 2.7.0 to 2.6.0</title>
+      <link>/docs/operations/downgrade-ondat-2.7-to-2.6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/downgrade-ondat-2.7-to-2.6/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.&lt;/p&gt;
+&lt;p&gt;As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.&lt;/p&gt;
+&lt;p&gt;As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however it is not usual operation, so it is necessary to raise a proactive support case &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; and work with the customer success team as part of the downgrade process.&lt;/p&gt;
+&lt;p&gt;For those curious, in the past Ondat supported other Container Orchestrators (CO) and therefore used an internal UUID reference for these blob files. With the focus on only K8s now, we are removing this abstraction layer and the naming will reflect the K8s objects.&lt;/p&gt;
+&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure all workloads using Ondat volumes are scaled down to zero.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Update the CLI_TOOL variable if you do not have access to kubectl.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;procedure&#34;&gt;Procedure&lt;/h1&gt;
+&lt;h2 id=&#34;step-1---uninstall-ondat-v270-as-if-you-are-starting-an-upgrade&#34;&gt;Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Delete your storageoscluster CR&lt;/li&gt;
+&lt;li&gt;Delete your storageos operator deployment&lt;/li&gt;
+&lt;li&gt;Make sure to leave your Ondat etcd alone&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;step-2---run-our-downgrade-script&#34;&gt;Step 2 - Run our downgrade script&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Download the following script and edit it to match your cluster&amp;rsquo;s specifications.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sO https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the script below, with your Kubernetes CLI tool&amp;rsquo;s context set to target your cluster:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./downgrade-db-2-7-to-2-6.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.&lt;/p&gt;
+&lt;h2 id=&#34;step-3---install-ondat-v260&#34;&gt;Step 3 - Install Ondat v2.6.0&lt;/h2&gt;
+&lt;p&gt;You will now be able to use Ondat v2.6.0.&lt;/p&gt;
 
       </description>
     </item>
@@ -1412,59 +1412,6 @@ Updated at:       2020-03-25T13:48:46Z &lt;span style=&#34;color:#ce5c00;font-we
     </item>
     
     <item>
-      <title>Docs: </title>
-      <link>/docs/operations/using-rolling-upgrades/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/using-rolling-upgrades/</guid>
-      <description>
-        
-        
-        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-&lt;p&gt;This guide will demonstrate how to enable protection for your orchestrator&amp;rsquo;s rolling upgrades using the &lt;a href=&#34;/docs/concepts/rolling-upgrades/#upgrade-guard&#34;&gt;Upgrade Guard&lt;/a&gt; and &lt;a href=&#34;/docs/concepts/rolling-upgrades/#node-manager&#34;&gt;Node Manager&lt;/a&gt;. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have met the requirements of &lt;a href=&#34;https://kubernetes.io/docs/tasks/run-application/configure-pdb/&#34;&gt;configuring a Pod Disruption Budget (PDB)&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ If your volume does not have any replicas, the rolling upgrades feature will not start on any StorageOS node until you have one or more replicas on all your volumes.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ This feature supports the following platforms: Google Anthos, Google GKE with future support to be expanded to Amazon EKS, Openshift and Rancher.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&#34;procedure&#34;&gt;Procedure&lt;/h1&gt;
-&lt;h2 id=&#34;step-1---enable-node-manager-and-upgrade-guard&#34;&gt;Step 1 - Enable Node Manager and Upgrade Guard&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Add the following lines to the StorageOSCluster spec:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt; nodeManagerFeatures:
-   upgradeGuard: &amp;quot;true&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Alternatively, you can run the following command:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e &#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &amp;quot;true&amp;quot;|&#39; | kubectl apply -f - 
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You will see new pods getting created, where one pod per node in a cluster called Node Manager.&lt;/p&gt;
-&lt;h2 id=&#34;step-2---rolling-upgrade-ready&#34;&gt;Step 2 - Rolling upgrade ready&lt;/h2&gt;
-&lt;p&gt;Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ EKS takes care on PDB for 50 mins, after this period upgrade would fail unless it was forced.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Policies</title>
       <link>/docs/operations/policies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2407,98 +2354,6 @@ $ etcdctl --endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;        del --prefix &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Upgrade Ondat</title>
-      <link>/docs/operations/upgrade/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/upgrade/</guid>
-      <description>
-        
-        
-        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-&lt;p&gt;This document details procedures to upgrade Ondat.&lt;/p&gt;
-&lt;h1 id=&#34;update-an-ondat-v2-cluster&#34;&gt;Update an Ondat v2 cluster&lt;/h1&gt;
-&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat v2.3&lt;/a&gt; and that you check the init container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Pull the new Ondat container image &lt;code&gt;storageos/node:v2.7.0&lt;/code&gt; on the nodes beforehand so that the cluster spins up faster!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Speak with our support team &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; so we can assist you with your upgrade.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ If you are upgrading to 2.7.0, you will only be able to downgrade to 2.6.0 due to the mapping changes made in the Data Plane. For more details, please look at the &lt;a href=&#34;/docs/release-notes&#34;&gt;release notes&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
-&lt;h3 id=&#34;step-1---backup-of-all-ondat-yaml-files&#34;&gt;Step 1 - Backup of all Ondat yaml files&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Make sure you keep a backup of all the Ondat yaml files.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;You can also backup the Statefulset yaml files to keep track of the replicas.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod -n storageos-operator -o yaml &amp;gt; storageos_operator.yaml
-kubectl get storageoscluster -n storageos-operator -o yaml &amp;gt; storageos_cr.yaml
-kubectl get statefulset --all-namespaces &amp;gt; statefulset-sizes.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-2---generate-yaml-file-to-upgrade-cluster&#34;&gt;Step 2 - Generate yaml file to upgrade cluster&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following command to generate the &lt;code&gt;storageos-config.yaml&lt;/code&gt; file that is used to upgrade your cluster based on your current configuration&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;SECRET_NAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].spec.secretRefName}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color:#000&#34;&gt;SECRET_NAMESPACE&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].spec.secretRefNamespace}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
-kubectl get secret -n &lt;span style=&#34;color:#000&#34;&gt;$SECRET_NAMESPACE&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$SECRET_NAME&lt;/span&gt; -oyaml &amp;gt; /tmp/storageos-config.yaml
-&lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;---&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /tmp/storageos-config.yaml
-&lt;span style=&#34;color:#000&#34;&gt;STOS_NAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].metadata.name}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;span style=&#34;color:#000&#34;&gt;STOS_NAMESPACE&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].metadata.namespace}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
-kubectl get storageoscluster -n &lt;span style=&#34;color:#000&#34;&gt;$STOS_NAMESPACE&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$STOS_NAME&lt;/span&gt; -oyaml &amp;gt;&amp;gt; /tmp/storageos-config.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;This file will include the manifest of 2 Kubernetes objects, the authentication Secret object and the StorageOS CR object.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Edit StorageOSCluster object in the &lt;code&gt;/tmp/storageos-config.yaml&lt;/code&gt; file by removing all images in the image section and modify the &lt;code&gt;storageos/node&lt;/code&gt; image to:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;images:
-    nodeContainer: &amp;quot;storageos/node:v2.7.0&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-3---scale-ondat-volumes-to-0&#34;&gt;Step 3 - Scale Ondat volumes to 0&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Scale all stateful applications that use Ondat volumes to 0&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-4---run-uninstall-cluster-command&#34;&gt;Step 4 - Run uninstall cluster command&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following command:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints &amp;quot;&amp;lt;ETCD-IP1&amp;gt;:2379,&amp;lt;ETCD-IP2&amp;gt;:2379,&amp;lt;ETCD-IP3&amp;gt;:2379&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 The plugin uses the &lt;code&gt;--uninstall-stos-operator-namespace&lt;/code&gt; argument because it uninstalls the cluster first and then reinstalls it with the new version.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;The ETCD Endpoints should correspond to the endpoints you have in the &lt;code&gt;.spec.kvBackend&lt;/code&gt; section of StorageOS object in the &lt;code&gt;/tmp/storageos-config.yaml&lt;/code&gt; file.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 If at any point something goes wrong with the upgrade process, backups of all the relevant Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;step-5---check-for-running-states&#34;&gt;Step 5 - Check for &lt;code&gt;RUNNING&lt;/code&gt; states&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following command to check that all the Ondat pods have entered the &lt;code&gt;RUNNING&lt;/code&gt; state&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pods -l &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos -A -w
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-6---scale-your-stateful-applications-back-up&#34;&gt;Step 6 - Scale your stateful applications back up&lt;/h3&gt;
-&lt;p&gt;Congratulations, you now have the latest version of Ondat!&lt;/p&gt;
 
       </description>
     </item>

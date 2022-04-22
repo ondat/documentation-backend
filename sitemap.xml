@@ -48,8 +48,6 @@
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
   </url><url>
-    <loc>/docs/operations/downgrade-ondat-2.7-to-2.6/</loc>
-  </url><url>
     <loc>/docs/release-notes/</loc>
   </url><url>
     <loc>/docs/prerequisites/ipv6/</loc>
@@ -65,6 +63,8 @@
     <loc>/docs/install/</loc>
   </url><url>
     <loc>/docs/prerequisites/pidlimits/</loc>
+  </url><url>
+    <loc>/docs/upgrade/</loc>
   </url><url>
     <loc>/docs/platforms/</loc>
   </url><url>
@@ -129,6 +129,8 @@
     <loc>/docs/operations/disk-full/</loc>
   </url><url>
     <loc>/docs/</loc>
+  </url><url>
+    <loc>/docs/operations/downgrade-ondat-2.7-to-2.6/</loc>
   </url><url>
     <loc>/docs/usecases/elasticsearch/</loc>
   </url><url>
@@ -202,9 +204,11 @@
   </url><url>
     <loc>/docs/reference/telemetry/</loc>
   </url><url>
+    <loc>/docs/upgrade/upgrade/</loc>
+  </url><url>
     <loc>/docs/platforms/openshift/</loc>
   </url><url>
-    <loc>/docs/operations/using-rolling-upgrades/</loc>
+    <loc>/docs/upgrade/using-rolling-upgrades/</loc>
   </url><url>
     <loc>/docs/concepts/policies/</loc>
   </url><url>
@@ -249,8 +253,6 @@
     <loc>/docs/operations/uninstall/</loc>
   </url><url>
     <loc>/docs/reference/cli/update/</loc>
-  </url><url>
-    <loc>/docs/operations/upgrade/</loc>
   </url><url>
     <loc>/docs/operations/users/</loc>
   </url><url>
