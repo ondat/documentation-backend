@@ -20,23 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Airgapped installation | </title><meta property="og:title" content="Airgapped installation" />
-<meta property="og:description" content="The following page is for advanced users. The full procedure is estimated to take ~60 minutes to complete.
- Clusters without access to the internet require you to explicitly specify the resources to be installed. For that reason the storageos kubectl plugin --dry-run flag generates all the yamls for your cluster. You can amend them with the images pulled to your private registry. To install Ondat on an airgapped cluster, you need" />
+<title>Air-Gap Install | </title><meta property="og:title" content="Air-Gap Install" />
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto clusters that don&rsquo;t have direct access to the internet - i.e., air-gapped environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
+ 💡 This guide is recommended for advanced users who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/airgapped-clusters/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Airgapped installation">
-<meta itemprop="description" content="The following page is for advanced users. The full procedure is estimated to take ~60 minutes to complete.
- Clusters without access to the internet require you to explicitly specify the resources to be installed. For that reason the storageos kubectl plugin --dry-run flag generates all the yamls for your cluster. You can amend them with the images pulled to your private registry. To install Ondat on an airgapped cluster, you need">
+<meta itemprop="name" content="Air-Gap Install">
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto clusters that don&rsquo;t have direct access to the internet - i.e., air-gapped environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
+ 💡 This guide is recommended for advanced users who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.">
 
-<meta itemprop="wordCount" content="927">
+<meta itemprop="wordCount" content="1326">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Airgapped installation"/>
-<meta name="twitter:description" content="The following page is for advanced users. The full procedure is estimated to take ~60 minutes to complete.
- Clusters without access to the internet require you to explicitly specify the resources to be installed. For that reason the storageos kubectl plugin --dry-run flag generates all the yamls for your cluster. You can amend them with the images pulled to your private registry. To install Ondat on an airgapped cluster, you need"/>
+<meta name="twitter:title" content="Air-Gap Install"/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto clusters that don&rsquo;t have direct access to the internet - i.e., air-gapped environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
+ 💡 This guide is recommended for advanced users who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete."/>
 
 
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Airgapped installation | </title>
+    <title>Air-Gap Install | </title>
   </head>
   <body class="td-page">
     
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0bb2053ae61d109697c5c89623b29c5ee9fadf55f819dcbe4c82bd86bedb69b312d699a653111cc4ddfc14cf0ce18aa4d986af1a9ba84b022fb9aad9b3de1a90.json"
+  data-offline-search-index-json-src="/offline-search-index.1a3db7e97700d2222661c7804e8d369d783027532ff8c1a0c21ebb88fc5dfc70eb32c0f43a7c914624d221b00c3e7b40d04a6b0f3824e6c07f25eeac12a23c6a.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0bb2053ae61d109697c5c89623b29c5ee9fadf55f819dcbe4c82bd86bedb69b312d699a653111cc4ddfc14cf0ce18aa4d986af1a9ba84b022fb9aad9b3de1a90.json"
+  data-offline-search-index-json-src="/offline-search-index.1a3db7e97700d2222661c7804e8d369d783027532ff8c1a0c21ebb88fc5dfc70eb32c0f43a7c914624d221b00c3e7b40d04a6b0f3824e6c07f25eeac12a23c6a.json"
   data-offline-search-base-href="/"
 >
 
@@ -592,6 +592,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallairgapped-clusters" href="/docs/install/airgapped-clusters/">Air-Gap Install</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
       
       
@@ -641,12 +647,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher-gov" href="/docs/install/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallairgapped-clusters" href="/docs/install/airgapped-clusters/">Airgapped installation</a>
       
       
       
@@ -1408,18 +1408,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#step-1-install-storageos-kubectl-plugin">Step 1. Install storageos kubectl plugin</a></li>
-    <li><a href="#step-2-generate-yaml-manifests">Step 2. Generate yaml manifests</a>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
       <ul>
-        <li><a href="#option-1-with-etcd-in-kubernetes">Option 1: With Etcd in Kubernetes</a></li>
-        <li><a href="#option-2-with-external-etcd">Option 2: With external Etcd</a></li>
+        <li><a href="#step-1---install-ondat-kubectl-plugin">Step 1 - Install Ondat Kubectl Plugin</a></li>
+        <li><a href="#step-2---conducting-preflight-checks">Step 2 - Conducting Preflight Checks</a></li>
+        <li><a href="#step-3---generate-ondat-deployment-manifests">Step 3 - Generate Ondat Deployment Manifests</a></li>
+        <li><a href="#step-4---push-ondat-images-to-private-registry">Step 4 - Push Ondat Images To Private Registry</a></li>
+        <li><a href="#step-5---modify-deployment-manifests">Step 5 - Modify Deployment Manifests</a></li>
+        <li><a href="#step-6---installing-ondat">Step 6 - Installing Ondat</a></li>
+        <li><a href="#step-7---verifying-ondat-installation">Step 7 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-8---applying-a-licence-to-the-cluster">Step 8 - Applying a Licence to the Cluster</a></li>
       </ul>
     </li>
-    <li><a href="#step-3-amend-manifests">Step 3. Amend manifests</a></li>
-    <li><a href="#step-4-pulling-images-into-a-private-registry">Step 4. Pulling images into a private registry</a></li>
-    <li><a href="#step-5-install-ondat">Step 5. Install Ondat</a></li>
-    <li><a href="#verify-the-installation">Verify the installation</a></li>
-    <li><a href="#step-6-licence-the-cluster">Step 6. Licence the cluster</a></li>
   </ul>
 </nav>
 
@@ -1458,7 +1460,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/install/airgapped-clusters/">Airgapped installation</a>
+	<a href="/docs/install/airgapped-clusters/">Air-Gap Install</a>
 </li>
 
 	</ol>
@@ -1466,243 +1468,292 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Airgapped installation</h1>
+	<h1>Air-Gap Install</h1>
 	
-	<blockquote>
-<p>The following page is for advanced users. The full procedure is estimated to
-take ~60 minutes to complete.</p>
-</blockquote>
-<p>Clusters without access to the internet require you to explicitly specify the
-resources to be installed. For that reason the <code>storageos</code> kubectl plugin
-<code>--dry-run</code> flag generates all the yamls for your cluster. You can amend them
-with the images pulled to your private registry. To install Ondat on an
-airgapped cluster, you need</p>
-<ul>
-<li>Install the <code>storageos</code> kubectl plugin</li>
-<li>Generate yaml manifests and amend for your use case</li>
-<li>Pull OCI images to private registries.</li>
-<li>Install Ondat on your cluster</li>
-</ul>
-<p>There are the following sets of images to pull that will be shown along the
-following steps.</p>
-<ul>
-<li>the Ondat operator image</li>
-<li>the images in the StorageOSCluster definition that define the images for each
-component of the cluster</li>
-<li>(if applicable) the images to run Etcd as Pods using the Etcd operator
-deployed by Ondat</li>
-</ul>
-<h2 id="step-1-install-storageos-kubectl-plugin">Step 1. Install storageos kubectl plugin</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -sSLo kubectl-storageos.tar.gz <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> tar -xf kubectl-storageos.tar.gz <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x kubectl-storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv kubectl-storageos /usr/local/bin/ <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> rm kubectl-storageos.tar.gz
-</code></pre></div><blockquote>
-<p>💡 You can find binaries for different architectures and systems in <a href="https://github.com/storageos/kubectl-storageos/releases">kubectl
-plugin</a>.</p>
-</blockquote>
-<h2 id="step-2-generate-yaml-manifests">Step 2. Generate yaml manifests</h2>
-<h3 id="option-1-with-etcd-in-kubernetes">Option 1: With Etcd in Kubernetes</h3>
-<p>The etcd cluster in Kubernetes requires a StorageClass. If you are running on a
-cloud provider, you can use existing StorageClasses for it, for example <code>gp3</code>
-(AWS) or <code>standard</code> (GCE). Or you can create the <code>local-path</code> StorageClass.
-It&rsquo;s recommended to give Etcd a backend disk that can sustain at least 800
-IOPS. It&rsquo;s best to use provisioned IOPS when possible, otherwise make sure the
-size of the disk is big enough to fulfil the IOPS requirement when performance
-depends on IOPS per GB.  For example, AWS would require a burstable EBS bigger
-than 256G to fulfil the IOPS requirement.</p>
-<ol>
-<li>
-<p>Create StorageClass (if you don&rsquo;t have one available)</p>
+	<h2 id="overview">Overview</h2>
+<p>This guide will demonstrate how to install Ondat onto clusters that don&rsquo;t have direct access to the internet - i.e., <a href="https://en.wikipedia.org/wiki/Air_gap_%28networking%29">air-gapped</a> environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.</p>
 <blockquote>
-<p>⚠️  The <code>local-path</code> StorageClass is only recommended for <strong>non production</strong>
-clusters as the data of the etcd peers is susceptible to being lost on node
-failure.</p>
+<p>💡 This guide is recommended for <strong>advanced users</strong> who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Local-path StorageClass</span>
-<span style="color:#8f5902;font-style:italic"># Not for production workloads</span>
-
-<span style="color:#8f5902;font-style:italic"># Pull yaml</span>
-curl -SsLo local-path.yaml https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
-
-<span style="color:#8f5902;font-style:italic"># Pull the following images into your registry</span>
-grep <span style="color:#4e9a06">&#34;image:&#34;</span> local-path.yaml
-
-<span style="color:#8f5902;font-style:italic"># Add registry URL to the image</span>
-vi local-path.yaml
-...
-
-<span style="color:#8f5902;font-style:italic"># Create the storageclass</span>
-kubectl apply -f local-path.yaml
-</code></pre></div></li>
-<li>
-<p>Generate yaml manifests</p>
+<p>Below is a quick summary of the procedure that will be covered in this guide:</p>
+<ol>
+<li>Install the Ondat kubectl plugin.</li>
+<li>Generate the Ondat deployment manifests for your use case.</li>
+<li>Push Ondat container images to your private registry.</li>
+<li>Modify the Ondat deployment manifests.</li>
+<li>Install Ondat onto your air-gapped cluster.</li>
+</ol>
+<h2 id="prerequisites">Prerequisites</h2>
 <blockquote>
-<p>The following command generates a directory called <code>storageos-dry-run</code>
-with the manifests.</p>
+<p>⚠️ Make sure you have met the minimum resource requirements for Ondat so your set up would be successful. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Generate yamls</span>
-<span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span>my-storage-class
-<span style="color:#000">ONDAT_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span>v2.7.0
-<span style="color:#000">K8S_VERSTION</span><span style="color:#ce5c00;font-weight:bold">=</span>v1.22.6
-<span style="color:#000">USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
-<span style="color:#000">PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
-
-kubectl storageos install <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --include-etcd <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --etcd-storage-class <span style="color:#000">$ETCD_STORAGECLASS</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --skip-etcd-endpoints-validation <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --k8s-version <span style="color:#000">$K8S_VERSION</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --admin-username <span style="color:#4e9a06">&#34;</span><span style="color:#000">$USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --admin-password <span style="color:#4e9a06">&#34;</span><span style="color:#000">$PASSWORD</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --dry-run
-</code></pre></div></li>
-<li>
-<p>Amend the file <code>etcd-operator.yaml</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> storageos-dry-run
-vi etcd-operator.yaml
-...
-</code></pre></div><p>Edit the file <code>etcd-operator.yaml</code> and change:</p>
+<blockquote>
+<p>⚠️ Make sure the following CLI utility is installed on your local machine and is available in your <code>$PATH</code>:</p>
+</blockquote>
 <ul>
-<li>
-<p>Find the 2 deployments <code>storageos-etcd-controller-manager</code> and
-<code>storageos-etcd-proxy</code> and edit the images to set the registry url
-prefix.</p>
-</li>
-<li>
-<p>Add the flag <code>--etcd-repository=$REGISTRY/quay.io/coreos/etcd</code>  in the
-args of the <code>manager</code> container.</p>
-<p>For example:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#000">REGISTRY</span><span style="color:#ce5c00;font-weight:bold">=</span>my-registry-url
-<span style="color:#8f5902;font-style:italic"># Old</span>
-      - args:
-        - --enable-leader-election
-        - --proxy-url<span style="color:#ce5c00;font-weight:bold">=</span>storageos-proxy.storageos-etcd.svc
-        command:
-        - /manager
-
-<span style="color:#8f5902;font-style:italic"># New</span>
-      - args:
-        - --enable-leader-election
-        - --proxy-url<span style="color:#ce5c00;font-weight:bold">=</span>storageos-proxy.storageos-etcd.svc
-        - --etcd-repository<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">$REGISTRY</span>/quay.io/coreos/etcd <span style="color:#8f5902;font-style:italic"># Edit this line with your registry url</span>
-        command:
-        - /manager
-</code></pre></div></li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+</ul>
+<blockquote>
+<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Make sure that the node operating system have the required LinuxIO related kernel modules are available for Ondat to run successfully.</p>
+</blockquote>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---install-ondat-kubectl-plugin">Step 1 - Install Ondat Kubectl Plugin</h3>
+<ul>
+<li>Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your <code>$PATH</code>:
+<ul>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
 </ul>
 </li>
+</ul>
+<h3 id="step-2---conducting-preflight-checks">Step 2 - Conducting Preflight Checks</h3>
+<ul>
 <li>
-<p>Amend the file <code>etcd-cluster.yaml</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi etcd-cluster.yaml
-...
-    volumeClaimTemplate:
-      resources:
-        requests:
-          storage: 256Gi
-...
-</code></pre></div><p>Define the <code>storge</code> size of the Etcd volumes. The backend disk requires at
-least 800 IOPS for etcd to work normally. If you are on a cloud provider
-that enables IOPSxGB, it is recommended to use a big enough volume. For
-instance, on AWS a 256GiB or a 50GiB GCE SSD persistent disk.</p>
-</li>
-</ol>
-<h3 id="option-2-with-external-etcd">Option 2: With external Etcd</h3>
+<p>Run the following command to conduct preflight checks against the Kubernetes cluster to validate that Ondat prerequisites have been met before attempting an installation.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
+</code></pre></div></li>
+</ul>
+<h3 id="step-3---generate-ondat-deployment-manifests">Step 3 - Generate Ondat Deployment Manifests</h3>
+<h4 id="option-a---using-an-embedded-etcd-deployment">Option A - Using An Embedded <code>etcd</code> Deployment</h4>
+<h5 id="install-local-path-provisioner">Install Local Path Provisioner</h5>
 <ol>
 <li>
-<p>Generate yaml manifests</p>
+<p>By default, a newly provisioned Kubernetes cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a <a href="https://github.com/rancher/local-path-provisioner">Local Path Provisioner</a> to provide local storage for Ondat&rsquo;s embedded <code>etcd</code> cluster operator deployment.</p>
 <blockquote>
-<p>The following command generates a directory called <code>storageos-dry-run</code>
-with the manifests.</p>
+<p>💡 Different Kubernetes distributions may include a CSI driver as part of the deployment. Cluster administrators can leverage the CSI driver provided by their distribution if they don’t want to use a Local Path Provisioner. If so, ensure that the  <code>ETCD_STORAGECLASS</code>  environment variable points to the correct value for your Kubernetes distribution’s default StorageClass name.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Set etcd url</span>
-<span style="color:#8f5902;font-style:italic"># You can define multiple etcd urls separated by commas</span>
-<span style="color:#8f5902;font-style:italic"># http://peer1:2379,http://peer2:2379,http://peer3:2379</span>
-<span style="color:#000">ETCD_URL</span><span style="color:#ce5c00;font-weight:bold">=</span>http://etcd-url-or-ips:2379
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Download the Local Path Provisioner.</span>
+wget https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
 
-<span style="color:#8f5902;font-style:italic"># Generate yamls</span>
-<span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span>my-storage-class
-<span style="color:#000">ONDAT_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span>v2.7.0
-<span style="color:#000">K8S_VERSTION</span><span style="color:#ce5c00;font-weight:bold">=</span>v1.22.6
-<span style="color:#000">USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
-<span style="color:#000">PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
+<span style="color:#8f5902;font-style:italic"># Get the list of images and push them to your private registry.</span>
+grep <span style="color:#4e9a06">&#34;image:&#34;</span> local-path-storage.yaml
 
-kubectl storageos install <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --etcd-endpoints <span style="color:#000">$ETCD_URL</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --skip-etcd-endpoints-validation <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --k8s-version <span style="color:#000">$K8S_VERSION</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --admin-username <span style="color:#4e9a06">&#34;</span><span style="color:#000">$USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --admin-password <span style="color:#4e9a06">&#34;</span><span style="color:#000">$PASSWORD</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --dry-run
+<span style="color:#8f5902;font-style:italic"># Modify the manifest and add the private registry URL to pull the images.</span>
+vi local-path-storage.yaml
+
+<span style="color:#8f5902;font-style:italic"># Deploy the Local Path Provisioner.</span>
+kubectl apply --filename<span style="color:#ce5c00;font-weight:bold">=</span>local-path-storage.yaml
+</code></pre></div></li>
+<li>
+<p>Define and export the <code>ETCD_STORAGECLASS</code> environment variable so that value is <code>local-path</code>, which is the default StorageClass name for the Local Path Provisioner.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;local-path&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Verify that the Local Path Provisioner was successfully deployed and ensure that the deployment is in a  <code>RUNNING</code>  status, run the following  <code>kubectl</code>  commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>local-path-storage
+kubectl get storageclass
 </code></pre></div></li>
 </ol>
-<h2 id="step-3-amend-manifests">Step 3. Amend manifests</h2>
+<blockquote>
+<p>⚠️ The <code>local-path</code> StorageClass is only recommended for <strong>non-production</strong> clusters, as this stores all the data of the <code>etcd</code> peers locally, which makes it susceptible to its state being lost on node failures.</p>
+</blockquote>
+<h5 id="generate-manifests">Generate Manifests</h5>
 <ol>
 <li>
-<p>Amend the file <code>storageos-operator.yaml</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> storageos-dry-run
-vi storageos-operator.yaml
-</code></pre></div><p>Edit the file <code>storageos-operator.yaml</code> and change:</p>
+<p>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance. In addition, define and export a <code>KUBERNETES_VERSION</code> environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, <code>v1.23.5</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">KUBERNETES_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;v1.23.5&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Run the following  <code>kubectl-storageos</code> plugin command with the <code>--dry-run</code> flag to generate the Ondat deployment Kubernetes manifests in a directory, called <code>storageos-dry-run</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --dry-run <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-storage-class<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --k8s-version<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$KUBERNETES_VERSION</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div></li>
+<li>
+<p>To review the list of manifests generated in the newly created <code>storageos-dry-run</code> directory, run the following commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> storageos-dry-run/
+ls
+</code></pre></div></li>
+</ol>
+<h4 id="option-b---using-an-external-etcd-deployment">Option B - Using An External <code>etcd</code> Deployment</h4>
+<h5 id="setup-an--etcd--cluster">Setup An  <code>etcd</code>  Cluster</h5>
 <ul>
-<li>Find the <code>ConfigMap</code> called <code>storageos-related-images</code> and change the
-URLs of the images adding your registry URL prefix.</li>
-<li>Find the <code>Deployment</code> called <code>storageos-operator</code> and change the <code>images</code>
-of the 2 containers on it adding your registry URL prefix. They are the
-containers <code>manager</code> and <code>kube-rbac-proxy</code>.</li>
+<li>Ensure that you have an  <code>etcd</code>  cluster deployed first before installing Ondat. For instructions on how to set up an external  <code>etcd</code>  cluster, review the  <a href="/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines"><code>etcd</code>  documentation</a>  page.</li>
+<li>Once you have an  <code>etcd</code>  cluster up and running, ensure that you note down the list of  <code>etcd</code>  endpoints as comma-separated values that will be used when configuring Ondat.
+<ul>
+<li>For example,  <code>203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</code></li>
 </ul>
 </li>
-<li>
-<p>(Optional) Amend the file <code>storageos-cluster.yaml</code>
-The StorageOSCluster definition depends on your cluster. For all available
-options, check the <a href="/docs/reference/cluster-operator/configuration">operator
-reference</a>. You can add
-options such as tolerations, nodeSelectors, etc.</p>
-</li>
-</ol>
-<h2 id="step-4-pulling-images-into-a-private-registry">Step 4. Pulling images into a private registry</h2>
-<p>The images set on the previous steps need to be added to your registry. You can
-find them with:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep -E  <span style="color:#4e9a06">&#34;RELATED|image:&#34;</span> *.yaml
-</code></pre></div><h2 id="step-5-install-ondat">Step 5. Install Ondat</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Create the operators and CRDs first</span>
-find . -name <span style="color:#4e9a06">&#39;*-operator.yaml&#39;</span>  <span style="color:#000;font-weight:bold">|</span> xargs -I<span style="color:#ce5c00;font-weight:bold">{}</span> kubectl create -f <span style="color:#ce5c00;font-weight:bold">{}</span>
-
-<span style="color:#8f5902;font-style:italic"># Create the CustomResources</span>
-find . -name <span style="color:#4e9a06">&#39;*-cluster.yaml&#39;</span>  <span style="color:#000;font-weight:bold">|</span> xargs -I<span style="color:#ce5c00;font-weight:bold">{}</span> kubectl create -f <span style="color:#ce5c00;font-weight:bold">{}</span>
-</code></pre></div><h2 id="verify-the-installation">Verify the installation</h2>
+</ul>
+<h5 id="generate-manifests-1">Generate Manifests</h5>
 <ol>
 <li>
-<p>Etcd</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n storageos-etcd get pod
-NAME                                                READY   STATUS    RESTARTS   AGE
-storageos-etcd-0-l4scc                              1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2m19s
-storageos-etcd-1-mzrv7                              1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2m19s
-storageos-etcd-2-bq596                              1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2m19s
-storageos-etcd-controller-manager-f89d9dc47-dlvgb   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2m34s
-storageos-etcd-proxy-55479b544c-qm6nf               1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2m34s
+<p>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance. In addition, define and export a <code>KUBERNETES_VERSION</code> environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, <code>v1.23.5</code>. Lastly, define and export a <code>ETCD_ENDPOINTS</code> environment variable, where the value will be a list of <code>etcd</code> endpoints as comma-separated values.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">KUBERNETES_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;v1.23.5&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">ETCD_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&#34;</span>
 </code></pre></div></li>
 <li>
-<p>Ondat</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n storageos get pod
-NAME                                     READY   STATUS    RESTARTS        AGE
-storageos-api-manager-54df545cbf-fn9cq   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>               113s
-storageos-api-manager-54df545cbf-vmc56   1/1     Running   <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">(</span>106s ago<span style="color:#ce5c00;font-weight:bold">)</span>    113s
-storageos-csi-helper-65db657d7c-52rkj    3/3     Running   <span style="color:#0000cf;font-weight:bold">0</span>               115s
-storageos-node-v6tbg                     3/3     Running   <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">(</span>2m17s ago<span style="color:#ce5c00;font-weight:bold">)</span>   2m30s
-storageos-node-wg9rq                     3/3     Running   <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">(</span>2m18s ago<span style="color:#ce5c00;font-weight:bold">)</span>   2m30s
-storageos-node-zhhkz                     3/3     Running   <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">(</span>2m17s ago<span style="color:#ce5c00;font-weight:bold">)</span>   2m30s
-storageos-operator-6fc687d97b-fjqhd      2/2     Running   <span style="color:#0000cf;font-weight:bold">0</span>               2m55s
-storageos-scheduler-7d66d44694-6n99d     1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>               2m38s
-</code></pre></div><blockquote>
-<p>The <code>storageos-node</code> damonset pods will restart until they can connect to
-etcd</p>
-</blockquote>
+<p>Run the following  <code>kubectl-storageos</code> plugin command with the <code>--dry-run</code> flag to generate the Ondat deployment Kubernetes manifests in a directory, called <code>storageos-dry-run</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --dry-run <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --skip-etcd-endpoints-validation <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-endpoints<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_ENDPOINTS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --k8s-version<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$KUBERNETES_VERSION</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div></li>
+<li>
+<p>To review the list of manifests generated in the newly created <code>storageos-dry-run</code> directory, run the following commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> storageos-dry-run/
+ls
+</code></pre></div></li>
+</ol>
+<h3 id="step-4---push-ondat-images-to-private-registry">Step 4 - Push Ondat Images To Private Registry</h3>
+<ol>
+<li>
+<p>Get the list of all the container images required for Ondat to be deployed successfully and push them to your private registry which will be accessible through your air-gapped environment.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep --extended-regexp <span style="color:#4e9a06">&#34;RELATED|image:&#34;</span> *.yaml
+</code></pre></div></li>
+</ol>
+<h3 id="step-5---modify-deployment-manifests">Step 5 - Modify Deployment Manifests</h3>
+<ol>
+<li>
+<p><strong><code>etcd-operator</code></strong> - Modify the <code>2-etcd-operator.yaml</code> manifest and apply the following changes.</p>
+<ol>
+<li>
+<p>Locate the <code>storageos-etcd-controller-manager</code>  <code>Deployment</code> YAML, navigate to <code>manager</code> container and locate the <code>args</code> section.</p>
+</li>
+<li>
+<p>In this section, add a flag called <code>--etcd-repository=</code> where the value will be your <code>$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd</code>. For example;</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Before modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- --<span style="color:#000">enable-leader-election</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- --<span style="color:#000">proxy-url=storageos-proxy.storageos-etcd.svc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># After modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- --<span style="color:#000">enable-leader-election</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- --<span style="color:#000">proxy-url=storageos-proxy.storageos-etcd.svc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- --<span style="color:#000">etcd-repository=$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd  </span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p><strong><code>etcd-cluster</code></strong> - Modify the <code>3-etcd-cluster.yaml</code> manifest and apply the following changes.</p>
+<ol>
+<li>
+<p>Locate the <code>storageos-etcd</code>  <code>CustomResource</code> YAML, navigate to the <code>storage</code> section and set the <code>storage</code> size value from <code>1Gi</code> to <code>256Gi</code>. For example;</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Before modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeClaimTemplate</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">1Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># After modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeClaimTemplate</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">256Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p><strong><code>storageos-operator</code></strong> - Modify the <code>0-storageos-operator.yaml</code> manifest and apply the following changes.</p>
+<ol>
+<li>
+<p>Locate the <code>storageos-operator</code> <code>Deployment</code> YAML, navigate to the <code>manager</code> and <code>kube-rbac-proxy</code> containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Before modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">manager</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/operator:v2.7.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">kube-rbac-proxy</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">quay.io/brancz/kube-rbac-proxy:v0.10.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># After modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">manager</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/operator:v2.7.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">kube-rbac-proxy</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/brancz/kube-rbac-proxy:v0.10.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Locate the <code>storageos-related-images</code> <code>ConfigMap</code> YAML, navigate to the environment variables that are prefixed with <code>RELATED_IMAGE_</code>. Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Before modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ConfigMap</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_API_MANAGER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/api-manager:v1.2.9</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">quay.io/k8scsi/csi-attacher:v3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/csi-provisioner:v2.1.1-patched</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">quay.io/k8scsi/csi-resizer:v1.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_LIVENESS_PROBE</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">quay.io/k8scsi/livenessprobe:v2.2.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">quay.io/k8scsi/csi-node-driver-registrar:v2.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_NODE_MANAGER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/node-manager:v0.0.6</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_PORTAL_MANAGER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/portal-manager:v1.0.2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_STORAGEOS_INIT</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/init:v2.1.2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_STORAGEOS_NODE</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/node:v2.7.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_UPGRADE_GUARD</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos/upgrade-guard:v0.0.4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># After modification.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ConfigMap</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_API_MANAGER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/api-manager:v1.2.9</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/k8scsi/csi-attacher:v3.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/csi-provisioner:v2.1.1-patched</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/k8scsi/csi-resizer:v1.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_LIVENESS_PROBE</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/livenessprobe:v2.2.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/k8scsi/csi-node-driver-registrar:v2.1.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_NODE_MANAGER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/node-manager:v0.0.6</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_PORTAL_MANAGER</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/portal-manager:v1.0.2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_STORAGEOS_INIT</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/init:v2.1.2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_STORAGEOS_NODE</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/node:v2.7.0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">RELATED_IMAGE_UPGRADE_GUARD</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p><strong><code>storageos-cluster</code></strong></p>
 </li>
 </ol>
-<h2 id="step-6-licence-the-cluster">Step 6. Licence the cluster</h2>
-<p>A cluster can operate without a licence for 24h. Follow the
-<a href="/docs/operations/licensing/">licensing</a> page to apply a licence to your cluster.</p>
+<blockquote>
+<p>💡 <strong>Optional</strong> - For users who are looking to make further customisations to their <code>StorageOSCluster</code> custom resource in the <code>1-storageos-cluster.yaml</code> manifest, review the <a href="https://docs.ondat.io/docs/reference/cluster-operator/configuration">Cluster Operator Configuration</a> and <a href="https://docs.ondat.io/docs/reference/cluster-operator/examples">Cluster Operator Examples</a> reference pages for more information.</p>
+</blockquote>
+<h3 id="step-6---installing-ondat">Step 6 - Installing Ondat</h3>
+<ul>
+<li>
+<p>Run the following  <code>kubectl</code> command to install Ondat with the generated manifests in the <code>storageos-dry-run</code> directory.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Apply the Operators and CustomResourceDefinitions (CRDs) first.</span>
+find . -name <span style="color:#4e9a06">&#39;*-operator.yaml&#39;</span> <span style="color:#000;font-weight:bold">|</span> xargs -I<span style="color:#ce5c00;font-weight:bold">{}</span> kubectl apply --filename <span style="color:#ce5c00;font-weight:bold">{}</span>
+
+<span style="color:#8f5902;font-style:italic"># Apply the Custom Resources next.</span>
+find . -name <span style="color:#4e9a06">&#39;*-cluster.yaml&#39;</span> <span style="color:#000;font-weight:bold">|</span> xargs -I<span style="color:#ce5c00;font-weight:bold">{}</span> kubectl apply --filename <span style="color:#ce5c00;font-weight:bold">{}</span>
+</code></pre></div></li>
+<li>
+<p>The installation process may take a few minutes.</p>
+</li>
+</ul>
+<h3 id="step-7---verifying-ondat-installation">Step 7 - Verifying Ondat Installation</h3>
+<ul>
+<li>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd <span style="color:#8f5902;font-style:italic"># only if the etcd cluster was deployed inside the Kubernetes cluster.</span>
+kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div></li>
+</ul>
+<h3 id="step-8---applying-a-licence-to-the-cluster">Step 8 - Applying a Licence to the Cluster</h3>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.</p>
+</blockquote>
+<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 
 	
 	
