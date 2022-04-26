@@ -22,16 +22,16 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Install | </title><meta property="og:title" content="Install" />
-<meta property="og:description" content="Ondat is platform agnostic, however, there are details on different providers and Kubernetes distributions to take in consideration. Follow the instructions to Install, Provision or Troubleshoot according to your providers.
+<meta property="og:description" content="Ondat deployment guides for supported container orchestrators.
 " />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/docs/install/" />
 
 <meta itemprop="name" content="Install">
-<meta itemprop="description" content="Ondat is platform agnostic, however, there are details on different providers and Kubernetes distributions to take in consideration. Follow the instructions to Install, Provision or Troubleshoot according to your providers.
+<meta itemprop="description" content="Ondat deployment guides for supported container orchestrators.
 "><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Install"/>
-<meta name="twitter:description" content="Ondat is platform agnostic, however, there are details on different providers and Kubernetes distributions to take in consideration. Follow the instructions to Install, Provision or Troubleshoot according to your providers.
+<meta name="twitter:description" content="Ondat deployment guides for supported container orchestrators.
 "/>
 
 
@@ -172,7 +172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1a3db7e97700d2222661c7804e8d369d783027532ff8c1a0c21ebb88fc5dfc70eb32c0f43a7c914624d221b00c3e7b40d04a6b0f3824e6c07f25eeac12a23c6a.json"
+  data-offline-search-index-json-src="/offline-search-index.4f21590d01c5fb3c180c2050190798d11f83f3f60231c3821e2667e3415ee85529ebf8a340b2b446a0e50ee87e077be2f890ad4c3be04b9f65d7d6d49b01ba6b.json"
   data-offline-search-base-href="/"
 >
 
@@ -320,7 +320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1a3db7e97700d2222661c7804e8d369d783027532ff8c1a0c21ebb88fc5dfc70eb32c0f43a7c914624d221b00c3e7b40d04a6b0f3824e6c07f25eeac12a23c6a.json"
+  data-offline-search-index-json-src="/offline-search-index.4f21590d01c5fb3c180c2050190798d11f83f3f60231c3821e2667e3415ee85529ebf8a340b2b446a0e50ee87e077be2f890ad4c3be04b9f65d7d6d49b01ba6b.json"
   data-offline-search-base-href="/"
 >
 
@@ -541,12 +541,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesmountpropagation" href="/docs/prerequisites/mountpropagation/">Mount Propagation</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitespidlimits" href="/docs/prerequisites/pidlimits/">PID Limits</a>
       
       
@@ -583,12 +577,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul>
     <li class="collapse show" id="docsinstall">
       
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallairgapped-clusters" href="/docs/install/airgapped-clusters/">Air-Gap Install</a>
       
       
       
@@ -648,6 +636,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallairgap" href="/docs/install/airgap/">Air-Gapped Install</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
       
       
@@ -684,35 +678,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsupgradeusing-rolling-upgrades" href="/docs/upgrade/using-rolling-upgrades/">Platform Upgrade</a>
-      
-      
-    </li>
-  </ul>
-</ul>
-
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/platforms/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Platforms</a>
-  </li>
-  <ul>
-    <li class="collapse " id="docsplatforms">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsopenshift" href="/docs/platforms/openshift/">OpenShift</a>
       
       
     </li>
@@ -1436,50 +1401,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <div class="td-content">
 	<h1>Install</h1>
-	<div class="lead">Ondat is platform agnostic, however, there are details on different providers and Kubernetes distributions to take in consideration. Follow the instructions to Install, Provision or Troubleshoot according to your providers.</div>
-	<h1 id="kubernetes-with-ondat">Kubernetes with Ondat</h1>
-<p>Ondat integrates transparently with Kubernetes and different distributions
-such as OpenShift, Rancher, EKS, AKS, GKE, etc. The user can provide standard
-PVC definitions and Ondat will dynamically provision matching volumes.
-Ondat presents volumes to containers with standard POSIX mount targets.
-This enables the Kubelet to mount Ondat volumes using standard linux device
-files. Checkout <a href="/docs/concepts/volumes">device presentation</a> for more details.</p>
-<p>Kubernetes and Ondat communicate with each other to perform actions such as
-creation, deletion or mounting of volumes. The CSI (Container Storage
-Interface) driver is the standard method of communication. Using CSI,
-Kubernetes and Ondat communicate over a Unix domain socket.</p>
-<h1 id="csi-container-storage-interface">CSI (Container Storage Interface)</h1>
-<p>CSI is the standard method of communication that enables storage drivers for
-Kubernetes to release on their own schedule. The CSI standard allows storage
-vendors to upgrade, update, and enhance their drivers without the need to
-update Kubernetes source code, or follow Kubernetes release cycles.</p>
-<p>CSI was released GA from Kubernetes 1.13. Ondat v2 only supports the use of
-CSI as a storage driver. In addition, the Ondat Cluster Operator handles
-the configuration of the CSI driver and its complexity by detecting the version
-of the Kubernetes installed.</p>
-<p>Check out the status of the CSI release cycle in relation with Kubernetes in
-the <a href="https://kubernetes-csi.github.io/docs/">CSI project</a> page.</p>
-<p>CSI communication is fully supported by Ondat if the cluster is deployed
-with any <a href="/docs/prerequisites/systemconfiguration#distribution-specifics">supported Linux Distribution</a>.</p>
-<h1 id="kubernetes-upgrades-on-managed-services">Kubernetes Upgrades on Managed Services</h1>
-<p>Managed services that support in place upgrades are fully supported. Upgrading Kubernetes using green/blue deployments requires you to turn on the rolling upgrade feature to protect your cluster from major issues.</p>
-<p>Follow the instruction <a href="/docs/operations/using-rolling-upgrades">here</a>. Please contact Ondat support for further advice if required.</p>
-
+	<div class="lead">Ondat deployment guides for supported container orchestrators.</div>
+	
         <div class="section-index">
     
     
     
     
     <hr class="panel-line">
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/install/airgapped-clusters/">Air-Gap Install</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
         
             
                 <div class="entry">
@@ -1544,12 +1473,16 @@ with any <a href="/docs/prerequisites/systemconfiguration#distribution-specifics
             
         
             
+        
+            
                 <div class="entry">
                     <h5>
                         <a href="/docs/install/openshift/">OpenShift</a>
                     </h5>
                     <p></p>
                 </div>
+            
+        
             
         
             
@@ -1587,20 +1520,19 @@ with any <a href="/docs/prerequisites/systemconfiguration#distribution-specifics
             
                 <div class="entry">
                     <h5>
-                        <a href="/docs/install/declarative-install/">Declarative Install</a>
+                        <a href="/docs/install/airgap/">Air-Gapped Install</a>
                     </h5>
                     <p></p>
                 </div>
             
         
             
-        
-            
-        
-            
-        
-            
-        
+                <div class="entry">
+                    <h5>
+                        <a href="/docs/install/declarative-install/">Declarative Install</a>
+                    </h5>
+                    <p></p>
+                </div>
             
         
             

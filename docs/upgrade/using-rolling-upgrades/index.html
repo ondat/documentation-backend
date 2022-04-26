@@ -34,7 +34,7 @@
  ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
  Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB).">
 
-<meta itemprop="wordCount" content="275">
+<meta itemprop="wordCount" content="300">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Platform Upgrade"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1a3db7e97700d2222661c7804e8d369d783027532ff8c1a0c21ebb88fc5dfc70eb32c0f43a7c914624d221b00c3e7b40d04a6b0f3824e6c07f25eeac12a23c6a.json"
+  data-offline-search-index-json-src="/offline-search-index.4f21590d01c5fb3c180c2050190798d11f83f3f60231c3821e2667e3415ee85529ebf8a340b2b446a0e50ee87e077be2f890ad4c3be04b9f65d7d6d49b01ba6b.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1a3db7e97700d2222661c7804e8d369d783027532ff8c1a0c21ebb88fc5dfc70eb32c0f43a7c914624d221b00c3e7b40d04a6b0f3824e6c07f25eeac12a23c6a.json"
+  data-offline-search-index-json-src="/offline-search-index.4f21590d01c5fb3c180c2050190798d11f83f3f60231c3821e2667e3415ee85529ebf8a340b2b446a0e50ee87e077be2f890ad4c3be04b9f65d7d6d49b01ba6b.json"
   data-offline-search-base-href="/"
 >
 
@@ -548,12 +548,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesmountpropagation" href="/docs/prerequisites/mountpropagation/">Mount Propagation</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitespidlimits" href="/docs/prerequisites/pidlimits/">PID Limits</a>
       
       
@@ -590,12 +584,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul>
     <li class="collapse " id="docsinstall">
       
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallairgapped-clusters" href="/docs/install/airgapped-clusters/">Air-Gap Install</a>
       
       
       
@@ -655,6 +643,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallairgap" href="/docs/install/airgap/">Air-Gapped Install</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
       
       
@@ -691,35 +685,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsupgradeusing-rolling-upgrades" href="/docs/upgrade/using-rolling-upgrades/">Platform Upgrade</a>
-      
-      
-    </li>
-  </ul>
-</ul>
-
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/platforms/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Platforms</a>
-  </li>
-  <ul>
-    <li class="collapse " id="docsplatforms">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsplatformsopenshift" href="/docs/platforms/openshift/">OpenShift</a>
       
       
     </li>
@@ -1411,8 +1376,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#step-1---enable-node-manager-and-upgrade-guard">Step 1 - Enable Node Manager and Upgrade Guard</a></li>
-    <li><a href="#step-2---rolling-upgrade-ready">Step 2 - Rolling upgrade ready</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---enable-node-manager--upgrade-guard">Step 1 - Enable Node Manager &amp; Upgrade Guard</a></li>
+        <li><a href="#step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -1461,12 +1432,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Platform Upgrade</h1>
 	
-	<h1 id="overview">Overview</h1>
+	<h2 id="overview">Overview</h2>
 <p>This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the <a href="/docs/concepts/rolling-upgrades/#upgrade-guard">Upgrade Guard</a> and <a href="/docs/concepts/rolling-upgrades/#node-manager">Node Manager</a>. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.</p>
 <blockquote>
 <p>⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.</p>
 </blockquote>
-<h1 id="prerequisites">Prerequisites</h1>
+<h2 id="prerequisites">Prerequisites</h2>
 <blockquote>
 <p>⚠️ Make sure you have met the requirements of <a href="https://kubernetes.io/docs/tasks/run-application/configure-pdb/">configuring a Pod Disruption Budget (PDB)</a>.</p>
 </blockquote>
@@ -1477,23 +1448,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>⚠️ This feature supports the following platforms: Google Anthos, Google GKE with future support to be expanded to Amazon EKS, Openshift and Rancher.</p>
 </blockquote>
 <blockquote>
+<p>⚠️ Using Ondat for the internal registry is not recommended. OpenShift requires the internal registry to be available but Ondat volumes may become unavailable during the upgrade.</p>
+</blockquote>
+<blockquote>
 <p>⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.</p>
 </blockquote>
-<h1 id="procedure">Procedure</h1>
-<h2 id="step-1---enable-node-manager-and-upgrade-guard">Step 1 - Enable Node Manager and Upgrade Guard</h2>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---enable-node-manager--upgrade-guard">Step 1 - Enable Node Manager &amp; Upgrade Guard</h3>
 <ul>
-<li>Add the following lines to the StorageOSCluster spec:</li>
+<li>Add the following lines to the <code>StorageOSCluster</code> spec:</li>
 </ul>
-<pre tabindex="0"><code> nodeManagerFeatures:
-   upgradeGuard: &quot;true&quot;
-</code></pre><ul>
-<li>
-<p>Alternatively, you can run the following command:</p>
-<pre tabindex="0"><code>kubectl get storageoscluster -n storageos storageoscluster -o yaml | sed -e 's|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &quot;true&quot;|' | kubectl apply -f - 
-</code></pre></li>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">nodeManagerFeatures</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">upgradeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><ul>
+<li>Alternatively, you can run the following command:</li>
 </ul>
-<p>You will see new pods getting created, where one pod per node in a cluster called Node Manager.</p>
-<h2 id="step-2---rolling-upgrade-ready">Step 2 - Rolling upgrade ready</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get storageoscluster -n storageos storageoscluster -o yaml <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &#34;true&#34;|&#39;</span> <span style="color:#000;font-weight:bold">|</span> kubectl apply -f - 
+</code></pre></div><ul>
+<li>You will see new pods getting created, one pod per node in a cluster called Node Manager.</li>
+</ul>
+<h3 id="step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</h3>
 <p>Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!</p>
 <blockquote>
 <p>⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.</p>

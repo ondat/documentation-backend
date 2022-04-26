@@ -2,8 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/docs/install/airgapped-clusters/</loc>
-  </url><url>
     <loc>/docs/install/amazon-web-services-eks/</loc>
   </url><url>
     <loc>/docs/install/microsoft-azure-aks/</loc>
@@ -24,7 +22,11 @@
   </url><url>
     <loc>/docs/ondat-portal/installation-portal/</loc>
   </url><url>
+    <loc>/docs/upgrade/upgrade/</loc>
+  </url><url>
     <loc>/docs/install/openshift/</loc>
+  </url><url>
+    <loc>/docs/upgrade/using-rolling-upgrades/</loc>
   </url><url>
     <loc>/docs/install/rancher/</loc>
   </url><url>
@@ -44,6 +46,8 @@
   </url><url>
     <loc>/docs/introduction/platforms/</loc>
   </url><url>
+    <loc>/docs/install/airgap/</loc>
+  </url><url>
     <loc>/docs/install/declarative-install/</loc>
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
@@ -56,8 +60,6 @@
   </url><url>
     <loc>/docs/prerequisites/firewalls/</loc>
   </url><url>
-    <loc>/docs/prerequisites/mountpropagation/</loc>
-  </url><url>
     <loc>/docs/prerequisites/</loc>
   </url><url>
     <loc>/docs/install/</loc>
@@ -65,8 +67,6 @@
     <loc>/docs/prerequisites/pidlimits/</loc>
   </url><url>
     <loc>/docs/upgrade/</loc>
-  </url><url>
-    <loc>/docs/platforms/</loc>
   </url><url>
     <loc>/docs/best-practices/</loc>
   </url><url>
@@ -203,12 +203,6 @@
     <loc>/docs/reference/scheduler/</loc>
   </url><url>
     <loc>/docs/reference/telemetry/</loc>
-  </url><url>
-    <loc>/docs/upgrade/upgrade/</loc>
-  </url><url>
-    <loc>/docs/platforms/openshift/</loc>
-  </url><url>
-    <loc>/docs/upgrade/using-rolling-upgrades/</loc>
   </url><url>
     <loc>/docs/concepts/policies/</loc>
   </url><url>

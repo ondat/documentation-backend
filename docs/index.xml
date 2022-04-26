@@ -14,303 +14,6 @@
     
     
     <item>
-      <title>Docs: Air-Gap Install</title>
-      <link>/docs/install/airgapped-clusters/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/install/airgapped-clusters/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This guide will demonstrate how to install Ondat onto clusters that don&amp;rsquo;t have direct access to the internet - i.e., &lt;a href=&#34;https://en.wikipedia.org/wiki/Air_gap_%28networking%29&#34;&gt;air-gapped&lt;/a&gt; environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 This guide is recommended for &lt;strong&gt;advanced users&lt;/strong&gt; who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Below is a quick summary of the procedure that will be covered in this guide:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Install the Ondat kubectl plugin.&lt;/li&gt;
-&lt;li&gt;Generate the Ondat deployment manifests for your use case.&lt;/li&gt;
-&lt;li&gt;Push Ondat container images to your private registry.&lt;/li&gt;
-&lt;li&gt;Modify the Ondat deployment manifests.&lt;/li&gt;
-&lt;li&gt;Install Ondat onto your air-gapped cluster.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have met the minimum resource requirements for Ondat so your set up would be successful. Review the main &lt;a href=&#34;/docs/prerequisites/&#34;&gt;Ondat prerequisites&lt;/a&gt; page for more information.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure the following CLI utility is installed on your local machine and is available in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure that the node operating system have the required LinuxIO related kernel modules are available for Ondat to run successfully.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
-&lt;h3 id=&#34;step-1---install-ondat-kubectl-plugin&#34;&gt;Step 1 - Install Ondat Kubectl Plugin&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your &lt;code&gt;$PATH&lt;/code&gt;:
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-2---conducting-preflight-checks&#34;&gt;Step 2 - Conducting Preflight Checks&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following command to conduct preflight checks against the Kubernetes cluster to validate that Ondat prerequisites have been met before attempting an installation.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos preflight
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-3---generate-ondat-deployment-manifests&#34;&gt;Step 3 - Generate Ondat Deployment Manifests&lt;/h3&gt;
-&lt;h4 id=&#34;option-a---using-an-embedded-etcd-deployment&#34;&gt;Option A - Using An Embedded &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/h4&gt;
-&lt;h5 id=&#34;install-local-path-provisioner&#34;&gt;Install Local Path Provisioner&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;By default, a newly provisioned Kubernetes cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a &lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt; to provide local storage for Ondat&amp;rsquo;s embedded &lt;code&gt;etcd&lt;/code&gt; cluster operator deployment.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Different Kubernetes distributions may include a CSI driver as part of the deployment. Cluster administrators can leverage the CSI driver provided by their distribution if they don’t want to use a Local Path Provisioner. If so, ensure that the  &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt;  environment variable points to the correct value for your Kubernetes distribution’s default StorageClass name.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Download the Local Path Provisioner.&lt;/span&gt;
-wget https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
-
-&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the list of images and push them to your private registry.&lt;/span&gt;
-grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;image:&amp;#34;&lt;/span&gt; local-path-storage.yaml
-
-&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Modify the manifest and add the private registry URL to pull the images.&lt;/span&gt;
-vi local-path-storage.yaml
-
-&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Deploy the Local Path Provisioner.&lt;/span&gt;
-kubectl apply --filename&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Define and export the &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt; environment variable so that value is &lt;code&gt;local-path&lt;/code&gt;, which is the default StorageClass name for the Local Path Provisioner.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;local-path&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Verify that the Local Path Provisioner was successfully deployed and ensure that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt;  status, run the following  &lt;code&gt;kubectl&lt;/code&gt;  commands.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage
-kubectl get storageclass
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended for &lt;strong&gt;non-production&lt;/strong&gt; clusters, as this stores all the data of the &lt;code&gt;etcd&lt;/code&gt; peers locally, which makes it susceptible to its state being lost on node failures.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h5 id=&#34;generate-manifests&#34;&gt;Generate Manifests&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Define and export the &lt;code&gt;STORAGEOS_USERNAME&lt;/code&gt; and &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; environment variables that will be used to manage your Ondat instance. In addition, define and export a &lt;code&gt;KUBERNETES_VERSION&lt;/code&gt; environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, &lt;code&gt;v1.23.5&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;v1.23.5&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following  &lt;code&gt;kubectl-storageos&lt;/code&gt; plugin command with the &lt;code&gt;--dry-run&lt;/code&gt; flag to generate the Ondat deployment Kubernetes manifests in a directory, called &lt;code&gt;storageos-dry-run&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --dry-run &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-storage-class&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --k8s-version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-username&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-password&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To review the list of manifests generated in the newly created &lt;code&gt;storageos-dry-run&lt;/code&gt; directory, run the following commands.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-dry-run/
-ls
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&#34;option-b---using-an-external-etcd-deployment&#34;&gt;Option B - Using An External &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/h4&gt;
-&lt;h5 id=&#34;setup-an--etcd--cluster&#34;&gt;Setup An  &lt;code&gt;etcd&lt;/code&gt;  Cluster&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Ensure that you have an  &lt;code&gt;etcd&lt;/code&gt;  cluster deployed first before installing Ondat. For instructions on how to set up an external  &lt;code&gt;etcd&lt;/code&gt;  cluster, review the  &lt;a href=&#34;/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines&#34;&gt;&lt;code&gt;etcd&lt;/code&gt;  documentation&lt;/a&gt;  page.&lt;/li&gt;
-&lt;li&gt;Once you have an  &lt;code&gt;etcd&lt;/code&gt;  cluster up and running, ensure that you note down the list of  &lt;code&gt;etcd&lt;/code&gt;  endpoints as comma-separated values that will be used when configuring Ondat.
-&lt;ul&gt;
-&lt;li&gt;For example,  &lt;code&gt;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h5 id=&#34;generate-manifests-1&#34;&gt;Generate Manifests&lt;/h5&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Define and export the &lt;code&gt;STORAGEOS_USERNAME&lt;/code&gt; and &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; environment variables that will be used to manage your Ondat instance. In addition, define and export a &lt;code&gt;KUBERNETES_VERSION&lt;/code&gt; environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, &lt;code&gt;v1.23.5&lt;/code&gt;. Lastly, define and export a &lt;code&gt;ETCD_ENDPOINTS&lt;/code&gt; environment variable, where the value will be a list of &lt;code&gt;etcd&lt;/code&gt; endpoints as comma-separated values.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;v1.23.5&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following  &lt;code&gt;kubectl-storageos&lt;/code&gt; plugin command with the &lt;code&gt;--dry-run&lt;/code&gt; flag to generate the Ondat deployment Kubernetes manifests in a directory, called &lt;code&gt;storageos-dry-run&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --dry-run &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --skip-etcd-endpoints-validation &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$ETCD_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --k8s-version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-username&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-password&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To review the list of manifests generated in the newly created &lt;code&gt;storageos-dry-run&lt;/code&gt; directory, run the following commands.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-dry-run/
-ls
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;step-4---push-ondat-images-to-private-registry&#34;&gt;Step 4 - Push Ondat Images To Private Registry&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Get the list of all the container images required for Ondat to be deployed successfully and push them to your private registry which will be accessible through your air-gapped environment.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;grep --extended-regexp &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;RELATED|image:&amp;#34;&lt;/span&gt; *.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;step-5---modify-deployment-manifests&#34;&gt;Step 5 - Modify Deployment Manifests&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;etcd-operator&lt;/code&gt;&lt;/strong&gt; - Modify the &lt;code&gt;2-etcd-operator.yaml&lt;/code&gt; manifest and apply the following changes.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Locate the &lt;code&gt;storageos-etcd-controller-manager&lt;/code&gt;  &lt;code&gt;Deployment&lt;/code&gt; YAML, navigate to &lt;code&gt;manager&lt;/code&gt; container and locate the &lt;code&gt;args&lt;/code&gt; section.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;In this section, add a flag called &lt;code&gt;--etcd-repository=&lt;/code&gt; where the value will be your &lt;code&gt;$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd&lt;/code&gt;. For example;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;enable-leader-election&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;proxy-url=storageos-proxy.storageos-etcd.svc&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;enable-leader-election&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;proxy-url=storageos-proxy.storageos-etcd.svc&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;etcd-repository=$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd  &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;etcd-cluster&lt;/code&gt;&lt;/strong&gt; - Modify the &lt;code&gt;3-etcd-cluster.yaml&lt;/code&gt; manifest and apply the following changes.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Locate the &lt;code&gt;storageos-etcd&lt;/code&gt;  &lt;code&gt;CustomResource&lt;/code&gt; YAML, navigate to the &lt;code&gt;storage&lt;/code&gt; section and set the &lt;code&gt;storage&lt;/code&gt; size value from &lt;code&gt;1Gi&lt;/code&gt; to &lt;code&gt;256Gi&lt;/code&gt;. For example;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplate&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;1Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplate&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;256Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;storageos-operator&lt;/code&gt;&lt;/strong&gt; - Modify the &lt;code&gt;0-storageos-operator.yaml&lt;/code&gt; manifest and apply the following changes.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Locate the &lt;code&gt;storageos-operator&lt;/code&gt; &lt;code&gt;Deployment&lt;/code&gt; YAML, navigate to the &lt;code&gt;manager&lt;/code&gt; and &lt;code&gt;kube-rbac-proxy&lt;/code&gt; containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;manager&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/operator:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;kube-rbac-proxy&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/brancz/kube-rbac-proxy:v0.10.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;manager&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/operator:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;kube-rbac-proxy&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/brancz/kube-rbac-proxy:v0.10.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Locate the &lt;code&gt;storageos-related-images&lt;/code&gt; &lt;code&gt;ConfigMap&lt;/code&gt; YAML, navigate to the environment variables that are prefixed with &lt;code&gt;RELATED_IMAGE_&lt;/code&gt;. Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ConfigMap&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_API_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/api-manager:v1.2.9&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/csi-attacher:v3.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/csi-provisioner:v2.1.1-patched&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/csi-resizer:v1.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_LIVENESS_PROBE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/livenessprobe:v2.2.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/csi-node-driver-registrar:v2.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_NODE_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/node-manager:v0.0.6&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_PORTAL_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/portal-manager:v1.0.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_INIT&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/init:v2.1.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_NODE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/node:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_UPGRADE_GUARD&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/upgrade-guard:v0.0.4&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ConfigMap&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_API_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/api-manager:v1.2.9&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/k8scsi/csi-attacher:v3.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/csi-provisioner:v2.1.1-patched&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/k8scsi/csi-resizer:v1.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_LIVENESS_PROBE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/livenessprobe:v2.2.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/k8scsi/csi-node-driver-registrar:v2.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_NODE_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/node-manager:v0.0.6&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_PORTAL_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/portal-manager:v1.0.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_INIT&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/init:v2.1.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_NODE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/node:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_UPGRADE_GUARD&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;storageos-cluster&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 &lt;strong&gt;Optional&lt;/strong&gt; - For users who are looking to make further customisations to their &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource in the &lt;code&gt;1-storageos-cluster.yaml&lt;/code&gt; manifest, review the &lt;a href=&#34;https://docs.ondat.io/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and &lt;a href=&#34;https://docs.ondat.io/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;step-6---installing-ondat&#34;&gt;Step 6 - Installing Ondat&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following  &lt;code&gt;kubectl&lt;/code&gt; command to install Ondat with the generated manifests in the &lt;code&gt;storageos-dry-run&lt;/code&gt; directory.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Apply the Operators and CustomResourceDefinitions (CRDs) first.&lt;/span&gt;
-find . -name &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;*-operator.yaml&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; xargs -I&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt; kubectl apply --filename &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt;
-
-&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Apply the Custom Resources next.&lt;/span&gt;
-find . -name &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;*-cluster.yaml&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; xargs -I&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt; kubectl apply --filename &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;The installation process may take a few minutes.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-7---verifying-ondat-installation&#34;&gt;Step 7 - Verifying Ondat Installation&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following &lt;code&gt;kubectl&lt;/code&gt; commands to inspect Ondat&amp;rsquo;s resources (the core components should all be in a &lt;code&gt;RUNNING&lt;/code&gt; status)&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
-kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-etcd &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# only if the etcd cluster was deployed inside the Kubernetes cluster.&lt;/span&gt;
-kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-8---applying-a-licence-to-the-cluster&#34;&gt;Step 8 - Applying a Licence to the Cluster&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;To obtain a licence, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Amazon Elastic Kubernetes Service (EKS)</title>
       <link>/docs/install/amazon-web-services-eks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1057,6 +760,98 @@ Use &amp;quot;kubectl-storageos [command] --help&amp;quot; for more information 
     </item>
     
     <item>
+      <title>Docs: Ondat Upgrade</title>
+      <link>/docs/upgrade/upgrade/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/upgrade/upgrade/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide provides instructions on how to upgrade Ondat.&lt;/p&gt;
+&lt;h2 id=&#34;upgrading-an-ondat-v2-cluster&#34;&gt;Upgrading An Ondat &lt;code&gt;v2&lt;/code&gt; Cluster&lt;/h2&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat v2.3&lt;/a&gt; and that you have checked the init container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Pull down the new Ondat container image &lt;code&gt;storageos/node:v2.7.0&lt;/code&gt; onto the nodes beforehand so that the cluster spins up faster.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Speak with our support team &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; so we can assist you with your upgrade.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ If you are upgrading to &lt;code&gt;v2.7.0&lt;/code&gt;, you will only be able to downgrade to &lt;code&gt;v2.6.0&lt;/code&gt; due to the mapping changes made in the Data Plane. For more information, review the &lt;a href=&#34;/docs/release-notes&#34;&gt;release notes&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
+&lt;h3 id=&#34;step-1---backup-ondat-deployment-manifests&#34;&gt;Step 1 - Backup Ondat Deployment Manifests&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Make sure that you keep a backup of all the Ondat YAML files. You can also backup the &lt;code&gt;StatefulSet&lt;/code&gt; yaml files to keep track of the replicas.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod -n storageos-operator -o yaml &amp;gt; storageos_operator.yaml
+kubectl get storageoscluster -n storageos-operator -o yaml &amp;gt; storageos_cr.yaml
+kubectl get statefulset --all-namespaces &amp;gt; statefulset-sizes.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-2---generate-the-storageos-configyaml-manifest&#34;&gt;Step 2 - Generate The &lt;code&gt;storageos-config.yaml&lt;/code&gt; Manifest&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following commands to generate the &lt;code&gt;storageos-config.yaml&lt;/code&gt; file that is used to upgrade your cluster based on your current configuration.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;SECRET_NAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].spec.secretRefName}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;SECRET_NAMESPACE&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].spec.secretRefNamespace}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+kubectl get secret -n &lt;span style=&#34;color:#000&#34;&gt;$SECRET_NAMESPACE&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$SECRET_NAME&lt;/span&gt; -oyaml &amp;gt; /tmp/storageos-config.yaml
+&lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;---&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; /tmp/storageos-config.yaml
+&lt;span style=&#34;color:#000&#34;&gt;STOS_NAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].metadata.name}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;STOS_NAMESPACE&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get storageoscluster -A -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].metadata.namespace}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+kubectl get storageoscluster -n &lt;span style=&#34;color:#000&#34;&gt;$STOS_NAMESPACE&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$STOS_NAME&lt;/span&gt; -oyaml &amp;gt;&amp;gt; /tmp/storageos-config.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This file will include the manifest of 2 Kubernetes objects, the authentication Secret object and the StorageOS CR object.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Edit &lt;code&gt;StorageOSCluster&lt;/code&gt; object in the &lt;code&gt;/tmp/storageos-config.yaml&lt;/code&gt; file by removing all images in the image section and modify the &lt;code&gt;storageos/node&lt;/code&gt; image to:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;images&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;nodeContainer&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/node:v2.7.0&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-3---scale-down-stateful-applications-to-zero&#34;&gt;Step 3 - Scale Down Stateful Applications To Zero&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Scale all of the stateful applications that use Ondat volumes to 0.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-4---upgrade-ondat&#34;&gt;Step 4 - Upgrade Ondat&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following command to conduct the upgrade:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos upgrade --uninstall-stos-operator-namespace storageos-operator --stos-cluster-yaml /tmp/storageos-config.yaml --etcd-endpoints &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&amp;lt;ETCD-IP1&amp;gt;:2379,&amp;lt;ETCD-IP2&amp;gt;:2379,&amp;lt;ETCD-IP3&amp;gt;:2379&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The plugin uses the &lt;code&gt;--uninstall-stos-operator-namespace&lt;/code&gt; argument because it uninstalls the cluster first and then reinstalls it with the new version.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;etcd&lt;/code&gt; endpoints should correspond to the endpoints you have in the &lt;code&gt;.spec.kvBackend&lt;/code&gt; section of StorageOS object in the &lt;code&gt;/tmp/storageos-config.yaml&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 If at any point something goes wrong with the upgrade process, backups of all the relevant Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-5---verifying-the-ondat-upgrade&#34;&gt;Step 5 - Verifying The Ondat Upgrade&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following commands to inspect Ondat&amp;rsquo;s resources are back online (the core components should all be in a &lt;code&gt;RUNNING&lt;/code&gt; status)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-etcd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-6---scale-up-stateful-applications&#34;&gt;Step 6 - Scale Up Stateful Applications&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Once the Ondat upgrade is complete and the core components are back online, scale up the stateful applications that use Ondat volumes back up to their respective replica count.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: OpenShift</title>
       <link>/docs/install/openshift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1319,6 +1114,62 @@ bootstrapped successfully.&lt;/p&gt;
 &lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
 &lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat volume guide&lt;/a&gt; for an example of how
 to mount an Ondat volume in a Pod.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Platform Upgrade</title>
+      <link>/docs/upgrade/using-rolling-upgrades/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/upgrade/using-rolling-upgrades/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide will demonstrate how to enable protection for your orchestrator&amp;rsquo;s rolling upgrades using the &lt;a href=&#34;/docs/concepts/rolling-upgrades/#upgrade-guard&#34;&gt;Upgrade Guard&lt;/a&gt; and &lt;a href=&#34;/docs/concepts/rolling-upgrades/#node-manager&#34;&gt;Node Manager&lt;/a&gt;. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure you have met the requirements of &lt;a href=&#34;https://kubernetes.io/docs/tasks/run-application/configure-pdb/&#34;&gt;configuring a Pod Disruption Budget (PDB)&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ If your volume does not have any replicas, the rolling upgrades feature will not start on any StorageOS node until you have one or more replicas on all your volumes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ This feature supports the following platforms: Google Anthos, Google GKE with future support to be expanded to Amazon EKS, Openshift and Rancher.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Using Ondat for the internal registry is not recommended. OpenShift requires the internal registry to be available but Ondat volumes may become unavailable during the upgrade.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
+&lt;h3 id=&#34;step-1---enable-node-manager--upgrade-guard&#34;&gt;Step 1 - Enable Node Manager &amp;amp; Upgrade Guard&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Add the following lines to the &lt;code&gt;StorageOSCluster&lt;/code&gt; spec:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;nodeManagerFeatures&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;upgradeGuard&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Alternatively, you can run the following command:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get storageoscluster -n storageos storageoscluster -o yaml &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; sed -e &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &amp;#34;true&amp;#34;|&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; kubectl apply -f - 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;You will see new pods getting created, one pod per node in a cluster called Node Manager.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-2---rolling-upgrades-is-ready&#34;&gt;Step 2 - Rolling Upgrades Is Ready&lt;/h3&gt;
+&lt;p&gt;Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ EKS takes care on PDB for 50 mins, after this period upgrade would fail unless it was forced.&lt;/p&gt;
+&lt;/blockquote&gt;
 
       </description>
     </item>
@@ -2195,6 +2046,303 @@ Operator is upgrading.&lt;/p&gt;
 &lt;li&gt;Kubernetes 1.19 to 1.23&lt;/li&gt;
 &lt;li&gt;OpenShift 4.0+&lt;/li&gt;
 &lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Air-Gapped Install</title>
+      <link>/docs/install/airgap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/airgap/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide will demonstrate how to install Ondat onto clusters that don&amp;rsquo;t have direct access to the internet - i.e., &lt;a href=&#34;https://en.wikipedia.org/wiki/Air_gap_%28networking%29&#34;&gt;air-gapped&lt;/a&gt; environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This guide is recommended for &lt;strong&gt;advanced users&lt;/strong&gt; who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Below is a quick summary of the procedure that will be covered in this guide:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install the Ondat kubectl plugin.&lt;/li&gt;
+&lt;li&gt;Generate the Ondat deployment manifests for your use case.&lt;/li&gt;
+&lt;li&gt;Push Ondat container images to your private registry.&lt;/li&gt;
+&lt;li&gt;Modify the Ondat deployment manifests.&lt;/li&gt;
+&lt;li&gt;Install Ondat onto your air-gapped cluster.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure you have met the minimum resource requirements for Ondat so your set up would be successful. Review the main &lt;a href=&#34;/docs/prerequisites/&#34;&gt;Ondat prerequisites&lt;/a&gt; page for more information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure the following CLI utility is installed on your local machine and is available in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Make sure that the node operating system have the required LinuxIO related kernel modules are available for Ondat to run successfully.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
+&lt;h3 id=&#34;step-1---install-ondat-kubectl-plugin&#34;&gt;Step 1 - Install Ondat Kubectl Plugin&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your &lt;code&gt;$PATH&lt;/code&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-2---conducting-preflight-checks&#34;&gt;Step 2 - Conducting Preflight Checks&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following command to conduct preflight checks against the Kubernetes cluster to validate that Ondat prerequisites have been met before attempting an installation.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos preflight
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-3---generate-ondat-deployment-manifests&#34;&gt;Step 3 - Generate Ondat Deployment Manifests&lt;/h3&gt;
+&lt;h4 id=&#34;option-a---using-an-embedded-etcd-deployment&#34;&gt;Option A - Using An Embedded &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/h4&gt;
+&lt;h5 id=&#34;install-local-path-provisioner&#34;&gt;Install Local Path Provisioner&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;By default, a newly provisioned Kubernetes cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a &lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt; to provide local storage for Ondat&amp;rsquo;s embedded &lt;code&gt;etcd&lt;/code&gt; cluster operator deployment.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Different Kubernetes distributions may include a CSI driver as part of the deployment. Cluster administrators can leverage the CSI driver provided by their distribution if they don’t want to use a Local Path Provisioner. If so, ensure that the  &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt;  environment variable points to the correct value for your Kubernetes distribution’s default StorageClass name.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Download the Local Path Provisioner.&lt;/span&gt;
+wget https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the list of images and push them to your private registry.&lt;/span&gt;
+grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;image:&amp;#34;&lt;/span&gt; local-path-storage.yaml
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Modify the manifest and add the private registry URL to pull the images.&lt;/span&gt;
+vi local-path-storage.yaml
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Deploy the Local Path Provisioner.&lt;/span&gt;
+kubectl apply --filename&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Define and export the &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt; environment variable so that value is &lt;code&gt;local-path&lt;/code&gt;, which is the default StorageClass name for the Local Path Provisioner.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;local-path&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify that the Local Path Provisioner was successfully deployed and ensure that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt;  status, run the following  &lt;code&gt;kubectl&lt;/code&gt;  commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage
+kubectl get storageclass
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended for &lt;strong&gt;non-production&lt;/strong&gt; clusters, as this stores all the data of the &lt;code&gt;etcd&lt;/code&gt; peers locally, which makes it susceptible to its state being lost on node failures.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;generate-manifests&#34;&gt;Generate Manifests&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Define and export the &lt;code&gt;STORAGEOS_USERNAME&lt;/code&gt; and &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; environment variables that will be used to manage your Ondat instance. In addition, define and export a &lt;code&gt;KUBERNETES_VERSION&lt;/code&gt; environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, &lt;code&gt;v1.23.5&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;v1.23.5&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following  &lt;code&gt;kubectl-storageos&lt;/code&gt; plugin command with the &lt;code&gt;--dry-run&lt;/code&gt; flag to generate the Ondat deployment Kubernetes manifests in a directory, called &lt;code&gt;storageos-dry-run&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --dry-run &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-tls-enabled &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-storage-class&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --k8s-version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-username&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-password&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To review the list of manifests generated in the newly created &lt;code&gt;storageos-dry-run&lt;/code&gt; directory, run the following commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-dry-run/
+ls
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;option-b---using-an-external-etcd-deployment&#34;&gt;Option B - Using An External &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/h4&gt;
+&lt;h5 id=&#34;setup-an--etcd--cluster&#34;&gt;Setup An  &lt;code&gt;etcd&lt;/code&gt;  Cluster&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that you have an  &lt;code&gt;etcd&lt;/code&gt;  cluster deployed first before installing Ondat. For instructions on how to set up an external  &lt;code&gt;etcd&lt;/code&gt;  cluster, review the  &lt;a href=&#34;/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines&#34;&gt;&lt;code&gt;etcd&lt;/code&gt;  documentation&lt;/a&gt;  page.&lt;/li&gt;
+&lt;li&gt;Once you have an  &lt;code&gt;etcd&lt;/code&gt;  cluster up and running, ensure that you note down the list of  &lt;code&gt;etcd&lt;/code&gt;  endpoints as comma-separated values that will be used when configuring Ondat.
+&lt;ul&gt;
+&lt;li&gt;For example,  &lt;code&gt;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;generate-manifests-1&#34;&gt;Generate Manifests&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Define and export the &lt;code&gt;STORAGEOS_USERNAME&lt;/code&gt; and &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; environment variables that will be used to manage your Ondat instance. In addition, define and export a &lt;code&gt;KUBERNETES_VERSION&lt;/code&gt; environment variable, where the value will be the exact version of your Kubernetes cluster where Ondat is going to be deployed - for example, &lt;code&gt;v1.23.5&lt;/code&gt;. Lastly, define and export a &lt;code&gt;ETCD_ENDPOINTS&lt;/code&gt; environment variable, where the value will be a list of &lt;code&gt;etcd&lt;/code&gt; endpoints as comma-separated values.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;v1.23.5&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following  &lt;code&gt;kubectl-storageos&lt;/code&gt; plugin command with the &lt;code&gt;--dry-run&lt;/code&gt; flag to generate the Ondat deployment Kubernetes manifests in a directory, called &lt;code&gt;storageos-dry-run&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --dry-run &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --skip-etcd-endpoints-validation &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --etcd-endpoints&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$ETCD_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --k8s-version&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$KUBERNETES_VERSION&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-username&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-password&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To review the list of manifests generated in the newly created &lt;code&gt;storageos-dry-run&lt;/code&gt; directory, run the following commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-dry-run/
+ls
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;step-4---push-ondat-images-to-private-registry&#34;&gt;Step 4 - Push Ondat Images To Private Registry&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Get the list of all the container images required for Ondat to be deployed successfully and push them to your private registry which will be accessible through your air-gapped environment.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;grep --extended-regexp &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;RELATED|image:&amp;#34;&lt;/span&gt; *.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;step-5---modify-deployment-manifests&#34;&gt;Step 5 - Modify Deployment Manifests&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;etcd-operator&lt;/code&gt;&lt;/strong&gt; - Modify the &lt;code&gt;2-etcd-operator.yaml&lt;/code&gt; manifest and apply the following changes.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Locate the &lt;code&gt;storageos-etcd-controller-manager&lt;/code&gt;  &lt;code&gt;Deployment&lt;/code&gt; YAML, navigate to &lt;code&gt;manager&lt;/code&gt; container and locate the &lt;code&gt;args&lt;/code&gt; section.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In this section, add a flag called &lt;code&gt;--etcd-repository=&lt;/code&gt; where the value will be your &lt;code&gt;$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd&lt;/code&gt;. For example;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;enable-leader-election&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;proxy-url=storageos-proxy.storageos-etcd.svc&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;args&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;enable-leader-election&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;proxy-url=storageos-proxy.storageos-etcd.svc&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- --&lt;span style=&#34;color:#000&#34;&gt;etcd-repository=$PRIVATE_REGISTRY_URL/quay.io/coreos/etcd  &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;etcd-cluster&lt;/code&gt;&lt;/strong&gt; - Modify the &lt;code&gt;3-etcd-cluster.yaml&lt;/code&gt; manifest and apply the following changes.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Locate the &lt;code&gt;storageos-etcd&lt;/code&gt;  &lt;code&gt;CustomResource&lt;/code&gt; YAML, navigate to the &lt;code&gt;storage&lt;/code&gt; section and set the &lt;code&gt;storage&lt;/code&gt; size value from &lt;code&gt;1Gi&lt;/code&gt; to &lt;code&gt;256Gi&lt;/code&gt;. For example;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplate&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;1Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplate&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;256Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;storageos-operator&lt;/code&gt;&lt;/strong&gt; - Modify the &lt;code&gt;0-storageos-operator.yaml&lt;/code&gt; manifest and apply the following changes.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Locate the &lt;code&gt;storageos-operator&lt;/code&gt; &lt;code&gt;Deployment&lt;/code&gt; YAML, navigate to the &lt;code&gt;manager&lt;/code&gt; and &lt;code&gt;kube-rbac-proxy&lt;/code&gt; containers.  Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;manager&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/operator:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;kube-rbac-proxy&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/brancz/kube-rbac-proxy:v0.10.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;manager&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/operator:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;kube-rbac-proxy&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/brancz/kube-rbac-proxy:v0.10.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Locate the &lt;code&gt;storageos-related-images&lt;/code&gt; &lt;code&gt;ConfigMap&lt;/code&gt; YAML, navigate to the environment variables that are prefixed with &lt;code&gt;RELATED_IMAGE_&lt;/code&gt;. Proceed to change the existing image registry URLs to point to your private registry URLs where the Ondat images reside. For example;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Before modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ConfigMap&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_API_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/api-manager:v1.2.9&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/csi-attacher:v3.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/csi-provisioner:v2.1.1-patched&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/csi-resizer:v1.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_LIVENESS_PROBE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/livenessprobe:v2.2.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;quay.io/k8scsi/csi-node-driver-registrar:v2.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_NODE_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/node-manager:v0.0.6&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_PORTAL_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/portal-manager:v1.0.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_INIT&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/init:v2.1.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_NODE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/node:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_UPGRADE_GUARD&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos/upgrade-guard:v0.0.4&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# After modification.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ConfigMap&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_API_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/api-manager:v1.2.9&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_ATTACHER_V3&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/k8scsi/csi-attacher:v3.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_PROVISIONER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/csi-provisioner:v2.1.1-patched&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_EXTERNAL_RESIZER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/k8scsi/csi-resizer:v1.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_LIVENESS_PROBE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/livenessprobe:v2.2.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_CSIV1_NODE_DRIVER_REGISTRAR&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/k8scsi/csi-node-driver-registrar:v2.1.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_NODE_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/node-manager:v0.0.6&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_PORTAL_MANAGER&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/portal-manager:v1.0.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_INIT&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/init:v2.1.2&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_STORAGEOS_NODE&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/node:v2.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;RELATED_IMAGE_UPGRADE_GUARD&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$PRIVATE_REGISTRY_URL/upgrade-guard:v0.0.4&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;storageos-cluster&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 &lt;strong&gt;Optional&lt;/strong&gt; - For users who are looking to make further customisations to their &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource in the &lt;code&gt;1-storageos-cluster.yaml&lt;/code&gt; manifest, review the &lt;a href=&#34;https://docs.ondat.io/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and &lt;a href=&#34;https://docs.ondat.io/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-6---installing-ondat&#34;&gt;Step 6 - Installing Ondat&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following  &lt;code&gt;kubectl&lt;/code&gt; command to install Ondat with the generated manifests in the &lt;code&gt;storageos-dry-run&lt;/code&gt; directory.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Apply the Operators and CustomResourceDefinitions (CRDs) first.&lt;/span&gt;
+find . -name &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;*-operator.yaml&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; xargs -I&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt; kubectl apply --filename &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Apply the Custom Resources next.&lt;/span&gt;
+find . -name &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;*-cluster.yaml&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; xargs -I&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt; kubectl apply --filename &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The installation process may take a few minutes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-7---verifying-ondat-installation&#34;&gt;Step 7 - Verifying Ondat Installation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Run the following &lt;code&gt;kubectl&lt;/code&gt; commands to inspect Ondat&amp;rsquo;s resources (the core components should all be in a &lt;code&gt;RUNNING&lt;/code&gt; status)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-etcd &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# only if the etcd cluster was deployed inside the Kubernetes cluster.&lt;/span&gt;
+kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;step-8---applying-a-licence-to-the-cluster&#34;&gt;Step 8 - Applying a Licence to the Cluster&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To obtain a licence, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
 
       </description>
     </item>
@@ -3588,33 +3736,6 @@ iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment &lt;span style=&#34;color:#
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;⚠️  Make sure that the iptables rules you have added above come before any default DROP or REJECT rules.&lt;/p&gt;
 &lt;/blockquote&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Mount Propagation</title>
-      <link>/docs/prerequisites/mountpropagation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/prerequisites/mountpropagation/</guid>
-      <description>
-        
-        
-        &lt;blockquote&gt;
-&lt;p&gt;💡 Modern versions of Kubernetes or other Container Runtimes enable
-mount propagation by default.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ondat requires mount propagation enabled to present devices as volumes for
-containers (see linux kernel documentation
-&lt;a href=&#34;http://man7.org/linux/man-pages/man2/mount.2.html&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Orchestrators such as Kubernetes or OpenShift have their own ways of exposing
-this setting. Kubernetes 1.10 and OpenShift 3.10 have mount propagation enabled by
-default. Previous versions require that feature gates are enabled on the
-Kubernetes master&amp;rsquo;s &lt;code&gt;controller-manager&lt;/code&gt; and &lt;code&gt;apiserver&lt;/code&gt; services and in the
-&lt;code&gt;kubelet&lt;/code&gt; service on each node.&lt;/p&gt;
-&lt;p&gt;Refer to our installation pages for the orchestrators to see details on how to
-check and enable mount propagation where appropriate.&lt;/p&gt;
 
       </description>
     </item>
@@ -6315,151 +6436,6 @@ boot cycles, so after the pod restarts, volumes can operate normally once more.&
 &lt;p&gt;This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.&lt;/p&gt;
 &lt;h2 id=&#34;step-3---install-ondat-v260&#34;&gt;Step 3 - Install Ondat v2.6.0&lt;/h2&gt;
 &lt;p&gt;You will now be able to use Ondat v2.6.0.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Elasticsearch</title>
-      <link>/docs/usecases/elasticsearch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/usecases/elasticsearch/</guid>
-      <description>
-        
-        
-        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/elasticsearch.png&#34; alt=&#34;elasticlogo&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Elasticsearch is a distributed, RESTful search and analytics engine, most
-popularly used to aggregate logs, but also to serve as a search backend to a
-number of different applications.&lt;/p&gt;
-&lt;p&gt;Using Ondat persistent volumes with ElasticSearch (ES) means that if a pod
-fails, the cluster is only in a degraded state for as long as it takes
-Kubernetes to restart the pod. When the pod comes back up, the pod data is
-immediately available. Should Kubernetes schedule the Elasticsearch pod on a
-new node, Ondat allows for the data to be available to the pod,
-irrespective of whether or not the original Ondat master volume
-is located on the same node.&lt;/p&gt;
-&lt;p&gt;Elasticsearch has features to allow it to handle data replication, and as such
-careful consideration of whether to allow Ondat or Elasticsearch to handle
-replication is required.&lt;/p&gt;
-&lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
-cluster. &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
-information&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;deploying-elasticsearch-on-kubernetes&#34;&gt;Deploying Elasticsearch on Kubernetes&lt;/h2&gt;
-&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h3&gt;
-&lt;p&gt;Some OS tuning is required, which is done automatically when using our example
-from the &lt;a href=&#34;https://github.com/storageos/use-cases&#34;&gt;use cases&lt;/a&gt; repository.&lt;/p&gt;
-&lt;p&gt;Elasticsearch requires &lt;code&gt;vm.max_map_count&lt;/code&gt; to be increased to a minimum of
-&lt;code&gt;262144&lt;/code&gt;, which is a system wide setting. One way to achieve this is to
-run &lt;code&gt;sysctl -w vm.max_map_count=262144&lt;/code&gt; and update &lt;code&gt;/etc/sysctl.conf&lt;/code&gt;
-to ensure it persists over a reboot. See ElasicSearch reference
-&lt;a href=&#34;https://www.elastic.co/guide/en/elasticsearch/reference/7.0/vm-max-map-count.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Administrators should be aware that this impacts the behaviour of nodes and
-that there may be collisions with other application settings. Administrators
-are advised to centrally collate sysctl settings using the tooling of their
-choice.&lt;/p&gt;
-&lt;h3 id=&#34;deployment-of-the-application&#34;&gt;Deployment of the application&lt;/h3&gt;
-&lt;h4 id=&#34;statefulset-defintion&#34;&gt;StatefulSet defintion&lt;/h4&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;---&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;apps/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StatefulSet&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;esdata&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;serviceAccountName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;elasticsearch&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;containers&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;image&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;elasticsearch:6.7.0&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;imagePullPolicy&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;IfNotPresent&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeMounts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;              &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;mountPath&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;/usr/share/elasticsearch/data/data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplates&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;data&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;accessModes&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ReadWriteOnce&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageClassName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;lt;--- default Ondat storage class name&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;          &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;            &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;10Gi  &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;lt;--- change this to the appropriate value&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This excerpt is from the StatefulSet definition
-(&lt;code&gt;/elasticsearch/10-es-data.yaml&lt;/code&gt;). The file contains the
-PersistentVolumeClaim template that will dynamically
-provision the necessary storage, using the Ondat storage class.&lt;/p&gt;
-&lt;p&gt;Dynamic provisioning occurs as a volumeMount has been declared with the same
-name as a VolumeClaimTemplate.&lt;/p&gt;
-&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-&lt;h4 id=&#34;clone-the-use-cases-repository&#34;&gt;Clone the use cases repository&lt;/h4&gt;
-&lt;p&gt;You can find the latest files in the Ondat use cases repostiory
-in &lt;code&gt;/elasticsearch/&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/storageos/use-cases.git storageos-usecases
-&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-usecases
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create the kubernetes objects&lt;/p&gt;
-&lt;p&gt;This will install an ES cluster with 3 master, 3 data and 3 coordinator
-nodes. Combined they will require ~ 14 GiB of available memory in your
-cluster, however, more may be used as the application is being used&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply -f ./elasticsearch/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once completed, an internal service object will have been created making the
-cluster available as &lt;code&gt;http://elasticsearch:9200/&lt;/code&gt; which is the default Kibana
-(when installed via Helm) will be using.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Confirm Elasticsearch is up and running&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pods -l &lt;span style=&#34;color:#000&#34;&gt;component&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;elasticsearch
-
-NAME                                    READY   STATUS    RESTARTS   AGE
-elasticsearch-exporter-d86ffd94-zw45l   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-coordinator-b7b984dd4-7wlz5          1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-coordinator-b7b984dd4-89w26          1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-coordinator-b7b984dd4-b4t6j          1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-master-78dfd5b49f-9gf5c              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-master-78dfd5b49f-smsbw              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-es-master-78dfd5b49f-z4qpj              1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-esdata-0                                1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          5m44s
-esdata-1                                1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          4m34s
-esdata-2                                1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          3m22s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Connect to ElasticSearch&lt;/p&gt;
-&lt;p&gt;To connect to ES directly, you can use the following port-forward command&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward svc/elasticsearch &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;9200&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then access it via &lt;a href=&#34;http://localhost:9200&#34;&gt;http://localhost:9200&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;kibana-optional&#34;&gt;Kibana (optional)&lt;/h2&gt;
-&lt;p&gt;One of the most popular uses of ES is to use it for log aggregation and
-indexing, Kibana helps us visualize the data in these indices and can be
-easily used when installed via its Helm chart&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Install the helm chart.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm install stable/kibana
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Once installed, use a port-foward to Kibana instead of directly to ES&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl port-forward --namespace default &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get pods --namespace default -l &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;app=kibana&amp;#34;&lt;/span&gt; -o &lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;{.items[0].metadata.name}&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5601&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and then access it via &lt;a href=&#34;http://localhost:5601&#34;&gt;http://localhost:5601&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;monitoring-optional&#34;&gt;Monitoring (optional)&lt;/h2&gt;
-&lt;p&gt;As part of the example deployment, ES metrics are exposed and can be scraped
-by Prometheus on port 9108
-(see &lt;a href=&#34;https://github.com/storageos/use-cases/blob/master/elasticsearch/77-es-exporter.yaml&#34;&gt;77-es-exporter.yaml&lt;/a&gt;).
-This is enabled by default, and should work with the default Prometheus install
-via Helm. If you&amp;rsquo;re using the Prometheus service monitors, you can monitor
-this installation by creating a monitor for the &lt;code&gt;es-exporter&lt;/code&gt; service.&lt;/p&gt;
 
       </description>
     </item>

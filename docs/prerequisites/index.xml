@@ -202,33 +202,6 @@ iptables -I OUTPUT -d 0.0.0.0/0 -m comment --comment &lt;span style=&#34;color:#
     </item>
     
     <item>
-      <title>Docs: Mount Propagation</title>
-      <link>/docs/prerequisites/mountpropagation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/prerequisites/mountpropagation/</guid>
-      <description>
-        
-        
-        &lt;blockquote&gt;
-&lt;p&gt;💡 Modern versions of Kubernetes or other Container Runtimes enable
-mount propagation by default.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ondat requires mount propagation enabled to present devices as volumes for
-containers (see linux kernel documentation
-&lt;a href=&#34;http://man7.org/linux/man-pages/man2/mount.2.html&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;Orchestrators such as Kubernetes or OpenShift have their own ways of exposing
-this setting. Kubernetes 1.10 and OpenShift 3.10 have mount propagation enabled by
-default. Previous versions require that feature gates are enabled on the
-Kubernetes master&amp;rsquo;s &lt;code&gt;controller-manager&lt;/code&gt; and &lt;code&gt;apiserver&lt;/code&gt; services and in the
-&lt;code&gt;kubelet&lt;/code&gt; service on each node.&lt;/p&gt;
-&lt;p&gt;Refer to our installation pages for the orchestrators to see details on how to
-check and enable mount propagation where appropriate.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: PID Limits</title>
       <link>/docs/prerequisites/pidlimits/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
