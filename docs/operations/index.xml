@@ -1183,7 +1183,7 @@ Labels                                  beta.kubernetes.io/arch=amd64,
 &lt;h2 id=&#34;free-trial&#34;&gt;Free Trial&lt;/h2&gt;
 &lt;p&gt;You can use Ondat for free without any restrictions for 1 month.&lt;/p&gt;
 &lt;h2 id=&#34;free-forever&#34;&gt;Free Forever&lt;/h2&gt;
-&lt;p&gt;You can use Ondat for free without any time limit with a 1 TB usable capacity and up to 3 nodes.&lt;/p&gt;
+&lt;p&gt;You can use Ondat for free without any time limit with a 1 TB usable capacity and up to 3 nodes. Please note that &lt;a href=&#34;/docs/concepts/rwx/&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; access mode Persistent Volumes is not available in this tier.&lt;/p&gt;
 &lt;h2 id=&#34;enterprise-premium&#34;&gt;Enterprise Premium&lt;/h2&gt;
 &lt;p&gt;You can obtain a tailor-made license suitable for your needs with premium features. For more information, contact &lt;a href=&#34;mailto:hello@ondat.io&#34;&gt;hello@ondat.io&lt;/a&gt; or message us via Intercom.&lt;/p&gt;
 &lt;p&gt;You can also book a demo with our customer success team &lt;a href=&#34;https://www.ondat.io/request-demo&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -1454,7 +1454,7 @@ before deletion of the policy can be completed.&lt;/p&gt;
         
         
         &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ondat Project edition is required to create RWX Volumes.&lt;/p&gt;
+&lt;p&gt;⚠️ Ondat Free Trial License or Enterprise License is required to create RWX Volumes. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access mode&lt;/a&gt;
 Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
