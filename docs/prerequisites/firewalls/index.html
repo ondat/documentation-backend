@@ -22,7 +22,7 @@
 
 <title>Firewalls | </title><meta property="og:title" content="Firewalls" />
 <meta property="og:description" content="Port list Ondat daemons listen on specific ports, which we require to be accessible between all nodes in the cluster:
-   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes." />
+   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5710 TCP gRPC API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/prerequisites/firewalls/" /><meta property="article:section" content="docs" />
 
@@ -30,13 +30,13 @@
 
 <meta itemprop="name" content="Firewalls">
 <meta itemprop="description" content="Port list Ondat daemons listen on specific ports, which we require to be accessible between all nodes in the cluster:
-   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes.">
+   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5710 TCP gRPC API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes.">
 
-<meta itemprop="wordCount" content="285">
+<meta itemprop="wordCount" content="289">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Firewalls"/>
 <meta name="twitter:description" content="Port list Ondat daemons listen on specific ports, which we require to be accessible between all nodes in the cluster:
-   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes."/>
+   Port Number TCP/UDP Use     5701 TCP gRPC   5703 TCP DirectFS   5704 TCP Dataplane Supervisor   5705 TCP REST API   5710 TCP gRPC API   5711 TCP &amp; UDP Gossip service   25705-25960 TCP RWX Volume Endpoints     💡 Ondat also uses ephemeral ports to dial-out to these ports on other Ondat nodes."/>
 
 
 
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5f4bc07d9588b60508d08dfab642f811ca586ea557865773b3fb47afde2f278cc63e4aefbfab02285745fc17e14d4bcd3be63bb748a429f23fb53c01f0c29518.json"
+  data-offline-search-index-json-src="/offline-search-index.6280414697f0997dac2b94fbab68c541fdd343abc8da3b5d68528cbe671ac847f46e1c38104ca47f64343e725acd3b4d77faf03ea3cbf8ddedb40c57408568b2.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5f4bc07d9588b60508d08dfab642f811ca586ea557865773b3fb47afde2f278cc63e4aefbfab02285745fc17e14d4bcd3be63bb748a429f23fb53c01f0c29518.json"
+  data-offline-search-index-json-src="/offline-search-index.6280414697f0997dac2b94fbab68c541fdd343abc8da3b5d68528cbe671ac847f46e1c38104ca47f64343e725acd3b4d77faf03ea3cbf8ddedb40c57408568b2.json"
   data-offline-search-base-href="/"
 >
 
@@ -1460,6 +1460,11 @@ between all nodes in the cluster:</p>
 <td style="text-align:center">5705</td>
 <td style="text-align:center">TCP</td>
 <td style="text-align:left">REST API</td>
+</tr>
+<tr>
+<td style="text-align:center">5710</td>
+<td style="text-align:center">TCP</td>
+<td style="text-align:left">gRPC API</td>
 </tr>
 <tr>
 <td style="text-align:center">5711</td>
