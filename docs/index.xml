@@ -733,7 +733,7 @@ Use &amp;quot;kubectl-storageos [command] --help&amp;quot; for more information 
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ You must enable port 8883 for egress in your ACLs if a VPC is used.&lt;/p&gt;
+&lt;p&gt;⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
 &lt;h3 id=&#34;step-1-creating-credentials-for-your-cluster&#34;&gt;Step 1: Creating Credentials for Your Cluster&lt;/h3&gt;
