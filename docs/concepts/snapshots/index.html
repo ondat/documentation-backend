@@ -20,26 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Google Kubernetes Engine (GKE) | </title><meta property="og:title" content="Google Kubernetes Engine (GKE)" />
-<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Google Kubernetes Engine (GKE) cluster using the Ondat kubectl plugin.
- 💡 For users who are looking to deploy Ondat onto a Google Anthos cluster, a recommendation would be to review Google Anthos installation guide for more information.
- Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information." />
+<title>Ondat Snapshots | </title><meta property="og:title" content="Ondat Snapshots" />
+<meta property="og:description" content="Overview Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.
+How does it work?  The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/install/google-kubernetes-engine-gke/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/concepts/snapshots/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Google Kubernetes Engine (GKE)">
-<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Google Kubernetes Engine (GKE) cluster using the Ondat kubectl plugin.
- 💡 For users who are looking to deploy Ondat onto a Google Anthos cluster, a recommendation would be to review Google Anthos installation guide for more information.
- Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.">
+<meta itemprop="name" content="Ondat Snapshots">
+<meta itemprop="description" content="Overview Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.
+How does it work?  The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster).">
 
-<meta itemprop="wordCount" content="338">
+<meta itemprop="wordCount" content="165">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Google Kubernetes Engine (GKE)"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Google Kubernetes Engine (GKE) cluster using the Ondat kubectl plugin.
- 💡 For users who are looking to deploy Ondat onto a Google Anthos cluster, a recommendation would be to review Google Anthos installation guide for more information.
- Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information."/>
+<meta name="twitter:title" content="Ondat Snapshots"/>
+<meta name="twitter:description" content="Overview Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.
+How does it work?  The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster)."/>
 
 
 
@@ -82,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Google Kubernetes Engine (GKE) | </title>
+    <title>Ondat Snapshots | </title>
   </head>
   <body class="td-page">
     
@@ -419,10 +416,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Concepts</a>
+    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Concepts</a>
   </li>
   <ul>
-    <li class="collapse " id="docsconcepts">
+    <li class="collapse show" id="docsconcepts">
       
       
       
@@ -477,7 +474,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptssnapshots" href="/docs/concepts/snapshots/">Ondat Snapshots</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptssnapshots" href="/docs/concepts/snapshots/">Ondat Snapshots</a>
       
       
       
@@ -585,10 +582,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsinstall">
+    <li class="collapse " id="docsinstall">
       
       
       
@@ -619,7 +616,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallgoogle-kubernetes-engine-gke" href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgoogle-kubernetes-engine-gke" href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
       
       
       
@@ -1380,21 +1377,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#procedure">Procedure</a>
-      <ul>
-        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
-        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
-        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
-        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
 
 
           </div>
@@ -1423,14 +1405,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/install/">Install</a>
+	<a href="/docs/concepts/">Concepts</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
+	<a href="/docs/concepts/snapshots/">Ondat Snapshots</a>
 </li>
 
 	</ol>
@@ -1438,68 +1420,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Google Kubernetes Engine (GKE)</h1>
+	<h1>Ondat Snapshots</h1>
 	
-	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to install Ondat onto a <a href="https://cloud.google.com/kubernetes-engine">Google Kubernetes Engine (GKE)</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
-<blockquote>
-<p>💡 For users who are looking to deploy Ondat onto a <a href="https://cloud.google.com/anthos">Google Anthos</a> cluster, a recommendation would be to review <a href="https://docs.ondat.io/docs/install/anthos/">Google Anthos installation guide</a> for more information.</p>
-</blockquote>
-<h2 id="prerequisites">Prerequisites</h2>
-<blockquote>
-<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
-</blockquote>
-<ul>
-<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
-<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
-</ul>
-<blockquote>
-<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure you have a running GKE cluster with a minimum of 3 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure your GKE cluster uses  <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu"><code>ubuntu_containerd</code></a> as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.</p>
-</blockquote>
-<h2 id="procedure">Procedure</h2>
-<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
-<ul>
-<li>Run the following command to conduct preflight checks against the GKE cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
-</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+	<h1 id="overview">Overview</h1>
+<p>Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.</p>
+<h1 id="how-does-it-work">How does it work?</h1>
 <ol>
-<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
+<li>The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster). The snapshot now lives within your cluster.</li>
+<li>Ondat Snapshots integrates with backup solutions like <a href="https://www.kasten.io">Kasten</a> to provide backup and restore of Kubernetes stateful applications. Our feature integrates fully with Kasten, which offers free workflows for backing up Kubernetes data (e.g. to an S3 bucket if you are using AWS).</li>
+<li>Your volume is now backed up externally and can be retrieved and restored using Kasten.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div><ol start="2">
-<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><ul>
-<li>The installation process may take a few minutes.</li>
-</ul>
-<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
-<ul>
-<li>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
-kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
-kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
 <blockquote>
-<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Free Forever tier supports up to 1 TiB of provisioned storage.</p>
+<p>⚠️ This feature is currently available on <code>2.8.0-beta</code> - if you would like to gain early access to the product, speak with our experts on <a href="mailto:hello@ondat.io">hello@ondat.io</a>.</p>
 </blockquote>
-<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
 
 	
 	
