@@ -375,6 +375,30 @@ restarted on any node and access volumes transparently.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Ondat Snapshots</title>
+      <link>/docs/concepts/snapshot/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/snapshot/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.&lt;/p&gt;
+&lt;h1 id=&#34;how-does-it-work&#34;&gt;How does it work?&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster). The snapshot now lives within your cluster.Ondat&lt;/li&gt;
+&lt;li&gt;Snapshots integrates with backup solutions like &lt;a href=&#34;https://www.kasten.io&#34;&gt;Kasten&lt;/a&gt; to provide backup and restore of Kubernetes stateful applications. Our feature integrates fully with Kasten, which offers free workflows for backing up Kubernetes data (e.g. to an S3 bucket if you are using AWS).&lt;/li&gt;
+&lt;li&gt;Your volume is now backed up externally and can be retrieved and restored using Kasten.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ This feature is currently available on &lt;code&gt;2.8.0-beta&lt;/code&gt; - if you would like to gain early access to the product, speak with our experts on &lt;a href=&#34;mailto:hello@ondat.io&#34;&gt;hello@ondat.io&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Policies</title>
       <link>/docs/concepts/policies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
