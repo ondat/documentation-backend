@@ -1181,11 +1181,11 @@ Labels                                  beta.kubernetes.io/arch=amd64,
 &lt;p&gt;You will need a license for Ondat if you want to make use of the full functionalities of our product. The cluster will run unlicensed for 24 hours, but after this time period, any new operations will be blocked. You can unlock the normal functioning of the cluster by applying a valid license to the cluster.&lt;/p&gt;
 &lt;h1 id=&#34;types-of-licenses&#34;&gt;Types of Licenses&lt;/h1&gt;
 &lt;h2 id=&#34;free-trial&#34;&gt;Free Trial&lt;/h2&gt;
-&lt;p&gt;You can use Ondat for free without any restrictions for 1 month.&lt;/p&gt;
-&lt;h2 id=&#34;free-forever&#34;&gt;Free Forever&lt;/h2&gt;
-&lt;p&gt;You can use Ondat for free without any time limit with a 1 TB usable capacity and up to 3 nodes. Please note that &lt;a href=&#34;/docs/concepts/rwx/&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; access mode Persistent Volumes is not available in this tier.&lt;/p&gt;
+&lt;p&gt;You can use Ondat with all features for free without any restrictions for 1 month.&lt;/p&gt;
+&lt;h2 id=&#34;community-edition&#34;&gt;Community Edition&lt;/h2&gt;
+&lt;p&gt;Also known as &amp;lsquo;Free Forever&amp;rsquo;. You can use Ondat with many features, including RWX volume support, for free without any time limit with a 1 TB usable capacity and up to 3 nodes.&lt;/p&gt;
 &lt;h2 id=&#34;enterprise-premium&#34;&gt;Enterprise Premium&lt;/h2&gt;
-&lt;p&gt;You can obtain a tailor-made license suitable for your needs with premium features. For more information, contact &lt;a href=&#34;mailto:hello@ondat.io&#34;&gt;hello@ondat.io&lt;/a&gt; or message us via Intercom.&lt;/p&gt;
+&lt;p&gt;You can obtain a tailor-made licence suitable for your needs with commercial support and a higher storage limit. For more information, contact &lt;a href=&#34;mailto:hello@ondat.io&#34;&gt;hello@ondat.io&lt;/a&gt; or message us via Intercom.&lt;/p&gt;
 &lt;p&gt;You can also book a demo with our customer success team &lt;a href=&#34;https://www.ondat.io/request-demo&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;obtaining-a-license&#34;&gt;Obtaining a License&lt;/h1&gt;
 &lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
@@ -1454,7 +1454,7 @@ before deletion of the policy can be completed.&lt;/p&gt;
         
         
         &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ondat Free Trial License or Enterprise License is required to create RWX Volumes. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the forever free Ondat Community Edition. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access mode&lt;/a&gt;
 Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the

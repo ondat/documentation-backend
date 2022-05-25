@@ -430,7 +430,7 @@ to the namespace.&lt;/p&gt;
         
         
         &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ondat Free Trial License or Enterprise License is required to create RWX Volumes. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our free forever licence. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access
 mode&lt;/a&gt;
