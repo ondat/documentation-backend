@@ -34,7 +34,7 @@ Volumes are formatted using the linux standard ext4 filesystem by default." />
 Conceptually, Ondat volumes have a frontend presentation, which is what the application sees, and a backend presentation, which is the actual on-disk format. Depending on the configuration, frontend and backend components may be on the same or different hosts.
 Volumes are formatted using the linux standard ext4 filesystem by default.">
 
-<meta itemprop="wordCount" content="580">
+<meta itemprop="wordCount" content="579">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Volumes"/>
 <meta name="twitter:description" content="Ondat volumes are a logical construct which represent a writeable volume and exhibit standard POSIX semantics. Ondat presents volumes as mounts into containers via the Linux LIO subsystem.
@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d9ecda3f9096ad268877dc984323674d0e985bf6083d04312187b01e72a05cfa716f8ebd79ace00c358ec6db3663d6fcf3299ff0a860005a39b17c3d93165046.json"
+  data-offline-search-index-json-src="/offline-search-index.1964a3a3ecdcea39d4c62c45c5fe4d542fcb9fc45df7297bb1e40b0c00f13cd0375232a438cc301219dd76c06009083f6db5b224e3a5423b07d44a54a2e36249.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d9ecda3f9096ad268877dc984323674d0e985bf6083d04312187b01e72a05cfa716f8ebd79ace00c358ec6db3663d6fcf3299ff0a860005a39b17c3d93165046.json"
+  data-offline-search-index-json-src="/offline-search-index.1964a3a3ecdcea39d4c62c45c5fe4d542fcb9fc45df7297bb1e40b0c00f13cd0375232a438cc301219dd76c06009083f6db5b224e3a5423b07d44a54a2e36249.json"
   data-offline-search-base-href="/"
 >
 
@@ -1476,10 +1476,10 @@ volume when a TRIM call is made. Support for TRIM is enabled by default for all
 uncompressed volumes, volumes are created without compression enabled by
 default. For more information on how to TRIM a filesystem, see <a href="/docs/operations/trim">TRIM operations</a>.</p>
 <h2 id="volume-resize">Volume Resize</h2>
-<p>Ondat v2.1 supports offline resize of volumes. This means that a volume
-cannot be resized while it is in use. Furthermore, in order for a resize
-operation to take place the volume must not be attached to a node. This is to
-ensure that the volume is not in use.</p>
+<p>Ondat supports offline resize of volumes. This means that a volume cannot be
+resized while it is in use. Furthermore, in order for a resize operation to
+take place the volume must not be attached to a node. This is to ensure that
+the volume is not in use.</p>
 <p>This means that if a Kubernetes pod is currently consuming a volume that a
 resize request has been issued for, the resize will not be actioned until the
 pod is terminated and the volume is detached from the node. The Ondat
