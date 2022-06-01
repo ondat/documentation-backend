@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto clusters that don&rsquo;t have direct access to the internet - i.e., air-gapped environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
  💡 This guide is recommended for advanced users who have experience and permissions to be able to manage air-gapped deployments in their environment. The full procedure for this deployment method is estimated to take ~60 minutes to complete.">
 
-<meta itemprop="wordCount" content="1326">
+<meta itemprop="wordCount" content="1351">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Air-Gapped Install"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto clusters that don&rsquo;t have direct access to the internet - i.e., air-gapped environments. Air-gapped environments require cluster administrators to explicitly ensure that Ondat components are locally available before the installation.
@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1964a3a3ecdcea39d4c62c45c5fe4d542fcb9fc45df7297bb1e40b0c00f13cd0375232a438cc301219dd76c06009083f6db5b224e3a5423b07d44a54a2e36249.json"
+  data-offline-search-index-json-src="/offline-search-index.85fa4da60a8b157248a7c36171ef5a3f9adf5dd62d2bb871fda020f6d998537c257bb79032ed968ef81c1e5b015609d9335b11950922ab16ee289c501c7d8b81.json"
   data-offline-search-base-href="/"
 >
 
@@ -324,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1964a3a3ecdcea39d4c62c45c5fe4d542fcb9fc45df7297bb1e40b0c00f13cd0375232a438cc301219dd76c06009083f6db5b224e3a5423b07d44a54a2e36249.json"
+  data-offline-search-index-json-src="/offline-search-index.85fa4da60a8b157248a7c36171ef5a3f9adf5dd62d2bb871fda020f6d998537c257bb79032ed968ef81c1e5b015609d9335b11950922ab16ee289c501c7d8b81.json"
   data-offline-search-base-href="/"
 >
 
@@ -1591,6 +1591,11 @@ ls
 <li>
 <p>Get the list of all the container images required for Ondat to be deployed successfully and push them to your private registry which will be accessible through your air-gapped environment.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">grep --extended-regexp <span style="color:#4e9a06">&#34;RELATED|image:&#34;</span> *.yaml
+</code></pre></div></li>
+<li>
+<p>You will also need to pull the kubernetes scheduler image for your release and push that to your private registry.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">KUBERNETES_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;v1.23.5&#34;</span>
+docker pull k8s.gcr.io/kube-scheduler:<span style="color:#4e9a06">${</span><span style="color:#000">KUBERNETES_VERSION</span><span style="color:#4e9a06">}</span>
 </code></pre></div></li>
 </ol>
 <h3 id="step-5---modify-deployment-manifests">Step 5 - Modify Deployment Manifests</h3>
