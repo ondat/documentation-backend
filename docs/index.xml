@@ -491,8 +491,8 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://kubernetes.io/docs/setup/&#34;&gt;Kubernetes&lt;/a&gt; cluster using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;. Ondat requires an &lt;code&gt;etcd&lt;/code&gt; cluster to successfully run, which can be deployed through two different methods listed below;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Embedded &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster operator into your Kubernetes cluster, recommended for &lt;strong&gt;non production&lt;/strong&gt; environments.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;External &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster in dedicated virtual machines, recommended for &lt;strong&gt;productdion&lt;/strong&gt; environments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embedded &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster operator into your Kubernetes cluster, recommended for &lt;strong&gt;non-production&lt;/strong&gt; environments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;External &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster in dedicated virtual machines, recommended for &lt;strong&gt;production&lt;/strong&gt; environments.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 For users who are looking to deploy Ondat onto a managed/specific Kubernetes distribution such AKS, EKS, GKE, RKE or DOKS, a recommendation would be to review the &lt;a href=&#34;https://docs.ondat.io/docs/install/&#34;&gt;Install&lt;/a&gt; section and choose the appropriate installation guide for your Kubernetes distribution.&lt;/p&gt;
