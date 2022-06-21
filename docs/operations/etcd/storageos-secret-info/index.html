@@ -179,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.52ec780feec5c04b38d4c8ce983b7dc7dd02d8afb41e810512aecbfe21f64911ac14471d4422aa836bbdb4bc342aff334ddeb64559f08fe3bd536a4418fe37f0.json"
+  data-offline-search-index-json-src="/offline-search-index.0d1b2230519cffc1d3bb4b322912031de1e09ff9e851a9772bd77c46b5b7ff98d7334e717802b61e36094df7f3bd7f043e198984b093aacceafe56e2917942ec.json"
   data-offline-search-base-href="/"
 >
 
@@ -327,7 +327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.52ec780feec5c04b38d4c8ce983b7dc7dd02d8afb41e810512aecbfe21f64911ac14471d4422aa836bbdb4bc342aff334ddeb64559f08fe3bd536a4418fe37f0.json"
+  data-offline-search-index-json-src="/offline-search-index.0d1b2230519cffc1d3bb4b322912031de1e09ff9e851a9772bd77c46b5b7ff98d7334e717802b61e36094df7f3bd7f043e198984b093aacceafe56e2917942ec.json"
   data-offline-search-base-href="/"
 >
 
@@ -1455,8 +1455,8 @@ authenticate Etcd traffic.</p>
 <li>etcd-client.crt - containing the etcd Client certificate</li>
 <li>etcd-client.key - containing the etcd Client key</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret -n storageos-etcd generic <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    etcd-client-tls <span style="color:#4e9a06">\
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create secret -n storageos generic <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    storageos-etcd-secret <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --from-file<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;etcd-client-ca.crt&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --from-file<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;etcd-client.crt&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --from-file<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;etcd-client.key&#34;</span>
@@ -1475,7 +1475,7 @@ Ondat with etcd using mTLS.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">nodeContainer</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos/node:v2.7.0&#34;&#34;
 </span><span style="color:#4e9a06">  namespace: &#34;</span><span style="color:#000">storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># External mTLS secured etcd cluster specific properties</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;etcd-client-tls&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                   </span><span style="color:#8f5902;font-style:italic"># Secret containing etcd client certificates in the same</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">tlsEtcdSecretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos-etcd-secret&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                   </span><span style="color:#8f5902;font-style:italic"># Secret containing etcd client certificates in the same</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">address</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;https://storageos-etcd-cluster-client.storagos-etcd.svc:2379&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Etcd client service address.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">backend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;etcd&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                                                         </span><span style="color:#8f5902;font-style:italic"># Backend type</span><span style="color:#f8f8f8;text-decoration:underline">
