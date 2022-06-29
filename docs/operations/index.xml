@@ -672,7 +672,7 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
         &lt;p&gt;Check the &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites page&lt;/a&gt;
 for a step by step installation of etcd.&lt;/p&gt;
 &lt;h2 id=&#34;best-practices---etcd-inside-the-cluster&#34;&gt;Best practices - Etcd Inside the Cluster&lt;/h2&gt;
-&lt;p&gt;This page describe best practices when hosting etcd &lt;strong&gt;inside&lt;/strong&gt; Kubernetes using Ondat&amp;rsquo;s etcd operator. Best practices when hosting etcd &lt;strong&gt;outside&lt;/strong&gt; Kubernetes can be found &lt;a href=&#34;/docs/operations/etcd/etcd-outside-k8s/_index.md&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This page describe best practices when hosting etcd &lt;strong&gt;inside&lt;/strong&gt; Kubernetes using Ondat&amp;rsquo;s etcd operator. Best practices when hosting etcd &lt;strong&gt;outside&lt;/strong&gt; Kubernetes can be found &lt;a href=&#34;/docs/operations/etcd/etcd-outside-k8s/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Ondat uses etcd as a service, whether it is deployed following the
 &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;step by step&lt;/a&gt; instructions or as a custom
 installation.&lt;br&gt;
