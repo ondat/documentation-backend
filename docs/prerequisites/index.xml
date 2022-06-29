@@ -326,10 +326,10 @@ In some circumstances it makes sense to install etcd on separate machines outsid
 &lt;li&gt;Manually deploying the etcd operator and applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing the etcd operator via our helm chart&lt;/h3&gt;
-&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat&#34;&gt;Ondat Helm Chart&lt;/a&gt; repository.&lt;/p&gt;
 &lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;kubectl storageos install --include-etcd --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; --etcd-tls-enabled&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&#34;configurable-manually-applying-an-etcdcluster-custom-resource&#34;&gt;&lt;strong&gt;Configurable:&lt;/strong&gt; Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install --include-etcd --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; --etcd-tls-enabled
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;configurable-manually-applying-an-etcdcluster-custom-resource&#34;&gt;&lt;strong&gt;Configurable:&lt;/strong&gt; Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
 &lt;p&gt;This installation method allows the most configuration of the etcd cluster, but is the most error-prone.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
@@ -337,10 +337,10 @@ In some circumstances it makes sense to install etcd on separate machines outsid
 &lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart-1&#34;&gt;Recommended: Installing the etcd operator via our helm chart&lt;/h3&gt;
 &lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1&#34;&gt;Recommended: Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;kubectl storageos install --include-etcd --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; --etcd-tls-enabled&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&#34;manually-applying-an-etcdcluster-custom-resource&#34;&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install --include-etcd --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; --etcd-tls-enabled
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;manually-applying-an-etcdcluster-custom-resource&#34;&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
 &lt;p&gt;This installation method allows the most configuration of the etcd cluster, but is the most error-prone.&lt;/p&gt;
-&lt;p&gt;Find the verison of the etcd operator you want to install from &lt;a href=&#34;https://github.com/storageos/etcd-cluster-operator/releases/&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Find the verison of the etcd operator you want to install from &lt;a href=&#34;https://github.com/storageos/etcd-cluster-operator/releases/&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Install the etcd operator:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCD_OPERATOR_VERSION=&amp;lt;set the version you want to use&amp;gt;
 kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml

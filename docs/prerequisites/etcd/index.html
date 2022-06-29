@@ -34,7 +34,7 @@ For most use-cases we recommend installing our etcd operator, which will manage 
 We do not support using the Kubernetes etcd for Ondat installations.
 For most use-cases we recommend installing our etcd operator, which will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some circumstances it makes sense to install etcd on separate machines outside of your Kubernetes cluster.">
 
-<meta itemprop="wordCount" content="657">
+<meta itemprop="wordCount" content="660">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Etcd"/>
 <meta name="twitter:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required, see our etcd concepts page.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.793a86f978939d749cef3d682e123f62d43810bf58228e7400032faf8505aa1fb2692651935d7e60270f1a4c0a8eb0ece2a03376e89b432dee1f2950a3ce1f2e.json"
+  data-offline-search-index-json-src="/offline-search-index.ea6019d0a8aec5c75409f501ba05a468acc261b37305b15acfe321907d65aecb255b812467bc087111485529d7408c1a2dc4a2e7bd8f2d1cd056026023d3bfe3.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.793a86f978939d749cef3d682e123f62d43810bf58228e7400032faf8505aa1fb2692651935d7e60270f1a4c0a8eb0ece2a03376e89b432dee1f2950a3ce1f2e.json"
+  data-offline-search-index-json-src="/offline-search-index.ea6019d0a8aec5c75409f501ba05a468acc261b37305b15acfe321907d65aecb255b812467bc087111485529d7408c1a2dc4a2e7bd8f2d1cd056026023d3bfe3.json"
   data-offline-search-base-href="/"
 >
 
@@ -1542,10 +1542,10 @@ In some circumstances it makes sense to install etcd on separate machines outsid
 <li>Manually deploying the etcd operator and applying an <code>etcdcluster</code> custom resource</li>
 </ul>
 <h3 id="recommended-installing-the-etcd-operator-via-our-helm-chart"><strong>Recommended:</strong> Installing the etcd operator via our helm chart</h3>
-<p>For full instructions, visit <a href="https://github.com/ondat/charts/tree/main/charts/ondat">here</a></p>
+<p>For full instructions, visit <a href="https://github.com/ondat/charts/tree/main/charts/ondat">Ondat Helm Chart</a> repository.</p>
 <h3 id="recommended-installing-ondat-and-the-etcd-operator-via-our-plugin"><strong>Recommended:</strong> Installing Ondat (and the etcd operator) via our Plugin</h3>
-<p><code>kubectl storageos install --include-etcd --etcd-storage-class &lt;the storage class you want to use for etcd&gt; --etcd-tls-enabled</code></p>
-<h3 id="configurable-manually-applying-an-etcdcluster-custom-resource"><strong>Configurable:</strong> Manually applying an <code>etcdcluster</code> custom resource</h3>
+<pre tabindex="0"><code>kubectl storageos install --include-etcd --etcd-storage-class &lt;the storage class you want to use for etcd&gt; --etcd-tls-enabled
+</code></pre><h3 id="configurable-manually-applying-an-etcdcluster-custom-resource"><strong>Configurable:</strong> Manually applying an <code>etcdcluster</code> custom resource</h3>
 <p>This installation method allows the most configuration of the etcd cluster, but is the most error-prone.</p>
 <ul>
 <li>Manually applying an <code>etcdcluster</code> custom resource</li>
@@ -1553,10 +1553,10 @@ In some circumstances it makes sense to install etcd on separate machines outsid
 <h3 id="recommended-installing-the-etcd-operator-via-our-helm-chart-1">Recommended: Installing the etcd operator via our helm chart</h3>
 <p>For full instructions, visit <a href="https://github.com/ondat/charts/tree/main/charts/ondat">here</a></p>
 <h3 id="recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1">Recommended: Installing Ondat (and the etcd operator) via our Plugin</h3>
-<p><code>kubectl storageos install --include-etcd --etcd-storage-class &lt;the storage class you want to use for etcd&gt; --etcd-tls-enabled</code></p>
-<h3 id="manually-applying-an-etcdcluster-custom-resource">Manually applying an <code>etcdcluster</code> custom resource</h3>
+<pre tabindex="0"><code>kubectl storageos install --include-etcd --etcd-storage-class &lt;the storage class you want to use for etcd&gt; --etcd-tls-enabled
+</code></pre><h3 id="manually-applying-an-etcdcluster-custom-resource">Manually applying an <code>etcdcluster</code> custom resource</h3>
 <p>This installation method allows the most configuration of the etcd cluster, but is the most error-prone.</p>
-<p>Find the verison of the etcd operator you want to install from <a href="https://github.com/storageos/etcd-cluster-operator/releases/">GitHub</a></p>
+<p>Find the verison of the etcd operator you want to install from <a href="https://github.com/storageos/etcd-cluster-operator/releases/">GitHub</a>.</p>
 <p>Install the etcd operator:</p>
 <pre tabindex="0"><code>export ETCD_OPERATOR_VERSION=&lt;set the version you want to use&gt;
 kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml
