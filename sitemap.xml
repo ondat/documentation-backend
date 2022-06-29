@@ -78,6 +78,8 @@
   </url><url>
     <loc>/docs/prerequisites/etcd/</loc>
   </url><url>
+    <loc>/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster/</loc>
+  </url><url>
     <loc>/docs/reference/bundles/</loc>
   </url><url>
     <loc>/docs/reference/</loc>
@@ -142,7 +144,11 @@
   </url><url>
     <loc>/docs/operations/etcd/</loc>
   </url><url>
-    <loc>/docs/operations/etcd/migrate-etcd-cluster/</loc>
+    <loc>/docs/operations/etcd/cluster-migration-node-to-pod/</loc>
+  </url><url>
+    <loc>/docs/operations/etcd/etcd-outside-k8s/migrate-etcd-cluster/</loc>
+  </url><url>
+    <loc>/docs/operations/etcd/etcd-outside-k8s/</loc>
   </url><url>
     <loc>/docs/operations/failure-modes/</loc>
   </url><url>
@@ -178,9 +184,15 @@
   </url><url>
     <loc>/docs/operations/licensing/</loc>
   </url><url>
+    <loc>/docs/concepts/metric-exporter/</loc>
+  </url><url>
+    <loc>/docs/operations/metric-exporter/</loc>
+  </url><url>
     <loc>/docs/usecases/mssql/</loc>
   </url><url>
-    <loc>/docs/operations/etcd/storageos-secret-info/</loc>
+    <loc>/docs/operations/etcd/etcd-outside-k8s/storageos-secret-info/</loc>
+  </url><url>
+    <loc>/docs/operations/etcd/mtls/</loc>
   </url><url>
     <loc>/docs/usecases/mysql/</loc>
   </url><url>

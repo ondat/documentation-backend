@@ -472,11 +472,14 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://kubernetes.io/docs/setup/&#34;&gt;Kubernetes&lt;/a&gt; cluster using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;. Ondat requires an &lt;code&gt;etcd&lt;/code&gt; cluster to successfully run, which can be deployed through two different methods listed below;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Embedded &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster operator into your Kubernetes cluster, recommended for &lt;strong&gt;non-production&lt;/strong&gt; environments.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;External &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster in dedicated virtual machines, recommended for &lt;strong&gt;production&lt;/strong&gt; environments.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embedded &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster operator into your Kubernetes cluster&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;External &lt;code&gt;etcd&lt;/code&gt; Deployment&lt;/strong&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster in dedicated virtual machines&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 For users who are looking to deploy Ondat onto a managed/specific Kubernetes distribution such AKS, EKS, GKE, RKE or DOKS, a recommendation would be to review the &lt;a href=&#34;https://docs.ondat.io/docs/install/&#34;&gt;Install&lt;/a&gt; section and choose the appropriate installation guide for your Kubernetes distribution.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This guide outlines an &lt;em&gt;imperative&lt;/em&gt; installation using our &lt;code&gt;kubectl&lt;/code&gt; plugin. Ondat can also be &lt;a href=&#34;/docs/install/declarative-install/&#34;&gt;installed declaratively&lt;/a&gt; using either Helm or the aforementioned plugin.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -1484,7 +1487,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Using the &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat-operator&#34;&gt;Ondat Operator Helm chart&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Using the &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/ondat&#34;&gt;Ondat Helm chart&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -1595,7 +1598,7 @@ kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#3
 kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;option-b---using-ondats-operator-helm-chart&#34;&gt;Option B - Using Ondat&amp;rsquo;s Operator Helm Chart&lt;/h3&gt;
+&lt;h3 id=&#34;option-b---using-ondats-helm-chart&#34;&gt;Option B - Using Ondat&amp;rsquo;s Helm Chart&lt;/h3&gt;
 &lt;h4 id=&#34;step-1---install-helm&#34;&gt;Step 1 - Install Helm&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Ensure that the &lt;a href=&#34;https://helm.sh/&#34;&gt;Helm 3&lt;/a&gt; CLI utility is installed on your local machine and is available in your &lt;code&gt;$PATH&lt;/code&gt;:
@@ -1604,10 +1607,10 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;step-2---setup-an-etcd-cluster&#34;&gt;Step 2 - Setup An &lt;code&gt;etcd&lt;/code&gt; Cluster&lt;/h4&gt;
+&lt;h4 id=&#34;step-2---setup-an-etcd-cluster-external-etcd&#34;&gt;Step 2 - Setup An &lt;code&gt;etcd&lt;/code&gt; Cluster (External etcd)&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Ensure that you have an &lt;code&gt;etcd&lt;/code&gt; cluster deployed first before installing Ondat through the Helm chart. There are two different methods listed below with instructions on how to deploy an &lt;code&gt;etcd&lt;/code&gt; cluster;&lt;/p&gt;
+&lt;p&gt;If you are installing &lt;code&gt;etcd&lt;/code&gt; externally, ensure that you have deployed the cluster before installing Ondat through the Helm chart. There are two different methods listed below with instructions on how to deploy an &lt;code&gt;etcd&lt;/code&gt; cluster;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/etcd/#testing---installing-etcd-into-your-kubernetes-cluster&#34;&gt;Embedded Deployment&lt;/a&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster operator into your Kubernetes cluster, recommended for &lt;strong&gt;non production&lt;/strong&gt; environments.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines&#34;&gt;External Deployment&lt;/a&gt; - deploy an &lt;code&gt;etcd&lt;/code&gt; cluster in dedicated virtual machines, recommended for &lt;strong&gt;production&lt;/strong&gt; environments.&lt;/li&gt;
@@ -1620,6 +1623,36 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h4 id=&#34;step-2---setup-a-storageclass-for-etcd-internal-etcd&#34;&gt;Step 2 - Setup a &lt;code&gt;StorageClass&lt;/code&gt; for &lt;code&gt;etcd&lt;/code&gt; (Internal etcd)&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If you are installing &lt;code&gt;etcd&lt;/code&gt; inside the cluster, ensure that you have at least 3 (recommend 5) nodes ready to ensure high availability. It is recommended that these nodes are placed in different physical or virtual locations (ie. Datacenters or availability zones) for maximum resilience.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Before installing Ondat with &lt;code&gt;etcd&lt;/code&gt;, create the &lt;code&gt;StorageClass&lt;/code&gt; that you want to use for &lt;code&gt;etcd&lt;/code&gt;. Note that this cannot be &lt;code&gt;storageos&lt;/code&gt; as Ondat depends on etcd to function. The following procedure will install a local path &lt;code&gt;StorageClass&lt;/code&gt; that will work in all configurations, ideally there is another more resilient option (eg. Gp3 on AWS) available that can be used instead.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;By default, a newly provisioned Kubernetes cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a &lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt; to provide local storage for Ondat&amp;rsquo;s embedded &lt;code&gt;etcd&lt;/code&gt; cluster operator deployment.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Different Kubernetes distributions may include a CSI driver as part of the deployment. Cluster administrators can leverage the CSI driver provided by their distribution if they don&amp;rsquo;t want to use a Local Path Provisioner. If so, ensure that the &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt; environment variable points to the correct value for your Kubernetes distribution&amp;rsquo;s default StorageClass name.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply --filename&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Define and export the &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt; environment variable so that value is &lt;code&gt;local-path&lt;/code&gt;, which is the default StorageClass name for the Local Path Provisioner.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;local-path&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To verify that the Local Path Provisioner was successfully deployed and ensure that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt;  status, run the following  &lt;code&gt;kubectl&lt;/code&gt;  commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage
+kubectl get storageclass
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended for &lt;strong&gt;non production&lt;/strong&gt; clusters, as this stores all the data of the &lt;code&gt;etcd&lt;/code&gt; peers locally, which makes it susceptible to state being lost on node failures.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h4 id=&#34;step-3---configure-ondats-helm-chart-repository&#34;&gt;Step 3 - Configure Ondat&amp;rsquo;s Helm Chart Repository&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1638,52 +1671,79 @@ helm search repo &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ondat&amp;#3
 &lt;li&gt;There are two ways to conduct an installation with Helm, &lt;strong&gt;declaratively&lt;/strong&gt; by creating a custom &lt;code&gt;values.yaml&lt;/code&gt; (recommended method) or &lt;strong&gt;interactively&lt;/strong&gt; by using the &lt;code&gt;--set&lt;/code&gt; flags to overwrite specific values for the deployment.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat Operator &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
+&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat chart &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h5 id=&#34;declarative-recommended&#34;&gt;Declarative (Recommended)&lt;/h5&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Make a copy of the &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml&#34;&gt;&lt;code&gt;values.yaml&lt;/code&gt;&lt;/a&gt; configuration file, rename it to &lt;code&gt;custom-values.yaml&lt;/code&gt;, then ensure that the following configurable parameters have been populated before beginning the installation.&lt;/p&gt;
+&lt;p&gt;Make a copy of the &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml&#34;&gt;&lt;code&gt;values.yaml&lt;/code&gt;&lt;/a&gt; configuration file, rename it to &lt;code&gt;custom-values.yaml&lt;/code&gt;, then ensure that the following configurable parameters have been populated before beginning the installation.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L60-L62&#34;&gt;&lt;code&gt;cluster.admin.password&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml#L23&#34;&gt;&lt;code&gt;ondat-operator.cluster.admin.password&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Password to authenticate to the StorageOS API with. This must be at least&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# 8 characters long.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;password&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# for example -&amp;gt; storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat-operator/values.yaml#L71-L72&#34;&gt;&lt;code&gt;cluster.kvBackend.address&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If an external etcd installation is being used&lt;/strong&gt;, add &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml&#34;&gt;&lt;code&gt;ondat-operator.cluster.kvBackend.address&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Key-Value store backend.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kvBackend&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;address&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# for example -&amp;gt; 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If an internal etcd installation is being used&lt;/strong&gt;, set &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml&#34;&gt;&lt;code&gt;etcd-cluster-operator.cluster.storageclass&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Storageclass for etcd backing storage&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# NOTE: We CANNOT use storageos here as this is the egg to Ondat&amp;#39;s chicken&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageclass&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;gp3&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Once the parameters above have been defined, run the following  &lt;code&gt;helm install&lt;/code&gt;  command to install Ondat using the Helm chart. Ensure that you use the &lt;code&gt;--values=&lt;/code&gt; flag with your &lt;code&gt;custom-values.yaml&lt;/code&gt; file.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm install ondat-operator ondat/ondat-operator &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm install ondat ondat/ondat &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;ondat &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --create-namespace &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --values&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;custom-values.yaml
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
-&lt;li&gt;The installation process may take a few minutes.&lt;/li&gt;
+&lt;li&gt;The installation process may take a few minutes. If you are installing etcd internally, the Ondat pods may initially fail to connect and enter an &lt;code&gt;Error&lt;/code&gt; state - they will retry automatically until etcd becomes available.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h5 id=&#34;interactive&#34;&gt;Interactive&lt;/h5&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Define and export the &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; environment variable that will be used to manage your Ondat instance. In addition, define and export a &lt;code&gt;ETCD_ENDPOINTS&lt;/code&gt; environment variable, where the value will be a list of &lt;code&gt;etcd&lt;/code&gt; endpoints as comma-separated values noted down earlier in &lt;strong&gt;Step 2&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Define and export the &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; environment variable that will be used to manage your Ondat instance.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
-&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;If you are using an internal etcd cluster&lt;/strong&gt;, define and export a &lt;code&gt;ETCD_STORAGECLASS&lt;/code&gt; environment variable, where the value will be the StorageClass to use for etcd volumes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_STORAGECLASS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;local-path&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;If you are using an external etcd cluster&lt;/strong&gt;, define and export a &lt;code&gt;ETCD_ENDPOINTS&lt;/code&gt; environment variable, where the value will be a list of &lt;code&gt;etcd&lt;/code&gt; endpoints as comma-separated values noted down earlier in &lt;strong&gt;Step 2&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;ETCD_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379&amp;#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Run the following  &lt;code&gt;helm install&lt;/code&gt;  command to install Ondat using the Helm chart.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;helm install ondat-operator ondat/ondat-operator &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --create-namespace &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --set cluster.admin.password&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --set cluster.kvBackend.address&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;$ETCD_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Internal Etcd&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```bash
+helm install ondat ondat/ondat \
+  --namespace=ondat \
+  --create-namespace \
+  --set ondat-operator.cluster.admin.password=&amp;quot;$STORAGEOS_PASSWORD&amp;quot; \
+  --set etcd-cluster-operator.cluster.storageclass=&amp;quot;$ETCD_STORAGECLASS&amp;quot;
+```
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;External etcd&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;```bash
+helm install ondat ondat/ondat \
+  --namespace=ondat \
+  --create-namespace \
+  --set ondat-operator.cluster.admin.password=&amp;quot;$STORAGEOS_PASSWORD&amp;quot; \
+  --set ondat-operator.cluster.kvBackend.address=&amp;quot;$ETCD_ENDPOINTS&amp;quot; \
+  --set etcd-cluster-operator.cluster.create=&amp;quot;false&amp;quot;
+```
+&lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;The installation process may take a few minutes.&lt;/li&gt;
 &lt;/ul&gt;

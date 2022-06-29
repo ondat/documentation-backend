@@ -171,7 +171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e4e2d773d0a30aae0e55d3cecc17f2abcc75b55db5760cc3fa52827960884cd14976a7a5a657b143faa9ae9ff74ad987eaa28eb2d87ab30bb48a3f99f8b6bcc4.json"
+  data-offline-search-index-json-src="/offline-search-index.b8973f309016eeb19f01ed78cdd354b5ef4a6c1c4ee497fec344c67ca4b023bf2d0cf97ee88772071b988e740ed8630101cf5e0c4f7c5734d52e3975351b5ec8.json"
   data-offline-search-base-href="/"
 >
 
@@ -319,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e4e2d773d0a30aae0e55d3cecc17f2abcc75b55db5760cc3fa52827960884cd14976a7a5a657b143faa9ae9ff74ad987eaa28eb2d87ab30bb48a3f99f8b6bcc4.json"
+  data-offline-search-index-json-src="/offline-search-index.b8973f309016eeb19f01ed78cdd354b5ef4a6c1c4ee497fec344c67ca4b023bf2d0cf97ee88772071b988e740ed8630101cf5e0c4f7c5734d52e3975351b5ec8.json"
   data-offline-search-base-href="/"
 >
 
@@ -451,6 +451,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
       
       
@@ -559,6 +565,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcd" href="/docs/prerequisites/etcd/">Etcd</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcd-outside-k8setcd-outside-the-cluster" href="/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster/">Etcd outside the cluster</a>
       
       
     </li>
@@ -764,13 +776,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdmigrate-etcd-cluster" href="/docs/operations/etcd/migrate-etcd-cluster/">Etcd node migration</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdcluster-migration-node-to-pod" href="/docs/operations/etcd/cluster-migration-node-to-pod/">Etcd cluster migration</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/operations/etcd/etcd-outside-k8s/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Etcd outside the cluster - Best Practices</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsoperationsetcdetcd-outside-k8s">
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdstorageos-secret-info" href="/docs/operations/etcd/storageos-secret-info/">mTLS</a>
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdetcd-outside-k8smigrate-etcd-cluster" href="/docs/operations/etcd/etcd-outside-k8s/migrate-etcd-cluster/">Etcd node migration</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdetcd-outside-k8sstorageos-secret-info" href="/docs/operations/etcd/etcd-outside-k8s/storageos-secret-info/">mTLS</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdmtls" href="/docs/operations/etcd/mtls/">mTLS</a>
       
       
     </li>
@@ -813,6 +860,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationslicensing" href="/docs/operations/licensing/">Licensing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsmetric-exporter" href="/docs/operations/metric-exporter/">Metric Exporter</a>
       
       
       
@@ -1374,17 +1427,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#best-practices">Best practices</a>
+    <li><a href="#best-practices---etcd-inside-the-cluster">Best practices - Etcd Inside the Cluster</a>
       <ul>
         <li><a href="#network-low-latency">Network low latency</a></li>
         <li><a href="#disk-low-latency">Disk low latency</a></li>
         <li><a href="#iops-requirements">IOPS requirements</a></li>
-        <li><a href="#etcd-advertise-urls">Etcd advertise URLs</a></li>
         <li><a href="#monitoring">Monitoring</a></li>
         <li><a href="#defragmentation">Defragmentation</a></li>
       </ul>
     </li>
-    <li><a href="#known-coreos-etcd-operator-issues">Known CoreOS Etcd Operator issues</a></li>
   </ul>
 </nav>
 
@@ -1435,11 +1486,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	
 	<p>Check the <a href="/docs/prerequisites/etcd">etcd prerequisites page</a>
 for a step by step installation of etcd.</p>
-<h2 id="best-practices">Best practices</h2>
+<h2 id="best-practices---etcd-inside-the-cluster">Best practices - Etcd Inside the Cluster</h2>
+<p>This page describe best practices when hosting etcd <strong>inside</strong> Kubernetes using Ondat&rsquo;s etcd operator. Best practices when hosting etcd <strong>outside</strong> Kubernetes can be found <a href="/docs/operations/etcd/etcd-outside-k8s/_index.md">here</a></p>
 <p>Ondat uses etcd as a service, whether it is deployed following the
 <a href="/docs/prerequisites/etcd">step by step</a> instructions or as a custom
-installation. It is expected that the user maintains the availability and
-integrity of the etcd cluster.</p>
+installation.<br>
+The etcd operator will maintain availability and integrity of the etcd cluster, however it is recommended to monitor etcd metrics to ensure the cluster is functioning as expected.</p>
 <p>It is highly recommended to keep the cluster backed up and ensure high
 availability of its data.</p>
 <h3 id="network-low-latency">Network low latency</h3>
@@ -1471,17 +1523,10 @@ guideline only. A development cluster with 5 nodes will not have the same etcd
 traffic as a production cluster with 100 nodes. Adding <a href="/docs/operations/etcd/">monitoring</a> to etcd will help to
 characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.</p>
-<h3 id="etcd-advertise-urls">Etcd advertise URLs</h3>
-<p>The etcd startup parameters <code>advertise-client-urls</code> and
-<code>initial-advertise-peer-urls</code> specify the addresses etcd clients or other etcd
-members should use to contact the etcd server. The advertised addresses must
-be reachable from the remote machines - i.e. where Ondat is running - so
-it can connect successfully. Do not advertise addresses like <code>localhost</code> or
-<code>0.0.0.0</code> for a production setup since these addresses are unreachable from
-remote machines.</p>
 <h3 id="monitoring">Monitoring</h3>
-<p>It is highly recommended to add monitoring to the etcd cluster. Etcd serves
-Prometheus metrics on the client port <code>http://etcd-url:2379/metrics</code>.</p>
+<p>It is highly recommended to add monitoring to the etcd cluster.
+When using the Ondat etcd operator etcd serves
+Prometheus metrics on a separate metrics port <code>http://storageos-etcd.storageos-etcd:2381/metrics</code>.</p>
 <p>You can use Ondat developed Grafana Dashboards for etcd. When using etcd
 for production, you can use the
 <a href="https://grafana.com/grafana/dashboards/10322">etcd-cluster-as-service</a>, while
@@ -1500,40 +1545,11 @@ the &ldquo;DB_BACKEND_BYTES&rdquo; parameter, the cluster triggers an alarm and 
 itself read only and only allows reads and deletes. To avoid hitting the db
 backend bytes limit, compaction and defragmentation are required. How often
 defragmentation is required depends on the churn of key revisions in etcd.</p>
-<p>The Grafana Dashboards mentioned above indicate when nodes require
-defragmentation. Be aware that defragmentation is a blocking operation that is
+<p>Be aware that defragmentation is a blocking operation that is
 performed per node, hence the etcd node will be locked for the duration of the
 defragmentation. Defragmentation usually takes a few milliseconds to complete.</p>
-<p>You can also set cronjobs that execute the following defragmentation script.
-It will run a defrag when the DB is at 80% full. A defragmentation operation
-has to be executed per etcd node and <strong>it is a blocking operation</strong>. It is
-recommended to <strong>not execute the defragmentation on all etcd members at the
-same time</strong>. If using a cronjob, set them up for different times.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">https://raw.githubusercontent.com/storageos/deploy/master/k8s/deploy-storageos/etcd-helpers/etcd-ansible-systemd/roles/install_etcd/templates/defrag-etcd.sh.j2
-chmod +x defrag-etcd.sh
-</code></pre></div><h2 id="known-coreos-etcd-operator-issues">Known CoreOS Etcd Operator issues</h2>
-<p>This topology is only recommended for deployments where isolated nodes cannot
-be used.</p>
-<p>Etcd is a distributed key-value store database focused on strong consistency.
-That means that etcd nodes perform operations across the cluster to ensure
-quorum. If quorum is lost, etcd nodes stop and etcd marks its contents as
-read-only. This is because it cannot guarantee that new data will be valid.
-Quorum is fundamental for etcd operations. When running etcd in pods it is
-therefore important to consider that a loss of quorum could arise from etcd
-pods being evicted from nodes.</p>
-<p>Operations such as Kubernetes Upgrades with rolling node pools could cause a
-total failure of the etcd cluster as nodes are discarded in favor of new ones.</p>
-<p>A 3 etcd node cluster can survive losing one node and recover, a 5 node
-cluster can survive the loss of two nodes. Loss of further nodes will result
-in quorum being lost.</p>
-<p><strong>The etcd-operator doesn&rsquo;t support a full stop of the cluster. Stopping the
-etcd cluster causes the loss of all the etcd keystore and make Ondat
-unable to perform metadata changes.</strong></p>
-<p>The official etcd-operator repository also has a backup deployment operator
-that can help backup etcd data. <strong>A restore of the etcd keyspace from a backup
-might cause issues</strong> due to the disparity between the cluster state and its
-metadata in a different point in time. If you need to restore from a backup
-after a failure of etcd, contact the Ondat support team.</p>
+<p>The etcd operator will automatically defrag the etcd cluster when it reaches 80% used space or every hour.
+It will never defrag more than one etcd peer at once, so etcd will remain available.</p>
 
         <div class="section-index">
     
@@ -1681,9 +1697,22 @@ after a failure of etcd, contact the Ondat support team.</p>
             
         
             
+        
+            
                 <div class="entry">
                     <h5>
-                        <a href="/docs/operations/etcd/migrate-etcd-cluster/">Etcd node migration</a>
+                        <a href="/docs/operations/etcd/cluster-migration-node-to-pod/">Etcd cluster migration</a>
+                    </h5>
+                    <p></p>
+                </div>
+            
+        
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/docs/operations/etcd/etcd-outside-k8s/">Etcd outside the cluster - Best Practices</a>
                     </h5>
                     <p></p>
                 </div>
@@ -1726,9 +1755,15 @@ after a failure of etcd, contact the Ondat support team.</p>
             
         
             
+        
+            
+        
+            
+        
+            
                 <div class="entry">
                     <h5>
-                        <a href="/docs/operations/etcd/storageos-secret-info/">Encryption communication with Etcd</a>
+                        <a href="/docs/operations/etcd/mtls/">Encryption communication with Etcd</a>
                     </h5>
                     <p></p>
                 </div>

@@ -23,7 +23,7 @@
 <title>Etcd | </title><meta property="og:title" content="Etcd" />
 <meta property="og:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required, see our etcd concepts page.
 We do not support using the Kubernetes etcd for Ondat installations.
-We provide two methods for installing etcd. For those looking for a quick route to evaluating Ondat, our first method installs etcd into your Kubernetes cluster using the CoreOS operator. Due to limitations in the CoreOS operator, this installation is not backed by any persistent storage, and therefore is unsuitable for production installations." />
+For most use-cases we recommend installing our etcd operator, which will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some circumstances it makes sense to install etcd on separate machines outside of your Kubernetes cluster." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/prerequisites/etcd/" /><meta property="article:section" content="docs" />
 
@@ -32,14 +32,14 @@ We provide two methods for installing etcd. For those looking for a quick route 
 <meta itemprop="name" content="Etcd">
 <meta itemprop="description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required, see our etcd concepts page.
 We do not support using the Kubernetes etcd for Ondat installations.
-We provide two methods for installing etcd. For those looking for a quick route to evaluating Ondat, our first method installs etcd into your Kubernetes cluster using the CoreOS operator. Due to limitations in the CoreOS operator, this installation is not backed by any persistent storage, and therefore is unsuitable for production installations.">
+For most use-cases we recommend installing our etcd operator, which will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some circumstances it makes sense to install etcd on separate machines outside of your Kubernetes cluster.">
 
-<meta itemprop="wordCount" content="2084">
+<meta itemprop="wordCount" content="657">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Etcd"/>
 <meta name="twitter:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required, see our etcd concepts page.
 We do not support using the Kubernetes etcd for Ondat installations.
-We provide two methods for installing etcd. For those looking for a quick route to evaluating Ondat, our first method installs etcd into your Kubernetes cluster using the CoreOS operator. Due to limitations in the CoreOS operator, this installation is not backed by any persistent storage, and therefore is unsuitable for production installations."/>
+For most use-cases we recommend installing our etcd operator, which will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some circumstances it makes sense to install etcd on separate machines outside of your Kubernetes cluster."/>
 
 
 
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e4e2d773d0a30aae0e55d3cecc17f2abcc75b55db5760cc3fa52827960884cd14976a7a5a657b143faa9ae9ff74ad987eaa28eb2d87ab30bb48a3f99f8b6bcc4.json"
+  data-offline-search-index-json-src="/offline-search-index.b8973f309016eeb19f01ed78cdd354b5ef4a6c1c4ee497fec344c67ca4b023bf2d0cf97ee88772071b988e740ed8630101cf5e0c4f7c5734d52e3975351b5ec8.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.e4e2d773d0a30aae0e55d3cecc17f2abcc75b55db5760cc3fa52827960884cd14976a7a5a657b143faa9ae9ff74ad987eaa28eb2d87ab30bb48a3f99f8b6bcc4.json"
+  data-offline-search-index-json-src="/offline-search-index.b8973f309016eeb19f01ed78cdd354b5ef4a6c1c4ee497fec344c67ca4b023bf2d0cf97ee88772071b988e740ed8630101cf5e0c4f7c5734d52e3975351b5ec8.json"
   data-offline-search-base-href="/"
 >
 
@@ -461,6 +461,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
       
       
@@ -569,6 +575,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsprerequisitesetcd" href="/docs/prerequisites/etcd/">Etcd</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcd-outside-k8setcd-outside-the-cluster" href="/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster/">Etcd outside the cluster</a>
       
       
     </li>
@@ -774,13 +786,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdmigrate-etcd-cluster" href="/docs/operations/etcd/migrate-etcd-cluster/">Etcd node migration</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdcluster-migration-node-to-pod" href="/docs/operations/etcd/cluster-migration-node-to-pod/">Etcd cluster migration</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/operations/etcd/etcd-outside-k8s/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Etcd outside the cluster - Best Practices</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsoperationsetcdetcd-outside-k8s">
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdstorageos-secret-info" href="/docs/operations/etcd/storageos-secret-info/">mTLS</a>
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdetcd-outside-k8smigrate-etcd-cluster" href="/docs/operations/etcd/etcd-outside-k8s/migrate-etcd-cluster/">Etcd node migration</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdetcd-outside-k8sstorageos-secret-info" href="/docs/operations/etcd/etcd-outside-k8s/storageos-secret-info/">mTLS</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsetcdmtls" href="/docs/operations/etcd/mtls/">mTLS</a>
       
       
     </li>
@@ -823,6 +870,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationslicensing" href="/docs/operations/licensing/">Licensing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsmetric-exporter" href="/docs/operations/metric-exporter/">Metric Exporter</a>
       
       
       
@@ -1384,23 +1437,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#testing---installing-etcd-into-your-kubernetes-cluster">Testing - Installing Etcd Into Your Kubernetes Cluster</a>
+    <li><a href="#installing-etcd-into-your-kubernetes-cluster">Installing Etcd Into Your Kubernetes Cluster</a></li>
+    <li><a href="#configuring-storage-for-etcd">Configuring Storage for Etcd</a>
       <ul>
-        <li><a href="#quick-install">Quick Install</a></li>
-        <li><a href="#installation-step-by-step">Installation Step by Step</a></li>
+        <li><a href="#how-to-set-up-an-ebs-csi-driver">How to set up an EBS CSI Driver</a></li>
+      </ul>
+    </li>
+    <li><a href="#installing-etcd">Installing Etcd</a>
+      <ul>
+        <li><a href="#recommended-installing-the-etcd-operator-via-our-helm-chart"><strong>Recommended:</strong> Installing the etcd operator via our helm chart</a></li>
+        <li><a href="#recommended-installing-ondat-and-the-etcd-operator-via-our-plugin"><strong>Recommended:</strong> Installing Ondat (and the etcd operator) via our Plugin</a></li>
+        <li><a href="#configurable-manually-applying-an-etcdcluster-custom-resource"><strong>Configurable:</strong> Manually applying an <code>etcdcluster</code> custom resource</a></li>
+        <li><a href="#recommended-installing-the-etcd-operator-via-our-helm-chart-1">Recommended: Installing the etcd operator via our helm chart</a></li>
+        <li><a href="#recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1">Recommended: Installing Ondat (and the etcd operator) via our Plugin</a></li>
+        <li><a href="#manually-applying-an-etcdcluster-custom-resource">Manually applying an <code>etcdcluster</code> custom resource</a></li>
         <li><a href="#installation-verification">Installation Verification</a></li>
       </ul>
     </li>
-    <li><a href="#known-etcd-operator-issues">Known etcd-operator issues</a></li>
-    <li><a href="#production---etcd-on-external-virtual-machines">Production - Etcd on External Virtual Machines</a>
-      <ul>
-        <li><a href="#installation---manual">Installation - Manual</a></li>
-        <li><a href="#installation---ansible">Installation - Ansible</a></li>
-      </ul>
-    </li>
-    <li><a href="#benefits-of-running-external-to-kubernetes">Benefits of Running External to Kubernetes</a></li>
-    <li><a href="#bind-etcd-ips-to-kubernetes-service">Bind Etcd IPs to Kubernetes Service</a></li>
-    <li><a href="#using-etcd-with-ondat">Using Etcd with Ondat</a></li>
+    <li><a href="#etcd-on-external-virtual-machines">Etcd on External Virtual Machines</a></li>
   </ul>
 </nav>
 
@@ -1452,515 +1506,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<p>Ondat requires an etcd cluster in order to function. For more information
 on why etcd is required, see our <a href="/docs/concepts/etcd">etcd concepts</a> page.</p>
 <p>We do not support using the Kubernetes etcd for Ondat installations.</p>
-<p>We provide two methods for installing etcd. For those looking for a quick
-route to evaluating Ondat, our first method installs etcd into your
-Kubernetes cluster using the CoreOS operator. Due to limitations in the CoreOS
-operator, this installation is not backed by any persistent storage, and
-therefore is unsuitable for production installations.</p>
-<p>For production installations, there is currently no satisfactory way of
-installing a production-grade etcd cluster inside Kubernetes (although the
-landscape is changing rapidly, watch this space), and our production guidance
-remains to install etcd on separate machines outside of your Kubernetes
-cluster. This method is the best way to ensure a stable Ondat cluster.
-Please see our etcd operations page for additional information on deployment
-<a href="/docs/operations/etcd/">best practices</a> and concerns.</p>
-<ol>
-<li>Ephemeral pods within Kubernetes (<em>Testing</em>)</li>
-<li>External Virtual Machines (<em>Production</em>)</li>
-</ol>
-<p>Click the tabs below to select the installation method of your choice.</p>
-<h2 id="testing---installing-etcd-into-your-kubernetes-cluster">Testing - Installing Etcd Into Your Kubernetes Cluster</h2>
-<p><strong>This fast and convenient method is useful for quickly creating an etcd
-cluster in order to evaluate Ondat. Do not use it for production
-installations.</strong></p>
-<p>This method uses the <a href="https://github.com/coreos/etcd-operator">CoreOS
-etcd-operator</a> to install a 3 node
-etcd cluster within your Kubernetes cluster, in the <code>storageos-etcd</code>
-namespace. We then install a Kubernetes service in that same namespace.</p>
-<p>The official etcd-operator repository also has a backup deployment operator
-that can help backup etcd data. <strong>A restore of the etcd keyspace from a backup
-might cause issues</strong> due to the disparity between the cluster state and its
-metadata in a different point in time. If you need to restore from a backup
-after a failure of etcd, contact the Ondat support team.</p>
-<h3 id="quick-install">Quick Install</h3>
-<p>For a one command install, the following script uses <code>kubectl</code> to create an
-etcd cluster in the <code>storageos-etcd</code> namespace. It requires kubectl in the
-system path, and the context set to the appropriate cluster.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -s https://raw.githubusercontent.com/ondat/use-cases/main/scripts/deploy-etcd.sh <span style="color:#000;font-weight:bold">|</span> bash
-</code></pre></div><h3 id="installation-step-by-step">Installation Step by Step</h3>
-<p>For those who would prefer to execute the steps by themselves, they are as
-follows:</p>
-<ol>
-<li>
-<p>Configure Namespace</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">NAMESPACE</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
-</code></pre></div></li>
-<li>
-<p>Create Namespace</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create namespace <span style="color:#000">$NAMESPACE</span>
-</code></pre></div></li>
-<li>
-<p>If running in Openshift, an SCC is needed to start Pods</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">oc adm policy add-scc-to-user anyuid system:serviceaccount:<span style="color:#000">$NAMESPACE</span>:default
-</code></pre></div></li>
-<li>
-<p>Create ClusterRole and ClusterRoleBinding</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> $ kubectl -n <span style="color:#000">$NAMESPACE</span> create -f-<span style="color:#4e9a06">&lt;&lt;END
-</span><span style="color:#4e9a06"> apiVersion: rbac.authorization.k8s.io/v1beta1
-</span><span style="color:#4e9a06"> kind: ClusterRoleBinding
-</span><span style="color:#4e9a06"> metadata:
-</span><span style="color:#4e9a06">   name: etcd-operator
-</span><span style="color:#4e9a06"> roleRef:
-</span><span style="color:#4e9a06">   apiGroup: rbac.authorization.k8s.io
-</span><span style="color:#4e9a06">   kind: ClusterRole
-</span><span style="color:#4e9a06">   name: etcd-operator
-</span><span style="color:#4e9a06"> subjects:
-</span><span style="color:#4e9a06">   - kind: ServiceAccount
-</span><span style="color:#4e9a06">     name: default
-</span><span style="color:#4e9a06">     namespace: $NAMESPACE
-</span><span style="color:#4e9a06">END</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n <span style="color:#000">$NAMESPACE</span> create -f-<span style="color:#4e9a06">&lt;&lt;END
-</span><span style="color:#4e9a06">apiVersion: rbac.authorization.k8s.io/v1beta1
-</span><span style="color:#4e9a06">kind: ClusterRole
-</span><span style="color:#4e9a06">metadata:
-</span><span style="color:#4e9a06">  name: etcd-operator
-</span><span style="color:#4e9a06">rules:
-</span><span style="color:#4e9a06">- apiGroups:
-</span><span style="color:#4e9a06">  - etcd.database.coreos.com
-</span><span style="color:#4e9a06">  resources:
-</span><span style="color:#4e9a06">  - etcdclusters
-</span><span style="color:#4e9a06">  - etcdbackups
-</span><span style="color:#4e9a06">  - etcdrestores
-</span><span style="color:#4e9a06">  verbs:
-</span><span style="color:#4e9a06">  - &#34;*&#34;
-</span><span style="color:#4e9a06">- apiGroups:
-</span><span style="color:#4e9a06">  - apiextensions.k8s.io
-</span><span style="color:#4e9a06">  resources:
-</span><span style="color:#4e9a06">   - customresourcedefinitions
-</span><span style="color:#4e9a06">  verbs:
-</span><span style="color:#4e9a06">  - &#34;*&#34;
-</span><span style="color:#4e9a06">- apiGroups:
-</span><span style="color:#4e9a06">  - &#34;&#34;
-</span><span style="color:#4e9a06">  resources:
-</span><span style="color:#4e9a06">  - pods
-</span><span style="color:#4e9a06">  - services
-</span><span style="color:#4e9a06">  - endpoints
-</span><span style="color:#4e9a06">  - persistentvolumeclaims
-</span><span style="color:#4e9a06">  - events
-</span><span style="color:#4e9a06">  verbs:
-</span><span style="color:#4e9a06">  - &#34;*&#34;
-</span><span style="color:#4e9a06">- apiGroups:
-</span><span style="color:#4e9a06">  - apps
-</span><span style="color:#4e9a06">  resources:
-</span><span style="color:#4e9a06">  - deployments
-</span><span style="color:#4e9a06">  verbs:
-</span><span style="color:#4e9a06">  - &#34;*&#34;
-</span><span style="color:#4e9a06"># The following permissions can be removed if not using S3 backup and TLS
-</span><span style="color:#4e9a06">- apiGroups:
-</span><span style="color:#4e9a06">  - &#34;&#34;
-</span><span style="color:#4e9a06">  resources:
-</span><span style="color:#4e9a06">  - secrets
-</span><span style="color:#4e9a06">  verbs:
-</span><span style="color:#4e9a06">  - get
-</span><span style="color:#4e9a06">END</span>
-</code></pre></div></li>
-<li>
-<p>Deploy Etcd Operator</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n <span style="color:#000">$NAMESPACE</span> create -f - <span style="color:#4e9a06">&lt;&lt;END
-</span><span style="color:#4e9a06">apiVersion: apps/v1
-</span><span style="color:#4e9a06">kind: Deployment
-</span><span style="color:#4e9a06">metadata:
-</span><span style="color:#4e9a06">  name: etcd-operator
-</span><span style="color:#4e9a06">spec:
-</span><span style="color:#4e9a06">  selector:
-</span><span style="color:#4e9a06">    matchLabels:
-</span><span style="color:#4e9a06">      app: etcd-operator
-</span><span style="color:#4e9a06">  replicas: 1
-</span><span style="color:#4e9a06">  template:
-</span><span style="color:#4e9a06">    metadata:
-</span><span style="color:#4e9a06">      labels:
-</span><span style="color:#4e9a06">        app: etcd-operator
-</span><span style="color:#4e9a06">    spec:
-</span><span style="color:#4e9a06">      containers:
-</span><span style="color:#4e9a06">      - name: etcd-operator
-</span><span style="color:#4e9a06">        image: quay.io/coreos/etcd-operator:v0.9.4
-</span><span style="color:#4e9a06">        command:
-</span><span style="color:#4e9a06">        - etcd-operator
-</span><span style="color:#4e9a06">        env:
-</span><span style="color:#4e9a06">        - name: MY_POD_NAMESPACE
-</span><span style="color:#4e9a06">          valueFrom:
-</span><span style="color:#4e9a06">            fieldRef:
-</span><span style="color:#4e9a06">              fieldPath: metadata.namespace
-</span><span style="color:#4e9a06">        - name: MY_POD_NAME
-</span><span style="color:#4e9a06">          valueFrom:
-</span><span style="color:#4e9a06">            fieldRef:
-</span><span style="color:#4e9a06">              fieldPath: metadata.name
-</span><span style="color:#4e9a06">END</span>
-</code></pre></div><p>Wait for the Etcd Operator Pod to start</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n <span style="color:#000">$NAMESPACE</span> get pod -lapp<span style="color:#ce5c00;font-weight:bold">=</span>etcd-operator
-</code></pre></div></li>
-<li>
-<p>Create the EtcdCluster resource</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000">$ kubectl -n $NAMESPACE create -f - &lt;&lt;END</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;etcd.database.coreos.com/v1beta2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;EtcdCluster&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos-etcd&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">size</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">version</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;3.4.7&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">pod</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">etcdEnv</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ETCD_QUOTA_BACKEND_BYTES</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">value</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2147483648&#34;</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># 2 GB</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ETCD_AUTO_COMPACTION_RETENTION</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">value</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;1000&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Keep 1000 revisions (default)</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ETCD_AUTO_COMPACTION_MODE</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">value</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;revision&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Set the revision mode</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">cpu</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">200m</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">memory</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">300Mi</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">securityContext</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">runAsNonRoot</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">runAsUser</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">9000</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">fsGroup</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">9000</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">tolerations</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Exists&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">affinity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">podAntiAffinity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">preferredDuringSchedulingIgnoredDuringExecution</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#204a87;font-weight:bold">weight</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">100</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">podAffinityTerm</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">labelSelector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#204a87;font-weight:bold">matchExpressions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">              </span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">etcd_cluster</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">                </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">In</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">                </span><span style="color:#204a87;font-weight:bold">values</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">                </span>- <span style="color:#000">storageos-etcd</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">topologyKey</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">kubernetes.io/hostname</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">END</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></li>
-</ol>
-<h3 id="installation-verification">Installation Verification</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n storageos-etcd get pod,svc
-NAME                                 READY   STATUS    RESTARTS   AGE
-pod/etcd-operator-55978c4587-8kx7b   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2h
-pod/storageos-etcd-qm9tmrpnlm        1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2h
-pod/storageos-etcd-rzhjdz74hp        1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2h
-pod/storageos-etcd-wvvv2d9g98        1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          2h
-
-NAME                            TYPE        CLUSTER-IP       EXTERNAL-IP PORT<span style="color:#ce5c00;font-weight:bold">(</span>S<span style="color:#ce5c00;font-weight:bold">)</span>             AGE
-service/storageos-etcd          ClusterIP   None             &lt;none&gt;      2379/TCP,2380/TCP   22h
-service/storageos-etcd-client   ClusterIP   172.30.132.255   &lt;none&gt;      2379/TCP            22h
-</code></pre></div><blockquote>
-<p>💡 The URL from the Service <code>storageos-etcd-client.storageos-etcd.svc:2379</code>
-will be used later in the Ondat Cluster CustomResource the
-<code>kvBackend.address</code>.</p>
+<p>For most use-cases we recommend installing our etcd operator, which will manage creation and maintenance of Ondat&rsquo;s required etcd cluster.
+In some circumstances it makes sense to install etcd on separate machines outside of your Kubernetes cluster.</p>
+<h2 id="installing-etcd-into-your-kubernetes-cluster">Installing Etcd Into Your Kubernetes Cluster</h2>
+<p>This is our recommended way to host etcd, in both testing and production environments.</p>
+<h2 id="configuring-storage-for-etcd">Configuring Storage for Etcd</h2>
+<p>We highly recommend using cloud provider network attached disks for storing etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This allows the etcd operator to recover from node failures.</p>
+<p>For testing environments a node-local storage option can be used, such as <a href="https://github.com/rancher/local-path-provisioner">Local Path Provisioner</a>. This will store etcd data on the node hosting an etcd pod</p>
+<blockquote>
+<p>⚠️ The <code>local-path</code> StorageClass is only recommended for <strong>non production</strong> clusters, as this stores all the data of the <code>etcd</code> peers locally, which makes it susceptible to state being lost on node failures.</p>
 </blockquote>
-<h2 id="known-etcd-operator-issues">Known etcd-operator issues</h2>
-<p>Etcd is a distributed key-value store database focused on strong consistency.
-That means that etcd nodes perform operations across the cluster to ensure
-quorum. If quorum is lost, etcd nodes stop and etcd marks its contents as
-read-only. This is because it cannot guarantee that new data will be valid.
-Quorum is fundamental for etcd operations. When running etcd using the CoreOS
-Operator, it is important to consider that a loss of quorum could arise from
-etcd pods being evicted from nodes.</p>
-<p>Operations such as Kubernetes Upgrades with rolling node pools could cause a
-total failure of the etcd cluster as nodes are discarded in favor of new ones.</p>
-<p>A 3 etcd node cluster can survive losing one node and recover, a 5 node
-cluster can survive the loss of two nodes. Loss of further nodes will result in quorum being lost.</p>
-<p><strong>The etcd-operator doesn&rsquo;t support a full stop of the cluster. Stopping the
-etcd cluster causes the loss of all the etcd keystore and make Ondat
-unable to perform metadata changes.</strong></p>
-<h2 id="production---etcd-on-external-virtual-machines">Production - Etcd on External Virtual Machines</h2>
-<p>For production installations, Ondat strongly recommends running etcd
-outside of Kubernetes on a minimum of 3 dedicated virtual machines. This
-topology offers strong guarantees of resilience and uptime. We recommend this
-architecture in all environments, including those where Kubernetes is being
-deployed as a managed service.</p>
-<p>Ondat doesn&rsquo;t require a high performance etcd cluster, as the throughput
-of metadata to the cluster is low. However, we recommend a careful assessment
-of IOPS capacity <a href="/docs/operations/etcd/">best practices</a> to ensure that etcd
-operates normally.</p>
-<p>Depending on the level of redundancy you feel comfortable with you can install
-etcd on the Kubernetes Master nodes. <strong>Take extreme care to avoid collisions
-of the Ondat etcd installation with the Kubernetes etcd when using the
-Kubernetes Master nodes. Precautions such as changing the default
-configuration for the client and peer ports, and ensuring the etcd data
-directory is modified. The ansible playbook below will default the etcd
-installation directory to <code>/var/lib/storageos-etcd</code>.</strong></p>
-<p>You can choose between two installation options.</p>
+<h3 id="how-to-set-up-an-ebs-csi-driver">How to set up an EBS CSI Driver</h3>
+<p>In AWS, you can use EBS volumes to host the etcd PVCs. The Ondat etcd usage of disk depends on the size of the Kubernetes cluster. However, it is recommended that the disks have at least 800 IOPS at any point in time. The best cost effective storage class that fulfils such requirements is gp3. If gp2 is used, it is paramount to use a volume bigger than 256Gi as it will have enough IOPS even when the burstable credits are exhausted.</p>
+<p>To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow <a href="https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html">this guide</a> to install. The procedure is comprehended by the following steps:</p>
 <ul>
-<li><a href="#installation---manual">Manual Installation</a></li>
-<li><a href="#installation---ansible">Ansible Installation</a></li>
+<li>Create IAM permissions <a href="https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html">https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html</a></li>
+<li>Install the CSI driver
+<ul>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html">Using EKS addon</a></li>
+<li><a href="https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md">Using self-managed add on</a> (AWS clusters, but not in EKS)</li>
 </ul>
-<h3 id="installation---manual">Installation - Manual</h3>
-<p>This section documents the steps required for manual installation of etcd
-using standard package management commands and systemd manifests.</p>
-<blockquote>
-<p>⚠️ <strong>Repeat the following steps on all the nodes that will run etcd as a
-systemd service.</strong></p>
-</blockquote>
-<ol>
-<li>
-<p>Configure Etcd version and ports</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">ETCD_VERSION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;3.4.9&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">CLIENT_PORT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2379&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">PEERS_PORT</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2380&#34;</span>
-</code></pre></div><blockquote>
-<p>⚠️ <strong>If targeting Kubernetes Master nodes, you must change
-<code>CLIENT_PORT</code>, <code>PEERS_PORT</code></strong></p>
-</blockquote>
 </li>
-<li>
-<p>Download Etcd from CoreOS official site</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -L https://github.com/coreos/etcd/releases/download/v<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>/etcd-v<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>-linux-amd64.tar.gz -o /tmp/etcd-<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>-linux-amd64.tar.gz
-mkdir -p /tmp/etcd-v<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>-linux-amd64
-tar -xzvf /tmp/etcd-<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>-linux-amd64.tar.gz -C /tmp/etcd-v<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>-linux-amd64 --strip-components<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span>
-rm /tmp/etcd-<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>-linux-amd64.tar.gz
-</code></pre></div></li>
-<li>
-<p>Install Etcd binaries</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">cd</span> /tmp/etcd-v<span style="color:#4e9a06">${</span><span style="color:#000">ETCD_VERSION</span><span style="color:#4e9a06">}</span>-linux-amd64
-mv etcd /usr/local/sbin/etcd3
-mv etcdctl /usr/local/sbin/etcdctl
-chmod <span style="color:#0000cf;font-weight:bold">0755</span> /usr/local/sbin/etcd3 /usr/local/sbin/etcdctl
-</code></pre></div></li>
-<li>
-<p>Set up persistent Etcd data directory</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir /var/lib/storageos-etcd
-</code></pre></div></li>
-<li>
-<p>Create the systemd environment file</p>
-<p>On all nodes that will run etcd create a systemd environment file
-<code>/etc/etcd.conf</code> which has the IPs of all the nodes. The <code>NODE_IP</code> will
-need to change to correspond to the node IP where the environment file
-resides. <code>NODE1_IP</code>, <code>NODE2_IP</code> and <code>NODE3_IP</code> will remain the same across
-all three files.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat <span style="color:#4e9a06">&lt;&lt;END &gt; /etc/etcd.conf
-</span><span style="color:#4e9a06"># NODE_IP is the IP of the node where this file resides.
-</span><span style="color:#4e9a06">NODE_IP=10.64.10.228
-</span><span style="color:#4e9a06"># Node 1 IP
-</span><span style="color:#4e9a06">NODE1_IP=10.64.10.228
-</span><span style="color:#4e9a06"># Node 2 IP
-</span><span style="color:#4e9a06">NODE2_IP=10.64.14.233
-</span><span style="color:#4e9a06"># Node 3 IP  
-</span><span style="color:#4e9a06">NODE3_IP=10.64.12.111
-</span><span style="color:#4e9a06">CLIENT_PORT=${CLIENT_PORT}
-</span><span style="color:#4e9a06">PEERS_PORT=${PEERS_PORT}
-</span><span style="color:#4e9a06">END</span>
+</ul>
+<h2 id="installing-etcd">Installing Etcd</h2>
+<p>An etcd cluster can be created in three different ways:</p>
+<ul>
+<li>Installing the etcd operator via our helm chart</li>
+<li>Installing Ondat (and the etcd operator) via our Plugin</li>
+<li>Manually deploying the etcd operator and applying an <code>etcdcluster</code> custom resource</li>
+</ul>
+<h3 id="recommended-installing-the-etcd-operator-via-our-helm-chart"><strong>Recommended:</strong> Installing the etcd operator via our helm chart</h3>
+<p>For full instructions, visit <a href="https://github.com/ondat/charts/tree/main/charts/ondat">here</a></p>
+<h3 id="recommended-installing-ondat-and-the-etcd-operator-via-our-plugin"><strong>Recommended:</strong> Installing Ondat (and the etcd operator) via our Plugin</h3>
+<p><code>kubectl storageos install --include-etcd --etcd-storage-class &lt;the storage class you want to use for etcd&gt; --etcd-tls-enabled</code></p>
+<h3 id="configurable-manually-applying-an-etcdcluster-custom-resource"><strong>Configurable:</strong> Manually applying an <code>etcdcluster</code> custom resource</h3>
+<p>This installation method allows the most configuration of the etcd cluster, but is the most error-prone.</p>
+<ul>
+<li>Manually applying an <code>etcdcluster</code> custom resource</li>
+</ul>
+<h3 id="recommended-installing-the-etcd-operator-via-our-helm-chart-1">Recommended: Installing the etcd operator via our helm chart</h3>
+<p>For full instructions, visit <a href="https://github.com/ondat/charts/tree/main/charts/ondat">here</a></p>
+<h3 id="recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1">Recommended: Installing Ondat (and the etcd operator) via our Plugin</h3>
+<p><code>kubectl storageos install --include-etcd --etcd-storage-class &lt;the storage class you want to use for etcd&gt; --etcd-tls-enabled</code></p>
+<h3 id="manually-applying-an-etcdcluster-custom-resource">Manually applying an <code>etcdcluster</code> custom resource</h3>
+<p>This installation method allows the most configuration of the etcd cluster, but is the most error-prone.</p>
+<p>Find the verison of the etcd operator you want to install from <a href="https://github.com/storageos/etcd-cluster-operator/releases/">GitHub</a></p>
+<p>Install the etcd operator:</p>
+<pre tabindex="0"><code>export ETCD_OPERATOR_VERSION=&lt;set the version you want to use&gt;
+kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml
+</code></pre><p>Then adapt the following sample to your needs and use <code>kubectl</code> to  apply it:</p>
+<pre tabindex="0"><code>export ETCD_OPERATOR_VERSION=&lt;set the version you want to use&gt;
+wget https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster.yaml
+vim storageos-etcd-cluster.yaml
+kubectl apply -f storageos-etcd-cluster.yaml
+</code></pre><h3 id="installation-verification">Installation Verification</h3>
+<pre tabindex="0"><code>$ kubectl -n storageos-etcd get pod,svc,pdb
+NAME                                                     READY   STATUS    RESTARTS   AGE
+pod/storageos-etcd-0-28m5t                               1/1     Running   0          18h
+pod/storageos-etcd-1-2lpn9                               1/1     Running   0          18h
+pod/storageos-etcd-2-dpdz6                               1/1     Running   0          18h
+pod/storageos-etcd-3-7lsmz                               1/1     Running   0          18h
+pod/storageos-etcd-4-q5xjd                               1/1     Running   0          18h
+pod/storageos-etcd-controller-manager-6f5776c64f-dhp7r   1/1     Running   0          18h
+pod/storageos-etcd-controller-manager-6f5776c64f-vvxrr   1/1     Running   0          18h
+pod/storageos-etcd-proxy-96bf4bb5f-z5m7f                 1/1     Running   0          18h
 
-<span style="color:#8f5902;font-style:italic"># Verify that variables are expanded in the file</span>
-$ cat /etc/etcd.conf
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+service/storageos-etcd         ClusterIP   None            &lt;none&gt;        2379/TCP,2380/TCP   18h
+service/storageos-etcd-proxy   ClusterIP   10.43.199.194   &lt;none&gt;        80/TCP              18h
 
-</code></pre></div></li>
-<li>
-<p>Create the systemd unit file for etcd3 service</p>
-<p>Create a systemd unit file <code>/etc/systemd/system/etcd3.service</code> with the
-following information:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ce5c00;font-weight:bold">[</span>Unit<span style="color:#ce5c00;font-weight:bold">]</span>
-<span style="color:#000">Description</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd3
-<span style="color:#000">Documentation</span><span style="color:#ce5c00;font-weight:bold">=</span>https://github.com/coreos/etcd
-<span style="color:#000">Conflicts</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd2.service
-
-<span style="color:#ce5c00;font-weight:bold">[</span>Service<span style="color:#ce5c00;font-weight:bold">]</span>
-<span style="color:#000">Type</span><span style="color:#ce5c00;font-weight:bold">=</span>notify
-<span style="color:#000">Restart</span><span style="color:#ce5c00;font-weight:bold">=</span>always
-<span style="color:#000">RestartSec</span><span style="color:#ce5c00;font-weight:bold">=</span>5s
-<span style="color:#000">LimitNOFILE</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">40000</span>
-<span style="color:#000">TimeoutStartSec</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span>
-<span style="color:#000">EnvironmentFile</span><span style="color:#ce5c00;font-weight:bold">=</span>/etc/etcd.conf
-
-<span style="color:#000">ExecStart</span><span style="color:#ce5c00;font-weight:bold">=</span>/usr/local/sbin/etcd3 --name etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --heartbeat-interval <span style="color:#0000cf;font-weight:bold">500</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --election-timeout <span style="color:#0000cf;font-weight:bold">5000</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --max-snapshots <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --max-wals <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --data-dir /var/lib/storageos-etcd <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --quota-backend-bytes <span style="color:#0000cf;font-weight:bold">8589934592</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --snapshot-count <span style="color:#0000cf;font-weight:bold">100000</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --auto-compaction-retention <span style="color:#0000cf;font-weight:bold">20000</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --auto-compaction-mode revision <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-cluster-state new <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-cluster-token etcd-token <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --listen-client-urls http://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">CLIENT_PORT</span><span style="color:#4e9a06">}</span>,http://127.0.0.1:<span style="color:#4e9a06">${</span><span style="color:#000">CLIENT_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --advertise-client-urls http://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">CLIENT_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --listen-peer-urls http://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-advertise-peer-urls http://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-cluster etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE1_IP</span><span style="color:#4e9a06">}</span><span style="color:#ce5c00;font-weight:bold">=</span>http://<span style="color:#4e9a06">${</span><span style="color:#000">NODE1_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span>,etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE2_IP</span><span style="color:#4e9a06">}</span><span style="color:#ce5c00;font-weight:bold">=</span>http://<span style="color:#4e9a06">${</span><span style="color:#000">NODE2_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span>,etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE3_IP</span><span style="color:#4e9a06">}</span><span style="color:#ce5c00;font-weight:bold">=</span>http://<span style="color:#4e9a06">${</span><span style="color:#000">NODE3_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span>
-
-
-<span style="color:#ce5c00;font-weight:bold">[</span>Install<span style="color:#ce5c00;font-weight:bold">]</span>
-<span style="color:#000">WantedBy</span><span style="color:#ce5c00;font-weight:bold">=</span>multi-user.target
-</code></pre></div><blockquote>
-<p>💡 <code>$NODE_IP</code> is the IP address of the machine you are installing etcd on.`</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Note that setting the advertise-client-urls incorrectly will cause any
-client connection to fail. Ondat will fail to communicate to Etcd.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ If enabling TLS, it is recomended to generate your own CA certificate
-and key. You will need to distribute the keys and certificates for the
-client auth on all etcd nodes. Moreover, the <code>ExecStart</code> value should
-look as below:</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#000">ExecStart</span><span style="color:#ce5c00;font-weight:bold">=</span>/usr/local/sbin/etcd3 --name etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --heartbeat-interval <span style="color:#0000cf;font-weight:bold">500</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --election-timeout <span style="color:#0000cf;font-weight:bold">5000</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --max-snapshots <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --max-wals <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --data-dir /var/lib/storageos-etcd <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --quota-backend-bytes <span style="color:#0000cf;font-weight:bold">8589934592</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --snapshot-count <span style="color:#0000cf;font-weight:bold">100000</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --auto-compaction-retention <span style="color:#0000cf;font-weight:bold">20000</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --auto-compaction-mode revision <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --peer-auto-tls <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --client-cert-auth --trusted-ca-file<span style="color:#ce5c00;font-weight:bold">=</span>/path/to/client-cert.pem <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --cert-file<span style="color:#ce5c00;font-weight:bold">=</span>/path/to/ca.pem <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --key-file<span style="color:#ce5c00;font-weight:bold">=</span>/path/to/client-key.pem <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-cluster-state new <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-cluster-token etcd-token <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --listen-client-urls https://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">CLIENT_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --advertise-client-urls https://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">CLIENT_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --listen-peer-urls https://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-advertise-peer-urls https://<span style="color:#4e9a06">${</span><span style="color:#000">NODE_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --initial-cluster etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE1_IP</span><span style="color:#4e9a06">}</span><span style="color:#ce5c00;font-weight:bold">=</span>https://<span style="color:#4e9a06">${</span><span style="color:#000">NODE1_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span>,etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE2_IP</span><span style="color:#4e9a06">}</span><span style="color:#ce5c00;font-weight:bold">=</span>https://<span style="color:#4e9a06">${</span><span style="color:#000">NODE2_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span>,etcd-<span style="color:#4e9a06">${</span><span style="color:#000">NODE3_IP</span><span style="color:#4e9a06">}</span><span style="color:#ce5c00;font-weight:bold">=</span>https://<span style="color:#4e9a06">${</span><span style="color:#000">NODE3_IP</span><span style="color:#4e9a06">}</span>:<span style="color:#4e9a06">${</span><span style="color:#000">PEERS_PORT</span><span style="color:#4e9a06">}</span>
-</code></pre></div></li>
-<li>
-<p>Reload and start the etc3 systemd service</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">systemctl daemon-reload
-systemctl <span style="color:#204a87">enable</span> etcd3.service
-systemctl start  etcd3.service
-</code></pre></div></li>
-<li>
-<p>Installation Verification</p>
-<blockquote>
-<p>💡 The <code>etcdctl</code> binary is installed at <code>/usr/local/bin</code> on the nodes.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh <span style="color:#000">$NODE</span> <span style="color:#8f5902;font-style:italic"># Any node running the new etcd</span>
-$ <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span> etcdctl --endpoints<span style="color:#ce5c00;font-weight:bold">=</span>http://127.0.0.1:<span style="color:#4e9a06">${</span><span style="color:#000">CLIENT_PORT</span><span style="color:#4e9a06">}</span> member list <span style="color:#8f5902;font-style:italic"># $NODE_IP - the IP of the node</span>
-66946cff1224bb5, started, etcd-b94bqkb9rf,  http://172.28.0.1:2380, http://172.28.0.1:2379
-17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
-8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
-</code></pre></div><blockquote>
-<p>Read the <a href="/docs/operations/etcd/">etcd operations</a>
-page for our etcd recommendations.</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="installation---ansible">Installation - Ansible</h3>
-<p>For a repeatable and automated installation, use of a configuration management
-tool such as ansible is recommended. Ondat provides an ansible playbook to
-help you deploy etcd on standalone virtual machines.</p>
-<ol>
-<li>
-<p>Clone Ondat deployment repository</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/storageos/deploy.git
-<span style="color:#204a87">cd</span> k8s/deploy-storageos/etcd-helpers/etcd-ansible-systemd
-</code></pre></div></li>
-<li>
-<p>Edit the inventory file</p>
-<blockquote>
-<p>💡 The inventory file targets the nodes that will run etcd. The file
-<code>hosts</code> is an example of such an inventory file.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat hosts
-<span style="color:#ce5c00;font-weight:bold">[</span>nodes<span style="color:#ce5c00;font-weight:bold">]</span>
-centos-1 <span style="color:#000">ip</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;10.64.10.228&#34;</span> <span style="color:#000">fqdn</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;ip-10-64-10-228.eu-west-2.compute.internal&#34;</span>
-centos-2 <span style="color:#000">ip</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;10.64.14.233&#34;</span> <span style="color:#000">fqdn</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;ip-10-64-14-233.eu-west-2.compute.internal&#34;</span>
-centos-3 <span style="color:#000">ip</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;10.64.12.111&#34;</span> <span style="color:#000">fqdn</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;ip-10-64-12-111.eu-west-2.compute.internal&#34;</span>
-
-<span style="color:#8f5902;font-style:italic"># Edit the inventory file</span>
-$ vi hosts <span style="color:#8f5902;font-style:italic"># Or your own inventory file</span>
-</code></pre></div><blockquote>
-<p>⚠️ The ip or fqdn are used to expose the advertise-client-urls of Etcd.
-Failing to provide valid ip/fqdn will cause any client connection to
-fail. Ondat will fail to communicate to Etcd.</p>
-</blockquote>
-</li>
-<li>
-<p>Edit the etcd configuration</p>
-<blockquote>
-<p>⚠️  <strong>If targeting Kubernetes Master nodes, you must change
-<code>etcd_port_client</code>, <code>etcd_port_peers</code></strong></p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cat group_vars/all
-etcd_version: <span style="color:#4e9a06">&#34;3.4.9&#34;</span>
-etcd_port_client: <span style="color:#4e9a06">&#34;2379&#34;</span>
-etcd_port_peers: <span style="color:#4e9a06">&#34;2380&#34;</span>
-etcd_quota_bytes: <span style="color:#0000cf;font-weight:bold">8589934592</span>  <span style="color:#8f5902;font-style:italic"># 8 GB</span>
-etcd_auto_compaction_mode: <span style="color:#4e9a06">&#34;revision&#34;</span>
-etcd_auto_compaction_retention: <span style="color:#4e9a06">&#34;1000&#34;</span>
-members: <span style="color:#4e9a06">&#34;{{ groups[&#39;nodes&#39;] }}&#34;</span>
-installation_dir: <span style="color:#4e9a06">&#34;/var/lib/storageos-etcd&#34;</span>
-advertise_format: <span style="color:#4e9a06">&#39;fqdn&#39;</span> <span style="color:#8f5902;font-style:italic"># fqdn || ip</span>
-backup_file: <span style="color:#4e9a06">&#34;/tmp/backup.db&#34;</span>
-
-tls:
-  enabled: <span style="color:#204a87">false</span>
-  ca_common_name: <span style="color:#4e9a06">&#34;eu-west-2.compute.internal&#34;</span>
-  etcd_common_name: <span style="color:#4e9a06">&#34;*.eu-west-2.compute.internal&#34;</span>
-  cert_dir: <span style="color:#4e9a06">&#34;/etc/etcdtls&#34;</span>
-  ca_cert_file: <span style="color:#4e9a06">&#34;etcd-ca.pem&#34;</span>
-  etcd_server_cert_file: <span style="color:#4e9a06">&#34;server.pem&#34;</span>
-  etcd_server_key_file: <span style="color:#4e9a06">&#34;server-key.pem&#34;</span>
-  etcd_client_cert_file: <span style="color:#4e9a06">&#34;etcd-client.crt&#34;</span>
-  etcd_client_key_file: <span style="color:#4e9a06">&#34;etcd-client.key&#34;</span>
-
-$ vi group_vars/all
-</code></pre></div><blockquote>
-<p>💡 Choose between using IP addressing or FQDN in the <code>advertise_format</code>
-parameter. It allows you to decide how Etcd advertises its address to
-clients. This is particularly relevant when using TLS.</p>
-</blockquote>
-<blockquote>
-<p>💡 If enabling TLS, it is recomended to generate your own CA certificate
-and key. You can do it by generating the CA from the machine running
-Ansible by: <code>ansible-playbook create_ca.yaml</code>.</p>
-</blockquote>
-</li>
-<li>
-<p>Install</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ansible-playbook -i hosts install.yaml
-</code></pre></div></li>
-<li>
-<p>Installation Verification</p>
-<blockquote>
-<p>💡 The playbook installs the <code>etcdctl</code> binary on the nodes, at
-<code>/usr/local/bin</code>.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh <span style="color:#000">$NODE</span> <span style="color:#8f5902;font-style:italic"># Any node running the new etcd</span>
-$ <span style="color:#000">ETCDCTL_API</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span> etcdctl --endpoints<span style="color:#ce5c00;font-weight:bold">=</span>127.0.0.1:2379 member list
-66946cff1224bb5, started, etcd-b94bqkb9rf,  http://172.28.0.1:2380, http://172.28.0.1:2379
-17e7256953f9319b, started, etcd-gjr25s4sdr, http://172.28.0.2:2380, http://172.28.0.2:2379
-8b698843a4658823, started, etcd-rqdf9thx5p, http://172.28.0.3:2380, http://172.28.0.3:2379
-</code></pre></div></li>
-</ol>
-<h2 id="benefits-of-running-external-to-kubernetes">Benefits of Running External to Kubernetes</h2>
-<p>Etcd is a distributed key-value store database focused on strong consistency.
-That means that etcd nodes perform operations across the cluster to ensure
-quorum. In the case that quorum is lost, an etcd node stops and marks its
-contents as read-only. Another peer might have a newer version that has not
-been committed to the database. Quorum is fundamental for etcd operations.</p>
-<p>In a Kubernetes environment, applications are scheduled across and in some
-scenarios such as &ldquo;DiskPressure&rdquo; they may need to be evicted from a node, and
-be scheduled onto a different node. With an application such as etcd, the
-scenario described can result in quorum being lost, making the cluster unable
-to recover automatically. Usually a 3 node etcd cluster can survive losing one
-node and recover. However, losing a second node at the same time or even
-having a network partition between them will result in quorum lost.</p>
-<h2 id="bind-etcd-ips-to-kubernetes-service">Bind Etcd IPs to Kubernetes Service</h2>
-<p>Kubernetes external services use a DNS name to reference external endpoints,
-making them easy to reference from inside the cluster.  You can use the
-example from the <a href="https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/etcd-helpers/etcd-external-svc">helper GitHub repository</a>
-to deploy the external Service. Using an external service can make monitoring
-of etcd from Prometheus easier.</p>
-<h2 id="using-etcd-with-ondat">Using Etcd with Ondat</h2>
-<p>During installation of Ondat the <code>kvBackend.address</code> parameter of the
-Ondat operator is used to specify the address of the etcd cluster. See the
-<a href="/docs/reference/cluster-operator/examples#installing-with-an-external-etcd">Ondat cluster operator configuration</a> examples for more information.</p>
+NAME                                        MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/storageos-etcd   3               N/A               2                     18h
+</code></pre><h2 id="etcd-on-external-virtual-machines">Etcd on External Virtual Machines</h2>
+<p>This <a href="/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster">page</a> documents the process for installing etcd outside the Kubernetes cluster</p>
 
 	
 	

@@ -118,21 +118,9 @@ for a volume, blocks are compressed then encrypted.&lt;/p&gt;
       <description>
         
         
-        &lt;p&gt;&lt;a href=&#34;https://etcd.io&#34;&gt;Etcd&lt;/a&gt; is an open-source distributed, strongly consistent key
-value store that is used by Ondat to durably persist the Ondat cluster
-state. As the backing store for Kubernetes, Ondat uses etcd for many of the
-same reasons.&lt;/p&gt;
+        &lt;p&gt;&lt;a href=&#34;https://etcd.io&#34;&gt;Etcd&lt;/a&gt; is an open-source distributed, strongly consistent key-value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.&lt;/p&gt;
 &lt;p&gt;Ondat uses etcd as the single source of truth for all Ondat objects.
-Whenever a request is made to create, update or delete an object the result is
-written to etcd before the request is completed. Using etcd as a configuration
-store allows nodes to retrieve the current cluster state after being offlined,
-allowing offlined nodes to rejoin the cluster.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Ondat v2.0 does not provide an embedded etcd server as previous
-versions did. You will need to setup an etcd server for Ondat to use
-prior to installation of Ondat. For more information on how
-to install and configure etcd, see our &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites&lt;/a&gt; page.&lt;/p&gt;
-&lt;/blockquote&gt;
+Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed. Using etcd as a configuration store allows nodes to retrieve the current cluster state after being offlined, allowing offlined nodes to rejoin the cluster.&lt;/p&gt;
 
       </description>
     </item>
@@ -221,6 +209,30 @@ pre-provisioned volumes.&lt;/p&gt;
 volume, to enable fast failover.&lt;/p&gt;
 &lt;p&gt;For more information about how to enable pod fencing, see our &lt;a href=&#34;/docs/operations/fencing&#34;&gt;Fencing
 Operations&lt;/a&gt; page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Metric Exporter</title>
+      <link>/docs/concepts/metric-exporter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/metric-exporter/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Following the &lt;a href=&#34;https://prometheus.io/docs/instrumenting/exporters/&#34;&gt;exporter pattern&lt;/a&gt;, we maintain and distribute our own &lt;a href=&#34;https://prometheus.io/&#34;&gt;Prometheus&lt;/a&gt; exporter for monitoring &amp;amp; alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity &amp;amp; traffic.&lt;/p&gt;
+&lt;p&gt;Our exporter’s source code can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Please see our &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;operations page&lt;/a&gt; to get started.&lt;/p&gt;
+&lt;p&gt;Additionally, we distribute Grafana dashboards to visualize the data. They can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/grafana&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Likewise, we distribute example alerting rules for our metrics using &lt;a href=&#34;https://prometheus.io/docs/alerting/latest/alertmanager/&#34;&gt;Alertmanager&lt;/a&gt;, they can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/alertmanager&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Contributions to both are welcome!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ When setting up a &lt;a href=&#34;https://github.com/prometheus-operator/prometheus-operator/blob/1e4acb010642067bb918eebb75410191640a95c6/Documentation/user-guides/getting-started.md&#34;&gt;ServiceMonitor&lt;/a&gt; be sure to create the rules in the same namespace as your Prometheus resource and have its &lt;code&gt;selector&lt;/code&gt; field match the labels of ours services exposing metrics (see example manifest &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you have suggestions for metrics you would like us to gather or improvements to our Grafana or Alertmanager integration, please let us know on our &lt;a href=&#34;https://slack.storageos.com/&#34;&gt;public slack&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>

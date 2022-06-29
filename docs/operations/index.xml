@@ -326,11 +326,12 @@ label to be present on PVCs created using this StorageClass. For instance:&lt;/p
         
         &lt;p&gt;Check the &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;etcd prerequisites page&lt;/a&gt;
 for a step by step installation of etcd.&lt;/p&gt;
-&lt;h2 id=&#34;best-practices&#34;&gt;Best practices&lt;/h2&gt;
+&lt;h2 id=&#34;best-practices---etcd-inside-the-cluster&#34;&gt;Best practices - Etcd Inside the Cluster&lt;/h2&gt;
+&lt;p&gt;This page describe best practices when hosting etcd &lt;strong&gt;inside&lt;/strong&gt; Kubernetes using Ondat&amp;rsquo;s etcd operator. Best practices when hosting etcd &lt;strong&gt;outside&lt;/strong&gt; Kubernetes can be found &lt;a href=&#34;/docs/operations/etcd/etcd-outside-k8s/_index.md&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Ondat uses etcd as a service, whether it is deployed following the
 &lt;a href=&#34;/docs/prerequisites/etcd&#34;&gt;step by step&lt;/a&gt; instructions or as a custom
-installation. It is expected that the user maintains the availability and
-integrity of the etcd cluster.&lt;/p&gt;
+installation.&lt;br&gt;
+The etcd operator will maintain availability and integrity of the etcd cluster, however it is recommended to monitor etcd metrics to ensure the cluster is functioning as expected.&lt;/p&gt;
 &lt;p&gt;It is highly recommended to keep the cluster backed up and ensure high
 availability of its data.&lt;/p&gt;
 &lt;h3 id=&#34;network-low-latency&#34;&gt;Network low latency&lt;/h3&gt;
@@ -362,17 +363,10 @@ guideline only. A development cluster with 5 nodes will not have the same etcd
 traffic as a production cluster with 100 nodes. Adding &lt;a href=&#34;/docs/operations/etcd/&#34;&gt;monitoring&lt;/a&gt; to etcd will help to
 characterise the traffic, and therefore to assess the individual requirements
 of a cluster and adjust its resources accordingly.&lt;/p&gt;
-&lt;h3 id=&#34;etcd-advertise-urls&#34;&gt;Etcd advertise URLs&lt;/h3&gt;
-&lt;p&gt;The etcd startup parameters &lt;code&gt;advertise-client-urls&lt;/code&gt; and
-&lt;code&gt;initial-advertise-peer-urls&lt;/code&gt; specify the addresses etcd clients or other etcd
-members should use to contact the etcd server. The advertised addresses must
-be reachable from the remote machines - i.e. where Ondat is running - so
-it can connect successfully. Do not advertise addresses like &lt;code&gt;localhost&lt;/code&gt; or
-&lt;code&gt;0.0.0.0&lt;/code&gt; for a production setup since these addresses are unreachable from
-remote machines.&lt;/p&gt;
 &lt;h3 id=&#34;monitoring&#34;&gt;Monitoring&lt;/h3&gt;
-&lt;p&gt;It is highly recommended to add monitoring to the etcd cluster. Etcd serves
-Prometheus metrics on the client port &lt;code&gt;http://etcd-url:2379/metrics&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It is highly recommended to add monitoring to the etcd cluster.
+When using the Ondat etcd operator etcd serves
+Prometheus metrics on a separate metrics port &lt;code&gt;http://storageos-etcd.storageos-etcd:2381/metrics&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;You can use Ondat developed Grafana Dashboards for etcd. When using etcd
 for production, you can use the
 &lt;a href=&#34;https://grafana.com/grafana/dashboards/10322&#34;&gt;etcd-cluster-as-service&lt;/a&gt;, while
@@ -391,40 +385,11 @@ the &amp;ldquo;DB_BACKEND_BYTES&amp;rdquo; parameter, the cluster triggers an al
 itself read only and only allows reads and deletes. To avoid hitting the db
 backend bytes limit, compaction and defragmentation are required. How often
 defragmentation is required depends on the churn of key revisions in etcd.&lt;/p&gt;
-&lt;p&gt;The Grafana Dashboards mentioned above indicate when nodes require
-defragmentation. Be aware that defragmentation is a blocking operation that is
+&lt;p&gt;Be aware that defragmentation is a blocking operation that is
 performed per node, hence the etcd node will be locked for the duration of the
 defragmentation. Defragmentation usually takes a few milliseconds to complete.&lt;/p&gt;
-&lt;p&gt;You can also set cronjobs that execute the following defragmentation script.
-It will run a defrag when the DB is at 80% full. A defragmentation operation
-has to be executed per etcd node and &lt;strong&gt;it is a blocking operation&lt;/strong&gt;. It is
-recommended to &lt;strong&gt;not execute the defragmentation on all etcd members at the
-same time&lt;/strong&gt;. If using a cronjob, set them up for different times.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;https://raw.githubusercontent.com/storageos/deploy/master/k8s/deploy-storageos/etcd-helpers/etcd-ansible-systemd/roles/install_etcd/templates/defrag-etcd.sh.j2
-chmod +x defrag-etcd.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;known-coreos-etcd-operator-issues&#34;&gt;Known CoreOS Etcd Operator issues&lt;/h2&gt;
-&lt;p&gt;This topology is only recommended for deployments where isolated nodes cannot
-be used.&lt;/p&gt;
-&lt;p&gt;Etcd is a distributed key-value store database focused on strong consistency.
-That means that etcd nodes perform operations across the cluster to ensure
-quorum. If quorum is lost, etcd nodes stop and etcd marks its contents as
-read-only. This is because it cannot guarantee that new data will be valid.
-Quorum is fundamental for etcd operations. When running etcd in pods it is
-therefore important to consider that a loss of quorum could arise from etcd
-pods being evicted from nodes.&lt;/p&gt;
-&lt;p&gt;Operations such as Kubernetes Upgrades with rolling node pools could cause a
-total failure of the etcd cluster as nodes are discarded in favor of new ones.&lt;/p&gt;
-&lt;p&gt;A 3 etcd node cluster can survive losing one node and recover, a 5 node
-cluster can survive the loss of two nodes. Loss of further nodes will result
-in quorum being lost.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;The etcd-operator doesn&amp;rsquo;t support a full stop of the cluster. Stopping the
-etcd cluster causes the loss of all the etcd keystore and make Ondat
-unable to perform metadata changes.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The official etcd-operator repository also has a backup deployment operator
-that can help backup etcd data. &lt;strong&gt;A restore of the etcd keyspace from a backup
-might cause issues&lt;/strong&gt; due to the disparity between the cluster state and its
-metadata in a different point in time. If you need to restore from a backup
-after a failure of etcd, contact the Ondat support team.&lt;/p&gt;
+&lt;p&gt;The etcd operator will automatically defrag the etcd cluster when it reaches 80% used space or every hour.
+It will never defrag more than one etcd peer at once, so etcd will remain available.&lt;/p&gt;
 
       </description>
     </item>
@@ -1356,6 +1321,51 @@ Customer name:  Sally Forth
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;💡 Don&amp;rsquo;t worry if you don&amp;rsquo;t see all of these fields - some of them are only visible when they are relevant to your individual license.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Metric Exporter</title>
+      <link>/docs/operations/metric-exporter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/metric-exporter/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;enable-the-metrics&#34;&gt;Enable the metrics&lt;/h2&gt;
+&lt;p&gt;To enable the Ondat Volume metrics, add the following field to your StorageOSCluster resource.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metrics&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;enabled&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ On OCP you may need to follow their instructions for enabling monitoring of user-defined projects, &lt;a href=&#34;https://docs.openshift.com/container-platform/4.8/monitoring/enabling-monitoring-for-user-defined-projects.html&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;example-setup&#34;&gt;Example setup&lt;/h2&gt;
+&lt;p&gt;Here’s an example &lt;a href=&#34;https://prometheus-operator.dev/docs/operator/design/#servicemonitor&#34;&gt;ServiceMonitor&lt;/a&gt; resource that scrapes our metrics endpoints:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;monitoring.coreos.com/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ServiceMonitor&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;release&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;prometheus&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-metrics-service-monitor&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;endpoints&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;interval&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;15s&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;path&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;/metrics&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;port&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;metrics&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;namespaceSelector&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;matchNames&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#000&#34;&gt;storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;selector&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;matchLabels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;service-discovery&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-metrics-exporter&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;⚠️ The label selector fields must match those of our service.&lt;/p&gt;
+&lt;p&gt;After the manifest is applied, Ondat metrics will be scraped by your Prometheus server.&lt;/p&gt;
 
       </description>
     </item>
