@@ -3889,7 +3889,9 @@ generally see the CRI-O documentation
       <description>
         
         
-        &lt;h2 id=&#34;etcd-low-latency-io&#34;&gt;Etcd low latency IO&lt;/h2&gt;
+        &lt;h2 id=&#34;etcd---in-cluster---replicas-and-availability-zones&#34;&gt;Etcd - In Cluster - Replicas and Availability Zones&lt;/h2&gt;
+&lt;p&gt;We recommend running etcd with 5 replicas (etcd peers) and spreading them across availability zones when running etcd inside the cluster, this improves the resiliency of the etcd cluster. This is done by default when installing via the plugin or helm.&lt;/p&gt;
+&lt;h2 id=&#34;etcd-low-latency-io&#34;&gt;Etcd low latency IO&lt;/h2&gt;
 &lt;p&gt;It is recommended to run etcd on low-latency disks and keep other IO-intensive
 applications separate from the etcd nodes. Etcd is very sensitive to IO latency.
 Thus, the effect of disk contention can cause etcd downtime.&lt;/p&gt;
