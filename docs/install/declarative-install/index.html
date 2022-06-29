@@ -34,7 +34,7 @@
  Using the Ondat kubectl plugin. Using the Ondat Helm chart.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your $PATH:">
 
-<meta itemprop="wordCount" content="1710">
+<meta itemprop="wordCount" content="1750">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Declarative Install"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ae9a5eda4e6f70a1cd1f403ac11b39c771187ee88df915eddef0bcc7d33c478e237d7d3c5f8c0244fe2d4cc2651364e89b800e95411b52741b259ae0c97d9e0b.json"
+  data-offline-search-index-json-src="/offline-search-index.6a0ee871667e580e0ff0b8a958659ebc225f9264b5d44368c7aec14e606a3cca49526cfe8a5112fd4d92675d7489d96eadaf10bc08f7d466cad94410e5766aa0.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ae9a5eda4e6f70a1cd1f403ac11b39c771187ee88df915eddef0bcc7d33c478e237d7d3c5f8c0244fe2d4cc2651364e89b800e95411b52741b259ae0c97d9e0b.json"
+  data-offline-search-index-json-src="/offline-search-index.6a0ee871667e580e0ff0b8a958659ebc225f9264b5d44368c7aec14e606a3cca49526cfe8a5112fd4d92675d7489d96eadaf10bc08f7d466cad94410e5766aa0.json"
   data-offline-search-base-href="/"
 >
 
@@ -1707,12 +1707,15 @@ helm search repo <span style="color:#4e9a06">&#34;ondat&#34;</span>
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">address</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># for example -&gt; 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><ul>
-<li><strong>If an internal etcd installation is being used</strong>, set <a href="https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml"><code>etcd-cluster-operator.cluster.storageclass</code></a></li>
+<li><strong>If an internal etcd installation is being used</strong>, set <a href="https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml"><code>etcd-cluster-operator.cluster.storageclass</code></a>, set this to the StorageClass installed earlier</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Storageclass for etcd backing storage</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># NOTE: We CANNOT use storageos here as this is the egg to Ondat&#39;s chicken</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">storageclass</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">gp3</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></li>
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">storageclass</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">local-path</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><blockquote>
+<p>⚠️ The <code>local-path</code> StorageClass is only recommended for <strong>non production</strong> clusters, as this stores all the data of the <code>etcd</code> peers locally, which makes it susceptible to state being lost on node failures.</p>
+</blockquote>
+</li>
 <li>
 <p>Once the parameters above have been defined, run the following  <code>helm install</code>  command to install Ondat using the Helm chart. Ensure that you use the <code>--values=</code> flag with your <code>custom-values.yaml</code> file.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat ondat/ondat <span style="color:#4e9a06">\
