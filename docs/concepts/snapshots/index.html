@@ -21,22 +21,25 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Ondat Snapshots | </title><meta property="og:title" content="Ondat Snapshots" />
-<meta property="og:description" content="Overview Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.
-How does it work?  The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster)." />
+<meta property="og:description" content="Overview The Ondat Snapshot feature can be used in conjunction with Kasten K10 to snapshot, backup and restore Kubernetes applications. This functionality is useful for:
+ Disaster recovery scenarios Rolling back unwanted changes Auditing purposes Moving applications between clusters  Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:
+ Ondat v2.8.0 or later is installed in the cluster Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of prerequisites." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/snapshots/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Ondat Snapshots">
-<meta itemprop="description" content="Overview Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.
-How does it work?  The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster).">
+<meta itemprop="description" content="Overview The Ondat Snapshot feature can be used in conjunction with Kasten K10 to snapshot, backup and restore Kubernetes applications. This functionality is useful for:
+ Disaster recovery scenarios Rolling back unwanted changes Auditing purposes Moving applications between clusters  Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:
+ Ondat v2.8.0 or later is installed in the cluster Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of prerequisites.">
 
-<meta itemprop="wordCount" content="165">
+<meta itemprop="wordCount" content="445">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Snapshots"/>
-<meta name="twitter:description" content="Overview Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.
-How does it work?  The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster)."/>
+<meta name="twitter:description" content="Overview The Ondat Snapshot feature can be used in conjunction with Kasten K10 to snapshot, backup and restore Kubernetes applications. This functionality is useful for:
+ Disaster recovery scenarios Rolling back unwanted changes Auditing purposes Moving applications between clusters  Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:
+ Ondat v2.8.0 or later is installed in the cluster Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of prerequisites."/>
 
 
 
@@ -178,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.b8973f309016eeb19f01ed78cdd354b5ef4a6c1c4ee497fec344c67ca4b023bf2d0cf97ee88772071b988e740ed8630101cf5e0c4f7c5734d52e3975351b5ec8.json"
+  data-offline-search-index-json-src="/offline-search-index.793a86f978939d749cef3d682e123f62d43810bf58228e7400032faf8505aa1fb2692651935d7e60270f1a4c0a8eb0ece2a03376e89b432dee1f2950a3ce1f2e.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.b8973f309016eeb19f01ed78cdd354b5ef4a6c1c4ee497fec344c67ca4b023bf2d0cf97ee88772071b988e740ed8630101cf5e0c4f7c5734d52e3975351b5ec8.json"
+  data-offline-search-index-json-src="/offline-search-index.793a86f978939d749cef3d682e123f62d43810bf58228e7400032faf8505aa1fb2692651935d7e60270f1a4c0a8eb0ece2a03376e89b432dee1f2950a3ce1f2e.json"
   data-offline-search-base-href="/"
 >
 
@@ -731,6 +734,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <ul>
     <li class="collapse " id="docsoperations">
       
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
       
       
       
@@ -1478,16 +1487,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h1>Ondat Snapshots</h1>
 	
 	<h1 id="overview">Overview</h1>
-<p>Customers often require backups for disaster recovery, auditing purposes and various other scenarios. Ondat Snapshots aims to enable customers to back up their Ondat data outside of their Kubernetes clusters. In conjunction with a backup solution, this functionality helps to recover users’ Kubernetes stateful applications whenever they want.</p>
-<h1 id="how-does-it-work">How does it work?</h1>
+<p>The Ondat Snapshot feature can be used in conjunction with <a href="https://www.kasten.io/">Kasten
+K10</a> to snapshot, backup and restore Kubernetes
+applications. This functionality is useful for:</p>
 <ol>
-<li>The Ondat Snapshots feature takes a snapshot of your volume (i.e. a point-in-time copy of a volume that lives within your cluster). The snapshot now lives within your cluster.</li>
-<li>Ondat Snapshots integrates with backup solutions like <a href="https://www.kasten.io">Kasten</a> to provide backup and restore of Kubernetes stateful applications. Our feature integrates fully with Kasten, which offers free workflows for backing up Kubernetes data (e.g. to an S3 bucket if you are using AWS).</li>
-<li>Your volume is now backed up externally and can be retrieved and restored using Kasten.</li>
+<li>Disaster recovery scenarios</li>
+<li>Rolling back unwanted changes</li>
+<li>Auditing purposes</li>
+<li>Moving applications between clusters</li>
 </ol>
+<h1 id="prerequisites">Prerequisites</h1>
+<p>To utilize the Ondat Snapshot feature the following prerequisites must be met:</p>
+<ol>
+<li>Ondat v2.8.0 or later is installed in the cluster</li>
+<li>Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of
+<a href="https://docs.kasten.io/latest/install/requirements.html#">prerequisites</a>.
+Kasten supports Kubernetes versions up to 1.22.</li>
+</ol>
+<h1 id="what-are-snapshots-backups-and-restores">What are snapshots, backups and restores?</h1>
+<p>A “snapshot” is a point-in-time copy of a PVC. Snapshots are modeled via the
+<code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> Kubernetes API objects. Snapshots
+have limited use as they live within the cluster and cannot be used to restore
+the PVC if the node holding the snapshot is lost.</p>
+<p>A “backup” is the process of materialising a new PVC, whose data source is a
+previously created snapshot and then extracting the data to a location outside
+of the cluster. The Ondat Snapshots feature integrates with Kasten K10 to
+provide backup functionality.</p>
+<p>A “restore” is the process of restoring an application from a given backup. The
+Ondat Snapshots feature integrates with Kasten K10 to provide restore
+functionality.</p>
+<h1 id="how-does-it-work">How does it work?</h1>
+<p>The Kubernetes <a href="https://kubernetes.io/docs/concepts/storage/volume-snapshots/">Volume
+Snapshots</a>
+feature provides users with a set of custom resource definitions (CRD) and APIs
+to create and manage volume snapshots. Storage providers can then implement the
+necessary CSI APIs to integrate with this feature. This is exactly what we’ve
+done at Ondat. Additional tools, like Kasten K10, can then be utilised to
+orchestrate and automate snapshotting, backups and restores.</p>
+<p>Please see the <a href="/docs/operations/backups-and-restores-with-kastenk10">Backups and restores with Kasten
+K10</a> for a full
+walk through.</p>
 <blockquote>
-<p>⚠️ This feature is currently available on <code>2.8.0-beta</code> - if you would like to gain early access to the product, speak with our experts on <a href="mailto:hello@ondat.io">hello@ondat.io</a>.</p>
+<p>⚠️ The Ondat Snapshot feature is not fully CSI compliant. As such the feature
+can only be used with Kasten K10 and with restoration from an external backup.</p>
 </blockquote>
+<h1 id="scope-and-limitations">Scope and limitations</h1>
+<p>The feature has the following limitations:</p>
+<ol>
+<li>The feature has been designed to work with Kasten K10 only. This is not a
+fully CSI compliant implementation of the spec.</li>
+<li>Restoring via Kasten 10 from a “local snapshot” is not supported with the
+Ondat Snapshot feature. Users may only restore applications using a Kasten K10
+“External backup”.</li>
+<li>Snapshotting RWX volumes is not supported. This is because it is next to
+impossible to ensure that a NFS mounted volume is in a suitable state for
+snapshotting. For RWX volumes, the user only has access to the filesystem on
+the NFS client. It is not possible to run <code>fsfreeze</code> on this mountpoint - NFS
+does not support it. Thus the user can not quiesce the filesystem and we can
+not take a &ldquo;consistent&rdquo; snapshot.</li>
+</ol>
 
 	
 	

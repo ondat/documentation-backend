@@ -5156,6 +5156,351 @@ Global Flags:
     </item>
     
     <item>
+      <title>Docs: Backup and restores with Ondat Snapshots and Kasten K10</title>
+      <link>/docs/operations/backups-and-restores-with-kastenk10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/backups-and-restores-with-kastenk10/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;This guide will walk you through how to use the Ondat Snapshots feature to
+backup and restore your Kubernetes applications using Kasten K10. Before
+starting please consult the &lt;a href=&#34;/docs/concepts/snapshots&#34;&gt;Snapshots
+Concepts&lt;/a&gt; page for an overview of the feature.&lt;/p&gt;
+&lt;p&gt;We’ll now run through the steps required to configure and utilise the feature:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Installing Ondat&lt;/li&gt;
+&lt;li&gt;Installing the Kubernetes snapshot CRDs&lt;/li&gt;
+&lt;li&gt;Configuring the Ondat VolumeSnapshotClass&lt;/li&gt;
+&lt;li&gt;Installing and configuring Kasten K10&lt;/li&gt;
+&lt;li&gt;Backup and restore walkthrough:
+&lt;ol&gt;
+&lt;li&gt;Creating an example application&lt;/li&gt;
+&lt;li&gt;Creating a backup policy&lt;/li&gt;
+&lt;li&gt;Adding pre/post-snapshot hooks to quiesce the application/filesystem&lt;/li&gt;
+&lt;li&gt;Manually running a backup job&lt;/li&gt;
+&lt;li&gt;Restoring an application from a backup&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;1-installing-ondat&#34;&gt;1: Installing Ondat&lt;/h1&gt;
+&lt;p&gt;Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
+first time then please follow the instructions
+&lt;a href=&#34;/docs/install/&#34;&gt;here&lt;/a&gt;. If you are upgrading an existing
+Ondat deployment then please follow the instructions
+&lt;a href=&#34;/docs/upgrade/upgrade/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;2-installing-the-kubernetes-snapshot-crds&#34;&gt;2: Installing the Kubernetes snapshot CRDs&lt;/h1&gt;
+&lt;p&gt;In order to use the Kubernetes snapshot feature the Kubernetes snapshot CRDs
+and the &lt;code&gt;snapshot-controller&lt;/code&gt; must be installed. Most distributions don’t
+install these by default. To install the &lt;code&gt;VolumeSnapshots&lt;/code&gt;,
+&lt;code&gt;VolumeSnapshotContents&lt;/code&gt; and &lt;code&gt;VolumeSnapshotClasses&lt;/code&gt; CRDs run the following:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
+kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
+kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now you need to install the &lt;code&gt;snapshot-controller&lt;/code&gt;. The
+&lt;a href=&#34;https://kubernetes-csi.github.io/docs/snapshot-controller.html&#34;&gt;snapshot controller&lt;/a&gt;
+monitors the Kubernetes API server for &lt;code&gt;VolumeSnapshot&lt;/code&gt; and &lt;code&gt;VolumeSnapshotContent&lt;/code&gt;
+CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install
+the controller with the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
+$ kubectl apply -f
+https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note: it’s important that v6.0 is used for the CRDs and the &lt;code&gt;snapshot-controller&lt;/code&gt;.
+Other versions may work or may appear to work, but have not been formally tested
+and ratified by Ondat.&lt;/p&gt;
+&lt;h1 id=&#34;3-configuring-the-ondat-volumesnapshotclass&#34;&gt;3: Configuring the Ondat VolumeSnapshotClass&lt;/h1&gt;
+&lt;p&gt;In order to utilise the Ondat CSI plugin with the Kubernetes snapshot feature, one
+must provide a &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; for the Ondat CSI plugin. Once the CRDs and the
+&lt;code&gt;snapshot-controller&lt;/code&gt; have been installed edit your &lt;code&gt;StorageOSCluster&lt;/code&gt; to add:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;spec:
+  snapshots:
+    volumeSnapshotClassName: $EXAMPLE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will prompt the Ondat operator to create a &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; named
+&lt;code&gt;$EXAMPLE_NAME&lt;/code&gt; and configure it for use with Kasten K10. You can edit your
+&lt;code&gt;StorageOSCluster&lt;/code&gt; by using the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl -n storageos edit storageosclusters.storageos.com storageoscluster
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can view the &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; by running:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl get volumesnapshotclasses
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl describe volumesnapshotclasses $EXAMPLE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You’ll notice the &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; contains the &lt;code&gt;k10.kasten.io/is-snapshot-class: true&lt;/code&gt;
+annotation. This is very important and allows Kasten K10 to utilise the Ondat storage plugin.&lt;/p&gt;
+&lt;h1 id=&#34;4-installing-kasten-k10&#34;&gt;4: Installing Kasten K10&lt;/h1&gt;
+&lt;p&gt;The next step is to install Kasten K10 on your cluster. Instructions for how to do this can
+be found &lt;a href=&#34;https://docs.kasten.io/latest/install/install.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The remainder of this walk through will assume you have access to the Kasten K10 UI. You
+can install it following the instructions
+&lt;a href=&#34;https://docs.kasten.io/latest/access/dashboard.html&#34;&gt;here&lt;/a&gt;. Everything we do in the
+following steps may be done via &lt;code&gt;kubectl&lt;/code&gt; and the command-line, however this is not shown
+in this guide.&lt;/p&gt;
+&lt;p&gt;Once K10 is installed you can then create a &amp;ldquo;Profile&amp;rdquo; and configure the backup location.
+Instructions on how to do this can be found
+&lt;a href=&#34;https://docs.kasten.io/latest/api/profiles.html#&#34;&gt;here&lt;/a&gt;. It’s also possible to do this via the UI.&lt;/p&gt;
+&lt;h1 id=&#34;5-backup-and-restore-example&#34;&gt;5: Backup and restore example&lt;/h1&gt;
+&lt;p&gt;In the following sections, we’ll create a toy application and run through the steps required to
+back it up and restore from it.&lt;/p&gt;
+&lt;h2 id=&#34;51-creating-an-example-application&#34;&gt;5.1: Creating an example application&lt;/h2&gt;
+&lt;p&gt;Start by creating an example deployment in a new namespace &lt;code&gt;ondat-test&lt;/code&gt;, which utilises a Ondat PVC:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl create namespace ondat-test
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then apply the following configuration using &lt;code&gt;kubectl create -f&lt;/code&gt;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mypvc
+  namespace: ondat-test
+spec:
+  storageClassName: storageos
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  namespace: ondat-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: date
+        image: debian:9-slim
+        command: [&amp;quot;/bin/sh&amp;quot;,&amp;quot;-c&amp;quot;]
+        args: [&amp;quot;while true; do /bin/date | /usr/bin/tee -a /mnt/date ; /bin/sleep 5; done&amp;quot;]
+        volumeMounts:
+          - mountPath: /mnt
+            name: data-mount
+      - name: sidecar
+        image: debian:9-slim
+        command: [&amp;quot;/bin/sh&amp;quot;,&amp;quot;-c&amp;quot;]
+        args: [&amp;quot;/bin/sleep 3600&amp;quot;]
+        securityContext:
+          privileged: true
+        volumeMounts:
+          - mountPath: /mnt
+            name: data-mount
+      volumes:
+      - name: data-mount
+        persistentVolumeClaim:
+          claimName: mypvc
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This deployment creates a pod with 2 containers. The &lt;code&gt;date&lt;/code&gt; container will simply append
+the date to stdout and &lt;code&gt;/mnt/date&lt;/code&gt; every 5 seconds:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n ondat-test exec myapp-deployment-7749d9984-r57nk -c date -- cat /mnt/date | head
+Tue Jun 28 08:56:07 UTC 2022
+Tue Jun 28 08:59:01 UTC 2022
+Tue Jun 28 08:59:06 UTC 2022
+…
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The &lt;code&gt;sidecar&lt;/code&gt; container simply mounts in the PVC under &lt;code&gt;/mnt&lt;/code&gt; and then lies dormant.
+This container will be used during the snapshot process to quiesce the filesystem so
+a consistent snapshot can be taken. It serves no other purpose. Notice how this
+container must have the &lt;code&gt;privileged&lt;/code&gt; flag set to &lt;code&gt;true&lt;/code&gt;. This is necessary to run
+the &lt;code&gt;fsfreeze&lt;/code&gt; command.&lt;/p&gt;
+&lt;h2 id=&#34;52-adding-prepost-snapshot-hooks-to-quiesce-the-applicationfilesystem&#34;&gt;5.2: Adding pre/post-snapshot hooks to quiesce the application/filesystem&lt;/h2&gt;
+&lt;p&gt;In order to take a snapshot of an application we must first quiesce the application
+and the underlying filesystem.&lt;/p&gt;
+&lt;p&gt;Quiescing the application means putting it into a paused state where all on-going
+operations have completed and no new operations are started. How to do this depends
+on what sort of application you are running. For example, a database application may
+want to ensure that all in progress transactions are committed and flushed and no
+new transactions are started. An application which is buffering data and writing
+it to a file may want to ensure that the full write has been completed and the data
+has been &lt;code&gt;sync&lt;/code&gt;’d.&lt;/p&gt;
+&lt;p&gt;Quiescing the filesystem is required in addition to quiescing the application and
+must always be done when using the Ondat Snapshots feature. This step should be
+done after quiescing the application and is achieved by doing an &lt;code&gt;fsfreeze --freeze&lt;/code&gt;
+on the mounted filesystem. &lt;code&gt;fsfreeze&lt;/code&gt; halts access to the filesystem such that any
+attempts to issue IO to the filesystem are blocked until the filesystem is unfrozen.
+It also ensures that any in progress filesystem operations are completed. This leaves
+the filesystem in a consistent state from which it is safe to take a snapshot.&lt;/p&gt;
+&lt;p&gt;After we are done taking the snapshot, we can run &lt;code&gt;fsfreeze --unfreeze&lt;/code&gt; to unfreeze
+the filesystem. If required, any steps to quiesce the application can then be performed.&lt;/p&gt;
+&lt;p&gt;To execute these &amp;ldquo;pre-snapshot&amp;rdquo; and &amp;ldquo;post-snapshot&amp;rdquo; operations one can use a
+&lt;a href=&#34;https://kanister.io/&#34;&gt;Kanister blueprint&lt;/a&gt; in conjunction with K10’s
+&lt;a href=&#34;https://docs.kasten.io/latest/kanister/hooks.html&#34;&gt;execution hooks&lt;/a&gt; feature.
+Kanister is an open source framework which allows users to automate application
+specific management tasks via yaml based configuration. Kasten K10 can leverage
+these blueprints to perform various actions pre and post-snapshot.&lt;/p&gt;
+&lt;p&gt;We’ll use the following blueprint to quiesce the filesystem before taking a
+snapshot and unquiesce it after taking the snapshot.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We don’t perform any application level quiescing here as it’s not required
+for our toy application.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For statefulsets the blueprint below can be used as a baseline, but change
+&lt;code&gt;kind&lt;/code&gt; to &lt;code&gt;StatefulSet&lt;/code&gt;, &lt;code&gt;Deployment.Namespace&lt;/code&gt; to &lt;code&gt;StatefulSet.Namespace&lt;/code&gt; and
+&lt;code&gt;Deployment.Pods&lt;/code&gt; to &lt;code&gt;StatefulSet.Pods&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: cr.kanister.io/v1alpha1
+kind: Blueprint
+metadata:
+  name: fsfreeze-hooks-deployment
+  namespace: kasten-io
+actions:
+  backupPrehook:
+    kind: Deployment # or StatefulSet
+    phases:
+    - func: KubeExec
+      name: fsfreeze
+      args:
+        namespace: &amp;quot;{{ .Deployment.Namespace }}&amp;quot;  # or StatefulSet.Namespace
+        pod: &amp;quot;{{ index .Deployment.Pods 0 }}&amp;quot;     # or StatefulSet.Pods
+        container: sidecar
+        command:
+        - bash
+        - -o
+        - errexit
+        - -o
+        - pipefail
+        - -o
+        - xtrace
+        - -c
+        - |
+          fsfreeze --freeze /mnt
+  backupPosthook:
+    kind: Deployment
+    phases:
+    - func: KubeExec
+      name: fsunfreeze
+      args:
+        namespace: &amp;quot;{{ .Deployment.Namespace }}&amp;quot;  # or StatefulSet.Namespace
+        pod: &amp;quot;{{ index .Deployment.Pods 0 }}&amp;quot;     # or StatefulSet.Pods
+        container: sidecar
+        command:
+        - bash
+        - -o
+        - errexit
+        - -o
+        - pipefail
+        - -o
+        - xtrace
+        - -c
+        - |
+          fsfreeze --unfreeze /mnt
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;If you have installed kasten into a namespace other than &lt;code&gt;kasten-io&lt;/code&gt; then
+you’ll have to modify the &lt;code&gt;namespace&lt;/code&gt; field in the above configuration.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Apply the blueprint with the &lt;code&gt;kubect create -f&lt;/code&gt; command. One can observe the
+blueprint like so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n kasten-io get blueprints.cr.kanister.io
+NAME                                              AGE
+fsfreeze-hooks-deployment                         15h
+k10-deployment-generic-volume-2.0.20              3h2m
+k10-persistentvolumeclaim-generic-volume-2.0.20   3h19m
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;53-setting-up-a-backup-policy&#34;&gt;5.3: Setting up a backup policy&lt;/h2&gt;
+&lt;p&gt;Ensure you have the Kasten K10 dashboard installed
+(see &lt;a href=&#34;https://docs.kasten.io/latest/access/dashboard.html&#34;&gt;here&lt;/a&gt;). It’s possible
+to do the steps in this section via &lt;code&gt;kubectl&lt;/code&gt; and the command-line. Please see the
+Kasten K10 documentation for how to do this.&lt;/p&gt;
+&lt;p&gt;Go to the &amp;ldquo;Policies&amp;rdquo; page and click &amp;ldquo;Create New Policy&amp;rdquo;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image1.png&#34; alt=&#34;CreatePolicy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Input a &amp;ldquo;Name&amp;rdquo; for the policy and set the &amp;ldquo;Backup Frequency&amp;rdquo; to &amp;ldquo;On Demand&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;Check the &amp;ldquo;Enable Backups via Snapshot Exports&amp;rdquo; field. This is &lt;strong&gt;very&lt;/strong&gt; important.
+The Ondat Snapshots feature only supports restoring from an external snapshot export.
+Set the &amp;ldquo;Export Location Profile&amp;rdquo; to the profile you previously set up in the
+&amp;ldquo;Installing Kasten K10&amp;rdquo; section.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image2.png&#34; alt=&#34;EditPolicy1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Under &amp;ldquo;Select Applications&amp;rdquo;, check the &amp;ldquo;By Name&amp;rdquo; checkbox and search for the
+namespace &amp;ldquo;ondat-test&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image3.png&#34; alt=&#34;EditPolicy2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Leave everything else as is then click &lt;code&gt;Create Policy&lt;/code&gt; to create the policy.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Do not try to set the &lt;code&gt;Pre and Post-Snapshot Action Hooks&lt;/code&gt; in the &lt;code&gt;Advanced Settings&lt;/code&gt;
+section. This is taken care of by the steps in &amp;ldquo;Adding pre/post-snapshot hooks&amp;rdquo;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;54-manually-running-a-backup-job&#34;&gt;5.4: Manually running a backup job&lt;/h2&gt;
+&lt;p&gt;We can now manually run a job to backup our application. Browse to the dashboard
+homepage and select &amp;ldquo;Policies&amp;rdquo;. From there we can find our policy and initiate a
+backup by clicking &amp;ldquo;run once&amp;rdquo;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image4.png&#34; alt=&#34;RunPolicy1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;If we navigate back to the dashboard we’ll see that our policy is running:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image5.png&#34; alt=&#34;RunPolicy2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We can get further information on what is happening by clicking our policy in the
+&amp;ldquo;Actions&amp;rdquo; section. When the policy has successfully ran we’ll see a page like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image6.png&#34; alt=&#34;RunPolicy3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In order to save space and reduce copy-on-write latency on the parent volume
+we should now manually delete the &lt;code&gt;VolumeSnapshot&lt;/code&gt; object associated with our
+snapshot. This instructs Ondat that we are done with the snapshot.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl get volumesnapshots -n ondat-test
+NAME                            READYTOUSE   SOURCEPVC   SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS             SNAPSHOTCONTENT                                    CREATIONTIME   AGE
+k10-csi-snap-wlxhw8vf9dx4qtq2   true         mypvc                               2Gi           csi-storageos-snapclass   snapcontent-359f9126-f428-4dbf-82da-932a74d10e83   40m            40m
+
+$ kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
+volumesnapshot.snapshot.storage.k8s.io &amp;quot;k10-csi-snap-wlxhw8vf9dx4qtq2&amp;quot; deleted
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;55-restoring-an-application-from-a-backup&#34;&gt;5.5: Restoring an application from a backup&lt;/h2&gt;
+&lt;p&gt;Let’s emulate a disaster recovery scenario, by deleting our deployment:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl delete -n ondat-test deployments.apps myapp-deployment
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now let’s restore it. First go to the dashboard and select &amp;ldquo;Applications&amp;rdquo;.
+From there find &amp;ldquo;ondat-test&amp;rdquo; and select &amp;ldquo;restore&amp;rdquo;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image7.png&#34; alt=&#34;Restore1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Select the backup you wish to restore from, in this example we’ll select
+&amp;ldquo;Today, 12:51 pm&amp;rdquo;. When prompted to select an instance make sure you select
+the &amp;ldquo;EXPORTED&amp;rdquo; instance which has been backed up to S3. The Ondat Snapshots
+feature does not support restoring from a local backup:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image8.png&#34; alt=&#34;Restore2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Kasten provides various restore options at this point, but we’ll just leave
+everything else defaulted. See the Kasten K10 documentation for more information.
+Click &amp;ldquo;Restore&amp;rdquo; to start the restore process and to restore the application from
+the backup.&lt;/p&gt;
+&lt;p&gt;One can now browse back to the dashboard and watch the &amp;ldquo;Restore&amp;rdquo; operation
+progress. Like before, one can click on the drill down into the operation by
+clicking the relevant restore pane under the &amp;ldquo;Actions&amp;rdquo; sections.&lt;/p&gt;
+&lt;p&gt;Once the restore job has finished you’ll see a screen like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image9.png&#34; alt=&#34;Restore3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let’s check our application is running:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl get -n ondat-test deployments.apps myapp-deployment
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+myapp-deployment   1/1     1            1           10m
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And let’s view the contents of the &amp;ldquo;/mnt/date&amp;rdquo; in the application’s pod:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n ondat-test exec myapp-deployment-7749d9984-p7jzp -c date --  cat /mnt/date
+Tue Jun 28 08:56:07 UTC 2022
+Tue Jun 28 08:59:01 UTC 2022
+…
+Tue Jun 28 11:50:40 UTC 2022
+Tue Jun 28 11:50:45 UTC 2022
+Tue Jun 28 11:58:33 UTC 2022
+Tue Jun 28 11:58:38 UTC 2022
+…
+Tue Jun 28 12:10:29 UTC 2022
+Tue Jun 28 12:10:34 UTC 2022
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notice how there’s an 8 minute gap between 11:50:45 and 11:58:33. This coincides
+with the snapshot being taken at circa 11:51 (UTC) and being restored at 11:58 (UTC).&lt;/p&gt;
+&lt;h2 id=&#34;known-issues-and-gotchas&#34;&gt;Known issues and gotchas&lt;/h2&gt;
+&lt;h3 id=&#34;deletion-of-volumesnapshot&#34;&gt;Deletion of VolumeSnapshot&lt;/h3&gt;
+&lt;p&gt;Ideally the Kubernetes &lt;code&gt;VolumeSnapshot&lt;/code&gt; object should be deleted as soon as the
+application has been backed up externally. There’s no reason to keep the snapshot
+as it can’t be meaningfully used. Furthermore, it takes up space on the local node
+and can cause a slight performance degradation for IO to the parent volume. At the
+moment, there is no good way to automate this procedure. Consequently users should:
+set their snapshot retention policy to 1 hourly snapshot when setting up a backup
+policy. This does not fix the issue, but ensures that the snapshot is removed within
+an hour of been taken. It is also possible to remove the snapshot manually by
+running &lt;code&gt;kubectl delete volumesnapshots -n &amp;lt;app_namespace&amp;gt; &amp;lt;snapshot&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;performance-implications&#34;&gt;Performance implications&lt;/h3&gt;
+&lt;p&gt;The Ondat snapshots feature utilises copy-on-write semantics under the hood. This
+means while a &lt;code&gt;VolumeSnapshot&lt;/code&gt; object exists any blocks which are written to the
+parent volume invoke an extra read and write operation as blocks are copied into
+the snapshot object. The performance decrease incurred by this overhead is dependent
+on: the size of the volume, the speed of the underlying storage, the amount of
+data in the page cache and a myriad of other factors. Once the snapshot(s)
+associated with a volume are deleted, performance will return to baseline.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Cassandra</title>
       <link>/docs/usecases/cassandra/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -6233,77 +6578,6 @@ to our engineering team, or uploaded for analysis. The data received by
 Ondat is private and never leaves nor will leave Ondat Inc.&lt;/p&gt;
 &lt;p&gt;The data contained in the cluster diagnostic bundle has the sole purpose of
 helping customers troubleshoot their issues.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Disk Full</title>
-      <link>/docs/operations/disk-full/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/disk-full/</guid>
-      <description>
-        
-        
-        &lt;p&gt;When the physical disks in your cluster get full, or start using disk space too
-fast, Kubernetes will automatically apply the &lt;code&gt;DiskPressure:NoExecute&lt;/code&gt; taint.&lt;/p&gt;
-&lt;p&gt;The Ondat Daemonset has a toleration applied for this taint, so it will
-continue to run.&lt;/p&gt;
-&lt;h2 id=&#34;detecting-a-full-disk&#34;&gt;Detecting a full disk&lt;/h2&gt;
-&lt;p&gt;You will see the following when viewing the Ondat container logs on the
-affected node with &lt;code&gt;kubectl logs storageos-daemonset-xxxx -c storageos&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;#34;msg&amp;#34;: &amp;#34;StartAsyncFallocate: insufficient free space on file system free_space=1048305664 required_free_space=1073741824&amp;#34;,
-&amp;#34;msg&amp;#34;: &amp;#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&amp;#34;,
-&amp;#34;msg&amp;#34;: &amp;#34;Write: write failed volid=155051 error=all blob files are full - can not complete write&amp;#34;,
-&amp;#34;msg&amp;#34;: &amp;#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&amp;#34;,
-&amp;#34;msg&amp;#34;: &amp;#34;SCSI command failed type=write error=FATAL retries=0 time_to_deadline_secs=89&amp;#34;,
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When trying to attach a volume to a node with a full disk you will see the
-following when running &lt;code&gt;kubectl describe pod $POD_USING_VOLUME&lt;/code&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;AttachVolume.Attach failed for volume &amp;#34;pvc-xxx&amp;#34; : rpc error: code = Internal desc = internal error: rpc error: code = Internal desc = rpc error: code = Internal desc = fs: STATUS_FORBIDDEN: create failed in Notify handler error=Failed to create LUN for FsConfigVolume{volume_id=
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;consequences-of-a-full-disk&#34;&gt;Consequences of a full disk&lt;/h2&gt;
-&lt;h3 id=&#34;volume-provisioning&#34;&gt;Volume Provisioning&lt;/h3&gt;
-&lt;p&gt;When provisioning a new volume, the dataplane checks that there is at least
-&lt;code&gt;1GB&lt;/code&gt; of space left on the nodes&#39; underlying filesystem for the blob files
-located at &lt;code&gt;/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.0.blob&lt;/code&gt; and
-&lt;code&gt;/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.1.blob&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;If there is insufficient space for both of the blob files that Ondat uses
-to store data, then the dataplane fails the volume &lt;code&gt;create&lt;/code&gt; request.&lt;/p&gt;
-&lt;h3 id=&#34;runtime-access&#34;&gt;Runtime Access&lt;/h3&gt;
-&lt;p&gt;At runtime, if an attempted write to a blob file returns an &lt;code&gt;ENOSPC&lt;/code&gt; exception,
-the dataplane marks the file as full. Once both Ondat blob files in a
-volume are marked as full, the dataplane marks the deployment with an error
-flag, and all subsequent read/write operations will return an I/O error.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This flag is only stored in memory, therefore, to clear this flag, the
-Ondat daemonset pod on the affected node must be restarted after
-remediating the disk space issue.&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id=&#34;replica-failover&#34;&gt;Replica Failover&lt;/h3&gt;
-&lt;p&gt;A replica on a full disk can&amp;rsquo;t be failed over successfully.&lt;/p&gt;
-&lt;h2 id=&#34;recovering-from-a-full-disk&#34;&gt;Recovering from a full disk&lt;/h2&gt;
-&lt;p&gt;To recover from a disk full error, you can either add new storage space
-into the affected node, or delete existing persistent volume claims.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ However you choose to resolve the issue, the &lt;strong&gt;Ondat Daemonset
-Pod must be restarted&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 This is because the blob files disallow operations at runtime via the
-previously discussed error flag stored in memory. This flag does not survive
-boot cycles, so after the pod restarts, volumes can operate normally once more.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;adding-new-storage-space&#34;&gt;Adding New Storage Space&lt;/h3&gt;
-&lt;p&gt;If you choose to recover by expanding your capacity, you have two main options:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Add new storage devices at &lt;code&gt;/var/lib/storageos/data/dev[0-9]+&lt;/code&gt; as described
-&lt;a href=&#34;/docs/operations/managing-host-storage#option-1-mount-additional-devices&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Expand the underlying filesystem that Ondat is using as described
-&lt;a href=&#34;/docs/operations/managing-host-storage#option-2-expand-existing-devices-backed-by-lvm&#34;&gt;here&lt;/a&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;After expanding capacity remember to restart the Ondat daemonset pod.&lt;/p&gt;
-&lt;h3 id=&#34;deleting-existing-pvcs&#34;&gt;Deleting existing PVCs&lt;/h3&gt;
-&lt;p&gt;If you choose to recover by deleting existing persistent volume claims simply:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;kubectl delete pvc &amp;lt;PVCOnFullNodeName&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Then restart the Ondat daemonset pod.&lt;/p&gt;
 
       </description>
     </item>
