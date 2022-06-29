@@ -193,7 +193,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.59862d3d221572d68303527021ecc7865a1aa9ffd8b2832a24ebeee55d27cdb33947d544cbdf4afe91254099c7af094edc5eefa7dfeae4e65bf5cea3c2967632.json"
+  data-offline-search-index-json-src="/offline-search-index.e4e2d773d0a30aae0e55d3cecc17f2abcc75b55db5760cc3fa52827960884cd14976a7a5a657b143faa9ae9ff74ad987eaa28eb2d87ab30bb48a3f99f8b6bcc4.json"
   data-offline-search-base-href="/"
 >
 
@@ -341,7 +341,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.59862d3d221572d68303527021ecc7865a1aa9ffd8b2832a24ebeee55d27cdb33947d544cbdf4afe91254099c7af094edc5eefa7dfeae4e65bf5cea3c2967632.json"
+  data-offline-search-index-json-src="/offline-search-index.e4e2d773d0a30aae0e55d3cecc17f2abcc75b55db5760cc3fa52827960884cd14976a7a5a657b143faa9ae9ff74ad987eaa28eb2d87ab30bb48a3f99f8b6bcc4.json"
   data-offline-search-base-href="/"
 >
 
@@ -1547,9 +1547,9 @@ installation instructions see our
 </ul>
 <p>Control Plane</p>
 <ul>
-<li>We have relaxed some Ondat specific security checks for the ReadWriteOnce [Node] volumes that we were doing in the control plane ahead of the new volume mode ReadWriteOncePod which is being introduced in k8s 1.22. This will align the Ondat RWO volumes with the spec and we will in a future release also implement support for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">RWOP</a> for users that wish to implement these existing controls.
+<li>We have relaxed some Ondat specific security checks for the ReadWriteOnce node volumes that we were doing in the control plane ahead of the new volume mode ReadWriteOncePod which is being introduced in k8s 1.22. This will align the Ondat RWO volumes with the spec and we will in a future release also implement support for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">RWOP</a> for users that wish to implement these existing controls.
 <ul>
-<li>Please note that the relaxation of these security checks could mean that Deployment objects using RWO volumes (if a rolling strategy is used for example) will be able to mount the volume concurrently on the same node, for this reason we suggest users are creating workloads using stateful sets or use RWX volumes for these deployments.&quot;</li>
+<li>Please note that the relaxation of these security checks could mean that Deployment objects using RWO volumes (if a rolling strategy is used for example) will be able to mount the volume concurrently on the same node, for this reason we suggest users are creating workloads using stateful sets or use RWX volumes for these deployments.</li>
 </ul>
 </li>
 </ul>
