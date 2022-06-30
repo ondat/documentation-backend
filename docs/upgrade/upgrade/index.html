@@ -34,7 +34,7 @@ Upgrading An Ondat v2 Cluster Prerequisites  ⚠️ Ensure that you have read th
 Upgrading An Ondat v2 Cluster Prerequisites  ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you have checked the init container logs to ensure your environments PID limits are set correctly.
   💡 Pull down the new Ondat container image storageos/node:v2.8.0 onto the nodes beforehand so that the cluster spins up faster.">
 
-<meta itemprop="wordCount" content="281">
+<meta itemprop="wordCount" content="311">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Upgrade"/>
 <meta name="twitter:description" content="Overview This guide provides instructions on how to upgrade Ondat.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.233c2ae99aed2e2c73c823ad920a74810d267389d671be07b6f10e797c56a6ef81a94f4bbece4979a5ed8f3e1831476f4a29827b68247faa6fa6aafa99440f24.json"
+  data-offline-search-index-json-src="/offline-search-index.2df64e973a70beff12b9f652beaebf634068b47d3271c042423d3b7a38b7702a3aab75f16c212560101bfd95c1b3c6bd34d89f91a437c4a447ea9f5eadf317a2.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.233c2ae99aed2e2c73c823ad920a74810d267389d671be07b6f10e797c56a6ef81a94f4bbece4979a5ed8f3e1831476f4a29827b68247faa6fa6aafa99440f24.json"
+  data-offline-search-index-json-src="/offline-search-index.2df64e973a70beff12b9f652beaebf634068b47d3271c042423d3b7a38b7702a3aab75f16c212560101bfd95c1b3c6bd34d89f91a437c4a447ea9f5eadf317a2.json"
   data-offline-search-base-href="/"
 >
 
@@ -1531,11 +1531,15 @@ kubectl get statefulset --all-namespaces &gt; statefulset-sizes.yaml
 </ul>
 <h3 id="step-3---upgrade-ondat">Step 3 - Upgrade Ondat</h3>
 <ul>
-<li>
-<p>Run the following command using the kubectl plugin.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos upgrade
-</code></pre></div></li>
+<li>Run the following command using the kubectl storageos plugin.</li>
 </ul>
+<blockquote>
+<p>Make sure you are using the latest version of the kubectl storageos plugin. You can make use of the <a href="/docs/reference/kubectl-plugin/">installation guide</a> and get the latest version <a href="https://github.com/storageos/kubectl-storageos">here</a>.</p>
+</blockquote>
+<pre><code>```bash
+kubectl storageos upgrade
+```
+</code></pre>
 <blockquote>
 <p>💡 Please use the <code>--etcd-tls-enabled</code> if using TLS with your ETCD.</p>
 </blockquote>

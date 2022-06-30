@@ -51,11 +51,15 @@ kubectl get statefulset --all-namespaces &amp;gt; statefulset-sizes.yaml
 &lt;/ul&gt;
 &lt;h3 id=&#34;step-3---upgrade-ondat&#34;&gt;Step 3 - Upgrade Ondat&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Run the following command using the kubectl plugin.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos upgrade
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Run the following command using the kubectl storageos plugin.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Make sure you are using the latest version of the kubectl storageos plugin. You can make use of the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;installation guide&lt;/a&gt; and get the latest version &lt;a href=&#34;https://github.com/storageos/kubectl-storageos&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;```bash
+kubectl storageos upgrade
+```
+&lt;/code&gt;&lt;/pre&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 Please use the &lt;code&gt;--etcd-tls-enabled&lt;/code&gt; if using TLS with your ETCD.&lt;/p&gt;
 &lt;/blockquote&gt;

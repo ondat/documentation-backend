@@ -26,8 +26,7 @@ The latest tagged release is 2.8.0. For installation instructions see our Instal
 The latest CLI release is 2.8.0, available from GitHub.
 Upgrading To upgrade from version 1.x to 2.x, contact Ondat support for assistance.
 2.8.0 - Release 2022-06-29 2.8.0 Release Notes
-New k8s
- Etcd in Production: We have added support for putting ETCD in your cluster in a production environment Modified CSI provisioner to work with Snapshots Ondat volumes metrics exporter: we have added a Prometheus endpoint to allow users to view metrics for Ondat Volumes  Control Plane" />
+ 💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/release-notes/" /><meta property="article:section" content="docs" />
 
@@ -39,10 +38,9 @@ The latest tagged release is 2.8.0. For installation instructions see our Instal
 The latest CLI release is 2.8.0, available from GitHub.
 Upgrading To upgrade from version 1.x to 2.x, contact Ondat support for assistance.
 2.8.0 - Release 2022-06-29 2.8.0 Release Notes
-New k8s
- Etcd in Production: We have added support for putting ETCD in your cluster in a production environment Modified CSI provisioner to work with Snapshots Ondat volumes metrics exporter: we have added a Prometheus endpoint to allow users to view metrics for Ondat Volumes  Control Plane">
+ 💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas.">
 
-<meta itemprop="wordCount" content="4146">
+<meta itemprop="wordCount" content="4172">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Release Notes"/>
 <meta name="twitter:description" content="We recommend always using &ldquo;tagged&rdquo; versions of Ondat rather than &ldquo;latest&rdquo;, and to perform upgrades only after reading the release notes.
@@ -50,8 +48,7 @@ The latest tagged release is 2.8.0. For installation instructions see our Instal
 The latest CLI release is 2.8.0, available from GitHub.
 Upgrading To upgrade from version 1.x to 2.x, contact Ondat support for assistance.
 2.8.0 - Release 2022-06-29 2.8.0 Release Notes
-New k8s
- Etcd in Production: We have added support for putting ETCD in your cluster in a production environment Modified CSI provisioner to work with Snapshots Ondat volumes metrics exporter: we have added a Prometheus endpoint to allow users to view metrics for Ondat Volumes  Control Plane"/>
+ 💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas."/>
 
 
 
@@ -193,7 +190,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.233c2ae99aed2e2c73c823ad920a74810d267389d671be07b6f10e797c56a6ef81a94f4bbece4979a5ed8f3e1831476f4a29827b68247faa6fa6aafa99440f24.json"
+  data-offline-search-index-json-src="/offline-search-index.2df64e973a70beff12b9f652beaebf634068b47d3271c042423d3b7a38b7702a3aab75f16c212560101bfd95c1b3c6bd34d89f91a437c4a447ea9f5eadf317a2.json"
   data-offline-search-base-href="/"
 >
 
@@ -341,7 +338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.233c2ae99aed2e2c73c823ad920a74810d267389d671be07b6f10e797c56a6ef81a94f4bbece4979a5ed8f3e1831476f4a29827b68247faa6fa6aafa99440f24.json"
+  data-offline-search-index-json-src="/offline-search-index.2df64e973a70beff12b9f652beaebf634068b47d3271c042423d3b7a38b7702a3aab75f16c212560101bfd95c1b3c6bd34d89f91a437c4a447ea9f5eadf317a2.json"
   data-offline-search-base-href="/"
 >
 
@@ -1597,6 +1594,9 @@ installation instructions see our
 <p>To upgrade from version 1.x to 2.x, contact Ondat <a href="/docs/support">support</a> for assistance.</p>
 <h2 id="280---release-2022-06-29">2.8.0 - Release 2022-06-29</h2>
 <p>2.8.0 Release Notes</p>
+<blockquote>
+<p>💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas.</p>
+</blockquote>
 <h3 id="new">New</h3>
 <p>k8s</p>
 <ul>
