@@ -34,7 +34,7 @@ kubectl create -f - &lt;&lt;END apiVersion: v1 kind: Secret metadata: name: &#34
 kubectl create -f - &lt;&lt;END apiVersion: v1 kind: Secret metadata: name: &#34;storageos-api&#34; namespace: &#34;default&#34; labels: app: &#34;storageos&#34; type: &#34;kubernetes.io/storageos&#34; data: username: c3RvcmFnZW9z password: c3RvcmFnZW9z END This example contains a default password, for production installations, use a unique, strong password.
  Make sure that the encoding of the credentials doesn&rsquo;t have special characters such as &lsquo;\n&rsquo;.">
 
-<meta itemprop="wordCount" content="430">
+<meta itemprop="wordCount" content="421">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cluster Operator examples"/>
 <meta name="twitter:description" content="Before deploying an Ondat cluster, create a Secret to define the Ondat API Username and Password in base64 encoding.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.09974d430fe753eed4646e699d56d132bed62553b2980629639ce7017dbcb3c1846972138342e239cb5f697672d1ae6d20d19f7ef743c09026fd6ce14f6a3092.json"
+  data-offline-search-index-json-src="/offline-search-index.22ec29f93e4518330dbecfa058b04ae6dd4fe0beb47d4bcab20ef6367112c33d90b6e351db38b48cd4965df937537e26369552c952a5cbe89b2cd017b73af29d.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.09974d430fe753eed4646e699d56d132bed62553b2980629639ce7017dbcb3c1846972138342e239cb5f697672d1ae6d20d19f7ef743c09026fd6ce14f6a3092.json"
+  data-offline-search-index-json-src="/offline-search-index.22ec29f93e4518330dbecfa058b04ae6dd4fe0beb47d4bcab20ef6367112c33d90b6e351db38b48cd4965df937537e26369552c952a5cbe89b2cd017b73af29d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1567,9 +1567,7 @@ page.</p>
 <p>All examples must reference the <code>storageos-api</code> Secret.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">secretRefName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos-api&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Reference to the Secret created in the previous step</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>Check out <a href="https://github.com/storageos/deploy/tree/master/k8s/deploy-storageos/cluster-operator/examples">Cluster Definition
-examples</a> for full CR files.</p>
-<h2 id="installing-with-an-external-etcd">Installing with an external etcd</h2>
+</span></code></pre></div><h2 id="installing-with-an-external-etcd">Installing with an external etcd</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">address</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;10.43.93.95:2379&#39;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># IP of the SVC that exposes ETCD</span><span style="color:#f8f8f8;text-decoration:underline">
