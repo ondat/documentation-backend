@@ -23,9 +23,8 @@
 <title>Ondat SaaS Platform Installation Guide | </title><meta property="og:title" content="Ondat SaaS Platform Installation Guide" />
 <meta property="og:description" content="Overview This guide will demonstrate how to install the Ondat SaaS Platform.
 Prerequisite  ⚠️ Make sure the kubectl storageos plugin is installed. Follow the install guide for kubectl storageos.
-  ⚠️ Make sure to add an Ondat licence after installing.
-  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.
- Procedure Step 1: Creating Credentials for Your Cluster  Open Ondat Portal." />
+  ⚠️ Make sure to add an Ondat licence after installing. You can request a licence via the Ondat SaaS Platform.
+  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/ondat-portal/installation-portal/" /><meta property="article:section" content="docs" />
 
@@ -34,18 +33,16 @@ Prerequisite  ⚠️ Make sure the kubectl storageos plugin is installed. Follow
 <meta itemprop="name" content="Ondat SaaS Platform Installation Guide">
 <meta itemprop="description" content="Overview This guide will demonstrate how to install the Ondat SaaS Platform.
 Prerequisite  ⚠️ Make sure the kubectl storageos plugin is installed. Follow the install guide for kubectl storageos.
-  ⚠️ Make sure to add an Ondat licence after installing.
-  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.
- Procedure Step 1: Creating Credentials for Your Cluster  Open Ondat Portal.">
+  ⚠️ Make sure to add an Ondat licence after installing. You can request a licence via the Ondat SaaS Platform.
+  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.">
 
-<meta itemprop="wordCount" content="189">
+<meta itemprop="wordCount" content="186">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat SaaS Platform Installation Guide"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install the Ondat SaaS Platform.
 Prerequisite  ⚠️ Make sure the kubectl storageos plugin is installed. Follow the install guide for kubectl storageos.
-  ⚠️ Make sure to add an Ondat licence after installing.
-  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.
- Procedure Step 1: Creating Credentials for Your Cluster  Open Ondat Portal."/>
+  ⚠️ Make sure to add an Ondat licence after installing. You can request a licence via the Ondat SaaS Platform.
+  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used."/>
 
 
 
@@ -187,7 +184,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2df64e973a70beff12b9f652beaebf634068b47d3271c042423d3b7a38b7702a3aab75f16c212560101bfd95c1b3c6bd34d89f91a437c4a447ea9f5eadf317a2.json"
+  data-offline-search-index-json-src="/offline-search-index.9e3b95c992ffdb29112210e641c365876eed108919999c89db73182e8f1d0f4a4b35f6e98961e8711b0b94fc5861b1cbc2fd3ead8e8e56ae2c7f3a617cfd9174.json"
   data-offline-search-base-href="/"
 >
 
@@ -335,7 +332,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2df64e973a70beff12b9f652beaebf634068b47d3271c042423d3b7a38b7702a3aab75f16c212560101bfd95c1b3c6bd34d89f91a437c4a447ea9f5eadf317a2.json"
+  data-offline-search-index-json-src="/offline-search-index.9e3b95c992ffdb29112210e641c365876eed108919999c89db73182e8f1d0f4a4b35f6e98961e8711b0b94fc5861b1cbc2fd3ead8e8e56ae2c7f3a617cfd9174.json"
   data-offline-search-base-href="/"
 >
 
@@ -1402,7 +1399,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsondat-portalinstallation-portal" href="/docs/ondat-portal/installation-portal/">Ondat Portal Installation Guide</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsondat-portalinstallation-portal" href="/docs/ondat-portal/installation-portal/">Ondat SaaS Platform Installation Guide</a>
       
       
       
@@ -1453,9 +1450,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#prerequisite">Prerequisite</a></li>
     <li><a href="#procedure">Procedure</a>
       <ul>
-        <li><a href="#step-1-creating-credentials-for-your-cluster">Step 1: Creating Credentials for Your Cluster</a></li>
-        <li><a href="#step-2a-option-a---installing-ondat-portal-manager-when-ondat-was-not-installed-beforehand">Step 2a: Option A - Installing Ondat Portal Manager when Ondat was not installed beforehand</a></li>
-        <li><a href="#step-2b-option-b---installing-ondat-portal-manager-when-ondat-has-already-been-installed">Step 2b: Option B - Installing Ondat Portal Manager when Ondat has already been installed</a></li>
+        <li><a href="#step-1-set-up-your-cluster">Step 1: Set up your cluster</a></li>
+        <li><a href="#step-2-connect-cluster-to-the-ondat-saas-platform">Step 2: Connect Cluster to the Ondat SaaS Platform</a></li>
       </ul>
     </li>
   </ul>
@@ -1496,7 +1492,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/ondat-portal/installation-portal/">Ondat Portal Installation Guide</a>
+	<a href="/docs/ondat-portal/installation-portal/">Ondat SaaS Platform Installation Guide</a>
 </li>
 
 	</ol>
@@ -1513,29 +1509,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>⚠️ Make sure the kubectl storageos plugin is installed. Follow the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">install guide for kubectl storageos</a>.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing.</p>
+<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing. You can request a licence via the <a href="https://portal.ondat.io/">Ondat SaaS Platform</a>.</p>
 </blockquote>
 <blockquote>
 <p>⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.</p>
 </blockquote>
 <h2 id="procedure">Procedure</h2>
-<h3 id="step-1-creating-credentials-for-your-cluster">Step 1: Creating Credentials for Your Cluster</h3>
+<h3 id="step-1-set-up-your-cluster">Step 1: Set up your cluster</h3>
 <ol>
-<li>Open <a href="https://portal.ondat.io/dashboard">Ondat Portal</a>.</li>
-<li>Log into your account using your credentials.</li>
-<li>In the main navigation, open the <strong>Cluster</strong> tab.</li>
-<li>On the <strong>Cluster</strong> screen, click the <strong>Add Cluster</strong> button.</li>
-<li>Enter a name for the cluster and choose the <strong>Cluster Location</strong> using the dropdown</li>
-<li>Click <strong>Create Cluster</strong></li>
+<li>Open <a href="https://portal.ondat.io/">Ondat SaaS Platform</a></li>
+<li>Log into your account using your credentials</li>
+<li>In the main navigation, open the <strong>Cluster</strong> tab</li>
+<li>On the <strong>Cluster</strong> screen, click the <strong>Add Cluster</strong> button</li>
+<li>Enter a name for the cluster and choose the <strong>Cluster Location</strong> using the radio buttons</li>
+<li>Click <strong>Add Cluster</strong></li>
 </ol>
-<h3 id="step-2a-option-a---installing-ondat-portal-manager-when-ondat-was-not-installed-beforehand">Step 2a: Option A - Installing Ondat Portal Manager when Ondat was not installed beforehand</h3>
+<h3 id="step-2-connect-cluster-to-the-ondat-saas-platform">Step 2: Connect Cluster to the Ondat SaaS Platform</h3>
+<blockquote>
+<p>Note: The CLI command will only be displayed <strong>once</strong>
+Note: Latest GA version of Ondat will be installed onto your cluster</p>
+</blockquote>
 <ol>
-<li>Copy the first cli command displayed on the modal, <strong>this will be the only time it will be visible</strong>.</li>
-<li>Execute the cli command on your machine</li>
-</ol>
-<h3 id="step-2b-option-b---installing-ondat-portal-manager-when-ondat-has-already-been-installed">Step 2b: Option B - Installing Ondat Portal Manager when Ondat has already been installed</h3>
-<ol>
-<li>Copy the second cli command displayed on the modal, <strong>this will be the only time it will be visible</strong>.</li>
+<li>Make sure you follow all the prerequisites displayed on the screen. You can find more information <a href="/docs/prerequisites/">here</a> for the prerequisites of using Ondat.</li>
+<li>Copy the cli command displayed on the screen</li>
 <li>Execute the cli command on your machine</li>
 </ol>
 

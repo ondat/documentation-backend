@@ -1490,8 +1490,6 @@ Labels                                  beta.kubernetes.io/arch=amd64,
 &lt;p&gt;This document will walk you through how to request an Ondat license for your cluster, and what types of licenses can be requested.&lt;/p&gt;
 &lt;p&gt;You will need a license for Ondat if you want to make use of the full functionalities of our product. The cluster will run unlicensed for 24 hours, but after this time period, any new operations will be blocked. You can unlock the normal functioning of the cluster by applying a valid license to the cluster.&lt;/p&gt;
 &lt;h1 id=&#34;types-of-licenses&#34;&gt;Types of Licenses&lt;/h1&gt;
-&lt;h2 id=&#34;free-trial&#34;&gt;Free Trial&lt;/h2&gt;
-&lt;p&gt;You can use Ondat with all features for free without any restrictions for 1 month.&lt;/p&gt;
 &lt;h2 id=&#34;community-edition&#34;&gt;Community Edition&lt;/h2&gt;
 &lt;p&gt;You can use Ondat with many features, including RWX volume support, for free without any time limit with a 1 TB usable capacity and up to 3 nodes.&lt;/p&gt;
 &lt;h2 id=&#34;enterprise-premium&#34;&gt;Enterprise Premium&lt;/h2&gt;
@@ -1502,25 +1500,20 @@ Labels                                  beta.kubernetes.io/arch=amd64,
 &lt;h2 id=&#34;step-1---register-on-the-ondat-saas-platform&#34;&gt;Step 1 - Register on the Ondat SaaS Platform&lt;/h2&gt;
 &lt;p&gt;You need to register yourself on the &lt;a href=&#34;https://portal.ondat.io/signup&#34;&gt;Ondat SaaS Platform&lt;/a&gt; in order to retrieve your license.&lt;/p&gt;
 &lt;h2 id=&#34;step-2---generate-a-license&#34;&gt;Step 2 - Generate a License&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: For airgapped use case: If you don&amp;rsquo;t have a cluster connected to the portal you can generate a licence just by using the &lt;code&gt;clusterId&lt;/code&gt;. To obtain your &lt;code&gt;clusterId&lt;/code&gt;, follow the steps &lt;a href=&#34;/docs/operations/cluster-id/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;Go to the “Organization” tab on the menu bar&lt;/li&gt;
 &lt;li&gt;Click on “Generate a New License”&lt;/li&gt;
-&lt;li&gt;Choose the cluster you want to add a license to&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;NOTE: If you don&amp;rsquo;t have a cluster connected to the portal you can generate a licence just by using the &lt;code&gt;clusterId&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;NOTE: To obtain your &lt;code&gt;clusterId&lt;/code&gt;, follow the steps &lt;a href=&#34;/docs/operations/cluster-id/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
+&lt;li&gt;Choose the cluster you want to add a license to. You can add your airgapped &lt;code&gt;clusterId&lt;/code&gt; on this step.&lt;/li&gt;
 &lt;li&gt;Choose the type of license you want the cluster to use&lt;/li&gt;
 &lt;li&gt;Click generate&lt;/li&gt;
-&lt;li&gt;Copy the command shown on the the modal&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;step-3---add-license-to-the-cluster&#34;&gt;Step 3 - Add license to the cluster&lt;/h2&gt;
+&lt;p&gt;For Ondat 2.8.0 or above: Your cluster would be licensed automatically with your chosen licence type. No further action needed.&lt;/p&gt;
+&lt;h2 id=&#34;step-3---for-ondat-270-or-below-add-license-to-the-cluster&#34;&gt;Step 3 - For Ondat 2.7.0 or below: Add license to the cluster&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;Run the CLI command that you have copied on your machine&lt;/li&gt;
+&lt;li&gt;Copy the command displayed on your screen and run the CLI command on your machine&lt;/li&gt;
 &lt;li&gt;Congratulations, you have successfully applied the license to your cluster!&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&#34;further-reading-manage-your-license-in-cli&#34;&gt;Further Reading: Manage Your License in CLI&lt;/h1&gt;
@@ -1809,7 +1802,7 @@ before deletion of the policy can be completed.&lt;/p&gt;
         
         
         &lt;blockquote&gt;
-&lt;p&gt;⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the forever free Ondat Community Edition. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the free Ondat Community Edition. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access mode&lt;/a&gt;
 Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the

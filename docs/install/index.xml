@@ -41,7 +41,7 @@
 &lt;li&gt;&lt;a href=&#34;https://eksctl.io/&#34;&gt;eksctl&lt;/a&gt;, at least version &lt;code&gt;&amp;gt;=0.83.0&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -197,7 +197,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running AKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -267,7 +267,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running DOKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -337,7 +337,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;https://docs.ondat.io/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running Google Anthos cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -413,7 +413,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running GKE cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -493,7 +493,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -634,7 +634,7 @@ configuration of CRI-O PID limits.&lt;/p&gt;
 opened for the worker nodes&#39; security group.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add a &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 For OpenShift upgrades, refer to the
@@ -904,7 +904,7 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running RKE cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -1107,7 +1107,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;kubectl-storageos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running RKE2 cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -1205,7 +1205,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -1500,7 +1500,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
