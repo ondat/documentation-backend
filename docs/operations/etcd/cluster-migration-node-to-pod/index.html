@@ -34,7 +34,7 @@ Procedure Option A - Manual process   Backup the TLS artifacts from the current 
 Prerequisites  Kubectl Helm  It is assumed that both etcd clusters in this procedure are using mTLS.
 Procedure Option A - Manual process   Backup the TLS artifacts from the current etcd cluster (if current etcd uses mTLS) The Secret with the TLS material is usually named storageos-etcd-secret or etcd-client-tls">
 
-<meta itemprop="wordCount" content="1012">
+<meta itemprop="wordCount" content="1011">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Etcd cluster migration"/>
 <meta name="twitter:description" content="This procedure explains how to migrate data from an etcd cluster running outside a Kubernetes cluster towards an installation using the Ondat etcd Operator. As a result the Ondat cluster will use the etcd running as Pods in Kubernetes.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9e3b95c992ffdb29112210e641c365876eed108919999c89db73182e8f1d0f4a4b35f6e98961e8711b0b94fc5861b1cbc2fd3ead8e8e56ae2c7f3a617cfd9174.json"
+  data-offline-search-index-json-src="/offline-search-index.7f9f1169ffe39972a3cbb0a5d95f1d0e01234138394af5da2a2d227386b0b36d8877f1770887dba0595566f8e9511e3a3d6552d87c4838d0bc8601918fe23d87.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9e3b95c992ffdb29112210e641c365876eed108919999c89db73182e8f1d0f4a4b35f6e98961e8711b0b94fc5861b1cbc2fd3ead8e8e56ae2c7f3a617cfd9174.json"
+  data-offline-search-index-json-src="/offline-search-index.7f9f1169ffe39972a3cbb0a5d95f1d0e01234138394af5da2a2d227386b0b36d8877f1770887dba0595566f8e9511e3a3d6552d87c4838d0bc8601918fe23d87.json"
   data-offline-search-base-href="/"
 >
 
@@ -1763,36 +1763,35 @@ $ ./migrate-etcd-external-to-pods.sh <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    -s <span style="color:#000">$ETCD_STORAGECLASS</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    -e <span style="color:#000">$ETCD_ENDPOINT</span>
 
+ Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
+ Release <span style="color:#4e9a06">&#34;storageos-etcd&#34;</span> does not exist. Installing it now.
+ NAME: storageos-etcd
+ LAST DEPLOYED: Wed Jun <span style="color:#0000cf;font-weight:bold">22</span> 16:44:43 <span style="color:#0000cf;font-weight:bold">2022</span>
+ NAMESPACE: etcd-operator
+ STATUS: deployed
+ REVISION: <span style="color:#0000cf;font-weight:bold">1</span>
+ TEST SUITE: None
+ Wating <span style="color:#204a87;font-weight:bold">for</span> etcd to be ready
+ ...........................
+ Etcd is ready
+ pod/etcdctl-migration created
+ Wating <span style="color:#204a87;font-weight:bold">for</span> the mirror
+ ......................
+ Mirror between etcds is running successfully
+ Backing up the StorageOSCluster configuration
+ Stopping Ondat
+ storageoscluster.storageos.com <span style="color:#4e9a06">&#34;storageoscluster&#34;</span> deleted
+ Stopping etcd mirror
+ pod <span style="color:#4e9a06">&#34;etcdctl-migration&#34;</span> deleted
+ Starting Ondat
+ storageoscluster.storageos.com/storageoscluster created
+ Wating <span style="color:#204a87;font-weight:bold">for</span> Ondat to be ready
+ ...........
+ Ondat is ready
+ Checking that Ondat is pointing to the new etcd cluster in the node container logs:
+   success!
 </code></pre></div></li>
 </ol>
-<p>Storing a backup of the storageos-etcd-secret in /tmp/etcd-client-tls.yaml
-Release &ldquo;storageos-etcd&rdquo; does not exist. Installing it now.
-NAME: storageos-etcd
-LAST DEPLOYED: Wed Jun 22 16:44:43 2022
-NAMESPACE: etcd-operator
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-Wating for etcd to be ready
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;
-Etcd is ready
-pod/etcdctl-migration created
-Wating for the mirror
-&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.
-Mirror between etcds is running successfully
-Backing up the StorageOSCluster configuration
-Stopping Ondat
-storageoscluster.storageos.com &ldquo;storageoscluster&rdquo; deleted
-Stopping etcd mirror
-pod &ldquo;etcdctl-migration&rdquo; deleted
-Starting Ondat
-storageoscluster.storageos.com/storageoscluster created
-Wating for Ondat to be ready
-&hellip;&hellip;&hellip;..
-Ondat is ready
-Checking that Ondat is pointing to the new etcd cluster in the node container logs:
-success!
-```</p>
 
 	
 	
