@@ -78,7 +78,7 @@ must provide a &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; for the Ondat CSI pl
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will prompt the Ondat operator to create a &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; named
 &lt;code&gt;$EXAMPLE_NAME&lt;/code&gt; and configure it for use with Kasten K10. You can edit your
 &lt;code&gt;StorageOSCluster&lt;/code&gt; by using the following command:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl -n storageos edit storageosclusters.storageos.com storageoscluster
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl -n storageos edit storageosclusters.storageos.com cluster
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can view the &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; by running:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl get volumesnapshotclasses
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and:&lt;/p&gt;
@@ -257,6 +257,9 @@ NAME                                              AGE
 fsfreeze-hooks-deployment                         15h
 k10-deployment-generic-volume-2.0.20              3h2m
 k10-persistentvolumeclaim-generic-volume-2.0.20   3h19m
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We must now annotate our deployment so that the aforementioned hooks are used at
+snapshot time:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl annotate deployment -n ondat-test myapp-deployment kanister.kasten.io/blueprint=&#39;fsfreeze-hooks-deployment&#39;
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;53-setting-up-a-backup-policy&#34;&gt;5.3: Setting up a backup policy&lt;/h2&gt;
 &lt;p&gt;Ensure you have the Kasten K10 dashboard installed
 (see &lt;a href=&#34;https://docs.kasten.io/latest/access/dashboard.html&#34;&gt;here&lt;/a&gt;). It’s possible
