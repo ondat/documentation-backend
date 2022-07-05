@@ -2026,7 +2026,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvc-tap
   labels:
-    storageos.com/topology-aware: true        # &amp;lt;---- Enable TAP
+    storageos.com/topology-aware: &amp;quot;true&amp;quot;      # &amp;lt;---- Enable TAP
     storageos.com/topology-key: custom-region # &amp;lt;---- TAP failure domain node label key
     storageos.com/failure-mode: soft
 spec:
