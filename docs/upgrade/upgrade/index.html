@@ -34,7 +34,7 @@ Upgrading An Ondat v2 Cluster Prerequisites  ⚠️ Ensure that you have read th
 Upgrading An Ondat v2 Cluster Prerequisites  ⚠️ Ensure that you have read the PIDs prerequisite introduced in Ondat v2.3 and that you have checked the init container logs to ensure your environments PID limits are set correctly.
   💡 Pull down the new Ondat container image storageos/node:v2.8.0 onto the nodes beforehand so that the cluster spins up faster.">
 
-<meta itemprop="wordCount" content="311">
+<meta itemprop="wordCount" content="309">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Upgrade"/>
 <meta name="twitter:description" content="Overview This guide provides instructions on how to upgrade Ondat.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7f9f1169ffe39972a3cbb0a5d95f1d0e01234138394af5da2a2d227386b0b36d8877f1770887dba0595566f8e9511e3a3d6552d87c4838d0bc8601918fe23d87.json"
+  data-offline-search-index-json-src="/offline-search-index.a1a7ff48846ebf7c59b48b9c8aba42d98ef91fd111fc2285aa7927759fff88885408b26bceba9ffe03ee98e8f1da40245e8f2d6f79b691ec2aaca243c446b8bc.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7f9f1169ffe39972a3cbb0a5d95f1d0e01234138394af5da2a2d227386b0b36d8877f1770887dba0595566f8e9511e3a3d6552d87c4838d0bc8601918fe23d87.json"
+  data-offline-search-index-json-src="/offline-search-index.a1a7ff48846ebf7c59b48b9c8aba42d98ef91fd111fc2285aa7927759fff88885408b26bceba9ffe03ee98e8f1da40245e8f2d6f79b691ec2aaca243c446b8bc.json"
   data-offline-search-base-href="/"
 >
 
@@ -573,14 +573,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/prerequisites/etcd/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Etcd</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsprerequisitesetcd">
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcd" href="/docs/prerequisites/etcd/">Etcd</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcd-outside-k8setcd-outside-the-cluster" href="/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster/">Etcd outside the cluster</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcdetcd" href="/docs/prerequisites/etcd/etcd/">Etcd - Recommended</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcdetcd-outside-the-cluster" href="/docs/prerequisites/etcd/etcd-outside-the-cluster/">Etcd outside the cluster</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
     </li>
@@ -1507,52 +1530,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="upgrading-an-ondat-v2-cluster">Upgrading An Ondat <code>v2</code> Cluster</h2>
 <h2 id="prerequisites">Prerequisites</h2>
 <blockquote>
-<p>⚠️ Ensure that you have read the <a href="/docs/prerequisites/pidlimits">PIDs prerequisite introduced in Ondat v2.3</a> and that you have checked the init container logs to ensure your environments PID limits are set correctly.</p>
+<p>⚠️ Ensure that you have read the <a href="/docs/prerequisites/pidlimits">PIDs prerequisite introduced in Ondat
+v2.3</a> and that you have checked the init
+container logs to ensure your environments PID limits are set correctly.</p>
 </blockquote>
 <blockquote>
-<p>💡 Pull down the new Ondat container image <code>storageos/node:v2.8.0</code> onto the nodes beforehand so that the cluster spins up faster.</p>
+<p>💡 Pull down the new Ondat container image <code>storageos/node:v2.8.0</code> onto the
+nodes beforehand so that the cluster spins up faster.</p>
 </blockquote>
 <blockquote>
-<p>💡 Speak with our support team <a href="/docs/support/">here</a> so we can assist you with your upgrade.</p>
+<p>💡 Speak with our support team <a href="/docs/support/">here</a> so we can assist you
+with your upgrade.</p>
 </blockquote>
 <h2 id="procedure">Procedure</h2>
 <h3 id="step-1---backup-ondat-deployment-manifests">Step 1 - Backup Ondat Deployment Manifests</h3>
-<ul>
-<li>
-<p>Make sure that you keep a backup of all the Ondat YAML files. You can also backup the <code>StatefulSet</code> yaml files to keep track of the replicas.</p>
+<p>Make sure that you keep a backup of all the Ondat YAML files. You can also
+backup the <code>StatefulSet</code> yaml files to keep track of the replicas.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pod -n storageos -o yaml &gt; storageos_operator.yaml
 kubectl get storageoscluster -n storageos -o yaml &gt; storageos_cr.yaml
 kubectl get statefulset --all-namespaces &gt; statefulset-sizes.yaml
-</code></pre></div></li>
-</ul>
-<h3 id="step-2---scale-down-stateful-applications-to-zero">Step 2 - Scale Down Stateful Applications To Zero</h3>
-<ul>
-<li>Scale all of the stateful applications that use Ondat volumes to 0.</li>
-</ul>
+</code></pre></div><h3 id="step-2---scale-down-stateful-applications-to-zero">Step 2 - Scale Down Stateful Applications To Zero</h3>
+<p>Scale all of the stateful applications that use Ondat volumes to 0.</p>
 <h3 id="step-3---upgrade-ondat">Step 3 - Upgrade Ondat</h3>
-<ul>
-<li>Run the following command using the kubectl storageos plugin.</li>
-</ul>
+<p>Run the following command using the kubectl storageos plugin.</p>
 <blockquote>
-<p>Make sure you are using the latest version of the kubectl storageos plugin. You can make use of the <a href="/docs/reference/kubectl-plugin/">installation guide</a> and get the latest version <a href="https://github.com/storageos/kubectl-storageos">here</a>.</p>
+<p>Make sure you are using the latest version of the kubectl storageos plugin.
+You can make use of the <a href="/docs/reference/kubectl-plugin/">installation guide</a>
+and get the latest version
+<a href="https://github.com/storageos/kubectl-storageos">here</a>.</p>
 </blockquote>
-<pre><code>```bash
-kubectl storageos upgrade
-```
-</code></pre>
-<blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos upgrade
+</code></pre></div><blockquote>
 <p>💡 Please use the <code>--etcd-tls-enabled</code> if using TLS with your ETCD.</p>
 </blockquote>
 <blockquote>
-<p>💡 If you are using a namespace other than <code>storageos</code> for your Ondat install, please use <code>--uninstall-stos-operator-namespace</code> argument because it uninstalls the cluster first and then reinstalls it with the new version.</p>
+<p>💡 If you are using a namespace other than <code>storageos</code> for your Ondat
+install, please use <code>--uninstall-stos-operator-namespace</code> argument because it
+uninstalls the cluster first and then reinstalls it with the new version.</p>
 </blockquote>
 <blockquote>
-<p>💡 If at any point something goes wrong with the upgrade process, backups of all the relevant Kubernetes manifests can be found in <code>~/.kube/storageos/</code>.</p>
+<p>💡 If at any point something goes wrong with the upgrade process, backups of
+all the relevant Kubernetes manifests can be found in <code>~/.kube/storageos/</code>.</p>
 </blockquote>
 <h3 id="step-4---scale-up-stateful-applications">Step 4 - Scale Up Stateful Applications</h3>
-<ul>
-<li>Once the Ondat upgrade is complete and the core components are back online, scale up the stateful applications that use Ondat volumes back up to their respective replica count.</li>
-</ul>
+<p>Once the Ondat upgrade is complete and the core components are back online,
+scale up the stateful applications that use Ondat volumes back up to their
+respective replica count.</p>
 
 	
 	

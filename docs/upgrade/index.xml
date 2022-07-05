@@ -27,52 +27,52 @@
 &lt;h2 id=&#34;upgrading-an-ondat-v2-cluster&#34;&gt;Upgrading An Ondat &lt;code&gt;v2&lt;/code&gt; Cluster&lt;/h2&gt;
 &lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat v2.3&lt;/a&gt; and that you have checked the init container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
+&lt;p&gt;⚠️ Ensure that you have read the &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;PIDs prerequisite introduced in Ondat
+v2.3&lt;/a&gt; and that you have checked the init
+container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Pull down the new Ondat container image &lt;code&gt;storageos/node:v2.8.0&lt;/code&gt; onto the nodes beforehand so that the cluster spins up faster.&lt;/p&gt;
+&lt;p&gt;💡 Pull down the new Ondat container image &lt;code&gt;storageos/node:v2.8.0&lt;/code&gt; onto the
+nodes beforehand so that the cluster spins up faster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Speak with our support team &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; so we can assist you with your upgrade.&lt;/p&gt;
+&lt;p&gt;💡 Speak with our support team &lt;a href=&#34;/docs/support/&#34;&gt;here&lt;/a&gt; so we can assist you
+with your upgrade.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;procedure&#34;&gt;Procedure&lt;/h2&gt;
 &lt;h3 id=&#34;step-1---backup-ondat-deployment-manifests&#34;&gt;Step 1 - Backup Ondat Deployment Manifests&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Make sure that you keep a backup of all the Ondat YAML files. You can also backup the &lt;code&gt;StatefulSet&lt;/code&gt; yaml files to keep track of the replicas.&lt;/p&gt;
+&lt;p&gt;Make sure that you keep a backup of all the Ondat YAML files. You can also
+backup the &lt;code&gt;StatefulSet&lt;/code&gt; yaml files to keep track of the replicas.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod -n storageos -o yaml &amp;gt; storageos_operator.yaml
 kubectl get storageoscluster -n storageos -o yaml &amp;gt; storageos_cr.yaml
 kubectl get statefulset --all-namespaces &amp;gt; statefulset-sizes.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;step-2---scale-down-stateful-applications-to-zero&#34;&gt;Step 2 - Scale Down Stateful Applications To Zero&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Scale all of the stateful applications that use Ondat volumes to 0.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-2---scale-down-stateful-applications-to-zero&#34;&gt;Step 2 - Scale Down Stateful Applications To Zero&lt;/h3&gt;
+&lt;p&gt;Scale all of the stateful applications that use Ondat volumes to 0.&lt;/p&gt;
 &lt;h3 id=&#34;step-3---upgrade-ondat&#34;&gt;Step 3 - Upgrade Ondat&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Run the following command using the kubectl storageos plugin.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Run the following command using the kubectl storageos plugin.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Make sure you are using the latest version of the kubectl storageos plugin. You can make use of the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;installation guide&lt;/a&gt; and get the latest version &lt;a href=&#34;https://github.com/storageos/kubectl-storageos&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Make sure you are using the latest version of the kubectl storageos plugin.
+You can make use of the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;installation guide&lt;/a&gt;
+and get the latest version
+&lt;a href=&#34;https://github.com/storageos/kubectl-storageos&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;```bash
-kubectl storageos upgrade
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;💡 Please use the &lt;code&gt;--etcd-tls-enabled&lt;/code&gt; if using TLS with your ETCD.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 If you are using a namespace other than &lt;code&gt;storageos&lt;/code&gt; for your Ondat install, please use &lt;code&gt;--uninstall-stos-operator-namespace&lt;/code&gt; argument because it uninstalls the cluster first and then reinstalls it with the new version.&lt;/p&gt;
+&lt;p&gt;💡 If you are using a namespace other than &lt;code&gt;storageos&lt;/code&gt; for your Ondat
+install, please use &lt;code&gt;--uninstall-stos-operator-namespace&lt;/code&gt; argument because it
+uninstalls the cluster first and then reinstalls it with the new version.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 If at any point something goes wrong with the upgrade process, backups of all the relevant Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;💡 If at any point something goes wrong with the upgrade process, backups of
+all the relevant Kubernetes manifests can be found in &lt;code&gt;~/.kube/storageos/&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;step-4---scale-up-stateful-applications&#34;&gt;Step 4 - Scale Up Stateful Applications&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Once the Ondat upgrade is complete and the core components are back online, scale up the stateful applications that use Ondat volumes back up to their respective replica count.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Once the Ondat upgrade is complete and the core components are back online,
+scale up the stateful applications that use Ondat volumes back up to their
+respective replica count.&lt;/p&gt;
 
       </description>
     </item>

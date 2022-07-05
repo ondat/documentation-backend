@@ -76,11 +76,11 @@
   </url><url>
     <loc>/docs/usecases/</loc>
   </url><url>
-    <loc>/docs/prerequisites/etcd/</loc>
-  </url><url>
-    <loc>/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster/</loc>
+    <loc>/docs/prerequisites/etcd/etcd/</loc>
   </url><url>
     <loc>/docs/reference/bundles/</loc>
+  </url><url>
+    <loc>/docs/prerequisites/etcd/etcd-outside-the-cluster/</loc>
   </url><url>
     <loc>/docs/reference/</loc>
   </url><url>
@@ -145,6 +145,8 @@
     <loc>/docs/concepts/etcd/</loc>
   </url><url>
     <loc>/docs/operations/etcd/</loc>
+  </url><url>
+    <loc>/docs/prerequisites/etcd/</loc>
   </url><url>
     <loc>/docs/operations/etcd/cluster-migration-node-to-pod/</loc>
   </url><url>

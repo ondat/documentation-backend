@@ -20,23 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Etcd | </title><meta property="og:title" content="Etcd" />
-<meta property="og:description" content="Etcd is an open-source distributed, strongly consistent key-value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.
-Ondat uses etcd as the single source of truth for all Ondat objects. Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed." />
+<title>Etcd in Kubernetes | </title><meta property="og:title" content="Etcd in Kubernetes" />
+<meta property="og:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required, see our etcd concepts page.
+Neither Ondat nor Kubernetes support using Kubernetes&#39; own internal etcd for Ondat.
+For most use-cases it is recommended to install the Ondat etcd operator that will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some circumstances, eg. when cloud storage technologies are not available, it makes sense to install etcd on separate machines outside of your Kubernetes cluster." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/concepts/etcd/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/prerequisites/etcd/etcd/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Etcd">
-<meta itemprop="description" content="Etcd is an open-source distributed, strongly consistent key-value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.
-Ondat uses etcd as the single source of truth for all Ondat objects. Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed.">
+<meta itemprop="name" content="Etcd in Kubernetes">
+<meta itemprop="description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required, see our etcd concepts page.
+Neither Ondat nor Kubernetes support using Kubernetes&#39; own internal etcd for Ondat.
+For most use-cases it is recommended to install the Ondat etcd operator that will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some circumstances, eg. when cloud storage technologies are not available, it makes sense to install etcd on separate machines outside of your Kubernetes cluster.">
 
-<meta itemprop="wordCount" content="96">
+<meta itemprop="wordCount" content="580">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Etcd"/>
-<meta name="twitter:description" content="Etcd is an open-source distributed, strongly consistent key-value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.
-Ondat uses etcd as the single source of truth for all Ondat objects. Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed."/>
+<meta name="twitter:title" content="Etcd in Kubernetes"/>
+<meta name="twitter:description" content="Ondat requires an etcd cluster in order to function. For more information on why etcd is required, see our etcd concepts page.
+Neither Ondat nor Kubernetes support using Kubernetes&#39; own internal etcd for Ondat.
+For most use-cases it is recommended to install the Ondat etcd operator that will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some circumstances, eg. when cloud storage technologies are not available, it makes sense to install etcd on separate machines outside of your Kubernetes cluster."/>
 
 
 
@@ -79,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Etcd | </title>
+    <title>Etcd in Kubernetes | </title>
   </head>
   <body class="td-page">
     
@@ -418,10 +421,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Concepts</a>
+    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Concepts</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsconcepts">
+    <li class="collapse " id="docsconcepts">
       
       
       
@@ -446,7 +449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptsetcd" href="/docs/concepts/etcd/">Etcd</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsetcd" href="/docs/concepts/etcd/">Etcd</a>
       
       
       
@@ -531,10 +534,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/prerequisites/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Prerequisites</a>
+    <a  href="/docs/prerequisites/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Prerequisites</a>
   </li>
   <ul>
-    <li class="collapse " id="docsprerequisites">
+    <li class="collapse show" id="docsprerequisites">
       
       
       
@@ -578,17 +581,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/prerequisites/etcd/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Etcd</a>
+    <a  href="/docs/prerequisites/etcd/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Etcd</a>
   </li>
   <ul>
-    <li class="collapse " id="docsprerequisitesetcd">
+    <li class="collapse show" id="docsprerequisitesetcd">
       
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcdetcd" href="/docs/prerequisites/etcd/etcd/">Etcd - Recommended</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsprerequisitesetcdetcd" href="/docs/prerequisites/etcd/etcd/">Etcd - Recommended</a>
       
       
       
@@ -1461,6 +1464,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#installing-etcd-into-your-kubernetes-cluster">Installing Etcd Into Your Kubernetes Cluster</a></li>
+    <li><a href="#configuring-storage-for-etcd">Configuring Storage for Etcd</a></li>
+    <li><a href="#installing-etcd">Installing Etcd</a>
+      <ul>
+        <li><a href="#recommended-installing-the-etcd-operator-via-our-helm-chart"><strong>Recommended:</strong> Installing the etcd operator via our helm chart</a></li>
+        <li><a href="#recommended-installing-ondat-and-the-etcd-operator-via-our-plugin"><strong>Recommended:</strong> Installing Ondat (and the etcd operator) via our Plugin</a></li>
+        <li><a href="#configurable-manually-applying-an-etcdcluster-custom-resource"><strong>Configurable:</strong> Manually applying an <code>etcdcluster</code> custom resource</a></li>
+        <li><a href="#recommended-installing-the-etcd-operator-via-our-helm-chart-1">Recommended: Installing the etcd operator via our helm chart</a></li>
+        <li><a href="#recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1">Recommended: Installing Ondat (and the etcd operator) via our Plugin</a></li>
+        <li><a href="#manually-applying-an-etcdcluster-custom-resource">Manually applying an <code>etcdcluster</code> custom resource</a></li>
+        <li><a href="#installation-verification">Installation Verification</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1481,6 +1502,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+
+
+
 <li class="breadcrumb-item" >
 	<a href="/docs/">Documentation</a>
 </li>
@@ -1489,14 +1513,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/concepts/">Concepts</a>
+	<a href="/docs/prerequisites/">Prerequisites</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="/docs/prerequisites/etcd/">Etcd</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/concepts/etcd/">Etcd</a>
+	<a href="/docs/prerequisites/etcd/etcd/">Etcd - Recommended</a>
 </li>
 
 	</ol>
@@ -1504,12 +1535,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Etcd</h1>
+	<h1>Etcd in Kubernetes</h1>
 	
-	<p><a href="https://etcd.io">Etcd</a> is an open-source distributed, strongly consistent key-value store that is used by Ondat to durably persist the Ondat cluster state. As the backing store for Kubernetes, Ondat uses etcd for many of the same reasons.</p>
-<p>Ondat uses etcd as the single source of truth for all Ondat objects.
-Whenever a request is made to create, update or delete an object the result is written to etcd before the request is completed. Using etcd as a configuration store allows nodes to retrieve the current cluster state after being offlined, allowing offlined nodes to rejoin the cluster.</p>
+	<p>Ondat requires an etcd cluster in order to function. For more information on
+why etcd is required, see our <a href="/docs/concepts/etcd">etcd concepts</a> page.</p>
+<p>Neither Ondat nor Kubernetes support using Kubernetes' own internal etcd for Ondat.</p>
+<p>For most use-cases it is recommended to install the Ondat etcd operator that
+will manage creation and maintenance of Ondat&rsquo;s required etcd cluster. In some
+circumstances, eg. when cloud storage technologies are not available,
+it makes sense to install etcd on separate machines outside of
+your Kubernetes cluster.</p>
+<h2 id="installing-etcd-into-your-kubernetes-cluster">Installing Etcd Into Your Kubernetes Cluster</h2>
+<p>This is our recommended way to host etcd in both testing and production
+environments.</p>
+<h2 id="configuring-storage-for-etcd">Configuring Storage for Etcd</h2>
+<p>We highly recommend using cloud provider network attached disks for storing
+etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This
+allows the etcd operator to recover from node failures.</p>
+<p>For testing environments or where there are no resilient storage options available,
+a node-local storage option can be used, such as
+<a href="https://github.com/rancher/local-path-provisioner">Local Path Provisioner</a>.
+This will store etcd data on the node hosting an etcd pod</p>
+<blockquote>
+<p>⚠️ The <code>local-path</code> StorageClass is only recommended when other, better
+storage classes are not available, as this stores
+all the data of the <code>etcd</code> peers locally, which
+makes it susceptible to state being lost on node failures.
+In the case of <code>local-path</code> storage, a minimum of 5 etcd nodes
+is recommended to increase resilience.</p>
+</blockquote>
+<h2 id="installing-etcd">Installing Etcd</h2>
+<p>An etcd cluster can be created in three different ways:</p>
+<ul>
+<li>Installing the etcd operator via our helm chart</li>
+<li>Installing Ondat (and the etcd operator) via our Plugin</li>
+<li>Manually deploying the etcd operator and applying an <code>etcdcluster</code> custom resource</li>
+</ul>
+<h3 id="recommended-installing-the-etcd-operator-via-our-helm-chart"><strong>Recommended:</strong> Installing the etcd operator via our helm chart</h3>
+<p>For full instructions, visit <a href="https://github.com/ondat/charts/tree/main/charts/ondat">Ondat Helm
+Chart</a> repository.</p>
+<h3 id="recommended-installing-ondat-and-the-etcd-operator-via-our-plugin"><strong>Recommended:</strong> Installing Ondat (and the etcd operator) via our Plugin</h3>
+<pre tabindex="0"><code>kubectl storageos install \
+    --include-etcd \
+    --etcd-storage-class &lt;the storage class you want to use for etcd&gt; \
+    --etcd-tls-enabled
+</code></pre><h3 id="configurable-manually-applying-an-etcdcluster-custom-resource"><strong>Configurable:</strong> Manually applying an <code>etcdcluster</code> custom resource</h3>
+<p>This installation method allows the most configuration of the etcd cluster, but
+is error-prone and therefore not recommended in situations in which the Helm chart
+or plugin can be used, instead.</p>
+<ul>
+<li>Manually applying an <code>etcdcluster</code> custom resource</li>
+</ul>
+<h3 id="recommended-installing-the-etcd-operator-via-our-helm-chart-1">Recommended: Installing the etcd operator via our helm chart</h3>
+<p>For full instructions, visit <a href="https://github.com/ondat/charts/tree/main/charts/ondat">here</a></p>
+<h3 id="recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1">Recommended: Installing Ondat (and the etcd operator) via our Plugin</h3>
+<pre tabindex="0"><code>kubectl storageos install \
+    --include-etcd \
+    --etcd-storage-class &lt;the storage class you want to use for etcd&gt; \
+    --etcd-tls-enabled
+</code></pre><h3 id="manually-applying-an-etcdcluster-custom-resource">Manually applying an <code>etcdcluster</code> custom resource</h3>
+<p>This installation method allows the most configuration of the etcd cluster, but
+is error-prone and therefore not recommended in situations in which the Helm chart
+or plugin can be used, instead.</p>
+<p>Find the verison of the etcd operator you want to install from
+<a href="https://github.com/storageos/etcd-cluster-operator/releases/">GitHub</a>.</p>
+<p>Install the etcd operator:</p>
+<pre tabindex="0"><code>export ETCD_OPERATOR_VERSION=&lt;set the version you want to use&gt;
+kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml
+</code></pre><p>Then adapt the following sample to your needs and use <code>kubectl</code> to  apply it:</p>
+<pre tabindex="0"><code>export ETCD_OPERATOR_VERSION=&lt;set the version you want to use&gt;
+wget https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster.yaml
+vim storageos-etcd-cluster.yaml
+kubectl apply -f storageos-etcd-cluster.yaml
+</code></pre><h3 id="installation-verification">Installation Verification</h3>
+<pre tabindex="0"><code>$ kubectl -n storageos-etcd get pod,svc,pdb
+NAME                                                     READY   STATUS    RESTARTS   AGE
+pod/storageos-etcd-0-28m5t                               1/1     Running   0          18h
+pod/storageos-etcd-1-2lpn9                               1/1     Running   0          18h
+pod/storageos-etcd-2-dpdz6                               1/1     Running   0          18h
+pod/storageos-etcd-3-7lsmz                               1/1     Running   0          18h
+pod/storageos-etcd-4-q5xjd                               1/1     Running   0          18h
+pod/storageos-etcd-controller-manager-6f5776c64f-dhp7r   1/1     Running   0          18h
+pod/storageos-etcd-controller-manager-6f5776c64f-vvxrr   1/1     Running   0          18h
+pod/storageos-etcd-proxy-96bf4bb5f-z5m7f                 1/1     Running   0          18h
 
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+service/storageos-etcd         ClusterIP   None            &lt;none&gt;        2379/TCP,2380/TCP   18h
+service/storageos-etcd-proxy   ClusterIP   10.43.199.194   &lt;none&gt;        80/TCP              18h
+
+NAME                                        MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/storageos-etcd   3               N/A               2                     18h
+</code></pre>
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>

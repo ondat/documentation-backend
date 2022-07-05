@@ -34,7 +34,7 @@
  Using the Ondat kubectl plugin. Using the Ondat Helm chart.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
   ⚠️ Make sure the following CLI utility is installed on your local machine and is available in your $PATH:">
 
-<meta itemprop="wordCount" content="1760">
+<meta itemprop="wordCount" content="1756">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Declarative Install"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7f9f1169ffe39972a3cbb0a5d95f1d0e01234138394af5da2a2d227386b0b36d8877f1770887dba0595566f8e9511e3a3d6552d87c4838d0bc8601918fe23d87.json"
+  data-offline-search-index-json-src="/offline-search-index.a1a7ff48846ebf7c59b48b9c8aba42d98ef91fd111fc2285aa7927759fff88885408b26bceba9ffe03ee98e8f1da40245e8f2d6f79b691ec2aaca243c446b8bc.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7f9f1169ffe39972a3cbb0a5d95f1d0e01234138394af5da2a2d227386b0b36d8877f1770887dba0595566f8e9511e3a3d6552d87c4838d0bc8601918fe23d87.json"
+  data-offline-search-index-json-src="/offline-search-index.a1a7ff48846ebf7c59b48b9c8aba42d98ef91fd111fc2285aa7927759fff88885408b26bceba9ffe03ee98e8f1da40245e8f2d6f79b691ec2aaca243c446b8bc.json"
   data-offline-search-base-href="/"
 >
 
@@ -573,14 +573,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/prerequisites/etcd/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Etcd</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsprerequisitesetcd">
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcd" href="/docs/prerequisites/etcd/">Etcd</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcd-outside-k8setcd-outside-the-cluster" href="/docs/prerequisites/etcd-outside-k8s/etcd-outside-the-cluster/">Etcd outside the cluster</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcdetcd" href="/docs/prerequisites/etcd/etcd/">Etcd - Recommended</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesetcdetcd-outside-the-cluster" href="/docs/prerequisites/etcd/etcd-outside-the-cluster/">Etcd outside the cluster</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
     </li>
@@ -1743,27 +1766,21 @@ helm search repo <span style="color:#4e9a06">&#34;ondat&#34;</span>
 </code></pre></div></li>
 <li>
 <p>Run the following  <code>helm install</code>  command to install Ondat using the Helm chart.</p>
-</li>
-</ol>
 <p><strong>Internal Etcd</strong></p>
-<pre><code>```bash
-helm install ondat ondat/ondat \
-  --namespace=ondat \
-  --create-namespace \
-  --set ondat-operator.cluster.admin.password=&quot;$STORAGEOS_PASSWORD&quot; \
-  --set etcd-cluster-operator.cluster.storageclass=&quot;$ETCD_STORAGECLASS&quot;
-```
-</code></pre>
-<p><strong>External etcd</strong></p>
-<pre><code>```bash
-helm install ondat ondat/ondat \
-  --namespace=ondat \
-  --create-namespace \
-  --set ondat-operator.cluster.admin.password=&quot;$STORAGEOS_PASSWORD&quot; \
-  --set ondat-operator.cluster.kvBackend.address=&quot;$ETCD_ENDPOINTS&quot; \
-  --set etcd-cluster-operator.cluster.create=&quot;false&quot;
-```
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat ondat/ondat <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --create-namespace <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.admin.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.storageclass<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span>
+</code></pre></div><p><strong>External etcd</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat ondat/ondat <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --create-namespace <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.admin.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.kvBackend.address<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_ENDPOINTS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.create<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;false&#34;</span>
+</code></pre></div></li>
+</ol>
 <ul>
 <li>The installation process may take a few minutes.</li>
 </ul>
