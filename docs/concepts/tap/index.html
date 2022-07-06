@@ -20,20 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Delete | </title><meta property="og:title" content="Delete" />
-<meta property="og:description" content="$ storageos delete -h Delete resources in the cluster Usage: storageos delete [command] Available Commands: namespace Delete a namespace node Delete a node policy-group Delete a policy group user Delete a user volume Delete a volume. By default the target volume must be online. If the volume is offline then the request must specify that an offline delete is desired. Flags: -h, --help help for delete Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/." />
+<title>Ondat Topology-Aware Placement (TAP) | </title><meta property="og:title" content="Ondat Topology-Aware Placement (TAP)" />
+<meta property="og:description" content="Overview  💡 This feature is available in release v2.5.0 or greater.
+ Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. Also, TAP is an opt in feature per volume." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/reference/cli/delete/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/concepts/tap/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Delete">
-<meta itemprop="description" content="$ storageos delete -h Delete resources in the cluster Usage: storageos delete [command] Available Commands: namespace Delete a namespace node Delete a node policy-group Delete a policy group user Delete a user volume Delete a volume. By default the target volume must be online. If the volume is offline then the request must specify that an offline delete is desired. Flags: -h, --help help for delete Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.">
+<meta itemprop="name" content="Ondat Topology-Aware Placement (TAP)">
+<meta itemprop="description" content="Overview  💡 This feature is available in release v2.5.0 or greater.
+ Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. Also, TAP is an opt in feature per volume.">
 
-<meta itemprop="wordCount" content="1233">
+<meta itemprop="wordCount" content="574">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Delete"/>
-<meta name="twitter:description" content="$ storageos delete -h Delete resources in the cluster Usage: storageos delete [command] Available Commands: namespace Delete a namespace node Delete a node policy-group Delete a policy group user Delete a user volume Delete a volume. By default the target volume must be online. If the volume is offline then the request must specify that an offline delete is desired. Flags: -h, --help help for delete Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/."/>
+<meta name="twitter:title" content="Ondat Topology-Aware Placement (TAP)"/>
+<meta name="twitter:description" content="Overview  💡 This feature is available in release v2.5.0 or greater.
+ Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. Also, TAP is an opt in feature per volume."/>
 
 
 
@@ -76,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Delete | </title>
+    <title>Ondat Topology-Aware Placement (TAP) | </title>
   </head>
   <body class="td-page">
     
@@ -415,10 +421,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Concepts</a>
+    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Concepts</a>
   </li>
   <ul>
-    <li class="collapse " id="docsconcepts">
+    <li class="collapse show" id="docsconcepts">
       
       
       
@@ -437,7 +443,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptstap" href="/docs/concepts/tap/">Ondat Topology-Aware Placement (TAP)</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptstap" href="/docs/concepts/tap/">Ondat Topology-Aware Placement (TAP)</a>
       
       
       
@@ -1114,10 +1120,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Reference</a>
+    <a  href="/docs/reference/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreference">
+    <li class="collapse " id="docsreference">
       
       
       
@@ -1178,10 +1184,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/cli/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">CLI</a>
+    <a  href="/docs/reference/cli/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">CLI</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreferencecli">
+    <li class="collapse " id="docsreferencecli">
       
       
       
@@ -1206,7 +1212,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsreferenceclidelete" href="/docs/reference/cli/delete/">Delete</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclidelete" href="/docs/reference/cli/delete/">Delete</a>
       
       
       
@@ -1460,11 +1466,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#delete-volume">delete volume</a></li>
-    <li><a href="#delete-user">delete user</a></li>
-    <li><a href="#delete-policy-group">delete policy-group</a></li>
-    <li><a href="#delete-node">delete node</a></li>
-    <li><a href="#delete-namespace">delete namespace</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#benefits-of-enabling-the-topology-aware-placement-tap-feature">Benefits of enabling the Topology-Aware Placement (TAP) feature</a></li>
+    <li><a href="#enabling-topology-aware-placement">Enabling Topology-Aware Placement</a></li>
+    <li><a href="#topology-domains">Topology Domains</a></li>
+    <li><a href="#behaviour">Behaviour</a></li>
+    <li><a href="#failure-modes">Failure Modes</a></li>
   </ul>
 </nav>
 
@@ -1488,9 +1495,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-
-
-
 <li class="breadcrumb-item" >
 	<a href="/docs/">Documentation</a>
 </li>
@@ -1499,21 +1503,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/reference/">Reference</a>
-</li>
-
-
-
-
-<li class="breadcrumb-item" >
-	<a href="/docs/reference/cli/">CLI</a>
+	<a href="/docs/concepts/">Concepts</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/reference/cli/delete/">Delete</a>
+	<a href="/docs/concepts/tap/">Ondat Topology-Aware Placement (TAP)</a>
 </li>
 
 	</ol>
@@ -1521,188 +1518,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Delete</h1>
+	<h1>Ondat Topology-Aware Placement (TAP)</h1>
 	
-	<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos delete -h
+	<h2 id="overview">Overview</h2>
+<blockquote>
+<p>💡 This feature is available in release <code>v2.5.0</code> or greater.</p>
+</blockquote>
+<p>Ondat Topology-Aware Placement is a feature that enforces placement of data
+across failure domains to guarantee high availability.</p>
+<p>TAP uses default labels on nodes to define failure domains. For instance, an
+Availability Zone. However, the key label used to segment failure domains can
+be defined by the user per node. Also, TAP is an opt in feature per volume.</p>
+<h2 id="benefits-of-enabling-the-topology-aware-placement-tap-feature">Benefits of enabling the Topology-Aware Placement (TAP) feature</h2>
+<p>Deploying a stateful application on a clusters with multiple nodes without TAP
+enabled can result in suboptimal placement for high availability. Not enabling
+TAP can cause following problems:</p>
+<ul>
+<li>unschedulable pods due to resource, affinity, and taint issues when a full
+failure domain experiences a failure</li>
+<li>volume replicas placed within the same zone as a primary volume</li>
+</ul>
+<p><img src="/images/docs/concepts/tap.png" alt="tap"></p>
+<h2 id="enabling-topology-aware-placement">Enabling Topology-Aware Placement</h2>
+<p>Topology-Aware Placement can be enabled by applying the label
+<code>storageos.com/topology-aware=true</code> to a PVC or as a parameter of its
+StorageClass.</p>
+<h2 id="topology-domains">Topology Domains</h2>
+<p>A topology domain is a set of nodes. The domain is identified by a label, which
+can be defined by the user. The default label that Ondat uses to segment nodes
+in failure domains is <code>topology.kubernetes.io/zone</code>. However, you can define
+your own topology key by setting the key string in the label
+<code>storageos.com/topology-key</code>.</p>
+<p>To enable TAP on your volumes, follow the
+<a href="/docs/operations/tap">TAP operations</a> page.</p>
+<h2 id="behaviour">Behaviour</h2>
+<p>The Topology-Aware Placement attempts to distribute sensitive data across
+different failure domains. Hence, a primary volume and its replicas are
+scattered across failure domains. That is implemented following a best effort
+algorithm. In case that the TAP rules can&rsquo;t be fulfilled the placement
+algorithm will attempt a best approach placement (even if new replicas
+are in the same failure domain).
+The best effort placement allows the system to place replicas on the same
+failure domains when a full domain has failed catastrophically. Hence, the
+system self heals as fast as possible without waiting for the nodes on the
+failed domain to recover.</p>
+<p>It is the user&rsquo;s responsibility to rebalance the data when the failed domain
+has recovered its availability. That can be achieved by recreating the replicas
+of a volume. Future versions of Ondat will facilitate the procedure by allowing
+a volume drain.</p>
+<h2 id="failure-modes">Failure Modes</h2>
+<p>Failure modes are a complimentary feature of the Topology-Aware Placement
+functionality. Failure modes allow you to define how many replicas of a volume
+can become unavailable before the volume is marked as read-only. For more
+information , see the
+<a href="/docs/concepts/replication#failure-modes">failure mode concepts page</a>.</p>
+<p>For example, assuming that your cluster has three topology zones, A, B and C,
+and your deployment has a master and two replicas, Ondat will attempt to
+place one volume in each topology zone.</p>
+<p>If zone A fails, I/O to your volume will stop completely if the Failure Mode is
+<code>hard</code>. If the Failure Mode is <code>soft</code>, I/O will continue while volume failover
+is in progress, and a new replica will be placed in an operational zone. Note
+that if zone A recovers, the cluster will <strong>not</strong> automatically rebalance.</p>
+<p>The <code>soft</code> failure mode will not tolerate the failure of multiple replicas at
+once, and will suspend I/O in this case. If you wish to tolerate more than one
+failed replica, then you can set this as an integer using the <code>&lt;integer&gt;</code>label.</p>
+<p>If individual nodes within a topology zone fail, the replicas will fail over to
+other nodes within that zone. Once nodes in the zone are exhausted, placement
+will revert to best-effort.</p>
 
-Delete resources in the cluster
-
-Usage:
-  storageos delete <span style="color:#ce5c00;font-weight:bold">[</span>command<span style="color:#ce5c00;font-weight:bold">]</span>
-
-Available Commands:
-  namespace    Delete a namespace
-  node         Delete a node
-  policy-group Delete a policy group
-  user         Delete a user
-  volume       Delete a volume. By default the target volume must be online. If the volume is offline <span style="color:#204a87;font-weight:bold">then</span> the request must specify that an offline delete is desired.
-
-Flags:
-  -h, --help   <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> delete
-
-Global Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-
-Use <span style="color:#4e9a06">&#34;storageos delete [command] --help&#34;</span> <span style="color:#204a87;font-weight:bold">for</span> more information about a command.
-</code></pre></div><h2 id="delete-volume">delete volume</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos delete volume --help
-
-Delete a volume. By default the target volume must be online. If the volume is offline <span style="color:#204a87;font-weight:bold">then</span> the request must specify that an offline delete is desired.
-
-Usage:
-  storageos delete volume <span style="color:#ce5c00;font-weight:bold">[</span>volume name<span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">[</span>flags<span style="color:#ce5c00;font-weight:bold">]</span>
-
-Examples:
-
-$ storageos delete volume my-test-volume my-unneeded-volume
-
-$ storageos delete volume --namespace my-namespace my-old-volume
-
-
-Flags:
-      --async            perform the operation asynchronously, using the configured timeout duration
-      --cas string       make changes to a resource conditional upon matching the provided version
-  -h, --help             <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> volume
-      --offline-delete   request deletion of an offline volume. Volume data is not removed <span style="color:#204a87;font-weight:bold">until</span> the node reboots
-
-Global Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><h2 id="delete-user">delete user</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos delete user --help
-
-Delete a user
-
-Usage:
-  storageos delete user <span style="color:#ce5c00;font-weight:bold">[</span>user name<span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">[</span>flags<span style="color:#ce5c00;font-weight:bold">]</span>
-
-Examples:
-
-$ storageos delete user my-unneeded-user
-$ storageos delete user --use-ids my-user-id
-
-
-Flags:
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> user
-
-Global Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><h2 id="delete-policy-group">delete policy-group</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos delete policy-group --help
-
-Delete a policy group
-
-Usage:
-  storageos delete policy-group <span style="color:#ce5c00;font-weight:bold">[</span>policy group name<span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">[</span>flags<span style="color:#ce5c00;font-weight:bold">]</span>
-
-Examples:
-
-$ storageos delete policy-group my-unneeded-policy-group
-$ storageos delete policy-group --use-ids my-policy-group-id
-
-
-Flags:
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> policy-group
-
-Global Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-
-</code></pre></div><h2 id="delete-node">delete node</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos delete node --help
-
-Delete a node
-
-Usage:
-  storageos delete node <span style="color:#ce5c00;font-weight:bold">[</span>node name<span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">[</span>flags<span style="color:#ce5c00;font-weight:bold">]</span>
-
-Examples:
-
-$ storagoes delete node my-old-node
-
-
-Flags:
-      --async        perform the operation asynchronously, using the configured timeout duration
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> node
-
-Global Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><h2 id="delete-namespace">delete namespace</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos delete namespace --help
-
-Delete a namespace
-
-Usage:
-  storageos delete namespace <span style="color:#ce5c00;font-weight:bold">[</span>namespace name<span style="color:#ce5c00;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">[</span>flags<span style="color:#ce5c00;font-weight:bold">]</span>
-
-Examples:
-
-$ storageos delete namespace my-unneeded-namespace
-$ storageos delete namespace --use-ids my-namespace-id
-
-
-Flags:
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> namespace
-
-Global Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div>
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>

@@ -14,6 +14,376 @@
     
     
     <item>
+      <title>Docs: Ondat Data Encryption</title>
+      <link>/docs/concepts/encryption/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/encryption/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat supports encryption for data-at-rest and data-in-transit.&lt;/p&gt;
+&lt;p&gt;Data-in-transit is data as it is travelling between nodes. It is encrypted by
+default with mTLS. Data-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files
+is optional and can be enabled by adding a label to your volume definitions
+before they&amp;rsquo;re provisioned.&lt;/p&gt;
+&lt;p&gt;For information on how to enable encryption on your volumes, see our
+&lt;a href=&#34;/docs/operations/encryption&#34;&gt;Encryption Operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;h2 id=&#34;how-volumes-are-encrypted&#34;&gt;How volumes are encrypted&lt;/h2&gt;
+&lt;p&gt;Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as
+specified by IEEE Standard 1619-2007. There is a non-zero performance impact of
+using encrypted volumes. A 10-25% cost in read/write throughput can be
+expected from XTS-AES, dependent on workload. Thin provisioning still applies
+to encrypted volumes.&lt;/p&gt;
+&lt;h2 id=&#34;encryption-key-generation&#34;&gt;Encryption Key Generation&lt;/h2&gt;
+&lt;p&gt;On PVC creation, &lt;a href=&#34;/docs/reference/labels#storageos-volume-labels&#34;&gt;if encryption is enabled&lt;/a&gt;, Ondat will
+automatically generate up to two keys as Kubernetes secrets. Both keys are
+stored in the same namespace as the PVC.&lt;/p&gt;
+&lt;p&gt;Firstly, if it doesn&amp;rsquo;t already exist, a namespace key is generated. It is
+always named &lt;code&gt;storageos-namespace-key&lt;/code&gt; and only one exists per namespace.&lt;/p&gt;
+&lt;p&gt;Secondly a volume key is created for each encrypted volume. It has a name in
+the format &lt;code&gt;storageos-volume-key-&amp;lt;random-id&amp;gt;&lt;/code&gt;, with no connection to the name
+of the volume. The volume it is associated with can be determined by looking at
+the &lt;code&gt;storageos.com/pvc&lt;/code&gt; label on the secret. The
+&lt;code&gt;storageos.com/encryption-secret-name&lt;/code&gt; and
+&lt;code&gt;storageos.com/encryption-secret-namespace&lt;/code&gt; annotations are added to the PVC by
+an admission controller to map the PVC back to its secret.&lt;/p&gt;
+&lt;p&gt;The encryption key is passed to Ondat as part of the CSI volume creation
+request and is used to encrypt the volume.&lt;/p&gt;
+&lt;h2 id=&#34;encryption-key-use&#34;&gt;Encryption Key Use&lt;/h2&gt;
+&lt;p&gt;The volume specific secret is needed whenever a volume is attached to a node
+for use by a pod. When this happens, the Ondat node container&amp;rsquo;s Service
+Account reads the secret and passes it to the Ondat controlplane.&lt;/p&gt;
+&lt;p&gt;A volume missing its key or with a malformed key will be unable to attach.&lt;/p&gt;
+&lt;p&gt;The key is stored in memory by Ondat only on the node that the volume is
+being used on. As a result, encryption and decryption are performed where the
+data is consumed, rather than where it is stored.&lt;/p&gt;
+&lt;p&gt;Because of this, the use of encrypted volumes is transparent to the user.
+There is a complete integration between Kubernetes applications and
+Ondat encryption.&lt;/p&gt;
+&lt;h2 id=&#34;key-management-best-practices&#34;&gt;Key Management Best Practices&lt;/h2&gt;
+&lt;p&gt;Ondat saves encryption keys in Kubernetes Secrets.
+Backups are therefore imperative in case the Kubernetes Etcd is lost.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;Ondat has no ability to decrypt a volume whose encryption keys have been
+lost.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in the
+Kubernetes Etcd in simple base64 encoding. As Ondat encryption keys are
+stored as Kubernetes Secrets, this means that anyone with access to a
+Kubernetes Etcd installation can read encryption keys and decrypt volumes,
+unless the cluster has an external secrets store.&lt;/p&gt;
+&lt;p&gt;For better security check Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;secret
+encryption&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Secrets are not garbage-collected by Ondat. To clean up completely upon
+deletion of a volume it is necessary to also delete that volume&amp;rsquo;s secret. There
+is no benefit to doing this, however.&lt;/p&gt;
+&lt;h2 id=&#34;key-management-with-kubernetes-kms-provider&#34;&gt;Key Management with Kubernetes KMS provider&lt;/h2&gt;
+&lt;p&gt;Ondat encryption keys are stored within Etcd as Kubernetes secrets. Whilst
+the Etcd and kubernetes secrets &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;can also be
+encrypted&lt;/a&gt;,
+many organisations choose to use an external KMS provider.&lt;/p&gt;
+&lt;p&gt;To address this from a Kubernetes limitations perspective and provide an
+agnostic solution, our encryption design allows the user to benefit from any
+Kubernetes KMS provider plugin to envelop the secrets into the KMS provider
+encryption scheme.&lt;/p&gt;
+&lt;p&gt;Ondat allows customers to transparently integrate any supported KMS plugin
+with Ondat encryption key management using the standard Kubernetes API and
+Kubernetes KMS provider framework. The below figure provides an overview of the
+process.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/kms-key-management.png&#34; alt=&#34;KMS Key Management&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The KMS plugin is deployed within the Kubernetes cluster.&lt;/li&gt;
+&lt;li&gt;The KMS plugin is configured to act as a broker between the Kubernetes API
+server and the KMS server API endpoint.&lt;/li&gt;
+&lt;li&gt;At volume creation, Ondat will create a Kubernetes secret using
+Kubernetes API calls&lt;/li&gt;
+&lt;li&gt;The KMS plugin will handle the Kubernetes API Secret creation call and
+interface to the KMS server instance.&lt;/li&gt;
+&lt;li&gt;The KMS server will return the secret using its encryption envelop scheme.&lt;/li&gt;
+&lt;li&gt;The KMS plugin will store the encrypted secret within the Kubernetes Etcd.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Contact the &lt;a href=&#34;mailto:sales@storageos.com&#34;&gt;Ondat sales team&lt;/a&gt; for more
+information about the dedicated Ondat Vault KMS plugin integration
+offering.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Feature Labels</title>
+      <link>/docs/concepts/labels/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/labels/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Feature labels are a powerful and flexible way to control storage features.&lt;/p&gt;
+&lt;p&gt;Applying specific feature labels triggers compression, replication and other
+storage features. No feature labels are present by default.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-node-labels&#34;&gt;Ondat Node labels&lt;/h2&gt;
+&lt;p&gt;Nodes do not have any feature labels present by default.  When Ondat is run
+within Kubernetes, the Ondat API Manager syncs any Kubernetes node labels
+to the corresponding Ondat node. The Kubernetes node labels act as the
+&amp;ldquo;source of truth&amp;rdquo;, so labels should be applied to the Kubernetes nodes rather
+than to Ondat nodes. This is because the Kubernetes node labels overwrite
+the Ondat node labels on sync.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Feature&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Label&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Values&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Compute only&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/computeonly&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;true / false&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Specifies whether a node should be &lt;code&gt;computeonly&lt;/code&gt; where it only acts as a client and does not host volume data locally, otherwise the node is hyperconverged (the default), where the node can operate in both client and server modes.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;You can set the compute-only label on the Kubernetes node and the label will be
+synced to the Ondat node (labels take an eventual consistency reconciliation
+time of up to a minute (or less)).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl label node &lt;span style=&#34;color:#000&#34;&gt;$NODE&lt;/span&gt; storageos.com/computeonly&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;ondat-volume-labels&#34;&gt;Ondat Volume labels&lt;/h2&gt;
+&lt;p&gt;Volumes do not have any feature labels present by default.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The encryption, caching and compression labels can only apply
+at provisioning time, they can&amp;rsquo;t be changed during execution.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Feature&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Label&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Values&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Caching&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/nocache&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;true / false&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Switches off caching.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Compression&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/nocompress&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;true / false&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Switches off compression of data at rest and in transit (compression is not enabled by default to maximise performance).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Encryption&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/encryption&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;true / false&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Encrypts the contents of the volume. For each volume, a key is automatically generated, stored, and linked with the PVC.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Failure Mode&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/failure-mode&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;hard, soft, alwayson or integers [0, 5]&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sets the failure mode for a volume, either explicitly using a failure mode or implicitly using a replica threshold. The default setting of a failure mode is &lt;code&gt;hard&lt;/code&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Replication&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/replicas&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;integers [0, 5]&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Sets the number of replicas i.e full copies of the data across nodes. Typically 1 or 2 replicas is sufficient (2 or 3 instances of the data); latency implications need to be assesed when using more than 2 replicas.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topology-Aware Placement&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/topology-aware&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;true / false&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Enables Topology-Aware Placement&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topology Domain Key&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/topology-key&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;custom region&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Define the failure domain for the node by using a custom key. If you don&amp;rsquo;t define a custom key, the label defaults to the &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt; value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;To create a volume with a feature label, choose one of the following options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Option 1: PVC Label&lt;/p&gt;
+&lt;p&gt;Add the label in the PVC definition, for instance:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;PersistentVolumeClaim&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;pvc-3&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Label &amp;lt;-----&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageClassName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;accessModes&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;- &lt;span style=&#34;color:#000&#34;&gt;ReadWriteOnce&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;1G&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Option 2: Set label in the StorageClass&lt;/p&gt;
+&lt;p&gt;Any PVC using the StorageClass inherits the label. The PVC label takes
+precedence over the StorageClass parameters.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storage.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StorageClass&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-replicated&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;provisioner&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;csi.storageos.com&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;allowVolumeExpansion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;parameters&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;csi.storage.k8s.io/fstype&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ext4&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/encryption&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;csi.storage.k8s.io/secret-name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-api&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;csi.storage.k8s.io/secret-namespace&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The Ondat API manager periodically syncs labels from Kubernetes PVCs
+to the corresponding Ondat volume. Therefore changes to Ondat volume
+labels should be made to the corresponding Kubernetes PVC rather than to the
+Ondat volume directly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;ondat-pod-labels&#34;&gt;Ondat Pod labels&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Feature&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Label&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Values&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Pod fencing&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;&lt;code&gt;storageos.com/fenced&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;true / false&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Targets a pod to be fenced in case of node failure. The default value is &lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ For a pod to be fenced by Ondat, a few requirements described in the
+&lt;a href=&#34;/docs/operations/fencing&#34;&gt;Fencing Operations&lt;/a&gt; page need to be fulfilled.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl label pod &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; storageos.com/fenced&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It is recommended to define the fenced label in the pod&amp;rsquo;s manifest, i.e in the
+Statefulset definitions. Statefulsets pass labels to their
+VolumeClaimTemplates. You must set the label only at the
+&lt;code&gt;spec.template.metadata.labels&lt;/code&gt;. Otherwise, the Ondat volumes will fail to
+provision as only special accepted labels can be passed to volumes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-statefulset
+spec:
+  selector:
+    matchLabels: &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;lt;----- Note that the matchLabels don&amp;#39;t have the fenced label&lt;/span&gt;
+      env: prod
+  serviceName: my-statefulset-svc
+  replicas: &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;
+  template:
+    metadata:
+      labels:   &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;lt;----- Note that the fenced label IS PRESENT&lt;/span&gt;
+        env: prod
+        storageos.com/fenced: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;true&amp;#34;&lt;/span&gt;
+    spec:
+      containers:
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Topology-Aware Placement (TAP)</title>
+      <link>/docs/concepts/tap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/tap/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.5.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat Topology-Aware Placement is a feature that enforces placement of data
+across failure domains to guarantee high availability.&lt;/p&gt;
+&lt;p&gt;TAP uses default labels on nodes to define failure domains. For instance, an
+Availability Zone. However, the key label used to segment failure domains can
+be defined by the user per node. Also, TAP is an opt in feature per volume.&lt;/p&gt;
+&lt;h2 id=&#34;benefits-of-enabling-the-topology-aware-placement-tap-feature&#34;&gt;Benefits of enabling the Topology-Aware Placement (TAP) feature&lt;/h2&gt;
+&lt;p&gt;Deploying a stateful application on a clusters with multiple nodes without TAP
+enabled can result in suboptimal placement for high availability. Not enabling
+TAP can cause following problems:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;unschedulable pods due to resource, affinity, and taint issues when a full
+failure domain experiences a failure&lt;/li&gt;
+&lt;li&gt;volume replicas placed within the same zone as a primary volume&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/tap.png&#34; alt=&#34;tap&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;enabling-topology-aware-placement&#34;&gt;Enabling Topology-Aware Placement&lt;/h2&gt;
+&lt;p&gt;Topology-Aware Placement can be enabled by applying the label
+&lt;code&gt;storageos.com/topology-aware=true&lt;/code&gt; to a PVC or as a parameter of its
+StorageClass.&lt;/p&gt;
+&lt;h2 id=&#34;topology-domains&#34;&gt;Topology Domains&lt;/h2&gt;
+&lt;p&gt;A topology domain is a set of nodes. The domain is identified by a label, which
+can be defined by the user. The default label that Ondat uses to segment nodes
+in failure domains is &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt;. However, you can define
+your own topology key by setting the key string in the label
+&lt;code&gt;storageos.com/topology-key&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To enable TAP on your volumes, follow the
+&lt;a href=&#34;/docs/operations/tap&#34;&gt;TAP operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;h2 id=&#34;behaviour&#34;&gt;Behaviour&lt;/h2&gt;
+&lt;p&gt;The Topology-Aware Placement attempts to distribute sensitive data across
+different failure domains. Hence, a primary volume and its replicas are
+scattered across failure domains. That is implemented following a best effort
+algorithm. In case that the TAP rules can&amp;rsquo;t be fulfilled the placement
+algorithm will attempt a best approach placement (even if new replicas
+are in the same failure domain).
+The best effort placement allows the system to place replicas on the same
+failure domains when a full domain has failed catastrophically. Hence, the
+system self heals as fast as possible without waiting for the nodes on the
+failed domain to recover.&lt;/p&gt;
+&lt;p&gt;It is the user&amp;rsquo;s responsibility to rebalance the data when the failed domain
+has recovered its availability. That can be achieved by recreating the replicas
+of a volume. Future versions of Ondat will facilitate the procedure by allowing
+a volume drain.&lt;/p&gt;
+&lt;h2 id=&#34;failure-modes&#34;&gt;Failure Modes&lt;/h2&gt;
+&lt;p&gt;Failure modes are a complimentary feature of the Topology-Aware Placement
+functionality. Failure modes allow you to define how many replicas of a volume
+can become unavailable before the volume is marked as read-only. For more
+information , see the
+&lt;a href=&#34;/docs/concepts/replication#failure-modes&#34;&gt;failure mode concepts page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For example, assuming that your cluster has three topology zones, A, B and C,
+and your deployment has a master and two replicas, Ondat will attempt to
+place one volume in each topology zone.&lt;/p&gt;
+&lt;p&gt;If zone A fails, I/O to your volume will stop completely if the Failure Mode is
+&lt;code&gt;hard&lt;/code&gt;. If the Failure Mode is &lt;code&gt;soft&lt;/code&gt;, I/O will continue while volume failover
+is in progress, and a new replica will be placed in an operational zone. Note
+that if zone A recovers, the cluster will &lt;strong&gt;not&lt;/strong&gt; automatically rebalance.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;soft&lt;/code&gt; failure mode will not tolerate the failure of multiple replicas at
+once, and will suspend I/O in this case. If you wish to tolerate more than one
+failed replica, then you can set this as an integer using the &lt;code&gt;&amp;lt;integer&amp;gt;&lt;/code&gt;label.&lt;/p&gt;
+&lt;p&gt;If individual nodes within a topology zone fail, the replicas will fail over to
+other nodes within that zone. Once nodes in the zone are exhausted, placement
+will revert to best-effort.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Cluster Topologies</title>
       <link>/docs/concepts/cluster-topologies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -691,6 +1061,9 @@ replicas will be tolerated.&lt;/p&gt;
         
         
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is currently available as a Technical Preview from release &lt;code&gt;2.7.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;You can use our rolling upgrade protection feature to upgrade your cluster&amp;rsquo;s orchestrator without causing downtime or failure of Ondat.&lt;/p&gt;
 &lt;p&gt;If the volumes containing the data for your stateful workloads do not wait to successfully synchronize in-between nodes upgrading, this can potentially cause data inconsistency and downtime. As such it is necessary to perform these upgrades intelligently.&lt;/p&gt;
 &lt;p&gt;We are developing a solution to this problem for you. It is currently a tech preview but now, for example, Ondat can support a Google Anthos one-click upgrade without any downtime.&lt;/p&gt;
