@@ -6,7 +6,11 @@
   </url><url>
     <loc>/docs/install/microsoft-azure-aks/</loc>
   </url><url>
+    <loc>/docs/concepts/compression/</loc>
+  </url><url>
     <loc>/docs/install/digitalocean-kubernetes/</loc>
+  </url><url>
+    <loc>/docs/concepts/fencing/</loc>
   </url><url>
     <loc>/docs/install/anthos/</loc>
   </url><url>
@@ -18,13 +22,29 @@
   </url><url>
     <loc>/docs/install/kubernetes/</loc>
   </url><url>
+    <loc>/docs/concepts/metric-exporter/</loc>
+  </url><url>
+    <loc>/docs/concepts/namespaces/</loc>
+  </url><url>
+    <loc>/docs/concepts/nodes/</loc>
+  </url><url>
+    <loc>/docs/concepts/cluster-topologies/</loc>
+  </url><url>
+    <loc>/docs/concepts/components/</loc>
+  </url><url>
     <loc>/docs/concepts/encryption/</loc>
   </url><url>
     <loc>/docs/concepts/labels/</loc>
   </url><url>
+    <loc>/docs/concepts/rwx/</loc>
+  </url><url>
     <loc>/docs/reference/kubectl-plugin/</loc>
   </url><url>
+    <loc>/docs/concepts/rolling-upgrades/</loc>
+  </url><url>
     <loc>/docs/ondat-portal/installation-portal/</loc>
+  </url><url>
+    <loc>/docs/concepts/snapshots/</loc>
   </url><url>
     <loc>/docs/concepts/tap/</loc>
   </url><url>
@@ -34,9 +54,15 @@
   </url><url>
     <loc>/docs/upgrade/using-rolling-upgrades/</loc>
   </url><url>
+    <loc>/docs/concepts/policies/</loc>
+  </url><url>
     <loc>/docs/install/rancher/</loc>
   </url><url>
     <loc>/docs/install/rancher-gov/</loc>
+  </url><url>
+    <loc>/docs/concepts/replication/</loc>
+  </url><url>
+    <loc>/docs/concepts/volumes/</loc>
   </url><url>
     <loc>/docs/introduction/overview/</loc>
   </url><url>
@@ -116,11 +142,7 @@
   </url><url>
     <loc>/docs/reference/cluster-operator/</loc>
   </url><url>
-    <loc>/docs/concepts/cluster-topologies/</loc>
-  </url><url>
     <loc>/docs/concepts/clusters/</loc>
-  </url><url>
-    <loc>/docs/concepts/compression/</loc>
   </url><url>
     <loc>/docs/reference/contributing/</loc>
   </url><url>
@@ -146,8 +168,6 @@
   </url><url>
     <loc>/docs/operations/encryption/</loc>
   </url><url>
-    <loc>/docs/concepts/etcd/</loc>
-  </url><url>
     <loc>/docs/operations/etcd/</loc>
   </url><url>
     <loc>/docs/prerequisites/etcd/</loc>
@@ -159,8 +179,6 @@
     <loc>/docs/operations/etcd/etcd-outside-k8s/</loc>
   </url><url>
     <loc>/docs/operations/failure-modes/</loc>
-  </url><url>
-    <loc>/docs/concepts/fencing/</loc>
   </url><url>
     <loc>/docs/operations/fencing/</loc>
   </url><url>
@@ -190,8 +208,6 @@
   </url><url>
     <loc>/docs/operations/licensing/</loc>
   </url><url>
-    <loc>/docs/concepts/metric-exporter/</loc>
-  </url><url>
     <loc>/docs/operations/metric-exporter/</loc>
   </url><url>
     <loc>/docs/usecases/mssql/</loc>
@@ -202,29 +218,19 @@
   </url><url>
     <loc>/docs/usecases/mysql/</loc>
   </url><url>
-    <loc>/docs/concepts/namespaces/</loc>
-  </url><url>
     <loc>/docs/operations/namespaces/</loc>
   </url><url>
     <loc>/docs/usecases/nginx/</loc>
-  </url><url>
-    <loc>/docs/concepts/nodes/</loc>
   </url><url>
     <loc>/docs/operations/cluster-id/</loc>
   </url><url>
     <loc>/</loc>
   </url><url>
-    <loc>/docs/concepts/components/</loc>
-  </url><url>
     <loc>/docs/reference/open_source_attribution/</loc>
   </url><url>
     <loc>/docs/reference/scheduler/</loc>
   </url><url>
-    <loc>/docs/concepts/snapshots/</loc>
-  </url><url>
     <loc>/docs/reference/telemetry/</loc>
-  </url><url>
-    <loc>/docs/concepts/policies/</loc>
   </url><url>
     <loc>/docs/operations/policies/</loc>
   </url><url>
@@ -234,15 +240,9 @@
   </url><url>
     <loc>/docs/operations/rwx/</loc>
   </url><url>
-    <loc>/docs/concepts/rwx/</loc>
-  </url><url>
     <loc>/docs/usecases/redis/</loc>
   </url><url>
-    <loc>/docs/concepts/replication/</loc>
-  </url><url>
     <loc>/docs/reference/resource_requests_and_limits/</loc>
-  </url><url>
-    <loc>/docs/concepts/rolling-upgrades/</loc>
   </url><url>
     <loc>/search/</loc>
   </url><url>
@@ -273,8 +273,6 @@
     <loc>/docs/reference/cli/version/</loc>
   </url><url>
     <loc>/docs/operations/resize/</loc>
-  </url><url>
-    <loc>/docs/concepts/volumes/</loc>
   </url><url>
     <loc>/docs/usecases/zookeeper/</loc>
   </url>

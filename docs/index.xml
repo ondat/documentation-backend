@@ -306,6 +306,41 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
     </item>
     
     <item>
+      <title>Docs: Compression</title>
+      <link>/docs/concepts/compression/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/compression/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat compression is handled on a per volume basis and is disabled by
+default in v2.2+, as performance is generally increased when compression is
+disabled due to block alignment. This means that there is a trade
+off between volume performance and the space the volume occupies on the backend
+device.&lt;/p&gt;
+&lt;p&gt;Compression can be enabled by setting the &lt;a href=&#34;/docs/reference/labels&#34;&gt;label&lt;/a&gt;
+&lt;code&gt;storageos.com/nocompress=false&lt;/code&gt; on a volume at volume creation time.&lt;/p&gt;
+&lt;p&gt;Ondat utilises the &lt;a href=&#34;https://lz4.github.io/lz4/&#34;&gt;lz4 compression algorithm&lt;/a&gt;
+when writing to the backend store and when compressing &lt;a href=&#34;/docs/concepts/replication&#34;&gt;replication
+traffic&lt;/a&gt; before it is sent across the network.&lt;/p&gt;
+&lt;p&gt;Ondat detects whether a block can be compressed or not by creating a
+heuristic that predicts the size of a compressed block. If the heuristic
+indicates that the compressed block is likely to be larger than the
+original block then the uncompressed block is stored. Block size increases post
+compression if the compression dictionary is added to a block that cannot be
+compressed. By verifying whether blocks can be compressed, disk efficiency is
+increased and CPU resources are not wasted on attempts to compress
+uncompressible blocks. Ondat&amp;rsquo;s patented on-disk format is used to tell
+whether individual blocks are compressed without overhead. As such volume
+compression can be dynamically enabled/disabled even while a volume is in use.&lt;/p&gt;
+&lt;p&gt;When compression and &lt;a href=&#34;/docs/reference/encryption&#34;&gt;encryption&lt;/a&gt; are both enabled
+for a volume, blocks are compressed then encrypted.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: DigitalOcean Kubernetes (DOKS)</title>
       <link>/docs/install/digitalocean-kubernetes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -371,6 +406,94 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1 TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;To obtain a licence, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Fencing</title>
+      <link>/docs/concepts/fencing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/fencing/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;statefulset-behaviour&#34;&gt;StatefulSet behaviour&lt;/h2&gt;
+&lt;p&gt;In order to understand what Ondat Fencing for Kubernetes is and when it is
+needed, it is required to first understand the behaviour of StatefulSets.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/&#34;&gt;StatefulSets&lt;/a&gt;
+are the de facto Kubernetes controller to use for stateful applications. The
+StatefulSet controller offers guarantees around pod uniqueness, sticky
+identities and the persistence of PVCs beyond the lifetime of their pods. As
+such, StatefulSets have different characteristics and provide different
+guarantees than Deployments.&lt;/p&gt;
+&lt;p&gt;Deployments guarantee the amount of healthy replicas by reconciling towards the
+deployment desired  state. Attempts to align the number of healthy pods with
+the deployment&amp;rsquo;s desired state happen as fast as possible by aggressively
+initializing and terminating pods. If one pod is terminating, another will be
+automatically scheduled to start even if the first pod is not yet completely
+terminated. Stateless applications benefit from this behaviour as one pod
+executes the same work as any other in the deployment.&lt;/p&gt;
+&lt;p&gt;StatefulSets, on the other hand, guarantee that every pod scheduled has a
+unique identity, which is to say that only a single copy of a pod is running in
+the cluster at any one time. Whenever scheduling decisions are made, the
+StatefulSet controller ensures that only one copy of this pod is running at any
+time. If a pod is deleted, a new pod will not be scheduled until the first pod
+is fully terminated. This is an important guarantee as FileSystems need to be
+unmounted before they can be remounted in a new pod. Any ReadWriteOnce PVC
+defining a device requires this behaviour to ensure the consistency of the data
+and thus the PVC.&lt;/p&gt;
+&lt;p&gt;To protect data integrity, Kubernetes guarantees that there will never be more
+than one instance of a StatefulSet Pod running at a time. It assumes that when
+a node is determined to be offline it may still be running the workload but
+partitioned from the network. Since Kubernetes is unable to
+verify that the Pod has been stopped it errs on the side of caution and does
+not allow a replacement to start on another node.&lt;/p&gt;
+&lt;p&gt;Kubernetes does reschedule pods from some controllers when nodes become
+unavailable. The default behaviour is that when a node becomes unavailable its
+status becomes &amp;ldquo;Unknown&amp;rdquo; and after the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; has passed pods
+are scheduled for deletion. By default, the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; is 300
+seconds.&lt;/p&gt;
+&lt;p&gt;For this reason, Kubernetes requires manual intervention to initiate timely
+failover of a StatefulSet Pod. The Ondat Fencing Controller gives the
+capability to enable fast failover of workloads when a node goes offline.&lt;/p&gt;
+&lt;p&gt;For more information on the rationale behind the design of StatefulSets please
+see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubernetes/design-proposals-archive/blob/main/storage/pod-safety.md&#34;&gt;Pod
+Safety&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The Ondat Fencing Controller is part of the Ondat API Manager which
+is deployed in high availability when Ondat is installed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;HA for StatefulSet applications can be achieved with the Ondat Fencing
+feature&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Since Ondat is able to determine when a node is no longer able to access a
+volume and has protections in place to ensure that a partitioned or formerly
+partitioned node can not continue to write data, it can work with Kubernetes to
+perform safe, fast failovers of Pods, including those running in StatefulSets.&lt;/p&gt;
+&lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
+marks the node offline and performs volume failover operations.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/api-manager/tree/master/controllers/fencer&#34;&gt;Ondat Fencing
+Controller&lt;/a&gt;
+watches for these node failures and determines if there are any pods assigned
+to the failed node with the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;, and if the pods
+have any PVCs backed by Ondat volumes.&lt;/p&gt;
+&lt;p&gt;When a Pod has Ondat volumes and if they are all healthy, the Ondat
+fencing controller deletes the Pod to allow it to be rescheduled on another
+node. It also deletes the VolumeAtachments for the corresponding volumes so
+that they can be immediately attached to the new node.&lt;/p&gt;
+&lt;p&gt;No changes are made to Pods that have Ondat volumes that are unhealthy.
+This is usually because a volume was configured to not have any replicas, and the
+node with the single copy of the data is offline. In this case it is better to
+wait for the node to recover.&lt;/p&gt;
+&lt;p&gt;Fencing works with both dynamically provisioned PVCs and PVCs referencing
+pre-provisioned volumes.&lt;/p&gt;
+&lt;p&gt;The fencing feature is opt-in and Pods must have the
+&lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label set, and be using at least one Ondat
+volume, to enable fast failover.&lt;/p&gt;
+&lt;p&gt;For more information about how to enable pod fencing, see our &lt;a href=&#34;/docs/operations/fencing&#34;&gt;Fencing
+Operations&lt;/a&gt; page.&lt;/p&gt;
 
       </description>
     </item>
@@ -692,6 +815,223 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
     </item>
     
     <item>
+      <title>Docs: Metric Exporter</title>
+      <link>/docs/concepts/metric-exporter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/metric-exporter/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Following the &lt;a href=&#34;https://prometheus.io/docs/instrumenting/exporters/&#34;&gt;exporter pattern&lt;/a&gt;, we maintain and distribute our own &lt;a href=&#34;https://prometheus.io/&#34;&gt;Prometheus&lt;/a&gt; exporter for monitoring &amp;amp; alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity &amp;amp; traffic.&lt;/p&gt;
+&lt;p&gt;Our exporter’s source code can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Please see our &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;operations page&lt;/a&gt; to get started.&lt;/p&gt;
+&lt;p&gt;Additionally, we distribute Grafana dashboards to visualize the data. They can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/grafana&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Likewise, we distribute example alerting rules for our metrics using &lt;a href=&#34;https://prometheus.io/docs/alerting/latest/alertmanager/&#34;&gt;Alertmanager&lt;/a&gt;, they can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/alertmanager&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Contributions to both are welcome!&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ When setting up a &lt;a href=&#34;https://github.com/prometheus-operator/prometheus-operator/blob/1e4acb010642067bb918eebb75410191640a95c6/Documentation/user-guides/getting-started.md&#34;&gt;ServiceMonitor&lt;/a&gt; be sure to create the rules in the same namespace as your Prometheus resource and have its &lt;code&gt;selector&lt;/code&gt; field match the labels of ours services exposing metrics (see example manifest &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you have suggestions for metrics you would like us to gather or improvements to our Grafana or Alertmanager integration, please let us know on our &lt;a href=&#34;https://slack.storageos.com/&#34;&gt;public slack&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Namespaces</title>
+      <link>/docs/concepts/namespaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/namespaces/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat namespaces are an identical concept to Kubernetes namespaces. They
+are intended to allow an Ondat cluster to be used by multiple teams across
+multiple projects.&lt;/p&gt;
+&lt;p&gt;It is not necessary to create Ondat namespaces manually, as Ondat maps
+Kubernetes namespaces on a one-to-one basis when PersistentVolumeClaims using
+the Ondat StorageClass are created.&lt;/p&gt;
+&lt;p&gt;💡 Access to Namespaces is controlled through user or group level &lt;a href=&#34;/docs/concepts/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Nodes</title>
+      <link>/docs/concepts/nodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/nodes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;An Ondat node is any machine (virtual or physical) that is running the
+Ondat daemonset pod. A node must be running a daemonset pod in order to
+consume and/or present storage.&lt;/p&gt;
+&lt;p&gt;Nodes can be run in several modes.&lt;/p&gt;
+&lt;h2 id=&#34;hyperconverged-mode&#34;&gt;Hyperconverged Mode&lt;/h2&gt;
+&lt;p&gt;By default Ondat nodes run in &lt;code&gt;hyperconverged&lt;/code&gt; mode. This means that the
+node hosts data from Ondat volumes and can present volumes to applications.&lt;/p&gt;
+&lt;p&gt;A hyperconverged node can store data from a volume and present volumes to
+applications regardless of whether the data for the volume consumed is placed
+on that node or is being served remotely. Remote volumes like this are handled
+by an internal protocol to present block device access to applications running
+on different nodes from the one to which their backing data store is attached.&lt;/p&gt;
+&lt;p&gt;Ondat implements an extension of a Kubernetes Scheduler object that
+influences the placement of Pods on the same nodes as their data.&lt;/p&gt;
+&lt;h2 id=&#34;compute-only-mode&#34;&gt;Compute-only Mode&lt;/h2&gt;
+&lt;p&gt;Alternatively, a node can run in &lt;code&gt;computeonly&lt;/code&gt; mode, which means no storage is
+consumed on the node itself and the node only presents volumes hosted by
+other nodes. Volumes presented to applications running on compute only nodes
+are therefore all remote. Compute only nodes can be very useful for topologies
+where nodes are ephemeral and should not host data, but the ephemeral nodes
+host applications that require Ondat volumes. The nodes that are not
+intended to hold data, but just to present Ondat volumes, can be set as
+&lt;code&gt;computeonly&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A node can be marked as compute only at any point in time by adding the label
+&lt;code&gt;storageos.com/computeonly=true&lt;/code&gt;, following the &lt;a href=&#34;/docs/reference/labels&#34;&gt;labels reference&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;storage-mode&#34;&gt;Storage Mode&lt;/h2&gt;
+&lt;p&gt;Finally, nodes can be set to storage mode. Nodes set to storage mode don&amp;rsquo;t
+present data locally - instead all data is accessed through the network. This
+topology is enforced by tainting the relevant nodes to ensure that application
+workloads cannot be scheduled there.&lt;/p&gt;
+&lt;p&gt;This mode is ideal for ensuring maximum stability of data access as the node is
+isolated from resource drains that may occur due to applications running
+alongside. For redundancy purposes, in high load clusters it is ideal to have
+several nodes running in this mode.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Cluster Topologies</title>
+      <link>/docs/concepts/cluster-topologies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/cluster-topologies/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Ondat makes it possible for cluster administrators to design and implement different cluster topologies, depending on types of workloads, use cases, priorities and needs. The topology approaches recommended below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.&lt;/p&gt;
+&lt;p&gt;Ondat performs file Input/Output (I/O) operations over the network, which is how the platform ensures that data is always available throughout your cluster. This also affords cluster administrators certain possibilities of organising their clusters in ways explained below.&lt;/p&gt;
+&lt;h3 id=&#34;hyper-converged-cluster-topology&#34;&gt;Hyper-converged Cluster Topology&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/hyperconverged.png&#34; alt=&#34;Hyper-converged Cluster Topology&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyper-converged_infrastructure&#34;&gt;&lt;em&gt;hyper-converged&lt;/em&gt;&lt;/a&gt; cluster topology model leverages the available block storage attached to all the worker nodes in a Kubernetes cluster, creating a single storage pool that stores and present data for stateful workloads deployed and running.
+&lt;ul&gt;
+&lt;li&gt;This cluster topology gives the best flexibility to Ondat and Kubernetes schedulers, and provides maximum choice for optimal pod placement when pods are being assigned to nodes in a cluster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;No matter how or where workloads are deployed on worker nodes, Ondat will ensure that the data from workloads is stored, persistent and always accessible.&lt;/li&gt;
+&lt;li&gt;New Ondat deployments will place workloads locally where possible using this hyper-converged cluster topology out of the box.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;centralised-cluster-topology&#34;&gt;Centralised Cluster Topology&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/centralised.png&#34; alt=&#34;Centralised Cluster Topology&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;em&gt;centralised&lt;/em&gt; cluster topology model leverages the available block storage attached to only a &lt;em&gt;subset&lt;/em&gt; of worker nodes (creating a dedicated, storage-optimised &lt;a href=&#34;https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools&#34;&gt;node pool&lt;/a&gt;) in a Kubernetes cluster, whilst the rest of the worker nodes are dedicated to running general and compute-intensive workloads,
+&lt;ul&gt;
+&lt;li&gt;Deployed workloads in centralised cluster that require data persistency will access a dedicated storage pool that is located on the declared subset of worker nodes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;This cluster topology can be beneficial if, for example, cluster administers want to take advantage and effectively utilise high performance-optimised hardware components of a particular set of worker nodes for different types of workloads being deployed.&lt;/li&gt;
+&lt;li&gt;The cluster topology can also aid in avoiding downtime issues that can arise from unaccounted resource/capacity planning and allocation for workloads, since storage-optimised nodes and compute-optimised workloads are compartmentalised.&lt;/li&gt;
+&lt;li&gt;In addition, another suitable use case for this topology is for elastic worker node fleets with burst-able workloads. A fleet can be quickly expanded with new worker nodes for compute-intensive workloads on demand, whilst maintaining a centralised data storage pool that is not impacted by rapid auto cluster scaling.&lt;/li&gt;
+&lt;li&gt;To configure this cluster topology for a new Ondat deployment, cluster administrators would need to apply an Ondat node label called &lt;code&gt;storageos.com/computeonly&lt;/code&gt; to nodes, which would inform Ondat that it &lt;em&gt;should not&lt;/em&gt; use the nodes to join a storage pool.
+&lt;ul&gt;
+&lt;li&gt;Review the &lt;a href=&#34;https://docs.ondat.io/docs/reference/labels/&#34;&gt;Feature Labels&lt;/a&gt; reference page for more information on how to enable Ondat features correctly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Components</title>
+      <link>/docs/concepts/components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/components/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;Ondat is a software-defined storage platform for running stateful applications in Kubernetes.&lt;/p&gt;
+&lt;p&gt;Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster to create and present virtual volumes into containers. Space on the host is consumed from the mount point &lt;code&gt;/var/lib/storageos/data&lt;/code&gt;, so it is therefore recommended that disk devices are used exclusively for Ondat, as described in &lt;a href=&#34;/docs/operations/managing-host-storage&#34;&gt;Managing Host Storage&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Ondat is agnostic to the underlying storage and runs equally well on
+bare metal, in virtual machines or on cloud providers.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/ondat-deployment.png&#34; alt=&#34;Ondat cluster components&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Read about &lt;a href=&#34;https://www.ondat.io/platform/platform-overview&#34;&gt;the cloud native storage principles behind
+Ondat&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;ondat-on-kubernetes&#34;&gt;Ondat on Kubernetes&lt;/h1&gt;
+&lt;p&gt;Ondat is architected as a series of containers that fulfil separate,
+discrete functions.&lt;/p&gt;
+&lt;p&gt;Links where appropriate have been given to our open-source GitHub repository.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-cluster-operatorhttpsgithubcomstorageosoperator&#34;&gt;&lt;a href=&#34;https://github.com/storageos/operator&#34;&gt;Ondat Cluster Operator&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Responsible for the creation and maintenance of the Ondat cluster. This
+operator is primarily responsible for ensuring that all the relevant
+applications are running in your cluster.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-controlplane&#34;&gt;Ondat Controlplane&lt;/h2&gt;
+&lt;p&gt;Responsible for monitoring and maintaining the state of volumes and nodes
+in the cluster. The Controlplane and the Dataplane run together in a single
+container, managed by a daemonset. The Controlplane works with etcd to maintain
+state consensus in your cluster.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-dataplane&#34;&gt;Ondat Dataplane&lt;/h2&gt;
+&lt;p&gt;Responsible for all I/O path related tasks; reading, writing, compression
+and caching.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-scheduler&#34;&gt;Ondat Scheduler&lt;/h2&gt;
+&lt;p&gt;Responsible for scheduling applications on the same node as an application&amp;rsquo;s
+volumes. Ondat uses a custom Kubernetes scheduler to handle pod placement,
+ensuring that volumes are deployed on the same nodes as the relevant workloads
+as often as possible.&lt;/p&gt;
+&lt;h2 id=&#34;csi-helperhttpsgithubcomstorageosexternal-provisioner&#34;&gt;&lt;a href=&#34;https://github.com/storageos/external-provisioner&#34;&gt;CSI helper&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Responsible for registering Ondat with Kubernetes as a CSI driver. It
+is necessary because the internal persistent volume controller running in
+Kubernetes controller-manager does not have any direct interfaces to CSI
+drivers. It monitors PVC objects created by users and creates/deletes volumes
+for them.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-api-managerhttpsgithubcomstorageosapi-manager&#34;&gt;&lt;a href=&#34;https://github.com/storageos/api-manager&#34;&gt;Ondat API manager&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Acts as a middle-man between various APIs. It has all the capabilities of a
+Kubernetes Operator and is also able to communicate with the Ondat control
+plane API. This application handles typical operator tasks like labelling or
+removing nodes from Ondat when removed from the Kubernetes. It is
+continually  monitoring the state of the cluster and moving it towards the
+desired state when necessary.&lt;/p&gt;
+&lt;p&gt;Ondat is deployed by the Ondat Cluster Operator. In Kubernetes, the
+Ondat Controlplane and Dataplane are deployed in a single pod managed by a
+daemonset.  This daemonset runs on every node in the cluster that will consume
+or present storage. The Scheduler, CSI helper, Cluster Operator and API Manager
+run as separate pods and are controlled as deployments.&lt;/p&gt;
+&lt;p&gt;Ondat is designed to feel familiar to Kubernetes and Docker users. Storage
+is managed through standard StorageClasses and PersistentVolumeClaims, and
+&lt;a href=&#34;/docs/reference/labels&#34;&gt;features&lt;/a&gt; are controlled by
+Kubernetes-style labels and selectors, prefixed with &lt;code&gt;storageos.com/&lt;/code&gt;. By
+default, volumes are cached to improve read performance and compressed to
+reduce network traffic.&lt;/p&gt;
+&lt;p&gt;Any pod may mount an Ondat virtual volume from any node that is also
+running Ondat, regardless of whether the pod and volume are
+collocated on the same node. Therefore, applications may be started or
+restarted on any node and access volumes transparently.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-upgrade-guard&#34;&gt;Ondat Upgrade Guard&lt;/h2&gt;
+&lt;p&gt;The upgrade guard is a key component of the rolling upgrade feature. It blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.&lt;/p&gt;
+&lt;p&gt;The upgrade guard will detect if a volume is reconciling (for example, one that does not have enough synced replicas), at which point a node manager pod on the same node as the reconciling volume&amp;rsquo;s master and replicas become unready. Ondat uses a PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. This prevents the rolling upgrade from continuing until the PDB is satisfied and all volumes have fully reconciled&lt;/p&gt;
+&lt;p&gt;If the PDB is set to 1 and a Control Plane volume on a node is not ready for a long period of time, this will stop the upgrade process. The &lt;code&gt;api-managercomponent&lt;/code&gt; will be able to dynamically set the PDB value if it can determine the health of the volume. If the &lt;code&gt;api-managercomponent&lt;/code&gt; knows that a volume will not be ready, it can increase the PDB &lt;code&gt;maxUnavailable&lt;/code&gt; value, allowing the upgrade to continue. The upgrade guard container will log when it is available to upgrade, it will also log the reason if upgrade is not possible.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The upgrade guard container only monitors volumes that host a deployment on its node (for example, it doesn’t care if a volume is unhealthy if the node it&amp;rsquo;s running on hosts none of the volumes primary and replicas)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ There is some latency between a volume becoming unhealthy and the upgrade guard noticing, due to the polling nature of both the &lt;code&gt;api-managercomponent&lt;/code&gt; volume sync Kubernetes readiness endpoints)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;ondat-node-manager&#34;&gt;Ondat Node Manager&lt;/h2&gt;
+&lt;p&gt;The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the &lt;code&gt;StorageOS&lt;/code&gt; node container and is a separate pod so that it can be restarted independently of the node container.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Data Encryption</title>
       <link>/docs/concepts/encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -984,6 +1324,84 @@ spec:
     </item>
     
     <item>
+      <title>Docs: Ondat Files</title>
+      <link>/docs/concepts/rwx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/rwx/</guid>
+      <description>
+        
+        
+        &lt;blockquote&gt;
+&lt;p&gt;⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our Community Edition licence. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access
+mode&lt;/a&gt;
+Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
+same Kubernetes namespace for read and write operations.&lt;/p&gt;
+&lt;p&gt;Ondat RWX Volumes are based on a shared filesystem - in the case of our
+implementation, this is NFS.&lt;/p&gt;
+&lt;h2 id=&#34;architecture&#34;&gt;Architecture&lt;/h2&gt;
+&lt;p&gt;For each RWX Volume, the following components are involved:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ondat ReadWriteOnly (RWO) Volume&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ondat provisions a standard &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;Volume&lt;/a&gt; that provides
+a block device for the file system of the NFS server. This
+means that every RWX Volume has its own RWO Volume. This allows RWX Volumes to
+leverage the synchronous replication and automatic failover functionality of
+Ondat, providing the NFS server with high availability.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NFS-Ganesha server&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;For each RWX Volume, an NFS-Ganesha server is spawned by Ondat. The NFS
+server runs in user space on the Node containing the primary Volume. Each NFS
+server uses its own RWO Volume to store data so the data of each Volume is
+isolated.&lt;/p&gt;
+&lt;p&gt;Ondat binds an ephemeral port to the host network interface for each
+NFS-Ganesha server. The NFS export is presented using NFS v4.2. Check the
+&lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;prerequisites page&lt;/a&gt; to see the
+range of ports needed for Ondat RWX Volumes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Ondat API Manager&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ondat fully integrates with Kubernetes. The Ondat API Manager Pod
+monitors Ondat RWX Volumes to create and maintain a Kubernetes Service
+that points towards each RWX Volume&amp;rsquo;s NFS export endpoint. The API Manager is
+responsible for updating the Service endpoint when a RWX Volume failover
+occurs.&lt;/p&gt;
+&lt;h2 id=&#34;provisioning-and-using-rwx-pvcs&#34;&gt;Provisioning and using RWX PVCs&lt;/h2&gt;
+&lt;p&gt;The sequence in which a RWX PVC is provisioned and used is as follows:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A PersistentVolumeClaim (PVC) is created with RWX access mode using any
+Ondat StorageClass.&lt;/li&gt;
+&lt;li&gt;Ondat dynamically provisions the PV.&lt;/li&gt;
+&lt;li&gt;A new Ondat RWO Volume is provisioned internally (not visible in
+Kubernetes).&lt;/li&gt;
+&lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated
+on the same Node as the primary Volume. The NFS-Ganesha server thus uses the
+RWO Ondat Volume as its backend disk.&lt;/li&gt;
+&lt;li&gt;The Ondat API Manager publishes the host IP and port for the NFS service
+endpoint, by creating a Kubernetes Service that points to the NFS-Ganesha
+server export endpoint.&lt;/li&gt;
+&lt;li&gt;Ondat issues a NFS mount on the Node where the Pod using the PVC is
+scheduled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;high-availability&#34;&gt;High availability&lt;/h2&gt;
+&lt;p&gt;RWX Volumes failover in the same way as standard RWO Ondat Volumes. The
+replica Volume is promoted upon detection of Node failure and the NFS-Ganesha
+server is started on the Node containing the promoted replica. The Ondat
+API Manager updates the endpoint of the Volume&amp;rsquo;s NFS service, causing traffic
+to be routed to the URL of the new NFS-Ganesha server. The NFS client in the
+application Node (where the user&amp;rsquo;s Pod is running) automatically reconnects.&lt;/p&gt;
+&lt;h2 id=&#34;notes&#34;&gt;Notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;All feature labels that work on RWO Volumes will also work on RWX Volumes.&lt;/li&gt;
+&lt;li&gt;A Ondat RWX Volume is matched one-to-one with a PVC. Therefore the
+Ondat RWX Volume can only be accessed by Pods in the same Kubernetes
+namespace.&lt;/li&gt;
+&lt;li&gt;Ondat RWX Volumes support volume resize. Refer to the &lt;a href=&#34;/docs/operations/resize&#34;&gt;resize&lt;/a&gt;
+documentation for more details.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Kubectl Plugin</title>
       <link>/docs/reference/kubectl-plugin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1071,6 +1489,27 @@ Use &amp;quot;kubectl-storageos [command] --help&amp;quot; for more information 
     </item>
     
     <item>
+      <title>Docs: Ondat Rolling Upgrades Protection For Orchestrators</title>
+      <link>/docs/concepts/rolling-upgrades/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/rolling-upgrades/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is currently available as a Technical Preview from release &lt;code&gt;2.7.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can use our rolling upgrade protection feature to upgrade your cluster&amp;rsquo;s orchestrator without causing downtime or failure of Ondat.&lt;/p&gt;
+&lt;p&gt;If the volumes containing the data for your stateful workloads do not wait to successfully synchronize in-between nodes upgrading, this can potentially cause data inconsistency and downtime. As such it is necessary to perform these upgrades intelligently.&lt;/p&gt;
+&lt;p&gt;We are developing a solution to this problem for you. It is currently a tech preview but now, for example, Ondat can support a Google Anthos one-click upgrade without any downtime.&lt;/p&gt;
+&lt;p&gt;To use the rolling upgrade feature, follow the steps &lt;a href=&#34;/docs/operations/using-rolling-upgrades&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat SaaS Platform Installation Guide</title>
       <link>/docs/ondat-portal/installation-portal/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1110,6 +1549,79 @@ Note: Latest GA version of Ondat will be installed onto your cluster&lt;/p&gt;
 &lt;li&gt;Make sure you follow all the prerequisites displayed on the screen. You can find more information &lt;a href=&#34;/docs/prerequisites/&#34;&gt;here&lt;/a&gt; for the prerequisites of using Ondat.&lt;/li&gt;
 &lt;li&gt;Copy the cli command displayed on the screen&lt;/li&gt;
 &lt;li&gt;Execute the cli command on your machine&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Snapshots</title>
+      <link>/docs/concepts/snapshots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/snapshots/</guid>
+      <description>
+        
+        
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;The Ondat Snapshot feature can be used in conjunction with &lt;a href=&#34;https://www.kasten.io/&#34;&gt;Kasten
+K10&lt;/a&gt; to snapshot, backup and restore Kubernetes
+applications. This functionality is useful for:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Disaster recovery scenarios&lt;/li&gt;
+&lt;li&gt;Rolling back unwanted changes&lt;/li&gt;
+&lt;li&gt;Auditing purposes&lt;/li&gt;
+&lt;li&gt;Moving applications between clusters&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;
+&lt;p&gt;To utilize the Ondat Snapshot feature the following prerequisites must be met:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ondat v2.8.0 or later is installed in the cluster&lt;/li&gt;
+&lt;li&gt;Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of
+&lt;a href=&#34;https://docs.kasten.io/latest/install/requirements.html#&#34;&gt;prerequisites&lt;/a&gt;.
+Kasten supports Kubernetes versions up to 1.22.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;what-are-snapshots-backups-and-restores&#34;&gt;What are snapshots, backups and restores?&lt;/h1&gt;
+&lt;p&gt;A “snapshot” is a point-in-time copy of a PVC. Snapshots are modeled via the
+&lt;code&gt;VolumeSnapshot&lt;/code&gt; and &lt;code&gt;VolumeSnapshotContent&lt;/code&gt; Kubernetes API objects. Snapshots
+have limited use as they live within the cluster and cannot be used to restore
+the PVC if the node holding the snapshot is lost.&lt;/p&gt;
+&lt;p&gt;A “backup” is the process of materialising a new PVC, whose data source is a
+previously created snapshot and then extracting the data to a location outside
+of the cluster. The Ondat Snapshots feature integrates with Kasten K10 to
+provide backup functionality.&lt;/p&gt;
+&lt;p&gt;A “restore” is the process of restoring an application from a given backup. The
+Ondat Snapshots feature integrates with Kasten K10 to provide restore
+functionality.&lt;/p&gt;
+&lt;h1 id=&#34;how-does-it-work&#34;&gt;How does it work?&lt;/h1&gt;
+&lt;p&gt;The Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/volume-snapshots/&#34;&gt;Volume
+Snapshots&lt;/a&gt;
+feature provides users with a set of custom resource definitions (CRD) and APIs
+to create and manage volume snapshots. Storage providers can then implement the
+necessary CSI APIs to integrate with this feature. This is exactly what we’ve
+done at Ondat. Additional tools, like Kasten K10, can then be utilised to
+orchestrate and automate snapshotting, backups and restores.&lt;/p&gt;
+&lt;p&gt;Please see the &lt;a href=&#34;/docs/operations/backups-and-restores-with-kastenk10&#34;&gt;Backups and restores with Kasten
+K10&lt;/a&gt; for a full
+walk through.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The Ondat Snapshot feature is not fully CSI compliant. As such the feature
+can only be used with Kasten K10 and with restoration from an external backup.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;scope-and-limitations&#34;&gt;Scope and limitations&lt;/h1&gt;
+&lt;p&gt;The feature has the following limitations:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The feature has been designed to work with Kasten K10 only. This is not a
+fully CSI compliant implementation of the spec.&lt;/li&gt;
+&lt;li&gt;Restoring via Kasten 10 from a “local snapshot” is not supported with the
+Ondat Snapshot feature. Users may only restore applications using a Kasten K10
+“External backup”.&lt;/li&gt;
+&lt;li&gt;Snapshotting RWX volumes is not supported. This is because it is next to
+impossible to ensure that a NFS mounted volume is in a suitable state for
+snapshotting. For RWX volumes, the user only has access to the filesystem on
+the NFS client. It is not possible to run &lt;code&gt;fsfreeze&lt;/code&gt; on this mountpoint - NFS
+does not support it. Thus the user can not quiesce the filesystem and we can
+not take a &amp;ldquo;consistent&amp;rdquo; snapshot.&lt;/li&gt;
 &lt;/ol&gt;
 
       </description>
@@ -1581,6 +2093,28 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Policies</title>
+      <link>/docs/concepts/policies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/policies/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat policies are a way to control user and group access to Ondat
+&lt;a href=&#34;/docs/concepts/namespaces&#34;&gt;Namespaces&lt;/a&gt;. To grant a user or group
+access to a namespace, a policy needs to be created mapping the user or group
+to the namespace.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Users always have access to the default namespace&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For more information on how to use policies, see the
+&lt;a href=&#34;/docs/operations/policies&#34;&gt;Policies operations&lt;/a&gt; page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Rancher Kubernetes Engine (RKE)</title>
       <link>/docs/install/rancher/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1870,6 +2404,199 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;To obtain a licence, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Replication</title>
+      <link>/docs/concepts/replication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/replication/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat replicates volumes across nodes for data protection and high
+availability. Synchronous replication ensures strong consistency for
+applications such as databases and Elasticsearch, incurring one network round
+trip on writes.&lt;/p&gt;
+&lt;p&gt;The basic model for Ondat replication is of a master volume with distributed
+replicas. Each volume can be replicated between 0 and 5 times, which are
+provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster.&lt;/p&gt;
+&lt;p&gt;In this diagram, the master volume &lt;code&gt;D&lt;/code&gt; was created on node 1, and two replicas,
+&lt;code&gt;D2&lt;/code&gt; and &lt;code&gt;D3&lt;/code&gt; on nodes 3 and 5.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/high-availability.png&#34; alt=&#34;Ondat replication&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Writes that come into &lt;code&gt;D&lt;/code&gt; (step 1) are written in parallel to &lt;code&gt;D2&lt;/code&gt; and &lt;code&gt;D3&lt;/code&gt;
+(step 2). When both replicas and the master acknowledge that the data has been
+written (step 3), the write operation return successfully to the application
+(step 4).&lt;/p&gt;
+&lt;p&gt;For most applications, one replica is sufficient (&lt;code&gt;storageos.com/replicas=1&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;All replication traffic on the wire is compressed using the lz4 algorithm, then
+streamed over tcp/ip to target port tcp/5703.&lt;/p&gt;
+&lt;p&gt;If the master volume is lost, a replica is promoted to master (&lt;code&gt;D2&lt;/code&gt; or &lt;code&gt;D3&lt;/code&gt;
+above) and a new replica is created and synced on an available node (Node 2 or
+4). This is transparent to the application and does not cause downtime.&lt;/p&gt;
+&lt;p&gt;If a replica volume is lost and there are enough remaining nodes, a new replica
+is created and synced on an available node. While a new replica is created and
+being synced, the volume&amp;rsquo;s health will be marked as degraded.&lt;/p&gt;
+&lt;p&gt;If the lost replica comes back online before the new replica has finished
+synchronizing, then Ondat will calculate which of the two synchronizing
+replicas has the smallest difference compared to the master volume and keep
+that replica. The same holds true if a master volume is lost and a replica is
+promoted to be the new master. If possible, a new replica will be created and
+begin to sync. Should the former master come back online it will be demoted to
+a replica and the replica will the smallest difference to the current master
+will be kept.&lt;/p&gt;
+&lt;p&gt;While the replica count is controllable on a per-volume basis, some
+environments may prefer to set &lt;a href=&#34;/docs/reference/labels#storageos-storageclass-labels&#34;&gt;default labels on the StorageClass&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;delta-sync&#34;&gt;Delta Sync&lt;/h2&gt;
+&lt;p&gt;Ondat implements a delta sync between a volume master and its replicas.
+This means that if a replica for a volume goes offline, that when the replica
+comes back online only the regions with changed blocks need to be synchronized.
+This optimization reduces the time it takes for replicas to catch up, improving
+volume resilience. Additionally, it reduces network and IO bandwidth which can
+reduce costs when running in public clouds.&lt;/p&gt;
+&lt;h2 id=&#34;topology-aware-placement&#34;&gt;Topology-Aware Placement&lt;/h2&gt;
+&lt;p&gt;Ondat Topology-Aware Placement is a feature that enforces placement of data
+across failure domains to guarantee high availability.&lt;/p&gt;
+&lt;p&gt;TAP uses default labels on nodes to define failure domains. For instance, an
+Availability Zone. For more detail on TAP, check the
+&lt;a href=&#34;/docs/reference/tap&#34;&gt;reference page&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;failure-modes&#34;&gt;Failure Modes&lt;/h2&gt;
+&lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s
+mode of operation in the face of replica failure. If the failure mode is not
+specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically
+updated at runtime.&lt;/p&gt;
+&lt;h3 id=&#34;hard&#34;&gt;Hard&lt;/h3&gt;
+&lt;p&gt;Hard failure mode requires that the number of declared replicas matches the
+available number of replicas at all times. If a replica fails Ondat will
+attempt creation of a new replica for 90 seconds. After 90s if the old replica
+is not available and a new replica cannot be provisioned, Ondat cannot
+guarantee that the data is stored on the number of multiple nodes requested by
+the user. Ondat will therefore set the volume to be read-only.&lt;/p&gt;
+&lt;p&gt;If a volume has gone read-only there are two stages to making it read-write
+again. Firstly, sufficient replicas must be provisioned to match the desired
+replica count. Depending on your environment, additional nodes and/or disk
+capacity may be required for this. Secondly, the volume must be remounted -
+necessitating pod deletion/recreation in Kubernetes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: hard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for hard failure mode&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When a node fails, a new replica is provisioned and synced as described above.
+To ensure that a new replica can always be created, an additional node should
+be available. To guarantee high availability using &lt;code&gt;storageos.com/failure-mode: hard&lt;/code&gt;, clusters using volumes with 1 replica must have at least 3 storage
+nodes. When using volumes with 2 replicas, at least 4 storage nodes, 3
+replicas, 5 nodes, etc.&lt;/p&gt;
+&lt;p&gt;Minimum number of storage nodes = 1 (primary) + N (replicas) + 1&lt;/p&gt;
+&lt;h3 id=&#34;soft&#34;&gt;Soft&lt;/h3&gt;
+&lt;p&gt;Soft failure mode allows a volume to continue serving I/O even when a replica
+goes offline and a new replica fails to provision. So long as there are not
+less than max(1,  n-1) available replicas where n is the number of replicas for
+the volume.&lt;/p&gt;
+&lt;p&gt;For example, if a volume with 2 replicas loses 1 replica, then I/O would
+continue to be served since 1 replica remaining &amp;gt;= max(1, 1). If a volume with
+1 replica loses 1 replica, then I/O would halt after 90 seconds since 0
+replicas remaining &amp;lt; max(1, 0).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: soft
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for soft failure mode&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To ensure that a &lt;code&gt;storageos.com/failure-mode: soft &lt;/code&gt; volume is highly available, clusters using volumes with 1 replica must have at
+least 2 storage nodes. When using volumes with 2 replicas, at least 3 storage
+nodes, 3 replicas, 3 nodes, etc.&lt;/p&gt;
+&lt;p&gt;Minimum number of storage nodes = 1 (primary) + N (replicas)&lt;/p&gt;
+&lt;h3 id=&#34;threshold&#34;&gt;Threshold&lt;/h3&gt;
+&lt;p&gt;Threshold failure mode allows the user to set the minimum required number of
+online replicas for a volume. For example for a volume with 2 replicas, setting
+the threshold to 1 would allow a single replica to be offline, whereas setting
+threshold to 0 would allow 2 replicas to be offline.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;0-5&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for threshold failure mode&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The minimum number of nodes for a &lt;code&gt;threshold&lt;/code&gt; volume is determined by the
+threshold that is set.&lt;/p&gt;
+&lt;p&gt;Minimum number of storage nodes = 1 (primary) + T (threshold)&lt;/p&gt;
+&lt;h3 id=&#34;alwayson&#34;&gt;AlwaysOn&lt;/h3&gt;
+&lt;p&gt;AlwaysOn failure mode allows all replicas for a volume to be offline and keeps
+the volume writeable. A volume with failure mode AlwaysOn will continue to
+serve I/O regardless of how many replicas it currently has. This mode should be
+used with caution as it effectively allows for only a single copy of the data
+to be available.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: alwayson
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for AlwaysOn failure mode&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A &lt;code&gt;storageos.com/failure-mode: alwayson&lt;/code&gt; volume is highly available albeit at
+the cost of reliability. The minimum node count here is 1 as the loss of all
+replicas will be tolerated.&lt;/p&gt;
+&lt;p&gt;Minimum number of storage nodes = 1 (primary)&lt;/p&gt;
+&lt;p&gt;For details about how to use the labels on the VolumesCheck, see the &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;failure modes operations&lt;/a&gt; page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Volumes</title>
+      <link>/docs/concepts/volumes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/volumes/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat volumes are a logical construct which represent a writeable volume
+and exhibit standard POSIX semantics. Ondat presents volumes as mounts into
+containers via the Linux LIO subsystem.&lt;/p&gt;
+&lt;p&gt;Conceptually, Ondat volumes have a frontend presentation, which is what
+the application sees, and a backend presentation, which is the actual on-disk
+format. Depending on the configuration, frontend and backend components may be
+on the same or different hosts.&lt;/p&gt;
+&lt;p&gt;Volumes are formatted using the linux standard ext4 filesystem by default.
+Kubernetes users may change the default filesystem type to ext2, ext3, ext4, or
+xfs by setting the fsType parameter in their StorageClass (see &lt;a href=&#34;/docs/reference/filesystems#persistent-volume-filesystems&#34;&gt;Supported Filesystems&lt;/a&gt; for more
+information). Different filesystems may be supported in the future.&lt;/p&gt;
+&lt;p&gt;Ondat volumes are represented on disk in two parts. Actual volume data is
+written to blob files in &lt;code&gt;/var/lib/storageos/data/dev[\d+]&lt;/code&gt;. Inside these
+directories, each Ondat block device gets two blob files of the form
+&lt;code&gt;vol.xxxxxx.y.blob&lt;/code&gt;, where x is the inode number for the device, and y is an
+index between 0 and 1. We provide two blob files in order to ensure that
+certain operations which require locking do not impede in-flight writes to the
+volume.&lt;/p&gt;
+&lt;p&gt;In systems which have multiple &lt;code&gt;/var/lib/storageos/data/dev[\d+]&lt;/code&gt; directories,
+two blob files are created per block device. This allows us to load-balance
+writes across multiple devices. In cases where dev directories are added after
+a period of runtime, later directories are favoured for writes until the data
+is distributed evenly across the blob files.&lt;/p&gt;
+&lt;p&gt;Metadata is kept in directories named &lt;code&gt;/var/lib/storageos/data/db[\d+]&lt;/code&gt;. We
+maintain an index of all blocks written to the blob file inside the metadata
+store, including checksums. These checksums allow us to detect bitrot, and
+return errors on reads, rather than serve bad data. In future versions we may
+implement recovery from replicas for volumes with one or more replicas defined.&lt;/p&gt;
+&lt;p&gt;Ondat metadata requires approximately 2.7GB of storage per 1TiB of allocated
+blocks in the associated volume. This size is consistent irrespective of data
+compression defined on the volume.&lt;/p&gt;
+&lt;p&gt;To ensure deterministic performance, individual Ondat volumes must fit on a single
+node.&lt;/p&gt;
+&lt;h2 id=&#34;minimum-volume-size&#34;&gt;Minimum Volume Size&lt;/h2&gt;
+&lt;p&gt;The minimum volume size Ondat supports is 1GB.&lt;/p&gt;
+&lt;h2 id=&#34;trim&#34;&gt;TRIM&lt;/h2&gt;
+&lt;p&gt;Ondat volumes support TRIM/Unmap which allows the space allocated to
+deleted blocks to be reclaimed from the backend blob files that back each
+volume when a TRIM call is made. Support for TRIM is enabled by default for all
+uncompressed volumes, volumes are created without compression enabled by
+default. For more information on how to TRIM a filesystem, see &lt;a href=&#34;/docs/operations/trim&#34;&gt;TRIM operations&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;volume-resize&#34;&gt;Volume Resize&lt;/h2&gt;
+&lt;p&gt;Ondat supports offline resize of volumes. This means that a volume cannot be
+resized while it is in use. Furthermore, in order for a resize operation to
+take place the volume must not be attached to a node. This is to ensure that
+the volume is not in use.&lt;/p&gt;
+&lt;p&gt;This means that if a Kubernetes pod is currently consuming a volume that a
+resize request has been issued for, the resize will not be actioned until the
+pod is terminated and the volume is detached from the node. The Ondat
+controlplane will then attach the volume to the node that holds the master
+deployment and resize the underlying block device and then run resize2fs to
+expand the filesystem.&lt;/p&gt;
+&lt;p&gt;For a walkthrough of how to resize a volume, see the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/p&gt;
+&lt;h2 id=&#34;volume-encryption&#34;&gt;Volume Encryption&lt;/h2&gt;
+&lt;p&gt;Volumes can be configured on creation to have encryption-at-rest. Data
+is encrypted with XTS-AES and decrypted upon use. Please see
+the &lt;a href=&#34;/docs/reference/encryption&#34;&gt;Encryption&lt;/a&gt; reference page for
+more information.&lt;/p&gt;
 
       </description>
     </item>
@@ -5365,1277 +6092,6 @@ kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt;
 is no replacement for testing actual production or production like workloads.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Ondat invites you to provide feedback on your self-evaluation to the &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack channel&lt;/a&gt; or by directly emailing us at &lt;a href=&#34;mailto:info@ondat.io&#34;&gt;info@ondat.io&lt;/a&gt;.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Admission Controller</title>
-      <link>/docs/reference/scheduler/admission-controller/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/scheduler/admission-controller/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat implements a &lt;code&gt;MutatingAdmissionWebhook&lt;/code&gt; &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks&#34;&gt;Admission
-Controller&lt;/a&gt;
-to ensure that Pods using Ondat Volumes use the &lt;a href=&#34;/docs/reference/scheduler/&#34;&gt;storageos-scheduler&lt;/a&gt;. An admission controller intercepts
-requests to the Kubernetes API server prior to persistence of the object, but
-after the request is authenticated and authorized.&lt;/p&gt;
-&lt;p&gt;The Admission Controller is responsible for mutating the PodSpec at creation time
-to populate the &lt;code&gt;PodSpec.schedulerName&lt;/code&gt; field with the name of the Ondat
-Scheduler - &lt;code&gt;storageos-scheduler&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;During Pod creation, Kubernetes sends a web request to the Ondat
-WebHook with the Pod specification. The PodSpec is only altered to use the
-Ondat scheduler if the Pod uses an Ondat volume.&lt;/p&gt;
-&lt;h2 id=&#34;web-server&#34;&gt;Web Server&lt;/h2&gt;
-&lt;p&gt;The Web Server hosting the web hook is executed in the Ondat Cluster
-Operator. Since only HTTPS requests are allowed, the Operator generates a
-self-signed x509 certificate every time it starts. The Cluster Operator will
-also renew certificates upon expiry (certs are valid for one year).&lt;/p&gt;
-&lt;p&gt;There is no manual intervention required regarding the SSL configuration as the
-setup is completely transparent between Ondat and Kubernetes.&lt;/p&gt;
-&lt;h2 id=&#34;skipping-mutation&#34;&gt;Skipping Mutation&lt;/h2&gt;
-&lt;p&gt;To avoid scheduler mutation, the &lt;code&gt;storageos.com/scheduler=false&lt;/code&gt; annotation can
-be added to resources that use Ondat volumes.&lt;/p&gt;
-&lt;p&gt;When using StatefulSets the annotation can be set on the &lt;code&gt;spec.template.metadata.annotations&lt;/code&gt; field.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;apps/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StatefulSet&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;template&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;annotations&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/scheduler&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;false&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# N.B. the value must be a string and not a boolean&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;When using Pods the annotation is set on the &lt;code&gt;metadata.annotations&lt;/code&gt; field.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Pod&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;annotations&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;        &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageos.com/scheduler&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;false&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# N.B. the value must be a string and not a boolean&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;explicit-schedulername&#34;&gt;Explicit SchedulerName&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 It is not necessary to explicitly set the SchedulerName as the &lt;a href=&#34;/docs/reference/scheduler/admission-controller&#34;&gt;Admission
-Controller&lt;/a&gt;
-automatically populates the PodSpec field. Set the SchedulerName in your
-manifests, manually, only if you disable or can&amp;rsquo;t execute the Ondat
-Admission Controller.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Kubernetes allows the use of different schedulers by setting the field
-&lt;code&gt;.spec.schedulerName: storageos-scheduler&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;For instance a Pod manifest utilising the Ondat scheduler would appear as follows:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: v1
-kind: Pod
-metadata:
-  name: d1
-spec:
-  schedulerName: storageos-scheduler &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# --&amp;gt; Ondat Scheduler&lt;/span&gt;
-                                     &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# No need if using Admission Controller&lt;/span&gt;
-                                     &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# (enabled by default)&lt;/span&gt;
-  containers:
-    - name: debian
-      image: debian:9-slim
-      command: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/bin/sleep&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-      args: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;3600&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-      volumeMounts:
-        - mountPath: /mnt
-          name: v1
-  volumes:
-    - name: v1
-      persistentVolumeClaim:
-        claimName: persistent-volume &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# ----&amp;gt; Ondat PVC&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;compatibility&#34;&gt;Compatibility&lt;/h2&gt;
-&lt;p&gt;The Admission Controller doesn&amp;rsquo;t need to be enabled at Kubernetes cluster
-bootstrap time because it is a &lt;code&gt;Dynamic Admission Controller&lt;/code&gt;. Hence, any
-cluster that has the &lt;code&gt;MutatingAdmissionWebhook&lt;/code&gt; enabled is supported. Most
-Kubernetes cluster enable the Webhook admission controller by default.&lt;/p&gt;
-&lt;p&gt;The
-&lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#mutatingadmissionwebhook&#34;&gt;MutatingAdmissionWebhook&lt;/a&gt;
-is available from Kubernetes v1.13.&lt;/p&gt;
-&lt;p&gt;You can check your Kubernetes cluster compatibility by checking if the
-following object exists.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl api-versions &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep admissionregistration.k8s.io
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Apply</title>
-      <link>/docs/reference/cli/apply/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/cli/apply/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;apply-changes-to-resources&#34;&gt;Apply changes to resources&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos apply --help
-Make changes to existing resources
-
-Usage:
-  storageos apply &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;command&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Available Commands:
-  licence     Apply a product licence to the cluster
-
-Flags:
-  -h, --help   &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; apply
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-
-Use &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos apply [command] --help&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information about a command.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;apply-license&#34;&gt;Apply License&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos apply licence --help
-
-Apply a product licence to the cluster
-
-Usage:
-  storageos apply licence &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Aliases:
-  licence, license
-
-Examples:
-
-$ storageos apply licence --from-file &amp;lt;path-to-licence-file&amp;gt;
-
-$ &lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&amp;lt;licence file contents&amp;gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; storageos apply licence --from-stdin 
-
-
-Flags:
-      --cas string         make changes to a resource conditional upon matching the provided version
-      --from-file string   reads an Ondat product licence from a specified file path
-      --from-stdin         reads an Ondat product licence from the standard input
-  -h, --help               &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; licence
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Attach</title>
-      <link>/docs/reference/cli/attach/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/cli/attach/</guid>
-      <description>
-        
-        
-        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos attach --help
-
-Attach a volume to a node
-
-Usage:
-  storageos attach &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos attach --namespace my-namespace-name my-volume my-node
-
-
-Flags:
-  -h, --help   &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; attach
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Backup and restores with Ondat Snapshots and Kasten K10</title>
-      <link>/docs/operations/backups-and-restores-with-kastenk10/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/backups-and-restores-with-kastenk10/</guid>
-      <description>
-        
-        
-        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-&lt;p&gt;This guide will walk you through how to use the Ondat Snapshots feature to
-backup and restore your Kubernetes applications using Kasten K10. Before
-starting please consult the &lt;a href=&#34;/docs/concepts/snapshots&#34;&gt;Snapshots
-Concepts&lt;/a&gt; page for an overview of the feature.&lt;/p&gt;
-&lt;p&gt;We’ll now run through the steps required to configure and utilise the feature:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Installing Ondat&lt;/li&gt;
-&lt;li&gt;Installing the Kubernetes snapshot CRDs&lt;/li&gt;
-&lt;li&gt;Configuring the Ondat VolumeSnapshotClass&lt;/li&gt;
-&lt;li&gt;Installing and configuring Kasten K10&lt;/li&gt;
-&lt;li&gt;Backup and restore walkthrough:
-&lt;ol&gt;
-&lt;li&gt;Creating an example application&lt;/li&gt;
-&lt;li&gt;Creating a backup policy&lt;/li&gt;
-&lt;li&gt;Adding pre/post-snapshot hooks to quiesce the application/filesystem&lt;/li&gt;
-&lt;li&gt;Manually running a backup job&lt;/li&gt;
-&lt;li&gt;Restoring an application from a backup&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;1-installing-ondat&#34;&gt;1: Installing Ondat&lt;/h1&gt;
-&lt;p&gt;Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
-first time then please follow the instructions
-&lt;a href=&#34;/docs/install/&#34;&gt;here&lt;/a&gt;. If you are upgrading an existing
-Ondat deployment then please follow the instructions
-&lt;a href=&#34;/docs/upgrade/upgrade/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id=&#34;2-installing-the-kubernetes-snapshot-crds&#34;&gt;2: Installing the Kubernetes snapshot CRDs&lt;/h1&gt;
-&lt;p&gt;In order to use the Kubernetes snapshot feature the Kubernetes snapshot CRDs
-and the &lt;code&gt;snapshot-controller&lt;/code&gt; must be installed. Most distributions don’t
-install these by default. To install the &lt;code&gt;VolumeSnapshots&lt;/code&gt;,
-&lt;code&gt;VolumeSnapshotContents&lt;/code&gt; and &lt;code&gt;VolumeSnapshotClasses&lt;/code&gt; CRDs run the following:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
-kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
-kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now you need to install the &lt;code&gt;snapshot-controller&lt;/code&gt;. The
-&lt;a href=&#34;https://kubernetes-csi.github.io/docs/snapshot-controller.html&#34;&gt;snapshot controller&lt;/a&gt;
-monitors the Kubernetes API server for &lt;code&gt;VolumeSnapshot&lt;/code&gt; and &lt;code&gt;VolumeSnapshotContent&lt;/code&gt;
-CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install
-the controller with the following command:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
-$ kubectl apply -f
-https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note: it’s important that v6.0 is used for the CRDs and the &lt;code&gt;snapshot-controller&lt;/code&gt;.
-Other versions may work or may appear to work, but have not been formally tested
-and ratified by Ondat.&lt;/p&gt;
-&lt;h1 id=&#34;3-configuring-the-ondat-volumesnapshotclass&#34;&gt;3: Configuring the Ondat VolumeSnapshotClass&lt;/h1&gt;
-&lt;p&gt;In order to utilise the Ondat CSI plugin with the Kubernetes snapshot feature, one
-must provide a &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; for the Ondat CSI plugin. Once the CRDs and the
-&lt;code&gt;snapshot-controller&lt;/code&gt; have been installed edit your &lt;code&gt;StorageOSCluster&lt;/code&gt; to add:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;spec:
-  snapshots:
-    volumeSnapshotClassName: $EXAMPLE_NAME
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This will prompt the Ondat operator to create a &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; named
-&lt;code&gt;$EXAMPLE_NAME&lt;/code&gt; and configure it for use with Kasten K10. You can edit your
-&lt;code&gt;StorageOSCluster&lt;/code&gt; by using the following command:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl -n storageos edit storageosclusters.storageos.com cluster
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You can view the &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; by running:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl get volumesnapshotclasses
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl describe volumesnapshotclasses $EXAMPLE_NAME
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;You’ll notice the &lt;code&gt;VolumeSnapshotClass&lt;/code&gt; contains the &lt;code&gt;k10.kasten.io/is-snapshot-class: true&lt;/code&gt;
-annotation. This is very important and allows Kasten K10 to utilise the Ondat storage plugin.&lt;/p&gt;
-&lt;h1 id=&#34;4-installing-kasten-k10&#34;&gt;4: Installing Kasten K10&lt;/h1&gt;
-&lt;p&gt;The next step is to install Kasten K10 on your cluster. Instructions for how to do this can
-be found &lt;a href=&#34;https://docs.kasten.io/latest/install/install.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The remainder of this walk through will assume you have access to the Kasten K10 UI. You
-can install it following the instructions
-&lt;a href=&#34;https://docs.kasten.io/latest/access/dashboard.html&#34;&gt;here&lt;/a&gt;. Everything we do in the
-following steps may be done via &lt;code&gt;kubectl&lt;/code&gt; and the command-line, however this is not shown
-in this guide.&lt;/p&gt;
-&lt;p&gt;Once K10 is installed you can then create a &amp;ldquo;Profile&amp;rdquo; and configure the backup location.
-Instructions on how to do this can be found
-&lt;a href=&#34;https://docs.kasten.io/latest/api/profiles.html#&#34;&gt;here&lt;/a&gt;. It’s also possible to do this via the UI.&lt;/p&gt;
-&lt;h1 id=&#34;5-backup-and-restore-example&#34;&gt;5: Backup and restore example&lt;/h1&gt;
-&lt;p&gt;In the following sections, we’ll create a toy application and run through the steps required to
-back it up and restore from it.&lt;/p&gt;
-&lt;h2 id=&#34;51-creating-an-example-application&#34;&gt;5.1: Creating an example application&lt;/h2&gt;
-&lt;p&gt;Start by creating an example deployment in a new namespace &lt;code&gt;ondat-test&lt;/code&gt;, which utilises a Ondat PVC:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl create namespace ondat-test
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then apply the following configuration using &lt;code&gt;kubectl create -f&lt;/code&gt;:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mypvc
-  namespace: ondat-test
-spec:
-  storageClassName: storageos
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp-deployment
-  namespace: ondat-test
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: date
-        image: debian:9-slim
-        command: [&amp;quot;/bin/sh&amp;quot;,&amp;quot;-c&amp;quot;]
-        args: [&amp;quot;while true; do /bin/date | /usr/bin/tee -a /mnt/date ; /bin/sleep 5; done&amp;quot;]
-        volumeMounts:
-          - mountPath: /mnt
-            name: data-mount
-      - name: sidecar
-        image: debian:9-slim
-        command: [&amp;quot;/bin/sh&amp;quot;,&amp;quot;-c&amp;quot;]
-        args: [&amp;quot;/bin/sleep 3600&amp;quot;]
-        securityContext:
-          privileged: true
-        volumeMounts:
-          - mountPath: /mnt
-            name: data-mount
-      volumes:
-      - name: data-mount
-        persistentVolumeClaim:
-          claimName: mypvc
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This deployment creates a pod with 2 containers. The &lt;code&gt;date&lt;/code&gt; container will simply append
-the date to stdout and &lt;code&gt;/mnt/date&lt;/code&gt; every 5 seconds:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n ondat-test exec myapp-deployment-7749d9984-r57nk -c date -- cat /mnt/date | head
-Tue Jun 28 08:56:07 UTC 2022
-Tue Jun 28 08:59:01 UTC 2022
-Tue Jun 28 08:59:06 UTC 2022
-…
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The &lt;code&gt;sidecar&lt;/code&gt; container simply mounts in the PVC under &lt;code&gt;/mnt&lt;/code&gt; and then lies dormant.
-This container will be used during the snapshot process to quiesce the filesystem so
-a consistent snapshot can be taken. It serves no other purpose. Notice how this
-container must have the &lt;code&gt;privileged&lt;/code&gt; flag set to &lt;code&gt;true&lt;/code&gt;. This is necessary to run
-the &lt;code&gt;fsfreeze&lt;/code&gt; command.&lt;/p&gt;
-&lt;h2 id=&#34;52-adding-prepost-snapshot-hooks-to-quiesce-the-applicationfilesystem&#34;&gt;5.2: Adding pre/post-snapshot hooks to quiesce the application/filesystem&lt;/h2&gt;
-&lt;p&gt;In order to take a snapshot of an application we must first quiesce the application
-and the underlying filesystem.&lt;/p&gt;
-&lt;p&gt;Quiescing the application means putting it into a paused state where all on-going
-operations have completed and no new operations are started. How to do this depends
-on what sort of application you are running. For example, a database application may
-want to ensure that all in progress transactions are committed and flushed and no
-new transactions are started. An application which is buffering data and writing
-it to a file may want to ensure that the full write has been completed and the data
-has been &lt;code&gt;sync&lt;/code&gt;’d.&lt;/p&gt;
-&lt;p&gt;Quiescing the filesystem is required in addition to quiescing the application and
-must always be done when using the Ondat Snapshots feature. This step should be
-done after quiescing the application and is achieved by doing an &lt;code&gt;fsfreeze --freeze&lt;/code&gt;
-on the mounted filesystem. &lt;code&gt;fsfreeze&lt;/code&gt; halts access to the filesystem such that any
-attempts to issue IO to the filesystem are blocked until the filesystem is unfrozen.
-It also ensures that any in progress filesystem operations are completed. This leaves
-the filesystem in a consistent state from which it is safe to take a snapshot.&lt;/p&gt;
-&lt;p&gt;After we are done taking the snapshot, we can run &lt;code&gt;fsfreeze --unfreeze&lt;/code&gt; to unfreeze
-the filesystem. If required, any steps to quiesce the application can then be performed.&lt;/p&gt;
-&lt;p&gt;To execute these &amp;ldquo;pre-snapshot&amp;rdquo; and &amp;ldquo;post-snapshot&amp;rdquo; operations one can use a
-&lt;a href=&#34;https://kanister.io/&#34;&gt;Kanister blueprint&lt;/a&gt; in conjunction with K10’s
-&lt;a href=&#34;https://docs.kasten.io/latest/kanister/hooks.html&#34;&gt;execution hooks&lt;/a&gt; feature.
-Kanister is an open source framework which allows users to automate application
-specific management tasks via yaml based configuration. Kasten K10 can leverage
-these blueprints to perform various actions pre and post-snapshot.&lt;/p&gt;
-&lt;p&gt;We’ll use the following blueprint to quiesce the filesystem before taking a
-snapshot and unquiesce it after taking the snapshot.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;We don’t perform any application level quiescing here as it’s not required
-for our toy application.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;For statefulsets the blueprint below can be used as a baseline, but change
-&lt;code&gt;kind&lt;/code&gt; to &lt;code&gt;StatefulSet&lt;/code&gt;, &lt;code&gt;Deployment.Namespace&lt;/code&gt; to &lt;code&gt;StatefulSet.Namespace&lt;/code&gt; and
-&lt;code&gt;Deployment.Pods&lt;/code&gt; to &lt;code&gt;StatefulSet.Pods&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: cr.kanister.io/v1alpha1
-kind: Blueprint
-metadata:
-  name: fsfreeze-hooks-deployment
-  namespace: kasten-io
-actions:
-  backupPrehook:
-    kind: Deployment # or StatefulSet
-    phases:
-    - func: KubeExec
-      name: fsfreeze
-      args:
-        namespace: &amp;quot;{{ .Deployment.Namespace }}&amp;quot;  # or StatefulSet.Namespace
-        pod: &amp;quot;{{ index .Deployment.Pods 0 }}&amp;quot;     # or StatefulSet.Pods
-        container: sidecar
-        command:
-        - bash
-        - -o
-        - errexit
-        - -o
-        - pipefail
-        - -o
-        - xtrace
-        - -c
-        - |
-          fsfreeze --freeze /mnt
-  backupPosthook:
-    kind: Deployment
-    phases:
-    - func: KubeExec
-      name: fsunfreeze
-      args:
-        namespace: &amp;quot;{{ .Deployment.Namespace }}&amp;quot;  # or StatefulSet.Namespace
-        pod: &amp;quot;{{ index .Deployment.Pods 0 }}&amp;quot;     # or StatefulSet.Pods
-        container: sidecar
-        command:
-        - bash
-        - -o
-        - errexit
-        - -o
-        - pipefail
-        - -o
-        - xtrace
-        - -c
-        - |
-          fsfreeze --unfreeze /mnt
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;If you have installed kasten into a namespace other than &lt;code&gt;kasten-io&lt;/code&gt; then
-you’ll have to modify the &lt;code&gt;namespace&lt;/code&gt; field in the above configuration.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Apply the blueprint with the &lt;code&gt;kubect create -f&lt;/code&gt; command. One can observe the
-blueprint like so:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n kasten-io get blueprints.cr.kanister.io
-NAME                                              AGE
-fsfreeze-hooks-deployment                         15h
-k10-deployment-generic-volume-2.0.20              3h2m
-k10-persistentvolumeclaim-generic-volume-2.0.20   3h19m
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;We must now annotate our deployment so that the aforementioned hooks are used at
-snapshot time:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl annotate deployment -n ondat-test myapp-deployment kanister.kasten.io/blueprint=&#39;fsfreeze-hooks-deployment&#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;53-setting-up-a-backup-policy&#34;&gt;5.3: Setting up a backup policy&lt;/h2&gt;
-&lt;p&gt;Ensure you have the Kasten K10 dashboard installed
-(see &lt;a href=&#34;https://docs.kasten.io/latest/access/dashboard.html&#34;&gt;here&lt;/a&gt;). It’s possible
-to do the steps in this section via &lt;code&gt;kubectl&lt;/code&gt; and the command-line. Please see the
-Kasten K10 documentation for how to do this.&lt;/p&gt;
-&lt;p&gt;Go to the &amp;ldquo;Policies&amp;rdquo; page and click &amp;ldquo;Create New Policy&amp;rdquo;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image1.png&#34; alt=&#34;CreatePolicy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Input a &amp;ldquo;Name&amp;rdquo; for the policy and set the &amp;ldquo;Backup Frequency&amp;rdquo; to &amp;ldquo;On Demand&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;Check the &amp;ldquo;Enable Backups via Snapshot Exports&amp;rdquo; field. This is &lt;strong&gt;very&lt;/strong&gt; important.
-The Ondat Snapshots feature only supports restoring from an external snapshot export.
-Set the &amp;ldquo;Export Location Profile&amp;rdquo; to the profile you previously set up in the
-&amp;ldquo;Installing Kasten K10&amp;rdquo; section.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image2.png&#34; alt=&#34;EditPolicy1&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Under &amp;ldquo;Select Applications&amp;rdquo;, check the &amp;ldquo;By Name&amp;rdquo; checkbox and search for the
-namespace &amp;ldquo;ondat-test&amp;rdquo;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image3.png&#34; alt=&#34;EditPolicy2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Leave everything else as is then click &lt;code&gt;Create Policy&lt;/code&gt; to create the policy.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Do not try to set the &lt;code&gt;Pre and Post-Snapshot Action Hooks&lt;/code&gt; in the &lt;code&gt;Advanced Settings&lt;/code&gt;
-section. This is taken care of by the steps in &amp;ldquo;Adding pre/post-snapshot hooks&amp;rdquo;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;54-manually-running-a-backup-job&#34;&gt;5.4: Manually running a backup job&lt;/h2&gt;
-&lt;p&gt;We can now manually run a job to backup our application. Browse to the dashboard
-homepage and select &amp;ldquo;Policies&amp;rdquo;. From there we can find our policy and initiate a
-backup by clicking &amp;ldquo;run once&amp;rdquo;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image4.png&#34; alt=&#34;RunPolicy1&#34;&gt;&lt;/p&gt;
-&lt;p&gt;If we navigate back to the dashboard we’ll see that our policy is running:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image5.png&#34; alt=&#34;RunPolicy2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;We can get further information on what is happening by clicking our policy in the
-&amp;ldquo;Actions&amp;rdquo; section. When the policy has successfully ran we’ll see a page like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image6.png&#34; alt=&#34;RunPolicy3&#34;&gt;&lt;/p&gt;
-&lt;p&gt;In order to save space and reduce copy-on-write latency on the parent volume
-we should now manually delete the &lt;code&gt;VolumeSnapshot&lt;/code&gt; object associated with our
-snapshot. This instructs Ondat that we are done with the snapshot.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl get volumesnapshots -n ondat-test
-NAME                            READYTOUSE   SOURCEPVC   SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS             SNAPSHOTCONTENT                                    CREATIONTIME   AGE
-k10-csi-snap-wlxhw8vf9dx4qtq2   true         mypvc                               2Gi           csi-storageos-snapclass   snapcontent-359f9126-f428-4dbf-82da-932a74d10e83   40m            40m
-
-$ kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
-volumesnapshot.snapshot.storage.k8s.io &amp;quot;k10-csi-snap-wlxhw8vf9dx4qtq2&amp;quot; deleted
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;55-restoring-an-application-from-a-backup&#34;&gt;5.5: Restoring an application from a backup&lt;/h2&gt;
-&lt;p&gt;Let’s emulate a disaster recovery scenario, by deleting our deployment:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl delete -n ondat-test deployments.apps myapp-deployment
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now let’s restore it. First go to the dashboard and select &amp;ldquo;Applications&amp;rdquo;.
-From there find &amp;ldquo;ondat-test&amp;rdquo; and select &amp;ldquo;restore&amp;rdquo;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image7.png&#34; alt=&#34;Restore1&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Select the backup you wish to restore from, in this example we’ll select
-&amp;ldquo;Today, 12:51 pm&amp;rdquo;. When prompted to select an instance make sure you select
-the &amp;ldquo;EXPORTED&amp;rdquo; instance which has been backed up to S3. The Ondat Snapshots
-feature does not support restoring from a local backup:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image8.png&#34; alt=&#34;Restore2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Kasten provides various restore options at this point, but we’ll just leave
-everything else defaulted. See the Kasten K10 documentation for more information.
-Click &amp;ldquo;Restore&amp;rdquo; to start the restore process and to restore the application from
-the backup.&lt;/p&gt;
-&lt;p&gt;One can now browse back to the dashboard and watch the &amp;ldquo;Restore&amp;rdquo; operation
-progress. Like before, one can click on the drill down into the operation by
-clicking the relevant restore pane under the &amp;ldquo;Actions&amp;rdquo; sections.&lt;/p&gt;
-&lt;p&gt;Once the restore job has finished you’ll see a screen like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/operations/backups/image9.png&#34; alt=&#34;Restore3&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Let’s check our application is running:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl get -n ondat-test deployments.apps myapp-deployment
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-myapp-deployment   1/1     1            1           10m
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And let’s view the contents of the &amp;ldquo;/mnt/date&amp;rdquo; in the application’s pod:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n ondat-test exec myapp-deployment-7749d9984-p7jzp -c date --  cat /mnt/date
-Tue Jun 28 08:56:07 UTC 2022
-Tue Jun 28 08:59:01 UTC 2022
-…
-Tue Jun 28 11:50:40 UTC 2022
-Tue Jun 28 11:50:45 UTC 2022
-Tue Jun 28 11:58:33 UTC 2022
-Tue Jun 28 11:58:38 UTC 2022
-…
-Tue Jun 28 12:10:29 UTC 2022
-Tue Jun 28 12:10:34 UTC 2022
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Notice how there’s an 8 minute gap between 11:50:45 and 11:58:33. This coincides
-with the snapshot being taken at circa 11:51 (UTC) and being restored at 11:58 (UTC).&lt;/p&gt;
-&lt;h2 id=&#34;known-issues-and-gotchas&#34;&gt;Known issues and gotchas&lt;/h2&gt;
-&lt;h3 id=&#34;deletion-of-volumesnapshot&#34;&gt;Deletion of VolumeSnapshot&lt;/h3&gt;
-&lt;p&gt;Ideally the Kubernetes &lt;code&gt;VolumeSnapshot&lt;/code&gt; object should be deleted as soon as the
-application has been backed up externally. There’s no reason to keep the snapshot
-as it can’t be meaningfully used. Furthermore, it takes up space on the local node
-and can cause a slight performance degradation for IO to the parent volume. At the
-moment, there is no good way to automate this procedure. Consequently users should:
-set their snapshot retention policy to 1 hourly snapshot when setting up a backup
-policy. This does not fix the issue, but ensures that the snapshot is removed within
-an hour of been taken. It is also possible to remove the snapshot manually by
-running &lt;code&gt;kubectl delete volumesnapshots -n &amp;lt;app_namespace&amp;gt; &amp;lt;snapshot&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;performance-implications&#34;&gt;Performance implications&lt;/h3&gt;
-&lt;p&gt;The Ondat snapshots feature utilises copy-on-write semantics under the hood. This
-means while a &lt;code&gt;VolumeSnapshot&lt;/code&gt; object exists any blocks which are written to the
-parent volume invoke an extra read and write operation as blocks are copied into
-the snapshot object. The performance decrease incurred by this overhead is dependent
-on: the size of the volume, the speed of the underlying storage, the amount of
-data in the page cache and a myriad of other factors. Once the snapshot(s)
-associated with a volume are deleted, performance will return to baseline.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Cassandra</title>
-      <link>/docs/usecases/cassandra/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/usecases/cassandra/</guid>
-      <description>
-        
-        
-        &lt;p&gt;&lt;img src=&#34;/images/docs/explore/cassandralogo.png&#34; alt=&#34;cassandra log&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Cassandra is a popular distributed NoSQL open source database.&lt;/p&gt;
-&lt;p&gt;Using Ondat persistent volumes with Cassandra means that if a Cassandra pod
-fails, the cluster is only in a degraded state for as long as it takes
-Kubernetes to restart the pod. When the pod comes back up the pod data is
-immediately available. Should Kubernetes schedule the Cassandra pod on a
-new node, Ondat allows for the data to be available to the pod,
-irrespective of whether or not an Ondat master is located on the same node.&lt;/p&gt;
-&lt;p&gt;As Cassandra has features to allow it to handle replication careful
-consideration of whether to allow Ondat or Cassandra to handle replication
-is required.&lt;/p&gt;
-&lt;p&gt;Before you start, ensure you have Ondat installed and ready on a Kubernetes
-cluster. &lt;a href=&#34;/docs/install/kubernetes&#34;&gt;See our guide on how to install Ondat on Kubernetes for more
-information&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;deploying-cassandra-on-kubernetes&#34;&gt;Deploying Cassandra on Kubernetes&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;You can find the latest files in the Ondat use cases repository&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/storageos/use-cases.git storageos-usecases
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;StatefulSet defintion&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;apps/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StatefulSet&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;cassandra&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;selector&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;matchLabels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;cassandra&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;serviceName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;cassandra&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;replicas&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeMounts&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;       &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;cassandra-data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;         &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;mountPath&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;/var/lib/cassandra&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;...&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;volumeClaimTemplates&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;- &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;cassandra-data&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;   &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;spec&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;accessModes&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ReadWriteOnce&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;]&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storageClassName&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ondat storageClass&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;     &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;resources&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;       &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;requests&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;         &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;storage&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;5Gi&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This excerpt is from the StatefulSet definition. This file contains the
-VolumeClaim template that will dynamically provision storage, using the
-Ondat storage class. Dynamic provisioning occurs as a volumeMount has
-been declared with the same name as a VolumeClaimTemplate.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Move into the Cassandra examples folder and create the objects&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-usecases
-kubectl create -f ./cassandra
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Confirm Cassandra is up and running.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get pods -w -l &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cassandra
-NAME          READY   STATUS    RESTARTS   AGE
-cassandra-0   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          8m32s
-cassandra-1   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          7m51s
-cassandra-2   1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6m36s
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Connect to the Cassandra client pod and connect to the Cassandra server through the
-service&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -it cassandra-0 -- cqlsh cassandra-0.cassandra
-Connected to K8Demo at cassandra-0.cassandra:9042.
-&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;cqlsh 5.0.1 &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; Cassandra 3.11.3 &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; CQL spec 3.4.4 &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; Native protocol v4&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-Use HELP &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; help.
-cqlsh&amp;gt; SELECT cluster_name, listen_address FROM system.local&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt;
-
- cluster_name &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; listen_address
---------------+----------------
-       K8Demo &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt;   100.96.7.124
-
-&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; rows&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Cluster Health</title>
-      <link>/docs/operations/health/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/health/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Various tools are available for checking on the status of a cluster.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;/docs/reference/cli/&#34;&gt;CLI&lt;/a&gt; displays the
-status of nodes in the cluster.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos get nodes
-NAME        HEALTH  AGE             LABELS
-node1       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;44&lt;/span&gt; minutes ago
-node2       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;44&lt;/span&gt; minutes ago
-node3       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;44&lt;/span&gt; minutes ago
-node4       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;44&lt;/span&gt; minutes ago
-node5       online  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;44&lt;/span&gt; minutes ago
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Cluster Topologies</title>
-      <link>/docs/concepts/cluster-topologies/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/cluster-topologies/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;Ondat makes it possible for cluster administrators to design and implement different cluster topologies, depending on types of workloads, use cases, priorities and needs. The topology approaches recommended below are idealised representations of possible Ondat clusters and can be mixed, modified and changed at execution time.&lt;/p&gt;
-&lt;p&gt;Ondat performs file Input/Output (I/O) operations over the network, which is how the platform ensures that data is always available throughout your cluster. This also affords cluster administrators certain possibilities of organising their clusters in ways explained below.&lt;/p&gt;
-&lt;h3 id=&#34;hyper-converged-cluster-topology&#34;&gt;Hyper-converged Cluster Topology&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/hyperconverged.png&#34; alt=&#34;Hyper-converged Cluster Topology&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyper-converged_infrastructure&#34;&gt;&lt;em&gt;hyper-converged&lt;/em&gt;&lt;/a&gt; cluster topology model leverages the available block storage attached to all the worker nodes in a Kubernetes cluster, creating a single storage pool that stores and present data for stateful workloads deployed and running.
-&lt;ul&gt;
-&lt;li&gt;This cluster topology gives the best flexibility to Ondat and Kubernetes schedulers, and provides maximum choice for optimal pod placement when pods are being assigned to nodes in a cluster.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;No matter how or where workloads are deployed on worker nodes, Ondat will ensure that the data from workloads is stored, persistent and always accessible.&lt;/li&gt;
-&lt;li&gt;New Ondat deployments will place workloads locally where possible using this hyper-converged cluster topology out of the box.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;centralised-cluster-topology&#34;&gt;Centralised Cluster Topology&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/centralised.png&#34; alt=&#34;Centralised Cluster Topology&#34;&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;em&gt;centralised&lt;/em&gt; cluster topology model leverages the available block storage attached to only a &lt;em&gt;subset&lt;/em&gt; of worker nodes (creating a dedicated, storage-optimised &lt;a href=&#34;https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools&#34;&gt;node pool&lt;/a&gt;) in a Kubernetes cluster, whilst the rest of the worker nodes are dedicated to running general and compute-intensive workloads,
-&lt;ul&gt;
-&lt;li&gt;Deployed workloads in centralised cluster that require data persistency will access a dedicated storage pool that is located on the declared subset of worker nodes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;This cluster topology can be beneficial if, for example, cluster administers want to take advantage and effectively utilise high performance-optimised hardware components of a particular set of worker nodes for different types of workloads being deployed.&lt;/li&gt;
-&lt;li&gt;The cluster topology can also aid in avoiding downtime issues that can arise from unaccounted resource/capacity planning and allocation for workloads, since storage-optimised nodes and compute-optimised workloads are compartmentalised.&lt;/li&gt;
-&lt;li&gt;In addition, another suitable use case for this topology is for elastic worker node fleets with burst-able workloads. A fleet can be quickly expanded with new worker nodes for compute-intensive workloads on demand, whilst maintaining a centralised data storage pool that is not impacted by rapid auto cluster scaling.&lt;/li&gt;
-&lt;li&gt;To configure this cluster topology for a new Ondat deployment, cluster administrators would need to apply an Ondat node label called &lt;code&gt;storageos.com/computeonly&lt;/code&gt; to nodes, which would inform Ondat that it &lt;em&gt;should not&lt;/em&gt; use the nodes to join a storage pool.
-&lt;ul&gt;
-&lt;li&gt;Review the &lt;a href=&#34;https://docs.ondat.io/docs/reference/labels/&#34;&gt;Feature Labels&lt;/a&gt; reference page for more information on how to enable Ondat features correctly.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Cluster</title>
-      <link>/docs/concepts/clusters/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/clusters/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed control plane.&lt;/p&gt;
-&lt;p&gt;Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar orchestrator) cluster, and we expect our daemonset to run on all worker nodes within the cluster that will consume or present storage.&lt;/p&gt;
-&lt;p&gt;Clusters use etcd to maintain state and manage distributed consensus between nodes.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/ondat-cluster.png&#34; alt=&#34;Ondat Cluster&#34;&gt;&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Compression</title>
-      <link>/docs/concepts/compression/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/compression/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat compression is handled on a per volume basis and is disabled by
-default in v2.2+, as performance is generally increased when compression is
-disabled due to block alignment. This means that there is a trade
-off between volume performance and the space the volume occupies on the backend
-device.&lt;/p&gt;
-&lt;p&gt;Compression can be enabled by setting the &lt;a href=&#34;/docs/reference/labels&#34;&gt;label&lt;/a&gt;
-&lt;code&gt;storageos.com/nocompress=false&lt;/code&gt; on a volume at volume creation time.&lt;/p&gt;
-&lt;p&gt;Ondat utilises the &lt;a href=&#34;https://lz4.github.io/lz4/&#34;&gt;lz4 compression algorithm&lt;/a&gt;
-when writing to the backend store and when compressing &lt;a href=&#34;/docs/concepts/replication&#34;&gt;replication
-traffic&lt;/a&gt; before it is sent across the network.&lt;/p&gt;
-&lt;p&gt;Ondat detects whether a block can be compressed or not by creating a
-heuristic that predicts the size of a compressed block. If the heuristic
-indicates that the compressed block is likely to be larger than the
-original block then the uncompressed block is stored. Block size increases post
-compression if the compression dictionary is added to a block that cannot be
-compressed. By verifying whether blocks can be compressed, disk efficiency is
-increased and CPU resources are not wasted on attempts to compress
-uncompressible blocks. Ondat&amp;rsquo;s patented on-disk format is used to tell
-whether individual blocks are compressed without overhead. As such volume
-compression can be dynamically enabled/disabled even while a volume is in use.&lt;/p&gt;
-&lt;p&gt;When compression and &lt;a href=&#34;/docs/reference/encryption&#34;&gt;encryption&lt;/a&gt; are both enabled
-for a volume, blocks are compressed then encrypted.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Contributing to the documentation</title>
-      <link>/docs/reference/contributing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/contributing/</guid>
-      <description>
-        
-        
-        &lt;p&gt;We are always looking to improve our documentation. If you like to help people
-and can write, read on for the process for submitting your contributions. If your
-guide is published, you&amp;rsquo;ll receive $250 per article by PayPal.&lt;/p&gt;
-&lt;h2 id=&#34;content-guidelines&#34;&gt;Content guidelines&lt;/h2&gt;
-&lt;p&gt;A guide contains step by step instructions for how to accomplish a specific
-task using Ondat. To be accepted, guides must be:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Written in English.&lt;/li&gt;
-&lt;li&gt;Relevant, accurate and complete.&lt;/li&gt;
-&lt;li&gt;Technically correct and thoroughly tested.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Guides should avoid:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Duplicating an existing guide or other sources, such as blogs or forum posts.&lt;/li&gt;
-&lt;li&gt;Including irrelevant material.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;submission-and-review&#34;&gt;Submission and review&lt;/h2&gt;
-&lt;p&gt;You should submit your guide as a pull request to
-&lt;a href=&#34;https://github.com/ondat/documentation.git&#34;&gt;the GitHub repository&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Your submission will be left open for community review for two weeks. After
-this, your submission will be reviewed internally for about another week.&lt;/p&gt;
-&lt;p&gt;If accepted, your pull request will be approved and you will have 36 hours to
-send your submission title and PayPal account information. Non-response will be
-taken as a go-ahead to publish.&lt;/p&gt;
-&lt;h2 id=&#34;legal&#34;&gt;Legal&lt;/h2&gt;
-&lt;p&gt;COPYRIGHT OWNERSHIP. The Ondat Guides &amp;amp; Tutorials repository is licensed
-under the &lt;a href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International&lt;/a&gt;
-(CC BY-NC-SA 4.0) license.&lt;/p&gt;
-&lt;p&gt;CREDIT. Nothing contained in this Agreement shall be deeded to require Ondat
-to use the Work, or any part thereof, in connection with Ondat Guides &amp;amp;
-Tutorials or otherwise. Credit for the Work shall read, “Contributed by &lt;em&gt;writer’s
-name&lt;/em&gt;.”&lt;/p&gt;
-&lt;p&gt;PAYMENT. Upon publication of a submission to the Ondat Guides &amp;amp; Tutorials
-Repository, the writer will be paid the sum of USD $250.00 as an electronic
-payment.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Create</title>
-      <link>/docs/reference/cli/create/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/cli/create/</guid>
-      <description>
-        
-        
-        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create --help
-
-Create new resources
-
-Usage:
-  storageos create &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;command&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Available Commands:
-  namespace    Provision a new namespace
-  policy-group Provision a new policy group
-  user         Create a new user account
-  volume       Provision a new volume
-
-Flags:
-  -h, --help   &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; create
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-
-Use &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos create [command] --help&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information about a command.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;create-volume&#34;&gt;create volume&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create volume --help
-
-Provision a new volume
-
-Usage:
-  storageos create volume &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos create volume --description &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;This volume contains the data for my app&amp;#34;&lt;/span&gt; --fs-type &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ext4&amp;#34;&lt;/span&gt; --labels &lt;span style=&#34;color:#000&#34;&gt;env&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;prod,rack&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;db-1 --size 10GiB --namespace my-namespace-name my-app
-
-$ storageos create volume --replicas &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; --namespace my-namespace-name my-replicated-app
-
-
-Flags:
-      --async                perform the operation asynchronously, using the configured timeout duration
-      --cache                caches volume data &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --compress             compress data stored by the volume at rest and during transit
-  -d, --description string   a human-friendly description to give the volume
-  -f, --fs-type string       the filesystem to format the new volume with once provisioned &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ext4&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -h, --help                 &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; volume
-  -l, --labels strings       an optional &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; of labels to assign to the new volume, provided as a comma-separated list of &lt;span style=&#34;color:#000&#34;&gt;key&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;value pairs
-  -r, --replicas uint        the number of replicated copies of the volume to maintain
-  -s, --size string          the capacity to provision the volume with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;5GiB&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --throttle             deprioritises the volumes traffic by reducing the rate of disk I/O
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;create-user&#34;&gt;create user&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create user --help
-
-Create a new user account
-
-Usage:
-  storageos create user &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos create user --with-username&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;alice --with-admin&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt; 
-
-
-Flags:
-  -h, --help                      &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; user
-      --with-admin                control whether the user is given administrative privileges
-      --with-groups stringArray   the list of policy groups to assign to the user
-      --with-password string      the password to assign to the user. If not specified, this will be prompted &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt;.
-      --with-username string      the username to assign
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;create-namespace&#34;&gt;create namespace&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create namespace --help
-
-Provision a new namespace
-
-Usage:
-  storageos create namespace &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos create namespace --labels &lt;span style=&#34;color:#000&#34;&gt;env&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;prod,rack&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;db-1 my-namespace-name
-
-
-Flags:
-  -h, --help             &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; namespace
-  -l, --labels strings   an optional &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; of labels to assign to the new namespace, provided as a comma-separated list of &lt;span style=&#34;color:#000&#34;&gt;key&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;value pairs
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;create-policy-group&#34;&gt;create policy-group&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos create policy-group --help
-
-Provision a new policy group
-
-Usage:
-  storageos create policy-group &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos create policy-group -r &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;namespace-name:*:r&amp;#39;&lt;/span&gt; -r &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;namespace-name-2:volume:w&amp;#39;&lt;/span&gt;  my-policy-group-name
-$ storageos create policy-group -r &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;namespace-name:*:r,namespace-name-2:volume:w&amp;#39;&lt;/span&gt;  my-policy-group-name
-
-
-Flags:
-  -h, --help            &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; policy-group
-  -r, --rules strings   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; of rules to assign to the new policy group, provided as a comma-separated list of namespace:resource:rw triples.
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Delete</title>
-      <link>/docs/reference/cli/delete/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/cli/delete/</guid>
-      <description>
-        
-        
-        &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete -h
-
-Delete resources in the cluster
-
-Usage:
-  storageos delete &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;command&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Available Commands:
-  namespace    Delete a namespace
-  node         Delete a node
-  policy-group Delete a policy group
-  user         Delete a user
-  volume       Delete a volume. By default the target volume must be online. If the volume is offline &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;then&lt;/span&gt; the request must specify that an offline delete is desired.
-
-Flags:
-  -h, --help   &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; delete
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-
-Use &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos delete [command] --help&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information about a command.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;delete-volume&#34;&gt;delete volume&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete volume --help
-
-Delete a volume. By default the target volume must be online. If the volume is offline &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;then&lt;/span&gt; the request must specify that an offline delete is desired.
-
-Usage:
-  storageos delete volume &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;volume name&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos delete volume my-test-volume my-unneeded-volume
-
-$ storageos delete volume --namespace my-namespace my-old-volume
-
-
-Flags:
-      --async            perform the operation asynchronously, using the configured timeout duration
-      --cas string       make changes to a resource conditional upon matching the provided version
-  -h, --help             &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; volume
-      --offline-delete   request deletion of an offline volume. Volume data is not removed &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;until&lt;/span&gt; the node reboots
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;delete-user&#34;&gt;delete user&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete user --help
-
-Delete a user
-
-Usage:
-  storageos delete user &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;user name&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos delete user my-unneeded-user
-$ storageos delete user --use-ids my-user-id
-
-
-Flags:
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; user
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;delete-policy-group&#34;&gt;delete policy-group&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete policy-group --help
-
-Delete a policy group
-
-Usage:
-  storageos delete policy-group &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;policy group name&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos delete policy-group my-unneeded-policy-group
-$ storageos delete policy-group --use-ids my-policy-group-id
-
-
-Flags:
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; policy-group
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;delete-node&#34;&gt;delete node&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete node --help
-
-Delete a node
-
-Usage:
-  storageos delete node &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;node name&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storagoes delete node my-old-node
-
-
-Flags:
-      --async        perform the operation asynchronously, using the configured timeout duration
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; node
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;delete-namespace&#34;&gt;delete namespace&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ storageos delete namespace --help
-
-Delete a namespace
-
-Usage:
-  storageos delete namespace &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;namespace name&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;flags&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
-
-Examples:
-
-$ storageos delete namespace my-unneeded-namespace
-$ storageos delete namespace --use-ids my-namespace-id
-
-
-Flags:
-      --cas string   make changes to a resource conditional upon matching the provided version
-  -h, --help         &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; namespace
-
-Global Flags:
-      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the Ondat CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.cache/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/root/.config/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the Ondat API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
-  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
-  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the Ondat account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Deleting Ondat Objects</title>
-      <link>/docs/operations/delete-stos-objects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/operations/delete-stos-objects/</guid>
-      <description>
-        
-        
-        &lt;p&gt;When a Kubernetes object is deleted, Ondat controllers automatically sync
-this deletion to Ondat. For example, when a Kubernets node is deleted, this
-will automatically be mirrored in Ondat, likewise with Namespaces.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Here is an Ondat node, running on Kubernetes node worker1. An Ondat
-node is any machine that is running the Ondat daemonset pod. The node is
-visible below in kubectl.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl describe -n storageos pod storageos-daemonset-6q4g8
-Name:                 storageos-daemonset-6q4g8
-Namespace:            storageos
-Priority:             2000001000
-Priority Class Name:  system-node-critical
-Node:                 worker1/192.168.152.238
-Start Time:           Thu, 06 May 2021 15:53:34 +0100
-Labels:               app=storageos
-                      app.kubernetes.io/component=storageos-daemonset
-                      app.kubernetes.io/instance=example-ondat
-                      app.kubernetes.io/managed-by=storageos-operator
-                      app.kubernetes.io/name=storageos
-                      app.kubernetes.io/part-of=storageos
-                      controller-revision-hash=f5dcf577d
-                      kind=daemonset
-                      pod-template-generation=1
-                      storageos_cr=example-ondat
-Annotations:          kubectl.kubernetes.io/default-logs-container: storageos
-Status:               Running
-IP:                   192.168.152.238
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The nodes in your cluster can be seen with &lt;code&gt;storageos get nodes&lt;/code&gt;.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ storageos get nodes
-NAME          HEALTH  AGE        LABELS                              
-worker1       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker1,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true
-                                 storageos.com/computeonly=true 
-worker2       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker2,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker3,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Delete the node.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl delete node worker1
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Verify that the node has been deleted with &lt;code&gt;kubectl get nodes&lt;/code&gt; or
-&lt;code&gt;storageos get nodes&lt;/code&gt;. The node has now disappeared from Ondat.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ storageos get nodes
-NAME          HEALTH  AGE        LABELS                              
-worker2       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker2,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-worker3       online  1 day ago  beta.kubernetes.io/arch=amd64,      
-                                 beta.kubernetes.io/os=linux,        
-                                 cattle.io/creator=norman,           
-                                 kubernetes.io/arch=amd64,           
-                                 kubernetes.io/hostname=worker3,
-                                 kubernetes.io/os=linux,             
-                                 node-role.kubernetes.io/worker=true 
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
 
       </description>
     </item>
