@@ -179,7 +179,7 @@ linux-image-extra for Ubuntu.&lt;/li&gt;
 set for your Kubernetes cluster&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.1.0/kubectl-storageos_1.1.0_linux_amd64.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_linux_amd64.tar.gz \
     &amp;amp;&amp;amp; tar -xf kubectl-storageos.tar.gz \
     &amp;amp;&amp;amp; chmod +x kubectl-storageos \
     &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
@@ -257,7 +257,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.7.0
+        image: storageos/cli:v2.8.0
         name: cli
 END
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
