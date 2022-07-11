@@ -36,7 +36,7 @@ To create a ReadWriteMany (RWX) volume with Ondat, create a Persistent Volume Cl
 Ondat RWX Volumes are based on a shared filesystem.
 To create a ReadWriteMany (RWX) volume with Ondat, create a Persistent Volume Claim (PVC) with an access mode of ReadWriteMany (see the First PVC documentation for examples of creating standard PVCs with Ondat).">
 
-<meta itemprop="wordCount" content="298">
+<meta itemprop="wordCount" content="419">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ReadWriteMany"/>
 <meta name="twitter:description" content="⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the free Ondat Community Edition. For more information, please visit Licensing.
@@ -184,7 +184,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a56b86c09a13dc0bca28011f5cbb0defacc4bbd2b1dcf71a4d18e5e0257bc993658edeaa16ded49b7298cf648f28d6127c36271e311aba0406755c68c3363b77.json"
+  data-offline-search-index-json-src="/offline-search-index.d2c0641dc39d80ff04dff6548642b8e51a78d1612de22aaaa33b35f898968eea701c9f97d22182f091b3d1c5b064bd01addf70d3dd1d9d3296048a154adaaf07.json"
   data-offline-search-base-href="/"
 >
 
@@ -332,7 +332,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a56b86c09a13dc0bca28011f5cbb0defacc4bbd2b1dcf71a4d18e5e0257bc993658edeaa16ded49b7298cf648f28d6127c36271e311aba0406755c68c3363b77.json"
+  data-offline-search-index-json-src="/offline-search-index.d2c0641dc39d80ff04dff6548642b8e51a78d1612de22aaaa33b35f898968eea701c9f97d22182f091b3d1c5b064bd01addf70d3dd1d9d3296048a154adaaf07.json"
   data-offline-search-base-href="/"
 >
 
@@ -1583,6 +1583,30 @@ Under <code>Volumes</code>, the <code>Attachment</code> column shows an <code>nf
 <code>Volume Details</code> section provides information about the NFS Volume, such
 as the service endpoint and the node on which the underlying Volume is
 attached.</p>
+<h2 id="changing-the-squash-mode">Changing the Squash mode</h2>
+<p>As part of the 2.8 release, a change was made so that users can change the
+squash mode that is used with the RWX shares.
+Historically, all shares were exported with a <code>Squash = All</code> mode of operation.
+This was requested by most customers as the idea of identity in a container
+based deployment is very abstract.
+There is now a label that can applied to make this tunable, users can now add
+<code>storageos.com/nfs-squash = root|rootuid|all|none</code> to their volumes (where
+all is still the default behaviour still) to adjust this setting.</p>
+<p>As an example, the above PVC definition can be labelled as:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-rwx</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/nfs-squash</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;rootuid&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteMany</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>This will squash only the root user to <code>root</code> leaving other UID operations intact.</p>
 
 	
 	
