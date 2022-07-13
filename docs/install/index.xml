@@ -170,7 +170,7 @@ installing. You can request a licence via the &lt;a href=&#34;https://portal.ond
 Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running EKS cluster with a minimum of 3 worker nodes
+&lt;p&gt;⚠️ Make sure you have a running EKS cluster with a minimum of 5 worker nodes
 and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control
 (RBAC)&lt;/a&gt;
 permissions to deploy and manage applications in the cluster.&lt;/p&gt;
@@ -431,7 +431,7 @@ operations&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running AKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running AKS cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your AKS cluster uses &lt;a href=&#34;https://ubuntu.com/&#34;&gt;Ubuntu&lt;/a&gt; as the default node operating system with an optimised kernel. Any Ubuntu-based node operating system with a kernel version greater than &lt;code&gt;4.15.0-1029-azure&lt;/code&gt; is compatible with Ondat.&lt;/p&gt;
@@ -501,7 +501,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running DOKS cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running DOKS cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your DOKS cluster version is greater than or equal to &lt;code&gt;v1.21.10&lt;/code&gt; or &lt;code&gt;v1.22.7&lt;/code&gt; as they will have the required kernel modules available for Ondat to run successfully.&lt;/p&gt;
@@ -571,7 +571,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running Google Anthos cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running Google Anthos cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your Google Anthos cluster use &lt;a href=&#34;https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd&#34;&gt;&lt;code&gt;ubuntu_containerd&lt;/code&gt;&lt;/a&gt; as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.&lt;/p&gt;
@@ -647,7 +647,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running GKE cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running GKE cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your GKE cluster uses  &lt;a href=&#34;https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu&#34;&gt;&lt;code&gt;ubuntu_containerd&lt;/code&gt;&lt;/a&gt; as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.&lt;/p&gt;
@@ -727,7 +727,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully.&lt;/p&gt;
@@ -1138,7 +1138,7 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running RKE cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running RKE cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your RKE cluster uses a Linux distribution that is officially supported by Rancher as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review &lt;a href=&#34;https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/&#34;&gt;SUSE Rancher Support Matrix&lt;/a&gt; documentation to ensure that you are using a supported Linux distribution.&lt;/p&gt;
@@ -1341,7 +1341,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running RKE2 cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running RKE2 cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your RKE2 cluster uses a Linux distribution that is officially supported by RKE2 as your node operating system and the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review &lt;a href=&#34;https://docs.rke2.io/install/requirements/#operating-systems&#34;&gt;RKE2 Operating System Requirements&lt;/a&gt; documentation to ensure that you are using a supported Linux distribution.&lt;/p&gt;
@@ -1439,7 +1439,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system.&lt;/p&gt;
@@ -1734,7 +1734,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 3 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
+&lt;p&gt;⚠️ Make sure you have a running Kubernetes cluster with a minimum of 5 worker nodes and the sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ Make sure your Kubernetes cluster uses a Linux distribution that is officially supported by Ondat as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully.&lt;/p&gt;
