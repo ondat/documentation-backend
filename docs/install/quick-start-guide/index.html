@@ -20,20 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title></title><meta property="og:title" content="" />
-<meta property="og:description" content="Version $ storageos version --help View version information for the Ondat CLI Usage: storageos version [flags] Flags: -h, --help help for version Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/.config/storageos/config.yaml&#34;) --endpoints stringArray set the list of endpoints which are used when connecting to the Ondat API (default [http://localhost:5705]) -n, --namespace string specifies the namespace to operate within for commands that require one (default &#34;default&#34;) --no-auth-cache disable the CLI&#39;s caching of authentication sessions -o, --output string specifies the output format (one of [json yaml text]) (default &#34;text&#34;) --password string set the Ondat account password to authenticate with (default &#34;storageos&#34;) --timeout duration set the timeout duration to use for execution of the command (default 15s) --use-ids specify existing Ondat resources by their unique identifiers instead of by their names --username string set the Ondat account username to authenticate as (default &#34;storageos&#34;) " />
+<title>Quick Start Guide - Non-Production | </title><meta property="og:title" content="Quick Start Guide - Non-Production" />
+<meta property="og:description" content="This guide will provide step by step instructions on how to install Ondat onto your cluster, with the Ondat helm chart, for a non-production environment.
+ ⚠️ This guide is for a non-production installation. Please follow the other installation guides for a production-ready installation of Ondat
+ Prerequisites  kubectl helm  Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/reference/cli/version/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/install/quick-start-guide/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="Version $ storageos version --help View version information for the Ondat CLI Usage: storageos version [flags] Flags: -h, --help help for version Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/.config/storageos/config.yaml&#34;) --endpoints stringArray set the list of endpoints which are used when connecting to the Ondat API (default [http://localhost:5705]) -n, --namespace string specifies the namespace to operate within for commands that require one (default &#34;default&#34;) --no-auth-cache disable the CLI&#39;s caching of authentication sessions -o, --output string specifies the output format (one of [json yaml text]) (default &#34;text&#34;) --password string set the Ondat account password to authenticate with (default &#34;storageos&#34;) --timeout duration set the timeout duration to use for execution of the command (default 15s) --use-ids specify existing Ondat resources by their unique identifiers instead of by their names --username string set the Ondat account username to authenticate as (default &#34;storageos&#34;) ">
+<meta itemprop="name" content="Quick Start Guide - Non-Production">
+<meta itemprop="description" content="This guide will provide step by step instructions on how to install Ondat onto your cluster, with the Ondat helm chart, for a non-production environment.
+ ⚠️ This guide is for a non-production installation. Please follow the other installation guides for a production-ready installation of Ondat
+ Prerequisites  kubectl helm  Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).">
 
-<meta itemprop="wordCount" content="165">
+<meta itemprop="wordCount" content="618">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="Version $ storageos version --help View version information for the Ondat CLI Usage: storageos version [flags] Flags: -h, --help help for version Global Flags: --cache-dir string set the directory used by the Ondat CLI to cache data that can be used for future commands (default &#34;/root/.cache/storageos&#34;) -c, --config string specifies the config file path (default &#34;/root/.config/storageos/config.yaml&#34;) --endpoints stringArray set the list of endpoints which are used when connecting to the Ondat API (default [http://localhost:5705]) -n, --namespace string specifies the namespace to operate within for commands that require one (default &#34;default&#34;) --no-auth-cache disable the CLI&#39;s caching of authentication sessions -o, --output string specifies the output format (one of [json yaml text]) (default &#34;text&#34;) --password string set the Ondat account password to authenticate with (default &#34;storageos&#34;) --timeout duration set the timeout duration to use for execution of the command (default 15s) --use-ids specify existing Ondat resources by their unique identifiers instead of by their names --username string set the Ondat account username to authenticate as (default &#34;storageos&#34;) "/>
+<meta name="twitter:title" content="Quick Start Guide - Non-Production"/>
+<meta name="twitter:description" content="This guide will provide step by step instructions on how to install Ondat onto your cluster, with the Ondat helm chart, for a non-production environment.
+ ⚠️ This guide is for a non-production installation. Please follow the other installation guides for a production-ready installation of Ondat
+ Prerequisites  kubectl helm  Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers)."/>
 
 
 
@@ -76,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title></title>
+    <title>Quick Start Guide - Non-Production | </title>
   </head>
   <body class="td-page">
     
@@ -628,17 +634,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstall">
+    <li class="collapse show" id="docsinstall">
       
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
       
       
       
@@ -1114,10 +1120,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Reference</a>
+    <a  href="/docs/reference/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreference">
+    <li class="collapse " id="docsreference">
       
       
       
@@ -1178,10 +1184,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/cli/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">CLI</a>
+    <a  href="/docs/reference/cli/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">CLI</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreferencecli">
+    <li class="collapse " id="docsreferencecli">
       
       
       
@@ -1242,7 +1248,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsreferencecliversion" href="/docs/reference/cli/version/">Version</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecliversion" href="/docs/reference/cli/version/">Version</a>
       
       
     </li>
@@ -1458,6 +1464,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#prerequisites">Prerequisites</a>
+      <ul>
+        <li><a href="#this-guide-works-on-the-following-kubernetes-distributions">This guide works on the following Kubernetes distributions</a></li>
+      </ul>
+    </li>
+    <li><a href="#step-1---install-ondat-helm-charts">Step 1 - Install Ondat Helm Charts</a></li>
+    <li><a href="#step-2---install-local-path-provisioner">Step 2 - Install Local Path Provisioner</a></li>
+    <li><a href="#step-3---customise-and-install-the-helm-chart">Step 3 - Customise and install the helm chart</a></li>
+    <li><a href="#step-4---wait-until-the-storageos-storage-class-has-been-created">Step 4 - Wait until the storageos storage class has been created</a></li>
+    <li><a href="#step-5---set-the-default-storage-class">Step 5 - Set the default storage class</a></li>
+    <li><a href="#step-6---ensure-everything-is-running">Step 6 - Ensure everything is running</a></li>
+    <li><a href="#applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1478,9 +1501,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-
-
-
 <li class="breadcrumb-item" >
 	<a href="/docs/">Documentation</a>
 </li>
@@ -1489,21 +1509,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/reference/">Reference</a>
-</li>
-
-
-
-
-<li class="breadcrumb-item" >
-	<a href="/docs/reference/cli/">CLI</a>
+	<a href="/docs/install/">Install</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/reference/cli/version/">Version</a>
+	<a href="/docs/install/quick-start-guide/">Quick Start Guide</a>
 </li>
 
 	</ol>
@@ -1511,31 +1524,109 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1></h1>
+	<h1>Quick Start Guide - Non-Production</h1>
 	
-	<h1 id="version">Version</h1>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos version --help
+	<p>This guide will provide step by step instructions on how to install Ondat onto your cluster, with the <a href="https://github.com/ondat/charts">Ondat helm chart</a>, for a non-production environment.</p>
+<blockquote>
+<p>⚠️ This guide is for a non-production installation. Please follow the <a href="https://docs.ondat.io/docs/install/">other installation guides</a> for a production-ready installation of Ondat</p>
+</blockquote>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="https://helm.sh/docs/intro/install/">helm</a></li>
+</ul>
+<p>Ondat requires certain kernel modules to function. In particular it requires <a href="http://linux-iscsi.org/wiki/Main_Page">Linux-IO</a>, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
+More information can be <a href="../prerequisites/systemconfiguration.md">found here</a></p>
+<p>This guide assumes you already have a Kubernetes cluster, with <strong>at least</strong> 3 worker nodes.</p>
+<h3 id="this-guide-works-on-the-following-kubernetes-distributions">This guide works on the following Kubernetes distributions</h3>
+<ul>
+<li>Vanilla Kubernetes</li>
+<li>Rancher</li>
+</ul>
+<h2 id="step-1---install-ondat-helm-charts">Step 1 - Install Ondat Helm Charts</h2>
+<p>Add the Ondat chart repository to Helm:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add ondat https://ondat.github.io/charts
+helm repo update
+</code></pre></div><h2 id="step-2---install-local-path-provisioner">Step 2 - Install Local Path Provisioner</h2>
+<p>Etcd requires a storage class before Ondat can be started. For non-production environments the Local Path Provisioner storage class can be used.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply --filename<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml&#34;</span>
+</code></pre></div><p>The following command can be used to ensure the Local Path Provisioner was successfully deployed.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; kubectl get pod,storageclass --namespace<span style="color:#ce5c00;font-weight:bold">=</span>local-path-storage
+NAME                                         READY   STATUS    RESTARTS   AGE
+pod/local-path-provisioner-c4d687f4c-bxmjt   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          3h10m
 
-View version information <span style="color:#204a87;font-weight:bold">for</span> the Ondat CLI
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   <span style="color:#204a87">false</span>                  3h10m
+</code></pre></div><h2 id="step-3---customise-and-install-the-helm-chart">Step 3 - Customise and install the helm chart</h2>
+<p>A few changes need to be made to the default helm chart values, so it can run in smaller non-production sized clusters.</p>
+<blockquote>
+<p>⚠️ Make sure to set the values of <code>ONDAT_USERNAME</code> and <code>ONDAT_PASSWORD</code></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">ONDAT_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;changeme&#34;</span>
+<span style="color:#204a87">export</span> <span style="color:#000">ONDAT_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;changeme&#34;</span>
 
-Usage:
-  storageos version <span style="color:#ce5c00;font-weight:bold">[</span>flags<span style="color:#ce5c00;font-weight:bold">]</span>
+helm install ondat ondat/ondat --create-namespace --namespace storageos <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>--set ondat-operator.cluster.admin.username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">ONDAT_USERNAME</span><span style="color:#4e9a06">}</span>,<span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>ondat-operator.cluster.admin.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">ONDAT_PASSWORD</span><span style="color:#4e9a06">}</span>,<span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd,<span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.replicas<span style="color:#ce5c00;font-weight:bold">=</span>3,<span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.storageclass<span style="color:#ce5c00;font-weight:bold">=</span>local-path,<span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.storage<span style="color:#ce5c00;font-weight:bold">=</span>6Gi,<span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.resources.requests.cpu<span style="color:#ce5c00;font-weight:bold">=</span>100m,<span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.resources.requests.memory<span style="color:#ce5c00;font-weight:bold">=</span>300Mi
+</code></pre></div><h2 id="step-4---wait-until-the-storageos-storage-class-has-been-created">Step 4 - Wait until the storageos storage class has been created</h2>
+<p>It can take a few seconds for the storageos storage class to be created. This needs to happen before it can be set as the default storage class.</p>
+<p>The following command can be used to ensure the storageos storage class was successfully deployed.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; kubectl -n storageos get storageclass -w
+NAME         PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   <span style="color:#204a87">false</span>                  3h4m
+storageos    csi.storageos.com       Delete          Immediate              <span style="color:#204a87">true</span>                   75m
+</code></pre></div><h2 id="step-5---set-the-default-storage-class">Step 5 - Set the default storage class</h2>
+<p>Set the storageos storage class as the default.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl patch storageclass local-path -p <span style="color:#4e9a06">&#39;{&#34;metadata&#34;: {&#34;annotations&#34;:{&#34;storageclass.kubernetes.io/is-default-class&#34;:&#34;false&#34;}}}&#39;</span>
+kubectl patch storageclass storageos -p <span style="color:#4e9a06">&#39;{&#34;metadata&#34;: {&#34;annotations&#34;:{&#34;storageclass.kubernetes.io/is-default-class&#34;:&#34;true&#34;}}}&#39;</span>
+</code></pre></div><h2 id="step-6---ensure-everything-is-running">Step 6 - Ensure everything is running</h2>
+<p>It can take a couple of minutes for the cluster to converge. A ready cluster will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; kubectl -n storageos get pods,storageclass,svc                    
+NAME                                           READY   STATUS    RESTARTS      AGE
+pod/ondat-controller-manager-5f7f669b4-fqj57   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>             73m
+pod/ondat-controller-manager-5f7f669b4-jmbfk   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>             73m
+pod/ondat-ondat-operator-675c4c9c88-9jgrv      2/2     Running   <span style="color:#0000cf;font-weight:bold">0</span>             73m
+pod/ondat-proxy-6887466cd5-vlkq6               1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>             73m
+pod/storageos-api-manager-6677c95579-qdght     1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>             71m
+pod/storageos-api-manager-6677c95579-rzwqr     1/1     Running   <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">(</span>71m ago<span style="color:#ce5c00;font-weight:bold">)</span>   71m
+pod/storageos-csi-helper-6fbb8cc7d9-h767k      4/4     Running   <span style="color:#0000cf;font-weight:bold">0</span>             71m
+pod/storageos-node-fmtrd                       3/3     Running   <span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#ce5c00;font-weight:bold">(</span>72m ago<span style="color:#ce5c00;font-weight:bold">)</span>   72m
+pod/storageos-node-h54xp                       3/3     Running   <span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#ce5c00;font-weight:bold">(</span>72m ago<span style="color:#ce5c00;font-weight:bold">)</span>   72m
+pod/storageos-node-jm5th                       3/3     Running   <span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#ce5c00;font-weight:bold">(</span>72m ago<span style="color:#ce5c00;font-weight:bold">)</span>   72m
+pod/storageos-scheduler-664886b7b-8jrv2        1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>             72m
 
-Flags:
-  -h, --help   <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> version
+NAME                                     PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   <span style="color:#204a87">false</span>                  3h1m
+storageclass.storage.k8s.io/storageos    csi.storageos.com       Delete          Immediate              <span style="color:#204a87">true</span>                   72m
 
-Global Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/root/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div>
+NAME                                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span style="color:#ce5c00;font-weight:bold">(</span>S<span style="color:#ce5c00;font-weight:bold">)</span>    AGE
+service/ondat-proxy                     ClusterIP   10.100.222.57    &lt;none&gt;        80/TCP     73m
+service/storageos                       ClusterIP   10.102.114.114   &lt;none&gt;        5705/TCP   72m
+service/storageos-api-manager-metrics   ClusterIP   10.105.234.54    &lt;none&gt;        8080/TCP   71m
+service/storageos-operator              ClusterIP   10.109.66.235    &lt;none&gt;        8443/TCP   73m
+service/storageos-operator-webhook      ClusterIP   10.103.117.39    &lt;none&gt;        443/TCP    73m
+service/storageos-webhook               ClusterIP   10.108.126.126   &lt;none&gt;        443/TCP    71m
+
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; kubectl -n storageos-etcd get pods,pdb
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/storageos-etcd-0-jbmq6   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          73m
+pod/storageos-etcd-1-nhbk6   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          72m
+pod/storageos-etcd-2-n9b9w   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          72m
+
+NAME                                        MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/storageos-etcd   <span style="color:#0000cf;font-weight:bold">2</span>               N/A               <span style="color:#0000cf;font-weight:bold">1</span>                     73m
+</code></pre></div><h2 id="applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</h2>
+<blockquote>
+<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1 TiB of provisioned storage.</p>
+</blockquote>
+<p>To obtain a licence, follow the instructions on the <a href="/docs/operations/licensing">licensing operations</a> page.</p>
+
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
