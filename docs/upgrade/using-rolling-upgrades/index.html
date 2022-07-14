@@ -34,7 +34,7 @@
  ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
  Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB).">
 
-<meta itemprop="wordCount" content="300">
+<meta itemprop="wordCount" content="375">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Platform Upgrade"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.488482045d1f788a84c5fbcd2a939dc5543b2ac724dad8e6d1fd20eaabcc056055f7018b4e9b355ef61266e62c43566d3aaae23fd368e746f319c8652d63803a.json"
+  data-offline-search-index-json-src="/offline-search-index.7df2b308fbeeff8253aefd1055168b4c50dcacecc36ae7caafda2852575b35440ea8c0732fb193d9cf63918c9b55b42aab5df7af6a307518f0be0c55e66db48d.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.488482045d1f788a84c5fbcd2a939dc5543b2ac724dad8e6d1fd20eaabcc056055f7018b4e9b355ef61266e62c43566d3aaae23fd368e746f319c8652d63803a.json"
+  data-offline-search-index-json-src="/offline-search-index.7df2b308fbeeff8253aefd1055168b4c50dcacecc36ae7caafda2852575b35440ea8c0732fb193d9cf63918c9b55b42aab5df7af6a307518f0be0c55e66db48d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1549,15 +1549,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>Add the following lines to the <code>StorageOSCluster</code> spec:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">nodeManagerFeatures</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">upgradeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">upgradeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><ul>
 <li>Alternatively, you can run the following command:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get storageoscluster -n storageos storageoscluster -o yaml <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &#34;true&#34;|&#39;</span> <span style="color:#000;font-weight:bold">|</span> kubectl apply -f - 
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get storageoscluster -n storageos storageoscluster -o yaml <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &#34;&#34;|&#39;</span> <span style="color:#000;font-weight:bold">|</span> kubectl apply -f - 
 </code></pre></div><ul>
-<li>You will see new pods getting created, one pod per node in a cluster called Node Manager.</li>
+<li>You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable upgrade guard during first installation, upgrade guard might fall into a temporary <code>CrashLoopBackoff</code> loop until all cluster components are up and running.</li>
 </ul>
-<h3 id="step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</h3>
+<p>Upgrade Guard has a few configuration options:</p>
+<ul>
+<li><code>MINIMUM_REPLICAS_FOR_UPGRADE</code>: minimum replica number of any volume, to allow an upgrade. Default: 1</li>
+<li><code>WATCH_ALL_VOLUMES</code>: watch all volume on every nodes, otherwise Upgrade Guard watches volumes and its replicas on the node where it is running. Extra safety option with performance impact. Default: false</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">nodeManagerFeatures</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">upgradeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;MINIMUM_REPLICAS_FOR_UPGRADE=2,WATCH_ALL_VOLUMES=true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><h3 id="step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</h3>
 <p>Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!</p>
 <blockquote>
 <p>⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.</p>
