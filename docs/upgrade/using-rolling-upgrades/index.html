@@ -34,7 +34,7 @@
  ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
  Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB).">
 
-<meta itemprop="wordCount" content="375">
+<meta itemprop="wordCount" content="719">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Platform Upgrade"/>
 <meta name="twitter:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7df2b308fbeeff8253aefd1055168b4c50dcacecc36ae7caafda2852575b35440ea8c0732fb193d9cf63918c9b55b42aab5df7af6a307518f0be0c55e66db48d.json"
+  data-offline-search-index-json-src="/offline-search-index.9ae5995fc1558ab4a43da5ad67cda1b24995de4580c0312ff664772ecfcfd449bf2001dd627d781140208974d64018b4c7b5ac57d839303f6ca499aa68b9c495.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7df2b308fbeeff8253aefd1055168b4c50dcacecc36ae7caafda2852575b35440ea8c0732fb193d9cf63918c9b55b42aab5df7af6a307518f0be0c55e66db48d.json"
+  data-offline-search-index-json-src="/offline-search-index.9ae5995fc1558ab4a43da5ad67cda1b24995de4580c0312ff664772ecfcfd449bf2001dd627d781140208974d64018b4c7b5ac57d839303f6ca499aa68b9c495.json"
   data-offline-search-base-href="/"
 >
 
@@ -1474,6 +1474,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><a href="#step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</a></li>
       </ul>
     </li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
   </ul>
 </nav>
 
@@ -1535,13 +1536,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>⚠️ If your volume does not have any replicas, the rolling upgrades feature will not start on any StorageOS node until you have one or more replicas on all your volumes.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ This feature supports the following platforms: Google Anthos, Google GKE with future support to be expanded to Amazon EKS, Openshift and Rancher.</p>
+<p>⚠️ This feature supports the following platforms: Google Anthos, and Google GKE with future support to be expanded to Amazon EKS, Openshift, and Rancher.</p>
 </blockquote>
 <blockquote>
 <p>⚠️ Using Ondat for the internal registry is not recommended. OpenShift requires the internal registry to be available but Ondat volumes may become unavailable during the upgrade.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ For Openshift: The PDB feature is only stable in kubernetes v1.21+ and Openshift v4.8+.</p>
+<p>⚠️ For Openshift: The PDB feature is only stable in Kubernetes v1.21+ and Openshift v4.8+.</p>
 </blockquote>
 <h2 id="procedure">Procedure</h2>
 <h3 id="step-1---enable-node-manager--upgrade-guard">Step 1 - Enable Node Manager &amp; Upgrade Guard</h3>
@@ -1555,22 +1556,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get storageoscluster -n storageos storageoscluster -o yaml <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &#34;&#34;|&#39;</span> <span style="color:#000;font-weight:bold">|</span> kubectl apply -f - 
 </code></pre></div><ul>
-<li>You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable upgrade guard during first installation, upgrade guard might fall into a temporary <code>CrashLoopBackoff</code> loop until all cluster components are up and running.</li>
+<li>You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable the Upgrade Guard during the first installation, Upgrade Guard might fall into a temporary <code>CrashLoopBackoff</code> loop until all cluster components are up and running.</li>
 </ul>
 <p>Upgrade Guard has a few configuration options:</p>
 <ul>
 <li><code>MINIMUM_REPLICAS_FOR_UPGRADE</code>: minimum replica number of any volume, to allow an upgrade. Default: 1</li>
-<li><code>WATCH_ALL_VOLUMES</code>: watch all volume on every nodes, otherwise Upgrade Guard watches volumes and its replicas on the node where it is running. Extra safety option with performance impact. Default: false</li>
+<li><code>WATCH_ALL_VOLUMES</code>: watch all volumes on every node, otherwise Upgrade Guard watches volumes and their replicas on the node where it is running. Extra safety option with a performance impact. Default: false</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">nodeManagerFeatures</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">upgradeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;MINIMUM_REPLICAS_FOR_UPGRADE=2,WATCH_ALL_VOLUMES=true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><h3 id="step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</h3>
 <p>Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!</p>
 <blockquote>
-<p>⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this time period they drain the node, which would destroy the volume.</p>
+<p>⚠️ GKE and AKS take care of the pod disruption budget for one hour. After this period, they drain the node, which would destroy the volume.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ EKS takes care on PDB for 50 mins, after this period upgrade would fail unless it was forced.</p>
+<p>⚠️ EKS takes care of PDB for 50 mins, after this period upgrade would fail unless it was forced.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ Upgrade Guard has a one-day termination period by default. The final termination period heavily depends on the platform you use. During the termination period, you should SSH into the node to create a backup in the worst-case scenario.</p>
+</blockquote>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li>Volumes are healthy, all in sync but <code>storageos-node-manager</code> pod is hanging on the <code>Terminating</code> state.</li>
+</ul>
+<p>The long termination period of Node Manager tries to keep failed node - and volumes on it - up and running as long as possible. This gives a chance to create a backup from an accidentally deleted machine. In case, Upgrade Guard isn&rsquo;t able to determine volume statuses, because of a network issue or missing StorageOS service, you have to delete pod manually by executing the following command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl delete pods -n storageos storageos-node-manager-XYZ --grace-period<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span> --force
+</code></pre></div><ul>
+<li>A node has been removed accidentally or not in the official <code>graceful termination</code> way before drain, and two Node Manager pods - one in <code>Pending</code> and the other in <code>Terminating</code> states - are hanging on the same node.</li>
+</ul>
+<p>Node Manager deployment tolerates almost every issue on the target node to protect your data. On the other hand, Node Manager doesn&rsquo;t tolerate itself on the same node. If a node goes down before Kubernetes was able to properly delete StorageOS Node daemonset, after the termination phase it re-schedules Node Manager pod to ensure the right number of replicas. But the pod isn&rsquo;t able to be scheduled, because of the toleration. Meantime Kubernetes isn&rsquo;t able to remove the pod in <code>Terminating</code> state, because Kubelet isn&rsquo;t responding.</p>
+<p>The only way to solve this situation is to delete the node from Kubernetes cluster by executing the command below:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl delete node XYZ
+</code></pre></div><blockquote>
+<p>⚠️ Kubernetes has introduced Non-Graceful Node Shutdown Alpha in 1.24. This new feature allows cluster admins to mark failing nodes as <code>NoExecute</code> or <code>NoScedule</code>. Both options should solve the scheduling issue of Node Manager pod by decreasing the number of daemonset instances to the right number at Kubernetes API level, but in the absence of Kubelet termination of pods would still hangin.</p>
 </blockquote>
 
 	
