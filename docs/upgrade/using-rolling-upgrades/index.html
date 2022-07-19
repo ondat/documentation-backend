@@ -21,7 +21,7 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Platform Upgrade | </title><meta property="og:title" content="Platform Upgrade" />
-<meta property="og:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+<meta property="og:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Node Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
  ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
  Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB)." />
 <meta property="og:type" content="article" />
@@ -30,14 +30,14 @@
 
 
 <meta itemprop="name" content="Platform Upgrade">
-<meta itemprop="description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+<meta itemprop="description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Node Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
  ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
  Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB).">
 
-<meta itemprop="wordCount" content="719">
+<meta itemprop="wordCount" content="715">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Platform Upgrade"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Upgrade Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
+<meta name="twitter:description" content="Overview This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the Node Guard and Node Manager. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.
  ⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.
  Prerequisites  ⚠️ Make sure you have met the requirements of configuring a Pod Disruption Budget (PDB)."/>
 
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9ae5995fc1558ab4a43da5ad67cda1b24995de4580c0312ff664772ecfcfd449bf2001dd627d781140208974d64018b4c7b5ac57d839303f6ca499aa68b9c495.json"
+  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9ae5995fc1558ab4a43da5ad67cda1b24995de4580c0312ff664772ecfcfd449bf2001dd627d781140208974d64018b4c7b5ac57d839303f6ca499aa68b9c495.json"
+  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
   data-offline-search-base-href="/"
 >
 
@@ -1470,7 +1470,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#procedure">Procedure</a>
       <ul>
-        <li><a href="#step-1---enable-node-manager--upgrade-guard">Step 1 - Enable Node Manager &amp; Upgrade Guard</a></li>
+        <li><a href="#step-1---enable-node-manager--node-guard">Step 1 - Enable Node Manager &amp; Node Guard</a></li>
         <li><a href="#step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</a></li>
       </ul>
     </li>
@@ -1524,7 +1524,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h1>Platform Upgrade</h1>
 	
 	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the <a href="/docs/concepts/rolling-upgrades/#upgrade-guard">Upgrade Guard</a> and <a href="/docs/concepts/rolling-upgrades/#node-manager">Node Manager</a>. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.</p>
+<p>This guide will demonstrate how to enable protection for your orchestrator&rsquo;s rolling upgrades using the <a href="/docs/concepts/rolling-upgrades/#node-guard">Node Guard</a> and <a href="/docs/concepts/rolling-upgrades/#node-manager">Node Manager</a>. This feature helps prevent your persistent storage volumes from becoming unhealthy during the rolling downtime of an orchestrator upgrade.</p>
 <blockquote>
 <p>⚠️ This feature is currently in tech preview, we only recommend using this feature on your test clusters.</p>
 </blockquote>
@@ -1545,26 +1545,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>⚠️ For Openshift: The PDB feature is only stable in Kubernetes v1.21+ and Openshift v4.8+.</p>
 </blockquote>
 <h2 id="procedure">Procedure</h2>
-<h3 id="step-1---enable-node-manager--upgrade-guard">Step 1 - Enable Node Manager &amp; Upgrade Guard</h3>
+<h3 id="step-1---enable-node-manager--node-guard">Step 1 - Enable Node Manager &amp; Node Guard</h3>
 <ul>
 <li>Add the following lines to the <code>StorageOSCluster</code> spec:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">nodeManagerFeatures</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">upgradeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">nodeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><ul>
 <li>Alternatively, you can run the following command:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get storageoscluster -n storageos storageoscluster -o yaml <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    upgradeGuard: &#34;&#34;|&#39;</span> <span style="color:#000;font-weight:bold">|</span> kubectl apply -f - 
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get storageoscluster -n storageos storageoscluster -o yaml <span style="color:#000;font-weight:bold">|</span> sed -e <span style="color:#4e9a06">&#39;s|^spec:$|spec:\n  nodeManagerFeatures:\n    nodeGuard: &#34;&#34;|&#39;</span> <span style="color:#000;font-weight:bold">|</span> kubectl apply -f - 
 </code></pre></div><ul>
-<li>You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable the Upgrade Guard during the first installation, Upgrade Guard might fall into a temporary <code>CrashLoopBackoff</code> loop until all cluster components are up and running.</li>
+<li>You will see new pods getting created, one pod per node in a cluster called Node Manager. If you enable the Node Guard during the first installation, Node Guard might fall into a temporary <code>CrashLoopBackoff</code> loop until all cluster components are up and running.</li>
 </ul>
-<p>Upgrade Guard has a few configuration options:</p>
+<p>Node Guard has a few configuration options:</p>
 <ul>
-<li><code>MINIMUM_REPLICAS_FOR_UPGRADE</code>: minimum replica number of any volume, to allow an upgrade. Default: 1</li>
-<li><code>WATCH_ALL_VOLUMES</code>: watch all volumes on every node, otherwise Upgrade Guard watches volumes and their replicas on the node where it is running. Extra safety option with a performance impact. Default: false</li>
+<li><code>MINIMUM_REPLICAS</code>: minimum replica number of any volume. Default: 1</li>
+<li><code>WATCH_ALL_VOLUMES</code>: watch all volumes on every node, otherwise Node Guard watches volumes and their replicas on the node where it is running. Extra safety option with a performance impact. Default: false</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">nodeManagerFeatures</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">upgradeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;MINIMUM_REPLICAS_FOR_UPGRADE=2,WATCH_ALL_VOLUMES=true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">   </span><span style="color:#204a87;font-weight:bold">nodeGuard</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;MINIMUM_REPLICAS=2,WATCH_ALL_VOLUMES=true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><h3 id="step-2---rolling-upgrades-is-ready">Step 2 - Rolling Upgrades Is Ready</h3>
 <p>Congratulations, you are now ready to start the rolling upgrade process of your orchestrator!</p>
 <blockquote>
@@ -1574,13 +1574,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>⚠️ EKS takes care of PDB for 50 mins, after this period upgrade would fail unless it was forced.</p>
 </blockquote>
 <blockquote>
-<p>⚠️ Upgrade Guard has a one-day termination period by default. The final termination period heavily depends on the platform you use. During the termination period, you should SSH into the node to create a backup in the worst-case scenario.</p>
+<p>⚠️ Node Guard has a one-day termination period by default. The final termination period heavily depends on the platform you use. During the termination period, you should SSH into the node to create a backup in the worst-case scenario.</p>
 </blockquote>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <ul>
 <li>Volumes are healthy, all in sync but <code>storageos-node-manager</code> pod is hanging on the <code>Terminating</code> state.</li>
 </ul>
-<p>The long termination period of Node Manager tries to keep failed node - and volumes on it - up and running as long as possible. This gives a chance to create a backup from an accidentally deleted machine. In case, Upgrade Guard isn&rsquo;t able to determine volume statuses, because of a network issue or missing StorageOS service, you have to delete pod manually by executing the following command:</p>
+<p>The long termination period of Node Manager tries to keep failed node - and volumes on it - up and running as long as possible. This gives a chance to create a backup from an accidentally deleted machine. In case, Node Guard isn&rsquo;t able to determine volume statuses, because of a network issue or missing StorageOS service, you have to delete pod manually by executing the following command:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl delete pods -n storageos storageos-node-manager-XYZ --grace-period<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span> --force
 </code></pre></div><ul>
 <li>A node has been removed accidentally or not in the official <code>graceful termination</code> way before drain, and two Node Manager pods - one in <code>Pending</code> and the other in <code>Terminating</code> states - are hanging on the same node.</li>

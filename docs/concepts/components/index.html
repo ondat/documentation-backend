@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9ae5995fc1558ab4a43da5ad67cda1b24995de4580c0312ff664772ecfcfd449bf2001dd627d781140208974d64018b4c7b5ac57d839303f6ca499aa68b9c495.json"
+  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9ae5995fc1558ab4a43da5ad67cda1b24995de4580c0312ff664772ecfcfd449bf2001dd627d781140208974d64018b4c7b5ac57d839303f6ca499aa68b9c495.json"
+  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
   data-offline-search-base-href="/"
 >
 
@@ -1472,7 +1472,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#ondat-scheduler">Ondat Scheduler</a></li>
     <li><a href="#csi-helperhttpsgithubcomstorageosexternal-provisioner"><a href="https://github.com/storageos/external-provisioner">CSI helper</a></a></li>
     <li><a href="#ondat-api-managerhttpsgithubcomstorageosapi-manager"><a href="https://github.com/storageos/api-manager">Ondat API manager</a></a></li>
-    <li><a href="#ondat-upgrade-guard">Ondat Upgrade Guard</a></li>
+    <li><a href="#ondat-node-guard">Ondat Node Guard</a></li>
     <li><a href="#ondat-node-manager">Ondat Node Manager</a></li>
   </ul>
 </nav>
@@ -1579,15 +1579,15 @@ reduce network traffic.</p>
 running Ondat, regardless of whether the pod and volume are
 collocated on the same node. Therefore, applications may be started or
 restarted on any node and access volumes transparently.</p>
-<h2 id="ondat-upgrade-guard">Ondat Upgrade Guard</h2>
-<p>The upgrade guard is a key component of the rolling upgrade feature. It blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.</p>
-<p>The upgrade guard will detect if a volume is reconciling (for example, one that does not have enough synced replicas), at which point a node manager pod on the same node as the reconciling volume&rsquo;s master and replicas become unready. Ondat uses a PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. This prevents the rolling upgrade from continuing until the PDB is satisfied and all volumes have fully reconciled</p>
-<p>If the PDB is set to 1 and a Control Plane volume on a node is not ready for a long period of time, this will stop the upgrade process. The <code>api-managercomponent</code> will be able to dynamically set the PDB value if it can determine the health of the volume. If the <code>api-managercomponent</code> knows that a volume will not be ready, it can increase the PDB <code>maxUnavailable</code> value, allowing the upgrade to continue. The upgrade guard container will log when it is available to upgrade, it will also log the reason if upgrade is not possible.</p>
+<h2 id="ondat-node-guard">Ondat Node Guard</h2>
+<p>The Node Guard is a key component of the rolling upgrade feature. It blocks certain nodes from being upgraded or drained thus avoiding data loss in the cluster.</p>
+<p>The Node Guard will detect if a volume is reconciling (for example, one that does not have enough synced replicas), at which point a node manager pod on the same node as the reconciling volume&rsquo;s master and replicas become unready. Ondat uses a PodDisruptionBudget (PDB) to stop more than 1 node manager pod being unavailable at any point in time. This prevents the rolling upgrade from continuing until the PDB is satisfied and all volumes have fully reconciled</p>
+<p>If the PDB is set to 1 and a Control Plane volume on a node is not ready for a long period of time, this will stop the upgrade process. The <code>api-managercomponent</code> will be able to dynamically set the PDB value if it can determine the health of the volume. If the <code>api-managercomponent</code> knows that a volume will not be ready, it can increase the PDB <code>maxUnavailable</code> value, allowing the upgrade to continue. The Node Guard container will log when it is available to upgrade, it will also log the reason if upgrade is not possible.</p>
 <blockquote>
-<p>⚠️ The upgrade guard container only monitors volumes that host a deployment on its node (for example, it doesn’t care if a volume is unhealthy if the node it&rsquo;s running on hosts none of the volumes primary and replicas)</p>
+<p>⚠️ The Node Guard container only monitors volumes that host a deployment on its node (for example, it doesn’t care if a volume is unhealthy if the node it&rsquo;s running on hosts none of the volumes primary and replicas)</p>
 </blockquote>
 <blockquote>
-<p>⚠️ There is some latency between a volume becoming unhealthy and the upgrade guard noticing, due to the polling nature of both the <code>api-managercomponent</code> volume sync Kubernetes readiness endpoints)</p>
+<p>⚠️ There is some latency between a volume becoming unhealthy and the Node Guard noticing, due to the polling nature of both the <code>api-managercomponent</code> volume sync Kubernetes readiness endpoints)</p>
 </blockquote>
 <h2 id="ondat-node-manager">Ondat Node Manager</h2>
 <p>The Node manager is an out-of-band pod used for node management.  It runs on all nodes that run the <code>StorageOS</code> node container and is a separate pod so that it can be restarted independently of the node container.</p>
