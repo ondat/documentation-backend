@@ -20,32 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Metric Exporter | </title><meta property="og:title" content="Metric Exporter" />
-<meta property="og:description" content="Overview Following the exporter pattern, we maintain and distribute our own Prometheus exporter for monitoring &amp; alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity &amp; traffic.
-Our exporter’s source code can be found here.
-Please see our operations page to get started.
-Additionally, we distribute Grafana dashboards to visualize the data. They can be found here.
-Likewise, we distribute example alerting rules for our metrics using Alertmanager, they can be found here" />
+<title>Ondat Metric Exporter | </title><meta property="og:title" content="Ondat Metric Exporter" />
+<meta property="og:description" content="Overview  💡 This feature is available in release v2.8.0 or greater.
+ Prometheus Metrics for Ondat Volumes Following the exporter pattern, we maintain and distribute our own Prometheus exporter for monitoring and alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity and traffic.
+ The Ondat metric exporter repository is open source and can be located on GitHub.  To get started with installing and configuring the exporter in your Ondat cluster, review the metric exporter&rsquo;s operations page for more information." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/metric-exporter/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Metric Exporter">
-<meta itemprop="description" content="Overview Following the exporter pattern, we maintain and distribute our own Prometheus exporter for monitoring &amp; alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity &amp; traffic.
-Our exporter’s source code can be found here.
-Please see our operations page to get started.
-Additionally, we distribute Grafana dashboards to visualize the data. They can be found here.
-Likewise, we distribute example alerting rules for our metrics using Alertmanager, they can be found here">
+<meta itemprop="name" content="Ondat Metric Exporter">
+<meta itemprop="description" content="Overview  💡 This feature is available in release v2.8.0 or greater.
+ Prometheus Metrics for Ondat Volumes Following the exporter pattern, we maintain and distribute our own Prometheus exporter for monitoring and alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity and traffic.
+ The Ondat metric exporter repository is open source and can be located on GitHub.  To get started with installing and configuring the exporter in your Ondat cluster, review the metric exporter&rsquo;s operations page for more information.">
 
-<meta itemprop="wordCount" content="149">
+<meta itemprop="wordCount" content="268">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Metric Exporter"/>
-<meta name="twitter:description" content="Overview Following the exporter pattern, we maintain and distribute our own Prometheus exporter for monitoring &amp; alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity &amp; traffic.
-Our exporter’s source code can be found here.
-Please see our operations page to get started.
-Additionally, we distribute Grafana dashboards to visualize the data. They can be found here.
-Likewise, we distribute example alerting rules for our metrics using Alertmanager, they can be found here"/>
+<meta name="twitter:title" content="Ondat Metric Exporter"/>
+<meta name="twitter:description" content="Overview  💡 This feature is available in release v2.8.0 or greater.
+ Prometheus Metrics for Ondat Volumes Following the exporter pattern, we maintain and distribute our own Prometheus exporter for monitoring and alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity and traffic.
+ The Ondat metric exporter repository is open source and can be located on GitHub.  To get started with installing and configuring the exporter in your Ondat cluster, review the metric exporter&rsquo;s operations page for more information."/>
 
 
 
@@ -88,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Metric Exporter | </title>
+    <title>Ondat Metric Exporter | </title>
   </head>
   <body class="td-page">
     
@@ -187,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -335,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -437,36 +431,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Compression</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Fencing</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Nodes</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscluster-topologies" href="/docs/concepts/cluster-topologies/">Ondat Cluster Topologies</a>
       
       
@@ -474,6 +438,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscomponents" href="/docs/concepts/components/">Ondat Components</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Ondat Compression</a>
       
       
       
@@ -491,7 +461,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Ondat Fencing</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrwx" href="/docs/concepts/rwx/">Ondat Files</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Ondat Metric Exporter</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Ondat Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Ondat Replication</a>
       
       
       
@@ -515,25 +509,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptspolicies" href="/docs/concepts/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Volumes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsclusters" href="/docs/concepts/clusters/">Clusters</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Ondat Volumes</a>
       
       
     </li>
@@ -786,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1136,7 +1112,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencenamespaces" href="/docs/reference/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Ondat Kubectl Plugin</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
       
       
       
@@ -1313,6 +1301,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclusters" href="/docs/reference/clusters/">Clusters</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecontributing" href="/docs/reference/contributing/">Contributing to the documentation</a>
       
       
@@ -1470,6 +1464,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#prometheus-metrics-for-ondat-volumes">Prometheus Metrics for Ondat Volumes</a></li>
+        <li><a href="#alerting-rules-for-ondat-volumes">Alerting Rules for Ondat Volumes</a></li>
+        <li><a href="#grafana-dashboard-for-ondat-volumes">Grafana Dashboard for Ondat Volumes</a></li>
+      </ul>
+    </li>
+    <li><a href="#contributing">Contributing</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1505,7 +1512,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/concepts/metric-exporter/">Metric Exporter</a>
+	<a href="/docs/concepts/metric-exporter/">Ondat Metric Exporter</a>
 </li>
 
 	</ol>
@@ -1513,19 +1520,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Metric Exporter</h1>
+	<h1>Ondat Metric Exporter</h1>
 	
 	<h2 id="overview">Overview</h2>
-<p>Following the <a href="https://prometheus.io/docs/instrumenting/exporters/">exporter pattern</a>, we maintain and distribute our own <a href="https://prometheus.io/">Prometheus</a> exporter for monitoring &amp; alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity &amp; traffic.</p>
-<p>Our exporter’s source code can be found <a href="https://github.com/ondat/metrics-exporter">here</a>.</p>
-<p>Please see our <a href="/docs/operations/metric-exporter/">operations page</a> to get started.</p>
-<p>Additionally, we distribute Grafana dashboards to visualize the data. They can be found <a href="https://github.com/ondat/metrics-exporter/tree/main/grafana">here</a>.</p>
-<p>Likewise, we distribute example alerting rules for our metrics using <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Alertmanager</a>, they can be found <a href="https://github.com/ondat/metrics-exporter/tree/main/alertmanager">here</a></p>
-<p>Contributions to both are welcome!</p>
 <blockquote>
-<p>⚠️ When setting up a <a href="https://github.com/prometheus-operator/prometheus-operator/blob/1e4acb010642067bb918eebb75410191640a95c6/Documentation/user-guides/getting-started.md">ServiceMonitor</a> be sure to create the rules in the same namespace as your Prometheus resource and have its <code>selector</code> field match the labels of ours services exposing metrics (see example manifest <a href="/docs/operations/metric-exporter/">here</a>).</p>
+<p>💡 This feature is available in release <code>v2.8.0</code> or greater.</p>
 </blockquote>
-<p>If you have suggestions for metrics you would like us to gather or improvements to our Grafana or Alertmanager integration, please let us know on our <a href="https://slack.storageos.com/">public slack</a>.</p>
+<h3 id="prometheus-metrics-for-ondat-volumes">Prometheus Metrics for Ondat Volumes</h3>
+<p>Following the <a href="https://prometheus.io/docs/instrumenting/exporters/">exporter pattern</a>, we maintain and distribute our own <a href="https://prometheus.io/">Prometheus</a> exporter for monitoring and alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity and traffic.</p>
+<ul>
+<li>The Ondat metric exporter repository is open source and can be located on <a href="https://github.com/ondat/metrics-exporter">GitHub</a>.</li>
+</ul>
+<p>To get started with installing and configuring the exporter in your Ondat cluster, review the <a href="/docs/operations/metric-exporter/">metric exporter&rsquo;s</a> operations page for more information.</p>
+<blockquote>
+<p>⚠️ When setting up a <a href="https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md">ServiceMonitor</a> resource, ensure that you create the rules in the same namespace as your Prometheus resource and have its <code>selector</code> field match the labels of the services exposing metrics - review the <a href="/docs/operations/metric-exporter/">example ServiceMonitor resource</a> manifest in the operations page for more information.</p>
+</blockquote>
+<h3 id="alerting-rules-for-ondat-volumes">Alerting Rules for Ondat Volumes</h3>
+<p>Ondat also distributes example alert rules for Ondat metrics using <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Alertmanager</a>.</p>
+<ul>
+<li>The alert rules manifest can be located in the <a href="https://github.com/ondat/metrics-exporter/tree/main/alertmanager"><code>alertmanager</code> sub directory under the Ondat metric exporter</a> repository.</li>
+</ul>
+<h3 id="grafana-dashboard-for-ondat-volumes">Grafana Dashboard for Ondat Volumes</h3>
+<p>In addition to the Ondat metric exporter project, we also distribute <a href="https://grafana.com/grafana/dashboards/">Grafana dashboards</a> that allow end users to easily visualize and get insights into the status of Ondat volumes.</p>
+<ul>
+<li>The dashboards can be also located in the <a href="https://github.com/ondat/metrics-exporter/tree/main/grafana"><code>grafana</code> sub directory under the Ondat metric exporter</a> repository.</li>
+</ul>
+<h2 id="contributing">Contributing</h2>
+<p>If end users have suggestions/ideas for metrics that they would like Ondat to gather by default or improve the Grafana dashboards and Alertmanager integration, contributions are welcome.</p>
+<p>You can reach out to us on the <a href="https://slack.storageos.com/">Ondat community slack workspace</a> or review the <a href="https://github.com/ondat/metrics-exporter/blob/main/CONTRIBUTING.md">contributing guidelines</a> in the Ondat metric exporter repository.</p>
 
 	
 	

@@ -7,7 +7,6 @@
 
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
-<link rel="alternate" type="application/rss&#43;xml" href="/docs/reference/cli/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -21,15 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Command Line Interface | </title><meta property="og:title" content="Command Line Interface" />
-<meta property="og:description" content="Ondat Documentation" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/reference/cli/" />
+<title>Policies | </title><meta property="og:title" content="Policies" />
+<meta property="og:description" content="Ondat policies are a way to control user and group access to Ondat Namespaces. To grant a user or group access to a namespace, a policy needs to be created mapping the user or group to the namespace.
+ 💡 Users always have access to the default namespace
+ For more information on how to use policies, see the Policies operations page." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/reference/policies/" /><meta property="article:section" content="docs" />
 
-<meta itemprop="name" content="Command Line Interface">
-<meta itemprop="description" content="Ondat Documentation"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Command Line Interface"/>
-<meta name="twitter:description" content="Ondat Documentation"/>
+
+
+<meta itemprop="name" content="Policies">
+<meta itemprop="description" content="Ondat policies are a way to control user and group access to Ondat Namespaces. To grant a user or group access to a namespace, a policy needs to be created mapping the user or group to the namespace.
+ 💡 Users always have access to the default namespace
+ For more information on how to use policies, see the Policies operations page.">
+
+<meta itemprop="wordCount" content="60">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Policies"/>
+<meta name="twitter:description" content="Ondat policies are a way to control user and group access to Ondat Namespaces. To grant a user or group access to a namespace, a policy needs to be created mapping the user or group to the namespace.
+ 💡 Users always have access to the default namespace
+ For more information on how to use policies, see the Policies operations page."/>
 
 
 
@@ -72,9 +82,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Command Line Interface | </title>
+    <title>Policies | </title>
   </head>
-  <body class="td-section">
+  <body class="td-page">
     
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXRX3CX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1092,7 +1102,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Reference</a>
+    <a  href="/docs/reference/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Reference</a>
   </li>
   <ul>
     <li class="collapse show" id="docsreference">
@@ -1114,7 +1124,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
       
       
       
@@ -1168,10 +1178,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/cli/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">CLI</a>
+    <a  href="/docs/reference/cli/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">CLI</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreferencecli">
+    <li class="collapse " id="docsreferencecli">
       
       
       
@@ -1454,20 +1464,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#installation">Installation</a>
-      <ul>
-        <li><a href="#run-the-cli-as-a-deployment-in-your-cluster">Run the CLI as a deployment in your cluster</a></li>
-        <li><a href="#run-cli-as-a-container">Run CLI as a container</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#formatting-cli-output">Formatting CLI Output</a></li>
-    <li><a href="#cheatsheet">Cheatsheet</a></li>
-  </ul>
-</nav>
-
 
 
           </div>
@@ -1503,7 +1499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/reference/cli/">CLI</a>
+	<a href="/docs/reference/policies/">Policies</a>
 </li>
 
 	</ol>
@@ -1511,558 +1507,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Command Line Interface</h1>
+	<h1>Policies</h1>
 	
-	<p>The <code>storageos</code> command-line interface (CLI) is used to manage cluster-wide
-configuration.</p>
-<p>It is highly recommended to install the CLI, since it can be used to generate a
-lot of useful information about your Ondat cluster and significantly speed
-up resolution times for support issues.</p>
-<h2 id="installation">Installation</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># linux/amd64</span>
-curl -sSLo storageos <span style="color:#4e9a06">\ </span>
-    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_linux_amd64 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/
-
-<span style="color:#8f5902;font-style:italic"># MacOS</span>
-curl -sSLo storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_darwin_amd64 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/
-</code></pre></div><p>You will need to provide the correct credentials to connect to the API. The
-default installation uses the <code>storageos-api</code> Secret to generate the first
-admin user. By default, it creates a single user with username <code>storageos</code> and
-password <code>storageos</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
-<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
-<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span>10.1.5.249:5705
-</code></pre></div><h3 id="run-the-cli-as-a-deployment-in-your-cluster">Run the CLI as a deployment in your cluster</h3>
-<p>This is a preferred installation method, since our support bundle generation
-software can automatically detect a deployment called &ldquo;cli&rdquo; and warn you if you
-do not have the CLI installed. You can run CLI commands with <code>kubectl exec</code> on
-your cli container.</p>
-<p><code>kubectl apply -f</code> the below YAML manifest to install.</p>
-<pre tabindex="0"><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: storageos-cli
-  namespace: storageos
-  labels:
-    app: storageos-cli
-    kind: storageos
-    app.kubernetes.io/part-of: storageos
-    app.kubernetes.io/component: storageos-cli
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: storageos-cli
-  template:
-    metadata:
-      name: storageos-cli
-      labels:
-        app: storageos-cli
-    spec:
-      containers:
-      - image: storageos/cli:v2.7.0
-        command:
-          - &quot;/bin/sh&quot;
-          - &quot;-c&quot;
-          - &quot;while true; do sleep 3600; done&quot;
-        imagePullPolicy: IfNotPresent
-        name: cli
-        ports:
-        - containerPort: 5705
-        env:
-        - name: STORAGEOS_USERNAME
-          value: storageos
-        - name: STORAGEOS_PASSWORD
-          value: storageos
-        - name: STORAGEOS_ENDPOINTS
-          value: storageos:5705
-      restartPolicy: Always
-</code></pre><h3 id="run-cli-as-a-container">Run CLI as a container</h3>
-<p>You can also run the cli as a container in your Kubernetes cluster. Then exec
-into it to run commands.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos run <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.7.0
-    --restart<span style="color:#ce5c00;font-weight:bold">=</span>Never                          <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos:5705 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos       <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos       <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --command cli                            <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    -- /bin/sh -c <span style="color:#4e9a06">&#34;while true; do sleep 100000; done&#34;</span>
-</code></pre></div><h2 id="usage">Usage</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ storageos
-Storage <span style="color:#204a87;font-weight:bold">for</span> Cloud Native Applications.
-
-By using this product, you are agreeing to the terms of the the Ondat Ltd. End
-User Subscription Agreement <span style="color:#ce5c00;font-weight:bold">(</span>EUSA<span style="color:#ce5c00;font-weight:bold">)</span> found at: https://storageos.com/legal/#eusa
-
-To be notified about stable releases and latest features, sign up at https://my.storageos.com.
-
-Usage:
-  storageos <span style="color:#ce5c00;font-weight:bold">[</span>command<span style="color:#ce5c00;font-weight:bold">]</span>
-
-Available Commands:
-  apply       Make changes to existing resources
-  attach      Attach a volume to a node
-  create      Create new resources
-  delete      Delete resources in the cluster
-  describe    Fetch extended details <span style="color:#204a87;font-weight:bold">for</span> resources
-  detach      Detach a volume from its current location
-  get         Fetch basic details <span style="color:#204a87;font-weight:bold">for</span> resources
-  <span style="color:#204a87">help</span>        Help about any <span style="color:#204a87">command</span>
-  nfs         Make changes and attach nfs volumes
-  update      Make changes to existing resources
-  version     View version information <span style="color:#204a87;font-weight:bold">for</span> the Ondat CLI
-
-Flags:
-      --cache-dir string        <span style="color:#204a87">set</span> the directory used by the Ondat CLI to cache data that can be used <span style="color:#204a87;font-weight:bold">for</span> future commands <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/home/user/.cache/storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-  -c, --config string           specifies the config file path <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;/home/user/.config/storageos/config.yaml&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --endpoints stringArray   <span style="color:#204a87">set</span> the list of endpoints which are used when connecting to the Ondat API <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#ce5c00;font-weight:bold">[</span>http://localhost:5705<span style="color:#ce5c00;font-weight:bold">])</span>
-  -h, --help                    <span style="color:#204a87">help</span> <span style="color:#204a87;font-weight:bold">for</span> storageos
-  -n, --namespace string        specifies the namespace to operate within <span style="color:#204a87;font-weight:bold">for</span> commands that require one <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --no-auth-cache           disable the CLI<span style="color:#a40000">&#39;</span>s caching of authentication sessions
-  -o, --output string           specifies the output format <span style="color:#ce5c00;font-weight:bold">(</span>one of <span style="color:#ce5c00;font-weight:bold">[</span>json yaml text<span style="color:#ce5c00;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;text&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --password string         <span style="color:#204a87">set</span> the Ondat account password to authenticate with <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-      --timeout duration        <span style="color:#204a87">set</span> the timeout duration to use <span style="color:#204a87;font-weight:bold">for</span> execution of the <span style="color:#204a87">command</span> <span style="color:#ce5c00;font-weight:bold">(</span>default 15s<span style="color:#ce5c00;font-weight:bold">)</span>
-      --use-ids                 specify existing Ondat resources by their unique identifiers instead of by their names
-      --username string         <span style="color:#204a87">set</span> the Ondat account username to authenticate as <span style="color:#ce5c00;font-weight:bold">(</span>default <span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">)</span>
-
-Additional <span style="color:#204a87">help</span> topics:
-  storageos config-file View <span style="color:#204a87">help</span> information <span style="color:#204a87;font-weight:bold">for</span> using a configuration file
-  storageos env         View documentation <span style="color:#204a87;font-weight:bold">for</span> configuration settings which can be <span style="color:#204a87">set</span> in the environment
-  storageos exitcodes   View documentation <span style="color:#204a87;font-weight:bold">for</span> the <span style="color:#204a87">exit</span> codes used by the Ondat CLI
-
-Use <span style="color:#4e9a06">&#34;storageos [command] --help&#34;</span> <span style="color:#204a87;font-weight:bold">for</span> more information about a command.
-</code></pre></div><h2 id="formatting-cli-output">Formatting CLI Output</h2>
-<p>Ondat CLI output can be formatted using the <code>--output</code> option. The strings
-that are passed to <code>--output</code> are &lsquo;json&rsquo;, &lsquo;yaml&rsquo; or &lsquo;text&rsquo;.</p>
-<h2 id="cheatsheet">Cheatsheet</h2>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Subcommand</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>apply</code></td>
-<td><code>licence</code></td>
-<td>Make changes to existing resources.</td>
-</tr>
-<tr>
-<td><code>attach</code></td>
-<td></td>
-<td>Attach Volume to a node.</td>
-</tr>
-<tr>
-<td><code>create</code></td>
-<td><code>namespace, policy-group, user, volume</code></td>
-<td>Create resources.</td>
-</tr>
-<tr>
-<td><code>delete</code></td>
-<td><code>namespace, node, policy-group, user, volume</code></td>
-<td>Delete resources.</td>
-</tr>
-<tr>
-<td><code>describe</code></td>
-<td><code>cluster, licence, namespace, node, policy-group, user, volume</code></td>
-<td>Show detailed view of resources.</td>
-</tr>
-<tr>
-<td><code>detach</code></td>
-<td></td>
-<td>Detach volume from a node.</td>
-</tr>
-<tr>
-<td><code>get</code></td>
-<td><code>cluster, diagnostics, namespace, node, policy-group, user, volume</code></td>
-<td>List resources.</td>
-</tr>
-<tr>
-<td><code>help</code></td>
-<td></td>
-<td>Help</td>
-</tr>
-<tr>
-<td><code>nfs</code></td>
-<td><code>attach, endpoint, exports</code></td>
-<td>Make changes to and attach nfs volumes</td>
-</tr>
-<tr>
-<td><code>update</code></td>
-<td><code>volume</code></td>
-<td>Make changes to existing resources</td>
-</tr>
-<tr>
-<td><code>version</code></td>
-<td></td>
-<td>Show CLI version.</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://github.com/storageos/go-cli">Source is available on GitHub</a>.</p>
-
-        <div class="section-index">
-    
-    
-    
-    
-    <hr class="panel-line">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/apply/">Apply</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/attach/">Attach</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/create/">Create</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/delete/">Delete</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/describe/">Describe</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/detach/">Detach</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/get/">Get</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/help/">Help</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/update/">Update</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/cli/version/"></a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-        
-    
-</div>
+	<p>Ondat policies are a way to control user and group access to Ondat
+<a href="/docs/concepts/namespaces">Namespaces</a>. To grant a user or group
+access to a namespace, a policy needs to be created mapping the user or group
+to the namespace.</p>
+<blockquote>
+<p>💡 Users always have access to the default namespace</p>
+</blockquote>
+<p>For more information on how to use policies, see the
+<a href="/docs/operations/policies">Policies operations</a> page.</p>
 
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
 </div>
+
 
           </main>
         </div>

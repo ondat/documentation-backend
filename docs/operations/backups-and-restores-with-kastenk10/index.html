@@ -20,26 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Backup and restores with Ondat Snapshots and Kasten K10 | </title><meta property="og:title" content="Backup and restores with Ondat Snapshots and Kasten K10" />
+<title>Backup &amp; restores using Ondat Snapshots with Kasten K10 | </title><meta property="og:title" content="Backup &amp; restores using Ondat Snapshots with Kasten K10" />
 <meta property="og:description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using Kasten K10. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    1: Installing Ondat Ondat Snapshots were introduced in v2." />
+ Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/backups-and-restores-with-kastenk10/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Backup and restores with Ondat Snapshots and Kasten K10">
+<meta itemprop="name" content="Backup &amp; restores using Ondat Snapshots with Kasten K10">
 <meta itemprop="description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using Kasten K10. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    1: Installing Ondat Ondat Snapshots were introduced in v2.">
+ Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:">
 
-<meta itemprop="wordCount" content="2136">
+<meta itemprop="wordCount" content="2049">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Backup and restores with Ondat Snapshots and Kasten K10"/>
+<meta name="twitter:title" content="Backup &amp; restores using Ondat Snapshots with Kasten K10"/>
 <meta name="twitter:description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using Kasten K10. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    1: Installing Ondat Ondat Snapshots were introduced in v2."/>
+ Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:"/>
 
 
 
@@ -82,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Backup and restores with Ondat Snapshots and Kasten K10 | </title>
+    <title>Backup &amp; restores using Ondat Snapshots with Kasten K10 | </title>
   </head>
   <body class="td-page">
     
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -431,36 +431,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Compression</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Fencing</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Nodes</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscluster-topologies" href="/docs/concepts/cluster-topologies/">Ondat Cluster Topologies</a>
       
       
@@ -468,6 +438,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscomponents" href="/docs/concepts/components/">Ondat Components</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Ondat Compression</a>
       
       
       
@@ -485,7 +461,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Ondat Fencing</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrwx" href="/docs/concepts/rwx/">Ondat Files</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Ondat Metric Exporter</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Ondat Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Ondat Replication</a>
       
       
       
@@ -509,25 +509,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptspolicies" href="/docs/concepts/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Volumes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsclusters" href="/docs/concepts/clusters/">Clusters</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Ondat Volumes</a>
       
       
     </li>
@@ -780,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1130,7 +1112,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencenamespaces" href="/docs/reference/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Ondat Kubectl Plugin</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
       
       
       
@@ -1307,6 +1301,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclusters" href="/docs/reference/clusters/">Clusters</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecontributing" href="/docs/reference/contributing/">Contributing to the documentation</a>
       
       
@@ -1466,15 +1466,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#51-creating-an-example-application">5.1: Creating an example application</a></li>
-    <li><a href="#52-adding-prepost-snapshot-hooks-to-quiesce-the-applicationfilesystem">5.2: Adding pre/post-snapshot hooks to quiesce the application/filesystem</a></li>
-    <li><a href="#53-setting-up-a-backup-policy">5.3: Setting up a backup policy</a></li>
-    <li><a href="#54-manually-running-a-backup-job">5.4: Manually running a backup job</a></li>
-    <li><a href="#55-restoring-an-application-from-a-backup">5.5: Restoring an application from a backup</a></li>
-    <li><a href="#known-issues-and-gotchas">Known issues and gotchas</a>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
       <ul>
-        <li><a href="#deletion-of-volumesnapshot">Deletion of VolumeSnapshot</a></li>
-        <li><a href="#performance-implications">Performance implications</a></li>
+        <li><a href="#step-1---installing-ondat">Step 1 - Installing Ondat</a></li>
+        <li><a href="#step-2---installing-the-kubernetes-snapshot-crds">Step 2 - Installing the Kubernetes Snapshot CRDs</a></li>
+        <li><a href="#step-3---configuring-the-ondat-volumesnapshotclass">Step 3 - Configuring the Ondat <code>VolumeSnapshotClass</code></a></li>
+        <li><a href="#step-4---installing-kasten-k10">Step 4 - Installing Kasten K10</a></li>
+        <li><a href="#step-5---backup-and-restore-example">Step 5 - Backup and Restore Example</a></li>
+      </ul>
+    </li>
+    <li><a href="#known-issues--gotchas">Known Issues &amp; Gotchas</a>
+      <ul>
+        <li><a href="#deletion-of-volumesnapshot">Deletion of <code>VolumeSnapshot</code></a></li>
+        <li><a href="#performance-implications">Performance Implications</a></li>
       </ul>
     </li>
   </ul>
@@ -1515,7 +1521,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
+	<a href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
 </li>
 
 	</ol>
@@ -1523,9 +1529,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Backup and restores with Ondat Snapshots and Kasten K10</h1>
+	<h1>Backup &amp; restores using Ondat Snapshots with Kasten K10</h1>
 	
-	<h1 id="overview">Overview</h1>
+	<h2 id="overview">Overview</h2>
 <p>This guide will walk you through how to use the Ondat Snapshots feature to
 backup and restore your Kubernetes applications using Kasten K10. Before
 starting please consult the <a href="/docs/concepts/snapshots">Snapshots
@@ -1546,49 +1552,57 @@ Concepts</a> page for an overview of the feature.</p>
 </ol>
 </li>
 </ol>
-<h1 id="1-installing-ondat">1: Installing Ondat</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>To utilize the Ondat Snapshot feature the following prerequisites must be met:</p>
+<ol>
+<li>Ondat v2.8.0 or later is installed in the cluster</li>
+<li>Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of
+<a href="https://docs.kasten.io/latest/install/requirements.html#">prerequisites</a>.
+Kasten supports Kubernetes versions up to 1.22.</li>
+</ol>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---installing-ondat">Step 1 - Installing Ondat</h3>
 <p>Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
 first time then please follow the instructions
 <a href="/docs/install/">here</a>. If you are upgrading an existing
 Ondat deployment then please follow the instructions
 <a href="/docs/upgrade/upgrade/">here</a>.</p>
-<h1 id="2-installing-the-kubernetes-snapshot-crds">2: Installing the Kubernetes snapshot CRDs</h1>
+<h3 id="step-2---installing-the-kubernetes-snapshot-crds">Step 2 - Installing the Kubernetes Snapshot CRDs</h3>
 <p>In order to use the Kubernetes snapshot feature the Kubernetes snapshot CRDs
 and the <code>snapshot-controller</code> must be installed. Most distributions don’t
 install these by default. To install the <code>VolumeSnapshots</code>,
 <code>VolumeSnapshotContents</code> and <code>VolumeSnapshotClasses</code> CRDs run the following:</p>
-<pre tabindex="0"><code>kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
 kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
 kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
-</code></pre><p>Now you need to install the <code>snapshot-controller</code>. The
+</code></pre></div><p>Now you need to install the <code>snapshot-controller</code>. The
 <a href="https://kubernetes-csi.github.io/docs/snapshot-controller.html">snapshot controller</a>
 monitors the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code>
 CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install
 the controller with the following command:</p>
-<pre tabindex="0"><code>$ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
-$ kubectl apply -f
-https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
-</code></pre><p>Note: it’s important that v6.0 is used for the CRDs and the <code>snapshot-controller</code>.
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
+</code></pre></div><p>Note: it’s important that v6.0 is used for the CRDs and the <code>snapshot-controller</code>.
 Other versions may work or may appear to work, but have not been formally tested
 and ratified by Ondat.</p>
-<h1 id="3-configuring-the-ondat-volumesnapshotclass">3: Configuring the Ondat VolumeSnapshotClass</h1>
+<h3 id="step-3---configuring-the-ondat-volumesnapshotclass">Step 3 - Configuring the Ondat <code>VolumeSnapshotClass</code></h3>
 <p>In order to utilise the Ondat CSI plugin with the Kubernetes snapshot feature, one
 must provide a <code>VolumeSnapshotClass</code> for the Ondat CSI plugin. Once the CRDs and the
 <code>snapshot-controller</code> have been installed edit your <code>StorageOSCluster</code> to add:</p>
-<pre tabindex="0"><code>spec:
-  snapshots:
-    volumeSnapshotClassName: $EXAMPLE_NAME
-</code></pre><p>This will prompt the Ondat operator to create a <code>VolumeSnapshotClass</code> named
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">snapshots</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeSnapshotClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">$EXAMPLE_NAME</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>This will prompt the Ondat operator to create a <code>VolumeSnapshotClass</code> named
 <code>$EXAMPLE_NAME</code> and configure it for use with Kasten K10. You can edit your
 <code>StorageOSCluster</code> by using the following command:</p>
-<pre tabindex="0"><code>kubectl -n storageos edit storageosclusters.storageos.com cluster
-</code></pre><p>You can view the <code>VolumeSnapshotClass</code> by running:</p>
-<pre tabindex="0"><code>kubectl get volumesnapshotclasses
-</code></pre><p>and:</p>
-<pre tabindex="0"><code>kubectl describe volumesnapshotclasses $EXAMPLE_NAME
-</code></pre><p>You’ll notice the <code>VolumeSnapshotClass</code> contains the <code>k10.kasten.io/is-snapshot-class: true</code>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos edit storageosclusters.storageos.com cluster
+</code></pre></div><p>You can view the <code>VolumeSnapshotClass</code> by running:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get volumesnapshotclasses
+</code></pre></div><p>and:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe volumesnapshotclasses <span style="color:#000">$EXAMPLE_NAME</span>
+</code></pre></div><p>You’ll notice the <code>VolumeSnapshotClass</code> contains the <code>k10.kasten.io/is-snapshot-class: true</code>
 annotation. This is very important and allows Kasten K10 to utilise the Ondat storage plugin.</p>
-<h1 id="4-installing-kasten-k10">4: Installing Kasten K10</h1>
+<h3 id="step-4---installing-kasten-k10">Step 4 - Installing Kasten K10</h3>
 <p>The next step is to install Kasten K10 on your cluster. Instructions for how to do this can
 be found <a href="https://docs.kasten.io/latest/install/install.html">here</a>.</p>
 <p>The remainder of this walk through will assume you have access to the Kasten K10 UI. You
@@ -1599,75 +1613,76 @@ in this guide.</p>
 <p>Once K10 is installed you can then create a &ldquo;Profile&rdquo; and configure the backup location.
 Instructions on how to do this can be found
 <a href="https://docs.kasten.io/latest/api/profiles.html#">here</a>. It’s also possible to do this via the UI.</p>
-<h1 id="5-backup-and-restore-example">5: Backup and restore example</h1>
+<h3 id="step-5---backup-and-restore-example">Step 5 - Backup and Restore Example</h3>
 <p>In the following sections, we’ll create a toy application and run through the steps required to
 back it up and restore from it.</p>
-<h2 id="51-creating-an-example-application">5.1: Creating an example application</h2>
+<h4 id="step-51---create-an-example-application">Step 5.1 - Create an Example Application</h4>
 <p>Start by creating an example deployment in a new namespace <code>ondat-test</code>, which utilises a Ondat PVC:</p>
-<pre tabindex="0"><code>kubectl create namespace ondat-test
-</code></pre><p>Then apply the following configuration using <code>kubectl create -f</code>:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mypvc
-  namespace: ondat-test
-spec:
-  storageClassName: storageos
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp-deployment
-  namespace: ondat-test
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: date
-        image: debian:9-slim
-        command: [&quot;/bin/sh&quot;,&quot;-c&quot;]
-        args: [&quot;while true; do /bin/date | /usr/bin/tee -a /mnt/date ; /bin/sleep 5; done&quot;]
-        volumeMounts:
-          - mountPath: /mnt
-            name: data-mount
-      - name: sidecar
-        image: debian:9-slim
-        command: [&quot;/bin/sh&quot;,&quot;-c&quot;]
-        args: [&quot;/bin/sleep 3600&quot;]
-        securityContext:
-          privileged: true
-        volumeMounts:
-          - mountPath: /mnt
-            name: data-mount
-      volumes:
-      - name: data-mount
-        persistentVolumeClaim:
-          claimName: mypvc
-</code></pre><p>This deployment creates a pod with 2 containers. The <code>date</code> container will simply append
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create namespace ondat-test
+</code></pre></div><p>Then apply the following configuration using <code>kubectl create -f</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mypvc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-test</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">2Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">apps/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Deployment</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">myapp-deployment</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-test</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">myapp</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">myapp</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">date</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian:9-slim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/sh&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#34;-c&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;while true; do /bin/date | /usr/bin/tee -a /mnt/date ; /bin/sleep 5; done&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/mnt</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data-mount</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">sidecar</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian:9-slim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/sh&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#34;-c&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/sleep 3600&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">securityContext</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">privileged</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/mnt</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data-mount</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data-mount</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">persistentVolumeClaim</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">claimName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mypvc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>This deployment creates a pod with 2 containers. The <code>date</code> container will simply append
 the date to stdout and <code>/mnt/date</code> every 5 seconds:</p>
-<pre tabindex="0"><code>$ kubectl -n ondat-test exec myapp-deployment-7749d9984-r57nk -c date -- cat /mnt/date | head
-Tue Jun 28 08:56:07 UTC 2022
-Tue Jun 28 08:59:01 UTC 2022
-Tue Jun 28 08:59:06 UTC 2022
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n ondat-test <span style="color:#204a87">exec</span> myapp-deployment-7749d9984-r57nk -c date -- cat /mnt/date <span style="color:#000;font-weight:bold">|</span> head
+
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 08:56:07 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 08:59:01 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 08:59:06 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
 …
-</code></pre><p>The <code>sidecar</code> container simply mounts in the PVC under <code>/mnt</code> and then lies dormant.
+</code></pre></div><p>The <code>sidecar</code> container simply mounts in the PVC under <code>/mnt</code> and then lies dormant.
 This container will be used during the snapshot process to quiesce the filesystem so
 a consistent snapshot can be taken. It serves no other purpose. Notice how this
 container must have the <code>privileged</code> flag set to <code>true</code>. This is necessary to run
 the <code>fsfreeze</code> command.</p>
-<h2 id="52-adding-prepost-snapshot-hooks-to-quiesce-the-applicationfilesystem">5.2: Adding pre/post-snapshot hooks to quiesce the application/filesystem</h2>
+<h4 id="step-52---add-prepost-snapshot-hooks-to-quiesce-the-applicationfilesystem">Step 5.2 - Add Pre/Post-Snapshot Hooks To Quiesce the Application/Filesystem</h4>
 <p>In order to take a snapshot of an application we must first quiesce the application
 and the underlying filesystem.</p>
 <p>Quiescing the application means putting it into a paused state where all on-going
@@ -1703,67 +1718,68 @@ for our toy application.</p>
 <code>kind</code> to <code>StatefulSet</code>, <code>Deployment.Namespace</code> to <code>StatefulSet.Namespace</code> and
 <code>Deployment.Pods</code> to <code>StatefulSet.Pods</code>.</p>
 </blockquote>
-<pre tabindex="0"><code>apiVersion: cr.kanister.io/v1alpha1
-kind: Blueprint
-metadata:
-  name: fsfreeze-hooks-deployment
-  namespace: kasten-io
-actions:
-  backupPrehook:
-    kind: Deployment # or StatefulSet
-    phases:
-    - func: KubeExec
-      name: fsfreeze
-      args:
-        namespace: &quot;{{ .Deployment.Namespace }}&quot;  # or StatefulSet.Namespace
-        pod: &quot;{{ index .Deployment.Pods 0 }}&quot;     # or StatefulSet.Pods
-        container: sidecar
-        command:
-        - bash
-        - -o
-        - errexit
-        - -o
-        - pipefail
-        - -o
-        - xtrace
-        - -c
-        - |
-          fsfreeze --freeze /mnt
-  backupPosthook:
-    kind: Deployment
-    phases:
-    - func: KubeExec
-      name: fsunfreeze
-      args:
-        namespace: &quot;{{ .Deployment.Namespace }}&quot;  # or StatefulSet.Namespace
-        pod: &quot;{{ index .Deployment.Pods 0 }}&quot;     # or StatefulSet.Pods
-        container: sidecar
-        command:
-        - bash
-        - -o
-        - errexit
-        - -o
-        - pipefail
-        - -o
-        - xtrace
-        - -c
-        - |
-          fsfreeze --unfreeze /mnt
-</code></pre><blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">cr.kanister.io/v1alpha1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Blueprint</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">fsfreeze-hooks-deployment</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">kasten-io</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">actions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">backupPrehook</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Deployment</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># or StatefulSet</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">phases</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">func</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">KubeExec</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">fsfreeze</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;{{ .Deployment.Namespace }}&#34;</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># or StatefulSet.Namespace</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">pod</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;{{ index .Deployment.Pods 0 }}&#34;</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#8f5902;font-style:italic"># or StatefulSet.Pods</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">container</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">sidecar</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">o</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">errexit</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">o</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">pipefail</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">o</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">xtrace</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">c</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000;font-weight:bold">|</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">          </span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#000">fsfreeze --freeze /mnt</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">backupPosthook</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Deployment</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">phases</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">func</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">KubeExec</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">fsunfreeze</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;{{ .Deployment.Namespace }}&#34;</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># or StatefulSet.Namespace</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">pod</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;{{ index .Deployment.Pods 0 }}&#34;</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#8f5902;font-style:italic"># or StatefulSet.Pods</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">container</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">sidecar</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">bash</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">o</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">errexit</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">o</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">pipefail</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">o</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">xtrace</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- -<span style="color:#000">c</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000;font-weight:bold">|</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">          </span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#000">fsfreeze --unfreeze /mnt</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><blockquote>
 <p>If you have installed kasten into a namespace other than <code>kasten-io</code> then
 you’ll have to modify the <code>namespace</code> field in the above configuration.</p>
 </blockquote>
 <p>Apply the blueprint with the <code>kubect create -f</code> command. One can observe the
 blueprint like so:</p>
-<pre tabindex="0"><code>$ kubectl -n kasten-io get blueprints.cr.kanister.io
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n kasten-io get blueprints.cr.kanister.io
+
 NAME                                              AGE
 fsfreeze-hooks-deployment                         15h
 k10-deployment-generic-volume-2.0.20              3h2m
 k10-persistentvolumeclaim-generic-volume-2.0.20   3h19m
-</code></pre><p>We must now annotate our deployment so that the aforementioned hooks are used at
+</code></pre></div><p>We must now annotate our deployment so that the aforementioned hooks are used at
 snapshot time:</p>
-<pre tabindex="0"><code>kubectl annotate deployment -n ondat-test myapp-deployment kanister.kasten.io/blueprint='fsfreeze-hooks-deployment'
-</code></pre><h2 id="53-setting-up-a-backup-policy">5.3: Setting up a backup policy</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl annotate deployment -n ondat-test myapp-deployment kanister.kasten.io/blueprint<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;fsfreeze-hooks-deployment&#39;</span>
+</code></pre></div><h4 id="step-53---setting-up-a-backup-policy">Step 5.3 - Setting Up a Backup Policy</h4>
 <p>Ensure you have the Kasten K10 dashboard installed
 (see <a href="https://docs.kasten.io/latest/access/dashboard.html">here</a>). It’s possible
 to do the steps in this section via <code>kubectl</code> and the command-line. Please see the
@@ -1784,7 +1800,7 @@ namespace &ldquo;ondat-test&rdquo;.</p>
 <p>⚠️ Do not try to set the <code>Pre and Post-Snapshot Action Hooks</code> in the <code>Advanced Settings</code>
 section. This is taken care of by the steps in &ldquo;Adding pre/post-snapshot hooks&rdquo;.</p>
 </blockquote>
-<h2 id="54-manually-running-a-backup-job">5.4: Manually running a backup job</h2>
+<h4 id="step-54---manually-running-a-backup-job">Step 5.4 - Manually Running a Backup Job</h4>
 <p>We can now manually run a job to backup our application. Browse to the dashboard
 homepage and select &ldquo;Policies&rdquo;. From there we can find our policy and initiate a
 backup by clicking &ldquo;run once&rdquo;:</p>
@@ -1797,16 +1813,18 @@ backup by clicking &ldquo;run once&rdquo;:</p>
 <p>In order to save space and reduce copy-on-write latency on the parent volume
 we should now manually delete the <code>VolumeSnapshot</code> object associated with our
 snapshot. This instructs Ondat that we are done with the snapshot.</p>
-<pre tabindex="0"><code>$ kubectl get volumesnapshots -n ondat-test
-NAME                            READYTOUSE   SOURCEPVC   SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS             SNAPSHOTCONTENT                                    CREATIONTIME   AGE
-k10-csi-snap-wlxhw8vf9dx4qtq2   true         mypvc                               2Gi           csi-storageos-snapclass   snapcontent-359f9126-f428-4dbf-82da-932a74d10e83   40m            40m
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get volumesnapshots -n ondat-test
 
-$ kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
-volumesnapshot.snapshot.storage.k8s.io &quot;k10-csi-snap-wlxhw8vf9dx4qtq2&quot; deleted
-</code></pre><h2 id="55-restoring-an-application-from-a-backup">5.5: Restoring an application from a backup</h2>
+NAME                            READYTOUSE   SOURCEPVC   SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS             SNAPSHOTCONTENT                                    CREATIONTIME   AGE
+k10-csi-snap-wlxhw8vf9dx4qtq2   <span style="color:#204a87">true</span>         mypvc                               2Gi           csi-storageos-snapclass   snapcontent-359f9126-f428-4dbf-82da-932a74d10e83   40m            40m
+
+kubectl delete volumesnapshots -n ondat-test k10-csi-snap-wlxhw8vf9dx4qtq2
+
+volumesnapshot.snapshot.storage.k8s.io <span style="color:#4e9a06">&#34;k10-csi-snap-wlxhw8vf9dx4qtq2&#34;</span> deleted
+</code></pre></div><h4 id="step-55---restoring-an-application-from-a-backup">Step 5.5 - Restoring an Application From a Backup</h4>
 <p>Let’s emulate a disaster recovery scenario, by deleting our deployment:</p>
-<pre tabindex="0"><code>kubectl delete -n ondat-test deployments.apps myapp-deployment
-</code></pre><p>Now let’s restore it. First go to the dashboard and select &ldquo;Applications&rdquo;.
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl delete -n ondat-test deployments.apps myapp-deployment
+</code></pre></div><p>Now let’s restore it. First go to the dashboard and select &ldquo;Applications&rdquo;.
 From there find &ldquo;ondat-test&rdquo; and select &ldquo;restore&rdquo;:</p>
 <p><img src="/images/docs/operations/backups/image7.png" alt="Restore1"></p>
 <p>Select the backup you wish to restore from, in this example we’ll select
@@ -1824,25 +1842,27 @@ clicking the relevant restore pane under the &ldquo;Actions&rdquo; sections.</p>
 <p>Once the restore job has finished you’ll see a screen like this:</p>
 <p><img src="/images/docs/operations/backups/image9.png" alt="Restore3"></p>
 <p>Let’s check our application is running:</p>
-<pre tabindex="0"><code>$ kubectl get -n ondat-test deployments.apps myapp-deployment
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get -n ondat-test deployments.apps myapp-deployment
+
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-myapp-deployment   1/1     1            1           10m
-</code></pre><p>And let’s view the contents of the &ldquo;/mnt/date&rdquo; in the application’s pod:</p>
-<pre tabindex="0"><code>$ kubectl -n ondat-test exec myapp-deployment-7749d9984-p7jzp -c date --  cat /mnt/date
-Tue Jun 28 08:56:07 UTC 2022
-Tue Jun 28 08:59:01 UTC 2022
+myapp-deployment   1/1     <span style="color:#0000cf;font-weight:bold">1</span>            <span style="color:#0000cf;font-weight:bold">1</span>           10m
+</code></pre></div><p>And let’s view the contents of the &ldquo;/mnt/date&rdquo; in the application’s pod:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n ondat-test <span style="color:#204a87">exec</span> myapp-deployment-7749d9984-p7jzp -c date --  cat /mnt/date
+
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 08:56:07 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 08:59:01 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
 …
-Tue Jun 28 11:50:40 UTC 2022
-Tue Jun 28 11:50:45 UTC 2022
-Tue Jun 28 11:58:33 UTC 2022
-Tue Jun 28 11:58:38 UTC 2022
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 11:50:40 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 11:50:45 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 11:58:33 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 11:58:38 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
 …
-Tue Jun 28 12:10:29 UTC 2022
-Tue Jun 28 12:10:34 UTC 2022
-</code></pre><p>Notice how there’s an 8 minute gap between 11:50:45 and 11:58:33. This coincides
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 12:10:29 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+Tue Jun <span style="color:#0000cf;font-weight:bold">28</span> 12:10:34 UTC <span style="color:#0000cf;font-weight:bold">2022</span>
+</code></pre></div><p>Notice how there’s an 8 minute gap between 11:50:45 and 11:58:33. This coincides
 with the snapshot being taken at circa 11:51 (UTC) and being restored at 11:58 (UTC).</p>
-<h2 id="known-issues-and-gotchas">Known issues and gotchas</h2>
-<h3 id="deletion-of-volumesnapshot">Deletion of VolumeSnapshot</h3>
+<h2 id="known-issues--gotchas">Known Issues &amp; Gotchas</h2>
+<h3 id="deletion-of-volumesnapshot">Deletion of <code>VolumeSnapshot</code></h3>
 <p>Ideally the Kubernetes <code>VolumeSnapshot</code> object should be deleted as soon as the
 application has been backed up externally. There’s no reason to keep the snapshot
 as it can’t be meaningfully used. Furthermore, it takes up space on the local node
@@ -1852,7 +1872,7 @@ set their snapshot retention policy to 1 hourly snapshot when setting up a backu
 policy. This does not fix the issue, but ensures that the snapshot is removed within
 an hour of been taken. It is also possible to remove the snapshot manually by
 running <code>kubectl delete volumesnapshots -n &lt;app_namespace&gt; &lt;snapshot&gt;</code>.</p>
-<h3 id="performance-implications">Performance implications</h3>
+<h3 id="performance-implications">Performance Implications</h3>
 <p>The Ondat snapshots feature utilises copy-on-write semantics under the hood. This
 means while a <code>VolumeSnapshot</code> object exists any blocks which are written to the
 parent volume invoke an extra read and write operation as blocks are copied into

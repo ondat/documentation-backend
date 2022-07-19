@@ -14,6 +14,26 @@
     
     
     <item>
+      <title>Docs: Namespaces</title>
+      <link>/docs/reference/namespaces/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/reference/namespaces/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat namespaces are an identical concept to Kubernetes namespaces. They
+are intended to allow an Ondat cluster to be used by multiple teams across
+multiple projects.&lt;/p&gt;
+&lt;p&gt;It is not necessary to create Ondat namespaces manually, as Ondat maps
+Kubernetes namespaces on a one-to-one basis when PersistentVolumeClaims using
+the Ondat StorageClass are created.&lt;/p&gt;
+&lt;p&gt;💡 Access to Namespaces is controlled through user or group level &lt;a href=&#34;/docs/concepts/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Kubectl Plugin</title>
       <link>/docs/reference/kubectl-plugin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -97,6 +117,28 @@ Flags:
 
 Use &amp;quot;kubectl-storageos [command] --help&amp;quot; for more information about a command.
 &lt;/code&gt;&lt;/pre&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Policies</title>
+      <link>/docs/reference/policies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/reference/policies/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat policies are a way to control user and group access to Ondat
+&lt;a href=&#34;/docs/concepts/namespaces&#34;&gt;Namespaces&lt;/a&gt;. To grant a user or group
+access to a namespace, a policy needs to be created mapping the user or group
+to the namespace.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Users always have access to the default namespace&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For more information on how to use policies, see the
+&lt;a href=&#34;/docs/operations/policies&#34;&gt;Policies operations&lt;/a&gt; page.&lt;/p&gt;
+
       </description>
     </item>
     
@@ -377,6 +419,23 @@ repository&lt;/a&gt;.&lt;/p&gt;
 &lt;li&gt;Create &lt;code&gt;storageos-api&lt;/code&gt; Secret&lt;/li&gt;
 &lt;li&gt;Create a CR (Custom Resource) to deploy Ondat&lt;/li&gt;
 &lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Cluster</title>
+      <link>/docs/reference/clusters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/reference/clusters/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat clusters represent groups of nodes which run a common distributed control plane.&lt;/p&gt;
+&lt;p&gt;Typically, an Ondat cluster maps one-to-one to a Kubernetes (or similar orchestrator) cluster, and we expect our daemonset to run on all worker nodes within the cluster that will consume or present storage.&lt;/p&gt;
+&lt;p&gt;Clusters use etcd to maintain state and manage distributed consensus between nodes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/ondat-cluster.png&#34; alt=&#34;Ondat Cluster&#34;&gt;&lt;/p&gt;
 
       </description>
     </item>

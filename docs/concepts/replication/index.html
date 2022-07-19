@@ -20,23 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Replication | </title><meta property="og:title" content="Replication" />
-<meta property="og:description" content="Ondat replicates volumes across nodes for data protection and high availability. Synchronous replication ensures strong consistency for applications such as databases and Elasticsearch, incurring one network round trip on writes.
-The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between 0 and 5 times, which are provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster." />
+<title>Ondat Replication | </title><meta property="og:title" content="Ondat Replication" />
+<meta property="og:description" content="Overview How Does Ondat&rsquo;s Replication Work? Ondat replicates volumes across nodes for data protection and high availability. Synchronous replication ensures strong consistency for applications such as databases and message queues, incurring one network round trip on writes.
+ The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between 0 and 5 times, which are provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/replication/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Replication">
-<meta itemprop="description" content="Ondat replicates volumes across nodes for data protection and high availability. Synchronous replication ensures strong consistency for applications such as databases and Elasticsearch, incurring one network round trip on writes.
-The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between 0 and 5 times, which are provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster.">
+<meta itemprop="name" content="Ondat Replication">
+<meta itemprop="description" content="Overview How Does Ondat&rsquo;s Replication Work? Ondat replicates volumes across nodes for data protection and high availability. Synchronous replication ensures strong consistency for applications such as databases and message queues, incurring one network round trip on writes.
+ The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between 0 and 5 times, which are provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster.">
 
-<meta itemprop="wordCount" content="1112">
+<meta itemprop="wordCount" content="1178">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Replication"/>
-<meta name="twitter:description" content="Ondat replicates volumes across nodes for data protection and high availability. Synchronous replication ensures strong consistency for applications such as databases and Elasticsearch, incurring one network round trip on writes.
-The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between 0 and 5 times, which are provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster."/>
+<meta name="twitter:title" content="Ondat Replication"/>
+<meta name="twitter:description" content="Overview How Does Ondat&rsquo;s Replication Work? Ondat replicates volumes across nodes for data protection and high availability. Synchronous replication ensures strong consistency for applications such as databases and message queues, incurring one network round trip on writes.
+ The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between 0 and 5 times, which are provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster."/>
 
 
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Replication | </title>
+    <title>Ondat Replication | </title>
   </head>
   <body class="td-page">
     
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -428,36 +428,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Compression</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Fencing</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Nodes</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscluster-topologies" href="/docs/concepts/cluster-topologies/">Ondat Cluster Topologies</a>
       
       
@@ -465,6 +435,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscomponents" href="/docs/concepts/components/">Ondat Components</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Ondat Compression</a>
       
       
       
@@ -482,7 +458,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Ondat Fencing</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrwx" href="/docs/concepts/rwx/">Ondat Files</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Ondat Metric Exporter</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Ondat Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptsreplication" href="/docs/concepts/replication/">Ondat Replication</a>
       
       
       
@@ -506,25 +506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptspolicies" href="/docs/concepts/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Volumes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsclusters" href="/docs/concepts/clusters/">Clusters</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Ondat Volumes</a>
       
       
     </li>
@@ -777,7 +759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1127,7 +1109,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencenamespaces" href="/docs/reference/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Ondat Kubectl Plugin</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
       
       
       
@@ -1304,6 +1298,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclusters" href="/docs/reference/clusters/">Clusters</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecontributing" href="/docs/reference/contributing/">Contributing to the documentation</a>
       
       
@@ -1463,14 +1463,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#delta-sync">Delta Sync</a></li>
-    <li><a href="#topology-aware-placement">Topology-Aware Placement</a></li>
-    <li><a href="#failure-modes">Failure Modes</a>
+    <li><a href="#overview">Overview</a>
       <ul>
-        <li><a href="#hard">Hard</a></li>
-        <li><a href="#soft">Soft</a></li>
-        <li><a href="#threshold">Threshold</a></li>
-        <li><a href="#alwayson">AlwaysOn</a></li>
+        <li><a href="#how-does-ondats-replication-work">How Does Ondat&rsquo;s Replication Work?</a></li>
+        <li><a href="#ondats-delta-sync-algorithm">Ondat&rsquo;s Delta Sync Algorithm</a></li>
+        <li><a href="#ondat-topology-aware-placement-tap">Ondat Topology-Aware Placement (TAP)</a></li>
+      </ul>
+    </li>
+    <li><a href="#ondat-failure-modes">Ondat Failure Modes</a>
+      <ul>
+        <li><a href="#hard-failure-mode"><code>hard</code> Failure Mode</a></li>
+        <li><a href="#soft-failure-mode"><code>soft</code> Failure Mode</a></li>
+        <li><a href="#threshold-failure-mode"><code>threshold</code> Failure Mode</a></li>
+        <li><a href="#alwayson-failure-mode"><code>alwayson</code> Failure Mode</a></li>
       </ul>
     </li>
   </ul>
@@ -1511,7 +1516,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/concepts/replication/">Replication</a>
+	<a href="/docs/concepts/replication/">Ondat Replication</a>
 </li>
 
 	</ol>
@@ -1519,117 +1524,119 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Replication</h1>
+	<h1>Ondat Replication</h1>
 	
-	<p>Ondat replicates volumes across nodes for data protection and high
-availability. Synchronous replication ensures strong consistency for
-applications such as databases and Elasticsearch, incurring one network round
-trip on writes.</p>
-<p>The basic model for Ondat replication is of a master volume with distributed
-replicas. Each volume can be replicated between 0 and 5 times, which are
-provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster.</p>
-<p>In this diagram, the master volume <code>D</code> was created on node 1, and two replicas,
-<code>D2</code> and <code>D3</code> on nodes 3 and 5.</p>
-<p><img src="/images/docs/concepts/high-availability.png" alt="Ondat replication"></p>
-<p>Writes that come into <code>D</code> (step 1) are written in parallel to <code>D2</code> and <code>D3</code>
-(step 2). When both replicas and the master acknowledge that the data has been
-written (step 3), the write operation return successfully to the application
-(step 4).</p>
-<p>For most applications, one replica is sufficient (<code>storageos.com/replicas=1</code>).</p>
-<p>All replication traffic on the wire is compressed using the lz4 algorithm, then
-streamed over tcp/ip to target port tcp/5703.</p>
-<p>If the master volume is lost, a replica is promoted to master (<code>D2</code> or <code>D3</code>
-above) and a new replica is created and synced on an available node (Node 2 or
-4). This is transparent to the application and does not cause downtime.</p>
-<p>If a replica volume is lost and there are enough remaining nodes, a new replica
-is created and synced on an available node. While a new replica is created and
-being synced, the volume&rsquo;s health will be marked as degraded.</p>
-<p>If the lost replica comes back online before the new replica has finished
-synchronizing, then Ondat will calculate which of the two synchronizing
-replicas has the smallest difference compared to the master volume and keep
-that replica. The same holds true if a master volume is lost and a replica is
-promoted to be the new master. If possible, a new replica will be created and
-begin to sync. Should the former master come back online it will be demoted to
-a replica and the replica will the smallest difference to the current master
-will be kept.</p>
-<p>While the replica count is controllable on a per-volume basis, some
-environments may prefer to set <a href="/docs/reference/labels#storageos-storageclass-labels">default labels on the StorageClass</a>.</p>
-<h2 id="delta-sync">Delta Sync</h2>
-<p>Ondat implements a delta sync between a volume master and its replicas.
-This means that if a replica for a volume goes offline, that when the replica
-comes back online only the regions with changed blocks need to be synchronized.
-This optimization reduces the time it takes for replicas to catch up, improving
-volume resilience. Additionally, it reduces network and IO bandwidth which can
-reduce costs when running in public clouds.</p>
-<h2 id="topology-aware-placement">Topology-Aware Placement</h2>
-<p>Ondat Topology-Aware Placement is a feature that enforces placement of data
-across failure domains to guarantee high availability.</p>
-<p>TAP uses default labels on nodes to define failure domains. For instance, an
-Availability Zone. For more detail on TAP, check the
-<a href="/docs/reference/tap">reference page</a>.</p>
-<h2 id="failure-modes">Failure Modes</h2>
-<p>Ondat failure modes offer different guarantees with regards to a volume&rsquo;s
-mode of operation in the face of replica failure. If the failure mode is not
-specified it defaults to <code>Hard</code>. Volume failure modes can be dynamically
-updated at runtime.</p>
-<h3 id="hard">Hard</h3>
-<p>Hard failure mode requires that the number of declared replicas matches the
-available number of replicas at all times. If a replica fails Ondat will
-attempt creation of a new replica for 90 seconds. After 90s if the old replica
-is not available and a new replica cannot be provisioned, Ondat cannot
-guarantee that the data is stored on the number of multiple nodes requested by
-the user. Ondat will therefore set the volume to be read-only.</p>
-<p>If a volume has gone read-only there are two stages to making it read-write
-again. Firstly, sufficient replicas must be provisioned to match the desired
-replica count. Depending on your environment, additional nodes and/or disk
-capacity may be required for this. Secondly, the volume must be remounted -
-necessitating pod deletion/recreation in Kubernetes.</p>
+	<h2 id="overview">Overview</h2>
+<h3 id="how-does-ondats-replication-work">How Does Ondat&rsquo;s Replication Work?</h3>
+<p>Ondat replicates volumes across nodes for data protection and high availability. Synchronous <a href="https://en.wikipedia.org/wiki/Replication_%28computing%29">replication</a> ensures strong consistency for applications such as databases and message queues, incurring one network round trip on writes.</p>
+<ul>
+<li>The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between <code>0</code> and <code>5</code> times, which are provisioned to <code>0</code> to <code>5</code> nodes, up to the number of remaining nodes in the cluster.</li>
+<li>In this diagram, the master volume <code>D</code> was created on node <code>1</code>, and two replicas, <code>D2</code> and <code>D3</code> on nodes <code>3</code> and <code>5</code>.</li>
+</ul>
+<p><img src="/images/docs/concepts/high-availability.png" alt="Ondat Replication Diagram"></p>
+<ul>
+<li><strong>[Step 1]</strong> &raquo; Data from the application is written to the master volume first (<code>D</code>).</li>
+<li><strong>[Step 2]</strong> &raquo; Data is then written in parallel to the replica volumes (<code>D2</code> &amp; <code>D3</code>).</li>
+<li><strong>[Step 3]</strong> &raquo; Master and replica volumes all acknowledge that data has been received and written</li>
+<li><strong>[Step 4]</strong> &raquo; A successful write operation is returned to the application.</li>
+</ul>
+<p>For most applications, one replica is sufficient <code>storageos.com/replicas=1</code>. All replication traffic on the wire is compressed using the <a href="https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29">LZ4 (compression algorithm)</a>, then streamed over <code>TCP/IP</code> to target port <code>TCP/5703</code>.</p>
+<ul>
+<li>If the master volume is lost, a replica is promoted to master (<code>D2</code> or <code>D3</code> above) and a new replica is created and synced on an available node (node <code>2</code> or <code>4</code>). This is transparent to the application and does not cause downtime.</li>
+<li>If a replica volume is lost and there are enough remaining nodes, a new replica is created and synced on an available node. While a new replica is created and being synced, the volume&rsquo;s health will be marked as degraded.</li>
+<li>If the lost replica comes back online before the new replica has finished synchronising, then Ondat will calculate which of the two synchronising replicas has the smallest difference compared to the master volume and keep that replica.</li>
+<li>The same holds true if a master volume is lost and a replica is promoted to be the new master. If possible, a new replica will be created and begin to sync. Should the former master come back online it will be demoted to a replica and the replica will the smallest difference to the current master will be kept.</li>
+<li>While the replica count is controllable on a per-volume basis, some environments may prefer to set <a href="/docs/concepts/labels">default labels on the StorageClass</a>.</li>
+</ul>
+<h3 id="ondats-delta-sync-algorithm">Ondat&rsquo;s Delta Sync Algorithm</h3>
+<p>Ondat implements a delta sync between a volume master and its replicas.</p>
+<ul>
+<li>This means that if a replica for a volume goes offline, that when the replica comes back online only the regions with changed blocks need to be synchronised.</li>
+<li>This optimisation reduces the time it takes for replicas to catch up, improving volume resilience.</li>
+<li>Additionally, it reduces network and I/O bandwidth which can reduce costs when running in public clouds.</li>
+</ul>
+<h3 id="ondat-topology-aware-placement-tap">Ondat Topology-Aware Placement (TAP)</h3>
+<p>Ondat Topology-Aware Placement (TAP) is a feature that enforces placement of data across failure domains to guarantee high availability.</p>
+<ul>
+<li>TAP uses default labels on nodes to define failure domains. For instance, an <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">Availability Zone (AZ)</a>.</li>
+</ul>
+<p>For more information on Topology-Aware Placement feature, review the <a href="/docs/concepts/tap">Ondat Topology-Aware Placement</a> feature page.</p>
+<h2 id="ondat-failure-modes">Ondat Failure Modes</h2>
+<blockquote>
+<p>💡 This feature is available in release <code>v2.4.0</code> or greater.</p>
+</blockquote>
+<p>Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure. If the failure mode is not specified it defaults to <code>Hard</code>. Volume failure modes can be dynamically updated at runtime.</p>
+<h3 id="hard-failure-mode"><code>hard</code> Failure Mode</h3>
+<p><code>hard</code> failure mode requires that the number of declared replicas matches the available number of replicas at all times.</p>
+<ul>
+<li>
+<p>If a replica fails Ondat will attempt creation of a new replica for 90 seconds. After 90s if the old replica is not available and a new replica cannot be provisioned, Ondat cannot guarantee that the data is stored on the number of multiple nodes requested by the user. Ondat will therefore set the volume to be read-only.</p>
+</li>
+<li>
+<p>If a volume has gone read-only there are two stages to making it read-write again. Firstly, sufficient replicas must be provisioned to match the desired replica count. Depending on your environment, additional nodes and/or disk capacity may be required for this. Secondly, the volume must be remounted - necessitating pod deletion/recreation in Kubernetes.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: hard
-</code></pre></div><p><strong>Number of nodes required for hard failure mode</strong></p>
-<p>When a node fails, a new replica is provisioned and synced as described above.
-To ensure that a new replica can always be created, an additional node should
-be available. To guarantee high availability using <code>storageos.com/failure-mode: hard</code>, clusters using volumes with 1 replica must have at least 3 storage
-nodes. When using volumes with 2 replicas, at least 4 storage nodes, 3
-replicas, 5 nodes, etc.</p>
-<p>Minimum number of storage nodes = 1 (primary) + N (replicas) + 1</p>
-<h3 id="soft">Soft</h3>
-<p>Soft failure mode allows a volume to continue serving I/O even when a replica
-goes offline and a new replica fails to provision. So long as there are not
-less than max(1,  n-1) available replicas where n is the number of replicas for
-the volume.</p>
-<p>For example, if a volume with 2 replicas loses 1 replica, then I/O would
-continue to be served since 1 replica remaining &gt;= max(1, 1). If a volume with
-1 replica loses 1 replica, then I/O would halt after 90 seconds since 0
-replicas remaining &lt; max(1, 0).</p>
+</code></pre></div><pre tabindex="0"><code>
+</code></pre></li>
+</ul>
+<p><strong>Number Of Nodes Required For A <code>hard</code> Failure Mode Setup</strong></p>
+<ul>
+<li>When a node fails, a new replica is provisioned and synced as described above. To ensure that a new replica can always be created, an additional node should be available.</li>
+<li>To guarantee high availability using <code>storageos.com/failure-mode: hard</code>, clusters using volumes with <code>1</code> replica must have at least <code>3</code> storage nodes.</li>
+<li>When using volumes with <code>2</code> replicas, at least <code>4</code> storage nodes, <code>3</code> replicas, <code>5</code> nodes, and so on.</li>
+<li><code>Minimum number of storage nodes = 1 (primary) + N (replicas) + 1</code></li>
+</ul>
+<h3 id="soft-failure-mode"><code>soft</code> Failure Mode</h3>
+<p><code>soft</code> failure mode allows a volume to continue serving I/O even when a replica goes offline and a new replica fails to provision.</p>
+<ul>
+<li>
+<p>So long as there are <code>not less than max(1, N-1)</code> available replicas where <code>N</code> is the number of replicas for the volume.</p>
+</li>
+<li>
+<p>For example, if a volume with <code>2</code> replicas loses <code>1</code> replica, then I/O would continue to be served since <code>1</code> replica remaining <code>&gt;= max(1, 1)</code>.</p>
+<blockquote>
+<p>⚠️ If a volume with <code>1</code> replica loses <code>1</code> replica, then I/O would halt after <code>90</code> seconds since <code>0</code>
+replicas remaining <code>&lt; max(1, 0)</code>.</p>
+</blockquote>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: soft
-</code></pre></div><p><strong>Number of nodes required for soft failure mode</strong></p>
-<p>To ensure that a <code>storageos.com/failure-mode: soft </code> volume is highly available, clusters using volumes with 1 replica must have at
-least 2 storage nodes. When using volumes with 2 replicas, at least 3 storage
-nodes, 3 replicas, 3 nodes, etc.</p>
-<p>Minimum number of storage nodes = 1 (primary) + N (replicas)</p>
-<h3 id="threshold">Threshold</h3>
-<p>Threshold failure mode allows the user to set the minimum required number of
-online replicas for a volume. For example for a volume with 2 replicas, setting
-the threshold to 1 would allow a single replica to be offline, whereas setting
-threshold to 0 would allow 2 replicas to be offline.</p>
+</code></pre></div><pre tabindex="0"><code>
+</code></pre></li>
+</ul>
+<p><strong>Number Of Nodes Required For A <code>soft</code> Failure Mode Setup</strong></p>
+<ul>
+<li>To ensure that a <code>storageos.com/failure-mode: soft</code> volume is highly available, clusters using volumes with <code>1</code> replica must have at least <code>2</code> storage nodes.</li>
+<li>When using volumes with <code>2</code> replicas, at least <code>3</code> storage nodes, <code>3</code> replicas, 3 nodes, etc.</li>
+<li><code>Minimum number of storage nodes = 1 (primary) + N (replicas)</code></li>
+</ul>
+<h3 id="threshold-failure-mode"><code>threshold</code> Failure Mode</h3>
+<p><code>threshold</code> failure mode allows the user to set the minimum required number of online replicas for a volume.</p>
+<ul>
+<li>
+<p>For example for a volume with <code>2</code> replicas, setting the threshold to <code>1</code> would allow a single replica to be offline, whereas setting threshold to <code>0</code> would allow <code>2</code> replicas to be offline.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: <span style="color:#ce5c00;font-weight:bold">(</span>0-5<span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><p><strong>Number of nodes required for threshold failure mode</strong></p>
-<p>The minimum number of nodes for a <code>threshold</code> volume is determined by the
-threshold that is set.</p>
-<p>Minimum number of storage nodes = 1 (primary) + T (threshold)</p>
-<h3 id="alwayson">AlwaysOn</h3>
-<p>AlwaysOn failure mode allows all replicas for a volume to be offline and keeps
-the volume writeable. A volume with failure mode AlwaysOn will continue to
-serve I/O regardless of how many replicas it currently has. This mode should be
-used with caution as it effectively allows for only a single copy of the data
-to be available.</p>
+</code></pre></div><pre tabindex="0"><code>
+</code></pre></li>
+</ul>
+<p><strong>Number Of Nodes Required For A <code>threshold</code> Failure Mode Setup</strong></p>
+<ul>
+<li>The minimum number of nodes for a <code>threshold</code> volume is determined by the threshold that is set.</li>
+<li><code>Minimum number of storage nodes = 1 (primary) + T (threshold)</code></li>
+</ul>
+<h3 id="alwayson-failure-mode"><code>alwayson</code> Failure Mode</h3>
+<p><code>alwayson</code> failure mode allows all replicas for a volume to be offline and keeps the volume writeable. A volume with failure mode AlwaysOn will continue to serve I/O regardless of how many replicas it currently has.</p>
+<ul>
+<li>
+<p>This mode should be used with caution as it effectively allows for only a single copy of the data to be available.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: alwayson
-</code></pre></div><p><strong>Number of nodes required for AlwaysOn failure mode</strong></p>
-<p>A <code>storageos.com/failure-mode: alwayson</code> volume is highly available albeit at
-the cost of reliability. The minimum node count here is 1 as the loss of all
-replicas will be tolerated.</p>
-<p>Minimum number of storage nodes = 1 (primary)</p>
-<p>For details about how to use the labels on the VolumesCheck, see the <a href="/docs/operations/failure-modes">failure modes operations</a> page.</p>
+</code></pre></div><pre tabindex="0"><code>
+</code></pre></li>
+</ul>
+<p><strong>Number Of Nodes Required For A <code>alwayson</code> Failure Mode Setup</strong></p>
+<ul>
+<li>A <code>storageos.com/failure-mode: alwayson</code> volume is highly available albeit at the cost of reliability.</li>
+<li>The minimum node count here is <code>1</code> as the loss of all replicas will be tolerated.</li>
+<li><code>Minimum number of storage nodes = 1 (primary)</code>.</li>
+</ul>
+<p>For details about how to use the labels on the VolumesCheck, see the <a href="/docs/operations/failure-modes">Failure Modes</a> operations page.</p>
 
 	
 	

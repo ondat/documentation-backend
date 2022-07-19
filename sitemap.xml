@@ -2,31 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/docs/concepts/compression/</loc>
-  </url><url>
-    <loc>/docs/concepts/fencing/</loc>
-  </url><url>
     <loc>/docs/reference/cluster-operator/install/</loc>
   </url><url>
     <loc>/docs/introduction/</loc>
   </url><url>
-    <loc>/docs/concepts/metric-exporter/</loc>
-  </url><url>
-    <loc>/docs/concepts/namespaces/</loc>
-  </url><url>
-    <loc>/docs/concepts/nodes/</loc>
+    <loc>/docs/reference/namespaces/</loc>
   </url><url>
     <loc>/docs/concepts/cluster-topologies/</loc>
   </url><url>
     <loc>/docs/concepts/components/</loc>
   </url><url>
+    <loc>/docs/concepts/compression/</loc>
+  </url><url>
     <loc>/docs/concepts/encryption/</loc>
   </url><url>
     <loc>/docs/concepts/labels/</loc>
   </url><url>
+    <loc>/docs/concepts/fencing/</loc>
+  </url><url>
     <loc>/docs/concepts/rwx/</loc>
   </url><url>
     <loc>/docs/reference/kubectl-plugin/</loc>
+  </url><url>
+    <loc>/docs/concepts/metric-exporter/</loc>
+  </url><url>
+    <loc>/docs/concepts/nodes/</loc>
+  </url><url>
+    <loc>/docs/concepts/replication/</loc>
   </url><url>
     <loc>/docs/concepts/rolling-upgrades/</loc>
   </url><url>
@@ -38,15 +40,13 @@
   </url><url>
     <loc>/docs/upgrade/upgrade/</loc>
   </url><url>
+    <loc>/docs/concepts/volumes/</loc>
+  </url><url>
     <loc>/docs/upgrade/using-rolling-upgrades/</loc>
   </url><url>
-    <loc>/docs/concepts/policies/</loc>
+    <loc>/docs/reference/policies/</loc>
   </url><url>
     <loc>/docs/install/quick-start-guide/</loc>
-  </url><url>
-    <loc>/docs/concepts/replication/</loc>
-  </url><url>
-    <loc>/docs/concepts/volumes/</loc>
   </url><url>
     <loc>/docs/install/amazon-web-services-eks/</loc>
   </url><url>
@@ -144,7 +144,7 @@
   </url><url>
     <loc>/docs/reference/cluster-operator/</loc>
   </url><url>
-    <loc>/docs/concepts/clusters/</loc>
+    <loc>/docs/reference/clusters/</loc>
   </url><url>
     <loc>/docs/reference/contributing/</loc>
   </url><url>

@@ -21,25 +21,25 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Ondat Data Encryption | </title><meta property="og:title" content="Ondat Data Encryption" />
-<meta property="og:description" content="Ondat supports encryption for data-at-rest and data-in-transit.
-Data-in-transit is data as it is travelling between nodes. It is encrypted by default with mTLS. Data-at-rest is the data stored in your volumes as blob files. Encryption of these blob files is optional and can be enabled by adding a label to your volume definitions before they&rsquo;re provisioned.
-For information on how to enable encryption on your volumes, see our Encryption Operations page." />
+<meta property="og:description" content="Overview  💡 This feature is available in release v2.4.0 or greater.
+  💡 End users can also leverage Trousseau with Ondat&rsquo;s volume encryption feature. Trousseau is an open source KMS plugin project that based on Kubernetes KMS provider design. The project allows users to store and access your secrets the Kubernetes native way with any external KMS. Trousseau&rsquo;s repository can be located on GitHub.
+ Data Encryption Ondat supports data encryption-at-rest and data encryption-in-transit." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/encryption/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Ondat Data Encryption">
-<meta itemprop="description" content="Ondat supports encryption for data-at-rest and data-in-transit.
-Data-in-transit is data as it is travelling between nodes. It is encrypted by default with mTLS. Data-at-rest is the data stored in your volumes as blob files. Encryption of these blob files is optional and can be enabled by adding a label to your volume definitions before they&rsquo;re provisioned.
-For information on how to enable encryption on your volumes, see our Encryption Operations page.">
+<meta itemprop="description" content="Overview  💡 This feature is available in release v2.4.0 or greater.
+  💡 End users can also leverage Trousseau with Ondat&rsquo;s volume encryption feature. Trousseau is an open source KMS plugin project that based on Kubernetes KMS provider design. The project allows users to store and access your secrets the Kubernetes native way with any external KMS. Trousseau&rsquo;s repository can be located on GitHub.
+ Data Encryption Ondat supports data encryption-at-rest and data encryption-in-transit.">
 
-<meta itemprop="wordCount" content="723">
+<meta itemprop="wordCount" content="841">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Data Encryption"/>
-<meta name="twitter:description" content="Ondat supports encryption for data-at-rest and data-in-transit.
-Data-in-transit is data as it is travelling between nodes. It is encrypted by default with mTLS. Data-at-rest is the data stored in your volumes as blob files. Encryption of these blob files is optional and can be enabled by adding a label to your volume definitions before they&rsquo;re provisioned.
-For information on how to enable encryption on your volumes, see our Encryption Operations page."/>
+<meta name="twitter:description" content="Overview  💡 This feature is available in release v2.4.0 or greater.
+  💡 End users can also leverage Trousseau with Ondat&rsquo;s volume encryption feature. Trousseau is an open source KMS plugin project that based on Kubernetes KMS provider design. The project allows users to store and access your secrets the Kubernetes native way with any external KMS. Trousseau&rsquo;s repository can be located on GitHub.
+ Data Encryption Ondat supports data encryption-at-rest and data encryption-in-transit."/>
 
 
 
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -431,36 +431,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Compression</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Fencing</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Nodes</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscluster-topologies" href="/docs/concepts/cluster-topologies/">Ondat Cluster Topologies</a>
       
       
@@ -468,6 +438,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscomponents" href="/docs/concepts/components/">Ondat Components</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Ondat Compression</a>
       
       
       
@@ -485,7 +461,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Ondat Fencing</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrwx" href="/docs/concepts/rwx/">Ondat Files</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Ondat Metric Exporter</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Ondat Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Ondat Replication</a>
       
       
       
@@ -509,25 +509,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptspolicies" href="/docs/concepts/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Volumes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsclusters" href="/docs/concepts/clusters/">Clusters</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Ondat Volumes</a>
       
       
     </li>
@@ -780,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1130,7 +1112,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencenamespaces" href="/docs/reference/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Ondat Kubectl Plugin</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
       
       
       
@@ -1307,6 +1301,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclusters" href="/docs/reference/clusters/">Clusters</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecontributing" href="/docs/reference/contributing/">Contributing to the documentation</a>
       
       
@@ -1466,11 +1466,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#how-volumes-are-encrypted">How volumes are encrypted</a></li>
-    <li><a href="#encryption-key-generation">Encryption Key Generation</a></li>
-    <li><a href="#encryption-key-use">Encryption Key Use</a></li>
-    <li><a href="#key-management-best-practices">Key Management Best Practices</a></li>
-    <li><a href="#key-management-with-kubernetes-kms-provider">Key Management with Kubernetes KMS provider</a></li>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#data-encryption">Data Encryption</a></li>
+        <li><a href="#how-are-ondat-volumes-encrypted">How Are Ondat Volumes Encrypted?</a></li>
+        <li><a href="#how-are-ondat-encryption-keys-generated">How Are Ondat Encryption Keys Generated?</a></li>
+        <li><a href="#how-are-encryption-keys-used">How Are Encryption Keys Used?</a></li>
+        <li><a href="#encryption-key-management-best-practices">Encryption Key Management Best Practices</a></li>
+        <li><a href="#managing-keys-with-a-key-management-service-kms-provider">Managing Keys With A Key Management Service (KMS) Provider</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -1519,90 +1524,73 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Ondat Data Encryption</h1>
 	
-	<p>Ondat supports encryption for data-at-rest and data-in-transit.</p>
-<p>Data-in-transit is data as it is travelling between nodes. It is encrypted by
-default with mTLS. Data-at-rest is the data stored in your volumes as <a href="/docs/concepts/volumes">blob files</a>. Encryption of these blob files
-is optional and can be enabled by adding a label to your volume definitions
-before they&rsquo;re provisioned.</p>
-<p>For information on how to enable encryption on your volumes, see our
-<a href="/docs/operations/encryption">Encryption Operations</a> page.</p>
-<h2 id="how-volumes-are-encrypted">How volumes are encrypted</h2>
-<p>Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as
-specified by IEEE Standard 1619-2007. There is a non-zero performance impact of
-using encrypted volumes. A 10-25% cost in read/write throughput can be
-expected from XTS-AES, dependent on workload. Thin provisioning still applies
-to encrypted volumes.</p>
-<h2 id="encryption-key-generation">Encryption Key Generation</h2>
-<p>On PVC creation, <a href="/docs/reference/labels#storageos-volume-labels">if encryption is enabled</a>, Ondat will
-automatically generate up to two keys as Kubernetes secrets. Both keys are
-stored in the same namespace as the PVC.</p>
-<p>Firstly, if it doesn&rsquo;t already exist, a namespace key is generated. It is
-always named <code>storageos-namespace-key</code> and only one exists per namespace.</p>
-<p>Secondly a volume key is created for each encrypted volume. It has a name in
-the format <code>storageos-volume-key-&lt;random-id&gt;</code>, with no connection to the name
-of the volume. The volume it is associated with can be determined by looking at
-the <code>storageos.com/pvc</code> label on the secret. The
-<code>storageos.com/encryption-secret-name</code> and
-<code>storageos.com/encryption-secret-namespace</code> annotations are added to the PVC by
-an admission controller to map the PVC back to its secret.</p>
-<p>The encryption key is passed to Ondat as part of the CSI volume creation
-request and is used to encrypt the volume.</p>
-<h2 id="encryption-key-use">Encryption Key Use</h2>
-<p>The volume specific secret is needed whenever a volume is attached to a node
-for use by a pod. When this happens, the Ondat node container&rsquo;s Service
-Account reads the secret and passes it to the Ondat controlplane.</p>
-<p>A volume missing its key or with a malformed key will be unable to attach.</p>
-<p>The key is stored in memory by Ondat only on the node that the volume is
-being used on. As a result, encryption and decryption are performed where the
-data is consumed, rather than where it is stored.</p>
-<p>Because of this, the use of encrypted volumes is transparent to the user.
-There is a complete integration between Kubernetes applications and
-Ondat encryption.</p>
-<h2 id="key-management-best-practices">Key Management Best Practices</h2>
-<p>Ondat saves encryption keys in Kubernetes Secrets.
-Backups are therefore imperative in case the Kubernetes Etcd is lost.</p>
+	<h2 id="overview">Overview</h2>
 <blockquote>
-<p>⚠️ <strong>Ondat has no ability to decrypt a volume whose encryption keys have been
-lost.</strong></p>
+<p>💡 This feature is available in release <code>v2.4.0</code> or greater.</p>
 </blockquote>
-<p>Secrets in Kubernetes are not encrypted by default, they are stored in the
-Kubernetes Etcd in simple base64 encoding. As Ondat encryption keys are
-stored as Kubernetes Secrets, this means that anyone with access to a
-Kubernetes Etcd installation can read encryption keys and decrypt volumes,
-unless the cluster has an external secrets store.</p>
-<p>For better security check Kubernetes <a href="https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/">secret
-encryption</a>.</p>
-<p>Secrets are not garbage-collected by Ondat. To clean up completely upon
-deletion of a volume it is necessary to also delete that volume&rsquo;s secret. There
-is no benefit to doing this, however.</p>
-<h2 id="key-management-with-kubernetes-kms-provider">Key Management with Kubernetes KMS provider</h2>
-<p>Ondat encryption keys are stored within Etcd as Kubernetes secrets. Whilst
-the Etcd and kubernetes secrets <a href="https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/">can also be
-encrypted</a>,
-many organisations choose to use an external KMS provider.</p>
-<p>To address this from a Kubernetes limitations perspective and provide an
-agnostic solution, our encryption design allows the user to benefit from any
-Kubernetes KMS provider plugin to envelop the secrets into the KMS provider
-encryption scheme.</p>
-<p>Ondat allows customers to transparently integrate any supported KMS plugin
-with Ondat encryption key management using the standard Kubernetes API and
-Kubernetes KMS provider framework. The below figure provides an overview of the
-process.</p>
+<blockquote>
+<p>💡 End users can also leverage <a href="https://www.ondat.io/trousseau">Trousseau</a> with Ondat&rsquo;s volume encryption feature. Trousseau is an open source KMS plugin project that based on Kubernetes KMS provider design. The project allows users to store and access your secrets the Kubernetes native way with any external KMS. Trousseau&rsquo;s repository can be located on <a href="https://github.com/ondat/trousseau">GitHub</a>.</p>
+</blockquote>
+<h3 id="data-encryption">Data Encryption</h3>
+<p>Ondat supports <a href="https://en.wikipedia.org/wiki/Data_at_rest">data encryption-at-rest</a> and <a href="https://en.wikipedia.org/wiki/Data_in_transit">data encryption-in-transit</a>.</p>
+<ul>
+<li>Data encryption-in-transit is data as it is travelling between nodes. It is encrypted by default with <a href="https://en.wikipedia.org/wiki/Mutual_authentication">Mutual Authentication (mTLS)</a>.</li>
+<li>Data encryption-at-rest is the data stored in your volumes as <a href="/docs/concepts/volumes">blob files</a>. Encryption of these blob files is optional and can be enabled by adding a label to your volume definitions <strong>before they are provisioned</strong> .</li>
+</ul>
+<p>For more information on how to enable data encryption for Ondat volumes, review the <a href="/docs/operations/encryption/">Ondat Data Encryption</a> operations page.</p>
+<h3 id="how-are-ondat-volumes-encrypted">How Are Ondat Volumes Encrypted?</h3>
+<p>Volumes are encrypted using <code>AES-256</code> in the <code>XTS-AES</code> mode with <code>512-bit</code> keys, as
+specified by <a href="https://standards.ieee.org/ieee/1619/4205/"><code>IEEE Standard 1619-2007</code></a>.</p>
+<ul>
+<li>There is a non-zero performance impact of using encrypted volumes. A <code>10-25%</code> cost in read/write throughput can be expected from <code>XTS-AES</code>, dependent on workload.</li>
+<li><a href="https://en.wikipedia.org/wiki/Thin_provisioning">Thin provisioning</a> still applies to Ondat encrypted volumes.</li>
+</ul>
+<h3 id="how-are-ondat-encryption-keys-generated">How Are Ondat Encryption Keys Generated?</h3>
+<p>On PVC creation, if data encryption-at-rest is enabled, Ondat will automatically generate <strong>up to two keys</strong> as <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes secrets</a>. Both keys are stored in the <strong>same namespace</strong> as the PVC.</p>
+<ol>
+<li>Firstly, if it doesn&rsquo;t already exist, a <strong>namespace key</strong> is generated. It is always named <code>storageos-namespace-key</code> and <strong>only one exists per namespace</strong>.</li>
+<li>Secondly a <strong>volume key</strong> is created for each encrypted volume. It has a name in the format <code>storageos-volume-key-&lt;random-id&gt;</code>, with no connection to the name of the volume.
+<ol>
+<li>The volume it is associated with can be determined by looking at the <code>storageos.com/pvc</code> label on the secret.</li>
+<li>The <code>storageos.com/encryption-secret-name</code> and <code>storageos.com/encryption-secret-namespace</code> annotations are added to the PVC by an admission controller to map the PVC back to its secret.</li>
+</ol>
+</li>
+<li>The encryption key is passed to Ondat as part of the CSI volume creation request and is used to encrypt the volume.</li>
+</ol>
+<h3 id="how-are-encryption-keys-used">How Are Encryption Keys Used?</h3>
+<p>The volume specific secret is needed whenever a volume is attached to a node for use by a pod.</p>
+<ul>
+<li>When this happens, the Ondat node container&rsquo;s <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/">ServiceAccount</a> reads the secret and passes it to the Ondat Control Plane.</li>
+<li>A volume missing its key or with a malformed key will be unable to attach.</li>
+<li>The key is stored in memory by Ondat only on the node that the volume is being used on. As a result, encryption and decryption are performed <strong>where the data is consumed, rather than where it is stored</strong>.</li>
+</ul>
+<p>Because of this, the use of encrypted volumes is transparent to the user. There is a complete integration between Kubernetes applications and Ondat volume encryption.</p>
+<h3 id="encryption-key-management-best-practices">Encryption Key Management Best Practices</h3>
+<p>Ondat saves volume encryption keys in Kubernetes secrets, thus - backups are imperative in case Kubernetes <code>etcd</code> backing store is lost or damaged.</p>
+<blockquote>
+<p>⚠️ Ondat has no ability to decrypt a volume whose encryption keys have been lost.</p>
+</blockquote>
+<p>Secrets in Kubernetes are not encrypted by default, they are stored in Kubernetes <code>etcd</code> backing store in simple <a href="https://en.wikipedia.org/wiki/Base64">Base64</a> encoding.</p>
+<ul>
+<li>As Ondat encryption keys are stored as Kubernetes secrets, this means that anyone with access to Kubernetes <code>etcd</code> backing store can read encryption keys and decrypt volumes, unless the cluster is using an external secrets store for key management.</li>
+<li>For more information on how to enable and configure encryption of Kubernetes secrets data at rest, review the <a href="https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/">official Kubernetes documentation here</a>.</li>
+<li>Secrets are not garbage-collected by Ondat, therefore - to clean up completely upon deletion of a volume it is necessary to also delete that volume&rsquo;s secret. There is no benefit to doing this, however.</li>
+</ul>
+<h3 id="managing-keys-with-a-key-management-service-kms-provider">Managing Keys With A Key Management Service (KMS) Provider</h3>
+<p>As mentioned in the section above, Ondat volume encryption keys are stored within Kubernetes <code>etcd</code> backing store as Kubernetes secrets. Whilst Kubernetes <code>etcd</code> and secrets can also be encrypted, many security-focused organisations choose to use an <a href="https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/">external Key Management Service (KMS) provider for data encryption</a>.</p>
+<p>To address this from a Kubernetes limitations perspective and provide an agnostic solution, Ondat&rsquo;s encryption design allows the user to leverage any supported <a href="https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/#implementing-a-kms-plugin">Kubernetes KMS plugin</a> to envelop the secrets into a KMS provider encryption scheme.</p>
+<ul>
+<li>Ondat enables end users to transparently integrate any supported KMS plugin with Ondat encryption key management using the standard Kubernetes API and Kubernetes KMS provider framework. The architecture diagram below provides a high level overview of the process.</li>
+</ul>
 <p><img src="/images/docs/gui-v2/kms-key-management.png" alt="KMS Key Management"></p>
 <ol>
 <li>The KMS plugin is deployed within the Kubernetes cluster.</li>
-<li>The KMS plugin is configured to act as a broker between the Kubernetes API
-server and the KMS server API endpoint.</li>
-<li>At volume creation, Ondat will create a Kubernetes secret using
-Kubernetes API calls</li>
-<li>The KMS plugin will handle the Kubernetes API Secret creation call and
-interface to the KMS server instance.</li>
+<li>The KMS plugin is configured to act as a broker between the Kubernetes API server and the KMS server API endpoint.</li>
+<li>At volume creation, Ondat will create a Kubernetes secret using Kubernetes API calls</li>
+<li>The KMS plugin will handle the Kubernetes API Secret creation call and interface to the KMS server instance.</li>
 <li>The KMS server will return the secret using its encryption envelop scheme.</li>
-<li>The KMS plugin will store the encrypted secret within the Kubernetes Etcd.</li>
+<li>The KMS plugin will store the encrypted secret within Kubernetes <code>etcd</code> backing store.</li>
 </ol>
-<p>Contact the <a href="mailto:sales@storageos.com">Ondat sales team</a> for more
-information about the dedicated Ondat Vault KMS plugin integration
-offering.</p>
 
 	
 	

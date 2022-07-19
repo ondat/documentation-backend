@@ -21,25 +21,25 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Ondat Files | </title><meta property="og:title" content="Ondat Files" />
-<meta property="og:description" content="⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our Community Edition licence. For more information, please visit Licensing.
- Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
-Ondat RWX Volumes are based on a shared filesystem - in the case of our implementation, this is NFS." />
+<meta property="og:description" content="Overview  💡 This feature is available in release v2.3.0 or greater.
+ What Is Ondat Files? Ondat provides support for ReadWriteMany (RWX) persistent volumes.
+ A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations. Ondat RWX persistent volumes are based on a shared filesystem, the protocol being used for this feature&rsquo;s backend is Network Files System (NFS).  Ondat Files Architecture For each RWX persistent volume, the following components below are required:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/rwx/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Ondat Files">
-<meta itemprop="description" content="⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our Community Edition licence. For more information, please visit Licensing.
- Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
-Ondat RWX Volumes are based on a shared filesystem - in the case of our implementation, this is NFS.">
+<meta itemprop="description" content="Overview  💡 This feature is available in release v2.3.0 or greater.
+ What Is Ondat Files? Ondat provides support for ReadWriteMany (RWX) persistent volumes.
+ A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations. Ondat RWX persistent volumes are based on a shared filesystem, the protocol being used for this feature&rsquo;s backend is Network Files System (NFS).  Ondat Files Architecture For each RWX persistent volume, the following components below are required:">
 
-<meta itemprop="wordCount" content="534">
+<meta itemprop="wordCount" content="572">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Files"/>
-<meta name="twitter:description" content="⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our Community Edition licence. For more information, please visit Licensing.
- Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
-Ondat RWX Volumes are based on a shared filesystem - in the case of our implementation, this is NFS."/>
+<meta name="twitter:description" content="Overview  💡 This feature is available in release v2.3.0 or greater.
+ What Is Ondat Files? Ondat provides support for ReadWriteMany (RWX) persistent volumes.
+ A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations. Ondat RWX persistent volumes are based on a shared filesystem, the protocol being used for this feature&rsquo;s backend is Network Files System (NFS).  Ondat Files Architecture For each RWX persistent volume, the following components below are required:"/>
 
 
 
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -431,36 +431,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Compression</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Fencing</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Nodes</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscluster-topologies" href="/docs/concepts/cluster-topologies/">Ondat Cluster Topologies</a>
       
       
@@ -468,6 +438,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscomponents" href="/docs/concepts/components/">Ondat Components</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscompression" href="/docs/concepts/compression/">Ondat Compression</a>
       
       
       
@@ -485,7 +461,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Ondat Fencing</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptsrwx" href="/docs/concepts/rwx/">Ondat Files</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Ondat Metric Exporter</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Ondat Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Ondat Replication</a>
       
       
       
@@ -509,25 +509,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptspolicies" href="/docs/concepts/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Volumes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsclusters" href="/docs/concepts/clusters/">Clusters</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Ondat Volumes</a>
       
       
     </li>
@@ -780,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1130,7 +1112,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencenamespaces" href="/docs/reference/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Ondat Kubectl Plugin</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
       
       
       
@@ -1307,6 +1301,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclusters" href="/docs/reference/clusters/">Clusters</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecontributing" href="/docs/reference/contributing/">Contributing to the documentation</a>
       
       
@@ -1466,10 +1466,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#architecture">Architecture</a></li>
-    <li><a href="#provisioning-and-using-rwx-pvcs">Provisioning and using RWX PVCs</a></li>
-    <li><a href="#high-availability">High availability</a></li>
-    <li><a href="#notes">Notes</a></li>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#what-is-ondat-files">What Is Ondat Files?</a></li>
+        <li><a href="#ondat-files-architecture">Ondat Files Architecture</a></li>
+        <li><a href="#how-are-ondat-readwritemany-rwx-persistentvolumeclaims-pvcs-provisioned">How are Ondat ReadWriteMany (RWX) PersistentVolumeClaims (PVCs) Provisioned?</a></li>
+        <li><a href="#high-availability-for-ondat-files">High Availability For Ondat Files</a></li>
+      </ul>
+    </li>
+    <li><a href="#further-information">Further Information</a></li>
   </ul>
 </nav>
 
@@ -1518,70 +1523,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Ondat Files</h1>
 	
-	<blockquote>
-<p>⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our Community Edition licence. For more information, please visit <a href="/docs/operations/licensing/#types-of-licenses">Licensing</a>.</p>
+	<h2 id="overview">Overview</h2>
+<blockquote>
+<p>💡 This feature is available in release <code>v2.3.0</code> or greater.</p>
 </blockquote>
-<p>Ondat supports ReadWriteMany (RWX) <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes">access
-mode</a>
-Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
-same Kubernetes namespace for read and write operations.</p>
-<p>Ondat RWX Volumes are based on a shared filesystem - in the case of our
-implementation, this is NFS.</p>
-<h2 id="architecture">Architecture</h2>
-<p>For each RWX Volume, the following components are involved:</p>
-<p><strong>Ondat ReadWriteOnly (RWO) Volume</strong></p>
-<p>Ondat provisions a standard <a href="/docs/concepts/volumes">Volume</a> that provides
-a block device for the file system of the NFS server. This
-means that every RWX Volume has its own RWO Volume. This allows RWX Volumes to
-leverage the synchronous replication and automatic failover functionality of
-Ondat, providing the NFS server with high availability.</p>
-<p><strong>NFS-Ganesha server</strong></p>
-<p>For each RWX Volume, an NFS-Ganesha server is spawned by Ondat. The NFS
-server runs in user space on the Node containing the primary Volume. Each NFS
-server uses its own RWO Volume to store data so the data of each Volume is
-isolated.</p>
-<p>Ondat binds an ephemeral port to the host network interface for each
-NFS-Ganesha server. The NFS export is presented using NFS v4.2. Check the
-<a href="/docs/prerequisites/firewalls">prerequisites page</a> to see the
-range of ports needed for Ondat RWX Volumes.</p>
-<p><strong>Ondat API Manager</strong></p>
-<p>Ondat fully integrates with Kubernetes. The Ondat API Manager Pod
-monitors Ondat RWX Volumes to create and maintain a Kubernetes Service
-that points towards each RWX Volume&rsquo;s NFS export endpoint. The API Manager is
-responsible for updating the Service endpoint when a RWX Volume failover
-occurs.</p>
-<h2 id="provisioning-and-using-rwx-pvcs">Provisioning and using RWX PVCs</h2>
-<p>The sequence in which a RWX PVC is provisioned and used is as follows:</p>
-<ol>
-<li>A PersistentVolumeClaim (PVC) is created with RWX access mode using any
-Ondat StorageClass.</li>
-<li>Ondat dynamically provisions the PV.</li>
-<li>A new Ondat RWO Volume is provisioned internally (not visible in
-Kubernetes).</li>
-<li>When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated
-on the same Node as the primary Volume. The NFS-Ganesha server thus uses the
-RWO Ondat Volume as its backend disk.</li>
-<li>The Ondat API Manager publishes the host IP and port for the NFS service
-endpoint, by creating a Kubernetes Service that points to the NFS-Ganesha
-server export endpoint.</li>
-<li>Ondat issues a NFS mount on the Node where the Pod using the PVC is
-scheduled.</li>
-</ol>
-<h2 id="high-availability">High availability</h2>
-<p>RWX Volumes failover in the same way as standard RWO Ondat Volumes. The
-replica Volume is promoted upon detection of Node failure and the NFS-Ganesha
-server is started on the Node containing the promoted replica. The Ondat
-API Manager updates the endpoint of the Volume&rsquo;s NFS service, causing traffic
-to be routed to the URL of the new NFS-Ganesha server. The NFS client in the
-application Node (where the user&rsquo;s Pod is running) automatically reconnects.</p>
-<h2 id="notes">Notes</h2>
+<h3 id="what-is-ondat-files">What Is Ondat Files?</h3>
+<p>Ondat provides support for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes">ReadWriteMany (RWX)</a> persistent volumes.</p>
 <ul>
-<li>All feature labels that work on RWO Volumes will also work on RWX Volumes.</li>
-<li>A Ondat RWX Volume is matched one-to-one with a PVC. Therefore the
-Ondat RWX Volume can only be accessed by Pods in the same Kubernetes
-namespace.</li>
-<li>Ondat RWX Volumes support volume resize. Refer to the <a href="/docs/operations/resize">resize</a>
-documentation for more details.</li>
+<li>A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.</li>
+<li>Ondat RWX persistent volumes are based on a <a href="https://en.wikipedia.org/wiki/Clustered_file_system">shared filesystem</a>, the protocol being used for this feature&rsquo;s backend is <a href="https://en.wikipedia.org/wiki/Network_File_System">Network Files System (NFS)</a>.</li>
+</ul>
+<h3 id="ondat-files-architecture">Ondat Files Architecture</h3>
+<p>For each RWX persistent volume, the following components below are required:</p>
+<ol>
+<li><strong>Ondat ReadWriteOnly (RWO) Volume</strong>
+<ul>
+<li>Ondat provisions a standard <a href="/docs/concepts/volumes">volume</a> that provides a block device for the file system of the NFS server.</li>
+<li>This means that every RWX Volume has its own RWO Volume - thus allowing RWX Volumes to leverage the synchronous <a href="https://en.wikipedia.org/wiki/Replication_%28computing%29">replication</a> and automatic <a href="https://en.wikipedia.org/wiki/Failover">failover</a> functionality of Ondat, providing the NFS server with high availability.</li>
+</ul>
+</li>
+<li><strong>NFS-Ganesha Server</strong>
+<ul>
+<li>For each RWX volume, an <a href="https://nfs-ganesha.github.io/">NFS-Ganesha</a> server is spawned by Ondat.</li>
+<li>The NFS server runs in user space on the bode containing the primary volume. Each NFS server uses its own <em>RWO</em> volume to store data so the data of each Volume is isolated.</li>
+<li>Ondat binds an <a href="https://en.wikipedia.org/wiki/Ephemeral_port">ephemeral port</a> to the host network interface for each NFS-Ganesha server.</li>
+<li>The NFS export is presented using <a href="https://datatracker.ietf.org/doc/html/rfc7862"><code>NFS v4.2</code></a>. Ensure that you review the official <a href="/docs/prerequisites/firewalls">prerequisites</a> page for more information on the port number range, that is for Ondat RWX persistent volumes to successfully run.</li>
+</ul>
+</li>
+<li><strong>Ondat API Manager</strong>
+<ul>
+<li>The Ondat API Manager resource monitors Ondat RWX volumes to create and maintain a <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Kubernetes service</a> that points towards each RWX volume&rsquo;s NFS export endpoint.</li>
+<li>The API Manager is responsible for updating the service endpoint when a RWX volume failover occurs.</li>
+</ul>
+</li>
+</ol>
+<h3 id="how-are-ondat-readwritemany-rwx-persistentvolumeclaims-pvcs-provisioned">How are Ondat ReadWriteMany (RWX) PersistentVolumeClaims (PVCs) Provisioned?</h3>
+<p>The sequence in which a RWX PVC is provisioned and used demonstrated in the steps below:</p>
+<ol>
+<li>A <code>PersistentVolumeClaim</code> (PVC) is created with <code>ReadWriteMany</code> (RWX) access mode using any Ondat <code>StorageClass</code>.</li>
+<li>Ondat dynamically provisions the <code>PersistentVolume</code> (PV).</li>
+<li>A new Ondat <code>ReadWriteOnly</code> (RWO) Volume is provisioned internally (not visible in Kubernetes).</li>
+<li>When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.
+<ol>
+<li>The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.</li>
+</ol>
+</li>
+<li>The <em>Ondat API Manager</em> publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.</li>
+<li>Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.</li>
+</ol>
+<p>For more information on how to get started with Ondat Files, review the <a href="/docs/operations/rwx">ReadWriteMany (RWX)</a> operations page.</p>
+<h3 id="high-availability-for-ondat-files">High Availability For Ondat Files</h3>
+<p>Ondat RWX volumes failover in the same way as standard Ondat RWO volumes.</p>
+<ul>
+<li>The replica volume is promoted upon detection of node failure and the NFS-Ganesha server is started on the node containing the promoted replica.</li>
+<li>The Ondat API Manager updates the endpoint of the Volume&rsquo;s NFS service, causing traffic to be routed to the URL of the new NFS-Ganesha server.</li>
+<li>The NFS client in the application node (where the user&rsquo;s pod is running) automatically reconnects.</li>
+</ul>
+<h2 id="further-information">Further Information</h2>
+<ul>
+<li>All <a href="/docs/concepts/labels/">Ondat Feature Labels</a> that work on RWO volumes will also work on RWX volumes.</li>
+<li>A Ondat RWX volume is matched one-to-one with a PVC. Therefore the Ondat RWX volume can only be accessed by pods in the <strong>same</strong> Kubernetes namespace.</li>
+<li>Ondat RWX volumes support volume resize.
+<ul>
+<li>For more information on how to resize a volume, review the <a href="/docs/operations/resize">Volume Resize</a> operations page.</li>
+</ul>
+</li>
 </ul>
 
 	

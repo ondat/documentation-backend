@@ -20,26 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Compression | </title><meta property="og:title" content="Compression" />
-<meta property="og:description" content="Ondat compression is handled on a per volume basis and is disabled by default in v2.2&#43;, as performance is generally increased when compression is disabled due to block alignment. This means that there is a trade off between volume performance and the space the volume occupies on the backend device.
-Compression can be enabled by setting the label storageos.com/nocompress=false on a volume at volume creation time.
-Ondat utilises the lz4 compression algorithm when writing to the backend store and when compressing replication traffic before it is sent across the network." />
+<title>Ondat Compression | </title><meta property="og:title" content="Ondat Compression" />
+<meta property="og:description" content="Overview  💡 This feature is disabled by default in release v2.2.0 or greater.
+ Data Compression Ondat compression is handled on a per volume basis and is disabled in v2.2.0, as performance is generally increased when compression is disabled due to block alignment.
+ This means that there is a trade off between volume performance and the space the volume occupies on the backend device.  Ondat utilises the LZ4 (compression algorithm) when writing to the backend store and when compressing Ondat replication traffic before it is sent across the network." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/compression/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Compression">
-<meta itemprop="description" content="Ondat compression is handled on a per volume basis and is disabled by default in v2.2&#43;, as performance is generally increased when compression is disabled due to block alignment. This means that there is a trade off between volume performance and the space the volume occupies on the backend device.
-Compression can be enabled by setting the label storageos.com/nocompress=false on a volume at volume creation time.
-Ondat utilises the lz4 compression algorithm when writing to the backend store and when compressing replication traffic before it is sent across the network.">
+<meta itemprop="name" content="Ondat Compression">
+<meta itemprop="description" content="Overview  💡 This feature is disabled by default in release v2.2.0 or greater.
+ Data Compression Ondat compression is handled on a per volume basis and is disabled in v2.2.0, as performance is generally increased when compression is disabled due to block alignment.
+ This means that there is a trade off between volume performance and the space the volume occupies on the backend device.  Ondat utilises the LZ4 (compression algorithm) when writing to the backend store and when compressing Ondat replication traffic before it is sent across the network.">
 
-<meta itemprop="wordCount" content="221">
+<meta itemprop="wordCount" content="251">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Compression"/>
-<meta name="twitter:description" content="Ondat compression is handled on a per volume basis and is disabled by default in v2.2&#43;, as performance is generally increased when compression is disabled due to block alignment. This means that there is a trade off between volume performance and the space the volume occupies on the backend device.
-Compression can be enabled by setting the label storageos.com/nocompress=false on a volume at volume creation time.
-Ondat utilises the lz4 compression algorithm when writing to the backend store and when compressing replication traffic before it is sent across the network."/>
+<meta name="twitter:title" content="Ondat Compression"/>
+<meta name="twitter:description" content="Overview  💡 This feature is disabled by default in release v2.2.0 or greater.
+ Data Compression Ondat compression is handled on a per volume basis and is disabled in v2.2.0, as performance is generally increased when compression is disabled due to block alignment.
+ This means that there is a trade off between volume performance and the space the volume occupies on the backend device.  Ondat utilises the LZ4 (compression algorithm) when writing to the backend store and when compressing Ondat replication traffic before it is sent across the network."/>
 
 
 
@@ -82,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Compression | </title>
+    <title>Ondat Compression | </title>
   </head>
   <body class="td-page">
     
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d71625c17e1b0736677144a74a7e29135c76d6ae883c894adad056bd9c87ac84950b0aa4f5427f9643d19cd8a6f1d5fa0077968bc39ce6c6df4eef73bb230269.json"
+  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
   data-offline-search-base-href="/"
 >
 
@@ -431,36 +431,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptscompression" href="/docs/concepts/compression/">Compression</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Fencing</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Metric Exporter</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnamespaces" href="/docs/concepts/namespaces/">Namespaces</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Nodes</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscluster-topologies" href="/docs/concepts/cluster-topologies/">Ondat Cluster Topologies</a>
       
       
@@ -468,6 +438,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscomponents" href="/docs/concepts/components/">Ondat Components</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptscompression" href="/docs/concepts/compression/">Ondat Compression</a>
       
       
       
@@ -485,7 +461,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsfencing" href="/docs/concepts/fencing/">Ondat Fencing</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsrwx" href="/docs/concepts/rwx/">Ondat Files</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsmetric-exporter" href="/docs/concepts/metric-exporter/">Ondat Metric Exporter</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsnodes" href="/docs/concepts/nodes/">Ondat Nodes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Ondat Replication</a>
       
       
       
@@ -509,25 +509,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptspolicies" href="/docs/concepts/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsreplication" href="/docs/concepts/replication/">Replication</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Volumes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsclusters" href="/docs/concepts/clusters/">Clusters</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptsvolumes" href="/docs/concepts/volumes/">Ondat Volumes</a>
       
       
     </li>
@@ -780,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup and restores with Ondat Snapshots and Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1130,7 +1112,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencenamespaces" href="/docs/reference/namespaces/">Namespaces</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencekubectl-plugin" href="/docs/reference/kubectl-plugin/">Ondat Kubectl Plugin</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencepolicies" href="/docs/reference/policies/">Policies</a>
       
       
       
@@ -1307,6 +1301,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclusters" href="/docs/reference/clusters/">Clusters</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecontributing" href="/docs/reference/contributing/">Contributing to the documentation</a>
       
       
@@ -1464,6 +1464,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#data-compression">Data Compression</a></li>
+        <li><a href="#how-to-enable-ondat-compression">How To Enable Ondat Compression?</a></li>
+        <li><a href="#ondat-compression--data-encryption">Ondat Compression &amp; Data Encryption</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1499,7 +1511,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/concepts/compression/">Compression</a>
+	<a href="/docs/concepts/compression/">Ondat Compression</a>
 </li>
 
 	</ol>
@@ -1507,30 +1519,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Compression</h1>
+	<h1>Ondat Compression</h1>
 	
-	<p>Ondat compression is handled on a per volume basis and is disabled by
-default in v2.2+, as performance is generally increased when compression is
-disabled due to block alignment. This means that there is a trade
-off between volume performance and the space the volume occupies on the backend
-device.</p>
-<p>Compression can be enabled by setting the <a href="/docs/reference/labels">label</a>
-<code>storageos.com/nocompress=false</code> on a volume at volume creation time.</p>
-<p>Ondat utilises the <a href="https://lz4.github.io/lz4/">lz4 compression algorithm</a>
-when writing to the backend store and when compressing <a href="/docs/concepts/replication">replication
-traffic</a> before it is sent across the network.</p>
-<p>Ondat detects whether a block can be compressed or not by creating a
-heuristic that predicts the size of a compressed block. If the heuristic
-indicates that the compressed block is likely to be larger than the
-original block then the uncompressed block is stored. Block size increases post
-compression if the compression dictionary is added to a block that cannot be
-compressed. By verifying whether blocks can be compressed, disk efficiency is
-increased and CPU resources are not wasted on attempts to compress
-uncompressible blocks. Ondat&rsquo;s patented on-disk format is used to tell
-whether individual blocks are compressed without overhead. As such volume
-compression can be dynamically enabled/disabled even while a volume is in use.</p>
-<p>When compression and <a href="/docs/reference/encryption">encryption</a> are both enabled
-for a volume, blocks are compressed then encrypted.</p>
+	<h2 id="overview">Overview</h2>
+<blockquote>
+<p>💡 This feature is disabled by default in release <code>v2.2.0</code> or greater.</p>
+</blockquote>
+<h3 id="data-compression">Data Compression</h3>
+<p>Ondat compression is handled on a per volume basis and is disabled in <code>v2.2.0</code>, as performance is generally increased when compression is disabled due to <a href="https://en.wikipedia.org/wiki/Data_structure_alignment">block alignment</a>.</p>
+<ul>
+<li>This means that there is a trade off between volume performance and the space the volume occupies on the backend device.</li>
+</ul>
+<p>Ondat utilises the <a href="https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29">LZ4 (compression algorithm)</a> when writing to the backend store and when compressing Ondat <a href="/docs/concepts/replication">replication traffic</a> before it is sent across the network.</p>
+<p>Ondat detects whether a block can be compressed or not by creating a heuristic that predicts the size of a compressed block.</p>
+<ul>
+<li>If the heuristic indicates that the compressed block is likely to be larger than the original block then the uncompressed block is stored.</li>
+<li>Block size increases post-compression if the compression dictionary is added to a block that cannot be compressed. By verifying whether blocks can be compressed, disk efficiency is increased and CPU resources are not wasted on attempts to compress incompressible blocks.</li>
+<li>Ondat&rsquo;s patented on-disk format is used to tell whether individual blocks are compressed without overhead. As such volume compression can be dynamically enabled/disabled even while a volume is in use.</li>
+</ul>
+<h3 id="how-to-enable-ondat-compression">How To Enable Ondat Compression?</h3>
+<p>Compression can be enabled by setting the <a href="/docs/concepts/labels">Ondat Feature Label</a> &gt; <code>storageos.com/nocompress=false</code> on a volume at volume creation time.</p>
+<h3 id="ondat-compression--data-encryption">Ondat Compression &amp; Data Encryption</h3>
+<p>When Ondat compression and <a href="/docs/concepts/encryption">data encryption</a> are both enabled for a volume, blocks are <strong>compressed first</strong> and then encrypted.</p>
 
 	
 	

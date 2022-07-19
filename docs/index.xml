@@ -14,129 +14,6 @@
     
     
     <item>
-      <title>Docs: Compression</title>
-      <link>/docs/concepts/compression/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/compression/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat compression is handled on a per volume basis and is disabled by
-default in v2.2+, as performance is generally increased when compression is
-disabled due to block alignment. This means that there is a trade
-off between volume performance and the space the volume occupies on the backend
-device.&lt;/p&gt;
-&lt;p&gt;Compression can be enabled by setting the &lt;a href=&#34;/docs/reference/labels&#34;&gt;label&lt;/a&gt;
-&lt;code&gt;storageos.com/nocompress=false&lt;/code&gt; on a volume at volume creation time.&lt;/p&gt;
-&lt;p&gt;Ondat utilises the &lt;a href=&#34;https://lz4.github.io/lz4/&#34;&gt;lz4 compression algorithm&lt;/a&gt;
-when writing to the backend store and when compressing &lt;a href=&#34;/docs/concepts/replication&#34;&gt;replication
-traffic&lt;/a&gt; before it is sent across the network.&lt;/p&gt;
-&lt;p&gt;Ondat detects whether a block can be compressed or not by creating a
-heuristic that predicts the size of a compressed block. If the heuristic
-indicates that the compressed block is likely to be larger than the
-original block then the uncompressed block is stored. Block size increases post
-compression if the compression dictionary is added to a block that cannot be
-compressed. By verifying whether blocks can be compressed, disk efficiency is
-increased and CPU resources are not wasted on attempts to compress
-uncompressible blocks. Ondat&amp;rsquo;s patented on-disk format is used to tell
-whether individual blocks are compressed without overhead. As such volume
-compression can be dynamically enabled/disabled even while a volume is in use.&lt;/p&gt;
-&lt;p&gt;When compression and &lt;a href=&#34;/docs/reference/encryption&#34;&gt;encryption&lt;/a&gt; are both enabled
-for a volume, blocks are compressed then encrypted.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Fencing</title>
-      <link>/docs/concepts/fencing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/fencing/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;statefulset-behaviour&#34;&gt;StatefulSet behaviour&lt;/h2&gt;
-&lt;p&gt;In order to understand what Ondat Fencing for Kubernetes is and when it is
-needed, it is required to first understand the behaviour of StatefulSets.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/&#34;&gt;StatefulSets&lt;/a&gt;
-are the de facto Kubernetes controller to use for stateful applications. The
-StatefulSet controller offers guarantees around pod uniqueness, sticky
-identities and the persistence of PVCs beyond the lifetime of their pods. As
-such, StatefulSets have different characteristics and provide different
-guarantees than Deployments.&lt;/p&gt;
-&lt;p&gt;Deployments guarantee the amount of healthy replicas by reconciling towards the
-deployment desired  state. Attempts to align the number of healthy pods with
-the deployment&amp;rsquo;s desired state happen as fast as possible by aggressively
-initializing and terminating pods. If one pod is terminating, another will be
-automatically scheduled to start even if the first pod is not yet completely
-terminated. Stateless applications benefit from this behaviour as one pod
-executes the same work as any other in the deployment.&lt;/p&gt;
-&lt;p&gt;StatefulSets, on the other hand, guarantee that every pod scheduled has a
-unique identity, which is to say that only a single copy of a pod is running in
-the cluster at any one time. Whenever scheduling decisions are made, the
-StatefulSet controller ensures that only one copy of this pod is running at any
-time. If a pod is deleted, a new pod will not be scheduled until the first pod
-is fully terminated. This is an important guarantee as FileSystems need to be
-unmounted before they can be remounted in a new pod. Any ReadWriteOnce PVC
-defining a device requires this behaviour to ensure the consistency of the data
-and thus the PVC.&lt;/p&gt;
-&lt;p&gt;To protect data integrity, Kubernetes guarantees that there will never be more
-than one instance of a StatefulSet Pod running at a time. It assumes that when
-a node is determined to be offline it may still be running the workload but
-partitioned from the network. Since Kubernetes is unable to
-verify that the Pod has been stopped it errs on the side of caution and does
-not allow a replacement to start on another node.&lt;/p&gt;
-&lt;p&gt;Kubernetes does reschedule pods from some controllers when nodes become
-unavailable. The default behaviour is that when a node becomes unavailable its
-status becomes &amp;ldquo;Unknown&amp;rdquo; and after the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; has passed pods
-are scheduled for deletion. By default, the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; is 300
-seconds.&lt;/p&gt;
-&lt;p&gt;For this reason, Kubernetes requires manual intervention to initiate timely
-failover of a StatefulSet Pod. The Ondat Fencing Controller gives the
-capability to enable fast failover of workloads when a node goes offline.&lt;/p&gt;
-&lt;p&gt;For more information on the rationale behind the design of StatefulSets please
-see the Kubernetes design proposal for &lt;a href=&#34;https://github.com/kubernetes/design-proposals-archive/blob/main/storage/pod-safety.md&#34;&gt;Pod
-Safety&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 The Ondat Fencing Controller is part of the Ondat API Manager which
-is deployed in high availability when Ondat is installed.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;HA for StatefulSet applications can be achieved with the Ondat Fencing
-feature&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Since Ondat is able to determine when a node is no longer able to access a
-volume and has protections in place to ensure that a partitioned or formerly
-partitioned node can not continue to write data, it can work with Kubernetes to
-perform safe, fast failovers of Pods, including those running in StatefulSets.&lt;/p&gt;
-&lt;p&gt;When Ondat detects that a node has gone offline or become partitioned, it
-marks the node offline and performs volume failover operations.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/api-manager/tree/master/controllers/fencer&#34;&gt;Ondat Fencing
-Controller&lt;/a&gt;
-watches for these node failures and determines if there are any pods assigned
-to the failed node with the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;, and if the pods
-have any PVCs backed by Ondat volumes.&lt;/p&gt;
-&lt;p&gt;When a Pod has Ondat volumes and if they are all healthy, the Ondat
-fencing controller deletes the Pod to allow it to be rescheduled on another
-node. It also deletes the VolumeAtachments for the corresponding volumes so
-that they can be immediately attached to the new node.&lt;/p&gt;
-&lt;p&gt;No changes are made to Pods that have Ondat volumes that are unhealthy.
-This is usually because a volume was configured to not have any replicas, and the
-node with the single copy of the data is offline. In this case it is better to
-wait for the node to recover.&lt;/p&gt;
-&lt;p&gt;Fencing works with both dynamically provisioned PVCs and PVCs referencing
-pre-provisioned volumes.&lt;/p&gt;
-&lt;p&gt;The fencing feature is opt-in and Pods must have the
-&lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label set, and be using at least one Ondat
-volume, to enable fast failover.&lt;/p&gt;
-&lt;p&gt;For more information about how to enable pod fencing, see our &lt;a href=&#34;/docs/operations/fencing&#34;&gt;Fencing
-Operations&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Install</title>
       <link>/docs/reference/cluster-operator/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -156,35 +33,11 @@ Operations&lt;/a&gt; page.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: Metric Exporter</title>
-      <link>/docs/concepts/metric-exporter/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/metric-exporter/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;Following the &lt;a href=&#34;https://prometheus.io/docs/instrumenting/exporters/&#34;&gt;exporter pattern&lt;/a&gt;, we maintain and distribute our own &lt;a href=&#34;https://prometheus.io/&#34;&gt;Prometheus&lt;/a&gt; exporter for monitoring &amp;amp; alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity &amp;amp; traffic.&lt;/p&gt;
-&lt;p&gt;Our exporter’s source code can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Please see our &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;operations page&lt;/a&gt; to get started.&lt;/p&gt;
-&lt;p&gt;Additionally, we distribute Grafana dashboards to visualize the data. They can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/grafana&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Likewise, we distribute example alerting rules for our metrics using &lt;a href=&#34;https://prometheus.io/docs/alerting/latest/alertmanager/&#34;&gt;Alertmanager&lt;/a&gt;, they can be found &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/alertmanager&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Contributions to both are welcome!&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ When setting up a &lt;a href=&#34;https://github.com/prometheus-operator/prometheus-operator/blob/1e4acb010642067bb918eebb75410191640a95c6/Documentation/user-guides/getting-started.md&#34;&gt;ServiceMonitor&lt;/a&gt; be sure to create the rules in the same namespace as your Prometheus resource and have its &lt;code&gt;selector&lt;/code&gt; field match the labels of ours services exposing metrics (see example manifest &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;here&lt;/a&gt;).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;If you have suggestions for metrics you would like us to gather or improvements to our Grafana or Alertmanager integration, please let us know on our &lt;a href=&#34;https://slack.storageos.com/&#34;&gt;public slack&lt;/a&gt;.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Namespaces</title>
-      <link>/docs/concepts/namespaces/</link>
+      <link>/docs/reference/namespaces/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/concepts/namespaces/</guid>
+      <guid>/docs/reference/namespaces/</guid>
       <description>
         
         
@@ -195,53 +48,6 @@ multiple projects.&lt;/p&gt;
 Kubernetes namespaces on a one-to-one basis when PersistentVolumeClaims using
 the Ondat StorageClass are created.&lt;/p&gt;
 &lt;p&gt;💡 Access to Namespaces is controlled through user or group level &lt;a href=&#34;/docs/concepts/policies&#34;&gt;policies&lt;/a&gt;.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Nodes</title>
-      <link>/docs/concepts/nodes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/nodes/</guid>
-      <description>
-        
-        
-        &lt;p&gt;An Ondat node is any machine (virtual or physical) that is running the
-Ondat daemonset pod. A node must be running a daemonset pod in order to
-consume and/or present storage.&lt;/p&gt;
-&lt;p&gt;Nodes can be run in several modes.&lt;/p&gt;
-&lt;h2 id=&#34;hyperconverged-mode&#34;&gt;Hyperconverged Mode&lt;/h2&gt;
-&lt;p&gt;By default Ondat nodes run in &lt;code&gt;hyperconverged&lt;/code&gt; mode. This means that the
-node hosts data from Ondat volumes and can present volumes to applications.&lt;/p&gt;
-&lt;p&gt;A hyperconverged node can store data from a volume and present volumes to
-applications regardless of whether the data for the volume consumed is placed
-on that node or is being served remotely. Remote volumes like this are handled
-by an internal protocol to present block device access to applications running
-on different nodes from the one to which their backing data store is attached.&lt;/p&gt;
-&lt;p&gt;Ondat implements an extension of a Kubernetes Scheduler object that
-influences the placement of Pods on the same nodes as their data.&lt;/p&gt;
-&lt;h2 id=&#34;compute-only-mode&#34;&gt;Compute-only Mode&lt;/h2&gt;
-&lt;p&gt;Alternatively, a node can run in &lt;code&gt;computeonly&lt;/code&gt; mode, which means no storage is
-consumed on the node itself and the node only presents volumes hosted by
-other nodes. Volumes presented to applications running on compute only nodes
-are therefore all remote. Compute only nodes can be very useful for topologies
-where nodes are ephemeral and should not host data, but the ephemeral nodes
-host applications that require Ondat volumes. The nodes that are not
-intended to hold data, but just to present Ondat volumes, can be set as
-&lt;code&gt;computeonly&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;A node can be marked as compute only at any point in time by adding the label
-&lt;code&gt;storageos.com/computeonly=true&lt;/code&gt;, following the &lt;a href=&#34;/docs/reference/labels&#34;&gt;labels reference&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;storage-mode&#34;&gt;Storage Mode&lt;/h2&gt;
-&lt;p&gt;Finally, nodes can be set to storage mode. Nodes set to storage mode don&amp;rsquo;t
-present data locally - instead all data is accessed through the network. This
-topology is enforced by tainting the relevant nodes to ensure that application
-workloads cannot be scheduled there.&lt;/p&gt;
-&lt;p&gt;This mode is ideal for ensuring maximum stability of data access as the node is
-isolated from resource drains that may occur due to applications running
-alongside. For redundancy purposes, in high load clusters it is ideal to have
-several nodes running in this mode.&lt;/p&gt;
 
       </description>
     </item>
@@ -373,6 +179,39 @@ restarted on any node and access volumes transparently.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Ondat Compression</title>
+      <link>/docs/concepts/compression/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/compression/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is disabled by default in release &lt;code&gt;v2.2.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;data-compression&#34;&gt;Data Compression&lt;/h3&gt;
+&lt;p&gt;Ondat compression is handled on a per volume basis and is disabled in &lt;code&gt;v2.2.0&lt;/code&gt;, as performance is generally increased when compression is disabled due to &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_structure_alignment&#34;&gt;block alignment&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This means that there is a trade off between volume performance and the space the volume occupies on the backend device.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ondat utilises the &lt;a href=&#34;https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29&#34;&gt;LZ4 (compression algorithm)&lt;/a&gt; when writing to the backend store and when compressing Ondat &lt;a href=&#34;/docs/concepts/replication&#34;&gt;replication traffic&lt;/a&gt; before it is sent across the network.&lt;/p&gt;
+&lt;p&gt;Ondat detects whether a block can be compressed or not by creating a heuristic that predicts the size of a compressed block.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the heuristic indicates that the compressed block is likely to be larger than the original block then the uncompressed block is stored.&lt;/li&gt;
+&lt;li&gt;Block size increases post-compression if the compression dictionary is added to a block that cannot be compressed. By verifying whether blocks can be compressed, disk efficiency is increased and CPU resources are not wasted on attempts to compress incompressible blocks.&lt;/li&gt;
+&lt;li&gt;Ondat&amp;rsquo;s patented on-disk format is used to tell whether individual blocks are compressed without overhead. As such volume compression can be dynamically enabled/disabled even while a volume is in use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;how-to-enable-ondat-compression&#34;&gt;How To Enable Ondat Compression?&lt;/h3&gt;
+&lt;p&gt;Compression can be enabled by setting the &lt;a href=&#34;/docs/concepts/labels&#34;&gt;Ondat Feature Label&lt;/a&gt; &amp;gt; &lt;code&gt;storageos.com/nocompress=false&lt;/code&gt; on a volume at volume creation time.&lt;/p&gt;
+&lt;h3 id=&#34;ondat-compression--data-encryption&#34;&gt;Ondat Compression &amp;amp; Data Encryption&lt;/h3&gt;
+&lt;p&gt;When Ondat compression and &lt;a href=&#34;/docs/concepts/encryption&#34;&gt;data encryption&lt;/a&gt; are both enabled for a volume, blocks are &lt;strong&gt;compressed first&lt;/strong&gt; and then encrypted.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Data Encryption</title>
       <link>/docs/concepts/encryption/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -381,90 +220,73 @@ restarted on any node and access volumes transparently.&lt;/p&gt;
       <description>
         
         
-        &lt;p&gt;Ondat supports encryption for data-at-rest and data-in-transit.&lt;/p&gt;
-&lt;p&gt;Data-in-transit is data as it is travelling between nodes. It is encrypted by
-default with mTLS. Data-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files
-is optional and can be enabled by adding a label to your volume definitions
-before they&amp;rsquo;re provisioned.&lt;/p&gt;
-&lt;p&gt;For information on how to enable encryption on your volumes, see our
-&lt;a href=&#34;/docs/operations/encryption&#34;&gt;Encryption Operations&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;how-volumes-are-encrypted&#34;&gt;How volumes are encrypted&lt;/h2&gt;
-&lt;p&gt;Volumes are encrypted using AES-256 in the XTS-AES mode with 512-bit keys, as
-specified by IEEE Standard 1619-2007. There is a non-zero performance impact of
-using encrypted volumes. A 10-25% cost in read/write throughput can be
-expected from XTS-AES, dependent on workload. Thin provisioning still applies
-to encrypted volumes.&lt;/p&gt;
-&lt;h2 id=&#34;encryption-key-generation&#34;&gt;Encryption Key Generation&lt;/h2&gt;
-&lt;p&gt;On PVC creation, &lt;a href=&#34;/docs/reference/labels#storageos-volume-labels&#34;&gt;if encryption is enabled&lt;/a&gt;, Ondat will
-automatically generate up to two keys as Kubernetes secrets. Both keys are
-stored in the same namespace as the PVC.&lt;/p&gt;
-&lt;p&gt;Firstly, if it doesn&amp;rsquo;t already exist, a namespace key is generated. It is
-always named &lt;code&gt;storageos-namespace-key&lt;/code&gt; and only one exists per namespace.&lt;/p&gt;
-&lt;p&gt;Secondly a volume key is created for each encrypted volume. It has a name in
-the format &lt;code&gt;storageos-volume-key-&amp;lt;random-id&amp;gt;&lt;/code&gt;, with no connection to the name
-of the volume. The volume it is associated with can be determined by looking at
-the &lt;code&gt;storageos.com/pvc&lt;/code&gt; label on the secret. The
-&lt;code&gt;storageos.com/encryption-secret-name&lt;/code&gt; and
-&lt;code&gt;storageos.com/encryption-secret-namespace&lt;/code&gt; annotations are added to the PVC by
-an admission controller to map the PVC back to its secret.&lt;/p&gt;
-&lt;p&gt;The encryption key is passed to Ondat as part of the CSI volume creation
-request and is used to encrypt the volume.&lt;/p&gt;
-&lt;h2 id=&#34;encryption-key-use&#34;&gt;Encryption Key Use&lt;/h2&gt;
-&lt;p&gt;The volume specific secret is needed whenever a volume is attached to a node
-for use by a pod. When this happens, the Ondat node container&amp;rsquo;s Service
-Account reads the secret and passes it to the Ondat controlplane.&lt;/p&gt;
-&lt;p&gt;A volume missing its key or with a malformed key will be unable to attach.&lt;/p&gt;
-&lt;p&gt;The key is stored in memory by Ondat only on the node that the volume is
-being used on. As a result, encryption and decryption are performed where the
-data is consumed, rather than where it is stored.&lt;/p&gt;
-&lt;p&gt;Because of this, the use of encrypted volumes is transparent to the user.
-There is a complete integration between Kubernetes applications and
-Ondat encryption.&lt;/p&gt;
-&lt;h2 id=&#34;key-management-best-practices&#34;&gt;Key Management Best Practices&lt;/h2&gt;
-&lt;p&gt;Ondat saves encryption keys in Kubernetes Secrets.
-Backups are therefore imperative in case the Kubernetes Etcd is lost.&lt;/p&gt;
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ &lt;strong&gt;Ondat has no ability to decrypt a volume whose encryption keys have been
-lost.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.4.0&lt;/code&gt; or greater.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in the
-Kubernetes Etcd in simple base64 encoding. As Ondat encryption keys are
-stored as Kubernetes Secrets, this means that anyone with access to a
-Kubernetes Etcd installation can read encryption keys and decrypt volumes,
-unless the cluster has an external secrets store.&lt;/p&gt;
-&lt;p&gt;For better security check Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;secret
-encryption&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Secrets are not garbage-collected by Ondat. To clean up completely upon
-deletion of a volume it is necessary to also delete that volume&amp;rsquo;s secret. There
-is no benefit to doing this, however.&lt;/p&gt;
-&lt;h2 id=&#34;key-management-with-kubernetes-kms-provider&#34;&gt;Key Management with Kubernetes KMS provider&lt;/h2&gt;
-&lt;p&gt;Ondat encryption keys are stored within Etcd as Kubernetes secrets. Whilst
-the Etcd and kubernetes secrets &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;can also be
-encrypted&lt;/a&gt;,
-many organisations choose to use an external KMS provider.&lt;/p&gt;
-&lt;p&gt;To address this from a Kubernetes limitations perspective and provide an
-agnostic solution, our encryption design allows the user to benefit from any
-Kubernetes KMS provider plugin to envelop the secrets into the KMS provider
-encryption scheme.&lt;/p&gt;
-&lt;p&gt;Ondat allows customers to transparently integrate any supported KMS plugin
-with Ondat encryption key management using the standard Kubernetes API and
-Kubernetes KMS provider framework. The below figure provides an overview of the
-process.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 End users can also leverage &lt;a href=&#34;https://www.ondat.io/trousseau&#34;&gt;Trousseau&lt;/a&gt; with Ondat&amp;rsquo;s volume encryption feature. Trousseau is an open source KMS plugin project that based on Kubernetes KMS provider design. The project allows users to store and access your secrets the Kubernetes native way with any external KMS. Trousseau&amp;rsquo;s repository can be located on &lt;a href=&#34;https://github.com/ondat/trousseau&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;data-encryption&#34;&gt;Data Encryption&lt;/h3&gt;
+&lt;p&gt;Ondat supports &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_at_rest&#34;&gt;data encryption-at-rest&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_in_transit&#34;&gt;data encryption-in-transit&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Data encryption-in-transit is data as it is travelling between nodes. It is encrypted by default with &lt;a href=&#34;https://en.wikipedia.org/wiki/Mutual_authentication&#34;&gt;Mutual Authentication (mTLS)&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Data encryption-at-rest is the data stored in your volumes as &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;blob files&lt;/a&gt;. Encryption of these blob files is optional and can be enabled by adding a label to your volume definitions &lt;strong&gt;before they are provisioned&lt;/strong&gt; .&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information on how to enable data encryption for Ondat volumes, review the &lt;a href=&#34;/docs/operations/encryption/&#34;&gt;Ondat Data Encryption&lt;/a&gt; operations page.&lt;/p&gt;
+&lt;h3 id=&#34;how-are-ondat-volumes-encrypted&#34;&gt;How Are Ondat Volumes Encrypted?&lt;/h3&gt;
+&lt;p&gt;Volumes are encrypted using &lt;code&gt;AES-256&lt;/code&gt; in the &lt;code&gt;XTS-AES&lt;/code&gt; mode with &lt;code&gt;512-bit&lt;/code&gt; keys, as
+specified by &lt;a href=&#34;https://standards.ieee.org/ieee/1619/4205/&#34;&gt;&lt;code&gt;IEEE Standard 1619-2007&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;There is a non-zero performance impact of using encrypted volumes. A &lt;code&gt;10-25%&lt;/code&gt; cost in read/write throughput can be expected from &lt;code&gt;XTS-AES&lt;/code&gt;, dependent on workload.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Thin_provisioning&#34;&gt;Thin provisioning&lt;/a&gt; still applies to Ondat encrypted volumes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;how-are-ondat-encryption-keys-generated&#34;&gt;How Are Ondat Encryption Keys Generated?&lt;/h3&gt;
+&lt;p&gt;On PVC creation, if data encryption-at-rest is enabled, Ondat will automatically generate &lt;strong&gt;up to two keys&lt;/strong&gt; as &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34;&gt;Kubernetes secrets&lt;/a&gt;. Both keys are stored in the &lt;strong&gt;same namespace&lt;/strong&gt; as the PVC.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Firstly, if it doesn&amp;rsquo;t already exist, a &lt;strong&gt;namespace key&lt;/strong&gt; is generated. It is always named &lt;code&gt;storageos-namespace-key&lt;/code&gt; and &lt;strong&gt;only one exists per namespace&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Secondly a &lt;strong&gt;volume key&lt;/strong&gt; is created for each encrypted volume. It has a name in the format &lt;code&gt;storageos-volume-key-&amp;lt;random-id&amp;gt;&lt;/code&gt;, with no connection to the name of the volume.
+&lt;ol&gt;
+&lt;li&gt;The volume it is associated with can be determined by looking at the &lt;code&gt;storageos.com/pvc&lt;/code&gt; label on the secret.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;storageos.com/encryption-secret-name&lt;/code&gt; and &lt;code&gt;storageos.com/encryption-secret-namespace&lt;/code&gt; annotations are added to the PVC by an admission controller to map the PVC back to its secret.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;The encryption key is passed to Ondat as part of the CSI volume creation request and is used to encrypt the volume.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;how-are-encryption-keys-used&#34;&gt;How Are Encryption Keys Used?&lt;/h3&gt;
+&lt;p&gt;The volume specific secret is needed whenever a volume is attached to a node for use by a pod.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When this happens, the Ondat node container&amp;rsquo;s &lt;a href=&#34;https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/&#34;&gt;ServiceAccount&lt;/a&gt; reads the secret and passes it to the Ondat Control Plane.&lt;/li&gt;
+&lt;li&gt;A volume missing its key or with a malformed key will be unable to attach.&lt;/li&gt;
+&lt;li&gt;The key is stored in memory by Ondat only on the node that the volume is being used on. As a result, encryption and decryption are performed &lt;strong&gt;where the data is consumed, rather than where it is stored&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because of this, the use of encrypted volumes is transparent to the user. There is a complete integration between Kubernetes applications and Ondat volume encryption.&lt;/p&gt;
+&lt;h3 id=&#34;encryption-key-management-best-practices&#34;&gt;Encryption Key Management Best Practices&lt;/h3&gt;
+&lt;p&gt;Ondat saves volume encryption keys in Kubernetes secrets, thus - backups are imperative in case Kubernetes &lt;code&gt;etcd&lt;/code&gt; backing store is lost or damaged.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Ondat has no ability to decrypt a volume whose encryption keys have been lost.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Secrets in Kubernetes are not encrypted by default, they are stored in Kubernetes &lt;code&gt;etcd&lt;/code&gt; backing store in simple &lt;a href=&#34;https://en.wikipedia.org/wiki/Base64&#34;&gt;Base64&lt;/a&gt; encoding.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As Ondat encryption keys are stored as Kubernetes secrets, this means that anyone with access to Kubernetes &lt;code&gt;etcd&lt;/code&gt; backing store can read encryption keys and decrypt volumes, unless the cluster is using an external secrets store for key management.&lt;/li&gt;
+&lt;li&gt;For more information on how to enable and configure encryption of Kubernetes secrets data at rest, review the &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/&#34;&gt;official Kubernetes documentation here&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Secrets are not garbage-collected by Ondat, therefore - to clean up completely upon deletion of a volume it is necessary to also delete that volume&amp;rsquo;s secret. There is no benefit to doing this, however.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;managing-keys-with-a-key-management-service-kms-provider&#34;&gt;Managing Keys With A Key Management Service (KMS) Provider&lt;/h3&gt;
+&lt;p&gt;As mentioned in the section above, Ondat volume encryption keys are stored within Kubernetes &lt;code&gt;etcd&lt;/code&gt; backing store as Kubernetes secrets. Whilst Kubernetes &lt;code&gt;etcd&lt;/code&gt; and secrets can also be encrypted, many security-focused organisations choose to use an &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/&#34;&gt;external Key Management Service (KMS) provider for data encryption&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To address this from a Kubernetes limitations perspective and provide an agnostic solution, Ondat&amp;rsquo;s encryption design allows the user to leverage any supported &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/#implementing-a-kms-plugin&#34;&gt;Kubernetes KMS plugin&lt;/a&gt; to envelop the secrets into a KMS provider encryption scheme.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ondat enables end users to transparently integrate any supported KMS plugin with Ondat encryption key management using the standard Kubernetes API and Kubernetes KMS provider framework. The architecture diagram below provides a high level overview of the process.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;&lt;img src=&#34;/images/docs/gui-v2/kms-key-management.png&#34; alt=&#34;KMS Key Management&#34;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;The KMS plugin is deployed within the Kubernetes cluster.&lt;/li&gt;
-&lt;li&gt;The KMS plugin is configured to act as a broker between the Kubernetes API
-server and the KMS server API endpoint.&lt;/li&gt;
-&lt;li&gt;At volume creation, Ondat will create a Kubernetes secret using
-Kubernetes API calls&lt;/li&gt;
-&lt;li&gt;The KMS plugin will handle the Kubernetes API Secret creation call and
-interface to the KMS server instance.&lt;/li&gt;
+&lt;li&gt;The KMS plugin is configured to act as a broker between the Kubernetes API server and the KMS server API endpoint.&lt;/li&gt;
+&lt;li&gt;At volume creation, Ondat will create a Kubernetes secret using Kubernetes API calls&lt;/li&gt;
+&lt;li&gt;The KMS plugin will handle the Kubernetes API Secret creation call and interface to the KMS server instance.&lt;/li&gt;
 &lt;li&gt;The KMS server will return the secret using its encryption envelop scheme.&lt;/li&gt;
-&lt;li&gt;The KMS plugin will store the encrypted secret within the Kubernetes Etcd.&lt;/li&gt;
+&lt;li&gt;The KMS plugin will store the encrypted secret within Kubernetes &lt;code&gt;etcd&lt;/code&gt; backing store.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Contact the &lt;a href=&#34;mailto:sales@storageos.com&#34;&gt;Ondat sales team&lt;/a&gt; for more
-information about the dedicated Ondat Vault KMS plugin integration
-offering.&lt;/p&gt;
 
       </description>
     </item>
@@ -665,6 +487,65 @@ spec:
     </item>
     
     <item>
+      <title>Docs: Ondat Fencing</title>
+      <link>/docs/concepts/fencing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/fencing/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.4.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;what-is-ondat-fencing&#34;&gt;What Is Ondat Fencing?&lt;/h3&gt;
+&lt;p&gt;In order to understand what Ondat Fencing for Kubernetes is and when it is needed, it is required to first understand the behaviour of &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/&#34;&gt;Kubernetes StatefulSets&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;StatefulSets&lt;/em&gt; are the de facto Kubernetes controller to use for stateful applications. The StatefulSet controller offers guarantees around pod uniqueness, sticky identities and the persistence of PVCs beyond the lifetime of their pods.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As such, StatefulSets have different characteristics and provide different guarantees than &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/deployment/&#34;&gt;Kubernetes Deployments&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Deployments&lt;/em&gt; guarantee the amount of healthy replicas by reconciling towards the deployment desired state. Attempts to align the number of healthy pods with the deployment&amp;rsquo;s desired state happen as fast as possible by aggressively initialising and terminating pods.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If one pod is terminating, another will be automatically scheduled to start even if the first pod is not yet completely terminated. Stateless applications benefit from this behaviour as one pod executes the same work as any other in the deployment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;StatefulSets, on the other hand, &lt;strong&gt;guarantee that every pod scheduled has a unique identity&lt;/strong&gt;, which is to say that only a single copy of a pod is running in the cluster at any one time.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Whenever scheduling decisions are made, the StatefulSet controller ensures that only one copy of this pod is running at any time.&lt;/li&gt;
+&lt;li&gt;If a pod is deleted, a new pod will not be scheduled until the first pod is fully terminated. This is an important guarantee as file systems need to be unmounted before they can be remounted in a new pod. Any &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;ReadWriteOnce (RWO)&lt;/a&gt; PVC defining a device requires this behaviour to ensure the consistency of the data and thus the PVC.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To protect data integrity, Kubernetes guarantees that there will never be more than one instance of a StatefulSet pod running at a time. It assumes that when a node is determined to be offline it may still be running the workload but partitioned from the network. Since Kubernetes is unable to verify that the pod has been stopped it errors on the side of caution and does not allow a replacement to start on another node.&lt;/p&gt;
+&lt;p&gt;Kubernetes does reschedule pods from some controllers when nodes become unavailable. The default behaviour is that when a node becomes unavailable its status becomes &lt;code&gt;Unknown&lt;/code&gt; and after the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; has passed pods are scheduled for deletion. By default, the &lt;code&gt;pod-eviction-timeout&lt;/code&gt; is &lt;code&gt;300&lt;/code&gt; seconds.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For this reason, Kubernetes requires manual intervention to initiate timely failover of a StatefulSet pod. The &lt;strong&gt;Ondat Fencing Controller&lt;/strong&gt; gives the capability to enable fast failover for workloads when a node goes offline.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information on the rationale behind the design of StatefulSets, review the Kubernetes design proposal archive for &lt;a href=&#34;https://github.com/kubernetes/design-proposals-archive/blob/main/storage/pod-safety.md&#34;&gt;Pod Safety, Consistency Guarantees, and Storage Implications&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;ondat-fencing-controller&#34;&gt;Ondat Fencing Controller&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The Ondat Fencing Controller is part of the Ondat API Manager which is deployed in high availability mode when Ondat is installed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 High Availability for StatefulSet applications can be achieved with the Ondat Fencing feature.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Since Ondat is able to determine when a node is no longer able to access a volume and has protections in place to ensure that a partitioned or formerly partitioned node can stop writing data, it can work with Kubernetes to perform safe, fast failovers of pods, including those running in StatefulSets.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When Ondat detects that a node has gone offline or become partitioned, it marks the node offline and performs volume failover operations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/api-manager/tree/master/controllers/fencer&#34;&gt;Ondat Fencing Controller&lt;/a&gt; watches for these node failures and determines if there are any pods assigned to the failed node with the label &lt;code&gt;storageos.com/fenced=true&lt;/code&gt;, and if the pods have any PVCs backed by Ondat volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When a pod has Ondat volumes and if they are all healthy, the Ondat Fencing Controller deletes the pod to allow it to be rescheduled on another node. It also deletes the &lt;code&gt;VolumeAttachment&lt;/code&gt; object for the corresponding volumes so that they can be immediately attached to the new node.&lt;/li&gt;
+&lt;li&gt;No changes are made to pods that have Ondat volumes that are unhealthy. This is usually because a volume was configured to not have any replicas, and the node with the single copy of the data is offline. In this case it is better to wait for the node to recover.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ondat Fencing works with both dynamically provisioned PVCs and PVCs referencing pre-provisioned volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In addition, the fencing feature is opt-in and pods must have the &lt;code&gt;storageos.com/fenced=true&lt;/code&gt; label set, and be using at least one Ondat volume, to enable fast failover.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information about how to enable Ondat fencing, review the &lt;a href=&#34;/docs/operations/fencing&#34;&gt;Ondat Fencing&lt;/a&gt; operations page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Files</title>
       <link>/docs/concepts/rwx/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -673,70 +554,71 @@ spec:
       <description>
         
         
-        &lt;blockquote&gt;
-&lt;p&gt;⚠️ Ondat must have a licence applied to use RWX Volumes. RWX volumes are supported on all licence tiers, including our Community Edition licence. For more information, please visit &lt;a href=&#34;/docs/operations/licensing/#types-of-licenses&#34;&gt;Licensing&lt;/a&gt;.&lt;/p&gt;
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.3.0&lt;/code&gt; or greater.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Ondat supports ReadWriteMany (RWX) &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;access
-mode&lt;/a&gt;
-Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
-same Kubernetes namespace for read and write operations.&lt;/p&gt;
-&lt;p&gt;Ondat RWX Volumes are based on a shared filesystem - in the case of our
-implementation, this is NFS.&lt;/p&gt;
-&lt;h2 id=&#34;architecture&#34;&gt;Architecture&lt;/h2&gt;
-&lt;p&gt;For each RWX Volume, the following components are involved:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Ondat ReadWriteOnly (RWO) Volume&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Ondat provisions a standard &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;Volume&lt;/a&gt; that provides
-a block device for the file system of the NFS server. This
-means that every RWX Volume has its own RWO Volume. This allows RWX Volumes to
-leverage the synchronous replication and automatic failover functionality of
-Ondat, providing the NFS server with high availability.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NFS-Ganesha server&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;For each RWX Volume, an NFS-Ganesha server is spawned by Ondat. The NFS
-server runs in user space on the Node containing the primary Volume. Each NFS
-server uses its own RWO Volume to store data so the data of each Volume is
-isolated.&lt;/p&gt;
-&lt;p&gt;Ondat binds an ephemeral port to the host network interface for each
-NFS-Ganesha server. The NFS export is presented using NFS v4.2. Check the
-&lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;prerequisites page&lt;/a&gt; to see the
-range of ports needed for Ondat RWX Volumes.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Ondat API Manager&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Ondat fully integrates with Kubernetes. The Ondat API Manager Pod
-monitors Ondat RWX Volumes to create and maintain a Kubernetes Service
-that points towards each RWX Volume&amp;rsquo;s NFS export endpoint. The API Manager is
-responsible for updating the Service endpoint when a RWX Volume failover
-occurs.&lt;/p&gt;
-&lt;h2 id=&#34;provisioning-and-using-rwx-pvcs&#34;&gt;Provisioning and using RWX PVCs&lt;/h2&gt;
-&lt;p&gt;The sequence in which a RWX PVC is provisioned and used is as follows:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;A PersistentVolumeClaim (PVC) is created with RWX access mode using any
-Ondat StorageClass.&lt;/li&gt;
-&lt;li&gt;Ondat dynamically provisions the PV.&lt;/li&gt;
-&lt;li&gt;A new Ondat RWO Volume is provisioned internally (not visible in
-Kubernetes).&lt;/li&gt;
-&lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated
-on the same Node as the primary Volume. The NFS-Ganesha server thus uses the
-RWO Ondat Volume as its backend disk.&lt;/li&gt;
-&lt;li&gt;The Ondat API Manager publishes the host IP and port for the NFS service
-endpoint, by creating a Kubernetes Service that points to the NFS-Ganesha
-server export endpoint.&lt;/li&gt;
-&lt;li&gt;Ondat issues a NFS mount on the Node where the Pod using the PVC is
-scheduled.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;high-availability&#34;&gt;High availability&lt;/h2&gt;
-&lt;p&gt;RWX Volumes failover in the same way as standard RWO Ondat Volumes. The
-replica Volume is promoted upon detection of Node failure and the NFS-Ganesha
-server is started on the Node containing the promoted replica. The Ondat
-API Manager updates the endpoint of the Volume&amp;rsquo;s NFS service, causing traffic
-to be routed to the URL of the new NFS-Ganesha server. The NFS client in the
-application Node (where the user&amp;rsquo;s Pod is running) automatically reconnects.&lt;/p&gt;
-&lt;h2 id=&#34;notes&#34;&gt;Notes&lt;/h2&gt;
+&lt;h3 id=&#34;what-is-ondat-files&#34;&gt;What Is Ondat Files?&lt;/h3&gt;
+&lt;p&gt;Ondat provides support for &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; persistent volumes.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;All feature labels that work on RWO Volumes will also work on RWX Volumes.&lt;/li&gt;
-&lt;li&gt;A Ondat RWX Volume is matched one-to-one with a PVC. Therefore the
-Ondat RWX Volume can only be accessed by Pods in the same Kubernetes
-namespace.&lt;/li&gt;
-&lt;li&gt;Ondat RWX Volumes support volume resize. Refer to the &lt;a href=&#34;/docs/operations/resize&#34;&gt;resize&lt;/a&gt;
-documentation for more details.&lt;/li&gt;
+&lt;li&gt;A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.&lt;/li&gt;
+&lt;li&gt;Ondat RWX persistent volumes are based on a &lt;a href=&#34;https://en.wikipedia.org/wiki/Clustered_file_system&#34;&gt;shared filesystem&lt;/a&gt;, the protocol being used for this feature&amp;rsquo;s backend is &lt;a href=&#34;https://en.wikipedia.org/wiki/Network_File_System&#34;&gt;Network Files System (NFS)&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ondat-files-architecture&#34;&gt;Ondat Files Architecture&lt;/h3&gt;
+&lt;p&gt;For each RWX persistent volume, the following components below are required:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Ondat ReadWriteOnly (RWO) Volume&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Ondat provisions a standard &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;volume&lt;/a&gt; that provides a block device for the file system of the NFS server.&lt;/li&gt;
+&lt;li&gt;This means that every RWX Volume has its own RWO Volume - thus allowing RWX Volumes to leverage the synchronous &lt;a href=&#34;https://en.wikipedia.org/wiki/Replication_%28computing%29&#34;&gt;replication&lt;/a&gt; and automatic &lt;a href=&#34;https://en.wikipedia.org/wiki/Failover&#34;&gt;failover&lt;/a&gt; functionality of Ondat, providing the NFS server with high availability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NFS-Ganesha Server&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;For each RWX volume, an &lt;a href=&#34;https://nfs-ganesha.github.io/&#34;&gt;NFS-Ganesha&lt;/a&gt; server is spawned by Ondat.&lt;/li&gt;
+&lt;li&gt;The NFS server runs in user space on the bode containing the primary volume. Each NFS server uses its own &lt;em&gt;RWO&lt;/em&gt; volume to store data so the data of each Volume is isolated.&lt;/li&gt;
+&lt;li&gt;Ondat binds an &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeral_port&#34;&gt;ephemeral port&lt;/a&gt; to the host network interface for each NFS-Ganesha server.&lt;/li&gt;
+&lt;li&gt;The NFS export is presented using &lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7862&#34;&gt;&lt;code&gt;NFS v4.2&lt;/code&gt;&lt;/a&gt;. Ensure that you review the official &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;prerequisites&lt;/a&gt; page for more information on the port number range, that is for Ondat RWX persistent volumes to successfully run.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ondat API Manager&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat API Manager resource monitors Ondat RWX volumes to create and maintain a &lt;a href=&#34;https://kubernetes.io/docs/concepts/services-networking/service/&#34;&gt;Kubernetes service&lt;/a&gt; that points towards each RWX volume&amp;rsquo;s NFS export endpoint.&lt;/li&gt;
+&lt;li&gt;The API Manager is responsible for updating the service endpoint when a RWX volume failover occurs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;how-are-ondat-readwritemany-rwx-persistentvolumeclaims-pvcs-provisioned&#34;&gt;How are Ondat ReadWriteMany (RWX) PersistentVolumeClaims (PVCs) Provisioned?&lt;/h3&gt;
+&lt;p&gt;The sequence in which a RWX PVC is provisioned and used demonstrated in the steps below:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) is created with &lt;code&gt;ReadWriteMany&lt;/code&gt; (RWX) access mode using any Ondat &lt;code&gt;StorageClass&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Ondat dynamically provisions the &lt;code&gt;PersistentVolume&lt;/code&gt; (PV).&lt;/li&gt;
+&lt;li&gt;A new Ondat &lt;code&gt;ReadWriteOnly&lt;/code&gt; (RWO) Volume is provisioned internally (not visible in Kubernetes).&lt;/li&gt;
+&lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.
+&lt;ol&gt;
+&lt;li&gt;The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;Ondat API Manager&lt;/em&gt; publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.&lt;/li&gt;
+&lt;li&gt;Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For more information on how to get started with Ondat Files, review the &lt;a href=&#34;/docs/operations/rwx&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; operations page.&lt;/p&gt;
+&lt;h3 id=&#34;high-availability-for-ondat-files&#34;&gt;High Availability For Ondat Files&lt;/h3&gt;
+&lt;p&gt;Ondat RWX volumes failover in the same way as standard Ondat RWO volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The replica volume is promoted upon detection of node failure and the NFS-Ganesha server is started on the node containing the promoted replica.&lt;/li&gt;
+&lt;li&gt;The Ondat API Manager updates the endpoint of the Volume&amp;rsquo;s NFS service, causing traffic to be routed to the URL of the new NFS-Ganesha server.&lt;/li&gt;
+&lt;li&gt;The NFS client in the application node (where the user&amp;rsquo;s pod is running) automatically reconnects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;further-information&#34;&gt;Further Information&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;All &lt;a href=&#34;/docs/concepts/labels/&#34;&gt;Ondat Feature Labels&lt;/a&gt; that work on RWO volumes will also work on RWX volumes.&lt;/li&gt;
+&lt;li&gt;A Ondat RWX volume is matched one-to-one with a PVC. Therefore the Ondat RWX volume can only be accessed by pods in the &lt;strong&gt;same&lt;/strong&gt; Kubernetes namespace.&lt;/li&gt;
+&lt;li&gt;Ondat RWX volumes support volume resize.
+&lt;ul&gt;
+&lt;li&gt;For more information on how to resize a volume, review the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -830,6 +712,214 @@ Use &amp;quot;kubectl-storageos [command] --help&amp;quot; for more information 
     </item>
     
     <item>
+      <title>Docs: Ondat Metric Exporter</title>
+      <link>/docs/concepts/metric-exporter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/metric-exporter/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.8.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;prometheus-metrics-for-ondat-volumes&#34;&gt;Prometheus Metrics for Ondat Volumes&lt;/h3&gt;
+&lt;p&gt;Following the &lt;a href=&#34;https://prometheus.io/docs/instrumenting/exporters/&#34;&gt;exporter pattern&lt;/a&gt;, we maintain and distribute our own &lt;a href=&#34;https://prometheus.io/&#34;&gt;Prometheus&lt;/a&gt; exporter for monitoring and alerting of Ondat volumes. The metrics our exporter publishes include data on volume health, capacity and traffic.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat metric exporter repository is open source and can be located on &lt;a href=&#34;https://github.com/ondat/metrics-exporter&#34;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To get started with installing and configuring the exporter in your Ondat cluster, review the &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;metric exporter&amp;rsquo;s&lt;/a&gt; operations page for more information.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ When setting up a &lt;a href=&#34;https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md&#34;&gt;ServiceMonitor&lt;/a&gt; resource, ensure that you create the rules in the same namespace as your Prometheus resource and have its &lt;code&gt;selector&lt;/code&gt; field match the labels of the services exposing metrics - review the &lt;a href=&#34;/docs/operations/metric-exporter/&#34;&gt;example ServiceMonitor resource&lt;/a&gt; manifest in the operations page for more information.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;alerting-rules-for-ondat-volumes&#34;&gt;Alerting Rules for Ondat Volumes&lt;/h3&gt;
+&lt;p&gt;Ondat also distributes example alert rules for Ondat metrics using &lt;a href=&#34;https://prometheus.io/docs/alerting/latest/alertmanager/&#34;&gt;Alertmanager&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The alert rules manifest can be located in the &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/alertmanager&#34;&gt;&lt;code&gt;alertmanager&lt;/code&gt; sub directory under the Ondat metric exporter&lt;/a&gt; repository.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;grafana-dashboard-for-ondat-volumes&#34;&gt;Grafana Dashboard for Ondat Volumes&lt;/h3&gt;
+&lt;p&gt;In addition to the Ondat metric exporter project, we also distribute &lt;a href=&#34;https://grafana.com/grafana/dashboards/&#34;&gt;Grafana dashboards&lt;/a&gt; that allow end users to easily visualize and get insights into the status of Ondat volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The dashboards can be also located in the &lt;a href=&#34;https://github.com/ondat/metrics-exporter/tree/main/grafana&#34;&gt;&lt;code&gt;grafana&lt;/code&gt; sub directory under the Ondat metric exporter&lt;/a&gt; repository.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;contributing&#34;&gt;Contributing&lt;/h2&gt;
+&lt;p&gt;If end users have suggestions/ideas for metrics that they would like Ondat to gather by default or improve the Grafana dashboards and Alertmanager integration, contributions are welcome.&lt;/p&gt;
+&lt;p&gt;You can reach out to us on the &lt;a href=&#34;https://slack.storageos.com/&#34;&gt;Ondat community slack workspace&lt;/a&gt; or review the &lt;a href=&#34;https://github.com/ondat/metrics-exporter/blob/main/CONTRIBUTING.md&#34;&gt;contributing guidelines&lt;/a&gt; in the Ondat metric exporter repository.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Nodes</title>
+      <link>/docs/concepts/nodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/nodes/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;An Ondat node is any machine (virtual or physical) that is running the Ondat &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/&#34;&gt;daemonset&lt;/a&gt; pod. A node must be running a daemonset pod in order to consume and/or present storage.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nodes can be run in several modes, describe below;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hyper-converged-mode&#34;&gt;Hyper-converged Mode&lt;/h3&gt;
+&lt;p&gt;By default Ondat nodes run in &lt;strong&gt;hyper-converged&lt;/strong&gt; mode. This means that the node hosts data from Ondat volumes and can present volumes to applications.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A hyper-converged node can store data from a volume and present volumes to applications regardless of whether the data for the volume consumed is placed on that node or is being served remotely.&lt;/li&gt;
+&lt;li&gt;Remote volumes like this are handled by an internal protocol to present block device access to applications running on different nodes from the one to which their backing data store is attached.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ondat implements an extension of a Kubernetes Scheduler object that influences the placement of Pods on the same nodes as their data.&lt;/p&gt;
+&lt;h3 id=&#34;compute-only-mode&#34;&gt;Compute-only Mode&lt;/h3&gt;
+&lt;p&gt;Alternatively, a node can run in &lt;strong&gt;Compute-only&lt;/strong&gt; mode, which means no storage is consumed on the node itself and the node only presents volumes hosted by other nodes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Volumes presented to applications running on compute only nodes are therefore all remote.&lt;/li&gt;
+&lt;li&gt;Compute only nodes can be very useful for topologies where nodes are ephemeral and should not host data, but the ephemeral nodes host applications that require Ondat volumes.&lt;/li&gt;
+&lt;li&gt;The nodes that are not intended to hold data, but just to present Ondat volumes, can be set as compute-only.&lt;/li&gt;
+&lt;li&gt;A node can be marked as compute only at any point in time by adding the label &lt;code&gt;storageos.com/computeonly=true&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More information on feature labels can be found under the &lt;a href=&#34;/docs/concepts/labels&#34;&gt;Ondat Feature Labels&lt;/a&gt; page.&lt;/p&gt;
+&lt;h3 id=&#34;storage-mode&#34;&gt;Storage Mode&lt;/h3&gt;
+&lt;p&gt;Finally, nodes can be set to storage mode. Nodes set to storage mode don&amp;rsquo;t present data locally - instead all data is accessed through the network.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This topology is enforced by tainting the relevant nodes to ensure that application workloads cannot be scheduled there.&lt;/li&gt;
+&lt;li&gt;This mode is ideal for ensuring maximum stability of data access as the node is isolated from resource drains that may occur due to applications running alongside.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For redundancy purposes, in high load clusters it is ideal to have several nodes running in this mode.&lt;/p&gt;
+&lt;h2 id=&#34;further-information&#34;&gt;Further Information&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Review the &lt;a href=&#34;/docs/concepts/cluster-topologies/&#34;&gt;Ondat Cluster Topologies&lt;/a&gt; feature page for more information on the supported cluster topologies that end users can leverage when designing storage-optimised clusters for their stateful applications.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Replication</title>
+      <link>/docs/concepts/replication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/replication/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;h3 id=&#34;how-does-ondats-replication-work&#34;&gt;How Does Ondat&amp;rsquo;s Replication Work?&lt;/h3&gt;
+&lt;p&gt;Ondat replicates volumes across nodes for data protection and high availability. Synchronous &lt;a href=&#34;https://en.wikipedia.org/wiki/Replication_%28computing%29&#34;&gt;replication&lt;/a&gt; ensures strong consistency for applications such as databases and message queues, incurring one network round trip on writes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The basic model for Ondat replication is of a master volume with distributed replicas. Each volume can be replicated between &lt;code&gt;0&lt;/code&gt; and &lt;code&gt;5&lt;/code&gt; times, which are provisioned to &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;5&lt;/code&gt; nodes, up to the number of remaining nodes in the cluster.&lt;/li&gt;
+&lt;li&gt;In this diagram, the master volume &lt;code&gt;D&lt;/code&gt; was created on node &lt;code&gt;1&lt;/code&gt;, and two replicas, &lt;code&gt;D2&lt;/code&gt; and &lt;code&gt;D3&lt;/code&gt; on nodes &lt;code&gt;3&lt;/code&gt; and &lt;code&gt;5&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/high-availability.png&#34; alt=&#34;Ondat Replication Diagram&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;[Step 1]&lt;/strong&gt; &amp;raquo; Data from the application is written to the master volume first (&lt;code&gt;D&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;[Step 2]&lt;/strong&gt; &amp;raquo; Data is then written in parallel to the replica volumes (&lt;code&gt;D2&lt;/code&gt; &amp;amp; &lt;code&gt;D3&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;[Step 3]&lt;/strong&gt; &amp;raquo; Master and replica volumes all acknowledge that data has been received and written&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;[Step 4]&lt;/strong&gt; &amp;raquo; A successful write operation is returned to the application.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For most applications, one replica is sufficient &lt;code&gt;storageos.com/replicas=1&lt;/code&gt;. All replication traffic on the wire is compressed using the &lt;a href=&#34;https://en.wikipedia.org/wiki/LZ4_%28compression_algorithm%29&#34;&gt;LZ4 (compression algorithm)&lt;/a&gt;, then streamed over &lt;code&gt;TCP/IP&lt;/code&gt; to target port &lt;code&gt;TCP/5703&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the master volume is lost, a replica is promoted to master (&lt;code&gt;D2&lt;/code&gt; or &lt;code&gt;D3&lt;/code&gt; above) and a new replica is created and synced on an available node (node &lt;code&gt;2&lt;/code&gt; or &lt;code&gt;4&lt;/code&gt;). This is transparent to the application and does not cause downtime.&lt;/li&gt;
+&lt;li&gt;If a replica volume is lost and there are enough remaining nodes, a new replica is created and synced on an available node. While a new replica is created and being synced, the volume&amp;rsquo;s health will be marked as degraded.&lt;/li&gt;
+&lt;li&gt;If the lost replica comes back online before the new replica has finished synchronising, then Ondat will calculate which of the two synchronising replicas has the smallest difference compared to the master volume and keep that replica.&lt;/li&gt;
+&lt;li&gt;The same holds true if a master volume is lost and a replica is promoted to be the new master. If possible, a new replica will be created and begin to sync. Should the former master come back online it will be demoted to a replica and the replica will the smallest difference to the current master will be kept.&lt;/li&gt;
+&lt;li&gt;While the replica count is controllable on a per-volume basis, some environments may prefer to set &lt;a href=&#34;/docs/concepts/labels&#34;&gt;default labels on the StorageClass&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ondats-delta-sync-algorithm&#34;&gt;Ondat&amp;rsquo;s Delta Sync Algorithm&lt;/h3&gt;
+&lt;p&gt;Ondat implements a delta sync between a volume master and its replicas.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This means that if a replica for a volume goes offline, that when the replica comes back online only the regions with changed blocks need to be synchronised.&lt;/li&gt;
+&lt;li&gt;This optimisation reduces the time it takes for replicas to catch up, improving volume resilience.&lt;/li&gt;
+&lt;li&gt;Additionally, it reduces network and I/O bandwidth which can reduce costs when running in public clouds.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ondat-topology-aware-placement-tap&#34;&gt;Ondat Topology-Aware Placement (TAP)&lt;/h3&gt;
+&lt;p&gt;Ondat Topology-Aware Placement (TAP) is a feature that enforces placement of data across failure domains to guarantee high availability.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TAP uses default labels on nodes to define failure domains. For instance, an &lt;a href=&#34;https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html&#34;&gt;Availability Zone (AZ)&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information on Topology-Aware Placement feature, review the &lt;a href=&#34;/docs/concepts/tap&#34;&gt;Ondat Topology-Aware Placement&lt;/a&gt; feature page.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-failure-modes&#34;&gt;Ondat Failure Modes&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.4.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s mode of operation in the face of replica failure. If the failure mode is not specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically updated at runtime.&lt;/p&gt;
+&lt;h3 id=&#34;hard-failure-mode&#34;&gt;&lt;code&gt;hard&lt;/code&gt; Failure Mode&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;hard&lt;/code&gt; failure mode requires that the number of declared replicas matches the available number of replicas at all times.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If a replica fails Ondat will attempt creation of a new replica for 90 seconds. After 90s if the old replica is not available and a new replica cannot be provisioned, Ondat cannot guarantee that the data is stored on the number of multiple nodes requested by the user. Ondat will therefore set the volume to be read-only.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If a volume has gone read-only there are two stages to making it read-write again. Firstly, sufficient replicas must be provisioned to match the desired replica count. Depending on your environment, additional nodes and/or disk capacity may be required for this. Secondly, the volume must be remounted - necessitating pod deletion/recreation in Kubernetes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: hard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;hard&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When a node fails, a new replica is provisioned and synced as described above. To ensure that a new replica can always be created, an additional node should be available.&lt;/li&gt;
+&lt;li&gt;To guarantee high availability using &lt;code&gt;storageos.com/failure-mode: hard&lt;/code&gt;, clusters using volumes with &lt;code&gt;1&lt;/code&gt; replica must have at least &lt;code&gt;3&lt;/code&gt; storage nodes.&lt;/li&gt;
+&lt;li&gt;When using volumes with &lt;code&gt;2&lt;/code&gt; replicas, at least &lt;code&gt;4&lt;/code&gt; storage nodes, &lt;code&gt;3&lt;/code&gt; replicas, &lt;code&gt;5&lt;/code&gt; nodes, and so on.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Minimum number of storage nodes = 1 (primary) + N (replicas) + 1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;soft-failure-mode&#34;&gt;&lt;code&gt;soft&lt;/code&gt; Failure Mode&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;soft&lt;/code&gt; failure mode allows a volume to continue serving I/O even when a replica goes offline and a new replica fails to provision.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;So long as there are &lt;code&gt;not less than max(1, N-1)&lt;/code&gt; available replicas where &lt;code&gt;N&lt;/code&gt; is the number of replicas for the volume.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For example, if a volume with &lt;code&gt;2&lt;/code&gt; replicas loses &lt;code&gt;1&lt;/code&gt; replica, then I/O would continue to be served since &lt;code&gt;1&lt;/code&gt; replica remaining &lt;code&gt;&amp;gt;= max(1, 1)&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ If a volume with &lt;code&gt;1&lt;/code&gt; replica loses &lt;code&gt;1&lt;/code&gt; replica, then I/O would halt after &lt;code&gt;90&lt;/code&gt; seconds since &lt;code&gt;0&lt;/code&gt;
+replicas remaining &lt;code&gt;&amp;lt; max(1, 0)&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: soft
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;soft&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To ensure that a &lt;code&gt;storageos.com/failure-mode: soft&lt;/code&gt; volume is highly available, clusters using volumes with &lt;code&gt;1&lt;/code&gt; replica must have at least &lt;code&gt;2&lt;/code&gt; storage nodes.&lt;/li&gt;
+&lt;li&gt;When using volumes with &lt;code&gt;2&lt;/code&gt; replicas, at least &lt;code&gt;3&lt;/code&gt; storage nodes, &lt;code&gt;3&lt;/code&gt; replicas, 3 nodes, etc.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Minimum number of storage nodes = 1 (primary) + N (replicas)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;threshold-failure-mode&#34;&gt;&lt;code&gt;threshold&lt;/code&gt; Failure Mode&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;threshold&lt;/code&gt; failure mode allows the user to set the minimum required number of online replicas for a volume.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For example for a volume with &lt;code&gt;2&lt;/code&gt; replicas, setting the threshold to &lt;code&gt;1&lt;/code&gt; would allow a single replica to be offline, whereas setting threshold to &lt;code&gt;0&lt;/code&gt; would allow &lt;code&gt;2&lt;/code&gt; replicas to be offline.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;0-5&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;threshold&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The minimum number of nodes for a &lt;code&gt;threshold&lt;/code&gt; volume is determined by the threshold that is set.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Minimum number of storage nodes = 1 (primary) + T (threshold)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;alwayson-failure-mode&#34;&gt;&lt;code&gt;alwayson&lt;/code&gt; Failure Mode&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;alwayson&lt;/code&gt; failure mode allows all replicas for a volume to be offline and keeps the volume writeable. A volume with failure mode AlwaysOn will continue to serve I/O regardless of how many replicas it currently has.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;This mode should be used with caution as it effectively allows for only a single copy of the data to be available.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: alwayson
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;alwayson&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;code&gt;storageos.com/failure-mode: alwayson&lt;/code&gt; volume is highly available albeit at the cost of reliability.&lt;/li&gt;
+&lt;li&gt;The minimum node count here is &lt;code&gt;1&lt;/code&gt; as the loss of all replicas will be tolerated.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Minimum number of storage nodes = 1 (primary)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For details about how to use the labels on the VolumesCheck, see the &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;Failure Modes&lt;/a&gt; operations page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Rolling Upgrades Protection For Orchestrators</title>
       <link>/docs/concepts/rolling-upgrades/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -838,14 +928,17 @@ Use &amp;quot;kubectl-storageos [command] --help&amp;quot; for more information 
       <description>
         
         
-        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 This feature is currently available as a Technical Preview from release &lt;code&gt;2.7.0&lt;/code&gt; or greater.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h3 id=&#34;rolling-upgrades-protection&#34;&gt;Rolling Upgrades Protection&lt;/h3&gt;
 &lt;p&gt;You can use our rolling upgrade protection feature to upgrade your cluster&amp;rsquo;s orchestrator without causing downtime or failure of Ondat.&lt;/p&gt;
-&lt;p&gt;If the volumes containing the data for your stateful workloads do not wait to successfully synchronize in-between nodes upgrading, this can potentially cause data inconsistency and downtime. As such it is necessary to perform these upgrades intelligently.&lt;/p&gt;
-&lt;p&gt;We are developing a solution to this problem for you. It is currently a tech preview but now, for example, Ondat can support a Google Anthos one-click upgrade without any downtime.&lt;/p&gt;
-&lt;p&gt;To use the rolling upgrade feature, follow the steps &lt;a href=&#34;/docs/operations/using-rolling-upgrades&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the volumes containing the data for your stateful workloads do not wait to successfully synchronize in-between nodes upgrading, this can potentially cause data inconsistency and downtime. As such it is necessary to perform these upgrades intelligently.&lt;/li&gt;
+&lt;li&gt;We are developing a solution to this problem for you. It is currently a Technical Preview but now, for example, Ondat can support a &lt;a href=&#34;/docs/install/anthos/&#34;&gt;Google Anthos&lt;/a&gt; one-click upgrade without any downtime.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To get started with Ondat&amp;rsquo;s Rolling Upgrades Protection for your cluster, review the &lt;a href=&#34;/docs/operations/using-rolling-upgrades&#34;&gt;Platform Upgrade&lt;/a&gt; page for more information.&lt;/p&gt;
 
       </description>
     </item>
@@ -904,65 +997,49 @@ Note: Latest GA version of Ondat will be installed onto your cluster&lt;/p&gt;
       <description>
         
         
-        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
-&lt;p&gt;The Ondat Snapshot feature can be used in conjunction with &lt;a href=&#34;https://www.kasten.io/&#34;&gt;Kasten
-K10&lt;/a&gt; to snapshot, backup and restore Kubernetes
-applications. This functionality is useful for:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Disaster recovery scenarios&lt;/li&gt;
-&lt;li&gt;Rolling back unwanted changes&lt;/li&gt;
-&lt;li&gt;Auditing purposes&lt;/li&gt;
-&lt;li&gt;Moving applications between clusters&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h1&gt;
-&lt;p&gt;To utilize the Ondat Snapshot feature the following prerequisites must be met:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Ondat v2.8.0 or later is installed in the cluster&lt;/li&gt;
-&lt;li&gt;Kasten K10 is installed in the cluster. See the Kasten 10 docs for the full list of
-&lt;a href=&#34;https://docs.kasten.io/latest/install/requirements.html#&#34;&gt;prerequisites&lt;/a&gt;.
-Kasten supports Kubernetes versions up to 1.22.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&#34;what-are-snapshots-backups-and-restores&#34;&gt;What are snapshots, backups and restores?&lt;/h1&gt;
-&lt;p&gt;A “snapshot” is a point-in-time copy of a PVC. Snapshots are modeled via the
-&lt;code&gt;VolumeSnapshot&lt;/code&gt; and &lt;code&gt;VolumeSnapshotContent&lt;/code&gt; Kubernetes API objects. Snapshots
-have limited use as they live within the cluster and cannot be used to restore
-the PVC if the node holding the snapshot is lost.&lt;/p&gt;
-&lt;p&gt;A “backup” is the process of materialising a new PVC, whose data source is a
-previously created snapshot and then extracting the data to a location outside
-of the cluster. The Ondat Snapshots feature integrates with Kasten K10 to
-provide backup functionality.&lt;/p&gt;
-&lt;p&gt;A “restore” is the process of restoring an application from a given backup. The
-Ondat Snapshots feature integrates with Kasten K10 to provide restore
-functionality.&lt;/p&gt;
-&lt;h1 id=&#34;how-does-it-work&#34;&gt;How does it work?&lt;/h1&gt;
-&lt;p&gt;The Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/volume-snapshots/&#34;&gt;Volume
-Snapshots&lt;/a&gt;
-feature provides users with a set of custom resource definitions (CRD) and APIs
-to create and manage volume snapshots. Storage providers can then implement the
-necessary CSI APIs to integrate with this feature. This is exactly what we’ve
-done at Ondat. Additional tools, like Kasten K10, can then be utilised to
-orchestrate and automate snapshotting, backups and restores.&lt;/p&gt;
-&lt;p&gt;Please see the &lt;a href=&#34;/docs/operations/backups-and-restores-with-kastenk10&#34;&gt;Backups and restores with Kasten
-K10&lt;/a&gt; for a full
-walk through.&lt;/p&gt;
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ The Ondat Snapshot feature is not fully CSI compliant. As such the feature
-can only be used with Kasten K10 and with restoration from an external backup.&lt;/p&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.8.0&lt;/code&gt; or greater.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&#34;scope-and-limitations&#34;&gt;Scope and limitations&lt;/h1&gt;
-&lt;p&gt;The feature has the following limitations:&lt;/p&gt;
+&lt;p&gt;The Ondat Snapshot feature can be used in conjunction with &lt;a href=&#34;https://www.kasten.io/product/&#34;&gt;Kasten K10&lt;/a&gt; to snapshot, backup and restore Kubernetes applications.&lt;/p&gt;
+&lt;p&gt;The snapshot functionality is useful for:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;The feature has been designed to work with Kasten K10 only. This is not a
-fully CSI compliant implementation of the spec.&lt;/li&gt;
-&lt;li&gt;Restoring via Kasten 10 from a “local snapshot” is not supported with the
-Ondat Snapshot feature. Users may only restore applications using a Kasten K10
+&lt;li&gt;Disaster Recovery (DR) scenarios.&lt;/li&gt;
+&lt;li&gt;Rolling back unwanted changes.&lt;/li&gt;
+&lt;li&gt;Auditing purposes.&lt;/li&gt;
+&lt;li&gt;Migrating applications between clusters.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;what-are-snapshots-backups--restores&#34;&gt;What Are Snapshots, Backups &amp;amp; Restores?&lt;/h3&gt;
+&lt;p&gt;A “&lt;strong&gt;snapshot&lt;/strong&gt;” is a point-in-time copy of a PVC. Snapshots are modelled via the &lt;code&gt;VolumeSnapshot&lt;/code&gt; and &lt;code&gt;VolumeSnapshotContent&lt;/code&gt; Kubernetes API objects.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Snapshots have limited use as they live within the cluster and cannot be used to restore the PVC if the node holding the snapshot is lost.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A “&lt;strong&gt;backup&lt;/strong&gt;” is the process of materialising a new PVC, whose data source is a previously created snapshot and then extracting the data to a location outside of the cluster.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat Snapshots feature integrates with Kasten K10 to provide backup functionality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A “&lt;strong&gt;restore&lt;/strong&gt;” is the process of restoring an application from a given backup.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat Snapshots feature integrates with Kasten K10 to provide restore functionality.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;how-does-it-work&#34;&gt;How Does It Work?&lt;/h3&gt;
+&lt;p&gt;The Kubernetes &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/volume-snapshots/&#34;&gt;Volume Snapshots&lt;/a&gt; feature provides users with a set of custom resource definitions (CRD) and APIs to create and manage volume snapshots. Storage providers can then implement the necessary &lt;a href=&#34;https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/&#34;&gt;Container Storage Interface (CSI)&lt;/a&gt; APIs to integrate with this feature.&lt;/p&gt;
+&lt;p&gt;This is exactly what we’ve done at Ondat. Additional backup tooling, like Kasten K10, can then be utilised to orchestrate and automate snapshotting, backups and restores.&lt;/p&gt;
+&lt;p&gt;To get started with installing and configuring the Ondat Snapshot feature in your Ondat cluster with Kasten K10, review the &lt;a href=&#34;/docs/operations/backups-and-restores-with-kastenk10/&#34;&gt;Snapshots&lt;/a&gt; operations page for more information.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The Ondat Snapshots feature is not fully CSI compliant yet. As of today, the feature can only be used with Kasten K10 and with restoration from an external backup.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;current-scope--limitations&#34;&gt;Current Scope &amp;amp; Limitations&lt;/h3&gt;
+&lt;p&gt;The Ondat Snapshots feature has the following limitations:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The feature has been designed to work with &lt;strong&gt;Kasten K10&lt;/strong&gt; only. This is not a fully CSI compliant implementation of the specification yet.&lt;/li&gt;
+&lt;li&gt;Restoring via Kasten 10 from a “local snapshot” is not supported with the Ondat Snapshot feature. Users may only restore applications using a Kasten K10
 “External backup”.&lt;/li&gt;
-&lt;li&gt;Snapshotting RWX volumes is not supported. This is because it is next to
-impossible to ensure that a NFS mounted volume is in a suitable state for
-snapshotting. For RWX volumes, the user only has access to the filesystem on
-the NFS client. It is not possible to run &lt;code&gt;fsfreeze&lt;/code&gt; on this mountpoint - NFS
-does not support it. Thus the user can not quiesce the filesystem and we can
-not take a &amp;ldquo;consistent&amp;rdquo; snapshot.&lt;/li&gt;
+&lt;li&gt;Snapshotting &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; volumes is not supported. This is because it is next to impossible to ensure that a NFS mounted volume is in a suitable state for snapshotting.
+&lt;ol&gt;
+&lt;li&gt;For RWX volumes, the user only has access to the filesystem on the NFS client. It is not possible to run &lt;a href=&#34;https://man7.org/linux/man-pages/man8/fsfreeze.8.html&#34;&gt;&lt;code&gt;fsfreeze&lt;/code&gt;&lt;/a&gt; on this mount point &amp;ndash; NFS does not support it. Thus the user can not &lt;a href=&#34;https://en.wikipedia.org/wiki/Quiesce&#34;&gt;quiesce&lt;/a&gt; the filesystem and we can not take a &amp;ldquo;consistent&amp;rdquo; snapshot.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
 
       </description>
@@ -1111,6 +1188,66 @@ respective replica count.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Ondat Volumes</title>
+      <link>/docs/concepts/volumes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/volumes/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Ondat volumes are a logical construct which represent a writeable volume and exhibit standard POSIX semantics. Ondat presents volumes as mounts into containers via the &lt;a href=&#34;https://en.wikipedia.org/wiki/LIO_(SCSI_target)&#34;&gt;Linux-IO (LIO)&lt;/a&gt; subsystem.&lt;/p&gt;
+&lt;p&gt;Conceptually, Ondat volumes have a frontend presentation, which is what the application sees, and a backend presentation, which is the actual on-disk format. Depending on the configuration, frontend and backend components may be on the same or different hosts.&lt;/p&gt;
+&lt;p&gt;Volumes are formatted using the linux standard &lt;code&gt;ext4&lt;/code&gt; filesystem by default. Kubernetes users may change the default filesystem type to &lt;code&gt;ext2&lt;/code&gt;, &lt;code&gt;ext3&lt;/code&gt;, &lt;code&gt;ext4&lt;/code&gt;, or &lt;code&gt;xfs&lt;/code&gt; by setting the &lt;code&gt;fsType&lt;/code&gt; parameter in their &lt;code&gt;StorageClass&lt;/code&gt; - review the &lt;a href=&#34;/docs/reference/filesystems#persistent-volume-filesystems&#34;&gt;Supported Filesystems&lt;/a&gt; page for more information.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Different filesystems may be supported in the future.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat volumes are represented on disk in two parts.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Actual volume data is written to blob files in &lt;code&gt;/var/lib/storageos/data/dev[\d+]&lt;/code&gt;. Inside these directories, each Ondat block device gets two blob files of the form &lt;code&gt;vol.xxxxxx.y.blob&lt;/code&gt;, where &lt;code&gt;x&lt;/code&gt; is the inode number for the device, and &lt;code&gt;y&lt;/code&gt; is an index between &lt;code&gt;0&lt;/code&gt; and &lt;code&gt;1&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;We provide two blob files in order to ensure that certain operations which require locking do not impede in-flight writes to the volume.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In systems which have multiple &lt;code&gt;/var/lib/storageos/data/dev[\d+]&lt;/code&gt; directories, two blob files are created per block device.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This allows us to load-balance writes across multiple devices. In cases where dev directories are added after a period of runtime, later directories are favoured for writes until the data is distributed evenly across the blob files.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Metadata is kept in directories named &lt;code&gt;/var/lib/storageos/data/db[\d+]&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We maintain an index of all blocks written to the blob file inside the metadata store, including checksums. These checksums allow us to detect &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_degradation&#34;&gt;bit rot&lt;/a&gt;, and return errors on reads, rather than serve bad data.&lt;/li&gt;
+&lt;li&gt;In future versions we may implement recovery from replicas for volumes with one or more replicas defined.&lt;/li&gt;
+&lt;li&gt;Ondat metadata requires approximately &lt;code&gt;2.7 GiB&lt;/code&gt; of storage per &lt;code&gt;1 TiB&lt;/code&gt; of allocated blocks in the associated volume. This size is consistent irrespective of data compression defined on the volume.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To ensure deterministic performance, individual Ondat volumes must fit on a single node.&lt;/p&gt;
+&lt;h3 id=&#34;minimum-ondat-volume-size&#34;&gt;Minimum Ondat Volume Size&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The minimum volume size Ondat supports is &lt;code&gt;1 GiB&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ondat-volume-resizing&#34;&gt;Ondat Volume Resizing&lt;/h3&gt;
+&lt;p&gt;Ondat supports offline resize of volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This means that a volume cannot be resized while it is in use. Furthermore, in order for a resize operation to take place the volume must not be attached to a node. This is to ensure that the volume is not in use.&lt;/li&gt;
+&lt;li&gt;This means that if a Kubernetes pod is currently consuming a volume that a resize request has been issued for, the resize will not be actioned until the pod is terminated and the volume is detached from the node.&lt;/li&gt;
+&lt;li&gt;The Ondat Control Plane will then attach the volume to the node that holds the master deployment and resize the underlying block device and then run &lt;a href=&#34;https://man7.org/linux/man-pages/man8/resize2fs.8.html&#34;&gt;resize2fs&lt;/a&gt; to expand the filesystem.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information on how to resize a volume, review the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/p&gt;
+&lt;h3 id=&#34;ondat-volume-encryption&#34;&gt;Ondat Volume Encryption&lt;/h3&gt;
+&lt;p&gt;Volumes can be configured on creation to have &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_at_rest&#34;&gt;data encryption-at-rest&lt;/a&gt;. Data is encrypted with XTS-AES and decrypted upon use.&lt;/p&gt;
+&lt;p&gt;For more information on how to enable data encryption for Ondat volumes, review the &lt;a href=&#34;/docs/concepts/encryption&#34;&gt;Ondat Data Encryption&lt;/a&gt; feature page.&lt;/p&gt;
+&lt;h3 id=&#34;trim&#34;&gt;TRIM&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.4.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat volumes support &lt;a href=&#34;https://en.wikipedia.org/wiki/Trim_%28computing%29&#34;&gt;TRIM/UNMAP&lt;/a&gt; which allows the space allocated to deleted blocks to be reclaimed from the backend blob files that back each volume when a TRIM call is made.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Support for TRIM is enabled by default for all uncompressed volumes, volumes are created without compression enabled by default.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information on how to TRIM a filesystem, review the &lt;a href=&#34;/docs/operations/trim&#34;&gt;TRIM&lt;/a&gt; operations page.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Platform Upgrade</title>
       <link>/docs/upgrade/using-rolling-upgrades/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1193,10 +1330,10 @@ respective replica count.&lt;/p&gt;
     
     <item>
       <title>Docs: Policies</title>
-      <link>/docs/concepts/policies/</link>
+      <link>/docs/reference/policies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/concepts/policies/</guid>
+      <guid>/docs/reference/policies/</guid>
       <description>
         
         
@@ -1322,199 +1459,6 @@ poddisruptionbudget.policy/storageos-etcd   &lt;span style=&#34;color:#0000cf;fo
 &lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1 TiB of provisioned storage.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;To obtain a licence, follow the instructions on the &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Replication</title>
-      <link>/docs/concepts/replication/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/replication/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat replicates volumes across nodes for data protection and high
-availability. Synchronous replication ensures strong consistency for
-applications such as databases and Elasticsearch, incurring one network round
-trip on writes.&lt;/p&gt;
-&lt;p&gt;The basic model for Ondat replication is of a master volume with distributed
-replicas. Each volume can be replicated between 0 and 5 times, which are
-provisioned to 0 to 5 nodes, up to the number of remaining nodes in the cluster.&lt;/p&gt;
-&lt;p&gt;In this diagram, the master volume &lt;code&gt;D&lt;/code&gt; was created on node 1, and two replicas,
-&lt;code&gt;D2&lt;/code&gt; and &lt;code&gt;D3&lt;/code&gt; on nodes 3 and 5.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/images/docs/concepts/high-availability.png&#34; alt=&#34;Ondat replication&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Writes that come into &lt;code&gt;D&lt;/code&gt; (step 1) are written in parallel to &lt;code&gt;D2&lt;/code&gt; and &lt;code&gt;D3&lt;/code&gt;
-(step 2). When both replicas and the master acknowledge that the data has been
-written (step 3), the write operation return successfully to the application
-(step 4).&lt;/p&gt;
-&lt;p&gt;For most applications, one replica is sufficient (&lt;code&gt;storageos.com/replicas=1&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;All replication traffic on the wire is compressed using the lz4 algorithm, then
-streamed over tcp/ip to target port tcp/5703.&lt;/p&gt;
-&lt;p&gt;If the master volume is lost, a replica is promoted to master (&lt;code&gt;D2&lt;/code&gt; or &lt;code&gt;D3&lt;/code&gt;
-above) and a new replica is created and synced on an available node (Node 2 or
-4). This is transparent to the application and does not cause downtime.&lt;/p&gt;
-&lt;p&gt;If a replica volume is lost and there are enough remaining nodes, a new replica
-is created and synced on an available node. While a new replica is created and
-being synced, the volume&amp;rsquo;s health will be marked as degraded.&lt;/p&gt;
-&lt;p&gt;If the lost replica comes back online before the new replica has finished
-synchronizing, then Ondat will calculate which of the two synchronizing
-replicas has the smallest difference compared to the master volume and keep
-that replica. The same holds true if a master volume is lost and a replica is
-promoted to be the new master. If possible, a new replica will be created and
-begin to sync. Should the former master come back online it will be demoted to
-a replica and the replica will the smallest difference to the current master
-will be kept.&lt;/p&gt;
-&lt;p&gt;While the replica count is controllable on a per-volume basis, some
-environments may prefer to set &lt;a href=&#34;/docs/reference/labels#storageos-storageclass-labels&#34;&gt;default labels on the StorageClass&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;delta-sync&#34;&gt;Delta Sync&lt;/h2&gt;
-&lt;p&gt;Ondat implements a delta sync between a volume master and its replicas.
-This means that if a replica for a volume goes offline, that when the replica
-comes back online only the regions with changed blocks need to be synchronized.
-This optimization reduces the time it takes for replicas to catch up, improving
-volume resilience. Additionally, it reduces network and IO bandwidth which can
-reduce costs when running in public clouds.&lt;/p&gt;
-&lt;h2 id=&#34;topology-aware-placement&#34;&gt;Topology-Aware Placement&lt;/h2&gt;
-&lt;p&gt;Ondat Topology-Aware Placement is a feature that enforces placement of data
-across failure domains to guarantee high availability.&lt;/p&gt;
-&lt;p&gt;TAP uses default labels on nodes to define failure domains. For instance, an
-Availability Zone. For more detail on TAP, check the
-&lt;a href=&#34;/docs/reference/tap&#34;&gt;reference page&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;failure-modes&#34;&gt;Failure Modes&lt;/h2&gt;
-&lt;p&gt;Ondat failure modes offer different guarantees with regards to a volume&amp;rsquo;s
-mode of operation in the face of replica failure. If the failure mode is not
-specified it defaults to &lt;code&gt;Hard&lt;/code&gt;. Volume failure modes can be dynamically
-updated at runtime.&lt;/p&gt;
-&lt;h3 id=&#34;hard&#34;&gt;Hard&lt;/h3&gt;
-&lt;p&gt;Hard failure mode requires that the number of declared replicas matches the
-available number of replicas at all times. If a replica fails Ondat will
-attempt creation of a new replica for 90 seconds. After 90s if the old replica
-is not available and a new replica cannot be provisioned, Ondat cannot
-guarantee that the data is stored on the number of multiple nodes requested by
-the user. Ondat will therefore set the volume to be read-only.&lt;/p&gt;
-&lt;p&gt;If a volume has gone read-only there are two stages to making it read-write
-again. Firstly, sufficient replicas must be provisioned to match the desired
-replica count. Depending on your environment, additional nodes and/or disk
-capacity may be required for this. Secondly, the volume must be remounted -
-necessitating pod deletion/recreation in Kubernetes.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: hard
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for hard failure mode&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;When a node fails, a new replica is provisioned and synced as described above.
-To ensure that a new replica can always be created, an additional node should
-be available. To guarantee high availability using &lt;code&gt;storageos.com/failure-mode: hard&lt;/code&gt;, clusters using volumes with 1 replica must have at least 3 storage
-nodes. When using volumes with 2 replicas, at least 4 storage nodes, 3
-replicas, 5 nodes, etc.&lt;/p&gt;
-&lt;p&gt;Minimum number of storage nodes = 1 (primary) + N (replicas) + 1&lt;/p&gt;
-&lt;h3 id=&#34;soft&#34;&gt;Soft&lt;/h3&gt;
-&lt;p&gt;Soft failure mode allows a volume to continue serving I/O even when a replica
-goes offline and a new replica fails to provision. So long as there are not
-less than max(1,  n-1) available replicas where n is the number of replicas for
-the volume.&lt;/p&gt;
-&lt;p&gt;For example, if a volume with 2 replicas loses 1 replica, then I/O would
-continue to be served since 1 replica remaining &amp;gt;= max(1, 1). If a volume with
-1 replica loses 1 replica, then I/O would halt after 90 seconds since 0
-replicas remaining &amp;lt; max(1, 0).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: soft
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for soft failure mode&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;To ensure that a &lt;code&gt;storageos.com/failure-mode: soft &lt;/code&gt; volume is highly available, clusters using volumes with 1 replica must have at
-least 2 storage nodes. When using volumes with 2 replicas, at least 3 storage
-nodes, 3 replicas, 3 nodes, etc.&lt;/p&gt;
-&lt;p&gt;Minimum number of storage nodes = 1 (primary) + N (replicas)&lt;/p&gt;
-&lt;h3 id=&#34;threshold&#34;&gt;Threshold&lt;/h3&gt;
-&lt;p&gt;Threshold failure mode allows the user to set the minimum required number of
-online replicas for a volume. For example for a volume with 2 replicas, setting
-the threshold to 1 would allow a single replica to be offline, whereas setting
-threshold to 0 would allow 2 replicas to be offline.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;0-5&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for threshold failure mode&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The minimum number of nodes for a &lt;code&gt;threshold&lt;/code&gt; volume is determined by the
-threshold that is set.&lt;/p&gt;
-&lt;p&gt;Minimum number of storage nodes = 1 (primary) + T (threshold)&lt;/p&gt;
-&lt;h3 id=&#34;alwayson&#34;&gt;AlwaysOn&lt;/h3&gt;
-&lt;p&gt;AlwaysOn failure mode allows all replicas for a volume to be offline and keeps
-the volume writeable. A volume with failure mode AlwaysOn will continue to
-serve I/O regardless of how many replicas it currently has. This mode should be
-used with caution as it effectively allows for only a single copy of the data
-to be available.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: alwayson
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number of nodes required for AlwaysOn failure mode&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;A &lt;code&gt;storageos.com/failure-mode: alwayson&lt;/code&gt; volume is highly available albeit at
-the cost of reliability. The minimum node count here is 1 as the loss of all
-replicas will be tolerated.&lt;/p&gt;
-&lt;p&gt;Minimum number of storage nodes = 1 (primary)&lt;/p&gt;
-&lt;p&gt;For details about how to use the labels on the VolumesCheck, see the &lt;a href=&#34;/docs/operations/failure-modes&#34;&gt;failure modes operations&lt;/a&gt; page.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Volumes</title>
-      <link>/docs/concepts/volumes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/volumes/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat volumes are a logical construct which represent a writeable volume
-and exhibit standard POSIX semantics. Ondat presents volumes as mounts into
-containers via the Linux LIO subsystem.&lt;/p&gt;
-&lt;p&gt;Conceptually, Ondat volumes have a frontend presentation, which is what
-the application sees, and a backend presentation, which is the actual on-disk
-format. Depending on the configuration, frontend and backend components may be
-on the same or different hosts.&lt;/p&gt;
-&lt;p&gt;Volumes are formatted using the linux standard ext4 filesystem by default.
-Kubernetes users may change the default filesystem type to ext2, ext3, ext4, or
-xfs by setting the fsType parameter in their StorageClass (see &lt;a href=&#34;/docs/reference/filesystems#persistent-volume-filesystems&#34;&gt;Supported Filesystems&lt;/a&gt; for more
-information). Different filesystems may be supported in the future.&lt;/p&gt;
-&lt;p&gt;Ondat volumes are represented on disk in two parts. Actual volume data is
-written to blob files in &lt;code&gt;/var/lib/storageos/data/dev[\d+]&lt;/code&gt;. Inside these
-directories, each Ondat block device gets two blob files of the form
-&lt;code&gt;vol.xxxxxx.y.blob&lt;/code&gt;, where x is the inode number for the device, and y is an
-index between 0 and 1. We provide two blob files in order to ensure that
-certain operations which require locking do not impede in-flight writes to the
-volume.&lt;/p&gt;
-&lt;p&gt;In systems which have multiple &lt;code&gt;/var/lib/storageos/data/dev[\d+]&lt;/code&gt; directories,
-two blob files are created per block device. This allows us to load-balance
-writes across multiple devices. In cases where dev directories are added after
-a period of runtime, later directories are favoured for writes until the data
-is distributed evenly across the blob files.&lt;/p&gt;
-&lt;p&gt;Metadata is kept in directories named &lt;code&gt;/var/lib/storageos/data/db[\d+]&lt;/code&gt;. We
-maintain an index of all blocks written to the blob file inside the metadata
-store, including checksums. These checksums allow us to detect bitrot, and
-return errors on reads, rather than serve bad data. In future versions we may
-implement recovery from replicas for volumes with one or more replicas defined.&lt;/p&gt;
-&lt;p&gt;Ondat metadata requires approximately 2.7GB of storage per 1TiB of allocated
-blocks in the associated volume. This size is consistent irrespective of data
-compression defined on the volume.&lt;/p&gt;
-&lt;p&gt;To ensure deterministic performance, individual Ondat volumes must fit on a single
-node.&lt;/p&gt;
-&lt;h2 id=&#34;minimum-volume-size&#34;&gt;Minimum Volume Size&lt;/h2&gt;
-&lt;p&gt;The minimum volume size Ondat supports is 1GB.&lt;/p&gt;
-&lt;h2 id=&#34;trim&#34;&gt;TRIM&lt;/h2&gt;
-&lt;p&gt;Ondat volumes support TRIM/Unmap which allows the space allocated to
-deleted blocks to be reclaimed from the backend blob files that back each
-volume when a TRIM call is made. Support for TRIM is enabled by default for all
-uncompressed volumes, volumes are created without compression enabled by
-default. For more information on how to TRIM a filesystem, see &lt;a href=&#34;/docs/operations/trim&#34;&gt;TRIM operations&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;volume-resize&#34;&gt;Volume Resize&lt;/h2&gt;
-&lt;p&gt;Ondat supports offline resize of volumes. This means that a volume cannot be
-resized while it is in use. Furthermore, in order for a resize operation to
-take place the volume must not be attached to a node. This is to ensure that
-the volume is not in use.&lt;/p&gt;
-&lt;p&gt;This means that if a Kubernetes pod is currently consuming a volume that a
-resize request has been issued for, the resize will not be actioned until the
-pod is terminated and the volume is detached from the node. The Ondat
-controlplane will then attach the volume to the node that holds the master
-deployment and resize the underlying block device and then run resize2fs to
-expand the filesystem.&lt;/p&gt;
-&lt;p&gt;For a walkthrough of how to resize a volume, see the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/p&gt;
-&lt;h2 id=&#34;volume-encryption&#34;&gt;Volume Encryption&lt;/h2&gt;
-&lt;p&gt;Volumes can be configured on creation to have encryption-at-rest. Data
-is encrypted with XTS-AES and decrypted upon use. Please see
-the &lt;a href=&#34;/docs/reference/encryption&#34;&gt;Encryption&lt;/a&gt; reference page for
-more information.&lt;/p&gt;
 
       </description>
     </item>
@@ -4163,7 +4107,7 @@ you to do rolling upgrades to the orchestrator without any downtime. This
 component is disabled by default and we do not recommend using the feature
 for production workloads as it is a technical preview feature.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;25---released-2021-12-06&#34;&gt;2.5 - Released 2021-12-06&lt;/h2&gt;
+&lt;h2 id=&#34;250---released-2021-12-06&#34;&gt;2.5.0 - Released 2021-12-06&lt;/h2&gt;
 &lt;h3 id=&#34;fixed-2&#34;&gt;Fixed&lt;/h3&gt;
 &lt;p&gt;Dataplane:&lt;/p&gt;
 &lt;ul&gt;
