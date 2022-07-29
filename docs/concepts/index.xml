@@ -555,11 +555,8 @@ spec:
 &lt;li&gt;A &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) is created with &lt;code&gt;ReadWriteMany&lt;/code&gt; (RWX) access mode using any Ondat &lt;code&gt;StorageClass&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Ondat dynamically provisions the &lt;code&gt;PersistentVolume&lt;/code&gt; (PV).&lt;/li&gt;
 &lt;li&gt;A new Ondat &lt;code&gt;ReadWriteOnly&lt;/code&gt; (RWO) Volume is provisioned internally (not visible in Kubernetes).&lt;/li&gt;
-&lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.
-&lt;ol&gt;
+&lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.&lt;/li&gt;
 &lt;li&gt;The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
 &lt;li&gt;The &lt;em&gt;Ondat API Manager&lt;/em&gt; publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.&lt;/li&gt;
 &lt;li&gt;Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.&lt;/li&gt;
 &lt;/ol&gt;
@@ -721,16 +718,11 @@ spec:
 &lt;h3 id=&#34;hard-failure-mode&#34;&gt;&lt;code&gt;hard&lt;/code&gt; Failure Mode&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;hard&lt;/code&gt; failure mode requires that the number of declared replicas matches the available number of replicas at all times.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;If a replica fails Ondat will attempt creation of a new replica for 90 seconds. After 90s if the old replica is not available and a new replica cannot be provisioned, Ondat cannot guarantee that the data is stored on the number of multiple nodes requested by the user. Ondat will therefore set the volume to be read-only.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;If a volume has gone read-only there are two stages to making it read-write again. Firstly, sufficient replicas must be provisioned to match the desired replica count. Depending on your environment, additional nodes and/or disk capacity may be required for this. Secondly, the volume must be remounted - necessitating pod deletion/recreation in Kubernetes.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: hard
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;If a replica fails Ondat will attempt creation of a new replica for 90 seconds. After 90s if the old replica is not available and a new replica cannot be provisioned, Ondat cannot guarantee that the data is stored on the number of multiple nodes requested by the user. Ondat will therefore set the volume to be read-only.&lt;/li&gt;
+&lt;li&gt;If a volume has gone read-only there are two stages to making it read-write again. Firstly, sufficient replicas must be provisioned to match the desired replica count. Depending on your environment, additional nodes and/or disk capacity may be required for this. Secondly, the volume must be remounted - necessitating pod deletion/recreation in Kubernetes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;hard&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: hard
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;hard&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;When a node fails, a new replica is provisioned and synced as described above. To ensure that a new replica can always be created, an additional node should be available.&lt;/li&gt;
 &lt;li&gt;To guarantee high availability using &lt;code&gt;storageos.com/failure-mode: hard&lt;/code&gt;, clusters using volumes with &lt;code&gt;1&lt;/code&gt; replica must have at least &lt;code&gt;3&lt;/code&gt; storage nodes.&lt;/li&gt;
@@ -740,20 +732,16 @@ spec:
 &lt;h3 id=&#34;soft-failure-mode&#34;&gt;&lt;code&gt;soft&lt;/code&gt; Failure Mode&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;soft&lt;/code&gt; failure mode allows a volume to continue serving I/O even when a replica goes offline and a new replica fails to provision.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;So long as there are &lt;code&gt;not less than max(1, N-1)&lt;/code&gt; available replicas where &lt;code&gt;N&lt;/code&gt; is the number of replicas for the volume.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;For example, if a volume with &lt;code&gt;2&lt;/code&gt; replicas loses &lt;code&gt;1&lt;/code&gt; replica, then I/O would continue to be served since &lt;code&gt;1&lt;/code&gt; replica remaining &lt;code&gt;&amp;gt;= max(1, 1)&lt;/code&gt;.&lt;/p&gt;
+&lt;li&gt;So long as there are &lt;code&gt;not less than max(1, N-1)&lt;/code&gt; available replicas where &lt;code&gt;N&lt;/code&gt; is the number of replicas for the volume.&lt;/li&gt;
+&lt;li&gt;For example, if a volume with &lt;code&gt;2&lt;/code&gt; replicas loses &lt;code&gt;1&lt;/code&gt; replica, then I/O would continue to be served since &lt;code&gt;1&lt;/code&gt; replica remaining &lt;code&gt;&amp;gt;= max(1, 1)&lt;/code&gt;.
 &lt;blockquote&gt;
 &lt;p&gt;⚠️ If a volume with &lt;code&gt;1&lt;/code&gt; replica loses &lt;code&gt;1&lt;/code&gt; replica, then I/O would halt after &lt;code&gt;90&lt;/code&gt; seconds since &lt;code&gt;0&lt;/code&gt;
 replicas remaining &lt;code&gt;&amp;lt; max(1, 0)&lt;/code&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: soft
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;soft&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: soft
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;soft&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;To ensure that a &lt;code&gt;storageos.com/failure-mode: soft&lt;/code&gt; volume is highly available, clusters using volumes with &lt;code&gt;1&lt;/code&gt; replica must have at least &lt;code&gt;2&lt;/code&gt; storage nodes.&lt;/li&gt;
 &lt;li&gt;When using volumes with &lt;code&gt;2&lt;/code&gt; replicas, at least &lt;code&gt;3&lt;/code&gt; storage nodes, &lt;code&gt;3&lt;/code&gt; replicas, 3 nodes, etc.&lt;/li&gt;
@@ -762,13 +750,10 @@ replicas remaining &lt;code&gt;&amp;lt; max(1, 0)&lt;/code&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;threshold-failure-mode&#34;&gt;&lt;code&gt;threshold&lt;/code&gt; Failure Mode&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;threshold&lt;/code&gt; failure mode allows the user to set the minimum required number of online replicas for a volume.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;For example for a volume with &lt;code&gt;2&lt;/code&gt; replicas, setting the threshold to &lt;code&gt;1&lt;/code&gt; would allow a single replica to be offline, whereas setting threshold to &lt;code&gt;0&lt;/code&gt; would allow &lt;code&gt;2&lt;/code&gt; replicas to be offline.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;0-5&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;For example for a volume with &lt;code&gt;2&lt;/code&gt; replicas, setting the threshold to &lt;code&gt;1&lt;/code&gt; would allow a single replica to be offline, whereas setting threshold to &lt;code&gt;0&lt;/code&gt; would allow &lt;code&gt;2&lt;/code&gt; replicas to be offline.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;threshold&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;0-5&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;threshold&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The minimum number of nodes for a &lt;code&gt;threshold&lt;/code&gt; volume is determined by the threshold that is set.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Minimum number of storage nodes = 1 (primary) + T (threshold)&lt;/code&gt;&lt;/li&gt;
@@ -776,13 +761,10 @@ replicas remaining &lt;code&gt;&amp;lt; max(1, 0)&lt;/code&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;alwayson-failure-mode&#34;&gt;&lt;code&gt;alwayson&lt;/code&gt; Failure Mode&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;alwayson&lt;/code&gt; failure mode allows all replicas for a volume to be offline and keeps the volume writeable. A volume with failure mode AlwaysOn will continue to serve I/O regardless of how many replicas it currently has.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;This mode should be used with caution as it effectively allows for only a single copy of the data to be available.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: alwayson
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;This mode should be used with caution as it effectively allows for only a single copy of the data to be available.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;alwayson&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos.com/failure-mode: alwayson
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Number Of Nodes Required For A &lt;code&gt;alwayson&lt;/code&gt; Failure Mode Setup&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;A &lt;code&gt;storageos.com/failure-mode: alwayson&lt;/code&gt; volume is highly available albeit at the cost of reliability.&lt;/li&gt;
 &lt;li&gt;The minimum node count here is &lt;code&gt;1&lt;/code&gt; as the loss of all replicas will be tolerated.&lt;/li&gt;

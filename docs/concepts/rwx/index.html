@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
+  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
+  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
   data-offline-search-base-href="/"
 >
 
@@ -762,7 +762,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup &amp; restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1563,11 +1563,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>A <code>PersistentVolumeClaim</code> (PVC) is created with <code>ReadWriteMany</code> (RWX) access mode using any Ondat <code>StorageClass</code>.</li>
 <li>Ondat dynamically provisions the <code>PersistentVolume</code> (PV).</li>
 <li>A new Ondat <code>ReadWriteOnly</code> (RWO) Volume is provisioned internally (not visible in Kubernetes).</li>
-<li>When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.
-<ol>
+<li>When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.</li>
 <li>The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.</li>
-</ol>
-</li>
 <li>The <em>Ondat API Manager</em> publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.</li>
 <li>Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.</li>
 </ol>

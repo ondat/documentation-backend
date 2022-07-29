@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
+  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fb5c9eaa5b2ec082a1dba1fa23f5b27ccc9b9a74c242ad4838f1dd3970c7a27ed2cec698d30a6d83b0c814ff494fd20ab9ffd85e6127c6e4e21bb26badf8f84d.json"
+  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
   data-offline-search-base-href="/"
 >
 
@@ -759,7 +759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup $ restores using Ondat Snapshots with Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup &amp; restores using Ondat Snapshots with Kasten K10</a>
       
       
       
@@ -1569,16 +1569,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="hard-failure-mode"><code>hard</code> Failure Mode</h3>
 <p><code>hard</code> failure mode requires that the number of declared replicas matches the available number of replicas at all times.</p>
 <ul>
-<li>
-<p>If a replica fails Ondat will attempt creation of a new replica for 90 seconds. After 90s if the old replica is not available and a new replica cannot be provisioned, Ondat cannot guarantee that the data is stored on the number of multiple nodes requested by the user. Ondat will therefore set the volume to be read-only.</p>
-</li>
-<li>
-<p>If a volume has gone read-only there are two stages to making it read-write again. Firstly, sufficient replicas must be provisioned to match the desired replica count. Depending on your environment, additional nodes and/or disk capacity may be required for this. Secondly, the volume must be remounted - necessitating pod deletion/recreation in Kubernetes.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: hard
-</code></pre></div><pre tabindex="0"><code>
-</code></pre></li>
+<li>If a replica fails Ondat will attempt creation of a new replica for 90 seconds. After 90s if the old replica is not available and a new replica cannot be provisioned, Ondat cannot guarantee that the data is stored on the number of multiple nodes requested by the user. Ondat will therefore set the volume to be read-only.</li>
+<li>If a volume has gone read-only there are two stages to making it read-write again. Firstly, sufficient replicas must be provisioned to match the desired replica count. Depending on your environment, additional nodes and/or disk capacity may be required for this. Secondly, the volume must be remounted - necessitating pod deletion/recreation in Kubernetes.</li>
 </ul>
-<p><strong>Number Of Nodes Required For A <code>hard</code> Failure Mode Setup</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: hard
+</code></pre></div><p><strong>Number Of Nodes Required For A <code>hard</code> Failure Mode Setup</strong></p>
 <ul>
 <li>When a node fails, a new replica is provisioned and synced as described above. To ensure that a new replica can always be created, an additional node should be available.</li>
 <li>To guarantee high availability using <code>storageos.com/failure-mode: hard</code>, clusters using volumes with <code>1</code> replica must have at least <code>3</code> storage nodes.</li>
@@ -1588,20 +1583,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="soft-failure-mode"><code>soft</code> Failure Mode</h3>
 <p><code>soft</code> failure mode allows a volume to continue serving I/O even when a replica goes offline and a new replica fails to provision.</p>
 <ul>
-<li>
-<p>So long as there are <code>not less than max(1, N-1)</code> available replicas where <code>N</code> is the number of replicas for the volume.</p>
-</li>
-<li>
-<p>For example, if a volume with <code>2</code> replicas loses <code>1</code> replica, then I/O would continue to be served since <code>1</code> replica remaining <code>&gt;= max(1, 1)</code>.</p>
+<li>So long as there are <code>not less than max(1, N-1)</code> available replicas where <code>N</code> is the number of replicas for the volume.</li>
+<li>For example, if a volume with <code>2</code> replicas loses <code>1</code> replica, then I/O would continue to be served since <code>1</code> replica remaining <code>&gt;= max(1, 1)</code>.
 <blockquote>
 <p>⚠️ If a volume with <code>1</code> replica loses <code>1</code> replica, then I/O would halt after <code>90</code> seconds since <code>0</code>
 replicas remaining <code>&lt; max(1, 0)</code>.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: soft
-</code></pre></div><pre tabindex="0"><code>
-</code></pre></li>
+</li>
 </ul>
-<p><strong>Number Of Nodes Required For A <code>soft</code> Failure Mode Setup</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: soft
+</code></pre></div><p><strong>Number Of Nodes Required For A <code>soft</code> Failure Mode Setup</strong></p>
 <ul>
 <li>To ensure that a <code>storageos.com/failure-mode: soft</code> volume is highly available, clusters using volumes with <code>1</code> replica must have at least <code>2</code> storage nodes.</li>
 <li>When using volumes with <code>2</code> replicas, at least <code>3</code> storage nodes, <code>3</code> replicas, 3 nodes, etc.</li>
@@ -1610,13 +1601,10 @@ replicas remaining <code>&lt; max(1, 0)</code>.</p>
 <h3 id="threshold-failure-mode"><code>threshold</code> Failure Mode</h3>
 <p><code>threshold</code> failure mode allows the user to set the minimum required number of online replicas for a volume.</p>
 <ul>
-<li>
-<p>For example for a volume with <code>2</code> replicas, setting the threshold to <code>1</code> would allow a single replica to be offline, whereas setting threshold to <code>0</code> would allow <code>2</code> replicas to be offline.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: <span style="color:#ce5c00;font-weight:bold">(</span>0-5<span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><pre tabindex="0"><code>
-</code></pre></li>
+<li>For example for a volume with <code>2</code> replicas, setting the threshold to <code>1</code> would allow a single replica to be offline, whereas setting threshold to <code>0</code> would allow <code>2</code> replicas to be offline.</li>
 </ul>
-<p><strong>Number Of Nodes Required For A <code>threshold</code> Failure Mode Setup</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: <span style="color:#ce5c00;font-weight:bold">(</span>0-5<span style="color:#ce5c00;font-weight:bold">)</span>
+</code></pre></div><p><strong>Number Of Nodes Required For A <code>threshold</code> Failure Mode Setup</strong></p>
 <ul>
 <li>The minimum number of nodes for a <code>threshold</code> volume is determined by the threshold that is set.</li>
 <li><code>Minimum number of storage nodes = 1 (primary) + T (threshold)</code></li>
@@ -1624,13 +1612,10 @@ replicas remaining <code>&lt; max(1, 0)</code>.</p>
 <h3 id="alwayson-failure-mode"><code>alwayson</code> Failure Mode</h3>
 <p><code>alwayson</code> failure mode allows all replicas for a volume to be offline and keeps the volume writeable. A volume with failure mode AlwaysOn will continue to serve I/O regardless of how many replicas it currently has.</p>
 <ul>
-<li>
-<p>This mode should be used with caution as it effectively allows for only a single copy of the data to be available.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: alwayson
-</code></pre></div><pre tabindex="0"><code>
-</code></pre></li>
+<li>This mode should be used with caution as it effectively allows for only a single copy of the data to be available.</li>
 </ul>
-<p><strong>Number Of Nodes Required For A <code>alwayson</code> Failure Mode Setup</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: alwayson
+</code></pre></div><p><strong>Number Of Nodes Required For A <code>alwayson</code> Failure Mode Setup</strong></p>
 <ul>
 <li>A <code>storageos.com/failure-mode: alwayson</code> volume is highly available albeit at the cost of reliability.</li>
 <li>The minimum node count here is <code>1</code> as the loss of all replicas will be tolerated.</li>
