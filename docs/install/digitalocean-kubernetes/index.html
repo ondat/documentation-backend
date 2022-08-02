@@ -21,28 +21,25 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>DigitalOcean Kubernetes (DOKS) | </title><meta property="og:title" content="DigitalOcean Kubernetes (DOKS)" />
-<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing." />
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin or Helm Chart
+Prerequisites 1 - Cluster and Node Prerequisites The minimum requirements for the nodes are as follows:
+ Linux with a 64-bit architecture 2 vCPU and 8GB of memory 3 worker nodes in the cluster and sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster Make sure your DOKS cluster version is greater than or equal to v1." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/digitalocean-kubernetes/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="DigitalOcean Kubernetes (DOKS)">
-<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing.">
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin or Helm Chart
+Prerequisites 1 - Cluster and Node Prerequisites The minimum requirements for the nodes are as follows:
+ Linux with a 64-bit architecture 2 vCPU and 8GB of memory 3 worker nodes in the cluster and sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster Make sure your DOKS cluster version is greater than or equal to v1.">
 
-<meta itemprop="wordCount" content="321">
+<meta itemprop="wordCount" content="620">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DigitalOcean Kubernetes (DOKS)"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.
-  ⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your $PATH:
-  kubectl kubectl-storageos   ⚠️ Make sure to add an Ondat licence after installing."/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a DigitalOcean Managed Kubernetes (DOKS) cluster using the Ondat kubectl plugin or Helm Chart
+Prerequisites 1 - Cluster and Node Prerequisites The minimum requirements for the nodes are as follows:
+ Linux with a 64-bit architecture 2 vCPU and 8GB of memory 3 worker nodes in the cluster and sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster Make sure your DOKS cluster version is greater than or equal to v1."/>
 
 
 
@@ -184,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
+  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
   data-offline-search-base-href="/"
 >
 
@@ -332,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
+  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
   data-offline-search-base-href="/"
 >
 
@@ -1470,13 +1467,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#procedure">Procedure</a>
+    <li><a href="#prerequisites">Prerequisites</a>
       <ul>
-        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
-        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
-        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
-        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+        <li><a href="#1---cluster-and-node-prerequisites">1 - Cluster and Node Prerequisites</a></li>
+        <li><a href="#2---client-tools-prerequisites">2 - Client Tools Prerequisites</a></li>
+      </ul>
+    </li>
+    <li><a href="#installation-of-ondat">Installation of Ondat</a>
+      <ul>
+        <li><a href="#step-1---adding-a-cluster">Step 1 - Adding a Cluster</a></li>
+        <li><a href="#step-2---choosing-the-installation-method">Step 2 - Choosing the Installation Method</a></li>
+        <li><a href="#step-3a---installing-via-helm">Step 3a - Installing via Helm</a></li>
+        <li><a href="#step-3b---installing-via-kubectl-storageos-plugin">Step 3b - Installing via <code>kubectl-storageos</code> plugin</a></li>
+        <li><a href="#step-4---verifying-ondat-installation">Step 4 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-5---applying-a-licence-to-the-cluster">Step 5 - Applying a Licence to the Cluster</a></li>
       </ul>
     </li>
   </ul>
@@ -1528,62 +1532,93 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h1>DigitalOcean Kubernetes (DOKS)</h1>
 	
 	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to install Ondat onto a <a href="https://www.digitalocean.com/products/kubernetes">DigitalOcean Managed Kubernetes (DOKS)</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://www.digitalocean.com/products/kubernetes">DigitalOcean Managed Kubernetes (DOKS)</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a> or <a href="https://helm.sh/docs/intro/install/">Helm Chart</a></p>
 <h2 id="prerequisites">Prerequisites</h2>
-<blockquote>
-<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure the following CLI utilities are installed on your local machine and are available in your <code>$PATH</code>:</p>
-</blockquote>
+<h3 id="1---cluster-and-node-prerequisites">1 - Cluster and Node Prerequisites</h3>
+<p>The minimum requirements for the nodes are as follows:</p>
+<ul>
+<li>Linux with a 64-bit architecture</li>
+<li>2 vCPU and 8GB of memory</li>
+<li>3 worker nodes in the cluster and sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster</li>
+<li>Make sure your DOKS cluster version is greater than or equal to <code>v1.21.10</code> or <code>v1.22.7</code> as they will have the required kernel modules available for Ondat to run successfully.</li>
+<li>For a comprehensive list of prerequisites please refer to <a href="https://docs.ondat.io/docs/prerequisites/">Ondat Prerequisites</a></li>
+</ul>
+<h3 id="2---client-tools-prerequisites">2 - Client Tools Prerequisites</h3>
+<p>The following CLI utilities are installed on your local machine and available in your <code>$PATH</code>:</p>
 <ul>
 <li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
-<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
 </ul>
-<blockquote>
-<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing. You can request a licence via the <a href="https://portal.ondat.io/">Ondat SaaS Platform</a>.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure you have a running DOKS cluster with a minimum of 5 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure your DOKS cluster version is greater than or equal to <code>v1.21.10</code> or <code>v1.22.7</code> as they will have the required kernel modules available for Ondat to run successfully.</p>
-</blockquote>
-<h2 id="procedure">Procedure</h2>
-<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
+<p>Ondat can be installed either via Helm Chart or using our command-line tool.  Depending on which installation method you choose you will require either:</p>
 <ul>
-<li>Run the following command to conduct preflight checks against the DOKS cluster to validate that Ondat prerequisites have been met before attempting an installation.</li>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos CLI</a></li>
+<li><a href="https://helm.sh/docs/intro/install/">Helm 3 CLI</a></li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
-</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+<h2 id="installation-of-ondat">Installation of Ondat</h2>
+<h3 id="step-1---adding-a-cluster">Step 1 - Adding a Cluster</h3>
+<p>The Ondat Portal is how you can license and get the commands for installing Ondat</p>
+<ul>
+<li>Either login or create an account on the <a href="https://portal.ondat.io/">Ondat Portal</a></li>
+<li>Choose the &lsquo;Install Ondat on your cluster&rsquo; or &lsquo;Add cluster&rsquo; options in the UI</li>
+<li>Add a Name for your cluster and where it is going to be located.  This will allow you to view the same prerequisits as are listed above</li>
+</ul>
+<h3 id="step-2---choosing-the-installation-method">Step 2 - Choosing the Installation Method</h3>
+<p>You can use either the <a href="/docs/reference/kubectl-plugin/">kubectl-storageos CLI</a> or <a href="https://helm.sh/docs/intro/install/">Helm 3 CLI</a> to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below</p>
+<h3 id="step-3a---installing-via-helm">Step 3a - Installing via Helm</h3>
+<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm</p>
+<p><img src="/images/docs/install/HelmInstall.png" alt="Helm Install"></p>
 <ol>
-<li>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</li>
+<li>The first set of commands adds the Ondat Helm repository and ensures a updated local cache.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div><ol start="2">
-<li>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</li>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add ondat https://ondat.github.io/charts <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>helm repo update <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#4e9a06">\
+</span></code></pre></div><ol start="2">
+<li>The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation.</li>
 </ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat ondat/ondat <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --create-namespace <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.enabled<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.clientId<span style="color:#ce5c00;font-weight:bold">=</span>37540b25-285c-4326-b76c-742100723ac3 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.secret<span style="color:#ce5c00;font-weight:bold">=</span>e946f84a-e6c0-4afd-9087-f9cdd6906aa5 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.apiUrl<span style="color:#ce5c00;font-weight:bold">=</span>https://portal-setup-7dy4neexbq-ew.a.run.app <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.tenantId<span style="color:#ce5c00;font-weight:bold">=</span>16e51eb9-37cf-4103-9a31-9e2cdaeec373 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.storage<span style="color:#ce5c00;font-weight:bold">=</span>6Gi <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.resources.requests.cpu<span style="color:#ce5c00;font-weight:bold">=</span>100m <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.resources.requests.memory<span style="color:#ce5c00;font-weight:bold">=</span>300Mi
+</code></pre></div><ol start="3">
+<li>The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.</li>
+</ol>
+<h3 id="step-3b---installing-via-kubectl-storageos-plugin">Step 3b - Installing via <code>kubectl-storageos</code> plugin</h3>
+<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using the <code>kubectl-storageos</code> plugin:</p>
+<p><img src="/images/docs/install/PluginInstall.png" alt="kubectl-storageos Install"></p>
+<p>This command uses the <code>kubectl-storageos</code> plugin command with a set of basic install parameters that are sufficient for a basic trial instalation. The installation process may take a few minutes.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><ul>
-<li>The installation process may take a few minutes.</li>
-</ul>
-<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
-<ul>
-<li>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</li>
-</ul>
+</span><span style="color:#4e9a06"></span>  --include-etcd<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --enable-portal-manager<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-client-id<span style="color:#ce5c00;font-weight:bold">=</span>37540b25-285c-4326-b76c-742100723ac3 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-secret<span style="color:#ce5c00;font-weight:bold">=</span>e946f84a-e6c0-4afd-9087-f9cdd6906aa5 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-api-url<span style="color:#ce5c00;font-weight:bold">=</span>https://portal-setup-7dy4neexbq-ew.a.run.app <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-tenant-id<span style="color:#ce5c00;font-weight:bold">=</span>16e51eb9-37cf-4103-9a31-9e2cdaeec373 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-cpu-limit<span style="color:#ce5c00;font-weight:bold">=</span>100m <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-memory-limit<span style="color:#ce5c00;font-weight:bold">=</span>300Mi <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
+</code></pre></div><h3 id="step-4---verifying-ondat-installation">Step 4 - Verifying Ondat Installation</h3>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status).</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
 kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
-<blockquote>
-<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1 TiB of provisioned storage.</p>
-</blockquote>
-<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
+</code></pre></div><p>Once all the components are up and running the output should look like this:</p>
+<p><img src="/images/docs/install/InstallSuccess.png" alt="Install Success"></p>
+<h3 id="step-5---applying-a-licence-to-the-cluster">Step 5 - Applying a Licence to the Cluster</h3>
+<p>Newly installed Ondat clusters must be licensed within 24 hours. For details of our Community Edition and pricing see <a href="https://www.ondat.io/pricing">here</a>.</p>
+<p>To licence your cluster with the community edition:</p>
+<ol>
+<li>On the Clusters page select &lsquo;View Details&rsquo;</li>
+<li>Click on &lsquo;Change Licence&rsquo;</li>
+<li>In the following pop-up select the &lsquo;Community Licence&rsquo; option then click &lsquo;Generate&rsquo;</li>
+</ol>
+<p>This process generates a licence and installs it for you. Now you are good to go!</p>
 
 	
 	

@@ -21,25 +21,22 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>System Configuration | </title><meta property="og:title" content="System Configuration" />
-<meta property="og:description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
-Distribution Specifics Current (non-EOL) versions of the following distributions are supported by default:
- SUSE Linux Enterprise Server Red Hat Enterprise Linux CentOS Debian Ubuntu  The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:" />
+<meta property="og:description" content="Ondat requires certain standard kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers). A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.
+Supported Distributions Current (non-EOL) versions of the following distributions are supported by default:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/prerequisites/systemconfiguration/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="System Configuration">
-<meta itemprop="description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
-Distribution Specifics Current (non-EOL) versions of the following distributions are supported by default:
- SUSE Linux Enterprise Server Red Hat Enterprise Linux CentOS Debian Ubuntu  The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:">
+<meta itemprop="description" content="Ondat requires certain standard kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers). A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.
+Supported Distributions Current (non-EOL) versions of the following distributions are supported by default:">
 
-<meta itemprop="wordCount" content="358">
+<meta itemprop="wordCount" content="400">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="System Configuration"/>
-<meta name="twitter:description" content="Ondat requires certain kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
-Distribution Specifics Current (non-EOL) versions of the following distributions are supported by default:
- SUSE Linux Enterprise Server Red Hat Enterprise Linux CentOS Debian Ubuntu  The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:"/>
+<meta name="twitter:description" content="Ondat requires certain standard kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers). A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.
+Supported Distributions Current (non-EOL) versions of the following distributions are supported by default:"/>
 
 
 
@@ -181,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
+  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
+  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
   data-offline-search-base-href="/"
 >
 
@@ -1466,8 +1463,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#distribution-specifics">Distribution Specifics</a></li>
+    <li><a href="#supported-distributions">Supported Distributions</a></li>
     <li><a href="#kernel-modules">Kernel Modules</a></li>
+    <li><a href="#installing-the-required-kernel-modules">Installing the required Kernel Modules</a></li>
     <li><a href="#automatic-configuration">Automatic Configuration</a></li>
     <li><a href="#manual-configuration">Manual Configuration</a></li>
   </ul>
@@ -1518,8 +1516,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>System Configuration</h1>
 	
-	<p>Ondat requires certain kernel modules to function. In particular it requires <a href="http://linux-iscsi.org/wiki/Main_Page">Linux-IO</a>, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).</p>
-<h2 id="distribution-specifics">Distribution Specifics</h2>
+	<p>Ondat requires certain standard kernel modules to function. In particular it requires <a href="http://linux-iscsi.org/wiki/Main_Page">Linux-IO</a>, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).  A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.</p>
+<h2 id="supported-distributions">Supported Distributions</h2>
 <p>Current (non-EOL) versions of the following distributions are supported by default:</p>
 <ul>
 <li>SUSE Linux Enterprise Server</li>
@@ -1537,6 +1535,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>Amazon Linux (lacks <code>target_core_mod</code> and <code>target_core_user</code>)</li>
 </ul>
+<p>This has been <a href="https://github.com/amazonlinux/amazon-linux-2022/issues/88">raised with AWS</a>.</p>
 <blockquote>
 <p>💡 If you require help with a specific issue with a listed distribution, <a href="https://github.com/ondat/documentation/issues">raise an issue on GitHub</a> or reach out to us on our <a href="https://slack.storageos.com">Community Slack</a></p>
 </blockquote>
@@ -1552,22 +1551,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <blockquote>
 <p>⚠️ Other applications utilising <a href="http://linux-iscsi.org/wiki/LIO">TCMU</a> cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.</p>
 </blockquote>
-<p>In most modern distributions, including those listed above, the modules are distributed as part of the Linux kernel package and are included by default. In some older distributions, they were part of a kernel extras package that needed to be installed separately. The script <a href="https://github.com/storageos/init/blob/master/scripts/01-lio/enable-lio.sh">enable-lio.sh</a> from Ondat&rsquo;s init container can be used to ensure that all kernel-level dependencies are installed, any errors will indicate which components are missing.</p>
-<p>For example, in Ubuntu versions prior to 22.04 several modules were not included in the base kernel configuration. The commands to install <code>linux-modules-extra</code> to obtain these additional modules required for Ondat were:</p>
+<p>In most modern distributions, including those listed above, the modules are distributed as part of the Linux kernel package and are included by default. In some older distributions, they were part of a kernel extras package that needed to be installed separately.</p>
+<h2 id="installing-the-required-kernel-modules">Installing the required Kernel Modules</h2>
+<p>The script <a href="https://github.com/storageos/init/blob/master/scripts/01-lio/enable-lio.sh">enable-lio.sh</a> from Ondat&rsquo;s init container can be used to ensure that all kernel-level dependencies are installed, any errors will indicate which components are missing.</p>
+<p>For example, in Ubuntu versions prior to 22.04 several modules were not included in the base kernel configuration. Run the following command to install <code>linux-modules-extra</code> to obtain these additional modules required for Ondat:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get update
 sudo apt-get install -y linux-modules-extra-<span style="color:#204a87;font-weight:bold">$(</span>uname -r<span style="color:#204a87;font-weight:bold">)</span>
 </code></pre></div><h2 id="automatic-configuration">Automatic Configuration</h2>
-<p>Once required kernel modules are installed on the system, for convenience we
-provide a container which will ensure the appropriate modules are loaded and
-ready for use at runtime. You will need to run the init container prior to starting Ondat.<br>
-Our installation guides for Kubernetes and OpenShift include this step.</p>
+<p>Once required kernel modules are installed on the system, for convenience we provide a container that will ensure the appropriate modules are loaded and ready for use at runtime. You will need to run the init container prior to starting Ondat.  Our installation guides for Kubernetes and OpenShift include this step.</p>
 <h2 id="manual-configuration">Manual Configuration</h2>
-<p>For those wishing to manage their own kernel configuration, rather than using
-the init container, perform the following steps:</p>
-<ul>
+<p>For those wishing to manage their own kernel configuration, rather than using the init container, perform the following steps:</p>
+<ol>
 <li>Ensure kernel modules are all loaded per list above</li>
-<li>Ensure configfs is loaded and mounted at /sys/kernel/config</li>
-</ul>
+<li>Ensure configfs is loaded and mounted at <code>/sys/kernel/config</code></li>
+</ol>
 
 	
 	

@@ -21,25 +21,25 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Amazon Elastic Kubernetes Service (EKS) | </title><meta property="og:title" content="Amazon Elastic Kubernetes Service (EKS)" />
-<meta property="og:description" content="Overview  💡 This page has an example installation using eksctl to get started quickly and easily. For a declarative installation with Amazon EKS Blueprints for Terraform, refer to our getting-started blueprint for the Ondat EKS Blueprints addon.
- This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run." />
+<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Amazon EKS cluster using either the Ondat kubectl plugin or Helm Chart. It is also possible to install Ondat using the Amazon EKS Blueprints for Terraform, where you can refer to our getting-started blueprint for the Ondat EKS Blueprints addon.
+Prerequisites 1 - Cluster and Node Prerequisites The minimum requirements for the nodes are as follows:
+ Linux with a 64-bit architecture 2 vCPU and 8GB of memory 3 worker nodes in the cluster and sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster Make sure your EKS clusters use Ubuntu for EKS as the default node operating system with an optimised kernel." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/amazon-web-services-eks/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Amazon Elastic Kubernetes Service (EKS)">
-<meta itemprop="description" content="Overview  💡 This page has an example installation using eksctl to get started quickly and easily. For a declarative installation with Amazon EKS Blueprints for Terraform, refer to our getting-started blueprint for the Ondat EKS Blueprints addon.
- This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run.">
+<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Amazon EKS cluster using either the Ondat kubectl plugin or Helm Chart. It is also possible to install Ondat using the Amazon EKS Blueprints for Terraform, where you can refer to our getting-started blueprint for the Ondat EKS Blueprints addon.
+Prerequisites 1 - Cluster and Node Prerequisites The minimum requirements for the nodes are as follows:
+ Linux with a 64-bit architecture 2 vCPU and 8GB of memory 3 worker nodes in the cluster and sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster Make sure your EKS clusters use Ubuntu for EKS as the default node operating system with an optimised kernel.">
 
-<meta itemprop="wordCount" content="949">
+<meta itemprop="wordCount" content="1249">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Amazon Elastic Kubernetes Service (EKS)"/>
-<meta name="twitter:description" content="Overview  💡 This page has an example installation using eksctl to get started quickly and easily. For a declarative installation with Amazon EKS Blueprints for Terraform, refer to our getting-started blueprint for the Ondat EKS Blueprints addon.
- This guide will demonstrate how to install Ondat onto an Amazon Elastic Kubernetes Service cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run."/>
+<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Amazon EKS cluster using either the Ondat kubectl plugin or Helm Chart. It is also possible to install Ondat using the Amazon EKS Blueprints for Terraform, where you can refer to our getting-started blueprint for the Ondat EKS Blueprints addon.
+Prerequisites 1 - Cluster and Node Prerequisites The minimum requirements for the nodes are as follows:
+ Linux with a 64-bit architecture 2 vCPU and 8GB of memory 3 worker nodes in the cluster and sufficient Role-Based Access Control (RBAC) permissions to deploy and manage applications in the cluster Make sure your EKS clusters use Ubuntu for EKS as the default node operating system with an optimised kernel."/>
 
 
 
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
+  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.8efbc73b3c8ba1ce65b4af8f85c554e718e99d70b66f3152a3e86242daa13f5093bad8da7219541f622ad0eb790ecd9627c6dcbf6dde696c3222f89598be3c5e.json"
+  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
   data-offline-search-base-href="/"
 >
 
@@ -1467,13 +1467,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#procedure">Procedure</a>
+    <li><a href="#prerequisites">Prerequisites</a>
       <ul>
-        <li><a href="#step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</a></li>
-        <li><a href="#step-2---installing-ondat">Step 2 - Installing Ondat</a></li>
-        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
-        <li><a href="#step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</a></li>
+        <li><a href="#1---cluster-and-node-prerequisites">1 - Cluster and Node Prerequisites</a></li>
+        <li><a href="#2---client-tools-prerequisites">2 - Client Tools Prerequisites</a></li>
+        <li><a href="#3---creating-a-cluster-with-the-correct-linux-distribution">3 - Creating a cluster with the correct Linux distribution</a></li>
+        <li><a href="#4---connecting-to-your-cluster">4 - Connecting to your cluster</a></li>
+        <li><a href="#5---creating-a-storageclass-for-etcd-to-use">5 - Creating a StorageClass for etcd to use</a></li>
+      </ul>
+    </li>
+    <li><a href="#installation-of-ondat">Installation of Ondat</a>
+      <ul>
+        <li><a href="#step-1---adding-a-cluster">Step 1 - Adding a Cluster</a></li>
+        <li><a href="#step-2---choosing-the-installation-method">Step 2 - Choosing the Installation Method</a></li>
+        <li><a href="#step-3a---installing-via-helm">Step 3a - Installing via Helm</a></li>
+        <li><a href="#step-3b---installing-via-kubectl-storageos-plugin">Step 3b - Installing via <code>kubectl-storageos</code> plugin</a></li>
+        <li><a href="#step-4---verifying-ondat-installation">Step 4 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-5---applying-a-licence-to-the-cluster">Step 5 - Applying a Licence to the Cluster</a></li>
       </ul>
     </li>
   </ul>
@@ -1525,80 +1535,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<h1>Amazon Elastic Kubernetes Service (EKS)</h1>
 	
 	<h2 id="overview">Overview</h2>
-<blockquote>
-<p>💡 This page has an example installation using <a href="https://eksctl.io/">eksctl</a>
-to get started quickly and easily. For a declarative installation with
-<a href="https://github.com/aws-ia/terraform-aws-eks-blueprints">Amazon EKS Blueprints for
-Terraform</a>, refer to
-our <a href="https://github.com/ondat/terraform-eksblueprints-ondat-addon/tree/main/blueprints/getting-started">getting-started
-blueprint</a>
-for the Ondat EKS Blueprints addon.</p>
-</blockquote>
-<p>This guide will demonstrate how to install Ondat onto an <a href="https://aws.amazon.com/eks/">Amazon Elastic
-Kubernetes Service</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat
-kubectl plugin</a>.</p>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://aws.amazon.com/eks/">Amazon EKS</a> cluster using either the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a> or <a href="https://helm.sh/docs/intro/install/">Helm Chart</a>.  It is also possible to install Ondat using the <a href="https://github.com/aws-ia/terraform-aws-eks-blueprints">Amazon EKS Blueprints for Terraform</a>, where you can refer to our <a href="https://github.com/ondat/terraform-eksblueprints-ondat-addon/tree/main/blueprints/getting-started">getting-started blueprint</a> for the Ondat EKS Blueprints addon.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<blockquote>
-<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to
-successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a>
-page for more information.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure the following CLI utilities are installed on your local machine
-and are available in your <code>$PATH</code>:</p>
-</blockquote>
+<h3 id="1---cluster-and-node-prerequisites">1 - Cluster and Node Prerequisites</h3>
+<p>The minimum requirements for the nodes are as follows:</p>
+<ul>
+<li>Linux with a 64-bit architecture</li>
+<li>2 vCPU and 8GB of memory</li>
+<li>3 worker nodes in the cluster and sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster</li>
+<li>Make sure your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for EKS</a> as the default node operating system with an optimised kernel.  This installation guide takes you through that process as it is not easily available in the AWS Console</li>
+<li>For more information on the Linux distributions that are supported, and how to update Amazon Linux with the correct Kernal Modules, see <a href="/docs/prerequisites/systemconfiguration/">System Configuration</a>.</li>
+<li>For a comprehensive list of prerequisites please refer to <a href="https://docs.ondat.io/docs/prerequisites/">Ondat Prerequisites</a></li>
+</ul>
+<h3 id="2---client-tools-prerequisites">2 - Client Tools Prerequisites</h3>
+<p>The following CLI utilities are installed on your local machine and available in your <code>$PATH</code>:</p>
 <ul>
 <li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
-<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
 <li><a href="https://aws.amazon.com/cli/">aws</a></li>
 <li><a href="https://eksctl.io/">eksctl</a>, at least version <code>&gt;=0.83.0</code></li>
 </ul>
-<blockquote>
-<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after
-installing. You can request a licence via the <a href="https://portal.ondat.io/">Ondat SaaS
-Platform</a>.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure you have a running EKS cluster with a minimum of 5 worker nodes
-and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control
-(RBAC)</a>
-permissions to deploy and manage applications in the cluster.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure your EKS clusters use <a href="https://cloud-images.ubuntu.com/docs/aws/eks/">Ubuntu for
-EKS</a> as the default node
-operating system with an optimised kernel. For kernel versions below
-<code>linux-aws-5.4.0-1066.69</code> or <code>linux-aws-5.13.0-1014.15</code>, the module
-<code>tcm_loop</code> is not included in the base kernel distribution. In that case, the
-package <code>linux-modules-extra-$(uname -r)</code> is additionally required on each of
-the nodes - this can be installed automatically by adding extra steps to the
-node&rsquo;s user data.</p>
-</blockquote>
-<blockquote>
-<p>To find the latest Ubuntu for EKS AMI, search your region for the image:</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">AWS_REGION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;eu-west-2&#34;</span> <span style="color:#8f5902;font-style:italic"># Insert your preferred region here</span>
-aws ec2 describe-images <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--filters <span style="color:#4e9a06">&#34;Name=owner-id,Values=099720109477&#34;</span> <span style="color:#4e9a06">&#34;Name=architecture,Values=x86_64&#34;</span> <span style="color:#4e9a06">&#34;Name=root-device-type,Values=ebs&#34;</span> <span style="color:#4e9a06">&#34;Name=virtualization-type,Values=hvm&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--query <span style="color:#4e9a06">&#39;Images[?contains(Name, `ubuntu-eks`)] | [?contains(Name, `testing`) == `false`] | [?contains(Name, `minimal`) == `false`] | [?contains(Name, `hvm-ssd`) == `true`] | sort_by(@, &amp;CreationDate)| [-1].ImageId&#39;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--output text <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>--region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><blockquote>
-<p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to
-create a cluster with 3 nodes of size <code>t3.large</code> running Ubuntu for EKS in
-the <code>eu-west-2</code> region. We have provided <code>100 GB</code> of disk space for each
-node. Note that by default, Ondat will store data locally in the node&rsquo;s file
-system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged
-mode</a>.</p>
-</blockquote>
-<blockquote>
-<p>In a production infrastructure, we would create multiple Elastic Block Store
-(EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount
-our volumes under data device directories</a> with some
-additions to user data. We would also implement some form of snapshots or
-backup of these underlying volumes to ensure continuity in a disaster
-scenario.</p>
-</blockquote>
+<p>Ondat can be installed either via Helm Chart or using our command-line tool.  Depending on which installation method you choose you will require either:</p>
+<ul>
+<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos CLI</a></li>
+<li><a href="https://helm.sh/docs/intro/install/">Helm 3 CLI</a></li>
+</ul>
+<h3 id="3---creating-a-cluster-with-the-correct-linux-distribution">3 - Creating a cluster with the correct Linux distribution</h3>
+<p>In this example, we have used <a href="https://eksctl.io/introduction/">eksctl</a> to create a cluster with 3 nodes of size <code>i3en.xlarge</code> running Ubuntu for EKS in the <code>eu-west-2</code> region. We have provided <code>20 GB</code> of disk space for each node. With a default installation Ondat will store data locally in the node&rsquo;s file system under the path <code>/var/lib/storageos</code> on each node in <a href="/docs/concepts/nodes/#hyperconverged-mode">hyperconverged mode</a>.  In a production infrastructure, we would create multiple Elastic Block Store (EBS) Volumes tweaked for performance or use ephemeral SSD storage and <a href="/docs/concepts/volumes/">mount our volumes under data device directories</a> with some additions to user data. We would also implement some form of snapshots or backup of these underlying volumes to ensure continuity in a disaster scenario.</p>
+<h4 id="3a---creating-the-clusteryaml-file">3a - Creating the cluster.yaml file</h4>
+<p>Create the following <code>cluster.yaml</code> file that will be used to create your cluster. Make the following updates:</p>
+<ul>
+<li>The file to use the <code>region</code> and <code>availabilityZones</code> that you need</li>
+<li>The <code>&lt;key-name&gt;</code> field in the publicKeyName parameter - make sure you update this to match your ssh key name.</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># cluster.yaml</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">eksctl.io/v1alpha5</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1691,61 +1659,29 @@ scenario.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#000">mkfs.ext4 /dev/nvme1n1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#000">mount /var/lib/storageos</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>Note the <code>&lt;key-name&gt;</code> field in the publicKeyName parameter, please make sure you update this to match your ssh key name.</p>
+</span></code></pre></div><h4 id="3b---creating-the-cluster">3b - Creating the cluster</h4>
+<p>Once you have created the yaml file above, run the following eksctl command to create your cluster.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">eksctl create cluster --config-file<span style="color:#ce5c00;font-weight:bold">=</span>cluster.yaml
-</code></pre></div><blockquote>
-<p>⚠️ With the above configuration, volumes will be deleted when the nodes they
-are attached to are terminated. Be sure to keep snapshots, for example by
-using <a href="https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/">Data Lifecycle
-Manager</a></p>
-</blockquote>
-<h2 id="procedure">Procedure</h2>
-<p>First, provision your <code>kubeconfig</code> for <code>kubectl</code> and test that you can connect
-to Kubernetes:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">aws eks update-kubeconfig --region <span style="color:#4e9a06">&#34;</span><span style="color:#000">$AWS_REGION</span><span style="color:#4e9a06">&#34;</span> --name ondat-cluster
+</code></pre></div><p>⚠️ With the above configuration, volumes will be deleted when the nodes they are attached to are terminated. Be sure to keep snapshots, for example by using <a href="https://aws.amazon.com/blogs/storage/automating-amazon-ebs-snapshot-and-ami-management-using-amazon-dlm/">Data Lifecycle Manager</a>.</p>
+<h3 id="4---connecting-to-your-cluster">4 - Connecting to your cluster</h3>
+<p>First, provision your <code>kubeconfig</code> for <code>kubectl</code> and test that you can connect to Kubernetes.  You will need to update the script with the region where your cluster is.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">AWS_REGION</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;eu-west-2&#34;</span> <span style="color:#8f5902;font-style:italic"># Insert your preferred region here</span>
+aws eks update-kubeconfig --region AWS_REGION --name ondat-cluster
 kubectl get nodes
-</code></pre></div><p>If you receive the message <code>No resources found</code> or see nodes marked as
-<code>NotReady</code>, wait for 2-3 minutes in order for your nodes to transition to
-<code>Ready</code> and check again to ensure they are running before proceeding through
-the next steps.</p>
-<h3 id="step-1---conducting-preflight-checks">Step 1 - Conducting Preflight Checks</h3>
-<p>Run the following command to conduct preflight checks against the EKS cluster
-to ensure that Ondat prerequisites are in place before continuing with
-installation.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
-</code></pre></div><h3 id="step-2---installing-ondat">Step 2 - Installing Ondat</h3>
+</code></pre></div><p>If you receive the message <code>No resources found</code> or see nodes marked as <code>NotReady</code>, wait for 2-3 minutes in order for your nodes to transition to <code>Ready</code> and check again to ensure they are running before proceeding through the next steps.</p>
+<h3 id="5---creating-a-storageclass-for-etcd-to-use">5 - Creating a StorageClass for etcd to use</h3>
+<p>If you used the <code>eksctl</code> cluster configuration defined above, the gp3 storage class is already available so you can skip to the next step. Otherwise you can set up the EBS CSI Driver as follows:</p>
+<blockquote>
+<p>It is important to note that the Ondat etcd usage of disk depends on the size of the Kubernetes cluster. However, it is recommended that the disks have at least 800 IOPS at any point in time. The best cost-effective storage class that fulfils such requirements is gp3. If gp2 is used, it is paramount to use a volume bigger than 256Gi as it will have enough IOPS even when the burstable credits are exhausted.</p>
+</blockquote>
+<p>To use a gp3 storage class in Kubernetes it is required to install the Amazon CSI Driver. Follow [this guide] (<a href="https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html">https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html</a>) to install. Follow the steps below:</p>
 <ol>
-<li>
-<p>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code>
-environment variables that will be used to manage your Ondat instance.</p>
-</li>
-<li>
-<p>Set the <code>StorageClass</code> for etcd to use.</p>
-<p>If you used the <code>eksctl</code> cluster configuration defined above, the gp3 storage
-class is available so you can skip to the next step. Otherwise you can set up
-the EBS CSI Driver as follows. It is important to note that the Ondat etcd
-usage of disk depends on the size of the Kubernetes cluster. However, it is
-recommended that the disks have at least 800 IOPS at any point in time. The
-best cost effective storage class that fulfils such requirements is gp3. If gp2
-is used, it is paramount to use a volume bigger than 256Gi as it will have
-enough IOPS even when the burstable credits are exhausted.</p>
-<p>To use a gp3 storage class in Kubernetes it is required to install the Amazon
-CSI Driver. Follow <a href="https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html">this
-guide</a> to
-install. The procedure is comprehended by the following steps:</p>
-<ul>
-<li>
-<p><a href="https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html">Create IAM permissions</a></p>
-</li>
-<li>
-<p>Install the CSI driver</p>
-<ul>
+<li><a href="https://docs.aws.amazon.com/eks/latest/userguide/csi-iam-role.html">Create IAM permissions</a></li>
+<li>Install the CSI driver</li>
 <li><a href="https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html">Using EKS addon</a></li>
 <li><a href="https://github.com/kubernetes-sigs/aws-ebs-csi-driver/blob/master/docs/install.md">Using self-managed add on</a> (AWS clusters, but not in EKS)</li>
-</ul>
-</li>
-<li>
-<p>Install the <code>gp3</code> <code>StorageClass</code>:</p>
+<li>Install the <code>gp3</code> <code>StorageClass</code>:</li>
+</ol>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create -f - <span style="color:#4e9a06">&lt;&lt;EOF
 </span><span style="color:#4e9a06">kind: StorageClass
 </span><span style="color:#4e9a06">apiVersion: storage.k8s.io/v1
@@ -1757,39 +1693,72 @@ install. The procedure is comprehended by the following steps:</p>
 </span><span style="color:#4e9a06">parameters:
 </span><span style="color:#4e9a06">  type: gp3
 </span><span style="color:#4e9a06">EOF</span>
-</code></pre></div></li>
+</code></pre></div><h2 id="installation-of-ondat">Installation of Ondat</h2>
+<h3 id="step-1---adding-a-cluster">Step 1 - Adding a Cluster</h3>
+<p>The Ondat Portal is how you can license and get the commands for installing Ondat:</p>
+<ul>
+<li>Either login or create an account on the <a href="https://portal.ondat.io/">Ondat Portal</a></li>
+<li>Choose the &lsquo;Install Ondat on your cluster&rsquo; or &lsquo;Add cluster&rsquo; options the UI</li>
+<li>Add a Name for your cluster and where it is going to be located</li>
 </ul>
-</li>
-<li>
-<p>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;gp3&#34;</span>
-
-kubectl storageos install <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-storage-class<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div><blockquote>
-<p>The installation process may take a few minutes.</p>
-</blockquote>
-</li>
+<h3 id="step-2---choosing-the-installation-method">Step 2 - Choosing the Installation Method</h3>
+<p>You can use either the <a href="/docs/reference/kubectl-plugin/">kubectl-storageos CLI</a> or <a href="https://helm.sh/docs/intro/install/">Helm 3 CLI</a> to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below</p>
+<h3 id="step-3a---installing-via-helm">Step 3a - Installing via Helm</h3>
+<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm:</p>
+<p><img src="/images/docs/install/HelmInstall.png" alt="Helm Install"></p>
+<ol>
+<li>The first set of commands adds the Ondat Helm repository and ensures an updated local cache.</li>
 </ol>
-<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
-<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core
-components should all be in a <code>RUNNING</code> status)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add ondat https://ondat.github.io/charts <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>helm repo update <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#4e9a06">\
+</span></code></pre></div><ol start="2">
+<li>The last command installs Ondat with a set of basic install parameters that are sufficent for a basic trial installation.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat ondat/ondat <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --create-namespace <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.enabled<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.clientId<span style="color:#ce5c00;font-weight:bold">=</span>37540b25-285c-4326-b76c-742100723ac3 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.secret<span style="color:#ce5c00;font-weight:bold">=</span>e946f84a-e6c0-4afd-9087-f9cdd6906aa5 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.apiUrl<span style="color:#ce5c00;font-weight:bold">=</span>https://portal-setup-7dy4neexbq-ew.a.run.app <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.tenantId<span style="color:#ce5c00;font-weight:bold">=</span>16e51eb9-37cf-4103-9a31-9e2cdaeec373 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.storage<span style="color:#ce5c00;font-weight:bold">=</span>6Gi <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.resources.requests.cpu<span style="color:#ce5c00;font-weight:bold">=</span>100m <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.resources.requests.memory<span style="color:#ce5c00;font-weight:bold">=</span>300Mi
+</code></pre></div><ol start="3">
+<li>The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.</li>
+</ol>
+<h3 id="step-3b---installing-via-kubectl-storageos-plugin">Step 3b - Installing via <code>kubectl-storageos</code> plugin</h3>
+<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using the <code>kubectl-storageos</code> plugin:</p>
+<p><img src="/images/docs/install/PluginInstall.png" alt="kubectl-storageos Install"></p>
+<p>This command uses the <code>kubectl-storageos</code> plugin command with a set of basic install parameters that are sufficient for a basic trial installation. The installation process may take a few minutes.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --include-etcd<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --enable-portal-manager<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-client-id<span style="color:#ce5c00;font-weight:bold">=</span>37540b25-285c-4326-b76c-742100723ac3 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-secret<span style="color:#ce5c00;font-weight:bold">=</span>e946f84a-e6c0-4afd-9087-f9cdd6906aa5 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-api-url<span style="color:#ce5c00;font-weight:bold">=</span>https://portal-setup-7dy4neexbq-ew.a.run.app <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --portal-tenant-id<span style="color:#ce5c00;font-weight:bold">=</span>16e51eb9-37cf-4103-9a31-9e2cdaeec373 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-cpu-limit<span style="color:#ce5c00;font-weight:bold">=</span>100m <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-memory-limit<span style="color:#ce5c00;font-weight:bold">=</span>300Mi <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  --etcd-replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
+</code></pre></div><h3 id="step-4---verifying-ondat-installation">Step 4 - Verifying Ondat Installation</h3>
+<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status).</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
 kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
 kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div><h3 id="step-4---applying-a-licence-to-the-cluster">Step 4 - Applying a Licence to the Cluster</h3>
-<blockquote>
-<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our
-Community Edition tier supports up to 1 TiB of provisioned storage.</p>
-</blockquote>
-<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing
-operations</a> page.</p>
+</code></pre></div><p>Once all the components are up and running the output should look like this:</p>
+<p><img src="/images/docs/install/InstallSuccess.png" alt="Install Success"></p>
+<h3 id="step-5---applying-a-licence-to-the-cluster">Step 5 - Applying a Licence to the Cluster</h3>
+<p>Newly installed Ondat clusters must be licensed within 24 hours. For details of our Community Edition and pricing see our <a href="https://www.ondat.io/pricing">pricing page</a>.</p>
+<p>To licence your cluster with the community edition:</p>
+<ol>
+<li>On the Clusters page select &lsquo;View Details&rsquo;</li>
+<li>Click on &lsquo;Change Licence&rsquo;</li>
+<li>In the following pop-up select the &lsquo;Community Licence&rsquo; option then click &lsquo;Generate&rsquo;</li>
+</ol>
+<p>This process generates a licence and installs it for you. Now you are good to go!</p>
 
 	
 	
