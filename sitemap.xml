@@ -46,9 +46,9 @@
   </url><url>
     <loc>/docs/reference/policies/</loc>
   </url><url>
-    <loc>/docs/install/gcp/google-kubernetes-engine-gke/</loc>
-  </url><url>
     <loc>/docs/install/aws/amazon-web-services-eks/</loc>
+  </url><url>
+    <loc>/docs/install/gcp/google-kubernetes-engine-gke/</loc>
   </url><url>
     <loc>/docs/install/openshift/openshift-operatorhub/</loc>
   </url><url>
