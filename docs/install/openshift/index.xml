@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: OpenShift</title>
+      <title>Docs: OpenShift via OperatorHub</title>
       <link>/docs/install/openshift/openshift-operatorhub/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -164,7 +164,7 @@ to mount an Ondat volume in a Pod.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: OpenShift</title>
+      <title>Docs: OpenShift via Marketplace</title>
       <link>/docs/install/openshift/openshift-marketplace/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
