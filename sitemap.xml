@@ -48,41 +48,59 @@
   </url><url>
     <loc>/docs/install/quick-start-guide/</loc>
   </url><url>
-    <loc>/docs/install/amazon-web-services-eks/</loc>
+    <loc>/docs/install/gcp/google-kubernetes-engine-gke/</loc>
   </url><url>
-    <loc>/docs/install/microsoft-azure-aks/</loc>
+    <loc>/docs/install/aws/amazon-web-services-eks/</loc>
   </url><url>
-    <loc>/docs/install/digitalocean-kubernetes/</loc>
+    <loc>/docs/install/openshift/openshift-operatorhub/</loc>
   </url><url>
-    <loc>/docs/install/anthos/</loc>
+    <loc>/docs/install/aws/</loc>
   </url><url>
-    <loc>/docs/install/google-kubernetes-engine-gke/</loc>
+    <loc>/docs/install/azure/microsoft-azure-aks/</loc>
+  </url><url>
+    <loc>/docs/install/digitalocean/digitalocean-kubernetes/</loc>
+  </url><url>
+    <loc>/docs/install/gcp/anthos/</loc>
   </url><url>
     <loc>/docs/install/kubernetes/</loc>
   </url><url>
     <loc>/docs/introduction/overview/</loc>
   </url><url>
-    <loc>/docs/install/openshift/</loc>
+    <loc>/docs/install/openshift/openshift-marketplace/</loc>
   </url><url>
-    <loc>/docs/install/rancher/</loc>
+    <loc>/docs/install/rancher/rancher/</loc>
   </url><url>
-    <loc>/docs/install/rancher-gov/</loc>
+    <loc>/docs/install/rancher/rancher-marketplace/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/configuration/</loc>
   </url><url>
     <loc>/docs/ondat-portal/dashboard/</loc>
   </url><url>
+    <loc>/docs/install/gcp/</loc>
+  </url><url>
+    <loc>/docs/install/rancher/</loc>
+  </url><url>
+    <loc>/docs/install/rancher/rancher-gov/</loc>
+  </url><url>
     <loc>/docs/ondat-portal/applications/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/examples/</loc>
+  </url><url>
+    <loc>/docs/install/azure/</loc>
   </url><url>
     <loc>/docs/reference/cluster-operator/upgrade/</loc>
   </url><url>
     <loc>/docs/introduction/platforms/</loc>
   </url><url>
+    <loc>/docs/install/digitalocean/</loc>
+  </url><url>
+    <loc>/docs/install/openshift/</loc>
+  </url><url>
     <loc>/docs/install/airgap/</loc>
   </url><url>
     <loc>/docs/install/declarative-install/</loc>
+  </url><url>
+    <loc>/docs/install/aws/terraform-aws-eks-blueprints/</loc>
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
   </url><url>

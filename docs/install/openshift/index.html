@@ -7,6 +7,7 @@
 
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
+<link rel="alternate" type="application/rss&#43;xml" href="/docs/install/openshift/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -21,28 +22,17 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>OpenShift | </title><meta property="og:title" content="OpenShift" />
-<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto an Openshift cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
-  ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes&#39; security group.
-  ⚠️ Make sure to add an Ondat licence after installing." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/install/openshift/" /><meta property="article:section" content="docs" />
-
-
+<meta property="og:description" content="Ondat deployment guides for Openshift
+" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/docs/install/openshift/" />
 
 <meta itemprop="name" content="OpenShift">
-<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto an Openshift cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
-  ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes&#39; security group.
-  ⚠️ Make sure to add an Ondat licence after installing.">
-
-<meta itemprop="wordCount" content="1034">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="description" content="Ondat deployment guides for Openshift
+"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenShift"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto an Openshift cluster using the Ondat kubectl plugin.
-Prerequisites  ⚠️ Make sure the prerequisites for Ondat are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.
-  ⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes&#39; security group.
-  ⚠️ Make sure to add an Ondat licence after installing."/>
+<meta name="twitter:description" content="Ondat deployment guides for Openshift
+"/>
 
 
 
@@ -87,7 +77,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>OpenShift | </title>
   </head>
-  <body class="td-page">
+  <body class="td-section">
     
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXRX3CX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -184,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5e55905b0d78daf87e4fbc68dff934f1772468378fcd4af97991c103279a035b5f60551bf1a77d12def704169113736b73e32a06e19b06fa7a7bc9976977853b.json"
+  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
   data-offline-search-base-href="/"
 >
 
@@ -332,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5e55905b0d78daf87e4fbc68dff934f1772468378fcd4af97991c103279a035b5f60551bf1a77d12def704169113736b73e32a06e19b06fa7a7bc9976977853b.json"
+  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
   data-offline-search-base-href="/"
 >
 
@@ -619,7 +609,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
     <li class="collapse show" id="docsinstall">
@@ -634,32 +624,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitalocean-kubernetes" href="/docs/install/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/aws/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">AWS</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallaws">
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Google Anthos</a>
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallawsamazon-web-services-eks" href="/docs/install/aws/amazon-web-services-eks/">Installing on EKS</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgoogle-kubernetes-engine-gke" href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallawsterraform-aws-eks-blueprints" href="/docs/install/aws/terraform-aws-eks-blueprints/">EKS Terraform Blueprints</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
       
@@ -670,20 +665,171 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/gcp/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">GCP</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallgcp">
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallopenshift" href="/docs/install/openshift/">OpenShift</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher" href="/docs/install/rancher/">Rancher Kubernetes Engine (RKE)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgcpgoogle-kubernetes-engine-gke" href="/docs/install/gcp/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher-gov" href="/docs/install/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgcpanthos" href="/docs/install/gcp/anthos/">Google Anthos</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/rancher/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Rancher</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallrancher">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancherrancher" href="/docs/install/rancher/rancher/">Rancher Kubernetes Engine (RKE)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancherrancher-marketplace" href="/docs/install/rancher/rancher-marketplace/">Rancher Kubernetes Engine (RKE) via Marketplace</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancherrancher-gov" href="/docs/install/rancher/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/azure/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Azure</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallazure">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallazuremicrosoft-azure-aks" href="/docs/install/azure/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/digitalocean/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Digital Ocean</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstalldigitalocean">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitaloceandigitalocean-kubernetes" href="/docs/install/digitalocean/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/openshift/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">OpenShift</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="docsinstallopenshift">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallopenshiftopenshift-operatorhub" href="/docs/install/openshift/openshift-operatorhub/">OpenShift</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallopenshiftopenshift-marketplace" href="/docs/install/openshift/openshift-marketplace/">OpenShift</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
       
@@ -1467,21 +1613,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#procedure">Procedure</a>
-      <ul>
-        <li><a href="#option-a-via-operatorhub">Option A: Via Operatorhub</a></li>
-        <li><a href="#option-b-via-red-hat-marketplace">Option B: Via Red Hat Marketplace</a></li>
-      </ul>
-    </li>
-    <li><a href="#license-cluster">License cluster</a></li>
-    <li><a href="#first-ondat-volume">First Ondat volume</a></li>
-  </ul>
-</nav>
-
 
 
           </div>
@@ -1526,267 +1657,330 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <div class="td-content">
 	<h1>OpenShift</h1>
-	
+	<div class="lead">Ondat deployment guides for Openshift</div>
 	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to install Ondat onto an <a href="/docs/platforms/openshift">Openshift</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</p>
-<h2 id="prerequisites">Prerequisites</h2>
-<blockquote>
-<p>⚠️ Make sure the
-<a href="/docs/prerequisites/">prerequisites for Ondat</a> are
-satisfied before proceeding. Including the deployment of an etcd cluster and
-configuration of CRI-O PID limits.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are
-opened for the worker nodes' security group.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing. You can request a licence via the <a href="https://portal.ondat.io/">Ondat SaaS Platform</a>.</p>
-</blockquote>
-<blockquote>
-<p>💡 For OpenShift upgrades, refer to the
-<a href="/docs/platforms/openshift#openshift-upgrades">OpenShift platform page</a>.</p>
-</blockquote>
-<p>Ondat v2 supports OpenShift v4. For more information, see the <a href="/docs/platforms/openshift">OpenShift platform</a> page.</p>
-<h2 id="procedure">Procedure</h2>
-<h3 id="option-a-via-operatorhub">Option A: Via Operatorhub</h3>
-<h4 id="step-1-operatorhub">Step 1: Operatorhub</h4>
-<ol>
-<li>
-<p>Select the <code>OperatorHub</code> from the Catalog sub menu and search for StorageOS</p>
-<blockquote>
-<p>💡 Choose between using the RedHat Marketplace or the Community Operators
-installation.</p>
-</blockquote>
-</li>
-<li>
-<p>Select StorageOS and click <strong>Install</strong>.</p>
-</li>
-<li>
-<p>Select the relevant install options.</p>
-<blockquote>
-<p>Make sure the <code>Approval Strategy</code> is set to <strong>Manual</strong>. This option makes sure that the StorageOS
-Operator doesn&rsquo;t upgrade versions without explicit approval.</p>
-</blockquote>
-</li>
-<li>
-<p>Start the approval procedure by clicking on the operator name.</p>
-</li>
-<li>
-<p>On <strong>Subscription Details</strong>, click the approval link.</p>
-</li>
-<li>
-<p>On <strong>Review Manual Install</strong> panel in the <strong>Components</strong> tab, click <strong>Approve</strong> to confirm the installation.</p>
-</li>
-</ol>
-<p>The Ondat Cluster Operator is installed along the required CRDs.</p>
-<h4 id="step-2-authentication">Step 2: Authentication</h4>
-<ol>
-<li>
-<p>Create a Secret in the <code>openshift-operators</code> project and select the YAML option to create a secret containing the <code>username</code> and an
-<code>password</code> key. The username and password defined in the secret will be
-used to authenticate when using the Ondat CLI and GUI. Take note of
-which project you created the secret in.</p>
-<p>Input the secret as YAML for simplicity.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Secret</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">openshift-operators</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;kubernetes.io/storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># echo -n &#39;&lt;secret&gt;&#39; | base64</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">username</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></li>
-<li>
-<p>Go to the <strong>Operators</strong>-&gt;<strong>Installed Operators</strong> and verify that the StorageOS Cluster Operator is installed.</p>
-</li>
-<li>
-<p>Go to the <strong>StorageOS Cluster</strong> section.</p>
-</li>
-<li>
-<p>Click <strong>Create StorageOSCluster</strong>.</p>
-<blockquote>
-<p>💡 An Ondat Cluster is defined using a Custom Resource Definition</p>
-</blockquote>
-</li>
-<li>
-<p>Create the Custom Resource</p>
-<p>The StorageOS cluster resource describes the Ondat cluster that will be
-created. Parameters such as the <code>secretRefName</code>, the <code>secretRefNamespace</code> and
-the <code>kvBackend.address</code> are mandatory.</p>
-<blockquote>
-<p>💡 Additional <code>spec</code> parameters are available on the <a href="/docs/reference/cluster-operator/configuration">Cluster Operator configuration</a> page.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: <span style="color:#4e9a06">&#34;storageos.com/v1&#34;</span>
-kind: StorageOSCluster
-metadata:
-  name: storageos
-  namespace: openshift-operators
-spec:
-  <span style="color:#8f5902;font-style:italic"># Ondat Pods are in kube-system by default</span>
-  secretRefName: <span style="color:#4e9a06">&#34;storageos-api&#34;</span> <span style="color:#8f5902;font-style:italic"># Reference the Secret created in the previous step</span>
-  secretRefNamespace: <span style="color:#4e9a06">&#34;openshift-operators&#34;</span>  <span style="color:#8f5902;font-style:italic"># Namespace of the Secret created in the previous step</span>
-  k8sDistro: <span style="color:#4e9a06">&#34;openshift&#34;</span>
-  kvBackend:
-    address: <span style="color:#4e9a06">&#39;storageos-etcd-client.etcd:2379&#39;</span> <span style="color:#8f5902;font-style:italic"># Example address, change for your etcd endpoint</span>
-  <span style="color:#8f5902;font-style:italic"># address: &#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&#39; # You can set ETCD server ips</span>
-  resources:
-    requests:
-      memory: <span style="color:#4e9a06">&#34;512Mi&#34;</span>
-      cpu: <span style="color:#0000cf;font-weight:bold">1</span>
-  <span style="color:#8f5902;font-style:italic"># nodeSelectorTerms:</span>
-  <span style="color:#8f5902;font-style:italic">#   - matchExpressions:</span>
-  <span style="color:#8f5902;font-style:italic">#     - key: &#34;node-role.kubernetes.io/worker&#34; # Compute node label will vary according to your installation</span>
-  <span style="color:#8f5902;font-style:italic">#       operator: In</span>
-  <span style="color:#8f5902;font-style:italic">#       values:</span>
-  <span style="color:#8f5902;font-style:italic">#       - &#34;true&#34;</span>
-</code></pre></div></li>
-<li>
-<p>Verify that the StorageOS Cluster resource status is <strong>Running</strong>.</p>
-<blockquote>
-<p>It can take up to a minute to report the Ondat Pods ready.</p>
-</blockquote>
-</li>
-<li>
-<p>Check the StorageOS Pods in the <code>kube-system</code> project</p>
-<blockquote>
-<p>A Status of 3/3 in the <strong>Ready</strong> column for the Daemonset Pods indicates that Ondat is
-bootstrapped successfully.</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="option-b-via-red-hat-marketplace">Option B: Via Red Hat Marketplace</h3>
-<h4 id="step-1-red-hat-markerplace">Step 1: Red Hat Markerplace</h4>
-<blockquote>
-<p>⚠️ The installation of Ondat using the Red Hat Marketplace requires the
-Openshift cluster to be registered to the Marketplace Portal, including the
-roll out of the <code>PullSecret</code> in your cluster. Failure to do so will result in a
-image pull authentication failure with the Red Hat registry.</p>
-</blockquote>
-<ol>
-<li>
-<p>Select the <code>OperatorHub</code> from the Catalog sub menu and search for StorageOS.</p>
-<blockquote>
-<p>💡 Choose the RedHat Marketplace option.</p>
-</blockquote>
-</li>
-<li>
-<p>Select StorageOS and click <strong>Purchase</strong>. Note that Openshift needs to be
-registered with the Red Hat Marketplace portal.</p>
-</li>
-<li>
-<p>Select the relevant install option.</p>
-<blockquote>
-<p>💡 Project Edition is suitable for production workloads, Developer Edition
-for personal experimentation and evaluation.</p>
-</blockquote>
-</li>
-<li>
-<p>Specify the product configuration to fit your needs.</p>
-</li>
-<li>
-<p>Navigate to your software within Red Hat Marketplace and install the
-StorageOS software as specified in the image.</p>
-</li>
-<li>
-<p>Install the Operator. Set the update approval strategy to <strong>Automatic</strong> to
-ensure that you always have the latest version of StorageOS installed.</p>
-</li>
-</ol>
-<p>The Ondat Cluster Operator is installed into your specified cluster.</p>
-<h4 id="step-2-authentication-1">Step 2: Authentication</h4>
-<ol>
-<li>
-<p>Create a Secret in the <code>openshift-operators</code> project and select the YAML option to create a secret containing the <code>username</code> and an
-<code>password</code> key. The username and password defined in the secret will be
-used to authenticate when using the Ondat CLI and GUI. Take note of
-which project you created the secret in.</p>
-<p>Input the secret as YAML for simplicity.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Secret</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">openshift-operators</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;kubernetes.io/storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#8f5902;font-style:italic"># echo -n &#39;&lt;secret&gt;&#39; | base64</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">username</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c3RvcmFnZW9z</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></li>
-<li>
-<p>Navigate to StorageOS on your <strong>Installed Operators</strong> tab.</p>
-<blockquote>
-<p>💡 Verify that the StorageOS Cluster Operator is installed.</p>
-</blockquote>
-</li>
-<li>
-<p>Open to the <strong>StorageOS Cluster</strong> tab and click <strong>Create StorageOSCluster</strong>.</p>
-<blockquote>
-<p>💡 A StorageOSCluster is defined using a Custom Resource(CR) Definition.</p>
-</blockquote>
-</li>
-<li>
-<p>Create the CR Definition:</p>
-<p>The Ondat cluster resource describes the Ondat cluster that will be
-created. Parameters such as the <code>secretRefName</code>, the <code>secretRefNamespace</code> and
-the <code>kvBackend.address</code> are mandatory.</p>
-<blockquote>
-<p>💡 Additional <code>spec</code> parameters are available on the <a href="/docs/reference/cluster-operator/configuration">Cluster Operator configuration</a> page.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: <span style="color:#4e9a06">&#34;storageos.com/v1&#34;</span>
-kind: StorageOSCluster
-metadata:
-  name: storageos
-  namespace: openshift-operators
-spec:
-  <span style="color:#8f5902;font-style:italic"># Ondat Pods are in kube-system by default</span>
-  secretRefName: <span style="color:#4e9a06">&#34;storageos-api&#34;</span> <span style="color:#8f5902;font-style:italic"># Reference the Secret created in the previous step</span>
-  secretRefNamespace: <span style="color:#4e9a06">&#34;openshift-operators&#34;</span>  <span style="color:#8f5902;font-style:italic"># Namespace of the Secret created in the previous step</span>
-  k8sDistro: <span style="color:#4e9a06">&#34;openshift&#34;</span>
-  kvBackend:
-    address: <span style="color:#4e9a06">&#39;storageos-etcd-client.etcd:2379&#39;</span> <span style="color:#8f5902;font-style:italic"># Example address, change for your etcd endpoint</span>
-  <span style="color:#8f5902;font-style:italic"># address: &#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&#39; # You can set ETCD server ips</span>
-  resources:
-    requests:
-      memory: <span style="color:#4e9a06">&#34;512Mi&#34;</span>
-      cpu: <span style="color:#0000cf;font-weight:bold">1</span>
-  <span style="color:#8f5902;font-style:italic"># nodeSelectorTerms:</span>
-  <span style="color:#8f5902;font-style:italic">#   - matchExpressions:</span>
-  <span style="color:#8f5902;font-style:italic">#     - key: &#34;node-role.kubernetes.io/worker&#34; # Compute node label will vary according to your installation</span>
-  <span style="color:#8f5902;font-style:italic">#       operator: In</span>
-  <span style="color:#8f5902;font-style:italic">#       values:</span>
-  <span style="color:#8f5902;font-style:italic">#       - &#34;true&#34;</span>
-</code></pre></div></li>
-<li>
-<p>Verify that the StorageOS Cluster status is <strong>Running</strong>.</p>
-<blockquote>
-<p>💡 It can take up to a minute to report the Ondat Pods ready.</p>
-</blockquote>
-</li>
-<li>
-<p>Check the StorageOS Pods in the <code>kube-system</code> project.</p>
-<blockquote>
-<p>💡 A Status of 3/3 in the <strong>Ready</strong> column for the Daemonset Pods indicates that Ondat is
-bootstrapped successfully.</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="license-cluster">License cluster</h2>
-<blockquote>
-<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1TiB of provisioned storage.</p>
-</blockquote>
-<p>To obtain a license, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
-<h2 id="first-ondat-volume">First Ondat volume</h2>
-<p>If this is your first installation you may wish to follow the <a href="/docs/operations/firstpvc">Ondat volume guide</a> for an example of how
-to mount an Ondat volume in a Pod.</p>
+<p>If you are running OpenShift there are a number of options on how you run your kubernetes cluster.  Please see the following datasheets and blogs for more information about some of the use-cases of running Ondat in OpenShift.</p>
+<ul>
+<li><a href="https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf">Whitepaper: Ondat Platform Architecture Overview</a></li>
+<li><a href="https://www.ondat.io/webinars/run-production-databases-on-red-hat-openshift-with-ondat">Webinar: Run production databases on Red Hat Openshift</a></li>
+</ul>
+
+        <div class="section-index">
+    
+    
+    
+    
+    <hr class="panel-line">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/docs/install/openshift/openshift-operatorhub/">OpenShift</a>
+                    </h5>
+                    <p>Walkthrough guide to install Ondat onto an OpenShift Cluster via OperatorHub</p>
+                </div>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/docs/install/openshift/openshift-marketplace/">OpenShift</a>
+                    </h5>
+                    <p>Walkthrough guide to install Ondat onto an OpenShift Cluster via the Red Hat marketplace</p>
+                </div>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    
+</div>
 
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
 </div>
-
 
           </main>
         </div>

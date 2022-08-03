@@ -7,6 +7,7 @@
 
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
+<link rel="alternate" type="application/rss&#43;xml" href="/docs/install/rancher/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -20,23 +21,18 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Rancher Kubernetes Engine (RKE) | </title><meta property="og:title" content="Rancher Kubernetes Engine (RKE)" />
-<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Rancher Kubernetes Engine (RKE) cluster. Ondat can be installed on a RKE cluster through two different methods;
- Using the Ondat kubectl plugin. Using Ondat&rsquo;s Helm chart through Rancher&rsquo;s Apps &amp; Marketplace.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/install/rancher/" /><meta property="article:section" content="docs" />
+<title>Rancher | </title><meta property="og:title" content="Rancher" />
+<meta property="og:description" content="Ondat deployment guides for Rancher
+" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/docs/install/rancher/" />
 
-
-
-<meta itemprop="name" content="Rancher Kubernetes Engine (RKE)">
-<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Rancher Kubernetes Engine (RKE) cluster. Ondat can be installed on a RKE cluster through two different methods;
- Using the Ondat kubectl plugin. Using Ondat&rsquo;s Helm chart through Rancher&rsquo;s Apps &amp; Marketplace.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information.">
-
-<meta itemprop="wordCount" content="1044">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Rancher Kubernetes Engine (RKE)"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Rancher Kubernetes Engine (RKE) cluster. Ondat can be installed on a RKE cluster through two different methods;
- Using the Ondat kubectl plugin. Using Ondat&rsquo;s Helm chart through Rancher&rsquo;s Apps &amp; Marketplace.  Prerequisites  ⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main Ondat prerequisites page for more information."/>
+<meta itemprop="name" content="Rancher">
+<meta itemprop="description" content="Ondat deployment guides for Rancher
+"><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rancher"/>
+<meta name="twitter:description" content="Ondat deployment guides for Rancher
+"/>
 
 
 
@@ -79,9 +75,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Rancher Kubernetes Engine (RKE) | </title>
+    <title>Rancher | </title>
   </head>
-  <body class="td-page">
+  <body class="td-section">
     
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXRX3CX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -178,7 +174,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5e55905b0d78daf87e4fbc68dff934f1772468378fcd4af97991c103279a035b5f60551bf1a77d12def704169113736b73e32a06e19b06fa7a7bc9976977853b.json"
+  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.5e55905b0d78daf87e4fbc68dff934f1772468378fcd4af97991c103279a035b5f60551bf1a77d12def704169113736b73e32a06e19b06fa7a7bc9976977853b.json"
+  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
   data-offline-search-base-href="/"
 >
 
@@ -613,7 +609,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
     <li class="collapse show" id="docsinstall">
@@ -628,32 +624,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallamazon-web-services-eks" href="/docs/install/amazon-web-services-eks/">Amazon Elastic Kubernetes Service (EKS)</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallmicrosoft-azure-aks" href="/docs/install/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitalocean-kubernetes" href="/docs/install/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/aws/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">AWS</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallaws">
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallanthos" href="/docs/install/anthos/">Google Anthos</a>
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallawsamazon-web-services-eks" href="/docs/install/aws/amazon-web-services-eks/">Installing on EKS</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgoogle-kubernetes-engine-gke" href="/docs/install/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallawsterraform-aws-eks-blueprints" href="/docs/install/aws/terraform-aws-eks-blueprints/">EKS Terraform Blueprints</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
       
@@ -664,20 +665,171 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/gcp/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">GCP</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallgcp">
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallopenshift" href="/docs/install/openshift/">OpenShift</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallrancher" href="/docs/install/rancher/">Rancher Kubernetes Engine (RKE)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgcpgoogle-kubernetes-engine-gke" href="/docs/install/gcp/google-kubernetes-engine-gke/">Google Kubernetes Engine (GKE)</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancher-gov" href="/docs/install/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallgcpanthos" href="/docs/install/gcp/anthos/">Google Anthos</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/rancher/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Rancher</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="docsinstallrancher">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancherrancher" href="/docs/install/rancher/rancher/">Rancher Kubernetes Engine (RKE)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancherrancher-marketplace" href="/docs/install/rancher/rancher-marketplace/">Rancher Kubernetes Engine (RKE) via Marketplace</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancherrancher-gov" href="/docs/install/rancher/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/azure/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Azure</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallazure">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallazuremicrosoft-azure-aks" href="/docs/install/azure/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/digitalocean/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Digital Ocean</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstalldigitalocean">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitaloceandigitalocean-kubernetes" href="/docs/install/digitalocean/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/openshift/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">OpenShift</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallopenshift">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallopenshiftopenshift-operatorhub" href="/docs/install/openshift/openshift-operatorhub/">OpenShift</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallopenshiftopenshift-marketplace" href="/docs/install/openshift/openshift-marketplace/">OpenShift</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
       
@@ -1461,20 +1613,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#procedure">Procedure</a>
-      <ul>
-        <li><a href="#option-a---using-ondat-kubectl-plugin">Option A - Using Ondat Kubectl Plugin</a></li>
-        <li><a href="#option-b---using-ranchers-apps--marketplace">Option B - Using Rancher&rsquo;s Apps &amp; Marketplace</a></li>
-      </ul>
-    </li>
-    <li><a href="#applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</a></li>
-  </ul>
-</nav>
-
 
 
           </div>
@@ -1510,7 +1648,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/install/rancher/">Rancher Kubernetes Engine (RKE)</a>
+	<a href="/docs/install/rancher/">Rancher</a>
 </li>
 
 	</ol>
@@ -1518,207 +1656,338 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Rancher Kubernetes Engine (RKE)</h1>
-	
+	<h1>Rancher</h1>
+	<div class="lead">Ondat deployment guides for Rancher</div>
 	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to install Ondat onto a <a href="https://rancher.com/products/rke">Rancher Kubernetes Engine (RKE)</a> cluster. Ondat can be installed on a RKE cluster through two different methods;</p>
-<ol>
-<li>Using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</li>
-<li>Using <a href="https://github.com/rancher/partner-charts/tree/main/charts/ondat-operator/ondat-operator">Ondat&rsquo;s Helm chart</a> through <a href="https://rancher.com/docs/rancher/v2.6/en/helm-charts/">Rancher&rsquo;s Apps &amp; Marketplace</a>.</li>
-</ol>
-<h2 id="prerequisites">Prerequisites</h2>
-<blockquote>
-<p>⚠️ Make sure you have met the minimum resource requirements for Ondat to successfully run. Review the main <a href="/docs/prerequisites/">Ondat prerequisites</a> page for more information.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure the following CLI utility is installed on your local machine and is available in your <code>$PATH</code>:</p>
-</blockquote>
+<p>If you are running Rancher there are a number of options on how you run your kubernetes cluster.  Please see the following datasheets and blogs for more information about some of the use-cases of running Ondat in Rancher.</p>
 <ul>
-<li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>
+<li><a href="https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf">Ondat Platform Architecture Overview</a></li>
+<li><a href="https://www.ondat.io/blog/ondat-and-suse-rancher-run-your-stateful-applications-everywhere">Blog: Ondat and SUSE Rancher - Run your stateful applications everywhere</a></li>
 </ul>
-<blockquote>
-<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing. You can request a licence via the <a href="https://portal.ondat.io/">Ondat SaaS Platform</a>.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure you have a running RKE cluster with a minimum of 5 worker nodes and the sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Make sure your RKE cluster uses a Linux distribution that is officially supported by Rancher as your node operating system and has the required LinuxIO related kernel modules are available for Ondat to run successfully. A strong recommendation would be to review <a href="https://www.suse.com/suse-rancher/support-matrix/all-supported-versions/">SUSE Rancher Support Matrix</a> documentation to ensure that you are using a supported Linux distribution.</p>
-</blockquote>
-<h2 id="procedure">Procedure</h2>
-<h3 id="option-a---using-ondat-kubectl-plugin">Option A - Using Ondat Kubectl Plugin</h3>
-<h4 id="step-1---install-ondat-kubectl-plugin">Step 1 - Install Ondat Kubectl Plugin</h4>
-<ul>
-<li>Ensure that the Ondat kubectl plugin is installed on your local machine and is available in your <code>$PATH</code>:
-<ul>
-<li><a href="/docs/reference/kubectl-plugin/">kubectl-storageos</a></li>
-</ul>
-</li>
-</ul>
-<h4 id="step-2---install-local-path-provisioner">Step 2 - Install Local Path Provisioner</h4>
-<ol>
-<li>
-<p>By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a <a href="https://github.com/rancher/local-path-provisioner">Local Path Provisioner</a> to provide local storage for Ondat&rsquo;s embedded <code>etcd</code> cluster operator deployment.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply --filename<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml&#34;</span>
-</code></pre></div></li>
-<li>
-<p>Define and export the <code>ETCD_STORAGECLASS</code> environment variable so that value is <code>local-path</code>, which is the default StorageClass name for the Local Path Provisioner.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">ETCD_STORAGECLASS</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;local-path&#34;</span>
-</code></pre></div></li>
-<li>
-<p>Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  <code>RUNNING</code>  status, run the following  <code>kubectl</code>  commands.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>local-path-storage
-kubectl get storageclass
-</code></pre></div></li>
-</ol>
-<blockquote>
-<p>⚠️ The <code>local-path</code> StorageClass is only recommended for <strong>non production</strong> clusters as this stores all the data of the <code>etcd</code> peers locally which makes it susceptible to state being lost on node failures.</p>
-</blockquote>
-<h4 id="step-3---conducting-preflight-checks">Step 3 - Conducting Preflight Checks</h4>
-<ul>
-<li>
-<p>Run the following command to conduct preflight checks against the RKE cluster to validate that Ondat prerequisites have been met before attempting an installation.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos preflight
-</code></pre></div></li>
-</ul>
-<h4 id="step-4---installing-ondat">Step 4 - Installing Ondat</h4>
-<ol>
-<li>
-<p>Define and export the <code>STORAGEOS_USERNAME</code> and <code>STORAGEOS_PASSWORD</code> environment variables that will be used to manage your Ondat instance.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-<span style="color:#204a87">export</span> <span style="color:#000">STORAGEOS_PASSWORD</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div></li>
-<li>
-<p>Run the following  <code>kubectl-storageos</code> plugin command to install Ondat.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --include-etcd <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-tls-enabled <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-storage-class<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$ETCD_STORAGECLASS</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_USERNAME</span><span style="color:#4e9a06">&#34;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --admin-password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;</span><span style="color:#000">$STORAGEOS_PASSWORD</span><span style="color:#4e9a06">&#34;</span>
-</code></pre></div></li>
-</ol>
-<ul>
-<li>The installation process may take a few minutes.</li>
-</ul>
-<h4 id="step-5---verifying-ondat-installation">Step 5 - Verifying Ondat Installation</h4>
-<ul>
-<li>
-<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
-kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd
-kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div></li>
-</ul>
-<h3 id="option-b---using-ranchers-apps--marketplace">Option B - Using Rancher&rsquo;s Apps &amp; Marketplace</h3>
-<h4 id="step-1---setup-an-etcd-cluster">Step 1 - Setup An <code>etcd</code> Cluster</h4>
-<ul>
-<li>
-<p>Ensure that you have an <code>etcd</code> cluster deployed first before installing Ondat through the Helm chart located on Apps &amp; Marketplace. There are two different methods listed below with instructions on how to deploy an <code>etcd</code> cluster;</p>
-<ol>
-<li><a href="https://docs.ondat.io/docs/prerequisites/etcd/#testing---installing-etcd-into-your-kubernetes-cluster">Embedded Deployment</a> - deploy an <code>etcd</code> cluster operator into your RKE cluster, recommended for <strong>non production</strong> environments.</li>
-<li><a href="https://docs.ondat.io/docs/prerequisites/etcd/#production---etcd-on-external-virtual-machines">External Deployment</a> - deploy an <code>etcd</code> cluster in dedicated virtual machines, recommended for <strong>production</strong> environments.</li>
-</ol>
-</li>
-<li>
-<p>Once you have an <code>etcd</code> cluster up and running, ensure that you note down the list of <code>etcd</code> endpoints as comma-separated values that will be used when configuring Ondat in <strong>Step 3</strong>.</p>
-<ul>
-<li>For example, <code>203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="step-2---locate-ondat-operator-helm-chart">Step 2 - Locate Ondat Operator Helm Chart</h4>
-<ol>
-<li>In the Rancher UI, under the RKE cluster where Ondat will be deployed - select the <strong>Menu</strong> button in the top-left corner of the page and then select <strong>Apps &amp; Marketplace</strong>.</li>
-<li>Under <strong>Apps &amp; Marketplace</strong>, a <strong>Charts</strong> page will be displayed where you can locate the <a href="https://github.com/rancher/partner-charts/tree/main/charts/ondat-operator/ondat-operator">Ondat Operator Helm chart</a> by searching for &ldquo;<strong>Ondat</strong>&rdquo; in the search filter box.</li>
-<li>Once you have located the Ondat Operator Helm chart, select the chart. This will direct you to a page showing you more information about the Ondat Operator and how to install it.</li>
-<li>Select the <strong>Install</strong> button.</li>
-</ol>
-<h4 id="step-3---customising--installing-the-helm-chart">Step 3 - Customising &amp; Installing The Helm Chart</h4>
-<ol>
-<li>
-<p>Upon selecting the <strong>Install</strong> button in the previous step, you will be directed to a page to configure the <strong>Application Metadata</strong>. Define the namespace and application name where Ondat will be deployed and click <strong>Next</strong>.</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Namespace</td>
-<td><code>storageos</code></td>
-<td>Namespace name for the deployment.</td>
-</tr>
-<tr>
-<td>Name</td>
-<td><code>ondat-operator</code></td>
-<td>Application name for the deployment.</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p>The next page will allow you to configure the Ondat Operator through Helm chart values. Under <strong>Edit Options</strong>, you are provided with 3 configurable sections called;</p>
-<ul>
-<li><strong>Questions</strong></li>
-<li><strong>Container Images</strong></li>
-<li><strong>StorageOS Cluster</strong></li>
-</ul>
-</li>
-<li>
-<p>Select the <strong>StorageOS Cluster</strong> section. This will show you a form with configurable parameters that have predefined values for an Ondat deployment. Below are following parameters that will need to be populated before beginning the installation;</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Password</td>
-<td><code>$STORAGEOS_PASSWORD</code></td>
-<td>Password of the StorageOS administrator account. Must be at least 8 characters long, for example &gt; <code>storageos</code></td>
-</tr>
-<tr>
-<td>External <code>etcd</code> address(es)</td>
-<td><code>$ETCD_ENDPOINTS</code></td>
-<td>List of <code>etcd</code> endpoints as comma-separated values. Prefer multiple direct endpoints over a single load-balanced endpoint, for example &gt; <code>203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>💡 <strong>Advanced Users</strong> - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or import your own <code>StorageOSCluster</code> custom resource manifest, review the Ondat Operator <a href="https://github.com/ondat/charts/blob/main/charts/ondat-operator/README.md">README.md</a> document, <a href="/docs/reference/cluster-operator/configuration">Cluster Operator Configuration</a> and  <a href="/docs/reference/cluster-operator/examples">Cluster Operator Examples</a> reference pages for more information.</p>
-</blockquote>
-</li>
-<li>
-<p>Once the parameters have been successfully populated, select <strong>Install</strong> to deploy Ondat.</p>
-</li>
-</ol>
-<h4 id="step-4---verifying-ondat-installation">Step 4 - Verifying Ondat Installation</h4>
-<ul>
-<li>
-<p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
-kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd  <span style="color:#8f5902;font-style:italic"># only if the etcd cluster was deployed inside the RKE cluster.</span>
-kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
-</code></pre></div></li>
-</ul>
-<h2 id="applying-a-licence-to-the-cluster">Applying a Licence to the Cluster</h2>
-<blockquote>
-<p>⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1TiB of provisioned storage.</p>
-</blockquote>
-<p>To obtain a licence, follow the instructions on our <a href="/docs/operations/licensing">licensing operations</a> page.</p>
+
+        <div class="section-index">
+    
+    
+    
+    
+    <hr class="panel-line">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/docs/install/rancher/rancher/">Rancher Kubernetes Engine (RKE)</a>
+                    </h5>
+                    <p>Walkthrough guide to install Ondat onto a Rancher Cluster</p>
+                </div>
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/docs/install/rancher/rancher-marketplace/">Rancher Kubernetes Engine (RKE) via Marketplace</a>
+                    </h5>
+                    <p>Walkthrough guide to install Ondat onto a Rancher Cluster via Marketplace</p>
+                </div>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <div class="entry">
+                    <h5>
+                        <a href="/docs/install/rancher/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
+                    </h5>
+                    <p>Walkthrough guide to install Ondat onto a Rancher RKE2/RKE Government Cluster</p>
+                </div>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    
+</div>
 
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
 </div>
-
 
           </main>
         </div>
