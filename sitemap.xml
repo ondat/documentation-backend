@@ -194,6 +194,8 @@
   </url><url>
     <loc>/docs/operations/managing-host-storage/</loc>
   </url><url>
+    <loc>/docs/operations/trim/</loc>
+  </url><url>
     <loc>/docs/usecases/influxdb/</loc>
   </url><url>
     <loc>/docs/reference/init-container/</loc>
@@ -259,8 +261,6 @@
     <loc>/docs/reference/tolerations/</loc>
   </url><url>
     <loc>/docs/operations/tap/</loc>
-  </url><url>
-    <loc>/docs/operations/trim/</loc>
   </url><url>
     <loc>/docs/operations/troubleshooting/</loc>
   </url><url>

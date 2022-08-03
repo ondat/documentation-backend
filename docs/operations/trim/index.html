@@ -20,26 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>TRIM | </title><meta property="og:title" content="TRIM" />
-<meta property="og:description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
-TRIM can either be called periodically via fstrim or continously using the -o discard mount option. Ondat recommends using periodic discard.
-Periodic Discard In order to TRIM a volume you can run fstrim against the volume filesystem." />
+<title>How To Use TRIM with Ondat Volumes | </title><meta property="og:title" content="How To Use TRIM with Ondat Volumes" />
+<meta property="og:description" content="Overview Ondat volumes support TRIM/UNMAP by default for all uncompressed volumes.
+ Compression is disabled by default from release version v2.2.0, therefore Ondat volumes will support TRIM/UNMAP calls - unless compression is explicitly enabled. By trimming an Ondat volume, this will release space that has been taken up by deleted blocks in Ondat volume blob files. TRIM can either be called periodically through fstrim or continuously using the -o discard mount option." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/trim/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="TRIM">
-<meta itemprop="description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
-TRIM can either be called periodically via fstrim or continously using the -o discard mount option. Ondat recommends using periodic discard.
-Periodic Discard In order to TRIM a volume you can run fstrim against the volume filesystem.">
+<meta itemprop="name" content="How To Use TRIM with Ondat Volumes">
+<meta itemprop="description" content="Overview Ondat volumes support TRIM/UNMAP by default for all uncompressed volumes.
+ Compression is disabled by default from release version v2.2.0, therefore Ondat volumes will support TRIM/UNMAP calls - unless compression is explicitly enabled. By trimming an Ondat volume, this will release space that has been taken up by deleted blocks in Ondat volume blob files. TRIM can either be called periodically through fstrim or continuously using the -o discard mount option.">
 
-<meta itemprop="wordCount" content="632">
+<meta itemprop="wordCount" content="833">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="TRIM"/>
-<meta name="twitter:description" content="Ondat volumes support TRIM/Unmap by default for all uncompressed volumes. Ondat creates uncompressed volumes by default so all of these volumes will support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken up by deleted blocks in the Ondat volume blob files.
-TRIM can either be called periodically via fstrim or continously using the -o discard mount option. Ondat recommends using periodic discard.
-Periodic Discard In order to TRIM a volume you can run fstrim against the volume filesystem."/>
+<meta name="twitter:title" content="How To Use TRIM with Ondat Volumes"/>
+<meta name="twitter:description" content="Overview Ondat volumes support TRIM/UNMAP by default for all uncompressed volumes.
+ Compression is disabled by default from release version v2.2.0, therefore Ondat volumes will support TRIM/UNMAP calls - unless compression is explicitly enabled. By trimming an Ondat volume, this will release space that has been taken up by deleted blocks in Ondat volume blob files. TRIM can either be called periodically through fstrim or continuously using the -o discard mount option."/>
 
 
 
@@ -82,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>TRIM | </title>
+    <title>How To Use TRIM with Ondat Volumes | </title>
   </head>
   <body class="td-page">
     
@@ -181,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
+  data-offline-search-index-json-src="/offline-search-index.5e55905b0d78daf87e4fbc68dff934f1772468378fcd4af97991c103279a035b5f60551bf1a77d12def704169113736b73e32a06e19b06fa7a7bc9976977853b.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.13d5e39abd0f007eabb3722a2bb7dbbbc76926f2650b74d74fb2dcdaaeccc1ed1d00d985e1d6921eb02217e7ead181b05e3b9e5e7b048bc2df28effb804cc73a.json"
+  data-offline-search-index-json-src="/offline-search-index.5e55905b0d78daf87e4fbc68dff934f1772468378fcd4af97991c103279a035b5f60551bf1a77d12def704169113736b73e32a06e19b06fa7a7bc9976977853b.json"
   data-offline-search-base-href="/"
 >
 
@@ -892,6 +889,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationslabel-stos-objects" href="/docs/operations/label-stos-objects/">Labeling Ondat Objects</a>
       
       
@@ -941,12 +944,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstap" href="/docs/operations/tap/">Topology-Aware Placement (TAP)</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationstrim" href="/docs/operations/trim/">TRIM</a>
       
       
       
@@ -1466,12 +1463,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#periodic-discard">Periodic Discard</a>
+    <li><a href="#overview">Overview</a>
       <ul>
-        <li><a href="#automating-periodic-discard">Automating periodic discard</a></li>
+        <li><a href="#example---using-fstrim-to-conduct-periodic-discarding">Example - Using <code>fstrim</code> To Conduct Periodic Discarding</a></li>
+        <li><a href="#example---automate-periodic-discarding-with-fstrim">Example - Automate Periodic Discarding with <code>fstrim</code></a></li>
+        <li><a href="#using-the--o-discard-mount-option-to-conduct-continuous-discarding">Using the <code>-o discard</code> Mount Option To Conduct Continuous Discarding</a></li>
       </ul>
     </li>
-    <li><a href="#continuous-discard">Continuous discard</a></li>
   </ul>
 </nav>
 
@@ -1510,7 +1508,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/trim/">TRIM</a>
+	<a href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
 </li>
 
 	</ol>
@@ -1518,120 +1516,214 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>TRIM</h1>
+	<h1>How To Use TRIM with Ondat Volumes</h1>
 	
-	<p>Ondat volumes support TRIM/Unmap by default for all uncompressed volumes.
-Ondat creates uncompressed volumes by default so all of these volumes will
-support TRIM/Unmap calls. TRIM&rsquo;ing an Ondat volume will release space taken
-up by deleted blocks in the Ondat volume blob files.</p>
-<p>TRIM can either be called periodically via <code>fstrim</code> or continously using the
-<code>-o discard</code> mount option. Ondat recommends using periodic discard.</p>
-<h2 id="periodic-discard">Periodic Discard</h2>
-<p>In order to TRIM a volume you can run <code>fstrim</code> against the volume filesystem.
-The volume filesystem will be presented at the mount point for the Ondat
-device.</p>
-<p>The example below shows the effect of <code>fstrim</code> on an Ondat volume mounted on
-<code>/mnt</code>.</p>
-<pre tabindex="0"><code># A Ondat volume with some data written to it.
-$ ls -ls --block-size 1 /var/lib/storageos/data/dev1/vol.211585.*.blob | awk '!/^total/ {total = total + $1}END{print total}'
+	<h2 id="overview">Overview</h2>
+<p>Ondat volumes support <a href="https://en.wikipedia.org/wiki/Trim_%28computing%29">TRIM/UNMAP</a> by default for all uncompressed volumes.</p>
+<ul>
+<li><a href="/docs/concepts/compression/">Compression</a> is disabled by default from release version <code>v2.2.0</code>, therefore Ondat volumes will support TRIM/UNMAP calls - unless compression is explicitly enabled. By trimming an Ondat volume, this will release space that has been taken up by deleted blocks in Ondat volume blob files.</li>
+<li>TRIM can either be called periodically through <a href="https://man7.org/linux/man-pages/man8/fstrim.8.html"><code>fstrim</code></a> or continuously using the <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/managing_file_systems/discarding-unused-blocks_managing-file-systems#enabling-online-block-discard_discarding-unused-blocks"><code>-o discard</code></a> <a href="https://man7.org/linux/man-pages/man8/mount.8.html"><code>mount</code></a> option.</li>
+<li>The recommended discard method to use is <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/discarding-unused-blocks_managing-file-systems#types-of-block-discard-operations_discarding-unused-blocks">periodic discarding</a>.</li>
+</ul>
+<blockquote>
+<p>💡 For more information on TRIM support with Ondat, review the <a href="/docs/concepts/volumes/#trim">Volumes</a> feature page.</p>
+</blockquote>
+<h3 id="example---using-fstrim-to-conduct-periodic-discarding">Example - Using <code>fstrim</code> To Conduct Periodic Discarding</h3>
+<p>In order to TRIM a volume you can run <code>fstrim</code> against the Ondat volume filesystem. The volume filesystem will be presented at the mount point for the Ondat device.</p>
+<ul>
+<li>Below is an example that shows the effect of <code>fstrim</code> on an Ondat volume mounted on <code>/mnt</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># A Ondat volume with some data written to it.</span>
+ls -ls --block-size <span style="color:#0000cf;font-weight:bold">1</span> /var/lib/storageos/data/dev1/vol.211585.*.blob <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;!/^total/ {total = total + $1}END{print total}&#39;</span>
+
 8.85838e+09
 
-# A Ondat volume is mounted on /mnt
-$ df -h /mnt
+<span style="color:#8f5902;font-style:italic"># A Ondat volume is mounted on &#34;/mnt&#34;.</span>
+df -h /mnt
+
 Filesystem                                                         Size  Used Avail Use% Mounted on
 /var/lib/storageos/volumes/v.bbfae475-3ce3-4238-bf33-cfe88256d813  4.9G  520M  4.1G  12% /mnt
 
-# Delete a file from the volume, sync all filesystems to ensure data has been written and then fstrim the volume filesystem
-$ rm /mnt/test; sync; fstrim /mnt
+<span style="color:#8f5902;font-style:italic"># Delete a file from the volume, sync all filesystems to ensure data has been written and then &#34;fstrim&#34; the volume filesystem.</span>
+rm /mnt/test<span style="color:#000;font-weight:bold">;</span> sync<span style="color:#000;font-weight:bold">;</span> fstrim /mnt
 
-# Observe that the space in the blob files, and thus space in the backend filesystem has been reclaimed.
-$ ls -ls --block-size 1 /var/lib/storageos/data/dev1/vol.211585.*.blob | awk '!/^total/ {total = total + $1}END{print total}'
-469700608
-</code></pre><h3 id="automating-periodic-discard">Automating periodic discard</h3>
-<p>Discard can be automated by running <code>fstrim</code> against mounted Ondat volumes.
-When running in Kubernetes the Kubelet is responsible for mounting volumes into
-pods so the mount endpoints for pods are accessible under
-<code>/var/lib/kubelet/pods</code>. Ondat volume mounts appear as mounts from
-<code>/var/lib/storageos/volumes/v.${DEPLOYMENT_ID}</code> on
-<code>/var/lib/kubelet/pods/${POD_UID}/volumes/kubernetes.io~csi/${PV_ID}/mount</code>.</p>
-<pre tabindex="0"><code>root@unmap:/# mount | awk '/storageos\/volumes\/v.*/'
-/var/lib/storageos/volumes/v.4364e143-865e-45d7-a4a5-e0d964d9e200 on /var/lib/kubelet/pods/29ec4774-71d6-4ba3-b275-f80b47e9f6af/volumes/kubernetes.io~csi/pvc-357a9baa-7b74-49db-8d63-c540b5129ad8/mount type ext4 (rw,relatime,stripe=32)
-/var/lib/storageos/volumes/v.8dc449a4-1fb5-43d8-86d0-e18916a85c18 on /var/lib/kubelet/pods/6bb92a8f-afb5-48c8-837c-56f45e15e5c4/volumes/kubernetes.io~csi/pvc-2d30a2ba-2663-4036-bb1e-e795f226d6f3/mount type ext4 (rw,relatime,stripe=32)
+<span style="color:#8f5902;font-style:italic"># Check and confirm that the space in the blob files, (and thus space in the backend filesystem) has been reclaimed.</span>
+ls -ls --block-size <span style="color:#0000cf;font-weight:bold">1</span> /var/lib/storageos/data/dev1/vol.211585.*.blob <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;!/^total/ {total = total + $1}END{print total}&#39;</span>
 
-root@unmap:/# mount | awk '/storageos\/volumes\/v.*/ {print $3}'
+<span style="color:#0000cf;font-weight:bold">469700608</span>
+</code></pre></div><h3 id="example---automate-periodic-discarding-with-fstrim">Example - Automate Periodic Discarding with <code>fstrim</code></h3>
+<p>Discarding unused blocks can be automated by running <code>fstrim</code> against mounted Ondat volumes.</p>
+<ul>
+<li>When running in Kubernetes, the <a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/">kubelet</a> component is responsible for mounting volumes into pods so the mount endpoints for pods are accessible under <code>/var/lib/kubelet/pods</code>.</li>
+<li>Ondat volume mounts appear as mounts from <code>/var/lib/storageos/volumes/v.${DEPLOYMENT_ID}</code> on <code>/var/lib/kubelet/pods/${POD_UID}/volumes/kubernetes.io~csi/${PV_ID}/mount</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mount <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;/storageos\/volumes\/v.*/&#39;</span>
+
+/var/lib/storageos/volumes/v.4364e143-865e-45d7-a4a5-e0d964d9e200 on /var/lib/kubelet/pods/29ec4774-71d6-4ba3-b275-f80b47e9f6af/volumes/kubernetes.io~csi/pvc-357a9baa-7b74-49db-8d63-c540b5129ad8/mount <span style="color:#204a87">type</span> ext4 <span style="color:#ce5c00;font-weight:bold">(</span>rw,relatime,stripe<span style="color:#ce5c00;font-weight:bold">=</span>32<span style="color:#ce5c00;font-weight:bold">)</span>
+/var/lib/storageos/volumes/v.8dc449a4-1fb5-43d8-86d0-e18916a85c18 on /var/lib/kubelet/pods/6bb92a8f-afb5-48c8-837c-56f45e15e5c4/volumes/kubernetes.io~csi/pvc-2d30a2ba-2663-4036-bb1e-e795f226d6f3/mount <span style="color:#204a87">type</span> ext4 <span style="color:#ce5c00;font-weight:bold">(</span>rw,relatime,stripe<span style="color:#ce5c00;font-weight:bold">=</span>32<span style="color:#ce5c00;font-weight:bold">)</span>
+
+mount <span style="color:#000;font-weight:bold">|</span> awk <span style="color:#4e9a06">&#39;/storageos\/volumes\/v.*/ {print $3}&#39;</span>
+
 /var/lib/kubelet/pods/29ec4774-71d6-4ba3-b275-f80b47e9f6af/volumes/kubernetes.io~csi/pvc-357a9baa-7b74-49db-8d63-c540b5129ad8/mount
 /var/lib/kubelet/pods/6bb92a8f-afb5-48c8-837c-56f45e15e5c4/volumes/kubernetes.io~csi/pvc-2d30a2ba-2663-4036-bb1e-e795f226d6f3/mount
-</code></pre><p>With this information in mind it is therefore possible to use Kubernetes tools
-to automate periodic discard. The <code>SYS_ADMIN</code> capability is required to run
-<code>fstrim</code> and propagation of mounts from the host to the container will allow
-any new Ondat mounts to be picked up by the unmap pod.</p>
-<p>The naïve example below shows how a pod could be used to run fstrim against
-Ondat volumes mounted on the same node that the pod is scheduled on.</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: discard
-spec:
-  containers:
-    - name: fstrim
-/docs.
-      command: [&quot;/bin/bash&quot;]
-      args: [&quot;-c&quot;,&quot;for mount in $(mount | awk '/storageos\\/volumes\\/v.*/ {print $3}'); do if [ -d ${mount}  ]; then fstrim -v ${mount}; fi; sleep 5; done&quot;]
-      securityContext:
-        capabilities:
-          add:
-            - SYS_ADMIN
-      volumeMounts:
-      - mountPath: /var/lib/kubelet
-        mountPropagation: HostToContainer
-        name: kubelet-dir
-  volumes:
-  - hostPath:
-      path: /var/lib/kubelet
-      type: Directory
-    name: kubelet-dir
-</code></pre><p>Alternatively a cronjob on the node itself could be used to <code>fstrim</code> mounted
-Ondat volumes using similar logic.</p>
+</code></pre></div><ul>
+<li>With this information in mind, it is therefore possible to use Kubernetes to automate periodic discarding with <code>fstrim</code>. The <code>SYS_ADMIN</code> capability is required to run <code>fstrim</code> and propagation of mounts from the host to the container will allow any new Ondat mounts to be picked up by the UNMAP pod.</li>
+<li>Below is an example that shows how a Kubenetes pod could be used to run <code>fstrim</code> against Ondat volumes mounted on the same node that the pod is scheduled on.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a pod that conducts periodic discarding of unused blocks with `fstrim`.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Pod</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">discard</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">fstrim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/bash&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ubuntu:latest</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;-c&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#34;for mount in $(mount | awk &#39;/storageos\\/volumes\\/v.*/ {print $3}&#39;); do if [ -d ${mount}  ]; then fstrim -v ${mount}; fi; sleep 5; done&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">securityContext</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">capabilities</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">add</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">            </span>- <span style="color:#000">SYS_ADMIN</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/var/lib/kubelet</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">mountPropagation</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">HostToContainer</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">kubelet-dir</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#204a87;font-weight:bold">hostPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">path</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/var/lib/kubelet</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Directory</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">kubelet-dir</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><ul>
+<li>Alternatively a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/">Kubernetes CronJob</a> on the node itself could be used to <code>fstrim</code> mounted Ondat volumes using similar logic.</li>
+</ul>
 <blockquote>
-<p>⚠️ TRIM can be an I/O intensive operation so care should be taken when
-running <code>fstrim</code> against multiple volumes at once.</p>
+<p>⚠️ Trimming can be an I/O intensive operation so care should be taken when running <code>fstrim</code> against multiple volumes at once.</p>
 </blockquote>
-<h2 id="continuous-discard">Continuous discard</h2>
-<p>Ondat volumes can be mounted using the <code>discard</code> option which will
-automatically send TRIM commands when blocks are removed. Caution should be
-used enabling this option as testing has shown that volumes with a lot of churn
-can experience performance degradation. The pathological case being a volume
-that is continuously filled with small files that are then all deleted,
-repeatedly. The <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/managing_file_systems/discarding-unused-blocks_managing-file-systems#types-of-block-discard-operations_discarding-unused-blocks">RHEL documentation also recommends doing perodic
-discards</a>.</p>
-<p>The discard option can be enabled as a StorageClass or PersistentVolume option.
-Enabling <code>discard</code> as a StorageClass option will result in all volumes
-provisioned with that StorageClass being mounted with <code>discard</code> whereas setting
-it as a PersistentVolume option sets it on a per volume basis.</p>
-<p>The StorageClass below would provision xfs volumes with the <code>discard</code> option
-enabled by default.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+<h3 id="using-the--o-discard-mount-option-to-conduct-continuous-discarding">Using the <code>-o discard</code> Mount Option To Conduct Continuous Discarding</h3>
+<p>Ondat volumes can be mounted using the <code>-o discard</code> <code>mount</code> option which will automatically send TRIM commands when blocks are removed.</p>
+<blockquote>
+<p>⚠️ Caution should be used enabling this option as testing has shown that volumes with a lot of churn can experience performance degradation. The pathological case being a volume that is continuously filled with small files that are then all deleted, repeatedly.</p>
+</blockquote>
+<p>The <code>discard</code> option can be enabled as a <code>StorageClass</code> or <code>PersistentVolume</code>. Enabling <code>discard</code> as a <code>StorageClass</code> option will result in all volumes
+provisioned with that StorageClass being mounted with <code>discard</code>, whereas setting the option through a <code>PersistentVolume</code> will set discarding on a per-volume basis.</p>
+<ul>
+<li>Below is an exmaple that uses a custom Ondat <code>StorageClass</code> to provision StorageClass below would provision xfs volumes with the <code>discard</code> option
+enabled by default.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Use the discard mount option for all Ondat volumes created with this StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-discard</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-discard</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">/docs.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">xfs</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">mountOptions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#000">discard</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>You can also edit an existing PersistentVolume to add <code>discard</code> to
-<code>.spec.mountOptions</code>, this ensures that the next time the volume is mounted it
-will use <code>-o discard</code>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolume</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">/docs.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#000">discard                          </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># add the &#34;discard&#34; option here</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that &#34;ondat-discard&#34; was created.</span>
+kubectl get sc <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;ondat-discard&#34;</span>
+</code></pre></div><ul>
+<li>To enable discarding for an existing Ondat <code>PersistentVolume</code>, end users can apply the <code>discard</code> option under the <code>spec.mountOptions</code> section.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;pvc-discard&#34; PVC that uses the default Ondat StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-discard</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">/docs.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get more information on &#34;pvc-discard&#34; and its PV name and resource.</span>
+kubectl get pvc pvc-discard --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
+
+NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE     VOLUMEMODE   LABELS
+pvc-discard   Bound    pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528   5Gi        RWO            storageos      3m45s   Filesystem   &lt;none&gt;
+
+kubectl get pv <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;pvc-discard&#34;</span>
+
+pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528   5Gi        RWO            Delete           Bound    default/pvc-discard          storageos               4m3s
+</code></pre></div><ul>
+<li>Edit <code>pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528</code> and add the <code>discard</code> mount option to the resource.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Edit the &#34;pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528&#34;</span>
+kubectl edit pv pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528
+
+<span style="color:#8f5902;font-style:italic"># apply the discard mount option...</span>
+
+  mountOptions:
+  - discard
+
+<span style="color:#8f5902;font-style:italic"># save and exit from the editor.</span>
+</code></pre></div><ul>
+<li>Check and review that the <code>discard</code> option has been successfully applied to the <code>pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528</code> persistent volume.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pv pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528 --output<span style="color:#ce5c00;font-weight:bold">=</span>yaml
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolume</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">annotations</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">pv.kubernetes.io/provisioned-by</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">creationTimestamp</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2022-08-02T16:29:57Z&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">finalizers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#000">kubernetes.io/pv-protection</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resourceVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;121296&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">uid</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">e8eef812-6091-43b4-aad3-4faa5bfaed29</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">capacity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">claimRef</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-discard</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">default</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">resourceVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;119349&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">uid</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">c24d5506-53ae-436a-8e07-5ed6cbefa528</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">controllerExpandSecretRef</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">controllerPublishSecretRef</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">driver</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">fsType</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">nodePublishSecretRef</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">nodeStageSecretRef</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeAttributes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/pv/name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-c24d5506-53ae-436a-8e07-5ed6cbefa528</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/pvc/name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-discard</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/pvc/namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">default</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage.kubernetes.io/csiProvisionerIdentity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1659453485570-8081</span>-<span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storageos.com/nocompress</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeHandle</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">88ff9cd9-6f29-4d79-b216-8d8c573bdef5/2f85ce13-7383-4f9d-bb0b-dcbc3e195bf3</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">mountOptions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#000">discard</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">persistentVolumeReclaimPolicy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Delete</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">volumeMode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Filesystem</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">status</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">phase</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Bound</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div>
 	
 	
