@@ -46,8 +46,6 @@
   </url><url>
     <loc>/docs/reference/policies/</loc>
   </url><url>
-    <loc>/docs/install/quick-start-guide/</loc>
-  </url><url>
     <loc>/docs/install/gcp/google-kubernetes-engine-gke/</loc>
   </url><url>
     <loc>/docs/install/aws/amazon-web-services-eks/</loc>
@@ -101,6 +99,8 @@
     <loc>/docs/install/declarative-install/</loc>
   </url><url>
     <loc>/docs/install/aws/terraform-aws-eks-blueprints/</loc>
+  </url><url>
+    <loc>/docs/install/quick-start-guide/</loc>
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
   </url><url>

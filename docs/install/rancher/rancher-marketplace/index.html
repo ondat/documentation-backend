@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Walkthrough guide to install Ondat onto a Rancher Cluster via Marketplace
 ">
 
-<meta itemprop="wordCount" content="846">
+<meta itemprop="wordCount" content="842">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rancher Kubernetes Engine (RKE) via Marketplace"/>
 <meta name="twitter:description" content="Walkthrough guide to install Ondat onto a Rancher Cluster via Marketplace
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
+  data-offline-search-index-json-src="/offline-search-index.1b0ff28320b854129e773b88183ca103e3a5b0327c4e7e0ffd825da74db15364a05ae88285c5d29adc82747260e4de9ecddbacca0f380071d3b41b9437d29bce.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
+  data-offline-search-index-json-src="/offline-search-index.1b0ff28320b854129e773b88183ca103e3a5b0327c4e7e0ffd825da74db15364a05ae88285c5d29adc82747260e4de9ecddbacca0f380071d3b41b9437d29bce.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,12 +622,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
-      
-      
-      
-      
 
 
 
@@ -846,6 +840,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
       
       
     </li>
@@ -1701,18 +1701,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>For a comprehensive list of prerequisites and how to build a <strong>production installation</strong> of Ondat please refer to <a href="https://docs.ondat.io/docs/prerequisites/">Ondat Prerequisites</a></p>
 <h3 id="2---installing-a-local-path-provisioner">2 - Installing a Local Path Provisioner</h3>
 <p>By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a <a href="https://github.com/rancher/local-path-provisioner">Local Path Provisioner</a> and make it the default storageclass to provide local storage for Ondat&rsquo;s embedded <code>etcd</code> cluster operator deployment.</p>
-<pre><code>```bash  
-kubectl apply --filename=&quot;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml&quot;
-kubectl patch storageclass local-path -p '{&quot;metadata&quot;: {&quot;annotations&quot;:{&quot;storageclass.kubernetes.io/is-default-class&quot;:&quot;true&quot;}}}'
-```
-</code></pre>
-<p>Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  <code>RUNNING</code> status, run the following <code>kubectl</code> commands.</p>
-<pre><code>```bash
-kubectl get pod --namespace=local-path-storage
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply --filename<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml&#34;</span>
+kubectl patch storageclass local-path -p <span style="color:#4e9a06">&#39;{&#34;metadata&#34;: {&#34;annotations&#34;:{&#34;storageclass.kubernetes.io/is-default-class&#34;:&#34;true&#34;}}}&#39;</span>
+</code></pre></div><p>Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  <code>RUNNING</code> status, run the following <code>kubectl</code> commands.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>local-path-storage
 kubectl get storageclass
-```
-</code></pre>
-<h3 id="3---client-tools-prerequisites">3 - Client Tools Prerequisites</h3>
+</code></pre></div><h3 id="3---client-tools-prerequisites">3 - Client Tools Prerequisites</h3>
 <p>The following CLI utilities are installed on your local machine and available in your <code>$PATH</code>:</p>
 <ul>
 <li><a href="https://kubernetes.io/docs/tasks/tools/#kubectl">kubectl</a></li>

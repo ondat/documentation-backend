@@ -36,18 +36,12 @@
 &lt;p&gt;For a comprehensive list of prerequisites and how to build a &lt;strong&gt;production installation&lt;/strong&gt; of Ondat please refer to &lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/&#34;&gt;Ondat Prerequisites&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;2---installing-a-local-path-provisioner&#34;&gt;2 - Installing a Local Path Provisioner&lt;/h3&gt;
 &lt;p&gt;By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a &lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt; and make it the default storageclass to provide local storage for Ondat&amp;rsquo;s embedded &lt;code&gt;etcd&lt;/code&gt; cluster operator deployment.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```bash  
-kubectl apply --filename=&amp;quot;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml&amp;quot;
-kubectl patch storageclass local-path -p &#39;{&amp;quot;metadata&amp;quot;: {&amp;quot;annotations&amp;quot;:{&amp;quot;storageclass.kubernetes.io/is-default-class&amp;quot;:&amp;quot;true&amp;quot;}}}&#39;
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt; status, run the following &lt;code&gt;kubectl&lt;/code&gt; commands.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```bash
-kubectl get pod --namespace=local-path-storage
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply --filename&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml&amp;#34;&lt;/span&gt;
+kubectl patch storageclass local-path -p &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{&amp;#34;metadata&amp;#34;: {&amp;#34;annotations&amp;#34;:{&amp;#34;storageclass.kubernetes.io/is-default-class&amp;#34;:&amp;#34;true&amp;#34;}}}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt; status, run the following &lt;code&gt;kubectl&lt;/code&gt; commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage
 kubectl get storageclass
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;3---client-tools-prerequisites&#34;&gt;3 - Client Tools Prerequisites&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3---client-tools-prerequisites&#34;&gt;3 - Client Tools Prerequisites&lt;/h3&gt;
 &lt;p&gt;The following CLI utilities are installed on your local machine and available in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;
@@ -150,18 +144,12 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;For a comprehensive list of prerequisites and how to build a &lt;strong&gt;production installation&lt;/strong&gt; of Ondat please refer to &lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/&#34;&gt;Ondat Prerequisites&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;2---installing-a-local-path-provisioner&#34;&gt;2 - Installing a Local Path Provisioner&lt;/h3&gt;
 &lt;p&gt;By default, a newly provisioned RKE cluster does not have any CSI driver deployed. Run the following commands against the cluster to deploy a &lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt; and make it the default storageclass to provide local storage for Ondat&amp;rsquo;s embedded &lt;code&gt;etcd&lt;/code&gt; cluster operator deployment.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```bash  
-kubectl apply --filename=&amp;quot;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml&amp;quot;
-kubectl patch storageclass local-path -p &#39;{&amp;quot;metadata&amp;quot;: {&amp;quot;annotations&amp;quot;:{&amp;quot;storageclass.kubernetes.io/is-default-class&amp;quot;:&amp;quot;true&amp;quot;}}}&#39;
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt; status, run the following &lt;code&gt;kubectl&lt;/code&gt; commands.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;```bash
-kubectl get pod --namespace=local-path-storage
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl apply --filename&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml&amp;#34;&lt;/span&gt;
+kubectl patch storageclass local-path -p &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{&amp;#34;metadata&amp;#34;: {&amp;#34;annotations&amp;#34;:{&amp;#34;storageclass.kubernetes.io/is-default-class&amp;#34;:&amp;#34;true&amp;#34;}}}&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Verify that the Local Path Provisioner was successfully deployed and ensure that that the deployment is in a  &lt;code&gt;RUNNING&lt;/code&gt; status, run the following &lt;code&gt;kubectl&lt;/code&gt; commands.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path-storage
 kubectl get storageclass
-```
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;3---client-tools-prerequisites&#34;&gt;3 - Client Tools Prerequisites&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;3---client-tools-prerequisites&#34;&gt;3 - Client Tools Prerequisites&lt;/h3&gt;
 &lt;p&gt;The following CLI utilities are installed on your local machine and available in your &lt;code&gt;$PATH&lt;/code&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/#kubectl&#34;&gt;kubectl&lt;/a&gt;&lt;/li&gt;

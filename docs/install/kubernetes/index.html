@@ -21,22 +21,22 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Kubernetes | </title><meta property="og:title" content="Kubernetes" />
-<meta property="og:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the Ondat kubectl plugin. Ondat requires an etcd cluster to successfully run, which can be deployed through two different methods listed below;
- Embedded etcd Deployment - deploy an etcd cluster operator into your Kubernetes cluster External etcd Deployment - deploy an etcd cluster in dedicated virtual machines   💡 For users who are looking to deploy Ondat onto a managed/specific Kubernetes distribution such AKS, EKS, GKE, RKE or DOKS, a recommendation would be to review the Install section and choose the appropriate installation guide for your Kubernetes distribution." />
+<meta property="og:description" content="Ondat deployment guides for a vanilla Kubernetes cluster
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/install/kubernetes/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Kubernetes">
-<meta itemprop="description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the Ondat kubectl plugin. Ondat requires an etcd cluster to successfully run, which can be deployed through two different methods listed below;
- Embedded etcd Deployment - deploy an etcd cluster operator into your Kubernetes cluster External etcd Deployment - deploy an etcd cluster in dedicated virtual machines   💡 For users who are looking to deploy Ondat onto a managed/specific Kubernetes distribution such AKS, EKS, GKE, RKE or DOKS, a recommendation would be to review the Install section and choose the appropriate installation guide for your Kubernetes distribution.">
+<meta itemprop="description" content="Ondat deployment guides for a vanilla Kubernetes cluster
+">
 
 <meta itemprop="wordCount" content="805">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Kubernetes"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to install Ondat onto a Kubernetes cluster using the Ondat kubectl plugin. Ondat requires an etcd cluster to successfully run, which can be deployed through two different methods listed below;
- Embedded etcd Deployment - deploy an etcd cluster operator into your Kubernetes cluster External etcd Deployment - deploy an etcd cluster in dedicated virtual machines   💡 For users who are looking to deploy Ondat onto a managed/specific Kubernetes distribution such AKS, EKS, GKE, RKE or DOKS, a recommendation would be to review the Install section and choose the appropriate installation guide for your Kubernetes distribution."/>
+<meta name="twitter:description" content="Ondat deployment guides for a vanilla Kubernetes cluster
+"/>
 
 
 
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
+  data-offline-search-index-json-src="/offline-search-index.1b0ff28320b854129e773b88183ca103e3a5b0327c4e7e0ffd825da74db15364a05ae88285c5d29adc82747260e4de9ecddbacca0f380071d3b41b9437d29bce.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.89f4a2866beffd2565842dea13663970059b4d44b6bba609010244a95db1302eab42531f473993e534ae431a148211d918e9ad4d1eb2e94e6ac9298aab2f8d69.json"
+  data-offline-search-index-json-src="/offline-search-index.1b0ff28320b854129e773b88183ca103e3a5b0327c4e7e0ffd825da74db15364a05ae88285c5d29adc82747260e4de9ecddbacca0f380071d3b41b9437d29bce.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,12 +622,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
-      
-      
-      
-      
 
 
 
@@ -846,6 +840,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
       
       
     </li>
@@ -1675,7 +1675,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <div class="td-content">
 	<h1>Kubernetes</h1>
-	
+	<div class="lead">Ondat deployment guides for a vanilla Kubernetes cluster</div>
 	<h2 id="overview">Overview</h2>
 <p>This guide will demonstrate how to install Ondat onto a <a href="https://kubernetes.io/docs/setup/">Kubernetes</a> cluster using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>. Ondat requires an <code>etcd</code> cluster to successfully run, which can be deployed through two different methods listed below;</p>
 <ol>
