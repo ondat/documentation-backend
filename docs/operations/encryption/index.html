@@ -20,26 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Encryption | </title><meta property="og:title" content="Encryption" />
-<meta property="og:description" content="For more detail on encryption at rest in Ondat, see the reference page.
-Enabling encryption on a volume Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This can be set on the PVC or on the PVC&rsquo;s StorageClass.
-This label is all that is needed. If it is present, the mutating admission webhook that runs as part of the Ondat API Manager will create the encryption key, link it to the PVC and store it in a secret." />
+<title>How To Enable Data Encryption For Volumes | </title><meta property="og:title" content="How To Enable Data Encryption For Volumes" />
+<meta property="og:description" content="Overview Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This label can be applied against a PersistentVolumeClaim (PVC) resource definition or through a custom Ondat StorageClass resource definition.
+ Only the label is required to enable encryption. Once the label is present - during the volume creation, the MutatingAdmissionWebhook that runs as part of the Ondat API Manager, will create the volume encryption key, link it to the PVC and store it in a Kubernetes secret." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/encryption/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Encryption">
-<meta itemprop="description" content="For more detail on encryption at rest in Ondat, see the reference page.
-Enabling encryption on a volume Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This can be set on the PVC or on the PVC&rsquo;s StorageClass.
-This label is all that is needed. If it is present, the mutating admission webhook that runs as part of the Ondat API Manager will create the encryption key, link it to the PVC and store it in a secret.">
+<meta itemprop="name" content="How To Enable Data Encryption For Volumes">
+<meta itemprop="description" content="Overview Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This label can be applied against a PersistentVolumeClaim (PVC) resource definition or through a custom Ondat StorageClass resource definition.
+ Only the label is required to enable encryption. Once the label is present - during the volume creation, the MutatingAdmissionWebhook that runs as part of the Ondat API Manager, will create the volume encryption key, link it to the PVC and store it in a Kubernetes secret.">
 
-<meta itemprop="wordCount" content="177">
+<meta itemprop="wordCount" content="1423">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Encryption"/>
-<meta name="twitter:description" content="For more detail on encryption at rest in Ondat, see the reference page.
-Enabling encryption on a volume Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This can be set on the PVC or on the PVC&rsquo;s StorageClass.
-This label is all that is needed. If it is present, the mutating admission webhook that runs as part of the Ondat API Manager will create the encryption key, link it to the PVC and store it in a secret."/>
+<meta name="twitter:title" content="How To Enable Data Encryption For Volumes"/>
+<meta name="twitter:description" content="Overview Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This label can be applied against a PersistentVolumeClaim (PVC) resource definition or through a custom Ondat StorageClass resource definition.
+ Only the label is required to enable encryption. Once the label is present - during the volume creation, the MutatingAdmissionWebhook that runs as part of the Ondat API Manager, will create the volume encryption key, link it to the PVC and store it in a Kubernetes secret."/>
 
 
 
@@ -82,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Encryption | </title>
+    <title>How To Enable Data Encryption For Volumes | </title>
   </head>
   <body class="td-page">
     
@@ -181,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -918,12 +915,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup &amp; restores using Ondat Snapshots with Kasten K10</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -943,12 +934,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsencryption" href="/docs/operations/encryption/">Encryption</a>
       
       
       
@@ -1024,18 +1009,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">Failure Modes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">Fencing</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First PVC</a>
       
       
@@ -1048,7 +1021,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompression" href="/docs/operations/compression/">How To Enable Data Compression</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsencryption" href="/docs/operations/encryption/">How To Enable Data Encryption For Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">How To Enable Fencing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstap" href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompute-only" href="/docs/operations/compute-only/">How To Setup A Centralised Cluster Topology</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">How To Use Failure Modes</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsreplication" href="/docs/operations/replication/">How To Use Volume Replication</a>
       
       
       
@@ -1097,12 +1118,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">StorageClasses</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstap" href="/docs/operations/tap/">Topology-Aware Placement (TAP)</a>
       
       
       
@@ -1622,8 +1637,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#enabling-encryption-on-a-volume">Enabling encryption on a volume</a></li>
-    <li><a href="#an-example-encrypted-volume">An example encrypted volume</a></li>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#example---enable-volume-data-encryption-through-a-persistentvolumeclaim-definition">Example - Enable Volume Data Encryption Through a <code>PersistentVolumeClaim</code> Definition</a></li>
+        <li><a href="#example---enable-volume-data-encryption-through-a-storageclass-definition">Example - Enable Volume Data Encryption Through a <code>StorageClass</code> Definition</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -1662,7 +1681,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/encryption/">Encryption</a>
+	<a href="/docs/operations/encryption/">How To Enable Data Encryption For Volumes</a>
 </li>
 
 	</ol>
@@ -1670,47 +1689,224 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Encryption</h1>
+	<h1>How To Enable Data Encryption For Volumes</h1>
 	
-	<p>For more detail on encryption at rest in Ondat, see <a href="/docs/reference/encryption">the reference page</a>.</p>
-<h2 id="enabling-encryption-on-a-volume">Enabling encryption on a volume</h2>
-<p>Encrypting a volume is done by simply creating a volume with the
-<code>storageos.com/encryption=true</code> label. This can be set on the PVC or on
-the PVC&rsquo;s StorageClass.</p>
-<p>This label is all that is needed. If it is present, the mutating admission
-webhook that runs as part of the Ondat API Manager will create the
-encryption key, link it to the PVC and store it in a secret.</p>
-<p>Encryption is enabled when a volume is provisioned, and it can not be removed
-during during the volume&rsquo;s lifetime.</p>
-<h2 id="an-example-encrypted-volume">An example encrypted volume</h2>
+	<h2 id="overview">Overview</h2>
+<p>Encrypting a volume is done by simply creating a volume with the <code>storageos.com/encryption=true</code> label. This label can be applied against a <code>PersistentVolumeClaim</code> (PVC) resource definition or through a custom Ondat <code>StorageClass</code> resource definition.</p>
 <ul>
+<li>Only the label is required to enable encryption. Once the label is present - during the volume creation, the <a href="https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/"><code>MutatingAdmissionWebhook</code></a> that runs as part of the <a href="/docs/concepts/components/#ondat-api-manager">Ondat API Manager</a>, will create the volume encryption key, link it to the PVC and store it in a <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes secret</a>.</li>
+</ul>
+<blockquote>
+<p>⚠️ Encryption can only be enabled before an Ondat volume is provisioned. Once the encrypted volume has been created, encryption cannot be removed during the <a href="https://spot.io/resources/kubernetes-architecture/7-stages-in-the-life-of-a-kubernetes-persistent-volume-pv/">volume&rsquo;s lifetime</a>.</p>
+</blockquote>
+<blockquote>
+<p>💡 For more information on the Ondat&rsquo;s Data Encryption feature, review the <a href="/docs/concepts/encryption">Data Encryption</a> feature page.</p>
+</blockquote>
+<h3 id="example---enable-volume-data-encryption-through-a-persistentvolumeclaim-definition">Example - Enable Volume Data Encryption Through a <code>PersistentVolumeClaim</code> Definition</h3>
+<p>The following guidance will demonstrate how to enable Ondat&rsquo;s Data Encryption through a  <code>PersistentVolumeClaim</code> (PVC) definition.</p>
+<ul>
+<li>The instructions will enable data encryption on a PVC that will be used by a <code>StatefulSet</code> resource in the <code>encrypted</code> namespace.</li>
+</ul>
+<ol>
 <li>
-<p>Option 1: Label the PVC</p>
-<p>Add the label in the PVC definition, for instance:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+<p>Create a namespace called <code>encrypted</code> where the encrypted volume and <code>StatefulSet</code> will reside.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create namespace called &#34;encrypted&#34;.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Namespace</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Create a custom <code>PersistentVolumeClaim</code> named <code>encrypted</code> and ensure that you add the following label &raquo; <code>storageos.com/encryption=true</code> to the manifest.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;encrypted&#34; PVC.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted-vol</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/encryption</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Label &lt;-----</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/encryption</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#8f5902;font-style:italic"># Enable Data Encryption.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos               </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the default Ondat StorageClass to provision persistent volumes.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">1G</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>The encryption label as set on a PVC takes precedence over the encryption
-label as set on the PVC&rsquo;s StorageClass.</p>
-</li>
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
 <li>
-<p>Option 2: Add a parameter to the StorageClass</p>
-<p>Add a parameter to the StorageClass definition. This will cause the above
-label to be present on PVCs created using this StorageClass. For instance:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+<p>Once the PVC resource has been successfully created, review and confirm that the <code>storageos.com/encryption=true</code> label has been applied.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the label applied to the &#34;encrypted&#34; PVC.</span>
+kubectl get pvc encrypted --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+</code></pre></div></li>
+<li>
+<p>Create a <code>StatefulSet</code> workload in the <code>encrypted</code> namespace that uses the <code>encrypted</code> PVC that was created in <em>Step 2</em>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a StatefulSet workload that uses the &#34;encrypted&#34; PVC.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">apps/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StatefulSet</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted                            </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Create the StatefulSet workload in the &#34;encrypted&#34; namespace.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">serviceName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">persistentVolumeClaim</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">claimName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted                    </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the &#34;encrypted&#34; PVC for the StatefulSet workload.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">spurin/gatsby:latest</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">imagePullPolicy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Always</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/data&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that StatefulSet workload was successfully created.</span>
+kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+kubectl get statefulsets.apps --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+</code></pre></div></li>
+<li>
+<p>To review and confirm that volume encryption is enabled and working, run the following commands below to inspect the resources created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review the secrets created in &#34;encrypted&#34; namespace. </span>
+<span style="color:#8f5902;font-style:italic"># There will be a &#34;namespace&#34; and &#34;volume&#34; encryption key generated by Ondat.</span>
+kubectl get secrets --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+
+NAME                                                        TYPE                                  DATA   AGE
+default-token-zm5dk                                         kubernetes.io/service-account-token   <span style="color:#0000cf;font-weight:bold">3</span>      81s
+storageos-namespace-key                                     Opaque                                <span style="color:#0000cf;font-weight:bold">1</span>      63s
+storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572   Opaque                                <span style="color:#0000cf;font-weight:bold">4</span>      63s
+
+<span style="color:#8f5902;font-style:italic"># Describe all of the secrets in the &#34;encrypted&#34; namespace related to Ondat.</span>
+<span style="color:#8f5902;font-style:italic"># Notice that there is a &#34;storageos-namespace-key&#34; - 1 unique key per namespace)</span>
+<span style="color:#8f5902;font-style:italic"># Notice that there is a &#34;storageos-volume-key-$RANDOM&#34; - 1 unique key per volume in the namespace.</span>
+<span style="color:#8f5902;font-style:italic"># Take note of the annotation &#34;storageos.com/pvc=encrypted&#34; under the &#34;storageos-volume-key-$RANDOM&#34; secret</span>
+kubectl describe secrets <span style="color:#4e9a06">&#34;storageos&#34;</span> --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+
+Name:         storageos-namespace-key
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component<span style="color:#ce5c00;font-weight:bold">=</span>storageos-api-manager
+              app.kubernetes.io/managed-by<span style="color:#ce5c00;font-weight:bold">=</span>storageos-operator
+              app.kubernetes.io/name<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+              app.kubernetes.io/part-of<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+Annotations:  &lt;none&gt;
+
+Type:  Opaque
+
+<span style="color:#000">Data</span>
+<span style="color:#ce5c00;font-weight:bold">====</span>
+key:  <span style="color:#0000cf;font-weight:bold">32</span> bytes
+
+Name:         storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component<span style="color:#ce5c00;font-weight:bold">=</span>storageos-api-manager
+              app.kubernetes.io/managed-by<span style="color:#ce5c00;font-weight:bold">=</span>storageos-operator
+              app.kubernetes.io/name<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+              app.kubernetes.io/part-of<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+              storageos.com/pvc<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+Annotations:  &lt;none&gt;
+
+Type:  Opaque
+
+<span style="color:#000">Data</span>
+<span style="color:#ce5c00;font-weight:bold">====</span>
+hmac:  <span style="color:#0000cf;font-weight:bold">32</span> bytes
+iv:    <span style="color:#0000cf;font-weight:bold">32</span> bytes
+key:   <span style="color:#0000cf;font-weight:bold">64</span> bytes
+vuk:   <span style="color:#0000cf;font-weight:bold">80</span> bytes
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Review &#34;storageos-volume-key-$RANDOM&#34;.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># Notice that there are 4 data objects stored in the secret &gt; &#34;hmac&#34;, &#34;iv&#34;, &#34;vuk&#34;, &#34;iv&#34; respectively.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">kubectl get secrets storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572 --namespace=encrypted --output=yaml</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hmac</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mDIGqgm1mcjdJycz0Mg807+j+B9cCL59tuQwdvW0ow4=</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">iv</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">gTto6RstRUamHwbn/QDZODTOuE2T2D9WzjX1ck8nZSg=</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">FNiJp5hyoKxMTgJismLHuD0fuFgW6ozsg3vKHs2Zpzqj0enLLfT+yIiFtWW88TIi+ZpNP4hwnqpKMvKOKzU3jA==</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">vuk</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">kWqmRear2ew6lEv48b/d3U6JJh58LCzeuY9r06Xi6dCKTBaHrLQD2A+gtxuZ0HHhoTwO1nEYAIE20QALRAi61GrosRmQzm05Jov0D/aZJ9Q=</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Secret</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">creationTimestamp</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2022-07-25T13:08:12Z&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/component</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api-manager</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/managed-by</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-operator</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/part-of</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/pvc</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-volume-key-e186b6c8-ba47-4bef-9293-56ad58a2b572</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resourceVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;64424&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">uid</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">481ace83-8fb8-4656-8820-a8b8dec88017</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>The last step will be to try and read the data on the node where the encrypted volume resides.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the node locations where &#34;encrypted-0&#34; pod is running.</span>
+kubectl get pods --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted --output<span style="color:#ce5c00;font-weight:bold">=</span>wide
+
+NAME          READY   STATUS    RESTARTS   AGE    IP           NODE                              NOMINATED NODE   READINESS GATES
+encrypted-0   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          8m4s   10.244.3.6   aks-storage-26370890-vmss000000   &lt;none&gt;           &lt;none&gt;
+
+<span style="color:#8f5902;font-style:italic"># Use &#34;kubectl debug&#34; to temporarily run a privileged container on the node where &#34;encrypted-0&#34; is located.</span>
+kubectl debug node/aks-storage-26370890-vmss000000 -it --image<span style="color:#ce5c00;font-weight:bold">=</span>ubuntu:latest
+
+<span style="color:#8f5902;font-style:italic"># Through the privileged container, update the repository index and install &#34;binutils&#34; to access the &#34;strings&#34; utility.</span>
+apt update <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> apt install --yes binutils
+
+<span style="color:#8f5902;font-style:italic"># Navigate to where data is being stored as blob files on the node and list the files.</span>
+<span style="color:#204a87">cd</span> /host/var/lib/storageos/data/dev1/
+ls -lah
+
+total 340M
+drwxr-xr-x <span style="color:#0000cf;font-weight:bold">2</span> root root 4.0K Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:08 .
+drwxr-xr-x <span style="color:#0000cf;font-weight:bold">4</span> root root 4.0K Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:08 ..
+-rw------- <span style="color:#0000cf;font-weight:bold">1</span> root root  42M Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:09 deployment.094b604f-a30a-4879-8976-0614ae15d5af.0.blob
+-rw------- <span style="color:#0000cf;font-weight:bold">1</span> root root  42M Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:09 deployment.094b604f-a30a-4879-8976-0614ae15d5af.1.blob
+
+<span style="color:#8f5902;font-style:italic"># Use the &#34;strings&#34; utilty to try and read the content of the blob files in the directory.</span>
+<span style="color:#8f5902;font-style:italic"># Note - the output will return multiple strings of random, unreadable characters as the content is encrypted.</span>
+strings *.blob <span style="color:#000;font-weight:bold">|</span> head -10
+
+<span style="color:#000">SbP4E</span>
+<span style="color:#ce5c00;font-weight:bold">=</span>oZ5
+ey<span style="color:#ce5c00;font-weight:bold">{</span>*t<span style="color:#000;font-weight:bold">|</span>N
+<span style="color:#4e9a06">`</span>0<span style="color:#000;font-weight:bold">|</span>_
+xdR&gt;
+q6Yul
+<span style="color:#ce5c00;font-weight:bold">(</span>OF<span style="color:#ce5c00;font-weight:bold">(</span>a
+kbY#<span style="color:#ce5c00;font-weight:bold">(</span>
+5- n
+02p8
+
+<span style="color:#8f5902;font-style:italic"># exit from the pod and return to your local shell</span>
+<span style="color:#204a87">exit</span>
+</code></pre></div></li>
+</ol>
+<h3 id="example---enable-volume-data-encryption-through-a-storageclass-definition">Example - Enable Volume Data Encryption Through a <code>StorageClass</code> Definition</h3>
+<p>The following guidance will demonstrates how to enable Ondat&rsquo;s Data Encryption through a <code>StorageClass</code> (PVC) definition.</p>
+<ul>
+<li>
+<p>The instructions will enable data encryption for PVCs through a custom <code>StorageClass</code> that will be used by a <code>StatefulSet</code> resource in the <code>encrypted</code> namespace.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-tap&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-encryption</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1718,8 +1914,199 @@ label to be present on PVCs created using this StorageClass. For instance:</p>
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/encryption</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></li>
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that &#34;ondat-encryption&#34; was created.</span>
+kubectl get sc <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;ondat-encryption&#34;</span>
+</code></pre></div></li>
 </ul>
+<ol>
+<li>
+<p>Create a namespace called <code>encrypted</code> where the encrypted volume and <code>StatefulSet</code> will reside.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create namespace called &#34;encrypted&#34;.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Namespace</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Create a <code>PersistentVolumeClaim</code> that will use <code>ondat-encryption</code> as its <code>StorageClass</code> and confirm that it was successfully created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;encrypted-2&#34; PVC.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted-2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-encryption         </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the custom Ondat StorageClass called &#34;ondat-encryption&#34; to provision encrypted persistent volumes.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Ensure that the PVC was successfully provisioned with &#34;ondat-encryption&#34;.</span>
+kubectl get pvc encrypted-2 --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+
+NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE   VOLUMEMODE   LABELS
+encrypted-2   Bound    pvc-fe3958cb-c3d9-43aa-9ae7-530d1362e560   5Gi        RWO            ondat-encryption   46s   Filesystem   &lt;none&gt;
+</code></pre></div></li>
+<li>
+<p>Create a <code>StatefulSet</code> workload in the <code>encrypted</code> namespace that uses the <code>encrypted-2</code> PVC that was created in <em>Step 2</em>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a StatefulSet workload that uses the &#34;encrypted&#34; PVC.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">apps/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StatefulSet</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted-2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted                            </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Create the StatefulSet workload in the &#34;encrypted&#34; namespace.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">serviceName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">persistentVolumeClaim</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">claimName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted-2                  </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the &#34;encrypted-2&#34; PVC for the StatefulSet workload.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">spurin/gatsby:latest</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">imagePullPolicy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Always</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;/data&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that StatefulSet workload was successfully created.</span>
+kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+kubectl get statefulsets.apps --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+</code></pre></div></li>
+<li>
+<p>To review and confirm that volume encryption is enabled and working, run the following commands below to inspect the resources created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review the secrets created in &#34;encrypted&#34; namespace. </span>
+<span style="color:#8f5902;font-style:italic"># There will be a &#34;namespace&#34; and &#34;volume&#34; encryption key generated by Ondat.</span>
+kubectl get secrets --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+
+NAME                                                        TYPE                                  DATA   AGE
+default-token-wb76h                                         kubernetes.io/service-account-token   <span style="color:#0000cf;font-weight:bold">3</span>      10m
+storageos-namespace-key                                     Opaque                                <span style="color:#0000cf;font-weight:bold">1</span>      9m48s
+storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb   Opaque                                <span style="color:#0000cf;font-weight:bold">4</span>      9m48s
+
+<span style="color:#8f5902;font-style:italic"># Describe all of the secrets in the &#34;encrypted&#34; namespace related to Ondat.</span>
+<span style="color:#8f5902;font-style:italic"># Notice that there is a &#34;storageos-namespace-key&#34; - 1 unique key per namespace)</span>
+<span style="color:#8f5902;font-style:italic"># Notice that there is a &#34;storageos-volume-key-$RANDOM&#34; - 1 unique key per volume in the namespace.</span>
+<span style="color:#8f5902;font-style:italic"># Take note of the annotation &#34;storageos.com/pvc=encrypted&#34; under the &#34;storageos-volume-key-$RANDOM&#34; secret</span>
+kubectl describe secrets <span style="color:#4e9a06">&#34;storageos&#34;</span> --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted
+
+Name:         storageos-namespace-key
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component<span style="color:#ce5c00;font-weight:bold">=</span>storageos-api-manager
+              app.kubernetes.io/managed-by<span style="color:#ce5c00;font-weight:bold">=</span>storageos-operator
+              app.kubernetes.io/name<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+              app.kubernetes.io/part-of<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+Annotations:  &lt;none&gt;
+
+Type:  Opaque
+
+<span style="color:#000">Data</span>
+<span style="color:#ce5c00;font-weight:bold">====</span>
+key:  <span style="color:#0000cf;font-weight:bold">32</span> bytes
+
+Name:         storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb
+Namespace:    encrypted
+Labels:       app.kubernetes.io/component<span style="color:#ce5c00;font-weight:bold">=</span>storageos-api-manager
+              app.kubernetes.io/managed-by<span style="color:#ce5c00;font-weight:bold">=</span>storageos-operator
+              app.kubernetes.io/name<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+              app.kubernetes.io/part-of<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+              storageos.com/pvc<span style="color:#ce5c00;font-weight:bold">=</span>encrypted-2
+Annotations:  &lt;none&gt;
+
+Type:  Opaque
+
+<span style="color:#000">Data</span>
+<span style="color:#ce5c00;font-weight:bold">====</span>
+hmac:  <span style="color:#0000cf;font-weight:bold">32</span> bytes
+iv:    <span style="color:#0000cf;font-weight:bold">32</span> bytes
+key:   <span style="color:#0000cf;font-weight:bold">64</span> bytes
+vuk:   <span style="color:#0000cf;font-weight:bold">80</span> bytes
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Review &#34;storageos-volume-key-$RANDOM&#34;.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># Notice that there are 4 data objects stored in the secret &gt; &#34;hmac&#34;, &#34;iv&#34;, &#34;vuk&#34;, &#34;iv&#34; respectively.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">kubectl get secrets storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb --namespace=encrypted --output=yaml</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">data</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">hmac</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">K26qP2LJF0GnLBLOSPmGlLatPGhLnW4l6LUFapnlKnI=</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">iv</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">zDrINiKUNS8CAZfOPPzXxDRjdQETR6weTgN8S6irmzQ=</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">9rXsIPru1P9X6C+PGBRuGIH5pdRh1Y5LZ4psLjyzy0oyM/yylqUIG9Ez8XBkOW8pCrwY303TC6aBAOdlzEjJtw==</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">vuk</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">CokhOv1bVPySm/afmpZA9RHSTm2uWd2cPD2WGbw+xB7xAmPx3NqKws2yFcLAf2370K3Sh/iHMeAfNMQoMPWVUZdqIsZcSnUcvtfd1YOHZv8=</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Secret</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">creationTimestamp</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2022-07-25T13:41:05Z&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/component</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api-manager</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/managed-by</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-operator</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/part-of</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/pvc</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted-2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-volume-key-bc175830-3ed4-4d0c-90eb-df070b9930eb</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resourceVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;19756&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">uid</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">bb793310-0ad9-46d1-a590-34556dffe3a6</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Opaque</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>The last step will be to try to read the data on the node where the encrypted volume resides.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the node locations where &#34;encrypted-2-0&#34; pod is running.</span>
+kubectl get pods --namespace<span style="color:#ce5c00;font-weight:bold">=</span>encrypted --output<span style="color:#ce5c00;font-weight:bold">=</span>wide
+
+NAME            READY   STATUS    RESTARTS   AGE     IP          NODE                 NOMINATED NODE   READINESS GATES
+encrypted-2-0   1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>          4m46s   10.42.4.7   demo-worker-node-5   &lt;none&gt;           &lt;none&gt;
+
+<span style="color:#8f5902;font-style:italic"># Use &#34;kubectl debug&#34; to temporarily run a privileged container on the node where &#34;encrypted-2-0&#34; is located.</span>
+kubectl debug node/demo-worker-node-5 -it --image<span style="color:#ce5c00;font-weight:bold">=</span>ubuntu:latest
+
+<span style="color:#8f5902;font-style:italic"># Through the privileged container, update the repository index and install &#34;binutils&#34; to access the &#34;strings&#34; utility.</span>
+apt update <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> apt install --yes binutils
+
+<span style="color:#8f5902;font-style:italic"># Navigate to where data is being stored as blob files on the node and list the files.</span>
+<span style="color:#204a87">cd</span> /host/var/lib/storageos/data/dev1/
+ls -lah
+
+total 340M
+drwxr-xr-x <span style="color:#0000cf;font-weight:bold">2</span> root root 4.0K Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:41 .
+drwxr-xr-x <span style="color:#0000cf;font-weight:bold">4</span> root root 4.0K Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:41 ..
+-rw------- <span style="color:#0000cf;font-weight:bold">1</span> root root  42M Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:48 deployment.b9ea560c-5fc2-4f6f-9f43-c2d33483ed89.0.blob
+-rw------- <span style="color:#0000cf;font-weight:bold">1</span> root root  42M Jul <span style="color:#0000cf;font-weight:bold">25</span> 13:49 deployment.b9ea560c-5fc2-4f6f-9f43-c2d33483ed89.1.blob
+
+<span style="color:#8f5902;font-style:italic"># Use the &#34;strings&#34; utilty to try and read the content of the blob files in the directory.</span>
+<span style="color:#8f5902;font-style:italic"># Note - the output will return multiple strings of random, unreadable characters as the content is encrypted.</span>
+strings *.blob <span style="color:#000;font-weight:bold">|</span> head -10
+
+n.@LG
+c%rs/
+r<span style="color:#4e9a06">`</span>R<span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">|</span><span style="color:#a40000">&#39;</span>U%
+E<span style="color:#4e9a06">&#34;k9^
+</span><span style="color:#4e9a06">*59G
+</span><span style="color:#4e9a06">#q={
+</span><span style="color:#4e9a06">uOb
+</span><span style="color:#4e9a06">JC#rtb
+</span><span style="color:#4e9a06">]=?b
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06"># exit from the pod and return to your local shell
+</span><span style="color:#4e9a06">exit
+</span></code></pre></div></li>
+</ol>
 
 	
 	

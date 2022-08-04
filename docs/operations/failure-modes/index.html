@@ -20,26 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Failure Modes | </title><meta property="og:title" content="Failure Modes" />
-<meta property="og:description" content="For more information about replication and failure modes, see our Replication concepts page.
-The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a StorageClass. The PVC definition takes precedence over the StorageClass.
-apiVersion:v1kind:PersistentVolumeClaimmetadata:name:my-vol-1labels:storageos.com/replicas:&#34;2&#34;storageos.com/failure-mode:&#34;soft&#34;spec:storageClassName:&#34;storageos&#34;accessModes:- ReadWriteOnceresources:requests:storage:5GiFailure Modes Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure." />
+<title>How To Use Failure Modes | </title><meta property="og:title" content="How To Use Failure Modes" />
+<meta property="og:description" content="Overview Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure.
+ If the failure mode is not specified it defaults to hard. Volume failure modes can be dynamically updated at runtime.   💡 For more information on how the replication and failure mode features work, review the Replication feature page.
+ Example - Set Failure Mode to soft for a Volume The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a custom Ondat StorageClass." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/failure-modes/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Failure Modes">
-<meta itemprop="description" content="For more information about replication and failure modes, see our Replication concepts page.
-The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a StorageClass. The PVC definition takes precedence over the StorageClass.
-apiVersion:v1kind:PersistentVolumeClaimmetadata:name:my-vol-1labels:storageos.com/replicas:&#34;2&#34;storageos.com/failure-mode:&#34;soft&#34;spec:storageClassName:&#34;storageos&#34;accessModes:- ReadWriteOnceresources:requests:storage:5GiFailure Modes Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure.">
+<meta itemprop="name" content="How To Use Failure Modes">
+<meta itemprop="description" content="Overview Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure.
+ If the failure mode is not specified it defaults to hard. Volume failure modes can be dynamically updated at runtime.   💡 For more information on how the replication and failure mode features work, review the Replication feature page.
+ Example - Set Failure Mode to soft for a Volume The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a custom Ondat StorageClass.">
 
-<meta itemprop="wordCount" content="661">
+<meta itemprop="wordCount" content="218">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Failure Modes"/>
-<meta name="twitter:description" content="For more information about replication and failure modes, see our Replication concepts page.
-The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a StorageClass. The PVC definition takes precedence over the StorageClass.
-apiVersion:v1kind:PersistentVolumeClaimmetadata:name:my-vol-1labels:storageos.com/replicas:&#34;2&#34;storageos.com/failure-mode:&#34;soft&#34;spec:storageClassName:&#34;storageos&#34;accessModes:- ReadWriteOnceresources:requests:storage:5GiFailure Modes Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure."/>
+<meta name="twitter:title" content="How To Use Failure Modes"/>
+<meta name="twitter:description" content="Overview Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure.
+ If the failure mode is not specified it defaults to hard. Volume failure modes can be dynamically updated at runtime.   💡 For more information on how the replication and failure mode features work, review the Replication feature page.
+ Example - Set Failure Mode to soft for a Volume The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a custom Ondat StorageClass."/>
 
 
 
@@ -82,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Failure Modes | </title>
+    <title>How To Use Failure Modes | </title>
   </head>
   <body class="td-page">
     
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -918,12 +918,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup &amp; restores using Ondat Snapshots with Kasten K10</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -943,12 +937,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsencryption" href="/docs/operations/encryption/">Encryption</a>
       
       
       
@@ -1024,18 +1012,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">Failure Modes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">Fencing</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First PVC</a>
       
       
@@ -1048,7 +1024,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompression" href="/docs/operations/compression/">How To Enable Data Compression</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsencryption" href="/docs/operations/encryption/">How To Enable Data Encryption For Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">How To Enable Fencing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstap" href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompute-only" href="/docs/operations/compute-only/">How To Setup A Centralised Cluster Topology</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">How To Use Failure Modes</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsreplication" href="/docs/operations/replication/">How To Use Volume Replication</a>
       
       
       
@@ -1097,12 +1121,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">StorageClasses</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstap" href="/docs/operations/tap/">Topology-Aware Placement (TAP)</a>
       
       
       
@@ -1622,12 +1640,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#failure-modes">Failure Modes</a>
+    <li><a href="#overview">Overview</a>
       <ul>
-        <li><a href="#hard">Hard</a></li>
-        <li><a href="#soft">Soft</a></li>
-        <li><a href="#threshold">Threshold</a></li>
-        <li><a href="#alwayson">AlwaysOn</a></li>
+        <li><a href="#example---set-failure-mode-to-soft-for-a-volume">Example - Set Failure Mode to <code>soft</code> for a Volume</a></li>
       </ul>
     </li>
   </ul>
@@ -1668,7 +1683,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/failure-modes/">Failure Modes</a>
+	<a href="/docs/operations/failure-modes/">How To Use Failure Modes</a>
 </li>
 
 	</ol>
@@ -1676,20 +1691,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Failure Modes</h1>
+	<h1>How To Use Failure Modes</h1>
 	
-	<p>For more information about replication and failure modes, see our
-<a href="/docs/concepts/replication">Replication concepts page</a>.</p>
-<p>The failure mode for a specific volume can be set using a label on a PVC or it
-can be set as a parameter on a <a href="/docs/operations/storageclasses">StorageClass</a>. The PVC definition takes precedence over
-the StorageClass.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+	<h2 id="overview">Overview</h2>
+<p>Ondat failure modes offer different guarantees with regards to a volume&rsquo;s mode of operation in the face of replica failure.</p>
+<ul>
+<li>If the failure mode is not specified it defaults to <code>hard</code>.</li>
+<li>Volume failure modes can be dynamically updated at runtime.</li>
+</ul>
+<blockquote>
+<p>💡  For more information on how the replication and failure mode features work, review the <a href="/docs/concepts/replication">Replication</a> feature page.</p>
+</blockquote>
+<h3 id="example---set-failure-mode-to-soft-for-a-volume">Example - Set Failure Mode to <code>soft</code> for a Volume</h3>
+<p>The failure mode for a specific volume can be set using a label on a PVC or it can be set as a parameter on a custom Ondat <a href="/docs/operations/storageclasses">StorageClass</a>.</p>
+<blockquote>
+<p>💡 A PVC definition takes precedence over a StorageClass definition.</p>
+</blockquote>
+<p>Below is an example of a PVC resource that ensures that 2 replica volumes will be available and sets a <code>soft</code> failure mode.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;my-vol-1&#34; PVC with 2 volume replicas and &#34;soft&#34; failure mode enabled.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">my-vol-1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storageos.com/failure-mode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;soft&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">           </span><span style="color:#8f5902;font-style:italic"># 2 volumes replicas will be available.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storageos.com/failure-mode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;soft&#34;</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># &#34;soft&#34; failure mode is enabled.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
@@ -1697,69 +1724,14 @@ the StorageClass.</p>
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><h2 id="failure-modes">Failure Modes</h2>
-<p>Ondat failure modes offer different guarantees with regards to a volume&rsquo;s
-mode of operation in the face of replica failure. If the failure mode is not
-specified it defaults to <code>Hard</code>. Volume failure modes can be dynamically
-updated at runtime.</p>
-<h3 id="hard">Hard</h3>
-<p>Hard failure mode requires that the number of declared replicas matches the
-available number of replicas at all times. If a replica fails Ondat will
-attempt creation of a new replica for 90 seconds. After 90s if the old replica
-is not available and a new replica cannot be provisioned, Ondat cannot
-guarantee that the data is stored on the number of multiple nodes requested by
-the user. Ondat will therefore set the volume to be read-only.</p>
-<p>If a volume has gone read-only there are two stages to making it read-write
-again. Firstly, sufficient replicas must be provisioned to match the desired
-replica count. Depending on your environment, additional nodes and/or disk
-capacity may be required for this. Secondly, the volume must be remounted -
-necessitating pod deletion/recreation in Kubernetes.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: hard
-</code></pre></div><p><strong>Number of nodes required for hard failure mode</strong></p>
-<p>When a node fails, a new replica is provisioned and synced as described above.
-To ensure that a new replica can always be created, an additional node should
-be available. To guarantee high availability using <code>storageos.com/failure-mode: hard</code>, clusters using volumes with 1 replica must have at least 3 storage
-nodes. When using volumes with 2 replicas, at least 4 storage nodes, 3
-replicas, 5 nodes, etc.</p>
-<p>Minimum number of storage nodes = 1 (primary) + N (replicas) + 1</p>
-<h3 id="soft">Soft</h3>
-<p>Soft failure mode allows a volume to continue serving I/O even when a replica
-goes offline and a new replica fails to provision. So long as there are not
-less than max(1,  n-1) available replicas where n is the number of replicas for
-the volume.</p>
-<p>For example, if a volume with 2 replicas loses 1 replica, then I/O would
-continue to be served since 1 replica remaining &gt;= max(1, 1). If a volume with
-1 replica loses 1 replica, then I/O would halt after 90 seconds since 0
-replicas remaining &lt; max(1, 0).</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: soft
-</code></pre></div><p><strong>Number of nodes required for soft failure mode</strong></p>
-<p>To ensure that a <code>storageos.com/failure-mode: soft </code> volume is highly available, clusters using volumes with 1 replica must have at
-least 2 storage nodes. When using volumes with 2 replicas, at least 3 storage
-nodes, 3 replicas, 3 nodes, etc.</p>
-<p>Minimum number of storage nodes = 1 (primary) + N (replicas)</p>
-<h3 id="threshold">Threshold</h3>
-<p>Threshold failure mode allows the user to set the minimum required number of
-online replicas for a volume. For example for a volume with 2 replicas, setting
-the threshold to 1 would allow a single replica to be offline, whereas setting
-threshold to 0 would allow 2 replicas to be offline.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: <span style="color:#ce5c00;font-weight:bold">(</span>0-5<span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><p><strong>Number of nodes required for threshold failure mode</strong></p>
-<p>The minimum number of nodes for a <code>threshold</code> volume is determined by the
-threshold that is set.</p>
-<p>Minimum number of storage nodes = 1 (primary) + T (threshold)</p>
-<h3 id="alwayson">AlwaysOn</h3>
-<p>AlwaysOn failure mode allows all replicas for a volume to be offline and keeps
-the volume writeable. A volume with failure mode AlwaysOn will continue to
-serve I/O regardless of how many replicas it currently has. This mode should be
-used with caution as it effectively allows for only a single copy of the data
-to be available.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">storageos.com/failure-mode: alwayson
-</code></pre></div><p><strong>Number of nodes required for AlwaysOn failure mode</strong></p>
-<p>A <code>storageos.com/failure-mode: alwayson</code> volume is highly available albeit at
-the cost of reliability. The minimum node count here is 1 as the loss of all
-replicas will be tolerated.</p>
-<p>Minimum number of storage nodes = 1 (primary)</p>
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>Once the PVC resource has been successfully created, review and confirm that the <code>storageos.com/failure-mode: &quot;soft&quot;</code> and <code>storageos.com/replicas: &quot;2&quot;</code> labels have been applied.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the labels applied to the &#34;my-vol-1&#34; PVC.</span>
+kubectl get pvc --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
 
+NAME                                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
+my-vol-1                            Bound    pvc-9477f989-8a60-4d10-8407-99bad90b29a3   5Gi        RWO            storageos      63s   Filesystem   storageos.com/failure-mode<span style="color:#ce5c00;font-weight:bold">=</span>soft,storageos.com/replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">2</span>
+</code></pre></div>
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>

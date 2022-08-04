@@ -20,23 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Topology-Aware Placement (TAP) | </title><meta property="og:title" content="Topology-Aware Placement (TAP)" />
-<meta property="og:description" content="Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
-TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. Also, TAP is an opt in feature per volume. The following guide demonstrates how to use topology-aware placement. We will enable Topology-Aware Placement on a PVC, set it to the soft Failure Mode." />
+<title>How To Enable Topology-Aware Placement (TAP) | </title><meta property="og:title" content="How To Enable Topology-Aware Placement (TAP)" />
+<meta property="og:description" content="Overview Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+ TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. In addition, TAP is an opt-in feature per volume.   💡 For more information on the Ondat Topology-Aware Placement feature, review the Ondat Topology-Aware Placement feature page." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/tap/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Topology-Aware Placement (TAP)">
-<meta itemprop="description" content="Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
-TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. Also, TAP is an opt in feature per volume. The following guide demonstrates how to use topology-aware placement. We will enable Topology-Aware Placement on a PVC, set it to the soft Failure Mode.">
+<meta itemprop="name" content="How To Enable Topology-Aware Placement (TAP)">
+<meta itemprop="description" content="Overview Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+ TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. In addition, TAP is an opt-in feature per volume.   💡 For more information on the Ondat Topology-Aware Placement feature, review the Ondat Topology-Aware Placement feature page.">
 
-<meta itemprop="wordCount" content="337">
+<meta itemprop="wordCount" content="1239">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Topology-Aware Placement (TAP)"/>
-<meta name="twitter:description" content="Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
-TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. Also, TAP is an opt in feature per volume. The following guide demonstrates how to use topology-aware placement. We will enable Topology-Aware Placement on a PVC, set it to the soft Failure Mode."/>
+<meta name="twitter:title" content="How To Enable Topology-Aware Placement (TAP)"/>
+<meta name="twitter:description" content="Overview Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.
+ TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. In addition, TAP is an opt-in feature per volume.   💡 For more information on the Ondat Topology-Aware Placement feature, review the Ondat Topology-Aware Placement feature page."/>
 
 
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Topology-Aware Placement (TAP) | </title>
+    <title>How To Enable Topology-Aware Placement (TAP) | </title>
   </head>
   <body class="td-page">
     
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -915,12 +915,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup &amp; restores using Ondat Snapshots with Kasten K10</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -940,12 +934,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsencryption" href="/docs/operations/encryption/">Encryption</a>
       
       
       
@@ -1021,18 +1009,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">Failure Modes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">Fencing</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First PVC</a>
       
       
@@ -1045,7 +1021,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompression" href="/docs/operations/compression/">How To Enable Data Compression</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsencryption" href="/docs/operations/encryption/">How To Enable Data Encryption For Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">How To Enable Fencing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationstap" href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompute-only" href="/docs/operations/compute-only/">How To Setup A Centralised Cluster Topology</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">How To Use Failure Modes</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsreplication" href="/docs/operations/replication/">How To Use Volume Replication</a>
       
       
       
@@ -1094,12 +1118,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">StorageClasses</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationstap" href="/docs/operations/tap/">Topology-Aware Placement (TAP)</a>
       
       
       
@@ -1617,6 +1635,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#example---enable-topology-aware-placement-through-a-persistentvolumeclaim-definition">Example - Enable Topology-Aware Placement Through a <code>PersistentVolumeClaim</code> Definition</a></li>
+        <li><a href="#example---enable-topology-aware-placement-through-a-storageclass-definition">Example - Enable Topology-Aware Placement Through a <code>StorageClass</code> Definition</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1652,7 +1681,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/tap/">Topology-Aware Placement (TAP)</a>
+	<a href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a>
 </li>
 
 	</ol>
@@ -1660,87 +1689,282 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Topology-Aware Placement (TAP)</h1>
+	<h1>How To Enable Topology-Aware Placement (TAP)</h1>
 	
-	<p>Ondat Topology-Aware Placement is a feature that enforces placement of data
-across failure domains to guarantee high availability.</p>
-<p>TAP uses default labels on nodes to define failure domains. For instance, an
-Availability Zone. However, the key label used to segment failure domains can
-be defined by the user per node. Also, TAP is an opt in feature per volume. The
-following guide demonstrates how to use topology-aware placement. We will
-enable Topology-Aware Placement on a PVC, set it to the <code>soft</code> Failure Mode.</p>
-<h2 id="howto-enable-tap-per-volume">HowTo enable TAP per volume</h2>
+	<h2 id="overview">Overview</h2>
+<p>Ondat Topology-Aware Placement is a feature that enforces placement of data across failure domains to guarantee high availability.</p>
+<ul>
+<li>TAP uses default labels on nodes to define failure domains. For instance, an Availability Zone. However, the key label used to segment failure domains can be defined by the user per node. In addition, TAP is an opt-in feature per volume.</li>
+</ul>
 <blockquote>
-<p>💡 Labels can be applied to a PVC directly, or indirectly by adding them
-as parameters on a StorageClass.</p>
+<p>💡 For more information on the Ondat Topology-Aware Placement feature, review the <a href="/docs/concepts/tap">Ondat Topology-Aware Placement</a> feature page.</p>
 </blockquote>
+<h3 id="example---enable-topology-aware-placement-through-a-persistentvolumeclaim-definition">Example - Enable Topology-Aware Placement Through a <code>PersistentVolumeClaim</code> Definition</h3>
+<p>The following guidance will demonstrate how to use Ondat Topology-Aware Placement through a <code>PersistentVolumeClaim</code> (PVC) definition.</p>
+<ul>
+<li>
+<p>The instructions will enable Topology-Aware Placement on a PVC, use a custom zone labelling scheme with the label &raquo; <code>storageos.com/topology-key=custom-region</code> and set it to the <code>soft</code> Failure Mode.</p>
+<blockquote>
+<p>💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a StorageClass.</p>
+</blockquote>
+</li>
+</ul>
 <ol>
 <li>
-<p>Ensure that all nodes in your cluster have the topology key set. Here we
-will set a custom node zone label.</p>
+<p>In the code snippet below, we will define a custom node zone label using the following key-value pair layout &raquo; <code>custom-region=&lt;integer&gt;</code> and apply it against the nodes.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Label the worker nodes to define custom regions for the TAP feature.</span>
+kubectl label node demo-worker-node-1 custom-region<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span>
+kubectl label node demo-worker-node-2 custom-region<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">2</span>
+kubectl label node demo-worker-node-3 custom-region<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
+kubectl label node demo-worker-node-4 custom-region<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span>
+kubectl label node demo-worker-node-5 custom-region<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">2</span>
+
+<span style="color:#8f5902;font-style:italic"># Check that the worker nodes have been labeled successfully.</span>
+kubectl describe nodes <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;custom-region&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Create a custom <code>PersistentVolumeClaim</code> named <code>pvc-tap</code> and ensure that you add the following labels <code>storageos.com/topology-aware=true</code> and <code>storageos.com/topology-key=custom-region</code> to the manifest.</p>
 <blockquote>
-<p>💡 If PVC label <code>storageos.com/topology-key</code> is not set, the node label
-<code>topology.kubernetes.io/zone</code> is used by default.</p>
+<p>💡 If PVC label <code>storageos.com/topology-key</code> is not set, the node label <code>topology.kubernetes.io/zone</code> is used by default.</p>
 </blockquote>
-<pre tabindex="0"><code>kubectl label node worker-1 custom-region=1 
-kubectl label node worker-2 custom-region=2
-kubectl label node worker-3 custom-region=3
-</code></pre></li>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;pvc-tap&#34; PVC with TAP, custom topology key label called &#34;custom-region&#34; and &#34;soft&#34; failure mode is enabled.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-tap</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/topology-aware</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#8f5902;font-style:italic"># Enable Topology-Aware Placement.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/topology-key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">custom-region   </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Ensure that the topology failure domain node label is defined.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/failure-mode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">soft            </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Enable &#34;soft&#34; failure mode.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
 <li>
-<p>Create a new PVC with no replicas.</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-tap
-  labels:
-    storageos.com/topology-aware: &quot;true&quot;      # &lt;---- Enable TAP
-    storageos.com/topology-key: custom-region # &lt;---- TAP failure domain node label key
-    storageos.com/failure-mode: soft
-spec:
-  storageClassName: storageos
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-</code></pre></li>
+<p>Once the PVC resource has been successfully created, review and confirm that the <code>storageos.com/topology-aware: &quot;true&quot;</code>, <code>storageos.com/topology-key: custom-region</code> and <code>storageos.com/failure-mode: soft</code> labels have been applied.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the labels applied to the &#34;pvc-tap&#34; PVC.</span>
+kubectl get pvc --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
+
+NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE     VOLUMEMODE   LABELS
+pvc-tap   Bound    pvc-abb18d51-7e1a-4812-8d65-40dbc090362a   5Gi        RWO            storageos      3m26s   Filesystem   storageos.com/failure-mode<span style="color:#ce5c00;font-weight:bold">=</span>soft,storageos.com/topology-aware<span style="color:#ce5c00;font-weight:bold">=</span>true,storageos.com/topology-key<span style="color:#ce5c00;font-weight:bold">=</span>custom-region
+</code></pre></div></li>
 <li>
-<p>Increase the number of replicas to match the number of zones. We will do
-this via the CLI for convenience.</p>
-<pre tabindex="0"><code>kubectl label pvc pvc-tap storageos.com/replicas=3
-</code></pre><blockquote>
-<p>💡 To place 3 replicas, the cluster needs at least 4 nodes (1 primary + 3
-replicas).</p>
+<p>To quickly demonstrate Ondat TAP, use the <code>storageos.com/replicas</code> feature label to increase the number of volume replicas to <code>3</code> to match the number of <code>custom-region</code> zones that were defined in <em>Step 1</em>.</p>
+<blockquote>
+<p>💡 To place 3 replicas, the cluster needs at least <code>4</code> nodes (<code>1</code> master + <code>3</code> replicas).</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Increase the volume replicas for &#34;pvc-tap&#34; to 3.</span>
+kubectl label pvc pvc-tap storageos.com/replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
+</code></pre></div></li>
+<li>
+<p>To review and confirm that Ondat TAP has successfully provisioned 3 volumes and evenly distributed in different <code>custom-region</code> zones - deploy and run the <a href="https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster">Ondat CLI utility as a deployment</a> first, so that you can interact and manage Ondat through <code>kubectl</code>. Once deployed, obtain the  Ondat CLI utility pod name for later reference.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the Ondat CLI utility pod name.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos get pod -ocustom-columns<span style="color:#ce5c00;font-weight:bold">=</span>_:.metadata.name --no-headers -lapp<span style="color:#ce5c00;font-weight:bold">=</span>storageos-cli
+
+storageos-cli-77885d6d8b-zqmnn
+</code></pre></div></li>
+<li>
+<p>With the Ondat CLI now deployed, you can check the location of the master and replica volumes.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the volumes in the &#34;default&#34; namespace using the Ondat CLI.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-77885d6d8b-zqmnn -- storageos get volumes --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
+
+NAMESPACE  NAME                                      SIZE     LOCATION                     ATTACHED ON  REPLICAS  AGE
+default    pvc-abb18d51-7e1a-4812-8d65-40dbc090362a  5.0 GiB  demo-worker-node-4 <span style="color:#ce5c00;font-weight:bold">(</span>online<span style="color:#ce5c00;font-weight:bold">)</span>               3/3       <span style="color:#0000cf;font-weight:bold">41</span> minutes ago
+
+<span style="color:#8f5902;font-style:italic"># Describe the &#34;pvc-9af262b3-ab50-4d68-87bc-60eb825f1f99&#34; volume.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-77885d6d8b-zqmnn -- storageos describe volume pvc-abb18d51-7e1a-4812-8d65-40dbc090362a --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
+
+ID                  882ab4dd-1b35-4bb4-a825-68763719b991
+Name                pvc-abb18d51-7e1a-4812-8d65-40dbc090362a
+Description
+AttachedOn
+Attachment Type     detached
+NFS
+  Service Endpoint
+  Exports:
+Namespace           default <span style="color:#ce5c00;font-weight:bold">(</span>5055ae9d-6278-4374-a6c8-e4779c6cc58f<span style="color:#ce5c00;font-weight:bold">)</span>
+Labels              csi.storage.k8s.io/pv/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-abb18d51-7e1a-4812-8d65-40dbc090362a,
+                    csi.storage.k8s.io/pvc/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-tap,
+                    csi.storage.k8s.io/pvc/namespace<span style="color:#ce5c00;font-weight:bold">=</span>default,
+                    storageos.com/failure-mode<span style="color:#ce5c00;font-weight:bold">=</span>soft,
+                    storageos.com/nocompress<span style="color:#ce5c00;font-weight:bold">=</span>true,
+                    storageos.com/replicas<span style="color:#ce5c00;font-weight:bold">=</span>3,
+                    storageos.com/topology-aware<span style="color:#ce5c00;font-weight:bold">=</span>true,
+                    storageos.com/topology-key<span style="color:#ce5c00;font-weight:bold">=</span>custom-region
+Filesystem          ext4
+Size                5.0 GiB <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5368709120</span> bytes<span style="color:#ce5c00;font-weight:bold">)</span>
+Version             OQ
+Created at          2022-07-22T16:05:04Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">42</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+Updated at          2022-07-22T16:26:35Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">21</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+
+Master:
+  ID                248ea74d-8753-4f64-afbf-73b72ddc211b
+  Node              demo-worker-node-4 <span style="color:#ce5c00;font-weight:bold">(</span>1c9284c7-99a4-40c5-9ab9-95df19c1a8ac<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            online
+  Topology Domain   <span style="color:#0000cf;font-weight:bold">1</span>
+
+Replicas:
+  ID                3172c40c-e745-48a9-91cf-39352389e99e
+  Node              demo-worker-node-5 <span style="color:#ce5c00;font-weight:bold">(</span>37fdc95a-e215-44e7-a53d-45c1b7a7bad1<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            ready
+  Promotable        <span style="color:#204a87">true</span>
+  Topology Domain   <span style="color:#0000cf;font-weight:bold">2</span>
+
+  ID                516bb457-4720-4b65-af70-327fb7d74898
+  Node              demo-worker-node-3 <span style="color:#ce5c00;font-weight:bold">(</span>669e2d13-2520-4238-9be6-4f58540f0f64<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            ready
+  Promotable        <span style="color:#204a87">true</span>
+  Topology Domain   <span style="color:#0000cf;font-weight:bold">3</span>
+
+  ID                e48d6084-8ce8-4d57-8644-20d61c28005e
+  Node              demo-worker-node-1 <span style="color:#ce5c00;font-weight:bold">(</span>114ae6a7-c40d-40c2-87cb-1dc9dcc24348<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            ready
+  Promotable        <span style="color:#204a87">true</span>
+  Topology Domain   <span style="color:#0000cf;font-weight:bold">1</span>
+</code></pre></div><blockquote>
+<p>💡  As demonstrated in the output above, notice how the master volume and each replica volume are deployed on a different nodes (<code>demo-worker-node-4</code>, <code>demo-worker-node-5</code>, <code>demo-worker-node-3</code> and <code>demo-worker-node-1</code> respectively) to ensure data protection and high availability in the event of a transient node failure.</p>
 </blockquote>
 </li>
 </ol>
-<h2 id="result">Result</h2>
-<p>You have enabled TAP per volume. You can check the location of your master and
-replicas with the CLI. Note, that the replicas have been evenly distributed
-between the zones we just set.</p>
-<p>Get the volume name:</p>
-<pre tabindex="0"><code>kubectl get pvc pvc-tap-test-owide
-</code></pre><p>You will get the following:</p>
-<pre tabindex="0"><code>pvc-tap-test   Bound    pvc-49404512-7905-42a3-be94-a56854796bdd /docs.
-</code></pre><p>Now, you can look up that volume with the CLI:</p>
-<pre tabindex="0"><code>storageos describe volume pvc-49404512-7905-42a3-be94-a56854796bdd
-</code></pre><pre tabindex="0"><code>    /docs.
-    Master:
-      ID                3ed41e62-a28b-4a93-bbf2-504de31ee848
-      Node              worker1 (53927506-0ebd-4470-b910-6611caecad18)
-      Health            online
+<h3 id="example---enable-topology-aware-placement-through-a-storageclass-definition">Example - Enable Topology-Aware Placement Through a <code>StorageClass</code> Definition</h3>
+<p>The following guidance will demonstrate how to use Ondat Topology-Aware Placement through a <code>StorageClass</code> definition.</p>
+<ul>
+<li>
+<p>The instructions will enable Topology-Aware Placement through a custom StorageClass, use the node label &raquo; <code>topology.kubernetes.io/zone</code> and set the default volume replica count &raquo; <code>storageos.com/replicas</code> to <code>2</code>.</p>
+<blockquote>
+<p>💡 Labels can be applied to a PVC directly, or indirectly by adding them as parameters on a StorageClass.</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>
+<p>Check and confirm that the worker nodes in your cluster have the <code>topology.kubernetes.io/zone</code> already applied to them first.</p>
+<blockquote>
+<p>💡 Major Cloud Provider Kubernetes distributions such as GKE, EKS and AKS have <code>topology.kubernetes.io/zone</code> applied to worker nodes that are deployed in different availability zones.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check for the &#34;topology.kubernetes.io/zone&#34; first.</span>
+kubectl describe nodes <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;topology.kubernetes.io/zone=&#34;</span>
 
-    Replicas:
-      ID                99e9e983-234b-48e6-9da7-a7f323076bfe
-      Node              worker3 (a535a95f-ef2d-4e47-be1e-1685615a8f21)
-      Health            ready
-      Promotable        true
+topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>northeurope-1
+topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>northeurope-2
+topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>northeurope-3
+topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>northeurope-1
+topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>northeurope-2
+</code></pre></div></li>
+<li>
+<p>Create a custom <code>StorageClass</code>, named <code>ondat-tap</code> and check that it has been successfully created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-tap&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-tap</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/topology-aware</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that &#34;ondat-tap&#34; was created.</span>
+kubectl get sc <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;ondat-tap&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Create a <code>PersistentVolumeClaim</code> that will use <code>ondat-tap</code> as its <code>StorageClass</code> and confirm that it was successfully created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;pvc-tap-2&#34; PVC that uses the &#34;ondat-tap&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-tap-2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-tap</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Ensure that the PVC was successfully provisioned with &#34;ondat-tap&#34;.</span>
+kubectl get pvc --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
 
-      ID                4b4c632d-f991-4120-92ac-f5a99e670b53
-      Node              worker2 (47d36fa7-dc31-4469-aca2-ce70fbeac449)
-      Health            ready
-      Promotable        true
-</code></pre>
+NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE   VOLUMEMODE   LABELS
+pvc-tap-2   Bound    pvc-d3662005-0bee-4b62-9a66-59ac65254687   5Gi        RWO            ondat-tap      4m    Filesystem   &lt;none&gt;
+</code></pre></div><blockquote>
+<p>💡 Notice that the output above shows that the PVC does not have any labels applied to it - this is because we are using the <code>ondat-tap</code> StorageClass parameters defined in <em>Step 2</em>.</p>
+</blockquote>
+</li>
+<li>
+<p>To review and confirm that Ondat TAP has successfully provisioned 2 volumes and evenly distributed in different zones - deploy and run the <a href="https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster">Ondat CLI utility as a deployment</a> first, so that you can interact and manage Ondat through <code>kubectl</code>. Once deployed, obtain the Ondat CLI utility pod name for later reference.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the Ondat CLI utility pod name.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos get pod -ocustom-columns<span style="color:#ce5c00;font-weight:bold">=</span>_:.metadata.name --no-headers -lapp<span style="color:#ce5c00;font-weight:bold">=</span>storageos-cli
+
+storageos-cli-79787d586d-s2w66
+</code></pre></div></li>
+<li>
+<p>With the Ondat CLI now deployed, you can check the location of the master and replica volumes.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the volumes in the &#34;default&#34; namespace using the Ondat CLI.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-79787d586d-s2w66 -- storageos get volumes --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
+
+NAMESPACE  NAME                                      SIZE     LOCATION                                  ATTACHED ON  REPLICAS  AGE
+default    pvc-d3662005-0bee-4b62-9a66-59ac65254687  5.0 GiB  aks-storage-70602947-vmss000000 <span style="color:#ce5c00;font-weight:bold">(</span>online<span style="color:#ce5c00;font-weight:bold">)</span>               2/2       <span style="color:#0000cf;font-weight:bold">8</span> minutes ago
+
+<span style="color:#8f5902;font-style:italic"># Describe the &#34;pvc-d3662005-0bee-4b62-9a66-59ac65254687&#34; volume.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-79787d586d-s2w66 -- storageos describe volume pvc-d3662005-0bee-4b62-9a66-59ac65254687 --namespace<span style="color:#ce5c00;font-weight:bold">=</span>default
+
+ID                  73d3e20a-1d48-472d-b64a-a1dfafceb593
+Name                pvc-d3662005-0bee-4b62-9a66-59ac65254687
+Description
+AttachedOn
+Attachment Type     detached
+NFS
+  Service Endpoint
+  Exports:
+Namespace           default <span style="color:#ce5c00;font-weight:bold">(</span>365ca0d2-4f24-4509-a3bd-7e026b8a7b63<span style="color:#ce5c00;font-weight:bold">)</span>
+Labels              csi.storage.k8s.io/pv/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-d3662005-0bee-4b62-9a66-59ac65254687,
+                    csi.storage.k8s.io/pvc/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-tap-2,
+                    csi.storage.k8s.io/pvc/namespace<span style="color:#ce5c00;font-weight:bold">=</span>default,
+                    storageos.com/nocompress<span style="color:#ce5c00;font-weight:bold">=</span>true,
+                    storageos.com/replicas<span style="color:#ce5c00;font-weight:bold">=</span>2,
+                    storageos.com/topology-aware<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>
+Filesystem          ext4
+Size                5.0 GiB <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5368709120</span> bytes<span style="color:#ce5c00;font-weight:bold">)</span>
+Version             Mg
+Created at          2022-07-22T17:52:54Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">9</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+Updated at          2022-07-22T17:52:55Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">9</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+
+Master:
+  ID                11c2f323-e4a5-4864-861b-ed26501abbad
+  Node              aks-storage-70602947-vmss000000 <span style="color:#ce5c00;font-weight:bold">(</span>52619a91-8246-46eb-91dd-d6741739ae0f<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            online
+  Topology Domain   northeurope-1
+
+Replicas:
+  ID                d681dfc8-7cce-4bac-a4ce-c3784a79e3bd
+  Node              aks-storage-70602947-vmss000001 <span style="color:#ce5c00;font-weight:bold">(</span>84305a4d-d007-4552-9733-3ce634161124<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            ready
+  Promotable        <span style="color:#204a87">true</span>
+  Topology Domain   northeurope-2
+
+  ID                d9d3eb81-aec4-4093-bbee-f85e947e2f79
+  Node              aks-default-53125611-vmss000002 <span style="color:#ce5c00;font-weight:bold">(</span>037dd333-9d68-4684-b40a-e0dcc8a53866<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            ready
+  Promotable        <span style="color:#204a87">true</span>
+  Topology Domain   northeurope-3
+</code></pre></div><blockquote>
+<p>💡  As demonstrated in the output above, notice how the master volume and each replica volume are deployed on a different nodes (<code>aks-storage-70602947-vmss000000</code>, <code>aks-storage-70602947-vmss000001</code> and <code>aks-default-53125611-vmss000002</code> respectively) to ensure data protection and high availability in the event of a transient node failure.</p>
+</blockquote>
+</li>
+</ol>
+
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>

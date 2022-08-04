@@ -21,25 +21,22 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Ondat Feature Labels | </title><meta property="og:title" content="Ondat Feature Labels" />
-<meta property="og:description" content="Feature labels are a powerful and flexible way to control storage features.
-Applying specific feature labels triggers compression, replication and other storage features. No feature labels are present by default.
-Ondat Node labels Nodes do not have any feature labels present by default. When Ondat is run within Kubernetes, the Ondat API Manager syncs any Kubernetes node labels to the corresponding Ondat node. The Kubernetes node labels act as the &ldquo;source of truth&rdquo;, so labels should be applied to the Kubernetes nodes rather than to Ondat nodes." />
+<meta property="og:description" content="Overview Ondat Feature labels are Kubernetes Labels which provide a powerful and flexible way to control storage features.
+ Applying specific feature labels triggers compression, replication, data encryption and other storage features. In order to use feature labels, end users are required to explicitly enable the features they want to use in their cluster.  Types Of Ondat Feature Labels Ondat Volume Labels Below are the list of available feature labels that can be used to define Volume resources and StorageClass resources in an Ondat cluster." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/concepts/labels/" /><meta property="article:section" content="docs" />
 
 
 
 <meta itemprop="name" content="Ondat Feature Labels">
-<meta itemprop="description" content="Feature labels are a powerful and flexible way to control storage features.
-Applying specific feature labels triggers compression, replication and other storage features. No feature labels are present by default.
-Ondat Node labels Nodes do not have any feature labels present by default. When Ondat is run within Kubernetes, the Ondat API Manager syncs any Kubernetes node labels to the corresponding Ondat node. The Kubernetes node labels act as the &ldquo;source of truth&rdquo;, so labels should be applied to the Kubernetes nodes rather than to Ondat nodes.">
+<meta itemprop="description" content="Overview Ondat Feature labels are Kubernetes Labels which provide a powerful and flexible way to control storage features.
+ Applying specific feature labels triggers compression, replication, data encryption and other storage features. In order to use feature labels, end users are required to explicitly enable the features they want to use in their cluster.  Types Of Ondat Feature Labels Ondat Volume Labels Below are the list of available feature labels that can be used to define Volume resources and StorageClass resources in an Ondat cluster.">
 
-<meta itemprop="wordCount" content="650">
+<meta itemprop="wordCount" content="565">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Feature Labels"/>
-<meta name="twitter:description" content="Feature labels are a powerful and flexible way to control storage features.
-Applying specific feature labels triggers compression, replication and other storage features. No feature labels are present by default.
-Ondat Node labels Nodes do not have any feature labels present by default. When Ondat is run within Kubernetes, the Ondat API Manager syncs any Kubernetes node labels to the corresponding Ondat node. The Kubernetes node labels act as the &ldquo;source of truth&rdquo;, so labels should be applied to the Kubernetes nodes rather than to Ondat nodes."/>
+<meta name="twitter:description" content="Overview Ondat Feature labels are Kubernetes Labels which provide a powerful and flexible way to control storage features.
+ Applying specific feature labels triggers compression, replication, data encryption and other storage features. In order to use feature labels, end users are required to explicitly enable the features they want to use in their cluster.  Types Of Ondat Feature Labels Ondat Volume Labels Below are the list of available feature labels that can be used to define Volume resources and StorageClass resources in an Ondat cluster."/>
 
 
 
@@ -181,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.813ad11ae802da378417290010c8e2014bc887daa75eb6d6f340e2f564a9ba72b13e1b7f1b975a8861814626910314d69f82e00eeef17a9e9a5d1f8422bdbd0d.json"
+  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
   data-offline-search-base-href="/"
 >
 
@@ -918,12 +915,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">Backup &amp; restores using Ondat Snapshots with Kasten K10</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -943,12 +934,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsencryption" href="/docs/operations/encryption/">Encryption</a>
       
       
       
@@ -1024,18 +1009,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">Failure Modes</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">Fencing</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfirstpvc" href="/docs/operations/firstpvc/">First PVC</a>
       
       
@@ -1048,7 +1021,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompression" href="/docs/operations/compression/">How To Enable Data Compression</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsencryption" href="/docs/operations/encryption/">How To Enable Data Encryption For Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfencing" href="/docs/operations/fencing/">How To Enable Fencing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstap" href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompute-only" href="/docs/operations/compute-only/">How To Setup A Centralised Cluster Topology</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsfailure-modes" href="/docs/operations/failure-modes/">How To Use Failure Modes</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsreplication" href="/docs/operations/replication/">How To Use Volume Replication</a>
       
       
       
@@ -1097,12 +1118,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">StorageClasses</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstap" href="/docs/operations/tap/">Topology-Aware Placement (TAP)</a>
       
       
       
@@ -1622,9 +1637,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#ondat-node-labels">Ondat Node labels</a></li>
-    <li><a href="#ondat-volume-labels">Ondat Volume labels</a></li>
-    <li><a href="#ondat-pod-labels">Ondat Pod labels</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#types-of-ondat-feature-labels">Types Of Ondat Feature Labels</a>
+      <ul>
+        <li><a href="#ondat-volume-labels">Ondat Volume Labels</a></li>
+        <li><a href="#ondat-node-labels">Ondat Node Labels</a></li>
+        <li><a href="#ondat-pod-labels">Ondat Pod Labels</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-use-ondat-feature-labels">How To Use Ondat Feature Labels?</a></li>
   </ul>
 </nav>
 
@@ -1673,189 +1694,123 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="td-content">
 	<h1>Ondat Feature Labels</h1>
 	
-	<p>Feature labels are a powerful and flexible way to control storage features.</p>
-<p>Applying specific feature labels triggers compression, replication and other
-storage features. No feature labels are present by default.</p>
-<h2 id="ondat-node-labels">Ondat Node labels</h2>
-<p>Nodes do not have any feature labels present by default.  When Ondat is run
-within Kubernetes, the Ondat API Manager syncs any Kubernetes node labels
-to the corresponding Ondat node. The Kubernetes node labels act as the
-&ldquo;source of truth&rdquo;, so labels should be applied to the Kubernetes nodes rather
-than to Ondat nodes. This is because the Kubernetes node labels overwrite
-the Ondat node labels on sync.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Feature</th>
-<th style="text-align:left">Label</th>
-<th style="text-align:left">Values</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Compute only</td>
-<td style="text-align:left"><code>storageos.com/computeonly</code></td>
-<td style="text-align:left">true / false</td>
-<td style="text-align:left">Specifies whether a node should be <code>computeonly</code> where it only acts as a client and does not host volume data locally, otherwise the node is hyperconverged (the default), where the node can operate in both client and server modes.</td>
-</tr>
-</tbody>
-</table>
-<p>You can set the compute-only label on the Kubernetes node and the label will be
-synced to the Ondat node (labels take an eventual consistency reconciliation
-time of up to a minute (or less)).</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl label node <span style="color:#000">$NODE</span> storageos.com/computeonly<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>
-</code></pre></div><h2 id="ondat-volume-labels">Ondat Volume labels</h2>
-<p>Volumes do not have any feature labels present by default.</p>
+	<h2 id="overview">Overview</h2>
+<p>Ondat Feature labels are <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Kubernetes Labels</a> which provide a powerful and flexible way to control storage features.</p>
+<ul>
+<li>Applying specific feature labels triggers <a href="/docs/concepts/compression/">compression</a>, <a href="/docs/concepts/replication/">replication</a>, <a href="/docs/concepts/encryption/">data encryption</a> and other storage features. In order to use feature labels, end users are required to explicitly enable the features they want to use in their cluster.</li>
+</ul>
+<h2 id="types-of-ondat-feature-labels">Types Of Ondat Feature Labels</h2>
+<h3 id="ondat-volume-labels">Ondat Volume Labels</h3>
+<p>Below are the list of available feature labels that can be used to define <a href="https://kubernetes.io/docs/concepts/storage/volumes/">Volume resources</a> and <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/#the-storageclass-resource">StorageClass resources</a> in an Ondat cluster.</p>
 <blockquote>
-<p>⚠️ The encryption, caching and compression labels can only apply
-at provisioning time, they can&rsquo;t be changed during execution.</p>
+<p>💡 The <strong>encryption</strong> and <strong>compression</strong> labels can only applied at provisioning time, they can&rsquo;t be changed during execution.</p>
 </blockquote>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Feature</th>
-<th style="text-align:left">Label</th>
+<th style="text-align:left">Feature Name</th>
+<th style="text-align:left">Label Reference</th>
 <th style="text-align:left">Values</th>
-<th style="text-align:left">Description</th>
+<th style="text-align:left">Feature Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Caching</td>
-<td style="text-align:left"><code>storageos.com/nocache</code></td>
-<td style="text-align:left">true / false</td>
-<td style="text-align:left">Switches off caching.</td>
-</tr>
-<tr>
-<td style="text-align:left">Compression</td>
+<td style="text-align:left"><a href="/docs/concepts/compression/"><strong>Compression</strong></a></td>
 <td style="text-align:left"><code>storageos.com/nocompress</code></td>
-<td style="text-align:left">true / false</td>
-<td style="text-align:left">Switches off compression of data at rest and in transit (compression is not enabled by default to maximise performance).</td>
+<td style="text-align:left"><code>true</code> / <code>false</code></td>
+<td style="text-align:left">Enables or disables compression of data-at-rest and data-in-transit. Compression <strong>is not enabled by default</strong> to maximise performance.</td>
 </tr>
 <tr>
-<td style="text-align:left">Encryption</td>
+<td style="text-align:left"><a href="/docs/concepts/encryption/"><strong>Encryption</strong></a></td>
 <td style="text-align:left"><code>storageos.com/encryption</code></td>
-<td style="text-align:left">true / false</td>
+<td style="text-align:left"><code>true</code> / <code>false</code></td>
 <td style="text-align:left">Encrypts the contents of the volume. For each volume, a key is automatically generated, stored, and linked with the PVC.</td>
 </tr>
 <tr>
-<td style="text-align:left">Failure Mode</td>
+<td style="text-align:left"><a href="/docs/concepts/replication/#ondat-failure-modes"><strong>Failure Mode</strong></a></td>
 <td style="text-align:left"><code>storageos.com/failure-mode</code></td>
-<td style="text-align:left">hard, soft, alwayson or integers [0, 5]</td>
+<td style="text-align:left"><code>hard</code>, <code>soft</code>, <code>alwayson</code>, or <code>threshold</code> integers starting from <code>0</code> to <code>5</code></td>
 <td style="text-align:left">Sets the failure mode for a volume, either explicitly using a failure mode or implicitly using a replica threshold. The default setting of a failure mode is <code>hard</code>.</td>
 </tr>
 <tr>
-<td style="text-align:left">Replication</td>
+<td style="text-align:left"><a href="/docs/concepts/replication/"><strong>Replication</strong></a></td>
 <td style="text-align:left"><code>storageos.com/replicas</code></td>
-<td style="text-align:left">integers [0, 5]</td>
-<td style="text-align:left">Sets the number of replicas i.e full copies of the data across nodes. Typically 1 or 2 replicas is sufficient (2 or 3 instances of the data); latency implications need to be assesed when using more than 2 replicas.</td>
+<td style="text-align:left"><code>integers</code> starting from <code>0</code> to <code>5</code></td>
+<td style="text-align:left">Sets the number of replicas, for example full copies of the data across nodes. Typically <code>1</code> or <code>2</code> replicas is sufficient (<code>2</code> or <code>3</code> instances of the data). Latency implications need to be assessed when using <strong>more than</strong> <code>2</code> replicas.</td>
 </tr>
 <tr>
-<td style="text-align:left">Topology-Aware Placement</td>
+<td style="text-align:left"><a href="/docs/concepts/tap/"><strong>Topology-Aware Placement</strong></a></td>
 <td style="text-align:left"><code>storageos.com/topology-aware</code></td>
-<td style="text-align:left">true / false</td>
-<td style="text-align:left">Enables Topology-Aware Placement</td>
+<td style="text-align:left"><code>true</code> / <code>false</code></td>
+<td style="text-align:left">Enables or disables Ondat Topology-Aware Placement.</td>
 </tr>
 <tr>
-<td style="text-align:left">Topology Domain Key</td>
+<td style="text-align:left"><a href="/docs/concepts/tap/#topology-domains"><strong>Topology Domain Key</strong></a></td>
 <td style="text-align:left"><code>storageos.com/topology-key</code></td>
-<td style="text-align:left">custom region</td>
+<td style="text-align:left">custom region, read as a <a href="https://en.wikipedia.org/wiki/String_%28computer_science%29">string</a></td>
 <td style="text-align:left">Define the failure domain for the node by using a custom key. If you don&rsquo;t define a custom key, the label defaults to the <code>topology.kubernetes.io/zone</code> value.</td>
 </tr>
 </tbody>
 </table>
-<p>To create a volume with a feature label, choose one of the following options:</p>
+<h3 id="ondat-node-labels">Ondat Node Labels</h3>
+<p>When Ondat is run within Kubernetes, the <a href="https://github.com/storageos/api-manager">Ondat API Manager</a> syncs any <a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/">Kubernetes node labels</a> to the corresponding Ondat node. The Kubernetes node labels act as the &ldquo;source of truth&rdquo;, so labels should be applied to the Kubernetes nodes rather than to Ondat nodes. This is because the Kubernetes node labels overwrite the Ondat node labels on sync.</p>
 <ul>
-<li>
-<p>Option 1: PVC Label</p>
-<p>Add the label in the PVC definition, for instance:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-3</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;1&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Label &lt;-----</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">1G</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></li>
-<li>
-<p>Option 2: Set label in the StorageClass</p>
-<p>Any PVC using the StorageClass inherits the label. The PVC label takes
-precedence over the StorageClass parameters.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-replicated</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;1&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/encryption</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div></li>
+<li>Below are the list of available feature labels that can be used to define <a href="https://kubernetes.io/docs/concepts/architecture/nodes/">Kubernetes Nodes</a> in an Ondat Cluster.</li>
 </ul>
-<blockquote>
-<p>⚠️ The Ondat API manager periodically syncs labels from Kubernetes PVCs
-to the corresponding Ondat volume. Therefore changes to Ondat volume
-labels should be made to the corresponding Kubernetes PVC rather than to the
-Ondat volume directly.</p>
-</blockquote>
-<h2 id="ondat-pod-labels">Ondat Pod labels</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Feature</th>
-<th style="text-align:left">Label</th>
+<th style="text-align:left">Feature Name</th>
+<th style="text-align:left">Label Reference</th>
 <th style="text-align:left">Values</th>
-<th style="text-align:left">Description</th>
+<th style="text-align:left">Feature Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Pod fencing</td>
+<td style="text-align:left"><a href="/docs/concepts/nodes/#compute-only-mode"><strong>Compute-only Nodes</strong></a></td>
+<td style="text-align:left"><code>storageos.com/computeonly</code></td>
+<td style="text-align:left"><code>true</code> / <code>false</code></td>
+<td style="text-align:left">Specifies whether a node should be <code>computeonly</code> where it only acts as a client and does not host volume data locally, otherwise the node is hyper-converged (the default), where the node can operate in both client and server modes.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ondat-pod-labels">Ondat Pod Labels</h3>
+<p>Below are the list of available feature labels that can be used to define <a href="https://kubernetes.io/docs/concepts/workloads/pods/">Kubernetes Pods</a> in an Ondat Cluster.</p>
+<blockquote>
+<p>💡 For a pod to be fenced by Ondat, a recommendation will be to review the the <a href="/docs/operations/fencing">Ondat Fencing</a> operations page for more information.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Feature Name</th>
+<th style="text-align:left">Label Reference</th>
+<th style="text-align:left">Values</th>
+<th style="text-align:left">Feature Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="/docs/concepts/fencing/"><strong>Pod Fencing</strong></a></td>
 <td style="text-align:left"><code>storageos.com/fenced</code></td>
-<td style="text-align:left">true / false</td>
+<td style="text-align:left"><code>true</code> / <code>false</code></td>
 <td style="text-align:left">Targets a pod to be fenced in case of node failure. The default value is <code>false</code></td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>⚠️ For a pod to be fenced by Ondat, a few requirements described in the
-<a href="/docs/operations/fencing">Fencing Operations</a> page need to be fulfilled.</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl label pod <span style="color:#000">$POD</span> storageos.com/fenced<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>
-</code></pre></div><p>It is recommended to define the fenced label in the pod&rsquo;s manifest, i.e in the
-Statefulset definitions. Statefulsets pass labels to their
-VolumeClaimTemplates. You must set the label only at the
-<code>spec.template.metadata.labels</code>. Otherwise, the Ondat volumes will fail to
-provision as only special accepted labels can be passed to volumes.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: my-statefulset
-spec:
-  selector:
-    matchLabels: <span style="color:#8f5902;font-style:italic"># &lt;----- Note that the matchLabels don&#39;t have the fenced label</span>
-      env: prod
-  serviceName: my-statefulset-svc
-  replicas: <span style="color:#0000cf;font-weight:bold">1</span>
-  template:
-    metadata:
-      labels:   <span style="color:#8f5902;font-style:italic"># &lt;----- Note that the fenced label IS PRESENT</span>
-        env: prod
-        storageos.com/fenced: <span style="color:#4e9a06">&#34;true&#34;</span>
-    spec:
-      containers:
-...
-</code></pre></div>
+<h2 id="how-to-use-ondat-feature-labels">How To Use Ondat Feature Labels?</h2>
+<p>For more information about how to enable specific Ondat features, review the Ondat Feature Labels operations pages listed below;</p>
+<ul>
+<li><a href="/docs/operations/compute-only">How To Setup A Centralised Cluster Topology</a>.</li>
+<li><a href="/docs/operations/replication">How To Use Volume Replication</a>.</li>
+<li><a href="/docs/operations/failure-modes/">How To Use Failure Modes</a>.</li>
+<li><a href="/docs/operations/fencing/">How To Enable Fencing</a>.</li>
+<li><a href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a>.</li>
+<li><a href="/docs/operations/encryption/">How To Enable Data Encryption</a>.</li>
+<li><a href="/docs/operations/compression">How To Enable Data Compression</a>.</li>
+</ul>
+
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>

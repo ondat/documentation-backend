@@ -152,8 +152,6 @@
   </url><url>
     <loc>/docs/reference/cli/attach/</loc>
   </url><url>
-    <loc>/docs/operations/backups-and-restores-with-kastenk10/</loc>
-  </url><url>
     <loc>/docs/usecases/cassandra/</loc>
   </url><url>
     <loc>/docs/reference/cli/</loc>
@@ -186,8 +184,6 @@
   </url><url>
     <loc>/docs/usecases/elasticsearch/</loc>
   </url><url>
-    <loc>/docs/operations/encryption/</loc>
-  </url><url>
     <loc>/docs/operations/etcd/</loc>
   </url><url>
     <loc>/docs/prerequisites/etcd/</loc>
@@ -197,10 +193,6 @@
     <loc>/docs/operations/etcd/etcd-outside-k8s/migrate-etcd-cluster/</loc>
   </url><url>
     <loc>/docs/operations/etcd/etcd-outside-k8s/</loc>
-  </url><url>
-    <loc>/docs/operations/failure-modes/</loc>
-  </url><url>
-    <loc>/docs/operations/fencing/</loc>
   </url><url>
     <loc>/docs/operations/firstpvc/</loc>
   </url><url>
@@ -212,7 +204,23 @@
   </url><url>
     <loc>/docs/operations/managing-host-storage/</loc>
   </url><url>
+    <loc>/docs/operations/backups-and-restores-with-kastenk10/</loc>
+  </url><url>
+    <loc>/docs/operations/compression/</loc>
+  </url><url>
+    <loc>/docs/operations/encryption/</loc>
+  </url><url>
+    <loc>/docs/operations/fencing/</loc>
+  </url><url>
+    <loc>/docs/operations/tap/</loc>
+  </url><url>
+    <loc>/docs/operations/compute-only/</loc>
+  </url><url>
+    <loc>/docs/operations/failure-modes/</loc>
+  </url><url>
     <loc>/docs/operations/trim/</loc>
+  </url><url>
+    <loc>/docs/operations/replication/</loc>
   </url><url>
     <loc>/docs/usecases/influxdb/</loc>
   </url><url>
@@ -277,8 +285,6 @@
     <loc>/docs/reference/filesystems/</loc>
   </url><url>
     <loc>/docs/reference/tolerations/</loc>
-  </url><url>
-    <loc>/docs/operations/tap/</loc>
   </url><url>
     <loc>/docs/operations/troubleshooting/</loc>
   </url><url>
