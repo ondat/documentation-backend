@@ -4067,19 +4067,67 @@ sudo apt-get install -y linux-modules-extra-&lt;span style=&#34;color:#204a87;fo
         
         &lt;p&gt;We recommend always using &amp;ldquo;tagged&amp;rdquo; versions of Ondat rather than &amp;ldquo;latest&amp;rdquo;,
 and to perform upgrades only after reading the release notes.&lt;/p&gt;
-&lt;p&gt;The latest tagged release is &lt;code&gt;2.8.0&lt;/code&gt;. For
+&lt;p&gt;The latest tagged release is &lt;code&gt;2.8.1&lt;/code&gt;. For
 installation instructions see our
 &lt;a href=&#34;/docs/reference/cluster-operator/install&#34;&gt;Install&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;The latest CLI release is &lt;code&gt;2.8.0&lt;/code&gt;, available from
+&lt;p&gt;The latest CLI release is &lt;code&gt;2.8.1&lt;/code&gt;, available from
 &lt;a href=&#34;https://github.com/storageos/go-cli/releases&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;upgrading&#34;&gt;Upgrading&lt;/h1&gt;
 &lt;p&gt;To upgrade from version 1.x to 2.x, contact Ondat &lt;a href=&#34;/docs/support&#34;&gt;support&lt;/a&gt; for assistance.&lt;/p&gt;
+&lt;h2 id=&#34;281---release-2022-08-02&#34;&gt;2.8.1 - Release 2022-08-02&lt;/h2&gt;
+&lt;h3 id=&#34;new&#34;&gt;New&lt;/h3&gt;
+&lt;p&gt;k8s&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Operator:
+&lt;ul&gt;
+&lt;li&gt;Install snapshot controller and related CRDs if not present&lt;/li&gt;
+&lt;li&gt;Pod Disruption Budget support for k8s v1.25&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Improve logging on kubectl plugin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Data Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Warn that filesystem might go read-only after a failed write or sync SCSI command. The log of interest is: &lt;code&gt;&amp;quot;SCSI command failed - if the block device is mounted the filesystem may go read-only&amp;quot;.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Log when the average IO service time from the mount node is greater than 2 seconds. We log the following message on a per volume basis with exponential backoff: &lt;code&gt;&amp;quot;it is taking unsually long to send and receive IO from the presentation node&amp;quot;&lt;/code&gt;. Metrics are included in the log message.
+&lt;ul&gt;
+&lt;li&gt;Note: this measurement is tracking the time it takes to send the IO over the network to the master and any replicas and for the IO to be committed and the response sent back to the mount node.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Log when the average IO service time from the master node to its replica is greater than 2 seconds. We log the following message, on a per replica basis with exponential backoff: &amp;ldquo;it is taking unsually long to send and receive IO from the master deployment to its replica&amp;rdquo;. Metrics are included in the log message. Note: this measurement is tracking the time it takes to send the IO over the network to the replica and for the IO to be committed and the response sent back to the mount node.&lt;/li&gt;
+&lt;li&gt;Log when it takes more than 1 second to commit a write, read, sync or unmap to disk. Logs of interest are of the format &lt;code&gt;&amp;quot;X operation took longer than Yms to complete completion_time=Zms&amp;quot;.&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Control Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatically round up storage requests to align with blocksize, instead of rejecting requests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fixed&#34;&gt;Fixed&lt;/h3&gt;
+&lt;p&gt;k8s&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue where Portal Manager would not work if installed in a namespace that was not &lt;code&gt;storageos&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fixed an issue where CSI requests would occasionally not be serviced&lt;/li&gt;
+&lt;li&gt;Fixed an issue on GKE where some pods would not be scheduled if there was no resource quota&lt;/li&gt;
+&lt;li&gt;Fixed a bug where the operator would attempt to delete snapshot related CRs when the CRD did not exist&lt;/li&gt;
+&lt;li&gt;Fixed an issue where default containers were not correctly marked&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Control Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reduced the amount of crash loop backoffs when installing via the helm chart&lt;/li&gt;
+&lt;li&gt;Reduced the impact of ListVolumes on etcd (significantly, in the case of clusters with lots of volumes)&lt;/li&gt;
+&lt;li&gt;Fixed an issue where formatting would timeout due to large TRIM writes being sent across the network&lt;/li&gt;
+&lt;li&gt;Fixed an issue where volume deployments would all be scheduled on the same nodes when deploying multiple PVC at the same time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Data Plane&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix &lt;code&gt;Convert&amp;lt;&amp;gt;&lt;/code&gt; and add support for &lt;code&gt;uint16_t&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fix &lt;code&gt;Volume::GetConsumerCount&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Improve error message when a write/unmap SCSI command is not committed to the backend disk: &lt;code&gt;&amp;quot;a consumer IO was not committed to rdbplugin because its transaction ID lost. This could mean there are two consumers with the same transaction ID (bad); the CP has forgotten to increment the consumer count in between remounts of the volume (bad) or it could indicate that a retry of this IO operation has overtaken a previous IO attempt (normally indicative of a very slow/flaky network and/or disk).&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;280---release-2022-06-29&#34;&gt;2.8.0 - Release 2022-06-29&lt;/h2&gt;
-&lt;p&gt;2.8.0 Release Notes&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 For Ondat 2.8.0, we recommend having at least a 5 node cluster when running etcd within Kubernetes, as we recommend running etcd with 5 replicas.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;new&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-1&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;k8s&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Etcd in Production: We have added support for putting ETCD in your cluster in a production environment&lt;/li&gt;
@@ -4102,13 +4150,13 @@ installation instructions see our
 &lt;ul&gt;
 &lt;li&gt;Automatic licencing: we added a feature to allow automatic deployment of licence to your cluster when you connect to our Ondat SaaS Platform&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-1&#34;&gt;Fixed&lt;/h3&gt;
 &lt;p&gt;k8s&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Fixed a bug where the StorageOS operator would occasionally restart&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;270---released-2022-04-11&#34;&gt;2.7.0 - Released 2022-04-11&lt;/h2&gt;
-&lt;h3 id=&#34;new-1&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-2&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;k8s &amp;amp; Orchestrator Rolling Upgrade&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Tech Preview: Kubernetes rolling upgrade for AWS EKS, Google Anthos, Google GKE, Microsoft Azure, Openshift and Rancher
@@ -4140,7 +4188,7 @@ installation instructions see our
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-1&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-2&#34;&gt;Fixed&lt;/h3&gt;
 &lt;p&gt;Operator&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Fixed a bug that sometimes caused the operator to enter a deadlock state after Ondat cluster CR object deletion&lt;/li&gt;
@@ -4160,7 +4208,7 @@ installation instructions see our
 &lt;li&gt;Fix client-server network to improve robustness&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;260---released-2022-02-14&#34;&gt;2.6.0 - Released 2022-02-14&lt;/h2&gt;
-&lt;h3 id=&#34;new-2&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-3&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;Portal Manager:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Initial release of the Portal Manager, which supports the connection to Ondat
@@ -4191,7 +4239,7 @@ component is disabled by default and we do not recommend using the feature
 for production workloads as it is a technical preview feature.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;250---released-2021-12-06&#34;&gt;2.5.0 - Released 2021-12-06&lt;/h2&gt;
-&lt;h3 id=&#34;fixed-2&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-3&#34;&gt;Fixed&lt;/h3&gt;
 &lt;p&gt;Dataplane:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Deadlock with unordered UNMAP commands.&lt;/li&gt;
@@ -4209,7 +4257,7 @@ used to extract volume data in disaster recovery scenarios. There was an
 issue that prevented the tool from running whilst the Dataplane was running.
 This has been fixed.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-3&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-4&#34;&gt;New&lt;/h3&gt;
 &lt;p&gt;Dataplane:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Faster replica syncing - new replicas can be provisioned faster and rejoining
@@ -4241,7 +4289,7 @@ port to new operator and we have given users increased flexibility for users
 to configure StorageOS images.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;244---released-2021-09-08&#34;&gt;2.4.4 - Released 2021-09-08&lt;/h2&gt;
-&lt;h3 id=&#34;fixed-3&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-4&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;controlplane: Fix an issue with timeouts when opening gRPC connections to
 other nodes in the cluster.&lt;/li&gt;
@@ -4253,7 +4301,7 @@ erroneously restarted while we are trying to shutdown.&lt;/li&gt;
 &lt;li&gt;k8s: Node label sync could fail to apply updated label.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v242---released-2021-07-15&#34;&gt;v2.4.2 - Released 2021-07-15&lt;/h2&gt;
-&lt;h3 id=&#34;fixed-4&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-5&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;controlplane: Improve error message when unable to set the cluster-wide log
@@ -4273,11 +4321,11 @@ level on an individual node.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v241---released-2021-06-30&#34;&gt;v2.4.1 - Released 2021-06-30&lt;/h2&gt;
-&lt;h3 id=&#34;new-4&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-5&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Cluster-wide log level configuration via Custom Resource.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-5&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-6&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;controlplane: Improve error message during failed &lt;code&gt;--label&lt;/code&gt; argument parsing.&lt;/p&gt;
@@ -4308,7 +4356,7 @@ unmount on error.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/reference/kubernetes-object-sync&#34;&gt;Kubernetes object sync&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Note: v2.4.0 &lt;em&gt;requires&lt;/em&gt; Kubernetes 1.17 or newer.&lt;/p&gt;
-&lt;h3 id=&#34;new-5&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-6&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Volume encryption-at-rest.&lt;/li&gt;
 &lt;li&gt;Fencing support.&lt;/li&gt;
@@ -4317,7 +4365,7 @@ unmount on error.&lt;/p&gt;
 &lt;li&gt;Kubernetes node and namespace delete sync.&lt;/li&gt;
 &lt;li&gt;Failure tolerance threshold support.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-6&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-7&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;controlplane/api: Compression is not disabled by default when provisioning
@@ -4779,12 +4827,12 @@ exist.&lt;/p&gt;
 customers.&lt;/li&gt;
 &lt;li&gt;Quality-of-life fixes.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-6&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-7&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;operator: Use CSI attacher v3 for k8s 1.17+.&lt;/li&gt;
 &lt;li&gt;controlplane/csi: ListVolumes support.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-7&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-8&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;api-manager: Reset API after token refresh error.&lt;/li&gt;
 &lt;li&gt;operator: Set scheduler when PVCs use default StorageClass.&lt;/li&gt;
@@ -4794,7 +4842,7 @@ customers.&lt;/li&gt;
 &lt;li&gt;controlplane/fsm: Perform state match check before version check.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v232---released-2020-11-25&#34;&gt;v2.3.2 - Released 2020-11-25&lt;/h2&gt;
-&lt;h3 id=&#34;fixed-8&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-9&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;controlplane/rejoin: Failure to delete data causes re-advertise loop.&lt;/li&gt;
 &lt;li&gt;controlplane/rejoin: Handle timeout waiting for progress report.&lt;/li&gt;
@@ -4805,7 +4853,7 @@ customers.&lt;/li&gt;
 &lt;li&gt;Allows access to &lt;code&gt;ReadWriteMany&lt;/code&gt; shared volumes when running containers as a
 non-root user.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-9&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-10&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;nfs: root squash to uid=0 is now configured on all shared volumes.&lt;/li&gt;
 &lt;/ul&gt;
@@ -4816,7 +4864,7 @@ technology preview in v1.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The &lt;code&gt;v2.3.0&lt;/code&gt; operator is no longer able to run Ondat v1.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;new-7&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-8&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Adds support for &lt;code&gt;ReadWriteMany&lt;/code&gt; shared volumes.  See
 &lt;a href=&#34;/docs/concepts/rwx&#34;&gt;ReadWriteMany&lt;/a&gt;.&lt;/li&gt;
@@ -4872,7 +4920,7 @@ Openshift have a much lower default value (1024).  Consult
 &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;prerequisites&lt;/a&gt; for more
 information.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-10&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-11&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;dataplane: Fixes &lt;code&gt;transport endpoint is not connected&lt;/code&gt; on startup after an
 unclean shutdown.&lt;/li&gt;
@@ -4897,7 +4945,7 @@ look at the &lt;a href=&#34;/docs/introduction/self-eval#Benchmarking&#34;&gt;Be
 self-evaluation guide and consider sharing
 your results. Our PRE engineers are available to discuss in our &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack
 channel&lt;/a&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;new-8&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-9&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Data engine revamp focused on provable consistency and performance. Key
@@ -4949,7 +4997,7 @@ This allows the scheduler to work in clusters with custom DNS configuration.&lt;
 &lt;li&gt;operator: Defaults are now set for most CSI configuration options in the
 StorageOSCluster custom resource.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-11&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-12&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;csi: When unmount request is received for a volume that has already been
 unmounted, return success.&lt;/li&gt;
@@ -4962,7 +5010,7 @@ operations, rather than filling target disk to capacity.&lt;/li&gt;
 after a restart. This resulted in multiple entries in &lt;code&gt;/proc/mounts&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v210---released-2020-06-26&#34;&gt;v2.1.0 - Released 2020-06-26&lt;/h2&gt;
-&lt;h3 id=&#34;new-9&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-10&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;csi: Volume expansion now supported in offline mode. To expand a volume, stop
 any workloads accessing the volume, then edit the PVC to increase the
@@ -4992,14 +5040,14 @@ and replica nodes are offline. This allows cleanup of orphaned volumes.&lt;/li&g
 &lt;li&gt;api: When a new node is added to the cluster, its capacity is available to use
 immediately.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-12&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-13&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;ui: Favicon was missing.&lt;/li&gt;
 &lt;li&gt;ui: Duplicate volumes could be shown on the node details page.&lt;/li&gt;
 &lt;li&gt;operator: During uninstall a ClusterRoleBinding was not removed.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;v200---released-2020-05-05&#34;&gt;v2.0.0 - Released 2020-05-05&lt;/h2&gt;
-&lt;h3 id=&#34;new-10&#34;&gt;New&lt;/h3&gt;
+&lt;h3 id=&#34;new-11&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;operator: Ondat containers now run in the &lt;code&gt;kube-system&lt;/code&gt; namespace by
 default to allow the &lt;code&gt;system-node-critical&lt;/code&gt; priority class to be set. This
@@ -5047,7 +5095,7 @@ that the CSI endpoint can be seen on systems with SELinux enabled.&lt;/li&gt;
 &lt;li&gt;scheduler: return error for namespace/volume not found&lt;/li&gt;
 &lt;li&gt;dataplane: start gRPC threads separately from rest of the supervisor.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;fixed-13&#34;&gt;Fixed&lt;/h3&gt;
+&lt;h3 id=&#34;fixed-14&#34;&gt;Fixed&lt;/h3&gt;
 &lt;p&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; HEAD&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;

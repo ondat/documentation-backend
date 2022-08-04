@@ -24,7 +24,7 @@
 <meta property="og:description" content="Enable the metrics To enable the Ondat Volume metrics, add the following field to your StorageOSCluster resource.
 spec:metrics:enabled:true ⚠️ On OCP you may need to follow their instructions for enabling monitoring of user-defined projects, here
  Example setup Here’s an example ServiceMonitor resource that scrapes our metrics endpoints:
-apiVersion:monitoring.coreos.com/v1kind:ServiceMonitormetadata:labels:app:storageosrelease:prometheusname:storageos-metrics-service-monitornamespace:storageosspec:endpoints:- interval:15spath:/metricsport:metricsnamespaceSelector:matchNames:- storageosselector:matchLabels:service-discovery:storageos-metrics-exporterapp:storageos⚠️ The label selector fields must match those of our service.
+apiVersion:monitoring.coreos.com/v1kind:ServiceMonitormetadata:labels:app:storageosrelease:prometheusname:storageos-metrics-service-monitornamespace:storageosspec:endpoints:- interval:15spath:/metricsport:metricsnamespaceSelector:matchNames:- storageosselector:matchLabels:app:storageosapp.kubernetes.io/component:metrics-exporter⚠️ The label selector fields must match those of our service.
 After the manifest is applied, Ondat metrics will be scraped by your Prometheus server." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/metric-exporter/" /><meta property="article:section" content="docs" />
@@ -35,7 +35,7 @@ After the manifest is applied, Ondat metrics will be scraped by your Prometheus 
 <meta itemprop="description" content="Enable the metrics To enable the Ondat Volume metrics, add the following field to your StorageOSCluster resource.
 spec:metrics:enabled:true ⚠️ On OCP you may need to follow their instructions for enabling monitoring of user-defined projects, here
  Example setup Here’s an example ServiceMonitor resource that scrapes our metrics endpoints:
-apiVersion:monitoring.coreos.com/v1kind:ServiceMonitormetadata:labels:app:storageosrelease:prometheusname:storageos-metrics-service-monitornamespace:storageosspec:endpoints:- interval:15spath:/metricsport:metricsnamespaceSelector:matchNames:- storageosselector:matchLabels:service-discovery:storageos-metrics-exporterapp:storageos⚠️ The label selector fields must match those of our service.
+apiVersion:monitoring.coreos.com/v1kind:ServiceMonitormetadata:labels:app:storageosrelease:prometheusname:storageos-metrics-service-monitornamespace:storageosspec:endpoints:- interval:15spath:/metricsport:metricsnamespaceSelector:matchNames:- storageosselector:matchLabels:app:storageosapp.kubernetes.io/component:metrics-exporter⚠️ The label selector fields must match those of our service.
 After the manifest is applied, Ondat metrics will be scraped by your Prometheus server.">
 
 <meta itemprop="wordCount" content="74">
@@ -44,7 +44,7 @@ After the manifest is applied, Ondat metrics will be scraped by your Prometheus 
 <meta name="twitter:description" content="Enable the metrics To enable the Ondat Volume metrics, add the following field to your StorageOSCluster resource.
 spec:metrics:enabled:true ⚠️ On OCP you may need to follow their instructions for enabling monitoring of user-defined projects, here
  Example setup Here’s an example ServiceMonitor resource that scrapes our metrics endpoints:
-apiVersion:monitoring.coreos.com/v1kind:ServiceMonitormetadata:labels:app:storageosrelease:prometheusname:storageos-metrics-service-monitornamespace:storageosspec:endpoints:- interval:15spath:/metricsport:metricsnamespaceSelector:matchNames:- storageosselector:matchLabels:service-discovery:storageos-metrics-exporterapp:storageos⚠️ The label selector fields must match those of our service.
+apiVersion:monitoring.coreos.com/v1kind:ServiceMonitormetadata:labels:app:storageosrelease:prometheusname:storageos-metrics-service-monitornamespace:storageosspec:endpoints:- interval:15spath:/metricsport:metricsnamespaceSelector:matchNames:- storageosselector:matchLabels:app:storageosapp.kubernetes.io/component:metrics-exporter⚠️ The label selector fields must match those of our service.
 After the manifest is applied, Ondat metrics will be scraped by your Prometheus server."/>
 
 
@@ -187,7 +187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
+  data-offline-search-index-json-src="/offline-search-index.8461f667f65835d5a9df0baa22c09ac41e0cde81d7c240e887387b69503fe87fd5483532cffc966257876ff4607c32669efd0aac1cd51f6cf51c161df38c8db9.json"
   data-offline-search-base-href="/"
 >
 
@@ -335,7 +335,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.72232cfbfc355a337cbc48ffedea346d71b9938809fd53c4703cbac221ea287eccc6f85e3e1484c63c1cc13caea3abbba6441eb1dc9cff2d170cbf36d462c8b0.json"
+  data-offline-search-index-json-src="/offline-search-index.8461f667f65835d5a9df0baa22c09ac41e0cde81d7c240e887387b69503fe87fd5483532cffc966257876ff4607c32669efd0aac1cd51f6cf51c161df38c8db9.json"
   data-offline-search-base-href="/"
 >
 
@@ -1717,8 +1717,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">service-discovery</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-metrics-exporter</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/component</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">metrics-exporter</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><p>⚠️ The label selector fields must match those of our service.</p>
 <p>After the manifest is applied, Ondat metrics will be scraped by your Prometheus server.</p>
 
