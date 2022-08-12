@@ -199,8 +199,8 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you are running kubernetes in GCP there are a number of options on how you run your kubernetes cluster.  Please see the following datasheets and blogs for more information about some of the use-cases of running in GCP&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/datasheets/ondat-google-anthos&#34;&gt;Ondat for Google Anthos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/datasheets/ondat-google-anthos&#34;&gt;Datasheet: Ondat for Google Anthos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -218,7 +218,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you are running Rancher there are a number of options on how you run your kubernetes cluster.  Please see the following datasheets and blogs for more information about some of the use-cases of running Ondat in Rancher.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/ondat-and-suse-rancher-run-your-stateful-applications-everywhere&#34;&gt;Blog: Ondat and SUSE Rancher - Run your stateful applications everywhere&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -237,8 +237,9 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you are running kubernetes in Azure there are a number of options on how you run your kubernetes cluster.  See the following datasheets and blogs for more information about some of the use-cases of running in Azure.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/datasheets/ondat-aks&#34;&gt;Ondat for AKS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/datasheets/ondat-aks&#34;&gt;Datasheet: Ondat for AKS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/deploying-stateful-applications-in-a-microsoft-aks-cluster-using-ondat&#34;&gt;Webinar: Deploying stateful applications in an AKS cluster&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -256,7 +257,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
 &lt;p&gt;If you are running kubernetes in Digital Ocean there are a number of options on how you run your kubernetes cluster.  Please see the following datasheets and blogs for more information about some of the use-cases of running in Digital Ocean&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -276,6 +277,8 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/run-production-databases-on-red-hat-openshift-with-ondat&#34;&gt;Webinar: Run production databases on Red Hat Openshift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/run-production-databases-on-red-hat-openshift-with-ondat&#34;&gt;Webinar: Run production databases on OpenShift with Ondat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/demo-installing-storageos-on-openshift-4&#34;&gt;Blog: Installing on OpenShift&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
