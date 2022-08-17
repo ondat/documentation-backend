@@ -171,7 +171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4f887df97fd0293e47dfa0477b58ec0b0b7e2d8b4ea6f98773eb39753b14e553cdd2858754920873b486955c237f8f8eb4daab9c0479148689ea4acc7536541d.json"
+  data-offline-search-index-json-src="/offline-search-index.bc83dfeee2fdd591c3a85f3be02a6dadc142b75b238f1da4177c191d564752bb5f80232d9f7362b55bf5a97dfe86f69f3d59281d4f6e682ad5177a733fc38b8f.json"
   data-offline-search-base-href="/"
 >
 
@@ -319,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4f887df97fd0293e47dfa0477b58ec0b0b7e2d8b4ea6f98773eb39753b14e553cdd2858754920873b486955c237f8f8eb4daab9c0479148689ea4acc7536541d.json"
+  data-offline-search-index-json-src="/offline-search-index.bc83dfeee2fdd591c3a85f3be02a6dadc142b75b238f1da4177c191d564752bb5f80232d9f7362b55bf5a97dfe86f69f3d59281d4f6e682ad5177a733fc38b8f.json"
   data-offline-search-base-href="/"
 >
 
@@ -1739,7 +1739,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:v2.8.0
+      - image: storageos/cli:v2.8.2
         command:
           - &quot;/bin/sh&quot;
           - &quot;-c&quot;
@@ -1760,7 +1760,7 @@ spec:
 <p>You can also run the cli as a container in your Kubernetes cluster. Then exec
 into it to run commands.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos run <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.7.0
+</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.8.2
     --restart<span style="color:#ce5c00;font-weight:bold">=</span>Never                          <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos:5705 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos       <span style="color:#4e9a06">\

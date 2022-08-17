@@ -32,7 +32,7 @@ v2.3&lt;/a&gt; and that you have checked the init
 container logs to ensure your environments PID limits are set correctly.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Pull down the new Ondat container image &lt;code&gt;storageos/node:v2.8.0&lt;/code&gt; onto the
+&lt;p&gt;💡 Pull down the new Ondat container image &lt;code&gt;storageos/node:v2.8.2&lt;/code&gt; onto the
 nodes beforehand so that the cluster spins up faster.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
