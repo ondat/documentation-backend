@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.c3a523c75aabb272a7733d4d401049f15a934f57721ed9d0e0f52c1301c893d298a7fabfa1ca4348c93540d94ddbb8ebaca4e8f4302d90c7025bf1d3756decc5.json"
+  data-offline-search-index-json-src="/offline-search-index.4f887df97fd0293e47dfa0477b58ec0b0b7e2d8b4ea6f98773eb39753b14e553cdd2858754920873b486955c237f8f8eb4daab9c0479148689ea4acc7536541d.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.c3a523c75aabb272a7733d4d401049f15a934f57721ed9d0e0f52c1301c893d298a7fabfa1ca4348c93540d94ddbb8ebaca4e8f4302d90c7025bf1d3756decc5.json"
+  data-offline-search-index-json-src="/offline-search-index.4f887df97fd0293e47dfa0477b58ec0b0b7e2d8b4ea6f98773eb39753b14e553cdd2858754920873b486955c237f8f8eb4daab9c0479148689ea4acc7536541d.json"
   data-offline-search-base-href="/"
 >
 
@@ -1698,7 +1698,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>This guide will demonstrate how to install Ondat onto a Kubernetes cluster declaratively. Ondat can be installed declaratively onto a Kubernetes cluster through two different methods;</p>
 <ol>
 <li>Using the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>.</li>
-<li>Using the <a href="https://github.com/ondat/charts/tree/main/charts/ondat">Ondat Helm chart</a>.</li>
+<li>Using the <a href="https://github.com/ondat/charts">Ondat Helm chart</a>.</li>
 </ol>
 <h2 id="prerequisites">Prerequisites</h2>
 <blockquote>
@@ -1882,26 +1882,26 @@ helm search repo <span style="color:#4e9a06">&#34;ondat&#34;</span>
 <li>There are two ways to conduct an installation with Helm, <strong>declaratively</strong> by creating a custom <code>values.yaml</code> (recommended method) or <strong>interactively</strong> by using the <code>--set</code> flags to overwrite specific values for the deployment.</li>
 </ul>
 <blockquote>
-<p>💡 <strong>Advanced Users</strong> - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own <code>StorageOSCluster</code> custom resource manifest, review the Ondat chart <a href="https://github.com/ondat/charts/blob/main/charts/ondat/README.md">README.md</a> document, <a href="/docs/reference/cluster-operator/configuration">Cluster Operator Configuration</a> and  <a href="/docs/reference/cluster-operator/examples">Cluster Operator Examples</a> reference pages for more information.</p>
+<p>💡 <strong>Advanced Users</strong> - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own <code>StorageOSCluster</code> custom resource manifest, review the Ondat chart <a href="https://github.com/ondat/charts/blob/main/README.md">README.md</a> document, <a href="/docs/reference/cluster-operator/configuration">Cluster Operator Configuration</a> and  <a href="/docs/reference/cluster-operator/examples">Cluster Operator Examples</a> reference pages for more information.</p>
 </blockquote>
 <h5 id="declarative-recommended">Declarative (Recommended)</h5>
 <ol>
 <li>
-<p>Make a copy of the <a href="https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml"><code>values.yaml</code></a> configuration file, rename it to <code>custom-values.yaml</code>, then ensure that the following configurable parameters have been populated before beginning the installation.</p>
+<p>Make a copy of the <a href="https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml"><code>values.yaml</code></a> configuration file, rename it to <code>custom-values.yaml</code>, then ensure that the following configurable parameters have been populated before beginning the installation.</p>
 <ul>
-<li><a href="https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml#L23"><code>ondat-operator.cluster.admin.password</code></a></li>
+<li><a href="https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml#L23"><code>ondat-operator.cluster.admin.password</code></a></li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># Password to authenticate to the StorageOS API with. This must be at least</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># 8 characters long.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">password</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># for example -&gt; storageos</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><ul>
-<li><strong>If an external etcd installation is being used</strong>, add <a href="https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml"><code>ondat-operator.cluster.kvBackend.address</code></a></li>
+<li><strong>If an external etcd installation is being used</strong>, add <a href="https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml"><code>ondat-operator.cluster.kvBackend.address</code></a></li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#8f5902;font-style:italic"># Key-Value store backend.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">kvBackend</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">address</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># for example -&gt; 203.0.113.10:2379,203.0.113.11:2379,203.0.113.12:2379</span><span style="color:#f8f8f8;text-decoration:underline">
 </span></code></pre></div><ul>
-<li><strong>If an internal etcd installation is being used</strong>, set <a href="https://github.com/ondat/charts/blob/main/charts/ondat/values.yaml"><code>etcd-cluster-operator.cluster.storageclass</code></a>, set this to the StorageClass installed earlier</li>
+<li><strong>If an internal etcd installation is being used</strong>, set <a href="https://github.com/ondat/charts/blob/main/charts/umbrella-charts/ondat/values.yaml"><code>etcd-cluster-operator.cluster.storageclass</code></a>, set this to the StorageClass installed earlier</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Storageclass for etcd backing storage</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># NOTE: We CANNOT use storageos here as this is the egg to Ondat&#39;s chicken</span><span style="color:#f8f8f8;text-decoration:underline">

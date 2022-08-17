@@ -68,7 +68,7 @@ $ helm install storageos-etcd ondat/etcd-cluster-operator &lt;span style=&#34;co
 using the same Secret name as the one used for the old etcd cluster&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;For more details, check the &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/etcd-cluster-operator&#34;&gt;etcd cluster operator
+&lt;p&gt;For more details, check the &lt;a href=&#34;https://github.com/ondat/charts/tree/main/charts/component-charts/etcd-cluster-operator&#34;&gt;etcd cluster operator
 chart&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
