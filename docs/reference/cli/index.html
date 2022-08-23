@@ -171,7 +171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9ccf39bc9291b3a52b7a4395e8d37127b1fef5c050392a9c16d1390390be4c8e5577a68b8a9150d3a7c802871a9ac64097fa33bb6d1fd3f93c8884677fa91952.json"
+  data-offline-search-index-json-src="/offline-search-index.a5cdec3a5d559a60ca2786a920bfb140b03df58611c97ed60947ca587375efa293aba9031182cb234b6d11291b624c25f88c01af31c7768d96ae1ac5e811ed97.json"
   data-offline-search-base-href="/"
 >
 
@@ -319,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.9ccf39bc9291b3a52b7a4395e8d37127b1fef5c050392a9c16d1390390be4c8e5577a68b8a9150d3a7c802871a9ac64097fa33bb6d1fd3f93c8884677fa91952.json"
+  data-offline-search-index-json-src="/offline-search-index.a5cdec3a5d559a60ca2786a920bfb140b03df58611c97ed60947ca587375efa293aba9031182cb234b6d11291b624c25f88c01af31c7768d96ae1ac5e811ed97.json"
   data-offline-search-base-href="/"
 >
 
@@ -1695,13 +1695,13 @@ up resolution times for support issues.</p>
 <h2 id="installation">Installation</h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># linux/amd64</span>
 curl -sSLo storageos <span style="color:#4e9a06">\ </span>
-    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_linux_amd64 <span style="color:#4e9a06">\
+    https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_linux_amd64 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/
 
 <span style="color:#8f5902;font-style:italic"># MacOS</span>
 curl -sSLo storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    https://github.com/storageos/go-cli/releases/download/v2.7.0/storageos_darwin_amd64 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_darwin_amd64 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/
 </code></pre></div><p>You will need to provide the correct credentials to connect to the API. The
@@ -1739,7 +1739,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:v2.8.2
+      - image: storageos/cli:v2.8.1
         command:
           - &quot;/bin/sh&quot;
           - &quot;-c&quot;
@@ -1760,7 +1760,7 @@ spec:
 <p>You can also run the cli as a container in your Kubernetes cluster. Then exec
 into it to run commands.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos run <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.8.2
+</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.8.1
     --restart<span style="color:#ce5c00;font-weight:bold">=</span>Never                          <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos:5705 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos       <span style="color:#4e9a06">\
