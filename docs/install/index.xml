@@ -881,7 +881,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;Ondat requires certain kernel modules to function. In particular it requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 More information can be &lt;a href=&#34;../prerequisites/systemconfiguration.md&#34;&gt;found here&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This guide assumes you already have a Kubernetes cluster, with &lt;strong&gt;at least&lt;/strong&gt; 3 worker nodes.&lt;/p&gt;
-&lt;h3 id=&#34;this-guide-works-on-the-following-kubernetes-distributions&#34;&gt;This guide works on the following Kubernetes distributions&lt;/h3&gt;
+&lt;p&gt;This guide works on the following Kubernetes distributions&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Vanilla Kubernetes&lt;/li&gt;
 &lt;li&gt;Rancher&lt;/li&gt;
@@ -911,7 +911,6 @@ storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete         
 helm install ondat ondat/ondat --create-namespace --namespace storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;--set ondat-operator.cluster.admin.username&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ONDAT_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;ondat-operator.cluster.admin.password&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;${&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ONDAT_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;}&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;\
-&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;etcd-cluster-operator.cluster.namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-etcd,&lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;etcd-cluster-operator.cluster.replicas&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;3,&lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;etcd-cluster-operator.cluster.storageclass&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;local-path,&lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;etcd-cluster-operator.cluster.storage&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;6Gi,&lt;span style=&#34;color:#4e9a06&#34;&gt;\

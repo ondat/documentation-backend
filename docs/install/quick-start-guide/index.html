@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Walkthrough guide to get Ondat for a non-production installation
 ">
 
-<meta itemprop="wordCount" content="618">
+<meta itemprop="wordCount" content="617">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quick Start Guide - Non-Production"/>
 <meta name="twitter:description" content="Walkthrough guide to get Ondat for a non-production installation
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a5cdec3a5d559a60ca2786a920bfb140b03df58611c97ed60947ca587375efa293aba9031182cb234b6d11291b624c25f88c01af31c7768d96ae1ac5e811ed97.json"
+  data-offline-search-index-json-src="/offline-search-index.49383574dd19da2270d872e4a70623877bedfdf2c3093a0d034ba8c102fbab8a61fa6a36ffacc917907cfeb3769f29cab00e80e15b8e337b04d5432cb1e43c34.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a5cdec3a5d559a60ca2786a920bfb140b03df58611c97ed60947ca587375efa293aba9031182cb234b6d11291b624c25f88c01af31c7768d96ae1ac5e811ed97.json"
+  data-offline-search-index-json-src="/offline-search-index.49383574dd19da2270d872e4a70623877bedfdf2c3093a0d034ba8c102fbab8a61fa6a36ffacc917907cfeb3769f29cab00e80e15b8e337b04d5432cb1e43c34.json"
   data-offline-search-base-href="/"
 >
 
@@ -1637,11 +1637,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#prerequisites">Prerequisites</a>
-      <ul>
-        <li><a href="#this-guide-works-on-the-following-kubernetes-distributions">This guide works on the following Kubernetes distributions</a></li>
-      </ul>
-    </li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
     <li><a href="#step-1---install-ondat-helm-charts">Step 1 - Install Ondat Helm Charts</a></li>
     <li><a href="#step-2---install-local-path-provisioner">Step 2 - Install Local Path Provisioner</a></li>
     <li><a href="#step-3---customise-and-install-the-helm-chart">Step 3 - Customise and install the helm chart</a></li>
@@ -1709,7 +1705,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Ondat requires certain kernel modules to function. In particular it requires <a href="http://linux-iscsi.org/wiki/Main_Page">Linux-IO</a>, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).
 More information can be <a href="../prerequisites/systemconfiguration.md">found here</a></p>
 <p>This guide assumes you already have a Kubernetes cluster, with <strong>at least</strong> 3 worker nodes.</p>
-<h3 id="this-guide-works-on-the-following-kubernetes-distributions">This guide works on the following Kubernetes distributions</h3>
+<p>This guide works on the following Kubernetes distributions</p>
 <ul>
 <li>Vanilla Kubernetes</li>
 <li>Rancher</li>
@@ -1739,7 +1735,6 @@ storageclass.storage.k8s.io/local-path   rancher.io/local-path   Delete         
 helm install ondat ondat/ondat --create-namespace --namespace storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>--set ondat-operator.cluster.admin.username<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">ONDAT_USERNAME</span><span style="color:#4e9a06">}</span>,<span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>ondat-operator.cluster.admin.password<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">${</span><span style="color:#000">ONDAT_PASSWORD</span><span style="color:#4e9a06">}</span>,<span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd,<span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.replicas<span style="color:#ce5c00;font-weight:bold">=</span>3,<span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.storageclass<span style="color:#ce5c00;font-weight:bold">=</span>local-path,<span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>etcd-cluster-operator.cluster.storage<span style="color:#ce5c00;font-weight:bold">=</span>6Gi,<span style="color:#4e9a06">\
