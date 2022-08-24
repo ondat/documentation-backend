@@ -6,6 +6,8 @@
   </url><url>
     <loc>/docs/introduction/</loc>
   </url><url>
+    <loc>/docs/install/kubernetes/</loc>
+  </url><url>
     <loc>/docs/reference/namespaces/</loc>
   </url><url>
     <loc>/docs/concepts/cluster-topologies/</loc>
@@ -60,8 +62,6 @@
   </url><url>
     <loc>/docs/install/gcp/anthos/</loc>
   </url><url>
-    <loc>/docs/install/kubernetes/</loc>
-  </url><url>
     <loc>/docs/introduction/overview/</loc>
   </url><url>
     <loc>/docs/install/openshift/openshift-marketplace/</loc>
@@ -99,8 +99,6 @@
     <loc>/docs/install/declarative-install/</loc>
   </url><url>
     <loc>/docs/install/aws/terraform-aws-eks-blueprints/</loc>
-  </url><url>
-    <loc>/docs/install/quick-start-guide/</loc>
   </url><url>
     <loc>/docs/prerequisites/systemconfiguration/</loc>
   </url><url>

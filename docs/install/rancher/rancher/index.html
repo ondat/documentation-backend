@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Walkthrough guide to install Ondat onto a Rancher Cluster
 ">
 
-<meta itemprop="wordCount" content="751">
+<meta itemprop="wordCount" content="767">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rancher Kubernetes Engine (RKE)"/>
 <meta name="twitter:description" content="Walkthrough guide to install Ondat onto a Rancher Cluster
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.49383574dd19da2270d872e4a70623877bedfdf2c3093a0d034ba8c102fbab8a61fa6a36ffacc917907cfeb3769f29cab00e80e15b8e337b04d5432cb1e43c34.json"
+  data-offline-search-index-json-src="/offline-search-index.75480e97136691e5161b89b9d8f93e6449024b922d5300d7a4e891efc0fd4200533b370cd1ef500b12640ea61d1a3e938fa42bf15d45d456da1230911b628416.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.49383574dd19da2270d872e4a70623877bedfdf2c3093a0d034ba8c102fbab8a61fa6a36ffacc917907cfeb3769f29cab00e80e15b8e337b04d5432cb1e43c34.json"
+  data-offline-search-index-json-src="/offline-search-index.75480e97136691e5161b89b9d8f93e6449024b922d5300d7a4e891efc0fd4200533b370cd1ef500b12640ea61d1a3e938fa42bf15d45d456da1230911b628416.json"
   data-offline-search-base-href="/"
 >
 
@@ -622,6 +622,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallkubernetes" href="/docs/install/kubernetes/">Kubernetes</a>
+      
+      
+      
+      
 
 
 
@@ -653,12 +659,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ul>
 </ul>
 
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallkubernetes" href="/docs/install/kubernetes/">Kubernetes</a>
       
       
       
@@ -840,12 +840,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
       
       
     </li>
@@ -1753,46 +1747,14 @@ kubectl get storageclass
 <h3 id="step-2---choosing-the-installation-method">Step 2 - Choosing the Installation Method</h3>
 <p>You can use either the <a href="/docs/reference/kubectl-plugin/">kubectl-storageos CLI</a> or <a href="https://helm.sh/docs/intro/install/">Helm 3 CLI</a> to install Ondat onto your cluster.  The most common way is to use Helm due to its popularity in the Kubernetes community, but both are fully supported and described below.</p>
 <h3 id="step-3a---installing-via-helm">Step 3a - Installing via Helm</h3>
-<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm.</p>
+<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using Helm. The command created will be unique for you and the screenshot below is just for reference.</p>
 <p><img src="/images/docs/install/HelmInstall.png" alt="Helm Install"></p>
-<ol>
-<li>The first set of commands adds the Ondat Helm repository and ensures a updated local cache.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm repo add ondat https://ondat.github.io/charts <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>helm repo update <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#4e9a06">\
-</span></code></pre></div><ol start="2">
-<li>The last command installs Ondat with a set of basic install parameters that are sufficient for a basic trial installation.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">helm install ondat ondat/ondat <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --create-namespace <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.enabled<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.clientId<span style="color:#ce5c00;font-weight:bold">=</span>37540b25-285c-4326-b76c-742100723ac3 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.secret<span style="color:#ce5c00;font-weight:bold">=</span>e946f84a-e6c0-4afd-9087-f9cdd6906aa5 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.apiUrl<span style="color:#ce5c00;font-weight:bold">=</span>https://portal-setup-7dy4neexbq-ew.a.run.app <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set ondat-operator.cluster.portalManager.tenantId<span style="color:#ce5c00;font-weight:bold">=</span>16e51eb9-37cf-4103-9a31-9e2cdaeec373 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.storage<span style="color:#ce5c00;font-weight:bold">=</span>6Gi <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.resources.requests.cpu<span style="color:#ce5c00;font-weight:bold">=</span>100m <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --set etcd-cluster-operator.cluster.resources.requests.memory<span style="color:#ce5c00;font-weight:bold">=</span>300Mi
-</code></pre></div><ol start="3">
-<li>The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.</li>
-</ol>
+<p>The first two lines of the command adds the Ondat Helm repository and ensures a updated local cache.  The remaining command installs Ondat via Helm with a set of basic install parameters that are sufficient for a basic trial installation and to connect the Ondat installation with your portal account for licensing.  The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.</p>
 <h3 id="step-3b---installing-via-kubectl-storageos-plugin">Step 3b - Installing via kubectl-storageos plugin</h3>
-<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using the <code>kubectl-storageos</code> plugin</p>
+<p>The Ondat Portal UI will display the following cmd that can be used to install Ondat using the <code>kubectl-storageos</code> plugin.  The command created will be unique for you and the screenshot below is just for reference.</p>
 <p><img src="/images/docs/install/PluginInstall.png" alt="kubectl-storageos Install"></p>
-<p>This command uses the <code>kubectl-storageos</code> plugin command with a set of basic install parameters that are sufficient for a basic trial installation. The installation process may take a few minutes.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl storageos install <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --include-etcd<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --enable-portal-manager<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span> <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --portal-client-id<span style="color:#ce5c00;font-weight:bold">=</span>37540b25-285c-4326-b76c-742100723ac3 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --portal-secret<span style="color:#ce5c00;font-weight:bold">=</span>e946f84a-e6c0-4afd-9087-f9cdd6906aa5 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --portal-api-url<span style="color:#ce5c00;font-weight:bold">=</span>https://portal-setup-7dy4neexbq-ew.a.run.app <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --portal-tenant-id<span style="color:#ce5c00;font-weight:bold">=</span>16e51eb9-37cf-4103-9a31-9e2cdaeec373 <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-cpu-limit<span style="color:#ce5c00;font-weight:bold">=</span>100m <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-memory-limit<span style="color:#ce5c00;font-weight:bold">=</span>300Mi <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  --etcd-replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span>
-</code></pre></div><h3 id="step-4---verifying-ondat-installation">Step 4 - Verifying Ondat Installation</h3>
+<p>The command that is provided by the Portal is unique to you and uses the <code>kubectl-storageos</code> plugin command with a set of basic install parameters that are sufficient for a basic trial installation and to connect the Ondat installation with your portal account for licensing.  The installation process may take a few minutes. The end of this guide contains information on verifying the installation and licensing.</p>
+<h3 id="step-4---verifying-ondat-installation">Step 4 - Verifying Ondat Installation</h3>
 <p>Run the following <code>kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
 kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos-etcd

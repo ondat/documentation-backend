@@ -171,7 +171,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.49383574dd19da2270d872e4a70623877bedfdf2c3093a0d034ba8c102fbab8a61fa6a36ffacc917907cfeb3769f29cab00e80e15b8e337b04d5432cb1e43c34.json"
+  data-offline-search-index-json-src="/offline-search-index.75480e97136691e5161b89b9d8f93e6449024b922d5300d7a4e891efc0fd4200533b370cd1ef500b12640ea61d1a3e938fa42bf15d45d456da1230911b628416.json"
   data-offline-search-base-href="/"
 >
 
@@ -319,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.49383574dd19da2270d872e4a70623877bedfdf2c3093a0d034ba8c102fbab8a61fa6a36ffacc917907cfeb3769f29cab00e80e15b8e337b04d5432cb1e43c34.json"
+  data-offline-search-index-json-src="/offline-search-index.75480e97136691e5161b89b9d8f93e6449024b922d5300d7a4e891efc0fd4200533b370cd1ef500b12640ea61d1a3e938fa42bf15d45d456da1230911b628416.json"
   data-offline-search-base-href="/"
 >
 
@@ -615,6 +615,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallkubernetes" href="/docs/install/kubernetes/">Kubernetes</a>
+      
+      
+      
+      
 
 
 
@@ -646,12 +652,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </ul>
 </ul>
 
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallkubernetes" href="/docs/install/kubernetes/">Kubernetes</a>
       
       
       
@@ -833,12 +833,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldeclarative-install" href="/docs/install/declarative-install/">Declarative Install</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallquick-start-guide" href="/docs/install/quick-start-guide/">Quick Start Guide</a>
       
       
     </li>
@@ -1739,7 +1733,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:v2.8.1
+      - image: storageos/cli:v2.8.2
         command:
           - &quot;/bin/sh&quot;
           - &quot;-c&quot;
@@ -1760,7 +1754,7 @@ spec:
 <p>You can also run the cli as a container in your Kubernetes cluster. Then exec
 into it to run commands.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos run <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.8.1
+</span><span style="color:#4e9a06"></span>    --image storageos/cli:v2.8.2
     --restart<span style="color:#ce5c00;font-weight:bold">=</span>Never                          <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_ENDPOINTS</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos:5705 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --env <span style="color:#000">STORAGEOS_USERNAME</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos       <span style="color:#4e9a06">\
@@ -1889,8 +1883,6 @@ that are passed to <code>--output</code> are &lsquo;json&rsquo;, &lsquo;yaml&rsq
     
     
     <hr class="panel-line">
-        
-            
         
             
         
