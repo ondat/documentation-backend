@@ -212,6 +212,8 @@
   </url><url>
     <loc>/docs/operations/tap/</loc>
   </url><url>
+    <loc>/docs/operations/cluster-id/</loc>
+  </url><url>
     <loc>/docs/operations/compute-only/</loc>
   </url><url>
     <loc>/docs/operations/failure-modes/</loc>
@@ -249,8 +251,6 @@
     <loc>/docs/operations/namespaces/</loc>
   </url><url>
     <loc>/docs/usecases/nginx/</loc>
-  </url><url>
-    <loc>/docs/operations/cluster-id/</loc>
   </url><url>
     <loc>/</loc>
   </url><url>
