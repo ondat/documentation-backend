@@ -216,6 +216,196 @@ the Ondat StorageClass are created.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Ondat Command Line Interface (CLI) Utility</title>
+      <link>/docs/reference/cli/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/reference/cli/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat CLI is a utility tool that is used to manage and configure Ondat resources and conduct Day-2 storage operations. The Ondat CLI is also useful for providing useful information on the state of an Ondat cluster and troubleshooting issues.
+&lt;ul&gt;
+&lt;li&gt;The project repository is open source and can be located on &lt;a href=&#34;https://github.com/storageos/go-cli&#34;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that you have successfully &lt;a href=&#34;/docs/install/&#34;&gt;installed Ondat&lt;/a&gt; into your Kubernetes or Openshift cluster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;how-to-install-the-ondat-cli&#34;&gt;How To Install The Ondat CLI&lt;/h2&gt;
+&lt;h3 id=&#34;option-1---run-the-ondat-cli-as-a-deployment-recommended&#34;&gt;Option 1 - Run The Ondat CLI As A Deployment (Recommended)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Run the following command below against your Ondat cluster which will deploy the Ondat CLI using a &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/deployment/&#34;&gt;Kubernetes deployment&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Create the deployment for the Ondat CLI.&lt;/span&gt;
+cat &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;EOF | kubectl create --filename -
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: apps/v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;kind: Deployment
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  labels:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    app: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    app.kubernetes.io/component: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    app.kubernetes.io/part-of: storageos
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    kind: storageos
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  name: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  namespace: storageos
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  replicas: 1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  selector:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    matchLabels:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      app: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  template:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      labels:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        app: storageos-cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      containers:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      - command:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - /bin/sh
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - -c
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - while true; do sleep 3600; done
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        env:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - name: STORAGEOS_USERNAME
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          value: storageos
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - name: STORAGEOS_PASSWORD
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          value: storageos
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - name: STORAGEOS_ENDPOINTS
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          value: storageos:5705
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        image: storageos/cli:v2.8.1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        imagePullPolicy: Always
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        name: cli
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        ports:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        - containerPort: 5705
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        resources:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          limits:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;            cpu: 100m
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;            memory: 128Mi
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          requests:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;            cpu: 50m
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;            memory: 32Mi
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;        securityContext:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          allowPrivilegeEscalation: false
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;          readOnlyRootFilesystem: true
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;EOF&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;execute-commands-through-the-ondat-cli-deployment&#34;&gt;Execute Commands Through The Ondat CLI Deployment&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Once the Ondat CLI deployment resource has been successfully created, get the pod name and take note of it for later reference.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the pod name of the Ondat CLI utility.&lt;/span&gt;
+kubectl get pods --namespace storageos &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-cli&amp;#34;&lt;/span&gt;
+
+storageos-cli-75874cd77f-b5dgp                       1/1     Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;              35m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;You can then use &lt;a href=&#34;https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/&#34;&gt;&lt;code&gt;kubectl-exec&lt;/code&gt;&lt;/a&gt; to run Ondat CLI commands in the container as demonstrated below;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; storageos-cli-75874cd77f-b5dgp -- storageos version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 Deploying the Ondat CLI as a deployment is the recommended method as the Ondat support bundle generation tool can automatically detect a deployment called &lt;code&gt;cli&lt;/code&gt; and warn you if you do not have the CLI installed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;option-2---run-the-ondat-cli-on-a-workstation&#34;&gt;Option 2 - Run The Ondat CLI On A Workstation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;To be able to interact and manage your Ondat cluster, ensure that you define and export the &lt;code&gt;STORAGEOS_USERNAME&lt;/code&gt;, &lt;code&gt;STORAGEOS_PASSWORD&lt;/code&gt; and &lt;code&gt;STORAGEOS_ENDPOINTS&lt;/code&gt; environment variables that will be used to manage your Ondat cluster through the CLI.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_USERNAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;                    
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.storageos.svc:5705&amp;#34;&lt;/span&gt;  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Enter the endpoint address of Ondat&amp;#39;s REST API to access the cluster through the CLI.&lt;/span&gt;
+                                                           &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# When using &amp;#34;kubectl port-forward&amp;#34; to access the cluster, change the endpoint to &amp;#34;localhost:5705&amp;#34;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Once you have defined the environment variables above, install the Ondat CLI on one of the supported operating systems listed below;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;linux&#34;&gt;Linux&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl --silent --show-error --location --output storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_linux_amd64 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo mv storageos /usr/local/bin/ &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;CLI version installed:&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; storageos version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;macos-darwin&#34;&gt;macOS (Darwin)&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl --silent --show-error --location --output storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_darwin_amd64 &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; chmod +x storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo mv storageos /usr/local/bin/ &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;CLI version installed:&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; storageos version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;windows&#34;&gt;Windows&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# PowerShell&lt;/span&gt;
+Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_windows_amd64.exe -OutFile storageos.exe &lt;span style=&#34;color:#4e9a06&#34;&gt;`&lt;/span&gt;
+  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt; Write-Host &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Plugin version installed:&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;`&lt;/span&gt;
+  &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;;&lt;/span&gt; .&lt;span style=&#34;color:#4e9a06&#34;&gt;\s&lt;/span&gt;torageos.exe version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;execute-commands-through-the-ondat-cli-binary&#34;&gt;Execute Commands Through The Ondat CLI Binary&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Once you have successfully installed the Ondat CLI, you can leverage &lt;a href=&#34;https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/&#34;&gt;&lt;code&gt;kubectl port-forward&lt;/code&gt;&lt;/a&gt; to establish a connection with your Ondat cluster in order to be able to execute commands.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Change the &amp;#34;STORAGEOS_ENDPOINTS&amp;#34; to point to &amp;#34;localhost:5705&amp;#34;.&lt;/span&gt;
+&lt;span style=&#34;color:#204a87&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;STORAGEOS_ENDPOINTS&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;localhost:5705&amp;#34;&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Use port forwarding to access the Ondat REST API locally.&lt;/span&gt;
+kubectl port-forward service/storageos &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt; --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# In a new shell, execute Ondat CLI commands to confirm that you can now interact with your Ondat cluster.&lt;/span&gt;
+storageos version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Get the version of the CLI utility installed;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Get more information on the available commands in the CLI utility;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;storageos &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;Storage &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; Cloud Native Applications.
+
+By using this product, you are agreeing to the terms of the the StorageOS Ltd. End
+User Subscription Agreement &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;EUSA&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; found at: https://storageos.com/legal/#eusa
+
+To be notified about stable releases and latest features, sign up at https://my.storageos.com.
+
+Usage:
+  storageos &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;command&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
+
+Available Commands:
+  apply       Make changes to existing resources
+  attach      Attach a volume to a node
+  cordon      Marks a node as cordoned
+  create      Create new resources
+  delete      Delete resources in the cluster
+  describe    Fetch extended details &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; resources
+  detach      Detach a volume from its current location
+  get         Fetch basic details &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; resources
+  &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt;        Help about any &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt;
+  nfs         Make changes and attach nfs volumes
+  uncordon    Marks a node as uncordoned
+  update      Make changes to existing resources
+  version     View version information &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; the StorageOS CLI
+
+Flags:
+      --cache-dir string        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the directory used by the StorageOS CLI to cache data that can be used &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; future commands &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/Users/rodney/Library/Caches/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+  -c, --config string           specifies the config file path &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;/Users/rodney/Library/Application Support/storageos/config.yaml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+      --endpoints stringArray   &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the list of endpoints which are used when connecting to the StorageOS API &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;http://localhost:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt;
+  -h, --help                    &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; storageos
+  -n, --namespace string        specifies the namespace to operate within &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; commands that require one &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+      --no-auth-cache           disable the CLI&lt;span style=&#34;color:#a40000&#34;&gt;&amp;#39;&lt;/span&gt;s caching of authentication sessions
+  -o, --output string           specifies the output format &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;json yaml text&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;])&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;text&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+      --password string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the StorageOS account password to authenticate with &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+      --timeout duration        &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the timeout duration to use &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; execution of the &lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default 15s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+      --use-ids                 specify existing StorageOS resources by their unique identifiers instead of by their names
+      --username string         &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; the StorageOS account username to authenticate as &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;default &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+
+Additional &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; topics:
+  storageos config-file View &lt;span style=&#34;color:#204a87&#34;&gt;help&lt;/span&gt; information &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; using a configuration file
+  storageos env         View documentation &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; configuration settings which can be &lt;span style=&#34;color:#204a87&#34;&gt;set&lt;/span&gt; in the environment
+  storageos exitcodes   View documentation &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; the &lt;span style=&#34;color:#204a87&#34;&gt;exit&lt;/span&gt; codes used by the StorageOS CLI
+
+Use &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos [command] --help&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information about a command.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Components</title>
       <link>/docs/concepts/components/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -5112,107 +5302,6 @@ example line:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To activate the new settings, run the following command:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sysctl -p /etc/sysctl.conf
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Etcd in Kubernetes</title>
-      <link>/docs/prerequisites/etcd/etcd/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/prerequisites/etcd/etcd/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat requires an etcd cluster in order to function. For more information on
-why etcd is required, see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;Neither Ondat nor Kubernetes support using Kubernetes&#39; own internal etcd for Ondat.&lt;/p&gt;
-&lt;p&gt;For most use-cases it is recommended to install the Ondat etcd operator that
-will manage creation and maintenance of Ondat&amp;rsquo;s required etcd cluster. In some
-circumstances, eg. when cloud storage technologies are not available,
-it makes sense to install etcd on separate machines outside of
-your Kubernetes cluster.&lt;/p&gt;
-&lt;h2 id=&#34;installing-etcd-into-your-kubernetes-cluster&#34;&gt;Installing Etcd Into Your Kubernetes Cluster&lt;/h2&gt;
-&lt;p&gt;This is our recommended way to host etcd in both testing and production
-environments.&lt;/p&gt;
-&lt;h2 id=&#34;configuring-storage-for-etcd&#34;&gt;Configuring Storage for Etcd&lt;/h2&gt;
-&lt;p&gt;We highly recommend using cloud provider network attached disks for storing
-etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This
-allows the etcd operator to recover from node failures.&lt;/p&gt;
-&lt;p&gt;For testing environments or where there are no resilient storage options available,
-a node-local storage option can be used, such as
-&lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt;.
-This will store etcd data on the node hosting an etcd pod&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended when other, better
-storage classes are not available, as this stores
-all the data of the &lt;code&gt;etcd&lt;/code&gt; peers locally, which
-makes it susceptible to state being lost on node failures.
-In the case of &lt;code&gt;local-path&lt;/code&gt; storage, a minimum of 5 etcd nodes
-is recommended to increase resilience.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;installing-etcd&#34;&gt;Installing Etcd&lt;/h2&gt;
-&lt;p&gt;An etcd cluster can be created in three different ways:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Installing the etcd operator via our helm chart&lt;/li&gt;
-&lt;li&gt;Installing Ondat (and the etcd operator) via our Plugin&lt;/li&gt;
-&lt;li&gt;Manually deploying the etcd operator and applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing the etcd operator via our helm chart&lt;/h3&gt;
-&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts&#34;&gt;Ondat Helm
-Chart&lt;/a&gt; repository.&lt;/p&gt;
-&lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install \
-    --include-etcd \
-    --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; \
-    --etcd-tls-enabled
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;configurable-manually-applying-an-etcdcluster-custom-resource&#34;&gt;&lt;strong&gt;Configurable:&lt;/strong&gt; Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
-&lt;p&gt;This installation method allows the most configuration of the etcd cluster, but
-is error-prone and therefore not recommended in situations in which the Helm chart
-or plugin can be used, instead.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart-1&#34;&gt;Recommended: Installing the etcd operator via our helm chart&lt;/h3&gt;
-&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1&#34;&gt;Recommended: Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install \
-    --include-etcd \
-    --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; \
-    --etcd-tls-enabled
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;manually-applying-an-etcdcluster-custom-resource&#34;&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
-&lt;p&gt;This installation method allows the most configuration of the etcd cluster, but
-is error-prone and therefore not recommended in situations in which the Helm chart
-or plugin can be used, instead.&lt;/p&gt;
-&lt;p&gt;Find the verison of the etcd operator you want to install from
-&lt;a href=&#34;https://github.com/storageos/etcd-cluster-operator/releases/&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Install the etcd operator:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCD_OPERATOR_VERSION=&amp;lt;set the version you want to use&amp;gt;
-kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then adapt the following sample to your needs and use &lt;code&gt;kubectl&lt;/code&gt; to  apply it:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCD_OPERATOR_VERSION=&amp;lt;set the version you want to use&amp;gt;
-wget https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster.yaml
-vim storageos-etcd-cluster.yaml
-kubectl apply -f storageos-etcd-cluster.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;installation-verification&#34;&gt;Installation Verification&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n storageos-etcd get pod,svc,pdb
-NAME                                                     READY   STATUS    RESTARTS   AGE
-pod/storageos-etcd-0-28m5t                               1/1     Running   0          18h
-pod/storageos-etcd-1-2lpn9                               1/1     Running   0          18h
-pod/storageos-etcd-2-dpdz6                               1/1     Running   0          18h
-pod/storageos-etcd-3-7lsmz                               1/1     Running   0          18h
-pod/storageos-etcd-4-q5xjd                               1/1     Running   0          18h
-pod/storageos-etcd-controller-manager-6f5776c64f-dhp7r   1/1     Running   0          18h
-pod/storageos-etcd-controller-manager-6f5776c64f-vvxrr   1/1     Running   0          18h
-pod/storageos-etcd-proxy-96bf4bb5f-z5m7f                 1/1     Running   0          18h
-
-NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-service/storageos-etcd         ClusterIP   None            &amp;lt;none&amp;gt;        2379/TCP,2380/TCP   18h
-service/storageos-etcd-proxy   ClusterIP   10.43.199.194   &amp;lt;none&amp;gt;        80/TCP              18h
-
-NAME                                        MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
-poddisruptionbudget.policy/storageos-etcd   3               N/A               2                     18h
-&lt;/code&gt;&lt;/pre&gt;
       </description>
     </item>
     

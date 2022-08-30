@@ -12,6 +12,8 @@
   </url><url>
     <loc>/docs/concepts/cluster-topologies/</loc>
   </url><url>
+    <loc>/docs/reference/cli/</loc>
+  </url><url>
     <loc>/docs/concepts/components/</loc>
   </url><url>
     <loc>/docs/concepts/compression/</loc>
@@ -148,13 +150,7 @@
   </url><url>
     <loc>/docs/reference/api/</loc>
   </url><url>
-    <loc>/docs/reference/cli/apply/</loc>
-  </url><url>
-    <loc>/docs/reference/cli/attach/</loc>
-  </url><url>
     <loc>/docs/usecases/cassandra/</loc>
-  </url><url>
-    <loc>/docs/reference/cli/</loc>
   </url><url>
     <loc>/docs/operations/health/</loc>
   </url><url>
@@ -164,15 +160,7 @@
   </url><url>
     <loc>/docs/reference/contributing/</loc>
   </url><url>
-    <loc>/docs/reference/cli/create/</loc>
-  </url><url>
-    <loc>/docs/reference/cli/delete/</loc>
-  </url><url>
     <loc>/docs/operations/delete-stos-objects/</loc>
-  </url><url>
-    <loc>/docs/reference/cli/describe/</loc>
-  </url><url>
-    <loc>/docs/reference/cli/detach/</loc>
   </url><url>
     <loc>/docs/reference/bundles/diagnostic-bundle/</loc>
   </url><url>
@@ -196,11 +184,7 @@
   </url><url>
     <loc>/docs/operations/firstpvc/</loc>
   </url><url>
-    <loc>/docs/reference/cli/get/</loc>
-  </url><url>
     <loc>/docs/reference/gui/</loc>
-  </url><url>
-    <loc>/docs/reference/cli/help/</loc>
   </url><url>
     <loc>/docs/operations/managing-host-storage/</loc>
   </url><url>
@@ -300,13 +284,9 @@
   </url><url>
     <loc>/docs/operations/uninstall/</loc>
   </url><url>
-    <loc>/docs/reference/cli/update/</loc>
-  </url><url>
     <loc>/docs/operations/users/</loc>
   </url><url>
     <loc>/docs/usecases/velero-backups/</loc>
-  </url><url>
-    <loc>/docs/reference/cli/version/</loc>
   </url><url>
     <loc>/docs/operations/resize/</loc>
   </url><url>
