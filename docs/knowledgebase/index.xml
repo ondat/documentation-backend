@@ -1,0 +1,385 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Knowledge Base</title>
+    <link>/docs/knowledgebase/</link>
+    <description>Recent content in Knowledge Base on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/knowledgebase/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Solution - Cannot Perform Ondat Operations To Volumes Or Nodes</title>
+      <link>/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;You are experiencing issues with performing operations to volumes and nodes in an Ondat cluster. Below are some of the operations that you are unable to execute;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A specific &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) can’t be created or deleted successfully.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the PVC named &amp;#34;my-pvc&amp;#34;.&lt;/span&gt;
+kubectl describe pvc my-pvc
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# truncated output...&lt;/span&gt;
+Events:
+  Type     Reason                Age                 From                                                                                         Message
+  ----     ------                ----                ----                                                                                         -------
+  Warning  ProvisioningFailed    27s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x9 over 10m&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   csi.storageos.com_storageos-csi-helper-f7569f986-6prpq_debad2f4-27a8-4033-81af-7fb2e338afd4  failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; DeadlineExceeded &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; context deadline exceeded
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Volumes cannot be used (ie, failing to attach and mount) and are reporting a &lt;code&gt;FailedScheduling&lt;/code&gt; event.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the pod &amp;#34;d2&amp;#34;.&lt;/span&gt;
+kubectl describe pod d2
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# truncated output...&lt;/span&gt;
+Events:
+  Type     Reason            Age   From                 Message
+  ----     ------            ----  ----                 -------
+  Warning  FailedScheduling  4s    storageos-scheduler  Post &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://storageos:5705/v2/k8s/scheduler/filter&amp;#34;&lt;/span&gt;: context deadline exceeded &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;Client.Timeout exceeded &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;while&lt;/span&gt; awaiting headers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Volumes are not successfully failing over.&lt;/li&gt;
+&lt;li&gt;Nodes cannot be added or deleted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In addition, when reviewing the logs for the Ondat daemonset, you may see the following &lt;code&gt;error&lt;/code&gt; and &lt;code&gt;warning&lt;/code&gt; messages;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the logs for the Ondat daemonset/&lt;/span&gt;
+kubectl logs daemonsets.apps/storageos-node  --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# truncated output...&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;auth_req_username&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error while performing login&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;req_id&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;4ba51f16-0f69-4b4f-bb83-0d7f9b58ff0c&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;req_ip&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;10.73.0.217:49118&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;req_xff&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T18:48:54.796090712Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storing remote capacity failed&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;node_id&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T18:49:03.674273759Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to update node size value in remote store&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;node_id&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T18:49:03.674370036Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to fetch latest available licence information&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T18:49:03.675980929Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;lock operation failure - is etcd healthy?&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;node_id&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;store_lock_key&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/default/v1/locks/node/d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T18:49:11.026773582Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;abandoning expired lock&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;node_id&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;store_lock_key&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos/default/v1/locks/node/d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T18:49:11.026865788Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Use jq for clearer formatting and only show the error messages in the daemonset pods.&lt;/span&gt;
+kubectl logs daemonsets.apps/storageos-node  --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; jq &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{msg: .msg, error: .error}&amp;#39;&lt;/span&gt;
+
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storing remote capacity failed&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to update node size value in remote store&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to fetch latest available licence information&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;lock operation failure - is etcd healthy?&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;abandoning expired lock&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error during authentication&amp;#34;&lt;/span&gt;,
+&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;error&lt;/code&gt; messages that are returned from the Ondat daemonset &lt;code&gt;daemonsets.apps/storageos-node&lt;/code&gt; indicates that the daemonset pods cannot successfully communicate with the &lt;code&gt;etcd&lt;/code&gt; cluster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;p&gt;To resolve the operations issues, this will require assessing and repairing the  &lt;code&gt;etcd&lt;/code&gt;  cluster and ensuring that the cluster is healthy again - whether the issue is &lt;code&gt;etcd&lt;/code&gt;, your network configuration, or because the nodes where Ondat is deployed are overutilised to the point where they cannot fulfil requests to and from &lt;code&gt;etcd&lt;/code&gt; successfully.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ensure that your &lt;code&gt;etcd&lt;/code&gt; cluster is running and is healthy.
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;etcdctl member list -wtable&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etcdctl endpoint status -wtable&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;etcdctl endpoint health -wtable&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check to see if your &lt;code&gt;etcd&lt;/code&gt; cluster has lost &lt;a href=&#34;https://en.wikipedia.org/wiki/Quorum&#34;&gt;quorum&lt;/a&gt; by reviewing the &lt;code&gt;etcd&lt;/code&gt; logs.&lt;/li&gt;
+&lt;li&gt;Check to see if your &lt;code&gt;etcd&lt;/code&gt; cluster is routable.&lt;/li&gt;
+&lt;li&gt;Check to see if your &lt;code&gt;etcd&lt;/code&gt; cluster is in a Read Only (RO) state that has been caused by an &lt;code&gt;etcd&lt;/code&gt; alarm.
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;etcdctl alarm list&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Check to see if your &lt;code&gt;etcd&lt;/code&gt; cluster is struggling to write to disk fast enough (&lt;code&gt;etcd&lt;/code&gt; is sensitive to latency on disk).
+&lt;ul&gt;
+&lt;li&gt;Review the logs and prometheus monitoring metrics for &lt;code&gt;disk_wal_fsync&lt;/code&gt; and &lt;code&gt;db_fsync&lt;/code&gt; and check to see if there is any performance degradation. (ie, orders of seconds rather than milliseconds or nanoseconds).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;If your &lt;code&gt;etcd&lt;/code&gt; cluster is healthy and routable, check to see if the nodes running the Ondat daemonset pods &lt;code&gt;daemonsets.apps/storageos-node&lt;/code&gt; are healthy.
+&lt;ul&gt;
+&lt;li&gt;Are the pods under unusual load?&lt;/li&gt;
+&lt;li&gt;Are there any errors being reported in one daemonset pod or more?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Solution - Troubleshooting &#39;unable to connect to etcd&#39; Error Message</title>
+      <link>/docs/knowledgebase/solution-unable-to-connect-to-etcd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-unable-to-connect-to-etcd/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;When reviewing the status of the Ondat daemonset pods named &lt;code&gt;storageos-node-xxxx&lt;/code&gt;, the pods are fail to startup and are stuck in a &lt;code&gt;CrashLoopBackOff&lt;/code&gt; state loop.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the pods in the &amp;#34;storageos&amp;#34; namespace&lt;/span&gt;
+kubectl get pods --namespace storageos
+
+storageos             storageos-node-6v9x2                               3/3     Running            &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;16s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   55s
+storageos             storageos-node-g7vhn                               2/3     CrashLoopBackOff   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;14s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   55s
+storageos             storageos-node-ph567                               3/3     Running            &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;17s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   55s
+storageos             storageos-node-tw8fk                               2/3     CrashLoopBackOff   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;12s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   55s
+storageos             storageos-node-xtvgd                               3/3     Running            &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;12s ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   55s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Upon reviewing the logs for one of the failing daemonset pods, there is an &lt;code&gt;&amp;quot;unable to connect to etcd&amp;quot;&lt;/code&gt; error message and &lt;code&gt;&amp;quot;failed to initialise store client&amp;quot;&lt;/code&gt; error message that shows up before the pod shutsdown and restarts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check the logs of a Ondat daemonset that is in a &amp;#34;CrashLoopBackOff&amp;#34; loop.&lt;/span&gt;
+kubectl logs storageos-node-tw8fk --namespace storageos
+
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;endpoints&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;http://10.73.16.8:2379&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;unable to connect to etcd&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;store&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;etcd&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T19:17:35.556128015Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to instantiate ETCD: context deadline exceeded&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to initialise store client&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T19:17:35.55625352Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;level&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;info&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;msg&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;shutting down&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2022-02-13T19:17:35.556274893Z&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;This issue is cause by the Ondat daemonset pods not being able to connect to the &lt;code&gt;etcd&lt;/code&gt; cluster. This is generally caused by &lt;code&gt;etcd&lt;/code&gt;  being unreachable due to &lt;a href=&#34;https://en.wikipedia.org/wiki/Network_partition&#34;&gt;network partitioning&lt;/a&gt; or misconfiguration.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that your &lt;code&gt;etcd&lt;/code&gt; cluster is healthy.&lt;/li&gt;
+&lt;li&gt;Ensure that etcd is running.&lt;/li&gt;
+&lt;li&gt;Ensure that the &lt;code&gt;etcd&lt;/code&gt; URL that is set in the &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource is correct and it includes the port number.&lt;/li&gt;
+&lt;li&gt;Ensure that the &lt;code&gt;etcd&lt;/code&gt; peers are routable from the &lt;code&gt;etcd&lt;/code&gt; advertise addresses of each peer, and not only from a load balancer.&lt;/li&gt;
+&lt;li&gt;Ensure that &lt;code&gt;etcd&lt;/code&gt;  is routable from the network where the worker nodes reside.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Solution - Troubleshooting &#39;unregistered licence period has expired&#39; Error Message</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-unregistered-licence-period-has-expired/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-unregistered-licence-period-has-expired/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;You are experiencing an issue where a new &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) can’t be provisioned and stays in a &lt;code&gt;Pending&lt;/code&gt; state.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the status of PVCs.&lt;/span&gt;
+kubectl get pvc
+
+NAME       STATUS    VOLUME  CAPACITY   ACCESS MODES   STORAGECLASS            AGE
+my-pvc     Pending                                     storageos               2m56s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Upon describing the PVC that is in a &lt;code&gt;Pending&lt;/code&gt; state, under the &lt;code&gt;Events&lt;/code&gt; section, you see a number of &lt;code&gt;Warning&lt;/code&gt; events that report  a &lt;code&gt;unregistered licence period has expired&lt;/code&gt; error message;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the PVC named &amp;#34;my-pvc&amp;#34;.&lt;/span&gt;
+kubectl describe pvc my-pvc
+
+Name:          my-pvc
+Namespace:     default
+StorageClass:  storageos
+Status:        Pending
+Volume:
+Labels:        &amp;lt;none&amp;gt;
+Annotations:   storageos.com/encryption-secret-name: storageos-volume-key-7749ab0b-5859-4841-b22a-e06d797dfebb
+               storageos.com/encryption-secret-namespace: default
+               storageos.com/storageclass: e6bd6278-bc09-43e5-8f5d-c5a59863ab47
+               volume.beta.kubernetes.io/storage-provisioner: csi.storageos.com
+Finalizers:    &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;kubernetes.io/pvc-protection&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
+Capacity:
+Access Modes:
+VolumeMode:    Filesystem
+Used By:       &amp;lt;none&amp;gt;
+Events:
+  Type     Reason                Age                From                                                                                          Message
+  ----     ------                ----               ----                                                                                          -------
+  Warning  ProvisioningFailed    52s                csi.storageos.com_storageos-csi-helper-65db657d7c-495t9_e8de55aa-5024-4366-a4ce-29ffdf8bd2d6  failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-rep-enc-tap&amp;#34;&lt;/span&gt;: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: unregistered licence period has expired &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;expired at 2022-03-09 12:17:35.171452772 +0000 UTC, now 2022-03-15 11:18:29.841123428 +0000 UTC&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; - see https://docs.storageos.com/v2/help/unlicensed-expired &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information
+  Warning  ProvisioningFailed    49s                csi.storageos.com_storageos-csi-helper-65db657d7c-495t9_e8de55aa-5024-4366-a4ce-29ffdf8bd2d6  failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-rep-enc-tap&amp;#34;&lt;/span&gt;: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: unregistered licence period has expired &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;expired at 2022-03-09 12:17:35.171452772 +0000 UTC, now 2022-03-15 11:18:32.000038608 +0000 UTC&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; - see https://docs.storageos.com/v2/help/unlicensed-expired &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information
+  Warning  ProvisioningFailed    47s                csi.storageos.com_storageos-csi-helper-65db657d7c-495t9_e8de55aa-5024-4366-a4ce-29ffdf8bd2d6  failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-rep-enc-tap&amp;#34;&lt;/span&gt;: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: unregistered licence period has expired &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;expired at 2022-03-09 12:17:35.171452772 +0000 UTC, now 2022-03-15 11:18:34.713556096 +0000 UTC&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; - see https://docs.storageos.com/v2/help/unlicensed-expired &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information
+  Warning  ProvisioningFailed    41s                csi.storageos.com_storageos-csi-helper-65db657d7c-495t9_e8de55aa-5024-4366-a4ce-29ffdf8bd2d6  failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-rep-enc-tap&amp;#34;&lt;/span&gt;: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: unregistered licence period has expired &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;expired at 2022-03-09 12:17:35.171452772 +0000 UTC, now 2022-03-15 11:18:40.23564811 +0000 UTC&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; - see https://docs.storageos.com/v2/help/unlicensed-expired &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information
+  Warning  ProvisioningFailed    32s                csi.storageos.com_storageos-csi-helper-65db657d7c-495t9_e8de55aa-5024-4366-a4ce-29ffdf8bd2d6  failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-rep-enc-tap&amp;#34;&lt;/span&gt;: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: unregistered licence period has expired &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;expired at 2022-03-09 12:17:35.171452772 +0000 UTC, now 2022-03-15 11:18:49.096283513 +0000 UTC&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; - see https://docs.storageos.com/v2/help/unlicensed-expired &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information
+  Normal   Provisioning          16s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x6 over 54s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  csi.storageos.com_storageos-csi-helper-65db657d7c-495t9_e8de55aa-5024-4366-a4ce-29ffdf8bd2d6  External provisioner is provisioning volume &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; claim &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;default/pvc-xa&amp;#34;&lt;/span&gt;
+  Warning  ProvisioningFailed    15s                csi.storageos.com_storageos-csi-helper-65db657d7c-495t9_e8de55aa-5024-4366-a4ce-29ffdf8bd2d6  failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-rep-enc-tap&amp;#34;&lt;/span&gt;: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: unregistered licence period has expired &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;expired at 2022-03-09 12:17:35.171452772 +0000 UTC, now 2022-03-15 11:19:06.286764945 +0000 UTC&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt; - see https://docs.storageos.com/v2/help/unlicensed-expired &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; more information
+  Normal   ExternalProvisioning  1s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x5 over 54s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   persistentvolume-controller                                                                   waiting &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; a volume to be created, either by external provisioner &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;csi.storageos.com&amp;#34;&lt;/span&gt; or manually created by system administrator
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;error&lt;/code&gt; message that is returned is due to an Ondat licence expiring or an Ondat cluster that has not been registered yet.
+&lt;ul&gt;
+&lt;li&gt;For more information on the types of licences available, review the &lt;a href=&#34;https://www.ondat.io/pricing&#34;&gt;Ondat features and pricing&lt;/a&gt; page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that you apply a valid Ondat licence to your cluster to be able to continue provisioning volumes with Ondat. You can find more information on how to get an Ondat licence on the &lt;a href=&#34;https://docs.ondat.io/docs/operations/licensing/&#34;&gt;Licensing&lt;/a&gt; operations page.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster</title>
+      <link>/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;When attempting to deploy Ondat onto a new &lt;a href=&#34;/docs/install/gcp/google-kubernetes-engine-gke/&#34;&gt;GKE cluster&lt;/a&gt; with the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;, you experience a permission error message that causes the installation to fail.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# installing Ondat using the Ondat kubectl plugin&lt;/span&gt;
+kubectl storageos install &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-username &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --admin-password &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# log output&lt;/span&gt;
+namespace/storageos-etcd created
+Warning: resource namespaces/storageos is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by  apply.  apply should only be used on resources created declaratively by either  create --save-config or  apply. The missing annotation will be patched automatically.
+namespace/storageos configured
+customresourcedefinition.apiextensions.k8s.io/etcdbackups.etcd.improbable.io created
+customresourcedefinition.apiextensions.k8s.io/etcdbackupschedules.etcd.improbable.io created
+customresourcedefinition.apiextensions.k8s.io/storageosclusters.storageos.com created
+customresourcedefinition.apiextensions.k8s.io/etcdclusters.etcd.improbable.io created
+customresourcedefinition.apiextensions.k8s.io/etcdpeers.etcd.improbable.io created
+serviceaccount/storageos-operator created
+customresourcedefinition.apiextensions.k8s.io/etcdrestores.etcd.improbable.io created
+service/storageos-etcd-proxy created
+deployment.apps/storageos-etcd-controller-manager created
+configmap/storageos-operator created
+configmap/storageos-related-images created
+deployment.apps/storageos-etcd-proxy created
+service/storageos-operator created
+service/storageos-operator-webhook created
+deployment.apps/storageos-operator created
+validatingwebhookconfiguration.admissionregistration.k8s.io/storageos-operator-validating-webhook created
+
+Error: Multiple errors:
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;error when creating &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;manifestString&amp;#34;&lt;/span&gt;: roles.rbac.authorization.k8s.io is forbidden: User &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jane@example.com&amp;#34;&lt;/span&gt; cannot create resource &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;roles&amp;#34;&lt;/span&gt; in API group &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rbac.authorization.k8s.io&amp;#34;&lt;/span&gt; in the namespace &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-etcd&amp;#34;&lt;/span&gt;: requires one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;container.roles.create&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; permission&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;., error when creating &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;manifestString&amp;#34;&lt;/span&gt;: clusterroles.rbac.authorization.k8s.io is forbidden: User &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jane@example.com&amp;#34;&lt;/span&gt; cannot create resource &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;clusterroles&amp;#34;&lt;/span&gt; in API group &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rbac.authorization.k8s.io&amp;#34;&lt;/span&gt; at the cluster scope: requires one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;container.clusterRoles.create&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; permission&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;., error when creating &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;manifestString&amp;#34;&lt;/span&gt;: rolebindings.rbac.authorization.k8s.io is forbidden: User &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jane@example.com&amp;#34;&lt;/span&gt; cannot create resource &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rolebindings&amp;#34;&lt;/span&gt; in API group &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rbac.authorization.k8s.io&amp;#34;&lt;/span&gt; in the namespace &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-etcd&amp;#34;&lt;/span&gt;: requires one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;container.roleBindings.create&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; permission&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;., error when creating &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;manifestString&amp;#34;&lt;/span&gt;: clusterrolebindings.rbac.authorization.k8s.io is forbidden: User &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jane@example.com&amp;#34;&lt;/span&gt; cannot create resource &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;clusterrolebindings&amp;#34;&lt;/span&gt; in API group &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rbac.authorization.k8s.io&amp;#34;&lt;/span&gt; at the cluster scope: requires one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;container.clusterRoleBindings.create&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; permission&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;.&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
+&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;error when creating &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;manifestString&amp;#34;&lt;/span&gt;: clusterroles.rbac.authorization.k8s.io is forbidden: User &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jane@example.com&amp;#34;&lt;/span&gt; cannot create resource &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;clusterroles&amp;#34;&lt;/span&gt; in API group &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rbac.authorization.k8s.io&amp;#34;&lt;/span&gt; at the cluster scope: requires one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;container.clusterRoles.create&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; permission&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;., error when creating &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;manifestString&amp;#34;&lt;/span&gt;: clusterrolebindings.rbac.authorization.k8s.io is forbidden: User &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;jane@example.com&amp;#34;&lt;/span&gt; cannot create resource &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;clusterrolebindings&amp;#34;&lt;/span&gt; in API group &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;rbac.authorization.k8s.io&amp;#34;&lt;/span&gt; at the cluster scope: requires one of &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;container.clusterRoleBindings.create&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt; permission&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;.&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The permission error messages that are returned is due to not having the correct privileges to be able to install Ondat in a GKE cluster.
+&lt;ul&gt;
+&lt;li&gt;For more information how to manage permissions in GKE clusters, review the GKE documentation on how to &lt;a href=&#34;https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control&#34;&gt;authorize actions in clusters using role-based access control&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;To resolve this issue, ensure that your user account has cluster administrator privileges first so that you can install Ondat successfully.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create clusterrolebinding cluster-admin-binding &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --clusterrole&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cluster-admin &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --user&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;gcloud config get-value account&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Solution - Unable To Mount RWX Volumes To A Pod</title>
+      <link>/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;A &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Below is the error message that is returned in the &lt;code&gt;Events&lt;/code&gt; section when you describe the pod.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# describe the &amp;#34;my-pod-mounting-rwx-volume&amp;#34; pod.&lt;/span&gt;
+kubectl describe pod my-pod-mounting-rwx-volume
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# truncated output.&lt;/span&gt;
+Events:
+  Type     Reason       Age                  From                 Message
+  ----     ------       ----                 ----                 -------
+  Normal   Scheduled    7m39s                storageos-scheduler  Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8.eu-west-2.compute.internal
+  Warning  FailedMount  94s                  kubelet              MountVolume.SetUp failed &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; volume &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;pvc-c30e3215-bbd6-4dd5-a6e2-84de1fb06097&amp;#34;&lt;/span&gt; : rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; DeadlineExceeded &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; context deadline exceeded
+  Warning  FailedMount  63s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x3 over 5m36s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  kubelet              Unable to attach or mount volumes: unmounted &lt;span style=&#34;color:#000&#34;&gt;volumes&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=[&lt;/span&gt;v1&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;, unattached &lt;span style=&#34;color:#000&#34;&gt;volumes&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=[&lt;/span&gt;v1 kube-api-access-h9njv&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: timed out waiting &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; the condition
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The error message is related to the fact that there is no &lt;code&gt;Service Endpoint:&lt;/code&gt; for the RWX NFS server.
+&lt;ul&gt;
+&lt;li&gt;The Ondat Control Plane in the &lt;code&gt;storageos-node-xxxx&lt;/code&gt; daemonset pod spawns a Ganesha NFS server that is bound to the host network on a port in the range &lt;a href=&#34;/docs/prerequisites/firewalls/&#34;&gt;&lt;code&gt;25705-25960&lt;/code&gt;&lt;/a&gt;. If the Pod cannot bound to the port for the Ganesha the &lt;code&gt;Service Endpoint:&lt;/code&gt; value will show as empty.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Check and ensure that there is a &lt;a href=&#34;https://kubernetes.io/docs/concepts/services-networking/service/&#34;&gt;service&lt;/a&gt; for the RWX volume in the same namespace where the pod is located. If the service does not exist, a recommendation would be to follow the instructions below.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Define environment variables.&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;PVC_NAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;my-volume-name&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;PV_NAME&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get pvc &lt;span style=&#34;color:#000&#34;&gt;$PVC_NAME&lt;/span&gt; -ojsonpath&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.spec.volumeName}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the PersistentVolume (PV) name associated to your PersistentVolumeClaim (PVC).&lt;/span&gt;
+kubectl get service &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#000&#34;&gt;$PV_NAME&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;You can also use the &lt;a href=&#34;/docs/reference/cli/&#34;&gt;Ondat CLI&lt;/a&gt; to also check the health status of the volume. Notice that there is no assigned port under the &lt;code&gt;Service Endpoint:&lt;/code&gt; key-value pair as demonstrated below;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Use the Ondat CLI to describe the RWX volume which does not have a service.&lt;/span&gt;
+storageos describe volume &lt;span style=&#34;color:#000&#34;&gt;$PV_NAME&lt;/span&gt;
+
+ID                      a3802f33-93f5-4b1e-9253-5430c7abc71e
+Name                    pvc-5a7abc65-a0b7-4397-b782-1597c9e1ab8d
+Description
+AttachedOn              
+Attachment Type         nfs
+NFS
+  Service Endpoint:    
+  Exports:
+  - ID                  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;
+    Path                /
+    Pseudo Path         /
+    ACLs
+    - Identity Type     hostname
+      Identity Matcher  *
+      Squash            all
+      Squash UID        &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;
+      Squash GUID       &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;
+Namespace               default &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;e4344675-311b-453c-8a59-71ef5b2e98cf&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+Labels                  csi.storage.k8s.io/pv/name&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;pvc-5a7abc65-a0b7-4397-b782-1597c9e1ab8d,
+                        csi.storage.k8s.io/pvc/name&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;pvc-rwx2,
+                        csi.storage.k8s.io/pvc/namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;default,
+                        storageos.com/nocompress&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;true&lt;/span&gt;
+Filesystem              ext4
+Size                    5.0 GiB &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5368709120&lt;/span&gt; bytes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+Version                 NQ
+Created at              2022-02-10T16:55:12Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;7&lt;/span&gt; minutes ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+Updated at              2022-02-10T16:55:34Z &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;6&lt;/span&gt; minutes ago&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+
+Master:
+  ID                    4c5a91a5-f7cd-4d2c-a63e-fc23049b4321
+  Node                  ip-10-73-17-108.eu-west-2.compute.internal &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;26d7a07c-1d68-49e9-a541-d0eb93ab77b9&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+  Health                online
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Check and ensure that the ports in the range of &lt;code&gt;25705-25960&lt;/code&gt; is accessible between the worker nodes in your Kubernetes cluster. You can find more information on the ports required for RWX Volume Endpoints in the &lt;a href=&#34;/docs/prerequisites/firewalls/&#34;&gt;Firewall&lt;/a&gt; prerequisites page.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
