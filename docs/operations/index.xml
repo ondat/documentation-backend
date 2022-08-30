@@ -2139,9 +2139,9 @@ Customer name:
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 If you already have an Ondat cluster that is connected to the Ondat SaaS Platform, you can apply the licence automatically to the connected cluster by following the steps below;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Login to the &lt;strong&gt;Ondat SaaS Platform&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Organisation&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Licences&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Generate A New Licence&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Choose an existing cluster&lt;/strong&gt; &amp;raquo; Select the cluster that you want to apply a licence to.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Login to the &lt;strong&gt;Ondat SaaS Platform&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Organisation&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Licences&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Generate A New Licence&lt;/strong&gt; &amp;raquo; &lt;strong&gt;Choose an existing cluster&lt;/strong&gt; &amp;raquo; Select the cluster that you want to apply a licence to.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;For information and guidance on how to generate and apply an Ondat licence to a cluster, review the &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;licensing documentation&lt;/a&gt;.&lt;/li&gt;
