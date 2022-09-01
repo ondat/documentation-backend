@@ -150,6 +150,8 @@
   </url><url>
     <loc>/docs/reference/api/</loc>
   </url><url>
+    <loc>/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/</loc>
+  </url><url>
     <loc>/docs/usecases/cassandra/</loc>
   </url><url>
     <loc>/docs/operations/health/</loc>
