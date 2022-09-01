@@ -96,9 +96,11 @@
   </url><url>
     <loc>/docs/install/openshift/</loc>
   </url><url>
-    <loc>/docs/install/airgap/</loc>
+    <loc>/docs/install/advanced/</loc>
   </url><url>
-    <loc>/docs/install/declarative-install/</loc>
+    <loc>/docs/install/advanced/airgap/</loc>
+  </url><url>
+    <loc>/docs/install/advanced/declarative-install/</loc>
   </url><url>
     <loc>/docs/install/aws/terraform-aws-eks-blueprints/</loc>
   </url><url>

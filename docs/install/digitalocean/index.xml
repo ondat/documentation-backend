@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title> – Digital Ocean</title>
+    <title> – DigitalOcean</title>
     <link>/docs/install/digitalocean/</link>
-    <description>Recent content in Digital Ocean on </description>
+    <description>Recent content in DigitalOcean on </description>
     <generator>Hugo -- gohugo.io</generator>
     
 	  <atom:link href="/docs/install/digitalocean/index.xml" rel="self" type="application/rss+xml" />
