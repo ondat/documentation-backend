@@ -270,6 +270,8 @@
   </url><url>
     <loc>/docs/knowledgebase/solution-troubleshooting-unregistered-licence-period-has-expired/</loc>
   </url><url>
+    <loc>/docs/knowledgebase/solution-troubleshooting-daemonset-crashloopbackoff-pod-after-reinstalling-ondat/</loc>
+  </url><url>
     <loc>/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/</loc>
   </url><url>
     <loc>/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/</loc>
