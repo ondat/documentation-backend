@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Overview Ondat Feature labels are Kubernetes Labels which provide a powerful and flexible way to control storage features.
  Applying specific feature labels triggers compression, replication, data encryption and other storage features. In order to use feature labels, end users are required to explicitly enable the features they want to use in their cluster.  Types Of Ondat Feature Labels Ondat Volume Labels Below are the list of available feature labels that can be used to define Volume resources and StorageClass resources in an Ondat cluster.">
 
-<meta itemprop="wordCount" content="565">
+<meta itemprop="wordCount" content="611">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Feature Labels"/>
 <meta name="twitter:description" content="Overview Ondat Feature labels are Kubernetes Labels which provide a powerful and flexible way to control storage features.
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1d52c168ff51bb70820dde933eaf42459c87a2a085b8988704a4c363788a64fb6193232c77ab7e91470e683483d896bba179f1872823d061d430e193690d8d1d.json"
+  data-offline-search-index-json-src="/offline-search-index.61f63f25008ba6062372e6bd11187cc7d075c0b49b3aa1ae4d989872786ff6a97d54974a7fbcb3c7e22eac2cb5cf3cff56e01f7cfe49b1b0fcecd13684514f2b.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1d52c168ff51bb70820dde933eaf42459c87a2a085b8988704a4c363788a64fb6193232c77ab7e91470e683483d896bba179f1872823d061d430e193690d8d1d.json"
+  data-offline-search-index-json-src="/offline-search-index.61f63f25008ba6062372e6bd11187cc7d075c0b49b3aa1ae4d989872786ff6a97d54974a7fbcb3c7e22eac2cb5cf3cff56e01f7cfe49b1b0fcecd13684514f2b.json"
   data-offline-search-base-href="/"
 >
 
@@ -1742,7 +1742,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td style="text-align:left"><a href="/docs/concepts/replication/#ondat-failure-modes"><strong>Failure Mode</strong></a></td>
 <td style="text-align:left"><code>storageos.com/failure-mode</code></td>
 <td style="text-align:left"><code>hard</code>, <code>soft</code>, <code>alwayson</code>, or <code>threshold</code> integers starting from <code>0</code> to <code>5</code></td>
-<td style="text-align:left">Sets the failure mode for a volume, either explicitly using a failure mode or implicitly using a replica threshold. The default setting of a failure mode is <code>hard</code>.</td>
+<td style="text-align:left">Sets the failure mode for a volume, either explicitly using a failure mode or implicitly using a replica threshold. The default failure mode is set to <code>hard</code>.</td>
 </tr>
 <tr>
 <td style="text-align:left"><a href="/docs/concepts/replication/"><strong>Replication</strong></a></td>
@@ -1761,6 +1761,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td style="text-align:left"><code>storageos.com/topology-key</code></td>
 <td style="text-align:left">custom region, read as a <a href="https://en.wikipedia.org/wiki/String_%28computer_science%29">string</a></td>
 <td style="text-align:left">Define the failure domain for the node by using a custom key. If you don&rsquo;t define a custom key, the label defaults to the <code>topology.kubernetes.io/zone</code> value.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="/docs/concepts/rwx"><strong>Squash Mode</strong></a></td>
+<td style="text-align:left"><code>storageos.com/nfs-squash</code></td>
+<td style="text-align:left"><code>root</code>, <code>rootuid</code>, <code>all</code>, <code>none</code></td>
+<td style="text-align:left">Define the squash mode that will be used with Ondat Files - <code>ReadWriteMany</code> (RWX) volumes to set the file ownership in the share. The default squash mode is set to <code>all</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -1815,6 +1821,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li><a href="/docs/operations/compute-only">How To Setup A Centralised Cluster Topology</a>.</li>
 <li><a href="/docs/operations/replication">How To Use Volume Replication</a>.</li>
+<li><a href="/docs/operations/rwx/">How To Use Ondat Files (ReadWriteMany - RWX Volumes)</a>.</li>
 <li><a href="/docs/operations/failure-modes/">How To Use Failure Modes</a>.</li>
 <li><a href="/docs/operations/fencing/">How To Enable Fencing</a>.</li>
 <li><a href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a>.</li>
