@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/docs/reference/cluster-operator/install/</loc>
+    <loc>/docs/reference/operator/install/</loc>
   </url><url>
     <loc>/docs/introduction/</loc>
   </url><url>
@@ -72,7 +72,7 @@
   </url><url>
     <loc>/docs/install/rancher/rancher-marketplace/</loc>
   </url><url>
-    <loc>/docs/reference/cluster-operator/configuration/</loc>
+    <loc>/docs/reference/operator/configuration/</loc>
   </url><url>
     <loc>/docs/ondat-portal/dashboard/</loc>
   </url><url>
@@ -84,11 +84,9 @@
   </url><url>
     <loc>/docs/ondat-portal/applications/</loc>
   </url><url>
-    <loc>/docs/reference/cluster-operator/examples/</loc>
+    <loc>/docs/reference/operator/examples/</loc>
   </url><url>
     <loc>/docs/install/azure/</loc>
-  </url><url>
-    <loc>/docs/reference/cluster-operator/upgrade/</loc>
   </url><url>
     <loc>/docs/introduction/platforms/</loc>
   </url><url>
@@ -157,8 +155,6 @@
     <loc>/docs/usecases/cassandra/</loc>
   </url><url>
     <loc>/docs/operations/health/</loc>
-  </url><url>
-    <loc>/docs/reference/cluster-operator/</loc>
   </url><url>
     <loc>/docs/reference/clusters/</loc>
   </url><url>
@@ -245,6 +241,8 @@
     <loc>/</loc>
   </url><url>
     <loc>/docs/reference/open_source_attribution/</loc>
+  </url><url>
+    <loc>/docs/reference/operator/</loc>
   </url><url>
     <loc>/docs/reference/scheduler/</loc>
   </url><url>

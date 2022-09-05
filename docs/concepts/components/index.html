@@ -34,7 +34,7 @@ Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster
 Fundamentally, Ondat uses the storage attached to the nodes in the Ondat cluster to create and present virtual volumes into containers.
  Space on the host is consumed from the mount point /var/lib/storageos/data - so it is recommended that disk devices are used exclusively for Ondat, as described in the Managing Host Storage operations page.  Ondat is agnostic to the underlying storage and runs equally well on bare metal, in virtual machines or on cloud providers.">
 
-<meta itemprop="wordCount" content="880">
+<meta itemprop="wordCount" content="876">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Components"/>
 <meta name="twitter:description" content="Overview Ondat is a software-defined storage platform for running stateful applications in Kubernetes.
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a6cd75169dfa5b4b9e27032a6c9c00905e387897b647bc91cd895a0b2c5eb202b487e7a0ab3f45476c18e018442a19d570fa5f63df0395f32fc6048c820249f5.json"
+  data-offline-search-index-json-src="/offline-search-index.d494c835c3d12d47db167060d80aaa2ee282701a1e95b02e90dd90aa41b2840344a6941ded44413d8431b412d47d63fc2062b3c374ef39b6813e2d14edf7bb62.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a6cd75169dfa5b4b9e27032a6c9c00905e387897b647bc91cd895a0b2c5eb202b487e7a0ab3f45476c18e018442a19d570fa5f63df0395f32fc6048c820249f5.json"
+  data-offline-search-index-json-src="/offline-search-index.d494c835c3d12d47db167060d80aaa2ee282701a1e95b02e90dd90aa41b2840344a6941ded44413d8431b412d47d63fc2062b3c374ef39b6813e2d14edf7bb62.json"
   data-offline-search-base-href="/"
 >
 
@@ -1373,53 +1373,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/cluster-operator/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Cluster Operator</a>
-  </li>
-  <ul>
-    <li class="collapse " id="docsreferencecluster-operator">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorinstall" href="/docs/reference/cluster-operator/install/">Install</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorconfiguration" href="/docs/reference/cluster-operator/configuration/">Configuration</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorexamples" href="/docs/reference/cluster-operator/examples/">Examples</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencecluster-operatorupgrade" href="/docs/reference/cluster-operator/upgrade/">Cluster Operator upgrade</a>
-      
-      
-    </li>
-  </ul>
-</ul>
-
-      
-      
-      
-      
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceclusters" href="/docs/reference/clusters/">Clusters</a>
       
@@ -1452,6 +1405,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceopen_source_attribution" href="/docs/reference/open_source_attribution/">Ondat Open Source Software Attribution Notice</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/reference/operator/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Ondat Operator</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsreferenceoperator">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceoperatorinstall" href="/docs/reference/operator/install/">Install</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceoperatorconfiguration" href="/docs/reference/operator/configuration/">Configuration</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferenceoperatorexamples" href="/docs/reference/operator/examples/">Examples</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
       
       
       
@@ -1654,7 +1648,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#overview">Overview</a></li>
     <li><a href="#kubernetes-native-ondat-components">Kubernetes-native Ondat Components</a>
       <ul>
-        <li><a href="#ondat-cluster-operator">Ondat Cluster Operator</a></li>
+        <li><a href="#ondat-operator">Ondat Operator</a></li>
         <li><a href="#ondat-api-manager">Ondat API Manager</a></li>
         <li><a href="#ondat-data-plane">Ondat Data Plane</a></li>
         <li><a href="#ondat-control-plane">Ondat Control Plane</a></li>
@@ -1727,8 +1721,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>Below is a list of core Ondat components with a description for each components responsibilities &amp; tasks:</li>
 </ul>
-<h3 id="ondat-cluster-operator">Ondat Cluster Operator</h3>
-<p>The <a href="https://github.com/storageos/operator"><strong>Ondat Cluster Operator</strong></a> is responsible for the creation and maintenance of the Ondat cluster.</p>
+<h3 id="ondat-operator">Ondat Operator</h3>
+<p>The <a href="https://github.com/storageos/operator"><strong>Ondat Operator</strong></a> is responsible for the creation and maintenance of the Ondat cluster.</p>
 <ul>
 <li>This operator is primarily responsible for ensuring that all the relevant applications are running in your cluster.</li>
 </ul>
@@ -1780,11 +1774,11 @@ volumes.</p>
 <h3 id="ondat-node-manager">Ondat Node Manager</h3>
 <p>The <strong>Ondat Node Manager</strong> is an out-of-band pod used for node management. It runs on all nodes that run the <code>StorageOS</code> node container and is a separate pod so that it can be restarted independently of the node container.</p>
 <h2 id="putting-it-all-together">Putting It All Together</h2>
-<p>Ondat is deployed by the <strong>Ondat Cluster Operator</strong>. In Kubernetes, the Ondat <strong>Control Plane</strong> and <strong>Data Plane</strong> are deployed in a single pod managed by a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">daemonset</a>.</p>
+<p>Ondat is deployed by the <strong>Ondat Operator</strong>. In Kubernetes, the Ondat <strong>Control Plane</strong> and <strong>Data Plane</strong> are deployed in a single pod managed by a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">daemonset</a>.</p>
 <ul>
 <li>This daemonset runs on every node in the cluster that will consume or present storage.</li>
 </ul>
-<p>The <strong>Ondat Scheduler</strong>, <strong>CSI Helper</strong>, <strong>Cluster Operator</strong> and <strong>API Manager</strong> run as separate <a href="https://kubernetes.io/docs/concepts/workloads/pods/">pods</a> and are controlled as <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">deployments</a>.</p>
+<p>The <strong>Ondat Scheduler</strong>, <strong>CSI Helper</strong>, <strong>Operator</strong> and <strong>API Manager</strong> run as separate <a href="https://kubernetes.io/docs/concepts/workloads/pods/">pods</a> and are controlled as <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">deployments</a>.</p>
 <p>Ondat is designed to feel familiar to Kubernetes users. Storage is managed through standard <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">StorageClasses</a> , <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">PersistentVolumeClaims</a>, and <a href="/docs/concepts/labels">Ondat features</a> are controlled by <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">Kubernetes labels and selectors</a>, prefixed with <code>storageos.com/</code>.</p>
 <ul>
 <li>By default, volumes are cached to improve read performance and compressed to reduce network traffic.</li>

@@ -377,37 +377,6 @@ window.onload = function() {
     </item>
     
     <item>
-      <title>Docs: Cluster Operator</title>
-      <link>/docs/reference/cluster-operator/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/cluster-operator/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Our cluster operator is a &lt;a href=&#34;https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/&#34;&gt;Kubernetes native
-application&lt;/a&gt;
-developed to deploy and configure Ondat clusters, and assist with
-maintenance operations. We recommend its use for standard installations.&lt;/p&gt;
-&lt;p&gt;The operator acts as a Kubernetes controller that watches the &lt;code&gt;StorageOSCluster&lt;/code&gt;
-CR (Custom Resource). Once the controller is ready, an Ondat cluster definition can be
-created. The operator will deploy an Ondat cluster based on the
-configuration specified in the cluster definition.&lt;/p&gt;
-&lt;p&gt;You can find the source code in the &lt;a href=&#34;https://github.com/storageos/cluster-operator&#34;&gt;cluster-operator
-repository&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Install the operator following orchestrator specific procedure.&lt;/p&gt;
-&lt;p&gt;To deploy an Ondat cluster you will need to fulfil the following steps.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Install Etcd&lt;/li&gt;
-&lt;li&gt;Install operator&lt;/li&gt;
-&lt;li&gt;Create &lt;code&gt;storageos-api&lt;/code&gt; Secret&lt;/li&gt;
-&lt;li&gt;Create a CR (Custom Resource) to deploy Ondat&lt;/li&gt;
-&lt;/ol&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Cluster</title>
       <link>/docs/reference/clusters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -500,7 +469,7 @@ payment.&lt;/p&gt;
 Ondat starts an init container that sets the system configuration for
 Ondat. The container also manages configuration changes required when
 upgrading Ondat versions.&lt;/p&gt;
-&lt;p&gt;The container belongs to the DaemonSet that the &lt;a href=&#34;/docs/reference/cluster-operator/&#34;&gt;Ondat Cluster
+&lt;p&gt;The container belongs to the DaemonSet that the &lt;a href=&#34;/docs/reference/operator/&#34;&gt;Ondat Cluster
 Operator&lt;/a&gt; starts when a
 &lt;code&gt;StorageOSCluster&lt;/code&gt; resource is created. The &lt;code&gt;storageos-init&lt;/code&gt; container is
 executed as an
@@ -5397,6 +5366,29 @@ limitations under the License.
     </item>
     
     <item>
+      <title>Docs: Ondat Operator</title>
+      <link>/docs/reference/operator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/reference/operator/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Our operator is a &lt;a href=&#34;https://kubernetes.io/docs/concepts/extend-kubernetes/extend-cluster/&#34;&gt;Kubernetes native
+application&lt;/a&gt;
+developed to deploy and configure Ondat clusters, and assist with
+maintenance operations. We recommend its use for standard installations.&lt;/p&gt;
+&lt;p&gt;The operator acts as a Kubernetes controller that watches the &lt;code&gt;StorageOSCluster&lt;/code&gt;
+CR (Custom Resource). Once the controller is ready, an Ondat cluster definition can be
+created. The operator will deploy an Ondat cluster based on the
+configuration specified in the cluster definition.&lt;/p&gt;
+&lt;p&gt;You can find the source code in the &lt;a href=&#34;https://github.com/storageos/operator&#34;&gt;operator
+repository&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Ondat Scheduler</title>
       <link>/docs/reference/scheduler/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -5573,7 +5565,7 @@ telemetry server so it is never processed outside of Ondat assets.&lt;/p&gt;
 &lt;p&gt;It is possible to disable telemetry using the GUI, CLI, API, environment
 variables or the Ondat Cluster Spec.&lt;/p&gt;
 &lt;h4 id=&#34;ondat-cluster-spec&#34;&gt;Ondat Cluster Spec&lt;/h4&gt;
-&lt;p&gt;Disable telemetry explicitly through the configurable &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;spec parameters&lt;/a&gt; of the
+&lt;p&gt;Disable telemetry explicitly through the configurable &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;spec parameters&lt;/a&gt; of the
 StorageOSCluster custom resource.&lt;/p&gt;
 &lt;h4 id=&#34;environment-variables&#34;&gt;Environment Variables&lt;/h4&gt;
 &lt;p&gt;You can use the following environmental variables to disable or enable telemetry.&lt;/p&gt;
@@ -5617,7 +5609,7 @@ DaemonSet Pods of being evicted.&lt;/p&gt;
 &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/&#34;&gt;Kubernetes
 documentation&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;defining-pod-resource-requests-and-reservations&#34;&gt;Defining Pod resource requests and reservations&lt;/h2&gt;
-&lt;p&gt;To add resource requests and reservations to the Ondat DaemonSet &lt;a href=&#34;/docs/reference/cluster-operator/examples#defining-pod-resource-requests-and-reservations&#34;&gt;configure them in the StorageOSCluster resource&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To add resource requests and reservations to the Ondat DaemonSet &lt;a href=&#34;/docs/reference/operator/examples#defining-pod-resource-requests-and-reservations&#34;&gt;configure them in the StorageOSCluster resource&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
@@ -5694,7 +5686,7 @@ documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;operator&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Exists&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;adding-custom-tolerations&#34;&gt;Adding Custom Tolerations&lt;/h2&gt;
-&lt;p&gt;To add custom tolerations to the Ondat daemonset &lt;a href=&#34;/docs/reference/cluster-operator/examples#specifying-custom-tolerations&#34;&gt;configure them in the
+&lt;p&gt;To add custom tolerations to the Ondat daemonset &lt;a href=&#34;/docs/reference/operator/examples#specifying-custom-tolerations&#34;&gt;configure them in the
 StorageOSCluster
 resource&lt;/a&gt;.&lt;/p&gt;
 

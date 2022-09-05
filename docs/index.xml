@@ -15,10 +15,10 @@
     
     <item>
       <title>Docs: Install</title>
-      <link>/docs/reference/cluster-operator/install/</link>
+      <link>/docs/reference/operator/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/reference/cluster-operator/install/</guid>
+      <guid>/docs/reference/operator/install/</guid>
       <description>
         
         
@@ -430,8 +430,8 @@ Use &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos [command] --hel
 &lt;ul&gt;
 &lt;li&gt;Below is a list of core Ondat components with a description for each components responsibilities &amp;amp; tasks:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;ondat-cluster-operator&#34;&gt;Ondat Cluster Operator&lt;/h3&gt;
-&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/operator&#34;&gt;&lt;strong&gt;Ondat Cluster Operator&lt;/strong&gt;&lt;/a&gt; is responsible for the creation and maintenance of the Ondat cluster.&lt;/p&gt;
+&lt;h3 id=&#34;ondat-operator&#34;&gt;Ondat Operator&lt;/h3&gt;
+&lt;p&gt;The &lt;a href=&#34;https://github.com/storageos/operator&#34;&gt;&lt;strong&gt;Ondat Operator&lt;/strong&gt;&lt;/a&gt; is responsible for the creation and maintenance of the Ondat cluster.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;This operator is primarily responsible for ensuring that all the relevant applications are running in your cluster.&lt;/li&gt;
 &lt;/ul&gt;
@@ -483,11 +483,11 @@ volumes.&lt;/p&gt;
 &lt;h3 id=&#34;ondat-node-manager&#34;&gt;Ondat Node Manager&lt;/h3&gt;
 &lt;p&gt;The &lt;strong&gt;Ondat Node Manager&lt;/strong&gt; is an out-of-band pod used for node management. It runs on all nodes that run the &lt;code&gt;StorageOS&lt;/code&gt; node container and is a separate pod so that it can be restarted independently of the node container.&lt;/p&gt;
 &lt;h2 id=&#34;putting-it-all-together&#34;&gt;Putting It All Together&lt;/h2&gt;
-&lt;p&gt;Ondat is deployed by the &lt;strong&gt;Ondat Cluster Operator&lt;/strong&gt;. In Kubernetes, the Ondat &lt;strong&gt;Control Plane&lt;/strong&gt; and &lt;strong&gt;Data Plane&lt;/strong&gt; are deployed in a single pod managed by a &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/&#34;&gt;daemonset&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Ondat is deployed by the &lt;strong&gt;Ondat Operator&lt;/strong&gt;. In Kubernetes, the Ondat &lt;strong&gt;Control Plane&lt;/strong&gt; and &lt;strong&gt;Data Plane&lt;/strong&gt; are deployed in a single pod managed by a &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/&#34;&gt;daemonset&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;This daemonset runs on every node in the cluster that will consume or present storage.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The &lt;strong&gt;Ondat Scheduler&lt;/strong&gt;, &lt;strong&gt;CSI Helper&lt;/strong&gt;, &lt;strong&gt;Cluster Operator&lt;/strong&gt; and &lt;strong&gt;API Manager&lt;/strong&gt; run as separate &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/pods/&#34;&gt;pods&lt;/a&gt; and are controlled as &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/deployment/&#34;&gt;deployments&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Ondat Scheduler&lt;/strong&gt;, &lt;strong&gt;CSI Helper&lt;/strong&gt;, &lt;strong&gt;Operator&lt;/strong&gt; and &lt;strong&gt;API Manager&lt;/strong&gt; run as separate &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/pods/&#34;&gt;pods&lt;/a&gt; and are controlled as &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/deployment/&#34;&gt;deployments&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Ondat is designed to feel familiar to Kubernetes users. Storage is managed through standard &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/storage-classes/&#34;&gt;StorageClasses&lt;/a&gt; , &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/&#34;&gt;PersistentVolumeClaims&lt;/a&gt;, and &lt;a href=&#34;/docs/concepts/labels&#34;&gt;Ondat features&lt;/a&gt; are controlled by &lt;a href=&#34;https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/&#34;&gt;Kubernetes labels and selectors&lt;/a&gt;, prefixed with &lt;code&gt;storageos.com/&lt;/code&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;By default, volumes are cached to improve read performance and compressed to reduce network traffic.&lt;/li&gt;
@@ -1922,7 +1922,7 @@ Operator doesn&amp;rsquo;t upgrade versions without explicit approval.&lt;/p&gt;
 &lt;p&gt;On &lt;strong&gt;Review Manual Install&lt;/strong&gt; panel in the &lt;strong&gt;Components&lt;/strong&gt; tab, click &lt;strong&gt;Approve&lt;/strong&gt; to confirm the installation.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The Ondat Cluster Operator is installed along the required CRDs.&lt;/p&gt;
+&lt;p&gt;The Ondat Operator is installed along the required CRDs.&lt;/p&gt;
 &lt;h4 id=&#34;step-2-authentication&#34;&gt;Step 2: Authentication&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1943,7 +1943,7 @@ which project you created the secret in.&lt;/p&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;password&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;c3RvcmFnZW9z&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Go to the &lt;strong&gt;Operators&lt;/strong&gt;-&amp;gt;&lt;strong&gt;Installed Operators&lt;/strong&gt; and verify that the StorageOS Cluster Operator is installed.&lt;/p&gt;
+&lt;p&gt;Go to the &lt;strong&gt;Operators&lt;/strong&gt;-&amp;gt;&lt;strong&gt;Installed Operators&lt;/strong&gt; and verify that the StorageOS Operator is installed.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Go to the &lt;strong&gt;StorageOS Cluster&lt;/strong&gt; section.&lt;/p&gt;
@@ -1960,7 +1960,7 @@ which project you created the secret in.&lt;/p&gt;
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator configuration&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;Operator configuration&lt;/a&gt; page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.com/v1&amp;#34;&lt;/span&gt;
 kind: StorageOSCluster
@@ -2364,7 +2364,7 @@ StorageOS software as specified in the image.&lt;/p&gt;
 ensure that you always have the latest version of StorageOS installed.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The Ondat Cluster Operator is installed into your specified cluster.&lt;/p&gt;
+&lt;p&gt;The Ondat Operator is installed into your specified cluster.&lt;/p&gt;
 &lt;h4 id=&#34;step-2-authentication&#34;&gt;Step 2: Authentication&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -2387,7 +2387,7 @@ which project you created the secret in.&lt;/p&gt;
 &lt;li&gt;
 &lt;p&gt;Navigate to StorageOS on your &lt;strong&gt;Installed Operators&lt;/strong&gt; tab.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Verify that the StorageOS Cluster Operator is installed.&lt;/p&gt;
+&lt;p&gt;💡 Verify that the StorageOS Operator is installed.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -2402,7 +2402,7 @@ which project you created the secret in.&lt;/p&gt;
 created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
 the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator configuration&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;Operator configuration&lt;/a&gt; page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.com/v1&amp;#34;&lt;/span&gt;
 kind: StorageOSCluster
@@ -2650,7 +2650,7 @@ kubectl get storageclass
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or import your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat Operator &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/component-charts/ondat-operator/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
+&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or import your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat Operator &lt;a href=&#34;https://github.com/ondat/charts/blob/main/charts/component-charts/ondat-operator/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/operator/examples&#34;&gt;Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -2677,10 +2677,10 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
     
     <item>
       <title>Docs: Configuration</title>
-      <link>/docs/reference/cluster-operator/configuration/</link>
+      <link>/docs/reference/operator/configuration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/reference/cluster-operator/configuration/</guid>
+      <guid>/docs/reference/operator/configuration/</guid>
       <description>
         
         
@@ -3044,11 +3044,11 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
     </item>
     
     <item>
-      <title>Docs: Cluster Operator examples</title>
-      <link>/docs/reference/cluster-operator/examples/</link>
+      <title>Docs: Operator examples</title>
+      <link>/docs/reference/operator/examples/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/reference/cluster-operator/examples/</guid>
+      <guid>/docs/reference/operator/examples/</guid>
       <description>
         
         
@@ -3084,7 +3084,7 @@ default), irrespective of what NameSpace the CR is defined in.&lt;/p&gt;
 &lt;h1 id=&#34;examples&#34;&gt;Examples&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;You can checkout all the parameters configurable in the
-&lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;configuration&lt;/a&gt;
+&lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;configuration&lt;/a&gt;
 page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;All examples must reference the &lt;code&gt;storageos-api&lt;/code&gt; Secret.&lt;/p&gt;
@@ -3192,46 +3192,6 @@ all Ondat components; the Ondat daemonset, CSI helper and scheduler.&lt;/p&gt;
 tolerated and &lt;code&gt;key2&lt;/code&gt; would be tolerated regardless of the value and effect. For
 more information about tolerations see the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Kubernetes
 documentation&lt;/a&gt;.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Cluster Operator upgrade</title>
-      <link>/docs/reference/cluster-operator/upgrade/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/cluster-operator/upgrade/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;upgrade-ondat-operator-from-yaml-manifest&#34;&gt;Upgrade Ondat operator from yaml manifest&lt;/h2&gt;
-&lt;p&gt;Upgrade the Ondat operator using the following yaml manifest.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://github.com/storageos/cluster-operator/releases/download/v2.4.4/storageos-operator.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 When you run the above command Ondat Operator resources will be updated.
-Since, the Update Strategy of the Ondat Operator Deployment is set to
-rolling update, a new Ondat Operator Pod will be created. Only when
-the new Pod enters the Running Phase will the old Pod be deleted.
-Your Ondat Cluster will not be affected while the Ondat
-Operator is upgrading.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;upgrade-ondat-operator-using-helm&#34;&gt;Upgrade Ondat Operator using Helm&lt;/h2&gt;
-&lt;p&gt;If you have installed the Ondat Operator using the &lt;a href=&#34;https://github.com/storageos/charts/tree/master/stable/storageos-operator#installing-the-chart&#34;&gt;Helm Chart&lt;/a&gt;, then you can upgrade the operator using the following commands.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm list
-
-NAME            REVISION        STATUS          CHART                           APP VERSION     NAMESPACE   
-storageos-v1   4               DEPLOYED        storageos-operator-0.2.11       1.3.0           storageos-operator
-&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;helm repo update
-helm upgrade $NAME storageos/storageos-operator
-&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
-&lt;p&gt;💡 When you run the above command Ondat Operator resources will be updated.
-Since, the Update Strategy of the Ondat Operator Deployment is set to
-rolling update, a new Ondat Operator Pod will be created. Only when
-the new Pod enters the Running Phase will the old Pod be deleted.
-Your Ondat Cluster will not be affected while the Ondat
-Operator is upgrading.&lt;/p&gt;
-&lt;/blockquote&gt;
 
       </description>
     </item>
@@ -3516,7 +3476,7 @@ docker pull k8s.gcr.io/kube-scheduler:&lt;span style=&#34;color:#4e9a06&#34;&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 &lt;strong&gt;Optional&lt;/strong&gt; - For users who are looking to make further customisations to their &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource in the &lt;code&gt;1-storageos-cluster.yaml&lt;/code&gt; manifest, review the &lt;a href=&#34;https://docs.ondat.io/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and &lt;a href=&#34;https://docs.ondat.io/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
+&lt;p&gt;💡 &lt;strong&gt;Optional&lt;/strong&gt; - For users who are looking to make further customisations to their &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource in the &lt;code&gt;1-storageos-cluster.yaml&lt;/code&gt; manifest, review the &lt;a href=&#34;https://docs.ondat.io/docs/reference/operator/configuration&#34;&gt;Operator Configuration&lt;/a&gt; and &lt;a href=&#34;https://docs.ondat.io/docs/reference/operator/examples&#34;&gt;Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;step-6---installing-ondat&#34;&gt;Step 6 - Installing Ondat&lt;/h3&gt;
 &lt;ul&gt;
@@ -3653,7 +3613,7 @@ ls storageos-dry-run/
 &lt;li&gt;
 &lt;p&gt;Run the following  &lt;code&gt;kubectl&lt;/code&gt; command to install Ondat with the generated manifests in the &lt;code&gt;storageos-dry-run&lt;/code&gt; directory. The manifests  can also be used in your &lt;a href=&#34;https://www.weave.works/technologies/gitops/&#34;&gt;GitOps&lt;/a&gt; workflow to deploy Ondat, enabling you to have a fully declarative approach towards managing your infrastructure deployments.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to their &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
+&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to their &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/operator/examples&#34;&gt;Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Apply the Operators and CustomResourceDefinitions (CRDs) first.&lt;/span&gt;
 find . -name &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;*-operator.yaml&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; xargs -I&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt; kubectl apply --filename &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{}&lt;/span&gt;
@@ -3747,7 +3707,7 @@ helm search repo &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;ondat&amp;#3
 &lt;li&gt;There are two ways to conduct an installation with Helm, &lt;strong&gt;declaratively&lt;/strong&gt; by creating a custom &lt;code&gt;values.yaml&lt;/code&gt; (recommended method) or &lt;strong&gt;interactively&lt;/strong&gt; by using the &lt;code&gt;--set&lt;/code&gt; flags to overwrite specific values for the deployment.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat chart &lt;a href=&#34;https://github.com/ondat/charts/blob/main/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/cluster-operator/configuration&#34;&gt;Cluster Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/cluster-operator/examples&#34;&gt;Cluster Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
+&lt;p&gt;💡 &lt;strong&gt;Advanced Users&lt;/strong&gt; - For users who are looking to make further customisations to the Helm chart through additional configurable parameters or manually create your own &lt;code&gt;StorageOSCluster&lt;/code&gt; custom resource manifest, review the Ondat chart &lt;a href=&#34;https://github.com/ondat/charts/blob/main/README.md&#34;&gt;README.md&lt;/a&gt; document, &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;Operator Configuration&lt;/a&gt; and  &lt;a href=&#34;/docs/reference/operator/examples&#34;&gt;Operator Examples&lt;/a&gt; reference pages for more information.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h5 id=&#34;declarative-recommended&#34;&gt;Declarative (Recommended)&lt;/h5&gt;
 &lt;ol&gt;
@@ -3933,7 +3893,7 @@ sudo apt-get install -y linux-modules-extra-&lt;span style=&#34;color:#204a87;fo
 and to perform upgrades only after reading the release notes.&lt;/p&gt;
 &lt;p&gt;The latest tagged release is &lt;code&gt;2.8.2&lt;/code&gt;. For
 installation instructions see our
-&lt;a href=&#34;/docs/reference/cluster-operator/install&#34;&gt;Install&lt;/a&gt; page.&lt;/p&gt;
+&lt;a href=&#34;/docs/install/&#34;&gt;Install&lt;/a&gt; page.&lt;/p&gt;
 &lt;p&gt;The latest CLI release is &lt;code&gt;2.8.2&lt;/code&gt;, available from
 &lt;a href=&#34;https://github.com/storageos/go-cli/releases&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id=&#34;upgrading&#34;&gt;Upgrading&lt;/h1&gt;
@@ -5313,6 +5273,107 @@ example line:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To activate the new settings, run the following command:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sysctl -p /etc/sysctl.conf
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Etcd in Kubernetes</title>
+      <link>/docs/prerequisites/etcd/etcd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/prerequisites/etcd/etcd/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Ondat requires an etcd cluster in order to function. For more information on
+why etcd is required, see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Neither Ondat nor Kubernetes support using Kubernetes&#39; own internal etcd for Ondat.&lt;/p&gt;
+&lt;p&gt;For most use-cases it is recommended to install the Ondat etcd operator that
+will manage creation and maintenance of Ondat&amp;rsquo;s required etcd cluster. In some
+circumstances, eg. when cloud storage technologies are not available,
+it makes sense to install etcd on separate machines outside of
+your Kubernetes cluster.&lt;/p&gt;
+&lt;h2 id=&#34;installing-etcd-into-your-kubernetes-cluster&#34;&gt;Installing Etcd Into Your Kubernetes Cluster&lt;/h2&gt;
+&lt;p&gt;This is our recommended way to host etcd in both testing and production
+environments.&lt;/p&gt;
+&lt;h2 id=&#34;configuring-storage-for-etcd&#34;&gt;Configuring Storage for Etcd&lt;/h2&gt;
+&lt;p&gt;We highly recommend using cloud provider network attached disks for storing
+etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This
+allows the etcd operator to recover from node failures.&lt;/p&gt;
+&lt;p&gt;For testing environments or where there are no resilient storage options available,
+a node-local storage option can be used, such as
+&lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt;.
+This will store etcd data on the node hosting an etcd pod&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended when other, better
+storage classes are not available, as this stores
+all the data of the &lt;code&gt;etcd&lt;/code&gt; peers locally, which
+makes it susceptible to state being lost on node failures.
+In the case of &lt;code&gt;local-path&lt;/code&gt; storage, a minimum of 5 etcd nodes
+is recommended to increase resilience.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;installing-etcd&#34;&gt;Installing Etcd&lt;/h2&gt;
+&lt;p&gt;An etcd cluster can be created in three different ways:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Installing the etcd operator via our helm chart&lt;/li&gt;
+&lt;li&gt;Installing Ondat (and the etcd operator) via our Plugin&lt;/li&gt;
+&lt;li&gt;Manually deploying the etcd operator and applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing the etcd operator via our helm chart&lt;/h3&gt;
+&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts&#34;&gt;Ondat Helm
+Chart&lt;/a&gt; repository.&lt;/p&gt;
+&lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install \
+    --include-etcd \
+    --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; \
+    --etcd-tls-enabled
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;configurable-manually-applying-an-etcdcluster-custom-resource&#34;&gt;&lt;strong&gt;Configurable:&lt;/strong&gt; Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
+&lt;p&gt;This installation method allows the most configuration of the etcd cluster, but
+is error-prone and therefore not recommended in situations in which the Helm chart
+or plugin can be used, instead.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart-1&#34;&gt;Recommended: Installing the etcd operator via our helm chart&lt;/h3&gt;
+&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1&#34;&gt;Recommended: Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install \
+    --include-etcd \
+    --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; \
+    --etcd-tls-enabled
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;manually-applying-an-etcdcluster-custom-resource&#34;&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
+&lt;p&gt;This installation method allows the most configuration of the etcd cluster, but
+is error-prone and therefore not recommended in situations in which the Helm chart
+or plugin can be used, instead.&lt;/p&gt;
+&lt;p&gt;Find the verison of the etcd operator you want to install from
+&lt;a href=&#34;https://github.com/storageos/etcd-cluster-operator/releases/&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Install the etcd operator:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCD_OPERATOR_VERSION=&amp;lt;set the version you want to use&amp;gt;
+kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then adapt the following sample to your needs and use &lt;code&gt;kubectl&lt;/code&gt; to  apply it:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCD_OPERATOR_VERSION=&amp;lt;set the version you want to use&amp;gt;
+wget https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster.yaml
+vim storageos-etcd-cluster.yaml
+kubectl apply -f storageos-etcd-cluster.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;installation-verification&#34;&gt;Installation Verification&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n storageos-etcd get pod,svc,pdb
+NAME                                                     READY   STATUS    RESTARTS   AGE
+pod/storageos-etcd-0-28m5t                               1/1     Running   0          18h
+pod/storageos-etcd-1-2lpn9                               1/1     Running   0          18h
+pod/storageos-etcd-2-dpdz6                               1/1     Running   0          18h
+pod/storageos-etcd-3-7lsmz                               1/1     Running   0          18h
+pod/storageos-etcd-4-q5xjd                               1/1     Running   0          18h
+pod/storageos-etcd-controller-manager-6f5776c64f-dhp7r   1/1     Running   0          18h
+pod/storageos-etcd-controller-manager-6f5776c64f-vvxrr   1/1     Running   0          18h
+pod/storageos-etcd-proxy-96bf4bb5f-z5m7f                 1/1     Running   0          18h
+
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
+service/storageos-etcd         ClusterIP   None            &amp;lt;none&amp;gt;        2379/TCP,2380/TCP   18h
+service/storageos-etcd-proxy   ClusterIP   10.43.199.194   &amp;lt;none&amp;gt;        80/TCP              18h
+
+NAME                                        MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/storageos-etcd   3               N/A               2                     18h
+&lt;/code&gt;&lt;/pre&gt;
       </description>
     </item>
     
