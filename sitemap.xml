@@ -276,6 +276,8 @@
   </url><url>
     <loc>/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/</loc>
   </url><url>
+    <loc>/docs/knowledgebase/solution-unable-to-apply-paramters-to-an-existing-storageclass-object/</loc>
+  </url><url>
     <loc>/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/</loc>
   </url><url>
     <loc>/docs/operations/storageclasses/</loc>
