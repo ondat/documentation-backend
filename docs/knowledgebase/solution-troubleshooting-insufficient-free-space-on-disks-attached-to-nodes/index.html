@@ -7,7 +7,6 @@
 
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
-<link rel="alternate" type="application/rss&#43;xml" href="/docs/install/rancher/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -21,18 +20,20 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Rancher | </title><meta property="og:title" content="Rancher" />
-<meta property="og:description" content="Ondat deployment guides for Rancher.
-" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/install/rancher/" />
+<title>Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes | </title><meta property="og:title" content="Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes" />
+<meta property="og:description" content="Issue  You are noticing the following error messages (demonstrated in the snippet below) in the logs of a Ondat daemonset pod named storageos-node-xxxx that is running on a node that is running out of space.  # Check the logs of a Ondat daemonset pod.kubectl logs storageos-node-xxxx --namespace storageos# Truncated output.&#34;msg&#34;: &#34;StartAsyncFallocate: insufficient free space on file system free_space=1048305664 required_free_space=1073741824&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=all blob files are full - can not complete write&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;,&#34;msg&#34;: &#34;SCSI command failed type=write error=FATAL retries=0 time_to_deadline_secs=89&#34;, When you try to attach a volume to a node with a full disk, you see the following event error message after describing the pod using the volume:  # Describe the pod trying to use the affected volume." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/" /><meta property="article:section" content="docs" />
 
-<meta itemprop="name" content="Rancher">
-<meta itemprop="description" content="Ondat deployment guides for Rancher.
-"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Rancher"/>
-<meta name="twitter:description" content="Ondat deployment guides for Rancher.
-"/>
+
+
+<meta itemprop="name" content="Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes">
+<meta itemprop="description" content="Issue  You are noticing the following error messages (demonstrated in the snippet below) in the logs of a Ondat daemonset pod named storageos-node-xxxx that is running on a node that is running out of space.  # Check the logs of a Ondat daemonset pod.kubectl logs storageos-node-xxxx --namespace storageos# Truncated output.&#34;msg&#34;: &#34;StartAsyncFallocate: insufficient free space on file system free_space=1048305664 required_free_space=1073741824&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=all blob files are full - can not complete write&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;,&#34;msg&#34;: &#34;SCSI command failed type=write error=FATAL retries=0 time_to_deadline_secs=89&#34;, When you try to attach a volume to a node with a full disk, you see the following event error message after describing the pod using the volume:  # Describe the pod trying to use the affected volume.">
+
+<meta itemprop="wordCount" content="673">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes"/>
+<meta name="twitter:description" content="Issue  You are noticing the following error messages (demonstrated in the snippet below) in the logs of a Ondat daemonset pod named storageos-node-xxxx that is running on a node that is running out of space.  # Check the logs of a Ondat daemonset pod.kubectl logs storageos-node-xxxx --namespace storageos# Truncated output.&#34;msg&#34;: &#34;StartAsyncFallocate: insufficient free space on file system free_space=1048305664 required_free_space=1073741824&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=all blob files are full - can not complete write&#34;,&#34;msg&#34;: &#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;,&#34;msg&#34;: &#34;SCSI command failed type=write error=FATAL retries=0 time_to_deadline_secs=89&#34;, When you try to attach a volume to a node with a full disk, you see the following event error message after describing the pod using the volume:  # Describe the pod trying to use the affected volume."/>
 
 
 
@@ -75,9 +76,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Rancher | </title>
+    <title>Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes | </title>
   </head>
-  <body class="td-section">
+  <body class="td-page">
     
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXRX3CX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -609,10 +610,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsinstall">
+    <li class="collapse " id="docsinstall">
       
       
       
@@ -702,10 +703,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/rancher/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Rancher</a>
+    <a  href="/docs/install/rancher/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Rancher</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsinstallrancher">
+    <li class="collapse " id="docsinstallrancher">
       
       
       
@@ -1510,10 +1511,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse " id="docsknowledgebase">
+    <li class="collapse show" id="docsknowledgebase">
       
       
       
@@ -1544,7 +1545,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes" href="/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/">Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes" href="/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/">Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</a>
       
       
       
@@ -1636,6 +1637,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#issue">Issue</a></li>
+    <li><a href="#root-cause">Root Cause</a>
+      <ul>
+        <li><a href="#what-are-the-consequences-of-a-full-storage-disk">What Are The Consequences Of A Full Storage Disk?</a></li>
+      </ul>
+    </li>
+    <li><a href="#resolution">Resolution</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1664,14 +1677,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/install/">Install</a>
+	<a href="/docs/knowledgebase/">Knowledge Base</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/install/rancher/">Rancher</a>
+	<a href="/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/">Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</a>
 </li>
 
 	</ol>
@@ -1679,340 +1692,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Rancher</h1>
-	<div class="lead">Ondat deployment guides for Rancher.</div>
-	<h2 id="overview">Overview</h2>
-<p>If you are running Rancher there are a number of options on how you run your kubernetes cluster. Please see the following datasheets and blogs for more information about some of the use-cases of running Ondat in Rancher.</p>
+	<h1>Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</h1>
+	
+	<h2 id="issue">Issue</h2>
 <ul>
-<li><a href="https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf">Whitepaper: Ondat Platform Architecture Overview</a></li>
-<li><a href="https://www.ondat.io/blog/ondat-and-suse-rancher-run-your-stateful-applications-everywhere">Blog: Ondat and SUSE Rancher - Run your stateful applications everywhere</a></li>
+<li>You are noticing the following error messages (demonstrated in the snippet below) in the logs of a Ondat daemonset pod named <code>storageos-node-xxxx</code> that is running on a node that is running out of space.</li>
 </ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Check the logs of a Ondat daemonset pod.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">kubectl logs storageos-node-xxxx --namespace storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># Truncated output.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">&#34;msg&#34;: </span><span style="color:#4e9a06">&#34;StartAsyncFallocate: insufficient free space on file system free_space=1048305664 required_free_space=1073741824&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">&#34;msg&#34;: </span><span style="color:#4e9a06">&#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">&#34;msg&#34;: </span><span style="color:#4e9a06">&#34;Write: write failed volid=155051 error=all blob files are full - can not complete write&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">&#34;msg&#34;: </span><span style="color:#4e9a06">&#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">&#34;msg&#34;: </span><span style="color:#4e9a06">&#34;SCSI command failed type=write error=FATAL retries=0 time_to_deadline_secs=89&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><ul>
+<li>When you try to attach a volume to a node with a full disk, you see the following event error message after describing the pod using the volume:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Describe the pod trying to use the affected volume.</span>
+kubectl describe pod <span style="color:#000">$POD_NAME_USING_VOLUME</span> --namespace <span style="color:#000">$POD_NAMESPACE</span>
 
-        <div class="section-index">
-    
-    
-    
-    
-    <hr class="panel-line">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/install/rancher/rancher/">Rancher Kubernetes Engine (RKE)</a>
-                    </h5>
-                    <p>Walkthrough guide to install Ondat onto a Rancher Cluster</p>
-                </div>
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/install/rancher/rancher-marketplace/">Rancher Kubernetes Engine (RKE) via Marketplace</a>
-                    </h5>
-                    <p>Walkthrough guide to install Ondat onto a Rancher Cluster via Marketplace</p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/install/rancher/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
-                    </h5>
-                    <p>Walkthrough guide to install Ondat onto a Rancher RKE2/RKE Government Cluster</p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    
-</div>
+<span style="color:#8f5902;font-style:italic"># Truncated output.</span>
+AttachVolume.Attach failed <span style="color:#204a87;font-weight:bold">for</span> volume <span style="color:#4e9a06">&#34;pvc-xxx&#34;</span> : rpc error: <span style="color:#000">code</span> <span style="color:#ce5c00;font-weight:bold">=</span> Internal <span style="color:#000">desc</span> <span style="color:#ce5c00;font-weight:bold">=</span> internal error: rpc error: <span style="color:#000">code</span> <span style="color:#ce5c00;font-weight:bold">=</span> Internal <span style="color:#000">desc</span> <span style="color:#ce5c00;font-weight:bold">=</span> rpc error: <span style="color:#000">code</span> <span style="color:#ce5c00;font-weight:bold">=</span> Internal <span style="color:#000">desc</span> <span style="color:#ce5c00;font-weight:bold">=</span> fs: STATUS_FORBIDDEN: create failed in Notify handler <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span>Failed to create LUN <span style="color:#204a87;font-weight:bold">for</span> FsConfigVolume<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#000">volume_id</span><span style="color:#ce5c00;font-weight:bold">=</span>
+</code></pre></div><h2 id="root-cause">Root Cause</h2>
+<p>The root cause of the issue due to the physical storage disks connected to your worker nodes in your Ondat cluster becoming full, or they are using disk space too quickly. To reduce the chances of downtime in the cluster, Kubernetes will automatically apply the <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/#taint-based-evictions"><code>node.kubernetes.io/disk-pressure</code> taint</a> on affected nodes.</p>
+<ul>
+<li>The Ondat daemonset pods, which have the control and data plane components, has a <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">toleration</a> applied for this taint, to allow the daemonset to continue to run.</li>
+</ul>
+<h3 id="what-are-the-consequences-of-a-full-storage-disk">What Are The Consequences Of A Full Storage Disk?</h3>
+<ul>
+<li><strong>Unable To Conduct Replica Failovers</strong>.
+<ul>
+<li>If there is a replica on a node where the storage disk has run out of space, the replica will be unable to failover successfully.</li>
+</ul>
+</li>
+<li><strong>Unable To Provision Volumes</strong>.
+<ul>
+<li>When provisioning a new volume, the data plane component will check that there is at least <strong><code>1GB</code></strong> of storage space left on the nodes' underlying filesystem for the blob files located under &raquo; <code>/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.0.blob</code> and &raquo; <code>/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.1.blob</code>.</li>
+<li>If there is insufficient storage space for both of the blob files that Ondat uses to store data, then the data plane component will fail to complete the volume <code>create</code> request.</li>
+</ul>
+</li>
+<li><strong>Runtime Access Issues</strong>.
+<ul>
+<li>At runtime, if an attempted write to a blob file returns an <code>ENOSPC</code> exception, the data plane component marks the file as full.</li>
+<li>Once both Ondat blob files in a volume are marked as full, the data plane component marks the deployment with an error flag, and all subsequent read/write operations will return an I/O error.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>💡 This flag is only stored in memory, therefore, to clear this flag, the Ondat daemonset pod on the affected node must be restarted after remediating the disk space issue.</p>
+</blockquote>
+<h2 id="resolution">Resolution</h2>
+<p>To recover from a reported full disk error message, end users are recommended to either:</p>
+<ol>
+<li><strong>Option 1 - Expand Storage Capacity By Adding More Disks</strong>.</li>
+</ol>
+<ul>
+<li>If you choose to address this issue by expanding your capacity, users have two main options:</li>
+<li>Add new storage devices under <code>/var/lib/storageos/data/dev[0-9]+</code> as demonstrated in the <a href="https://docs.ondat.io/docs/operations/managing-host-storage/">How To Extend Storage Capacity On Nodes</a> operations page.</li>
+<li>Expand the underlying filesystem that Ondat is using as demonstrated in the <a href="https://docs.ondat.io/docs/operations/managing-host-storage/">How To Extend Storage Capacity On Nodes</a> operations page.</li>
+</ul>
+<ol>
+<li><strong>Option 2 - Delete Existing <code>PersistentVolumeClaim</code>s (PVCs)</strong></li>
+</ol>
+<ul>
+<li>If you choose to address by deleting existing <code>PersistentVolumeClaim</code>s, users can use <code>kubectl</code> to achieve this and ensure that you restart/bounce the Ondat daemonset pod on the affected node.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl delete pvc <span style="color:#000">$NAME_OF_PVC</span> --namespace <span style="color:#000">$PVC_NAMESPACE</span>
+</code></pre></div><blockquote>
+<p>⚠️ Regardless of the solution used to address this issue - it is important that the <strong>Ondat Daemonset Pod restarted</strong> for changes to be applied and take effect. The reason for this is because blob files disallow operations at runtime through the previously discussed <code>ENOSPC</code> error flag stored in memory. This flag does not survive boot cycles, so after the the daemonset pod restarts, volumes can begin to successfully operate again.</p>
+</blockquote>
 
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
 </div>
+
 
           </main>
         </div>

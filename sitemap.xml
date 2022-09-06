@@ -164,8 +164,6 @@
   </url><url>
     <loc>/docs/reference/bundles/diagnostic-bundle/</loc>
   </url><url>
-    <loc>/docs/operations/disk-full/</loc>
-  </url><url>
     <loc>/docs/</loc>
   </url><url>
     <loc>/docs/operations/downgrade-ondat-2.7-to-2.6/</loc>
@@ -271,6 +269,8 @@
     <loc>/docs/knowledgebase/solution-unable-to-connect-to-etcd/</loc>
   </url><url>
     <loc>/docs/knowledgebase/solution-troubleshooting-unregistered-licence-period-has-expired/</loc>
+  </url><url>
+    <loc>/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/</loc>
   </url><url>
     <loc>/docs/knowledgebase/solution-troubleshooting-daemonset-crashloopbackoff-pod-after-reinstalling-ondat/</loc>
   </url><url>

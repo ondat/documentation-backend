@@ -333,6 +333,88 @@ Events:
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You are noticing the following error messages (demonstrated in the snippet below) in the logs of a Ondat daemonset pod named &lt;code&gt;storageos-node-xxxx&lt;/code&gt; that is running on a node that is running out of space.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check the logs of a Ondat daemonset pod.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;kubectl logs storageos-node-xxxx --namespace storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;msg&amp;#34;: &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;StartAsyncFallocate: insufficient free space on file system free_space=1048305664 required_free_space=1073741824&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;msg&amp;#34;: &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;msg&amp;#34;: &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Write: write failed volid=155051 error=all blob files are full - can not complete write&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;msg&amp;#34;: &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Write: write failed volid=155051 error=BlobStorage::PrepWrite encountered a previous IO error preventing future IO for safety&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;&amp;#34;msg&amp;#34;: &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;SCSI command failed type=write error=FATAL retries=0 time_to_deadline_secs=89&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;,&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;When you try to attach a volume to a node with a full disk, you see the following event error message after describing the pod using the volume:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the pod trying to use the affected volume.&lt;/span&gt;
+kubectl describe pod &lt;span style=&#34;color:#000&#34;&gt;$POD_NAME_USING_VOLUME&lt;/span&gt; --namespace &lt;span style=&#34;color:#000&#34;&gt;$POD_NAMESPACE&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+AttachVolume.Attach failed &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; volume &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;pvc-xxx&amp;#34;&lt;/span&gt; : rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; fs: STATUS_FORBIDDEN: create failed in Notify handler &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;Failed to create LUN &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; FsConfigVolume&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;volume_id&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;The root cause of the issue due to the physical storage disks connected to your worker nodes in your Ondat cluster becoming full, or they are using disk space too quickly. To reduce the chances of downtime in the cluster, Kubernetes will automatically apply the &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/#taint-based-evictions&#34;&gt;&lt;code&gt;node.kubernetes.io/disk-pressure&lt;/code&gt; taint&lt;/a&gt; on affected nodes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat daemonset pods, which have the control and data plane components, has a &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;toleration&lt;/a&gt; applied for this taint, to allow the daemonset to continue to run.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;what-are-the-consequences-of-a-full-storage-disk&#34;&gt;What Are The Consequences Of A Full Storage Disk?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Unable To Conduct Replica Failovers&lt;/strong&gt;.
+&lt;ul&gt;
+&lt;li&gt;If there is a replica on a node where the storage disk has run out of space, the replica will be unable to failover successfully.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unable To Provision Volumes&lt;/strong&gt;.
+&lt;ul&gt;
+&lt;li&gt;When provisioning a new volume, the data plane component will check that there is at least &lt;strong&gt;&lt;code&gt;1GB&lt;/code&gt;&lt;/strong&gt; of storage space left on the nodes&#39; underlying filesystem for the blob files located under &amp;raquo; &lt;code&gt;/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.0.blob&lt;/code&gt; and &amp;raquo; &lt;code&gt;/var/lib/storageos/data/dev[0-9]+/vol.xxxxxx.1.blob&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;If there is insufficient storage space for both of the blob files that Ondat uses to store data, then the data plane component will fail to complete the volume &lt;code&gt;create&lt;/code&gt; request.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Runtime Access Issues&lt;/strong&gt;.
+&lt;ul&gt;
+&lt;li&gt;At runtime, if an attempted write to a blob file returns an &lt;code&gt;ENOSPC&lt;/code&gt; exception, the data plane component marks the file as full.&lt;/li&gt;
+&lt;li&gt;Once both Ondat blob files in a volume are marked as full, the data plane component marks the deployment with an error flag, and all subsequent read/write operations will return an I/O error.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This flag is only stored in memory, therefore, to clear this flag, the Ondat daemonset pod on the affected node must be restarted after remediating the disk space issue.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;p&gt;To recover from a reported full disk error message, end users are recommended to either:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Option 1 - Expand Storage Capacity By Adding More Disks&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;If you choose to address this issue by expanding your capacity, users have two main options:&lt;/li&gt;
+&lt;li&gt;Add new storage devices under &lt;code&gt;/var/lib/storageos/data/dev[0-9]+&lt;/code&gt; as demonstrated in the &lt;a href=&#34;https://docs.ondat.io/docs/operations/managing-host-storage/&#34;&gt;How To Extend Storage Capacity On Nodes&lt;/a&gt; operations page.&lt;/li&gt;
+&lt;li&gt;Expand the underlying filesystem that Ondat is using as demonstrated in the &lt;a href=&#34;https://docs.ondat.io/docs/operations/managing-host-storage/&#34;&gt;How To Extend Storage Capacity On Nodes&lt;/a&gt; operations page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Option 2 - Delete Existing &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;s (PVCs)&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;If you choose to address by deleting existing &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;s, users can use &lt;code&gt;kubectl&lt;/code&gt; to achieve this and ensure that you restart/bounce the Ondat daemonset pod on the affected node.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl delete pvc &lt;span style=&#34;color:#000&#34;&gt;$NAME_OF_PVC&lt;/span&gt; --namespace &lt;span style=&#34;color:#000&#34;&gt;$PVC_NAMESPACE&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ Regardless of the solution used to address this issue - it is important that the &lt;strong&gt;Ondat Daemonset Pod restarted&lt;/strong&gt; for changes to be applied and take effect. The reason for this is because blob files disallow operations at runtime through the previously discussed &lt;code&gt;ENOSPC&lt;/code&gt; error flag stored in memory. This flag does not survive boot cycles, so after the the daemonset pod restarts, volumes can begin to successfully operate again.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting Ondat Daemonset &#39;CrashLoopBackOff&#39;  Pod States after Re-installing Ondat</title>
       <link>/docs/knowledgebase/solution-troubleshooting-daemonset-crashloopbackoff-pod-after-reinstalling-ondat/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
