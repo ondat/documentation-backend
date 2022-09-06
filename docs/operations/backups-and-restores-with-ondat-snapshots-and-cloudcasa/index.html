@@ -20,26 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Backup and restores with Ondat Snapshots and CloudCasa | </title><meta property="og:title" content="Backup and restores with Ondat Snapshots and CloudCasa" />
+<title>How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa | </title><meta property="og:title" content="How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa" />
 <meta property="og:description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using CloudCasa. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Pre-requisites Installing Ondat Setting up a CloudCasa account and deploying the CloudCasa agent Installing Kubernetes Snapshot Controller Configuring the Ondat VolumeSnapshotClass Backup and Recovery functions walkthrough:  Create a dummy application Setup a backup policy Define and run a backup Run a restore operation for the dummy application    1: Pre-requisites The following pre-requisites must also be met:" />
+ Pre-requisites. Installing Ondat. Setting up a CloudCasa account and deploying the CloudCasa agent. Installing Kubernetes Snapshot Controller. Configuring the Ondat VolumeSnapshotClass." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Backup and restores with Ondat Snapshots and CloudCasa">
+<meta itemprop="name" content="How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa">
 <meta itemprop="description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using CloudCasa. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Pre-requisites Installing Ondat Setting up a CloudCasa account and deploying the CloudCasa agent Installing Kubernetes Snapshot Controller Configuring the Ondat VolumeSnapshotClass Backup and Recovery functions walkthrough:  Create a dummy application Setup a backup policy Define and run a backup Run a restore operation for the dummy application    1: Pre-requisites The following pre-requisites must also be met:">
+ Pre-requisites. Installing Ondat. Setting up a CloudCasa account and deploying the CloudCasa agent. Installing Kubernetes Snapshot Controller. Configuring the Ondat VolumeSnapshotClass.">
 
-<meta itemprop="wordCount" content="1768">
+<meta itemprop="wordCount" content="1713">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Backup and restores with Ondat Snapshots and CloudCasa"/>
+<meta name="twitter:title" content="How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa"/>
 <meta name="twitter:description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using CloudCasa. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Pre-requisites Installing Ondat Setting up a CloudCasa account and deploying the CloudCasa agent Installing Kubernetes Snapshot Controller Configuring the Ondat VolumeSnapshotClass Backup and Recovery functions walkthrough:  Create a dummy application Setup a backup policy Define and run a backup Run a restore operation for the dummy application    1: Pre-requisites The following pre-requisites must also be met:"/>
+ Pre-requisites. Installing Ondat. Setting up a CloudCasa account and deploying the CloudCasa agent. Installing Kubernetes Snapshot Controller. Configuring the Ondat VolumeSnapshotClass."/>
 
 
 
@@ -82,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Backup and restores with Ondat Snapshots and CloudCasa | </title>
+    <title>How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa | </title>
   </head>
   <body class="td-page">
     
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4970b6e11426edd52799281c843939d6654cbf0939437859a249d5bc73fbbccfad071e477ae6a600439565a285df316a5df27a6366c883e53f5110d8ff3821ab.json"
+  data-offline-search-index-json-src="/offline-search-index.1c415f462e93be4e8216c4e2c81567a14e20d64f51698cbe1658773ee9e80a59a6b6c9354cb3d2de82974da18ef95b48be5f2d351396feec2ab7813ce9360c5c.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4970b6e11426edd52799281c843939d6654cbf0939437859a249d5bc73fbbccfad071e477ae6a600439565a285df316a5df27a6366c883e53f5110d8ff3821ab.json"
+  data-offline-search-index-json-src="/offline-search-index.1c415f462e93be4e8216c4e2c81567a14e20d64f51698cbe1658773ee9e80a59a6b6c9354cb3d2de82974da18ef95b48be5f2d351396feec2ab7813ce9360c5c.json"
   data-offline-search-base-href="/"
 >
 
@@ -935,12 +935,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsbackups-and-restores-with-ondat-snapshots-and-cloudcasa" href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">Backup and restores with Ondat Snapshots and CloudCasa</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -1036,6 +1030,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsmanaging-host-storage" href="/docs/operations/managing-host-storage/">Host Storage</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsbackups-and-restores-with-ondat-snapshots-and-cloudcasa" href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa</a>
       
       
       
@@ -1645,11 +1645,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#51-create-a-dummy-application">5.1 Create a dummy application</a></li>
-    <li><a href="#52-setup-a-backup-policy">5.2 Setup a backup policy</a></li>
-    <li><a href="#52-configure-the-ondat-volumesnapshotclass">5.2 Configure the Ondat VolumeSnapshotClass</a></li>
-    <li><a href="#53-define-and-run-a-backup">5.3 Define and run a backup</a></li>
-    <li><a href="#53-run-a-restore-operation-for-the-dummy-application">5.3 Run a restore operation for the dummy application</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---installing-ondat">Step 1 - Installing Ondat</a></li>
+        <li><a href="#step-2---setting-up-a-cloudcasa-account--deploying-the-cloudcasa-agent">Step 2 - Setting up a CloudCasa Account &amp; Deploying the CloudCasa Agent</a></li>
+        <li><a href="#step-3---installing-the-kubernetes-snapshot-controller">Step 3 - Installing the Kubernetes Snapshot Controller</a></li>
+        <li><a href="#step-4---backup--recovery-functions-walkthrough">Step 4 - Backup &amp; Recovery Functions walkthrough</a></li>
+      </ul>
+    </li>
+    <li><a href="#44---define--run-a-backup">4.4 - Define &amp; Run a Backup</a></li>
+    <li><a href="#45---run-a-restore-operation-for-the-dummy-application">4.5 - Run a Restore Operation For the Dummy Application</a></li>
   </ul>
 </nav>
 
@@ -1688,7 +1695,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">Backup and restores with Ondat Snapshots and CloudCasa</a>
+	<a href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa</a>
 </li>
 
 	</ol>
@@ -1696,9 +1703,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Backup and restores with Ondat Snapshots and CloudCasa</h1>
+	<h1>How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa</h1>
 	
-	<h1 id="overview">Overview</h1>
+	<h2 id="overview">Overview</h2>
 <p>This guide will walk you through how to use the Ondat Snapshots feature to
 backup and restore your Kubernetes applications using CloudCasa. Before
 starting please consult the <a href="/docs/concepts/snapshots">Snapshots
@@ -1706,278 +1713,245 @@ Concepts</a> page for an overview of the feature.</p>
 <p>We’ll now run through the steps required to configure and utilise the
 feature:</p>
 <ol>
-<li>Pre-requisites</li>
-<li>Installing Ondat</li>
-<li>Setting up a CloudCasa account and deploying the CloudCasa agent</li>
-<li>Installing Kubernetes Snapshot Controller</li>
-<li>Configuring the Ondat VolumeSnapshotClass</li>
+<li>Pre-requisites.</li>
+<li>Installing Ondat.</li>
+<li>Setting up a CloudCasa account and deploying the CloudCasa agent.</li>
+<li>Installing Kubernetes Snapshot Controller.</li>
+<li>Configuring the Ondat VolumeSnapshotClass.</li>
 <li>Backup and Recovery functions walkthrough:
 <ol>
-<li>Create a dummy application</li>
-<li>Setup a backup policy</li>
-<li>Define and run a backup</li>
-<li>Run a restore operation for the dummy application</li>
+<li>Create a dummy application.</li>
+<li>Setup a backup policy.</li>
+<li>Define and run a backup.</li>
+<li>Run a restore operation for the dummy application.</li>
 </ol>
 </li>
 </ol>
-<h1 id="1-pre-requisites">1: Pre-requisites</h1>
+<h2 id="prerequisites">Prerequisites</h2>
 <p>The following pre-requisites must also be met:</p>
 <ul>
-<li>The registered cluster must be Kubernetes version 1.17 or higher to
-utilize CSI snapshots. The CSI driver must support volume snapshots at
-the v1beta1 API level. For a list of vendors that support CSI snapshots,
-please see: <a href="https://kubernetes-csi.github.io/docs/drivers.html">https://kubernetes-csi.github.io/docs/drivers.html</a>.
-The Ondat driver, obviously, is supported.</li>
-<li>kubectl must be installed and configured.</li>
-<li>You will need cluster administrative access to install CloudCasa&rsquo;s
-lightweight agent on your cluster. While registering your cluster in the
-CloudCasa user interface (UI), each cluster will be given a unique YAML
-file to be applied to your cluster.</li>
-<li>Network access from your cluster outgoing to the CloudCasa service
-(agent.cloudcasa.io) on port 443.</li>
+<li>The registered cluster must be Kubernetes version 1.17 or higher to utilize CSI snapshots. The CSI driver must support volume snapshots at the <code>v1beta1</code> API level. For a list of vendors that support CSI snapshots, review the <a href="https://kubernetes-csi.github.io/docs/drivers.html">Kubernetes CSI Drivers</a> documentation. The Ondat driver is supported.</li>
+<li><code>kubectl</code> must be installed and configured.</li>
+<li>You will need cluster administrative access to install CloudCasa&rsquo;s lightweight agent on your cluster. While registering your cluster in the CloudCasa user interface (UI), each cluster will be given a unique YAML file to be applied to your cluster.</li>
+<li>Network access from your cluster outgoing to the CloudCasa service (<code>agent.cloudcasa.io</code>) on port <code>443</code>.</li>
 </ul>
-<h1 id="2-installing-ondat">2: Installing Ondat</h1>
-<p>Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat
-for the first time then please follow the instructions
-<a href="/docs/install/">here</a>. If you are upgrading an existing
-Ondat deployment then please follow the instructions
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---installing-ondat">Step 1 - Installing Ondat</h3>
+<p>Ondat Snapshots were introduced in <code>v2.8.0</code>. If you are installing Ondat for the first time then please follow the instructions
+<a href="/docs/install/">here</a>. If you are upgrading an existing Ondat deployment then please follow the instructions
 <a href="/docs/upgrade/upgrade/">here</a>.</p>
-<h1 id="3-setting-up-a-cloudcasa-account-and-deploying-the-cloudcasa-agent">3: Setting up a CloudCasa account and deploying the CloudCasa agent</h1>
+<h3 id="step-2---setting-up-a-cloudcasa-account--deploying-the-cloudcasa-agent">Step 2 - Setting up a CloudCasa Account &amp; Deploying the CloudCasa Agent</h3>
 <ol>
-<li>Navigate to <a href="cloudcasa.io/signup">cloudcasa.io/signup</a> to sign up for a
+<li>
+<p>Navigate to <a href="https://cloudcasa.io/kubernetes-backup/">CloudCasa&rsquo;s Get Started</a> page to sign up for a
 free account by providing the login details. Then sign in to your account
 after verifying the registered email address, which will take you to
-the CloudCasa dashboard.
-<img src="/images/docs/operations/backups-CloudCasa/image1.png" alt="Dashboard"></li>
-<li>After logging in to CloudCasa, navigate to
-Protection tab -&gt; Clusters Overview and click on the
-Add Cluster button at the top right.
-<img src="/images/docs/operations/backups-CloudCasa/image2.png" alt="addCluster"></li>
-<li>Provide the cluster name and description, then click on the Save button.
-<img src="/images/docs/operations/backups-CloudCasa/image3.png" alt="saveButton"></li>
-<li>This will display a kubectl command to run to install the agent.
-<img src="/images/docs/operations/backups-CloudCasa/image4.png" alt="kubectlCommand"></li>
-<li>Run the Kubectl command on your cluster and confirm that the registered
-Kubernetes cluster moves into the Active state in the CloudCasa UI.
-This should take no more than a couple of minutes.
-Your CloudCasa agent has now successfully been deployed.</li>
+the CloudCasa dashboard.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image1.png" alt="Dashboard"></p>
+</li>
+<li>
+<p>After logging in to CloudCasa, navigate to Protection tab &raquo; Clusters Overview and click on the
+Add Cluster button at the top right.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image2.png" alt="addCluster"></p>
+</li>
+<li>
+<p>Provide the cluster name and description, then click on the Save button.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image3.png" alt="saveButton"></p>
+</li>
+<li>
+<p>This will display a kubectl command to run to install the agent.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image4.png" alt="kubectlCommand"></p>
+</li>
+<li>
+<p>Run the Kubectl command on your cluster and confirm that the registered Kubernetes cluster moves into the Active state in the CloudCasa UI. This should take no more than a couple of minutes. Your CloudCasa agent has now successfully been deployed.</p>
+</li>
 </ol>
-<h1 id="4--installing-the-kubernetes-snapshot-controller">4:  Installing the Kubernetes snapshot controller</h1>
-<p>By default with CloudCasa we provide the required Kubernetes snapshot CRDs
-however in order to use the Kubernetes snapshot feature the snapshot-controller
-must be installed.
-The snapshot controller monitors the Kubernetes API server for
-VolumeSnapshot and VolumeSnapshotContent CRDs and forwards the necessary
-requests to the Ondat CSI plugin. One can install the controller with
-the following command:</p>
-<pre tabindex="0"><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml   
-
+<h3 id="step-3---installing-the-kubernetes-snapshot-controller">Step 3 - Installing the Kubernetes Snapshot Controller</h3>
+<p>By default with CloudCasa we provide the required Kubernetes snapshot CRDs however in order to use the Kubernetes snapshot feature the snapshot-controller must be installed.</p>
+<ul>
+<li>The snapshot controller monitors the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> CRDs and forwards the necessary requests to the Ondat CSI plugin. One can install the controller with the following commands:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml   
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-6.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml  
-</code></pre><blockquote>
-<p>Note: it’s important that v6.0 is used for the CRDs and the
-snapshot-controller. Other versions may work or may appear to work,
-but have not been formally tested and ratified by Ondat. v6.0 and v6.1
-of the snapshot controller require Kubernetes version 1.20 or above.</p>
+</code></pre></div><blockquote>
+<p>⚠️ It is important that <code>v6.0</code> is used for the CRDs and the snapshot-controller. Other versions may work or may appear to work, but have not been formally tested and ratified by Ondat. <code>v6.0</code> and <code>v6.1</code> of the snapshot controller require Kubernetes version <code>1.20</code> or above.</p>
 </blockquote>
-<h1 id="5--backup-and-recovery-functions-walkthrough">5:  Backup and Recovery functions walkthrough</h1>
+<h3 id="step-4---backup--recovery-functions-walkthrough">Step 4 - Backup &amp; Recovery Functions walkthrough</h3>
 <p>In the following steps, we’ll create a dummy application and run
 through the steps required to back up and recover it.</p>
-<h2 id="51-create-a-dummy-application">5.1 Create a dummy application</h2>
-<p>Start by creating an example deployment in a new namespace ondat-and-cloudcasa-test,
-which utilises a Ondat PVC:</p>
-<pre tabindex="0"><code>kubectl create namespace ondat-and-cloudcasa-test
-</code></pre><p>Then create a deployment and PVC in the namespace using:</p>
-<pre tabindex="0"><code>cat &lt;&lt;EOF | kubectl apply -f -
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mypvc
-  namespace: ondat-and-cloudcasa-test
-spec:
-  storageClassName: storageos
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 2Gi
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp-deployment
-  namespace: ondat-and-cloudcasa-test
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      containers:
-      - name: date
-        image: debian:9-slim
-        command: [&quot;/bin/sh&quot;,&quot;-c&quot;]
-        args: [&quot;while true; do /bin/date | /usr/bin/tee -a /mnt/date ; /bin/sleep 5; done&quot;]
-        volumeMounts:
-          - mountPath: /mnt
-            name: data-mount
-      - name: sidecar
-        image: debian:9-slim
-        command: [&quot;/bin/sh&quot;,&quot;-c&quot;]
-        args: [&quot;/bin/sleep 3600&quot;]
-        securityContext:
-          privileged: true
-        volumeMounts:
-          - mountPath: /mnt
-            name: data-mount
-      volumes:
-      - name: data-mount
-        persistentVolumeClaim:
-          claimName: mypvc
-EOF
-</code></pre><p>This deployment creates a pod with 2 containers. The date container will
-simply append the date to stdout and /mnt/date every 5 seconds:
-<img src="/images/docs/operations/backups-CloudCasa/image5.png" alt="outputCommand">
-The sidecar container simply mounts in the PVC under /mnt and then lies
-dormant. This container will be used during the snapshot process to
-quiesce the filesystem so a consistent snapshot can be taken. It serves
-no other purpose. Notice how this container must have the privileged flag
-set to true. This is necessary in order to run the fsfreeze command.</p>
-<h2 id="52-setup-a-backup-policy">5.2 Setup a backup policy</h2>
-<p>A backup policy allows you to define when backups that use it will run
-and for how long they will be retained. You can have multiple schedules
-with different retention times in one policy. For example, a policy may
-specify the creation of hourly backups that are retained for 7 days,
-and daily backups that are retained for 30 days.</p>
-<p>Navigate to the Policies tab via Configuration &gt; Protection &gt; Policies.
-Create a Policy by clicking on the Add new policy button. Provide the
-required information, then click on the Create Policy button.
-<img src="/images/docs/operations/backups-CloudCasa/image6.png" alt="backupPolicy"></p>
-<h2 id="52-configure-the-ondat-volumesnapshotclass">5.2 Configure the Ondat VolumeSnapshotClass</h2>
-<p>In order to utilise the Ondat CSI plugin with the Kubernetes snapshot
-feature you must provide a VolumeSnapshotClass for the Ondat CSI plugin.
-Once the snapshot-controller has been installed edit your StorageOSCluster
-via the following command.</p>
-<pre tabindex="0"><code>kubectl -n storageos edit storageosclusters.storageos.com storageoscluster
-</code></pre><p>Within here add the volumeSnapshotClassName line under snapshots:
-as per the following:</p>
+<h4 id="41---create-a-dummy-application">4.1 - Create a Dummy Application</h4>
+<p>Start by creating an example deployment in a new namespace ondat-and-cloudcasa-test, which utilises a Ondat PVC:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create namespace ondat-and-cloudcasa-test
+</code></pre></div><p>Then create a deployment and PVC in the namespace using:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000">cat &lt;&lt;EOF | kubectl apply -f -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mypvc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-and-cloudcasa-test</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">2Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">---</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">apps/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Deployment</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">myapp-deployment</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-and-cloudcasa-test</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">myapp</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">myapp</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">date</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian:9-slim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/sh&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#34;-c&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;while true; do /bin/date | /usr/bin/tee -a /mnt/date ; /bin/sleep 5; done&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/mnt</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data-mount</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">sidecar</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian:9-slim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/sh&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#34;-c&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/sleep 3600&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">securityContext</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">privileged</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/mnt</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data-mount</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">data-mount</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">persistentVolumeClaim</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">claimName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">mypvc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>This deployment creates a pod with <code>2</code> containers. The date container will simply append the date to stdout and /mnt/date every <code>5</code> seconds:</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image5.png" alt="outputCommand"></p>
+<p>The sidecar container simply mounts in the PVC under <code>/mnt</code> and then lies dormant. This container will be used during the snapshot process to quiesce the filesystem so a consistent snapshot can be taken. It serves no other purpose. Notice how this container must have the privileged flag set to true. This is necessary in order to run the <code>fsfreeze</code> command.</p>
+<h4 id="42---setup-a-backup-policy">4.2 - Setup a Backup Policy</h4>
+<p>A backup policy allows you to define when backups that use it will run and for how long they will be retained. You can have multiple schedules with different retention times in one policy. For example, a policy may specify the creation of hourly backups that are retained for <code>7</code> days, and daily backups that are retained for <code>30</code> days.</p>
+<p>Navigate to the Policies tab via Configuration &raquo; Protection &raquo; Policies.</p>
+<ul>
+<li>Create a Policy by clicking on the Add new policy button. Provide the required information, then click on the Create Policy button.</li>
+</ul>
+<p><img src="/images/docs/operations/backups-CloudCasa/image6.png" alt="backupPolicy"></p>
+<h4 id="43---configure-the-ondat-volumesnapshotclass">4.3 - Configure the Ondat <code>VolumeSnapshotClass</code></h4>
+<p>In order to utilise the Ondat CSI plugin with the Kubernetes snapshot feature you must provide a <code>VolumeSnapshotClass</code> for the Ondat CSI plugin. Once the <code>snapshot-controller</code> has been installed edit your <code>StorageOSCluster</code> via the following command.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos edit storageosclusters.storageos.com storageoscluster
+</code></pre></div><p>Within here add the <code>volumeSnapshotClassName</code> line under snapshots - as per the following:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">snapshots</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">volumeSnapshotClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">cloudcasa-csi-storageos-com</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>This will prompt the Ondat operator to create a VolumeSnapshotClass named
-cloudcasa-csi-storageos-com and configure it for use with CloudCasa.
-You can view the VolumeSnapshotClass by running:</p>
-<pre tabindex="0"><code>kubectl get volumesnapshotclasses
-</code></pre><p>and:</p>
-<pre tabindex="0"><code>kubectl describe volumesnapshotclasses cloudcasa-csi-storageos-com
-</code></pre><h2 id="53-define-and-run-a-backup">5.3 Define and run a backup</h2>
+</span></code></pre></div><p>This will prompt the Ondat operator to create a <code>VolumeSnapshotClass</code> named <code>cloudcasa-csi-storageos-com</code> and configure it for use with CloudCasa. You can view the <code>VolumeSnapshotClass</code> by running:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get volumesnapshotclasses
+</code></pre></div><p>and:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe volumesnapshotclasses cloudcasa-csi-storageos-com
+</code></pre></div><h2 id="44---define--run-a-backup">4.4 - Define &amp; Run a Backup</h2>
 <ol>
-<li>Navigate to the Dashboard tab. Click on Define Backup. Provide Backup
-Name, and select the Cluster for which you are defining a backup.</li>
-<li>Select either Full Cluster, a Specific Namespace, or provide a Label
-selector (Optional). If backing up a specific namespace, enter the name
-of the namespace you want to protect.
-<img src="/images/docs/operations/backups-CloudCasa/image7.png" alt="selectTarget"></li>
-<li>For the backup operation, choose whether to snapshot your PV’s. Then
-select one of the two available options:</li>
-<li>Snapshot only</li>
-<li>Snapshot and copy
-The “Snapshot and copy” option is only available with a paid subscription</li>
-</ol>
+<li>
+<p>Navigate to the Dashboard tab. Click on Define Backup. Provide Backup Name, and select the Cluster for which you are defining a backup.</p>
+</li>
+<li>
+<p>Select either Full Cluster, a Specific Namespace, or provide a Label selector (Optional). If backing up a specific namespace, enter the name of the namespace you want to protect.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image7.png" alt="selectTarget"></p>
+</li>
+<li>
+<p>For the backup operation, choose whether to snapshot your PV’s. Then select one of the two available options:</p>
+</li>
+<li>
+<p>Snapshot only.</p>
+</li>
+<li>
+<p>Snapshot and copy.</p>
 <blockquote>
-<p>NOTE *If you want to run pre and post-backup commands to enable
-application consistent backups, select “Enable app hooks” and enter the
-appropriate pre and post backup app hook definitions. You will need to
-have defined custom hooks under Configuration/App Hooks to quiesce the
-application and filesystem. This isn’t necessary for all applications.
-We plan to add a standardised template for pre and post backup Ondat app
-hooks using fsfreeze in the near future. If you need assistance with these,
-get in contact with us via <a href="mailto:casa@cloudcasa.io">casa@cloudcasa.io</a></p>
+<p>💡 The “Snapshot and copy” option is only available with a paid subscription.</p>
 </blockquote>
-<ol>
-<li>On the next page, enable <em>Run now</em> to run the Backup operation
-immediately and provide Retention days (the retention period is just
-for this ad-hoc run). Click on the Create button. This will create a
-Backup definition.</li>
-<li>Navigate to the <em>Dashboard</em> tab and find the Cluster Backup that you
-want to run. Click the <em>Run now</em> button on its line. You will see the job
-running in the dashboard’s Activity tab. Verify that it completes
-successfully.</li>
+<blockquote>
+<p>💡 If you want to run pre and post-backup commands to enable application consistent backups, select “Enable app hooks” and enter the appropriate pre and post backup app hook definitions. You will need to have defined custom hooks under Configuration/App Hooks to quiesce the application and filesystem. This isn’t necessary for all applications. We plan to add a standardised template for pre and post backup Ondat app hooks using fsfreeze in the near future. If you need assistance with these, get in contact with us via <a href="mailto:casa@cloudcasa.io">casa@cloudcasa.io</a></p>
+</blockquote>
+</li>
+<li>
+<p>On the next page, enable <em>Run now</em> to run the Backup operation immediately and provide Retention days (the retention period is just for this ad-hoc run). Click on the Create button. This will create a Backup definition.</p>
+</li>
+<li>
+<p>Navigate to the <em>Dashboard</em> tab and find the Cluster Backup that you want to run. Click the <em>Run now</em> button on its line. You will see the job running in the dashboard’s Activity tab. Verify that it completes successfully.</p>
+</li>
 </ol>
-<h2 id="53-run-a-restore-operation-for-the-dummy-application">5.3 Run a restore operation for the dummy application</h2>
+<h2 id="45---run-a-restore-operation-for-the-dummy-application">4.5 - Run a Restore Operation For the Dummy Application</h2>
 <ol>
-<li>Let’s setup a disaster recovery scenario, by deleting our dummy
-application and the associated namespace</li>
-</ol>
-<pre tabindex="0"><code>kubectl delete -n ondat-and-cloudcasa-test deployments.apps myapp-deployment
-
+<li>
+<p>Let’s setup a disaster recovery scenario, by deleting our dummy application and the associated namespace</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl delete -n ondat-and-cloudcasa-test deployments.apps myapp-deployment
 kubectl delete namespaces ondat-and-cloudcasa-test
-</code></pre><ol>
-<li>Now let’s recover our dummy application.
-<em>Go back to the Cluster Backups tab on the Dashboard and click the Restore
-icon next to your backup definition in the list.</em></li>
-<li>When the restore page opens, select a specific recovery point by
-choosing it from the list of available recovery points. Then click Next
-button.
-<img src="/images/docs/operations/backups-CloudCasa/image8.png" alt="selectRecoveryPoint"></li>
-<li>On the next page you can choose whether to restore all namespaces in
-the backup, or only selected namespaces. If user choose the latter, a list
-of namespaces will be displayed from which you can select the namespace(s)
-for which the restore operation will be performed. Remember that only
-namespaces included in the backup will be shown.
-For the demo, we will recover the full ondata-and-cloudcasa-test namespace.
-We also support the recovery of specific resource types, and utilising
-post-restore scripts for the recovery via enabling app hooks.
-<img src="/images/docs/operations/backups-CloudCasa/image9.png" alt="restoreBackup"></li>
-<li>Note that existing namespaces cannot be over-written, so if you want
-to restore an existing namespace to a cluster, you need to delete the old
-one first. You can also rename namespaces when restoring (later).</li>
-<li>You can add labels to be used to select resources for restore as well.
-These are key: value pairs, and will not be validated by the UI. We can
-add them one at a time or add multiple pairs at once, separated by spaces.</li>
-<li>Finally, we need to choose whether or not to restore PV snapshots.
-If you toggle off the Exclude persistent volumes option, PVs will be
-restored using the snapshots or copies associated with the recovery point
-you’ve selected.</li>
-<li>Remember that if you have selected specific namespaces or labels for
-restore, only PVs in the namespaces or with the labels you’ve selected
-will be restored.</li>
-<li>On the Next page, you will be presented with  few more options.
-<img src="/images/docs/operations/backups-CloudCasa/image10.png" alt="restoreBackup2"></li>
-<li>Provide the Restore name for the restore job. Restore jobs have names
-so that users can easily track the restore job status.</li>
-<li>The system will also save the job under its name so that you can modify
-and re-run it later.</li>
-<li>On the next step, you can choose an alternate cluster to restore to.
-By default, the restore will go to the original cluster. You can choose
-to rename restored namespaces by adding a prefix and/or suffix and change
-the storage classes if desired.</li>
-<li>Remember that all the restored namespaces will have these prefixes or
-suffixes added, so if user want to rename only specific namespaces, you
-should run multiple restores and select those namespaces explicitly.</li>
-<li>Finally, click the Restore button and CloudCasa will do the rest!
-You can watch the progress of the restore job in the progress pane.
-You can also edit and re-run it, if you wish, under the cluster’s
-Restore tab.
-<img src="/images/docs/operations/backups-CloudCasa/image11.png" alt="activityDetails">
-<img src="/images/docs/operations/backups-CloudCasa/image12.png" alt="activityLog">
-Confirm the application is back up and running
-<img src="/images/docs/operations/backups-CloudCasa/image13.png" alt="backupRunning"></li>
-<li>Finally let’s view the contents of the “/mnt/date” in the application’s
-pod:
-<a href="/images/docs/operations/backups-CloudCasa/image14.png">output</a>
-You can see the 44 min gap here which aligns with the snapshot time of
-14:05 and the restore time of 14:51</li>
+</code></pre></div></li>
+<li>
+<p>Now let’s recover our dummy application. Go back to the Cluster Backups tab on the Dashboard and click the Restore icon next to your backup definition in the list.</p>
+</li>
+<li>
+<p>When the restore page opens, select a specific recovery point by choosing it from the list of available recovery points. Then click Next button.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image8.png" alt="selectRecoveryPoint"></p>
+</li>
+<li>
+<p>On the next page you can choose whether to restore all namespaces in the backup, or only selected namespaces. If user choose the latter, a list of namespaces will be displayed from which you can select the namespace(s) for which the restore operation will be performed. Remember that only namespaces included in the backup will be shown. For the demo, we will recover the full ondata-and-cloudcasa-test namespace. We also support the recovery of specific resource types, and utilising post-restore scripts for the recovery via enabling app hooks.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image9.png" alt="restoreBackup"></p>
+</li>
+<li>
+<p>Note that existing namespaces cannot be over-written, so if you want to restore an existing namespace to a cluster, you need to delete the old one first. You can also rename namespaces when restoring (later).</p>
+</li>
+<li>
+<p>You can add labels to be used to select resources for restore as well. These are key: value pairs, and will not be validated by the UI. We can add them one at a time or add multiple pairs at once, separated by spaces.</p>
+</li>
+<li>
+<p>Finally, we need to choose whether or not to restore PV snapshots. If you toggle off the Exclude persistent volumes option, PVs will be
+restored using the snapshots or copies associated with the recovery point you’ve selected.</p>
+</li>
+<li>
+<p>Remember that if you have selected specific namespaces or labels for restore, only PVs in the namespaces or with the labels you’ve selected
+will be restored.</p>
+</li>
+<li>
+<p>On the Next page, you will be presented with  few more options.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image10.png" alt="restoreBackup2"></p>
+</li>
+<li>
+<p>Provide the Restore name for the restore job. Restore jobs have names so that users can easily track the restore job status.</p>
+</li>
+<li>
+<p>The system will also save the job under its name so that you can modify and re-run it later.</p>
+</li>
+<li>
+<p>On the next step, you can choose an alternate cluster to restore to. By default, the restore will go to the original cluster. You can choose to rename restored namespaces by adding a prefix and/or suffix and change the storage classes if desired.</p>
+</li>
+<li>
+<p>Remember that all the restored namespaces will have these prefixes or suffixes added, so if user want to rename only specific namespaces, you should run multiple restores and select those namespaces explicitly.</p>
+</li>
+<li>
+<p>Finally, click the Restore button and CloudCasa will do the rest! You can watch the progress of the restore job in the progress pane. You can also edit and re-run it, if you wish, under the cluster’s Restore tab.</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image11.png" alt="activityDetails">
+<img src="/images/docs/operations/backups-CloudCasa/image12.png" alt="activityLog"></p>
+</li>
+<li>
+<p>Confirm the application is back up and running:</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image13.png" alt="backupRunning"></p>
+</li>
+<li>
+<p>Finally let’s view the contents of the <code>/mnt/date</code> in the application’s pod:</p>
+<p><img src="/images/docs/operations/backups-CloudCasa/image14.png" alt="output"></p>
+</li>
 </ol>
+<p>You can see the 44 min gap here which aligns with the snapshot time of <code>14:05</code> and the restore time of <code>14:51</code></p>
 <h1 id="recap">Recap</h1>
-<p>Congratulations, You’re done! That’s all there is to it!
-Now you can sit back and relax, knowing that you can now take ad-hoc or
-scheduled backup and perform restores of your Kubernetes cluster resources,
-Ondat persistent volumes, and cloud-native applications.</p>
-<h1 id="question">Question</h1>
-<p>Get in touch at <a href="https://www.ondat.io/contact">https://www.ondat.io/contact</a> or <a href="mailto:casa@cloudcasa.io">casa@cloudcasa.io</a></p>
+<p>Congratulations, You’re done! That’s all there is to it! Now you can sit back and relax, knowing that you can now take ad-hoc or scheduled backup and perform restores of your Kubernetes cluster resources, Ondat persistent volumes, and cloud-native applications.</p>
+<h1 id="any-further-questions">Any Further Questions?</h1>
+<p>Get in touch with us at <a href="https://www.ondat.io/contact">https://www.ondat.io/contact</a> or <a href="mailto:casa@cloudcasa.io">casa@cloudcasa.io</a></p>
 
 	
 	

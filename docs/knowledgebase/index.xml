@@ -392,17 +392,16 @@ AttachVolume.Attach failed &lt;span style=&#34;color:#204a87;font-weight:bold&#3
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
 &lt;p&gt;To recover from a reported full disk error message, end users are recommended to either:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Option 1 - Expand Storage Capacity By Adding More Disks&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Option 1 - Expand Storage Capacity By Adding More Disks&lt;/strong&gt;.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;If you choose to address this issue by expanding your capacity, users have two main options:&lt;/li&gt;
+&lt;li&gt;If you choose to address this issue by expanding your capacity, users have two main options:
+&lt;ul&gt;
 &lt;li&gt;Add new storage devices under &lt;code&gt;/var/lib/storageos/data/dev[0-9]+&lt;/code&gt; as demonstrated in the &lt;a href=&#34;https://docs.ondat.io/docs/operations/managing-host-storage/&#34;&gt;How To Extend Storage Capacity On Nodes&lt;/a&gt; operations page.&lt;/li&gt;
 &lt;li&gt;Expand the underlying filesystem that Ondat is using as demonstrated in the &lt;a href=&#34;https://docs.ondat.io/docs/operations/managing-host-storage/&#34;&gt;How To Extend Storage Capacity On Nodes&lt;/a&gt; operations page.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Option 2 - Delete Existing &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;s (PVCs)&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Option 2 - Delete Existing &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;s (PVCs)&lt;/strong&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;If you choose to address by deleting existing &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;s, users can use &lt;code&gt;kubectl&lt;/code&gt; to achieve this and ensure that you restart/bounce the Ondat daemonset pod on the affected node.&lt;/li&gt;
 &lt;/ul&gt;

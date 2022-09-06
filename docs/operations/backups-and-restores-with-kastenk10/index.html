@@ -23,7 +23,7 @@
 <title>How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10 | </title><meta property="og:title" content="How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10" />
 <meta property="og:description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using Kasten K10. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:" />
+ Installing Ondat. Installing the Kubernetes snapshot CRDs. Configuring the Ondat VolumeSnapshotClass. Installing and configuring Kasten K10. Backup and restore walkthrough:  Creating an example application." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/backups-and-restores-with-kastenk10/" /><meta property="article:section" content="docs" />
 
@@ -32,14 +32,14 @@ We’ll now run through the steps required to configure and utilise the feature:
 <meta itemprop="name" content="How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10">
 <meta itemprop="description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using Kasten K10. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:">
+ Installing Ondat. Installing the Kubernetes snapshot CRDs. Configuring the Ondat VolumeSnapshotClass. Installing and configuring Kasten K10. Backup and restore walkthrough:  Creating an example application.">
 
 <meta itemprop="wordCount" content="2049">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10"/>
 <meta name="twitter:description" content="Overview This guide will walk you through how to use the Ondat Snapshots feature to backup and restore your Kubernetes applications using Kasten K10. Before starting please consult the Snapshots Concepts page for an overview of the feature.
 We’ll now run through the steps required to configure and utilise the feature:
- Installing Ondat Installing the Kubernetes snapshot CRDs Configuring the Ondat VolumeSnapshotClass Installing and configuring Kasten K10 Backup and restore walkthrough:  Creating an example application Creating a backup policy Adding pre/post-snapshot hooks to quiesce the application/filesystem Manually running a backup job Restoring an application from a backup    Prerequisites To utilize the Ondat Snapshot feature the following prerequisites must be met:"/>
+ Installing Ondat. Installing the Kubernetes snapshot CRDs. Configuring the Ondat VolumeSnapshotClass. Installing and configuring Kasten K10. Backup and restore walkthrough:  Creating an example application."/>
 
 
 
@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4970b6e11426edd52799281c843939d6654cbf0939437859a249d5bc73fbbccfad071e477ae6a600439565a285df316a5df27a6366c883e53f5110d8ff3821ab.json"
+  data-offline-search-index-json-src="/offline-search-index.1c415f462e93be4e8216c4e2c81567a14e20d64f51698cbe1658773ee9e80a59a6b6c9354cb3d2de82974da18ef95b48be5f2d351396feec2ab7813ce9360c5c.json"
   data-offline-search-base-href="/"
 >
 
@@ -329,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.4970b6e11426edd52799281c843939d6654cbf0939437859a249d5bc73fbbccfad071e477ae6a600439565a285df316a5df27a6366c883e53f5110d8ff3821ab.json"
+  data-offline-search-index-json-src="/offline-search-index.1c415f462e93be4e8216c4e2c81567a14e20d64f51698cbe1658773ee9e80a59a6b6c9354cb3d2de82974da18ef95b48be5f2d351396feec2ab7813ce9360c5c.json"
   data-offline-search-base-href="/"
 >
 
@@ -935,12 +935,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-ondat-snapshots-and-cloudcasa" href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">Backup and restores with Ondat Snapshots and CloudCasa</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
       
       
@@ -1036,6 +1030,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsmanaging-host-storage" href="/docs/operations/managing-host-storage/">Host Storage</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-ondat-snapshots-and-cloudcasa" href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa</a>
       
       
       
@@ -1717,17 +1717,17 @@ starting please consult the <a href="/docs/concepts/snapshots">Snapshots
 Concepts</a> page for an overview of the feature.</p>
 <p>We’ll now run through the steps required to configure and utilise the feature:</p>
 <ol>
-<li>Installing Ondat</li>
-<li>Installing the Kubernetes snapshot CRDs</li>
-<li>Configuring the Ondat VolumeSnapshotClass</li>
-<li>Installing and configuring Kasten K10</li>
+<li>Installing Ondat.</li>
+<li>Installing the Kubernetes snapshot CRDs.</li>
+<li>Configuring the Ondat VolumeSnapshotClass.</li>
+<li>Installing and configuring Kasten K10.</li>
 <li>Backup and restore walkthrough:
 <ol>
-<li>Creating an example application</li>
-<li>Creating a backup policy</li>
-<li>Adding pre/post-snapshot hooks to quiesce the application/filesystem</li>
-<li>Manually running a backup job</li>
-<li>Restoring an application from a backup</li>
+<li>Creating an example application.</li>
+<li>Creating a backup policy.</li>
+<li>Adding pre/post-snapshot hooks to quiesce the application/filesystem.</li>
+<li>Manually running a backup job.</li>
+<li>Restoring an application from a backup.</li>
 </ol>
 </li>
 </ol>
@@ -1741,7 +1741,7 @@ Kasten supports Kubernetes versions up to 1.22.</li>
 </ol>
 <h2 id="procedure">Procedure</h2>
 <h3 id="step-1---installing-ondat">Step 1 - Installing Ondat</h3>
-<p>Ondat Snapshots were introduced in v2.8.0. If you are installing Ondat for the
+<p>Ondat Snapshots were introduced in <code>v2.8.0</code>. If you are installing Ondat for the
 first time then please follow the instructions
 <a href="/docs/install/">here</a>. If you are upgrading an existing
 Ondat deployment then please follow the instructions

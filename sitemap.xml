@@ -150,8 +150,6 @@
   </url><url>
     <loc>/docs/reference/api/</loc>
   </url><url>
-    <loc>/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/</loc>
-  </url><url>
     <loc>/docs/usecases/cassandra/</loc>
   </url><url>
     <loc>/docs/operations/health/</loc>
@@ -185,6 +183,8 @@
     <loc>/docs/reference/gui/</loc>
   </url><url>
     <loc>/docs/operations/managing-host-storage/</loc>
+  </url><url>
+    <loc>/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/</loc>
   </url><url>
     <loc>/docs/operations/backups-and-restores-with-kastenk10/</loc>
   </url><url>
