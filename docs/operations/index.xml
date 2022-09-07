@@ -729,7 +729,7 @@ through the steps required to back up and recover it.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get volumesnapshotclasses
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl describe volumesnapshotclasses cloudcasa-csi-storageos-com
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;44---define--run-a-backup&#34;&gt;4.4 - Define &amp;amp; Run a Backup&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;44---define--run-a-backup&#34;&gt;4.4 - Define &amp;amp; Run a Backup&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Navigate to the Dashboard tab. Click on Define Backup. Provide Backup Name, and select the Cluster for which you are defining a backup.&lt;/p&gt;
@@ -760,7 +760,7 @@ through the steps required to back up and recover it.&lt;/p&gt;
 &lt;p&gt;Navigate to the &lt;em&gt;Dashboard&lt;/em&gt; tab and find the Cluster Backup that you want to run. Click the &lt;em&gt;Run now&lt;/em&gt; button on its line. You will see the job running in the dashboard’s Activity tab. Verify that it completes successfully.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;45---run-a-restore-operation-for-the-dummy-application&#34;&gt;4.5 - Run a Restore Operation For the Dummy Application&lt;/h2&gt;
+&lt;h4 id=&#34;45---run-a-restore-operation-for-the-dummy-application&#34;&gt;4.5 - Run a Restore Operation For the Dummy Application&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Let’s setup a disaster recovery scenario, by deleting our dummy application and the associated namespace&lt;/p&gt;
@@ -823,9 +823,9 @@ will be restored.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;You can see the 44 min gap here which aligns with the snapshot time of &lt;code&gt;14:05&lt;/code&gt; and the restore time of &lt;code&gt;14:51&lt;/code&gt;&lt;/p&gt;
-&lt;h1 id=&#34;recap&#34;&gt;Recap&lt;/h1&gt;
+&lt;h3 id=&#34;recap&#34;&gt;Recap&lt;/h3&gt;
 &lt;p&gt;Congratulations, You’re done! That’s all there is to it! Now you can sit back and relax, knowing that you can now take ad-hoc or scheduled backup and perform restores of your Kubernetes cluster resources, Ondat persistent volumes, and cloud-native applications.&lt;/p&gt;
-&lt;h1 id=&#34;any-further-questions&#34;&gt;Any Further Questions?&lt;/h1&gt;
+&lt;h2 id=&#34;any-further-questions&#34;&gt;Any Further Questions?&lt;/h2&gt;
 &lt;p&gt;Get in touch with us at &lt;a href=&#34;https://www.ondat.io/contact&#34;&gt;https://www.ondat.io/contact&lt;/a&gt; or &lt;a href=&#34;mailto:casa@cloudcasa.io&#34;&gt;casa@cloudcasa.io&lt;/a&gt;&lt;/p&gt;
 
       </description>

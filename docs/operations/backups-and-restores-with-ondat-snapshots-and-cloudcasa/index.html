@@ -1659,10 +1659,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><a href="#step-2---setting-up-a-cloudcasa-account--deploying-the-cloudcasa-agent">Step 2 - Setting up a CloudCasa Account &amp; Deploying the CloudCasa Agent</a></li>
         <li><a href="#step-3---installing-the-kubernetes-snapshot-controller">Step 3 - Installing the Kubernetes Snapshot Controller</a></li>
         <li><a href="#step-4---backup--recovery-functions-walkthrough">Step 4 - Backup &amp; Recovery Functions walkthrough</a></li>
+        <li><a href="#recap">Recap</a></li>
       </ul>
     </li>
-    <li><a href="#44---define--run-a-backup">4.4 - Define &amp; Run a Backup</a></li>
-    <li><a href="#45---run-a-restore-operation-for-the-dummy-application">4.5 - Run a Restore Operation For the Dummy Application</a></li>
+    <li><a href="#any-further-questions">Any Further Questions?</a></li>
   </ul>
 </nav>
 
@@ -1860,7 +1860,7 @@ through the steps required to back up and recover it.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl get volumesnapshotclasses
 </code></pre></div><p>and:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl describe volumesnapshotclasses cloudcasa-csi-storageos-com
-</code></pre></div><h2 id="44---define--run-a-backup">4.4 - Define &amp; Run a Backup</h2>
+</code></pre></div><h4 id="44---define--run-a-backup">4.4 - Define &amp; Run a Backup</h4>
 <ol>
 <li>
 <p>Navigate to the Dashboard tab. Click on Define Backup. Provide Backup Name, and select the Cluster for which you are defining a backup.</p>
@@ -1891,7 +1891,7 @@ through the steps required to back up and recover it.</p>
 <p>Navigate to the <em>Dashboard</em> tab and find the Cluster Backup that you want to run. Click the <em>Run now</em> button on its line. You will see the job running in the dashboard’s Activity tab. Verify that it completes successfully.</p>
 </li>
 </ol>
-<h2 id="45---run-a-restore-operation-for-the-dummy-application">4.5 - Run a Restore Operation For the Dummy Application</h2>
+<h4 id="45---run-a-restore-operation-for-the-dummy-application">4.5 - Run a Restore Operation For the Dummy Application</h4>
 <ol>
 <li>
 <p>Let’s setup a disaster recovery scenario, by deleting our dummy application and the associated namespace</p>
@@ -1954,9 +1954,9 @@ will be restored.</p>
 </li>
 </ol>
 <p>You can see the 44 min gap here which aligns with the snapshot time of <code>14:05</code> and the restore time of <code>14:51</code></p>
-<h1 id="recap">Recap</h1>
+<h3 id="recap">Recap</h3>
 <p>Congratulations, You’re done! That’s all there is to it! Now you can sit back and relax, knowing that you can now take ad-hoc or scheduled backup and perform restores of your Kubernetes cluster resources, Ondat persistent volumes, and cloud-native applications.</p>
-<h1 id="any-further-questions">Any Further Questions?</h1>
+<h2 id="any-further-questions">Any Further Questions?</h2>
 <p>Get in touch with us at <a href="https://www.ondat.io/contact">https://www.ondat.io/contact</a> or <a href="mailto:casa@cloudcasa.io">casa@cloudcasa.io</a></p>
 
 	
