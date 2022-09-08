@@ -20,29 +20,20 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Ondat SaaS Platform Installation Guide | </title><meta property="og:title" content="Ondat SaaS Platform Installation Guide" />
-<meta property="og:description" content="Overview This guide will demonstrate how to install the Ondat SaaS Platform.
-Prerequisite  ⚠️ Make sure the kubectl storageos plugin is installed. Follow the install guide for kubectl storageos.
-  ⚠️ Make sure to add an Ondat licence after installing. You can request a licence via the Ondat SaaS Platform.
-  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used." />
+<title>Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes | </title><meta property="og:title" content="Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes" />
+<meta property="og:description" content="Issue  You are experiencing a ProvisioningFailed event error message when you try to create a PersistentVolumeClaim (PVC) and it remains in a Pending state, thus preventing the pods that needs to mount that PVC from successfully starting up. Below is an example of the error message that shows up in the Events: log of the PVC.  # Get the status of the PVC. kubectl get pvc vol-1 --namespace example-namespace NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE vol-1 Pending storageos 7s # Describe the PVC that is stuck in a Pending state." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/ondat-portal/installation-portal/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/knowledgebase/solution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Ondat SaaS Platform Installation Guide">
-<meta itemprop="description" content="Overview This guide will demonstrate how to install the Ondat SaaS Platform.
-Prerequisite  ⚠️ Make sure the kubectl storageos plugin is installed. Follow the install guide for kubectl storageos.
-  ⚠️ Make sure to add an Ondat licence after installing. You can request a licence via the Ondat SaaS Platform.
-  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.">
+<meta itemprop="name" content="Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes">
+<meta itemprop="description" content="Issue  You are experiencing a ProvisioningFailed event error message when you try to create a PersistentVolumeClaim (PVC) and it remains in a Pending state, thus preventing the pods that needs to mount that PVC from successfully starting up. Below is an example of the error message that shows up in the Events: log of the PVC.  # Get the status of the PVC. kubectl get pvc vol-1 --namespace example-namespace NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE vol-1 Pending storageos 7s # Describe the PVC that is stuck in a Pending state.">
 
-<meta itemprop="wordCount" content="186">
+<meta itemprop="wordCount" content="412">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Ondat SaaS Platform Installation Guide"/>
-<meta name="twitter:description" content="Overview This guide will demonstrate how to install the Ondat SaaS Platform.
-Prerequisite  ⚠️ Make sure the kubectl storageos plugin is installed. Follow the install guide for kubectl storageos.
-  ⚠️ Make sure to add an Ondat licence after installing. You can request a licence via the Ondat SaaS Platform.
-  ⚠️ You must enable port 443 for egress in your ACLs if a VPC is used."/>
+<meta name="twitter:title" content="Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes"/>
+<meta name="twitter:description" content="Issue  You are experiencing a ProvisioningFailed event error message when you try to create a PersistentVolumeClaim (PVC) and it remains in a Pending state, thus preventing the pods that needs to mount that PVC from successfully starting up. Below is an example of the error message that shows up in the Events: log of the PVC.  # Get the status of the PVC. kubectl get pvc vol-1 --namespace example-namespace NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE vol-1 Pending storageos 7s # Describe the PVC that is stuck in a Pending state."/>
 
 
 
@@ -85,7 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Ondat SaaS Platform Installation Guide | </title>
+    <title>Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes | </title>
   </head>
   <body class="td-page">
     
@@ -1520,10 +1511,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse " id="docsknowledgebase">
+    <li class="collapse show" id="docsknowledgebase">
       
       
       
@@ -1536,7 +1527,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes" href="/docs/knowledgebase/solution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes/">Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes" href="/docs/knowledgebase/solution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes/">Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes</a>
       
       
       
@@ -1603,17 +1594,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/ondat-portal/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Ondat SaaS Platform</a>
+    <a  href="/docs/ondat-portal/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Ondat SaaS Platform</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsondat-portal">
+    <li class="collapse " id="docsondat-portal">
       
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsondat-portalinstallation-portal" href="/docs/ondat-portal/installation-portal/">Ondat SaaS Platform Installation Guide</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsondat-portalinstallation-portal" href="/docs/ondat-portal/installation-portal/">Ondat SaaS Platform Installation Guide</a>
       
       
       
@@ -1658,19 +1649,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisite">Prerequisite</a></li>
-    <li><a href="#procedure">Procedure</a>
-      <ul>
-        <li><a href="#step-1-set-up-your-cluster">Step 1: Set up your cluster</a></li>
-        <li><a href="#step-2-connect-cluster-to-the-ondat-saas-platform">Step 2: Connect Cluster to the Ondat SaaS Platform</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
 
 
           </div>
@@ -1699,14 +1677,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/ondat-portal/">Ondat SaaS Platform</a>
+	<a href="/docs/knowledgebase/">Knowledge Base</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/ondat-portal/installation-portal/">Ondat SaaS Platform Installation Guide</a>
+	<a href="/docs/knowledgebase/solution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes/">Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes</a>
 </li>
 
 	</ol>
@@ -1714,40 +1692,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Ondat SaaS Platform Installation Guide</h1>
+	<h1>Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes</h1>
 	
-	<h2 id="overview">Overview</h2>
-<p>This guide will demonstrate how to install the <a href="https://portal.ondat.io/">Ondat SaaS Platform</a>.</p>
-<h2 id="prerequisite">Prerequisite</h2>
+	<h2 id="issue">Issue</h2>
+<ul>
+<li>You are experiencing a <code>ProvisioningFailed</code> event error message when you try to create a <code>PersistentVolumeClaim</code> (PVC) and it remains in a <code>Pending</code> state, thus preventing the pods that needs to mount that PVC from successfully starting up. Below is an example of the error message that shows up in the <code>Events:</code> log of the PVC.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the status of the PVC.</span>
+kubectl get pvc vol-1 --namespace example-namespace
+
+NAME      STATUS        VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+vol-1     Pending                                                                            storageos       7s
+
+<span style="color:#8f5902;font-style:italic"># Describe the PVC that is stuck in a Pending state.</span>
+kubectl describe pvc vol-1 --namespace example-namespace
+
+<span style="color:#8f5902;font-style:italic"># truncated output.</span>
+Events:
+  Type     Reason              Age               From                         Message
+  ----     ------              ----              ----                         -------
+  Warning  ProvisioningFailed  7s <span style="color:#ce5c00;font-weight:bold">(</span>x2 over 18s<span style="color:#ce5c00;font-weight:bold">)</span>  persistentvolume-controller  Failed to provision volume with StorageClass <span style="color:#4e9a06">&#34;storageos&#34;</span>: Get http://storageos-cluster/version: failed to dial all known cluster members, <span style="color:#ce5c00;font-weight:bold">(</span>10.233.59.206:5705<span style="color:#ce5c00;font-weight:bold">)</span>
+</code></pre></div><h2 id="root-cause">Root Cause</h2>
+<p>For non Container Storage Interface (CSI) installations of Ondat, Kubernetes uses the Ondat API endpoint to communicate. If that communication fails, relevant actions such as create or mount volume can’t be transmitted to Ondat, hence the PVC will remain in <code>Pending</code> state. Ondat never received the action to perform, so it never sent back an acknowledgement.</p>
+<ul>
+<li>In this case, the <code>Events:</code> message indicates that Ondat API is not responding, implying that Ondat is not running. For Kubernetes to confirm that Ondat pods are <code>READY</code>, health checks must be passed first.</li>
+</ul>
+<h2 id="resolution">Resolution</h2>
+<ul>
+<li>Check and ensure that Ondat pods deployed in the cluster are <code>READY</code>, ie <code>1/1</code> instead of <code>0/1</code>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># check the status of Ondat pods.</span>
+kubectl --namespace storageos get pods --selector <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos
+
+NAME                   READY     STATUS    RESTARTS   AGE
+storageos-node-qrqkj   0/1       Running   <span style="color:#0000cf;font-weight:bold">0</span>          1m
+storageos-node-s4bfv   0/1       Running   <span style="color:#0000cf;font-weight:bold">0</span>          1m
+storageos-node-vcpfx   0/1       Running   <span style="color:#0000cf;font-weight:bold">0</span>          1m
+storageos-node-w98f5   0/1       Running   <span style="color:#0000cf;font-weight:bold">0</span>          1m
+</code></pre></div><ul>
+<li>If the Ondat pods are not <code>READY</code>, the service will not forward traffic to the API they serve thus, the PVC will remain in <code>Pending</code> state until Ondat pods are available.</li>
+</ul>
 <blockquote>
-<p>⚠️ Make sure the kubectl storageos plugin is installed. Follow the <a href="https://docs.ondat.io/docs/reference/kubectl-plugin/">install guide for kubectl storageos</a>.</p>
+<p>💡 Kubernetes will keep trying to ensure that startup containers successfully. If a PVC is created before Ondat finish starting, the PVC will be created eventually once the Ondat pods are running.</p>
 </blockquote>
-<blockquote>
-<p>⚠️ Make sure to add an <a href="/docs/operations/licensing/">Ondat licence</a> after installing. You can request a licence via the <a href="https://portal.ondat.io/">Ondat SaaS Platform</a>.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ You must enable port 443 for egress in your ACLs if a VPC is used.</p>
-</blockquote>
-<h2 id="procedure">Procedure</h2>
-<h3 id="step-1-set-up-your-cluster">Step 1: Set up your cluster</h3>
-<ol>
-<li>Open <a href="https://portal.ondat.io/">Ondat SaaS Platform</a></li>
-<li>Log into your account using your credentials</li>
-<li>In the main navigation, open the <strong>Cluster</strong> tab</li>
-<li>On the <strong>Cluster</strong> screen, click the <strong>Add Cluster</strong> button</li>
-<li>Enter a name for the cluster and choose the <strong>Cluster Location</strong> using the radio buttons</li>
-<li>Click <strong>Add Cluster</strong></li>
-</ol>
-<h3 id="step-2-connect-cluster-to-the-ondat-saas-platform">Step 2: Connect Cluster to the Ondat SaaS Platform</h3>
-<blockquote>
-<p>Note: The CLI command will only be displayed <strong>once</strong>
-Note: Latest GA version of Ondat will be installed onto your cluster</p>
-</blockquote>
-<ol>
-<li>Make sure you follow all the prerequisites displayed on the screen. You can find more information <a href="/docs/prerequisites/">here</a> for the prerequisites of using Ondat.</li>
-<li>Copy the cli command displayed on the screen</li>
-<li>Execute the cli command on your machine</li>
-</ol>
+<ul>
+<li>Ondat&rsquo;s health check gives  <code>60</code> seconds of grace period before reporting as <code>READY</code>. If Ondat successfully startups after that period, the volume will be created when Ondat finishes its bootstrap.</li>
+<li>If Ondat pods are still not in a <code>READY</code> state after waiting for some time, a recommendation would be to investigate further into the Ondat deployment and ensure that there is no mis-configuration issue.</li>
+</ul>
 
 	
 	

@@ -127,6 +127,64 @@ kubectl logs daemonsets.apps/storageos-node  --namespace&lt;span style=&#34;colo
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You are experiencing a &lt;code&gt;ProvisioningFailed&lt;/code&gt; event error message when you try to create a &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) and it remains in a &lt;code&gt;Pending&lt;/code&gt; state, thus preventing the pods that needs to mount that PVC from successfully starting up. Below is an example of the error message that shows up in the &lt;code&gt;Events:&lt;/code&gt; log of the PVC.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the status of the PVC.&lt;/span&gt;
+kubectl get pvc vol-1 --namespace example-namespace
+
+NAME      STATUS        VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+vol-1     Pending                                                                            storageos       7s
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the PVC that is stuck in a Pending state.&lt;/span&gt;
+kubectl describe pvc vol-1 --namespace example-namespace
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# truncated output.&lt;/span&gt;
+Events:
+  Type     Reason              Age               From                         Message
+  ----     ------              ----              ----                         -------
+  Warning  ProvisioningFailed  7s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x2 over 18s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  persistentvolume-controller  Failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;: Get http://storageos-cluster/version: failed to dial all known cluster members, &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;10.233.59.206:5705&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;For non Container Storage Interface (CSI) installations of Ondat, Kubernetes uses the Ondat API endpoint to communicate. If that communication fails, relevant actions such as create or mount volume can’t be transmitted to Ondat, hence the PVC will remain in &lt;code&gt;Pending&lt;/code&gt; state. Ondat never received the action to perform, so it never sent back an acknowledgement.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In this case, the &lt;code&gt;Events:&lt;/code&gt; message indicates that Ondat API is not responding, implying that Ondat is not running. For Kubernetes to confirm that Ondat pods are &lt;code&gt;READY&lt;/code&gt;, health checks must be passed first.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Check and ensure that Ondat pods deployed in the cluster are &lt;code&gt;READY&lt;/code&gt;, ie &lt;code&gt;1/1&lt;/code&gt; instead of &lt;code&gt;0/1&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# check the status of Ondat pods.&lt;/span&gt;
+kubectl --namespace storageos get pods --selector &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+
+NAME                   READY     STATUS    RESTARTS   AGE
+storageos-node-qrqkj   0/1       Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          1m
+storageos-node-s4bfv   0/1       Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          1m
+storageos-node-vcpfx   0/1       Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          1m
+storageos-node-w98f5   0/1       Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          1m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;If the Ondat pods are not &lt;code&gt;READY&lt;/code&gt;, the service will not forward traffic to the API they serve thus, the PVC will remain in &lt;code&gt;Pending&lt;/code&gt; state until Ondat pods are available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Kubernetes will keep trying to ensure that startup containers successfully. If a PVC is created before Ondat finish starting, the PVC will be created eventually once the Ondat pods are running.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Ondat&amp;rsquo;s health check gives  &lt;code&gt;60&lt;/code&gt; seconds of grace period before reporting as &lt;code&gt;READY&lt;/code&gt;. If Ondat successfully startups after that period, the volume will be created when Ondat finishes its bootstrap.&lt;/li&gt;
+&lt;li&gt;If Ondat pods are still not in a &lt;code&gt;READY&lt;/code&gt; state after waiting for some time, a recommendation would be to investigate further into the Ondat deployment and ensure that there is no mis-configuration issue.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
