@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Overview Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This label can be applied against a PersistentVolumeClaim (PVC) resource definition or through a custom Ondat StorageClass resource definition.
  Only the label is required to enable encryption. Once the label is present - during the volume creation, the MutatingAdmissionWebhook that runs as part of the Ondat API Manager, will create the volume encryption key, link it to the PVC and store it in a Kubernetes secret.">
 
-<meta itemprop="wordCount" content="1423">
+<meta itemprop="wordCount" content="1422">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="How To Enable Data Encryption For Volumes"/>
 <meta name="twitter:description" content="Overview Encrypting a volume is done by simply creating a volume with the storageos.com/encryption=true label. This label can be applied against a PersistentVolumeClaim (PVC) resource definition or through a custom Ondat StorageClass resource definition.
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.91d51078144b4e010508735d9ae5cf2c6a3bc1b061056384cea2e0681af3711cc6d4f966fd9bf2c7ca91bea9f407ce39db9616b39d3c342eafd114c5a70da477.json"
+  data-offline-search-index-json-src="/offline-search-index.766960bfb1c0ebd9933d426d569edf0949593f047923b600dc474cec713f0adef45f3be503096433dd9f830386dad82f84a858d0dc44c3bfa95b1969c244493f.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.91d51078144b4e010508735d9ae5cf2c6a3bc1b061056384cea2e0681af3711cc6d4f966fd9bf2c7ca91bea9f407ce39db9616b39d3c342eafd114c5a70da477.json"
+  data-offline-search-index-json-src="/offline-search-index.766960bfb1c0ebd9933d426d569edf0949593f047923b600dc474cec713f0adef45f3be503096433dd9f830386dad82f84a858d0dc44c3bfa95b1969c244493f.json"
   data-offline-search-base-href="/"
 >
 
@@ -1914,11 +1914,11 @@ kbY#<span style="color:#ce5c00;font-weight:bold">(</span>
 </code></pre></div></li>
 </ol>
 <h3 id="example---enable-volume-data-encryption-through-a-storageclass-definition">Example - Enable Volume Data Encryption Through a <code>StorageClass</code> Definition</h3>
-<p>The following guidance will demonstrates how to enable Ondat&rsquo;s Data Encryption through a <code>StorageClass</code> (PVC) definition.</p>
+<p>The following guidance will demonstrates how to enable Ondat&rsquo;s Data Encryption through a <code>StorageClass</code> definition.</p>
 <ul>
 <li>
 <p>The instructions will enable data encryption for PVCs through a custom <code>StorageClass</code> that will be used by a <code>StatefulSet</code> resource in the <code>encrypted</code> namespace.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-tap&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-encryption&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
