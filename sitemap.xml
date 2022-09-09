@@ -202,6 +202,8 @@
   </url><url>
     <loc>/docs/operations/failure-modes/</loc>
   </url><url>
+    <loc>/docs/operations/rwx/</loc>
+  </url><url>
     <loc>/docs/operations/trim/</loc>
   </url><url>
     <loc>/docs/operations/replication/</loc>
@@ -251,8 +253,6 @@
     <loc>/docs/usecases/postgres/</loc>
   </url><url>
     <loc>/docs/usecases/prometheus/</loc>
-  </url><url>
-    <loc>/docs/operations/rwx/</loc>
   </url><url>
     <loc>/docs/usecases/redis/</loc>
   </url><url>

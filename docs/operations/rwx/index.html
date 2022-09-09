@@ -20,29 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>ReadWriteMany | </title><meta property="og:title" content="ReadWriteMany" />
-<meta property="og:description" content="⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the free Ondat Community Edition. For more information, please visit Licensing.
- Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
-Ondat RWX Volumes are based on a shared filesystem.
-To create a ReadWriteMany (RWX) volume with Ondat, create a Persistent Volume Claim (PVC) with an access mode of ReadWriteMany (see the First PVC documentation for examples of creating standard PVCs with Ondat)." />
+<title>How To Use Ondat Files (ReadWriteMany - RWX Volumes) | </title><meta property="og:title" content="How To Use Ondat Files (ReadWriteMany - RWX Volumes)" />
+<meta property="og:description" content="Overview Ondat support ReadWriteMany (RWX) persistent volumes. A RWX volume can be used simultaneously by different deployments conducting read and write operations in the same namespace.
+ ⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through the Ondat SaaS platform and generate a licence so that it can be applied to your cluster. For more information on licences, review the Ondat pricing page." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/rwx/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="ReadWriteMany">
-<meta itemprop="description" content="⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the free Ondat Community Edition. For more information, please visit Licensing.
- Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
-Ondat RWX Volumes are based on a shared filesystem.
-To create a ReadWriteMany (RWX) volume with Ondat, create a Persistent Volume Claim (PVC) with an access mode of ReadWriteMany (see the First PVC documentation for examples of creating standard PVCs with Ondat).">
+<meta itemprop="name" content="How To Use Ondat Files (ReadWriteMany - RWX Volumes)">
+<meta itemprop="description" content="Overview Ondat support ReadWriteMany (RWX) persistent volumes. A RWX volume can be used simultaneously by different deployments conducting read and write operations in the same namespace.
+ ⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through the Ondat SaaS platform and generate a licence so that it can be applied to your cluster. For more information on licences, review the Ondat pricing page.">
 
-<meta itemprop="wordCount" content="419">
+<meta itemprop="wordCount" content="1496">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ReadWriteMany"/>
-<meta name="twitter:description" content="⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the free Ondat Community Edition. For more information, please visit Licensing.
- Ondat supports ReadWriteMany (RWX) access mode Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.
-Ondat RWX Volumes are based on a shared filesystem.
-To create a ReadWriteMany (RWX) volume with Ondat, create a Persistent Volume Claim (PVC) with an access mode of ReadWriteMany (see the First PVC documentation for examples of creating standard PVCs with Ondat)."/>
+<meta name="twitter:title" content="How To Use Ondat Files (ReadWriteMany - RWX Volumes)"/>
+<meta name="twitter:description" content="Overview Ondat support ReadWriteMany (RWX) persistent volumes. A RWX volume can be used simultaneously by different deployments conducting read and write operations in the same namespace.
+ ⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through the Ondat SaaS platform and generate a licence so that it can be applied to your cluster. For more information on licences, review the Ondat pricing page."/>
 
 
 
@@ -85,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>ReadWriteMany | </title>
+    <title>How To Use Ondat Files (ReadWriteMany - RWX Volumes) | </title>
   </head>
   <body class="td-page">
     
@@ -184,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.766960bfb1c0ebd9933d426d569edf0949593f047923b600dc474cec713f0adef45f3be503096433dd9f830386dad82f84a858d0dc44c3bfa95b1969c244493f.json"
+  data-offline-search-index-json-src="/offline-search-index.264bc2473957ecfc23ea730955511795b94c671539729aa413099da90b52ac2f71d333398916829b09955320bead1439d5ecc1fefd98c3a6a7eba338ebcad075.json"
   data-offline-search-base-href="/"
 >
 
@@ -332,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.766960bfb1c0ebd9933d426d569edf0949593f047923b600dc474cec713f0adef45f3be503096433dd9f830386dad82f84a858d0dc44c3bfa95b1969c244493f.json"
+  data-offline-search-index-json-src="/offline-search-index.264bc2473957ecfc23ea730955511795b94c671539729aa413099da90b52ac2f71d333398916829b09955320bead1439d5ecc1fefd98c3a6a7eba338ebcad075.json"
   data-offline-search-base-href="/"
 >
 
@@ -1092,6 +1086,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsrwx" href="/docs/operations/rwx/">How To Use Ondat Files (ReadWriteMany - RWX Volumes)</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
       
       
@@ -1129,12 +1129,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationspolicies" href="/docs/operations/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsrwx" href="/docs/operations/rwx/">ReadWriteMany</a>
       
       
       
@@ -1658,6 +1652,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#example---use-the-rwx-access-mode-through-a-persistentvolumeclaim-definition">Example - Use the RWX Access Mode Through a <code>PersistentVolumeClaim</code> Definition</a></li>
+      </ul>
+    </li>
+    <li><a href="#nfs-squash-mode">NFS Squash Mode</a>
+      <ul>
+        <li><a href="#example---configure-the-squash-mode-for-a-rwx-volume-through-a-persistentvolumeclaim-definition">Example - Configure the Squash Mode for a RWX Volume Through a <code>PersistentVolumeClaim</code> Definition</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1693,7 +1702,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/rwx/">ReadWriteMany</a>
+	<a href="/docs/operations/rwx/">How To Use Ondat Files (ReadWriteMany - RWX Volumes)</a>
 </li>
 
 	</ol>
@@ -1701,109 +1710,407 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>ReadWriteMany</h1>
+	<h1>How To Use Ondat Files (ReadWriteMany - RWX Volumes)</h1>
 	
-	<blockquote>
-<p>⚠️ An Ondat licence is required to create RWX Volumes. RWX is available in the free Ondat Community Edition. For more information, please visit <a href="/docs/operations/licensing/#types-of-licenses">Licensing</a>.</p>
+	<h2 id="overview">Overview</h2>
+<p>Ondat support <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes"><code>ReadWriteMany</code></a> (RWX) persistent volumes. A RWX volume can be used simultaneously by different deployments conducting read and write operations in the same namespace.</p>
+<blockquote>
+<p>⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through the <a href="https://portal.ondat.io/">Ondat SaaS platform</a> and generate a licence so that it can be applied to your cluster. For more information on licences, review the <a href="https://www.ondat.io/pricing">Ondat pricing</a> page.</p>
 </blockquote>
-<p>Ondat supports ReadWriteMany (RWX) <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes">access mode</a>
-Persistent Volumes. A RWX PVC can be used simultaneously by many Pods in the
-same Kubernetes namespace for read and write operations.</p>
-<p>Ondat RWX Volumes are based on a shared filesystem.</p>
-<p>To create a ReadWriteMany (RWX) volume with Ondat, create a Persistent
-Volume Claim (PVC) with an access mode of <code>ReadWriteMany</code> (see the
-<a href="/docs/operations/firstpvc">First PVC</a> documentation for
-examples of creating standard PVCs with Ondat).</p>
-<p>The following YAML manifest files provide an example:</p>
-<p>A 5Gi PVC with the Ondat <code>storageClassName</code> of <code>storageos</code>, with an
-<code>accessMode</code> of <code>ReadWriteMany</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+<blockquote>
+<p>💡 For more information on the Ondat Files feature, review the  <a href="https://github.com/ondat/documentation/blob/main/docs/concepts/encryption">Ondat Files</a>  feature page.</p>
+</blockquote>
+<h3 id="example---use-the-rwx-access-mode-through-a-persistentvolumeclaim-definition">Example - Use the RWX Access Mode Through a <code>PersistentVolumeClaim</code> Definition</h3>
+<p>The following guidance will demonstrate how to use RWX volumes through a  <code>PersistentVolumeClaim</code>  (PVC) definition.</p>
+<ul>
+<li>The instructions will allow you to use the RWX access mode on a PVC that will be mounted onto a  <code>Deployment</code>  resource in the  <code>ondat-files</code>  namespace.</li>
+</ul>
+<ol>
+<li>
+<p>Create a namespace called <code>ondat-files</code> where the encrypted volume and  <code>Deployment</code>  will reside.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Create namespace called &#34;ondat-files&#34;.</span>
+cat <span style="color:#4e9a06">&lt;&lt;EOF | kubectl create --filename -
+</span><span style="color:#4e9a06">apiVersion: v1
+</span><span style="color:#4e9a06">kind: Namespace
+</span><span style="color:#4e9a06">metadata:
+</span><span style="color:#4e9a06">  name: ondat-files
+</span><span style="color:#4e9a06">  labels:
+</span><span style="color:#4e9a06">    name: ondat-files
+</span><span style="color:#4e9a06">EOF</span>
+</code></pre></div></li>
+<li>
+<p>Create a custom <code>PersistentVolumeClaim</code> named <code>ondat-files</code> and ensure that you add the following <code>accessMode</code> &raquo; <code>ReadWriteMany</code> to the manifest.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;ondat-files&#34; PVC.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-rwx</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos               </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the default Ondat StorageClass to provision persistent volumes.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteMany</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteMany                         </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Ensure that the access mode is &#34;ReadWriteMany&#34;.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>A Deployment of 3 Pods, each of which consume this PVC:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">apps/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Once the PVC resource has been successfully created, review and confirm that the <code>ReadWriteMany</code> access mode has been applied.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the label applied to the &#34;ondat-files&#34; PVC.</span>
+kubectl get pvc ondat-files --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files
+</code></pre></div></li>
+<li>
+<p>Create a <code>Deployment</code> workload in the <code>ondat-files</code> namespace that uses the <code>ondat-files</code> PVC that was created in <em>Step 2</em>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">apps/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Deployment</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">shared</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">shared</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-deployment-rwx</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files                            </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Create the Deployment workload in the &#34;ondat-files&#34; namespace.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">shared</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">shared</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian:9-slim</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;/bin/sleep&#34;</span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">[</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;3600&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">            </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/mnt/</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#4e9a06">&#34;3600&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">/bin/sleep</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian:latest</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/mnt/</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">persistentVolumeClaim</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#204a87;font-weight:bold">claimName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-rwx</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>After creating the above resources, the PVC (here named <code>pvc-rwx</code>) should be
-bound and show an access mode of RWX:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get pvc
-NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-pvc-rwx     Bound    pvc-59f7a152-8342-415c-a6ca-1cbb463410ab   5Gi        RWX            storageos      60s
-</code></pre></div><p>Ensure that the Deployment Pods are running:</p>
-<pre tabindex="0"><code>$ kubectl get pods
-NAME                      READY   STATUS    RESTARTS   AGE
-shared-1771418926-7o5ns   1/1     Running   0          1m
-shared-1771418926-r18az   1/1     Running   0          1m
-shared-1771418926-ds8f7   1/1     Running   0          1m
-</code></pre><p>The NFS-Ganesha service that exposes the Ondat volume as RWX can now be
-viewed, showing the cluster IP of the service, and the default NFS port
-(2049).</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get svc
-NAME                                        TYPE        CLUSTER-IP    EXTERNAL-IP   PORT<span style="color:#ce5c00;font-weight:bold">(</span>S<span style="color:#ce5c00;font-weight:bold">)</span>    AGE
-kubernetes                                  ClusterIP   10.96.0.1     &lt;none&gt;        443/TCP    120m
-pvc-59f7a152-8342-415c-a6ca-1cbb463410ab    ClusterIP   10.107.10.0   &lt;none&gt;        2049/TCP   1m
-</code></pre></div><p>Features of the NFS volume can also be examined in the Ondat UI.
-Under <code>Volumes</code>, the <code>Attachment</code> column shows an <code>nfs</code> tag. The
-<code>Volume Details</code> section provides information about the NFS Volume, such
-as the service endpoint and the node on which the underlying Volume is
-attached.</p>
-<h2 id="changing-the-squash-mode">Changing the Squash mode</h2>
-<p>As part of the 2.8 release, a change was made so that users can change the
-squash mode that is used with the RWX shares.
-Historically, all shares were exported with a <code>Squash = All</code> mode of operation.
-This was requested by most customers as the idea of identity in a container
-based deployment is very abstract.
-There is now a label that can applied to make this tunable, users can now add
-<code>storageos.com/nfs-squash = root|rootuid|all|none</code> to their volumes (where
-all is still the default behaviour still) to adjust this setting.</p>
-<p>As an example, the above PVC definition can be labelled as:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">persistentVolumeClaim</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">claimName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files                   </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the &#34;ondat-files&#34; PVC for the StatefulSet workload.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>To review and confirm that the <code>ondat-files-deployment-rwx</code> Kubernetes deployment has successfully mounted the RWX volume, run the following commands below to inspect the resources created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that Deployment workload was successfully created.</span>
+kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files
+kubectl get deployments.apps --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files
+</code></pre></div></li>
+<li>
+<p>When you review the <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Kubernetes service</a> in the <code>ondat-files</code> namespace, you will notice that there is an <a href="https://github.com/nfs-ganesha/nfs-ganesha">NFS Ganesha</a> service that exposes the PVC as a shared filesystem - in addition, provides the <code>ClusterIP</code> address of the service and the default NFS port of &raquo; <code>2049/TCP</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check the service created under the &#34;ondat-files&#34; namespace.</span>
+kubectl get service --namespace ondat-files
+
+NAME                                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span style="color:#ce5c00;font-weight:bold">(</span>S<span style="color:#ce5c00;font-weight:bold">)</span>    AGE
+pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae   ClusterIP   10.0.133.137   &lt;none&gt;        2049/TCP   6m46s
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Describe the service in the namespace.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">kubectl describe service --namespace ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#000">pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#000">ondat-files</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#000">storageos.com/volume-id=aad1e4ab-23d2-4a45-9a9b-0305885997ff</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Annotations</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#000">&lt;none&gt;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#000">&lt;none&gt;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#000">ClusterIP</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IP Family Policy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">SingleStack</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IP Families</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#000">IPv4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IP</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">                </span><span style="color:#0000cf;font-weight:bold">10.0.133.137</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IPs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#0000cf;font-weight:bold">10.0.133.137</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Port</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#000">nfs  2049/TCP</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">TargetPort</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#0000cf;font-weight:bold">25918</span><span style="color:#000">/TCP</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Endpoints</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#0000cf;font-weight:bold">10.224.0.4</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">25918</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Session Affinity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">None</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Events</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Type    Reason   Age    From                   Message</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">   </span>------ <span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">                  </span>-------<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Normal  Created  9m35s  storageos-api-manager  Created service for shared volume ondat-files/pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>You can also review and confirm that Ondat has successfully provisioned a RWX volume, as defined in the PVC manifest earlier, by running the <a href="/docs/reference/cli/">Ondat CLI utility as a deployment</a> first, so that you can interact and manage Ondat through <code>kubectl</code>. Once deployed, obtain the Ondat CLI utility pod name for later reference.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the pod name of the Ondat CLI utility.</span>
+
+kubectl get pods --namespace storageos <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos-cli&#34;</span>
+storageos-cli-578c4f4674-wr9z2                       1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>              3m43s
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the volumes in the &#34;ondat-files&#34; namespace using the Ondat CLI.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-578c4f4674-wr9z2 -- storageos get volumes --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files
+
+NAMESPACE    NAME                                      SIZE     LOCATION                                  ATTACHED ON                      REPLICAS  AGE
+ondat-files  pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae  5.0 GiB  aks-default-15645363-vmss000000 <span style="color:#ce5c00;font-weight:bold">(</span>online<span style="color:#ce5c00;font-weight:bold">)</span>  aks-default-15645363-vmss000000  0/0       <span style="color:#0000cf;font-weight:bold">2</span> hours ago
+
+<span style="color:#8f5902;font-style:italic"># Describe the &#34;pvc-4457be86-54a3-4f2b-8326-5d4c8799d48a&#34; volume.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-578c4f4674-wr9z2 -- storageos describe volume pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files
+
+ID                      aad1e4ab-23d2-4a45-9a9b-0305885997ff
+Name                    pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae
+Description
+AttachedOn              aks-default-15645363-vmss000000 <span style="color:#ce5c00;font-weight:bold">(</span>1c9fe8f8-7c33-44b0-802d-875ff4c53fdd<span style="color:#ce5c00;font-weight:bold">)</span>
+Attachment Type         nfs
+NFS
+  Service Endpoint      10.224.0.4:25918
+  Exports:
+  - ID                  <span style="color:#0000cf;font-weight:bold">1</span>
+    Path                /
+    Pseudo Path         /
+    ACLs
+    - Identity Type     hostname
+      Identity Matcher  *
+      Squash            all
+      Squash UID        <span style="color:#0000cf;font-weight:bold">0</span>
+      Squash GUID       <span style="color:#0000cf;font-weight:bold">0</span>
+Namespace               ondat-files <span style="color:#ce5c00;font-weight:bold">(</span>97e1ffeb-34e3-4f18-8ef1-5494f34fe9cd<span style="color:#ce5c00;font-weight:bold">)</span>
+Labels                  csi.storage.k8s.io/pv/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae,
+                        csi.storage.k8s.io/pvc/name<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files,
+                        csi.storage.k8s.io/pvc/namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files,
+                        storageos.com/nfs/mount-endpoint<span style="color:#ce5c00;font-weight:bold">=</span>10.0.133.137:2049,
+                        storageos.com/nocompress<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>
+Filesystem              ext4
+Size                    5.0 GiB <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5368709120</span> bytes<span style="color:#ce5c00;font-weight:bold">)</span>
+Version                 NQ
+Created at              2022-09-08T12:54:49Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span> hours ago<span style="color:#ce5c00;font-weight:bold">)</span>
+Updated at              2022-09-08T14:29:18Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">28</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+
+Master:
+  ID                    67cae629-7797-444a-828d-22d5c22d3535
+  Node                  aks-default-15645363-vmss000000 <span style="color:#ce5c00;font-weight:bold">(</span>1c9fe8f8-7c33-44b0-802d-875ff4c53fdd<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health                online
+</code></pre></div></li>
+<li>
+<p>Notice under <code>Attachment Type         nfs</code>, the detailed information about the RWX volume is returned.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># truncated output..</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">Attachment Type         nfs</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">NFS</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Service Endpoint      10.224.0.4:25918</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Exports</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#000">ID                  1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">Path                /</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">Pseudo Path         /</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">ACLs</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">Identity Type     hostname</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Identity Matcher  *</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Squash            all</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Squash UID        0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Squash GUID       0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># truncated ouput...</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+</ol>
+<h2 id="nfs-squash-mode">NFS Squash Mode</h2>
+<blockquote>
+<p>💡 This feature is available in release  <code>v2.8.0</code>  or greater.</p>
+</blockquote>
+<p>As part of the <code>v2.8.0</code> Ondat release, a change was made so that users can <a href="https://linux.die.net/man/5/exports">configure the squash mode</a> for the NFS service that is used to provision RWX shares.</p>
+<ul>
+<li>Historically, all shares were exported with a <code>Squash = All</code>  mode of operation. This was requested by most customers as the idea of identity in a container based deployment is very abstract.</li>
+<li>There is now a Ondat volume <a href="/docs/concepts/labels/">Feature label</a> that can be applied to make this setting configurable. End users can now adjust the squash mode using the following label &raquo; <code>storageos.com/nfs-squash: $APPLY_SQUASH_MODE_VALUE</code> when provisioning RWX volumes. Below are the list of different modes that users can apply (<code>all</code> is the default mode and the label is applied to a <code>PersistentVolumeClaim</code>)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Squash Mode - Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>all</code> (default)</td>
+</tr>
+<tr>
+<td><code>root</code></td>
+</tr>
+<tr>
+<td><code>rootuid</code></td>
+</tr>
+<tr>
+<td><code>none</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="example---configure-the-squash-mode-for-a-rwx-volume-through-a-persistentvolumeclaim-definition">Example - Configure the Squash Mode for a RWX Volume Through a <code>PersistentVolumeClaim</code> Definition</h3>
+<p>The following guidance will demonstrate how to configure the squash mode for a RWX volume through a <code>PersistentVolumeClaim</code> (PVC) definition.</p>
+<ul>
+<li>The instructions will allow you to use the RWX access mode on a PVC which has the squash mode set to <code>rootuid</code> that will be mounted onto a <code>Deployment</code> resource in the <code>ondat-files-squash-mode</code> namespace.</li>
+</ul>
+<ol>
+<li>
+<p>Create a namespace called <code>ondat-files-squash-mode</code> where the encrypted volume and <code>Deployment</code> will reside.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Create namespace called &#34;ondat-files-squash-mode&#34;.</span>
+cat <span style="color:#4e9a06">&lt;&lt;EOF | kubectl create --filename -
+</span><span style="color:#4e9a06">apiVersion: v1
+</span><span style="color:#4e9a06">kind: Namespace
+</span><span style="color:#4e9a06">metadata:
+</span><span style="color:#4e9a06">  name: ondat-files-squash-mode
+</span><span style="color:#4e9a06">  labels:
+</span><span style="color:#4e9a06">    name: ondat-files-squash-mode
+</span><span style="color:#4e9a06">EOF</span>
+</code></pre></div></li>
+<li>
+<p>Create a custom <code>PersistentVolumeClaim</code> named <code>ondat-files-squash-mode</code>, ensure that the label is set <code>storageos.com/nfs-squash: rootuid</code> and ensure that you add the following <code>accessMode</code> &raquo; <code>ReadWriteMany</code>  added to the manifest.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;ondat-files-squash-mode&#34; PVC.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">pvc-rwx</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/nfs-squash</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">rootuid</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/nfs-squash</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">rootuid       </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># set the squash mode to &#34;rootuid&#34;.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos               </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the default Ondat StorageClass to provision persistent volumes.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteMany</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteMany                         </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Ensure that the access mode is &#34;ReadWriteMany&#34;.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>This will squash only the root user to <code>root</code> leaving other UID operations intact.</p>
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Once the PVC resource has been successfully created, review and confirm that the <code>storageos.com/nfs-squash: rootuid</code> label has been applied.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the label applied to the &#34;ondat-files-squash-mode&#34; PVC.</span>
+kubectl get pvc ondat-files-squash-mode --output<span style="color:#ce5c00;font-weight:bold">=</span>wide --show-labels --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files-squash-mode
+</code></pre></div></li>
+<li>
+<p>Create a <code>Deployment</code> workload in the <code>ondat-files-squash-mode</code> namespace that uses the <code>ondat-files-squash-mode</code> PVC that was created in <em>Step 2</em>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">apps/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Deployment</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-deployment-rwx-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode              </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Create the Deployment workload in the &#34;ondat-files-squash-mode&#34; namespace.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">matchLabels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">template</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">containers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">args</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#4e9a06">&#34;3600&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">command</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#000">/bin/sleep</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">image</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian:latest</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">debian</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">volumeMounts</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span>- <span style="color:#204a87;font-weight:bold">mountPath</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">/mnt/</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">volumes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span>- <span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#204a87;font-weight:bold">persistentVolumeClaim</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#204a87;font-weight:bold">claimName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-files-squash-mode       </span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Use the &#34;ondat-files-squash-mode&#34; PVC for the StatefulSet workload.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>To review and confirm that the <code>oondat-files-deployment-rwx-squash-mode</code> Kubernetes deployment has successfully mounted the RWX volume, run the following commands below to inspect the resources created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that Deployment workload was successfully created.</span>
+kubectl get pod --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files-squash-mode
+kubectl get deployments.apps --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files-squash-mode
+</code></pre></div></li>
+<li>
+<p>When you review the <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Kubernetes service</a> in the <code>ondat-files-squash-mode</code> namespace, you will notice that there is an <a href="https://github.com/nfs-ganesha/nfs-ganesha">NFS Ganesha</a> service that exposes the PVC as a shared filesystem - in addition, provides the <code>clusterIP</code> address of the service and the default NFS port of &raquo; <code>2049/TCP</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check the service created under the &#34;ondat-files-squash-mode&#34; namespace.</span>
+kubectl get service --namespace ondat-files-squash-mode
+
+   NAME                                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT<span style="color:#ce5c00;font-weight:bold">(</span>S<span style="color:#ce5c00;font-weight:bold">)</span>    AGE
+   pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342   ClusterIP   10.0.159.162   &lt;none&gt;        2049/TCP   28s
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Describe the service in the namespace.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">kubectl describe service --namespace ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#000">pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#000">ondat-files-squash-mode</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">            </span><span style="color:#000">storageos.com/volume-id=17450a4e-ecf6-4e98-918f-19e748bf9737</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Annotations</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#000">&lt;none&gt;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Selector</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#000">&lt;none&gt;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#000">ClusterIP</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IP Family Policy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">SingleStack</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IP Families</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#000">IPv4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IP</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">                </span><span style="color:#0000cf;font-weight:bold">10.0.159.162</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">IPs</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#0000cf;font-weight:bold">10.0.159.162</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Port</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">              </span><span style="color:#000">nfs  2049/TCP</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">TargetPort</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#0000cf;font-weight:bold">25805</span><span style="color:#000">/TCP</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Endpoints</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">         </span><span style="color:#0000cf;font-weight:bold">10.224.0.8</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">25805</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Session Affinity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">None</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Events</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Type    Reason   Age    From                   Message</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">   </span>------ <span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">                  </span>-------<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Normal  Created  4m47s  storageos-api-manager  Created service for shared volume ondat-files-squash-mode/pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>You can also review and confirm that Ondat has successfully provisioned a RWX volume, as defined in the PVC manifest earlier, by running the <a href="/docs/reference/cli/">Ondat CLI utility as a deployment</a> first, so that you can interact and manage Ondat through <code>kubectl</code>. Once deployed, obtain the Ondat CLI utility pod name for later reference.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the pod name of the Ondat CLI utility.</span>
+
+kubectl get pods --namespace storageos <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos-cli&#34;</span>
+storageos-cli-578c4f4674-wr9z2                       1/1     Running   <span style="color:#0000cf;font-weight:bold">0</span>              3m43s
+</code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the volumes in the &#34;ondat-files-squash-mode&#34; namespace using the Ondat CLI.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-578c4f4674-wr9z2 -- storageos get volumes --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files-squash-mode
+
+NAMESPACE                NAME                                      SIZE     LOCATION                                  ATTACHED ON                      REPLICAS  AGE
+ondat-files-squash-mode  pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342  5.0 GiB  aks-storage-32661963-vmss000001 <span style="color:#ce5c00;font-weight:bold">(</span>online<span style="color:#ce5c00;font-weight:bold">)</span>  aks-storage-32661963-vmss000001  0/0       <span style="color:#0000cf;font-weight:bold">15</span> minutes ago
+
+<span style="color:#8f5902;font-style:italic"># Describe the &#34;pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342&#34; volume.</span>
+kubectl --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#204a87">exec</span> storageos-cli-578c4f4674-wr9z2 -- storageos describe volume pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342 --namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files-squash-mode
+
+ID                      17450a4e-ecf6-4e98-918f-19e748bf9737
+Name                    pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342
+Description
+AttachedOn              aks-storage-32661963-vmss000001 <span style="color:#ce5c00;font-weight:bold">(</span>acdf3a74-4042-492d-b7b4-8368f5474fb2<span style="color:#ce5c00;font-weight:bold">)</span>
+Attachment Type         nfs
+NFS
+  Service Endpoint      10.224.0.8:25805
+  Exports:
+  - ID                  <span style="color:#0000cf;font-weight:bold">1</span>
+    Path                /
+    Pseudo Path         /
+    ACLs
+    - Identity Type     hostname
+      Identity Matcher  *
+      Squash            rootuid
+      Squash UID        <span style="color:#0000cf;font-weight:bold">0</span>
+      Squash GUID       <span style="color:#0000cf;font-weight:bold">0</span>
+Namespace               ondat-files-squash-mode <span style="color:#ce5c00;font-weight:bold">(</span>39d924f6-2d16-48e6-af1a-a69169f4bd6b<span style="color:#ce5c00;font-weight:bold">)</span>
+Labels                  csi.storage.k8s.io/pv/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-bd4c93a5-0071-4a56-968c-ae5e12d34342,
+                        csi.storage.k8s.io/pvc/name<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files-squash-mode,
+                        csi.storage.k8s.io/pvc/namespace<span style="color:#ce5c00;font-weight:bold">=</span>ondat-files-squash-mode,
+                        storageos.com/nfs-squash<span style="color:#ce5c00;font-weight:bold">=</span>rootuid,
+                        storageos.com/nfs/mount-endpoint<span style="color:#ce5c00;font-weight:bold">=</span>10.0.159.162:2049,
+                        storageos.com/nocompress<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>
+Filesystem              ext4
+Size                    5.0 GiB <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5368709120</span> bytes<span style="color:#ce5c00;font-weight:bold">)</span>
+Version                 NQ
+Created at              2022-09-08T17:07:35Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">17</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+Updated at              2022-09-08T17:15:36Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">8</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+
+Master:
+  ID                    662ac10a-b695-4c5f-ba4e-2b003b098dfc
+  Node                  aks-storage-32661963-vmss000001 <span style="color:#ce5c00;font-weight:bold">(</span>acdf3a74-4042-492d-b7b4-8368f5474fb2<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health                online
+</code></pre></div></li>
+<li>
+<p>If you notice under <code>Attachment Type         nfs</code>, detailed information about the RWX volume is returned.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#000">Attachment Type         nfs</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">NFS</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Service Endpoint      10.224.0.8:25805</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">Exports</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#000">ID                  1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">Path                /</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">Pseudo Path         /</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">ACLs</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">Identity Type     hostname</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Identity Matcher  *</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Squash            rootuid</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Squash UID        0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#000">Squash GUID       0</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+</ol>
 
 	
 	
