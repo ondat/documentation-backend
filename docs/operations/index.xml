@@ -2569,7 +2569,7 @@ my-vol-1                            Bound    pvc-9477f989-8a60-4d10-8407-99bad90
 &lt;p&gt;⚠️ RWX volume provisioning is available in the free Ondat Community Edition. To get the Community Edition licence, register your cluster through the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS platform&lt;/a&gt; and generate a licence so that it can be applied to your cluster. For more information on licences, review the &lt;a href=&#34;https://www.ondat.io/pricing&#34;&gt;Ondat pricing&lt;/a&gt; page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;💡 For more information on the Ondat Files feature, review the  &lt;a href=&#34;https://github.com/ondat/documentation/blob/main/docs/concepts/encryption&#34;&gt;Ondat Files&lt;/a&gt;  feature page.&lt;/p&gt;
+&lt;p&gt;💡 For more information on the Ondat Files feature, review the  &lt;a href=&#34;https://docs.ondat.io/docs/concepts/rwx/&#34;&gt;Ondat Files&lt;/a&gt;  feature page.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;example---use-the-rwx-access-mode-through-a-persistentvolumeclaim-definition&#34;&gt;Example - Use the RWX Access Mode Through a &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; Definition&lt;/h3&gt;
 &lt;p&gt;The following guidance will demonstrate how to use RWX volumes through a  &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;  (PVC) definition.&lt;/p&gt;
