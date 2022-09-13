@@ -31,9 +31,9 @@
 &lt;h3 id=&#34;1---cluster-and-node-prerequisites&#34;&gt;1 - Cluster and Node Prerequisites&lt;/h3&gt;
 &lt;p&gt;The minimum cluster requirements for a &lt;strong&gt;non-production installation&lt;/strong&gt; of ondat are as follows:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Linux with a 64-bit architecture&lt;/li&gt;
-&lt;li&gt;2 vCPU and 8GB of memory&lt;/li&gt;
-&lt;li&gt;3 worker nodes in the cluster and sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster&lt;/li&gt;
+&lt;li&gt;Linux with a 64-bit architecture.&lt;/li&gt;
+&lt;li&gt;2 vCPU and 4GB of RAM per node.&lt;/li&gt;
+&lt;li&gt;3 worker nodes in the cluster and sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/li&gt;
 &lt;li&gt;Make sure your GKE cluster uses &lt;a href=&#34;https://cloud.google.com/kubernetes-engine/docs/concepts/node-images#ubuntu&#34;&gt;&lt;code&gt;ubuntu_containerd&lt;/code&gt;&lt;/a&gt; as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For a comprehensive list of prerequisites and how to build a &lt;strong&gt;production installation&lt;/strong&gt; of Ondat please refer to &lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/&#34;&gt;Ondat Prerequisites&lt;/a&gt;&lt;/p&gt;
@@ -100,9 +100,9 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;h3 id=&#34;1---cluster-and-node-prerequisites&#34;&gt;1 - Cluster and Node Prerequisites&lt;/h3&gt;
 &lt;p&gt;The minimum requirements for the nodes are as follows:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Linux with a 64-bit architecture&lt;/li&gt;
-&lt;li&gt;2 vCPU and 8GB of memory&lt;/li&gt;
-&lt;li&gt;3 worker nodes in the cluster and sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster&lt;/li&gt;
+&lt;li&gt;Linux with a 64-bit architecture.&lt;/li&gt;
+&lt;li&gt;2 vCPU and 4GB of RAM per node.&lt;/li&gt;
+&lt;li&gt;3 worker nodes in the cluster and sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/li&gt;
 &lt;li&gt;Make sure your Google Anthos cluster uses &lt;a href=&#34;https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/using-containerd&#34;&gt;&lt;code&gt;ubuntu_containerd&lt;/code&gt;&lt;/a&gt; as the default node operating system. This node operating system image has the required kernel modules available for Ondat to run successfully.&lt;/li&gt;
 &lt;li&gt;For a comprehensive list of prerequisites please refer to &lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/&#34;&gt;Ondat Prerequisites&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;

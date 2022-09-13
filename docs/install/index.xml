@@ -37,7 +37,7 @@ the appropriate installation guide for your Kubernetes distribution.&lt;/p&gt;
 are as follows:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Linux with a 64-bit architecture&lt;/li&gt;
-&lt;li&gt;2 vCPU and 8GB of memory&lt;/li&gt;
+&lt;li&gt;2 vCPU and 4GB of RAM per node.&lt;/li&gt;
 &lt;li&gt;3 worker nodes in the cluster and sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control
 (RBAC)&lt;/a&gt;
 permissions to deploy and manage applications in the cluster&lt;/li&gt;
