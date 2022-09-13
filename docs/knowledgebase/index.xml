@@ -454,6 +454,33 @@ Events:
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting &#39;UUID has already been registered and has hostname&#39; Error</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-uuid-has-already-been-registered-and-has-hostname-error/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-uuid-has-already-been-registered-and-has-hostname-error/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;Ondat nodes cannot successfully join the cluster due to the following error message &amp;raquo; &lt;code&gt;error verifying UUID: UUID aed3275f-846b-1f75-43a1-adbfec8bf974 has already been registered and has hostname &#39;debian-4&#39;, not &#39;node4&#39;&lt;/code&gt; as demonstrated in the log entry below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:47:02Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to start api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;error verifying UUID: UUID aed3275f-846b-1f75-43a1-adbfec8bf974 has already been registered and has hostname &amp;#39;debian-4&amp;#39;, not &amp;#39;node4&amp;#39;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;command&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;The Ondat registration process to start the cluster uses the &lt;strong&gt;hostname&lt;/strong&gt; of the node where the Ondat container is running, provided by the &lt;a href=&#34;https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/&#34;&gt;kubelet&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;However, Ondat verifies the network hostname of the OS as a preflight check to make sure it can communicate with other nodes. If those names don’t match, Ondat is unable to start.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;p&gt;Ensure that the hostnames match with the names advertised by your Kubernetes cluster.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you have changed the hostname of your nodes, ensure that you restart the nodes for changes to be applied successfully.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
