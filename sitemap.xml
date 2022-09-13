@@ -188,6 +188,8 @@
   </url><url>
     <loc>/docs/operations/backups-and-restores-with-kastenk10/</loc>
   </url><url>
+    <loc>/docs/operations/storageclasses/</loc>
+  </url><url>
     <loc>/docs/operations/compression/</loc>
   </url><url>
     <loc>/docs/operations/encryption/</loc>
@@ -285,8 +287,6 @@
     <loc>/docs/knowledgebase/solution-unable-to-apply-paramters-to-an-existing-storageclass-object/</loc>
   </url><url>
     <loc>/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/</loc>
-  </url><url>
-    <loc>/docs/operations/storageclasses/</loc>
   </url><url>
     <loc>/docs/reference/bundles/support_bundle/</loc>
   </url><url>

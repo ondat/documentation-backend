@@ -20,23 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>StorageClasses | </title><meta property="og:title" content="StorageClasses" />
-<meta property="og:description" content="StorageClasses in Kubernetes are used to link PVCs with a backend storage provisioner - for instance, Ondat. A StorageClass defines parameters to pass to the provisioner, which in the case of Ondat can be translated into behaviour applied to the Volumes. Many StorageClasses can be provisioned to apply different feature labels to the Ondat Volumes.
-By default the Ondat Operator installs the storageos StorageClass at bootstrap of Ondat. You can define its name in the Ondat Cluster Resource." />
+<title>How To Create Custom Ondat Storage Classes | </title><meta property="og:title" content="How To Create Custom Ondat Storage Classes" />
+<meta property="og:description" content="Overview Storage Classes in Kubernetes are used to link PersistentVolumeClaims (PVCs) with a backend storage provisioner such as Ondat.
+ A StorageClass defines parameters to pass to the provisioner, which, in the case of Ondat, can be translated into behaviour applied to the volumes that will be provisioned. End users can create more than one custom Ondat StorageClass with different feature labels. By default, the Ondat Operator creates a storageos StorageClass when Ondat is deployed for the first time." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/storageclasses/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="StorageClasses">
-<meta itemprop="description" content="StorageClasses in Kubernetes are used to link PVCs with a backend storage provisioner - for instance, Ondat. A StorageClass defines parameters to pass to the provisioner, which in the case of Ondat can be translated into behaviour applied to the Volumes. Many StorageClasses can be provisioned to apply different feature labels to the Ondat Volumes.
-By default the Ondat Operator installs the storageos StorageClass at bootstrap of Ondat. You can define its name in the Ondat Cluster Resource.">
+<meta itemprop="name" content="How To Create Custom Ondat Storage Classes">
+<meta itemprop="description" content="Overview Storage Classes in Kubernetes are used to link PersistentVolumeClaims (PVCs) with a backend storage provisioner such as Ondat.
+ A StorageClass defines parameters to pass to the provisioner, which, in the case of Ondat, can be translated into behaviour applied to the volumes that will be provisioned. End users can create more than one custom Ondat StorageClass with different feature labels. By default, the Ondat Operator creates a storageos StorageClass when Ondat is deployed for the first time.">
 
-<meta itemprop="wordCount" content="253">
+<meta itemprop="wordCount" content="590">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="StorageClasses"/>
-<meta name="twitter:description" content="StorageClasses in Kubernetes are used to link PVCs with a backend storage provisioner - for instance, Ondat. A StorageClass defines parameters to pass to the provisioner, which in the case of Ondat can be translated into behaviour applied to the Volumes. Many StorageClasses can be provisioned to apply different feature labels to the Ondat Volumes.
-By default the Ondat Operator installs the storageos StorageClass at bootstrap of Ondat. You can define its name in the Ondat Cluster Resource."/>
+<meta name="twitter:title" content="How To Create Custom Ondat Storage Classes"/>
+<meta name="twitter:description" content="Overview Storage Classes in Kubernetes are used to link PersistentVolumeClaims (PVCs) with a backend storage provisioner such as Ondat.
+ A StorageClass defines parameters to pass to the provisioner, which, in the case of Ondat, can be translated into behaviour applied to the volumes that will be provisioned. End users can create more than one custom Ondat StorageClass with different feature labels. By default, the Ondat Operator creates a storageos StorageClass when Ondat is deployed for the first time."/>
 
 
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>StorageClasses | </title>
+    <title>How To Create Custom Ondat Storage Classes | </title>
   </head>
   <body class="td-page">
     
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.394081f741a87b3e5e50466e1a0dfe5076402f3c4f8c0f833486f54b888fd97610a78e9250ad36f5f60e5822ace3bb9214fb294b82c032b7ad0731fbdf1c6b6e.json"
+  data-offline-search-index-json-src="/offline-search-index.7746bbd95ff6da778b347849307d9a3c5130ab6f500539c4a9f881c03b599345ac4f65d8b4a551d15038b90dbcd17f31756ced0f0096a33834db90ba976da72e.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.394081f741a87b3e5e50466e1a0dfe5076402f3c4f8c0f833486f54b888fd97610a78e9250ad36f5f60e5822ace3bb9214fb294b82c032b7ad0731fbdf1c6b6e.json"
+  data-offline-search-index-json-src="/offline-search-index.7746bbd95ff6da778b347849307d9a3c5130ab6f500539c4a9f881c03b599345ac4f65d8b4a551d15038b90dbcd17f31756ced0f0096a33834db90ba976da72e.json"
   data-offline-search-base-href="/"
 >
 
@@ -1044,6 +1044,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">How To Create Custom Ondat Storage Classes</a>
+      
+      
+      
+      
+      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscompression" href="/docs/operations/compression/">How To Enable Data Compression</a>
       
       
@@ -1129,12 +1135,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationspolicies" href="/docs/operations/policies/">Policies</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">StorageClasses</a>
       
       
       
@@ -1666,11 +1666,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#examples">Examples</a>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#creating-custom-ondat-storage-classes">Creating Custom Ondat Storage Classes</a>
       <ul>
-        <li><a href="#replicated-storage-class">Replicated Storage Class</a></li>
-        <li><a href="#topology-aware-storage-class">Topology Aware Storage Class</a></li>
-        <li><a href="#encrypted-volumes-storage-class">Encrypted volumes Storage Class</a></li>
+        <li><a href="#example---create-a-storageclass-that-enables-volume-replication">Example - Create a StorageClass that Enables Volume Replication</a></li>
+        <li><a href="#example---create-a-storageclass-that-enables-volume-replication--topology-aware-placement-tap">Example - Create a StorageClass that Enables Volume Replication &amp; Topology-Aware Placement (TAP)</a></li>
+        <li><a href="#example---create-a-storageclass-that-enables-volume-replication-topology-aware-placement-tap--volume-encryption">Example - Create a StorageClass that Enables Volume Replication, Topology-Aware Placement (TAP) &amp; Volume Encryption</a></li>
+        <li><a href="#example---create-a-storageclass-that-enables-data-compression">Example - Create a StorageClass that Enables Data Compression</a></li>
       </ul>
     </li>
   </ul>
@@ -1711,7 +1713,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/storageclasses/">StorageClasses</a>
+	<a href="/docs/operations/storageclasses/">How To Create Custom Ondat Storage Classes</a>
 </li>
 
 	</ol>
@@ -1719,97 +1721,147 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>StorageClasses</h1>
+	<h1>How To Create Custom Ondat Storage Classes</h1>
 	
-	<p><a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">StorageClasses</a>
-in Kubernetes are used to link PVCs with a backend storage provisioner - for
-instance, Ondat. A StorageClass defines parameters to pass to the
-provisioner, which in the case of Ondat can be translated into behaviour
-applied to the Volumes. Many StorageClasses can be provisioned to apply
-different feature labels to the Ondat Volumes.</p>
-<p>By default the Ondat Operator installs the <code>storageos</code> StorageClass at
-bootstrap of Ondat. You can define its name in the Ondat Cluster Resource.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+	<h2 id="overview">Overview</h2>
+<p><a href="https://kubernetes.io/docs/concepts/storage/storage-classes/">Storage Classes</a> in Kubernetes are used to link <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/"><code>PersistentVolumeClaim</code>s (PVCs)</a> with a backend storage provisioner such as Ondat.</p>
+<ul>
+<li>A <code>StorageClass</code> defines parameters to pass to the provisioner, which, in the case of Ondat, can be translated into behaviour applied to the volumes that will be provisioned. End users can create more than one custom Ondat <code>StorageClass</code> with different <a href="/docs/concepts/labels/">feature labels</a>.</li>
+<li>By default, the Ondat Operator creates a <code>storageos</code> <code>StorageClass</code> when Ondat is deployed for the first time. End users can get more information about the <code>StorageClass</code> object created by running the following commands below:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get more informaton about the &#34;storageos&#34; StorageClass object.</span>
+kubectl get storageclasses storageos
+
+NAME        PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+storageos   csi.storageos.com   Delete          Immediate           <span style="color:#204a87">true</span>                   13m
+
+<span style="color:#8f5902;font-style:italic"># Describe the &#34;storageos&#34; StorageClass object.</span>
+kubectl describe storageclasses storageos
+
+Name:            storageos
+IsDefaultClass:  No
+Annotations:     kubectl.kubernetes.io/last-applied-configuration<span style="color:#ce5c00;font-weight:bold">={</span><span style="color:#4e9a06">&#34;allowVolumeExpansion&#34;</span>:true,<span style="color:#4e9a06">&#34;apiVersion&#34;</span>:<span style="color:#4e9a06">&#34;storage.k8s.io/v1&#34;</span>,<span style="color:#4e9a06">&#34;kind&#34;</span>:<span style="color:#4e9a06">&#34;StorageClass&#34;</span>,<span style="color:#4e9a06">&#34;metadata&#34;</span>:<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;annotations&#34;</span>:<span style="color:#ce5c00;font-weight:bold">{}</span>,<span style="color:#4e9a06">&#34;labels&#34;</span>:<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;app&#34;</span>:<span style="color:#4e9a06">&#34;storageos&#34;</span>,<span style="color:#4e9a06">&#34;app.kubernetes.io/component&#34;</span>:<span style="color:#4e9a06">&#34;storageclass&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>,<span style="color:#4e9a06">&#34;name&#34;</span>:<span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>,<span style="color:#4e9a06">&#34;parameters&#34;</span>:<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;csi.storage.k8s.io/fstype&#34;</span>:<span style="color:#4e9a06">&#34;ext4&#34;</span>,<span style="color:#4e9a06">&#34;csi.storage.k8s.io/secret-name&#34;</span>:<span style="color:#4e9a06">&#34;storageos-api&#34;</span>,<span style="color:#4e9a06">&#34;csi.storage.k8s.io/secret-namespace&#34;</span>:<span style="color:#4e9a06">&#34;storageos&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>,<span style="color:#4e9a06">&#34;provisioner&#34;</span>:<span style="color:#4e9a06">&#34;csi.storageos.com&#34;</span>,<span style="color:#4e9a06">&#34;reclaimPolicy&#34;</span>:<span style="color:#4e9a06">&#34;Delete&#34;</span>,<span style="color:#4e9a06">&#34;volumeBindingMode&#34;</span>:<span style="color:#4e9a06">&#34;Immediate&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>
+
+Provisioner:           csi.storageos.com
+Parameters:            csi.storage.k8s.io/fstype<span style="color:#ce5c00;font-weight:bold">=</span>ext4,csi.storage.k8s.io/secret-name<span style="color:#ce5c00;font-weight:bold">=</span>storageos-api,csi.storage.k8s.io/secret-namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+AllowVolumeExpansion:  True
+MountOptions:          &lt;none&gt;
+ReclaimPolicy:         Delete
+VolumeBindingMode:     Immediate
+Events:                &lt;none&gt;
+</code></pre></div><ul>
+<li>Below is the YAML output of the <code>storageos</code> StorageClass object after removing metadata details:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># &#34;storageos&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">app.kubernetes.io/component</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageclass</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">reclaimPolicy</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Delete</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">volumeBindingMode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Immediate</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><blockquote>
+<p>💡 A <code>PersistentVolumeClaim</code> (PVC) definition takes precedence over a <code>StorageClass</code> definition.</p>
+</blockquote>
+<h2 id="creating-custom-ondat-storage-classes">Creating Custom Ondat Storage Classes</h2>
+<p>The following examples will demonstrate how to create custom Ondat storage classes with feature labels to fit end user&rsquo;s use cases.</p>
+<ul>
+<li>End users can also find more custom Ondat storage classes examples in the <a href="https://github.com/ondat/use-cases">Ondat Use Cases</a> project repository that is available on GitHub.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Clone the repository.</span>
+git clone git@github.com:ondat/use-cases.git
+
+<span style="color:#8f5902;font-style:italic"># Navigate into the directory</span>
+<span style="color:#204a87">cd</span> custom-storage-classes/
+
+<span style="color:#8f5902;font-style:italic"># List the StorageClass manifests in the directory.</span>
+ls -lah
+</code></pre></div><h3 id="example---create-a-storageclass-that-enables-volume-replication">Example - Create a StorageClass that Enables Volume Replication</h3>
+<p>Below is an example Ondat StorageClass definition called <code>ondat-replicated</code> that uses the <a href="/docs/concepts/replication/">Volume Replication</a> feature label.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-replicated&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-replicated</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                           </span><span style="color:#8f5902;font-style:italic"># Create 2 replica volumes.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>StorageClasses can be created to define default labels for Ondat volumes,
-but also to map to any semantic aggregation of volumes that suits your use
-case, whether there are different roles (dev, staging, prod), or a
-StorageClass maps to a team or customer using the cluster.</p>
-<h2 id="examples">Examples</h2>
-<p>You can find the basic examples in the Ondat use-cases repository, in
-the <code>00-basic/v2.5.storageclass-and-later</code> directory.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/storageos/use-cases.git storageos-usecases
-<span style="color:#204a87">cd</span> storageos-usecases/00-basic/v2.5.storageclass-and-later
-</code></pre></div><h3 id="replicated-storage-class">Replicated Storage Class</h3>
-<p>StorageClass definition in <code>v2-storageclass-replicated.yaml</code>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that &#34;ondat-replicated&#34; was created.</span>
+kubectl get sc <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;ondat-replicated&#34;</span>
+</code></pre></div><p>For a detailed demonstration of how to use the Volume Replication feature with persistent volumes, review the <a href="/docs/operations/replication/">How To Use Volume Replication</a> operations page.</p>
+<h3 id="example---create-a-storageclass-that-enables-volume-replication--topology-aware-placement-tap">Example - Create a StorageClass that Enables Volume Replication &amp; Topology-Aware Placement (TAP)</h3>
+<p>Below is an example Ondat StorageClass definition called <code>ondat-tap</code> that uses the <a href="/docs/concepts/replication/">Volume Replication</a> and <a href="/docs/concepts/tap/">Topology-Aware Placement (TAP)</a> feature labels.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-tap&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-rep</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-tap</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;1&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                          </span><span style="color:#8f5902;font-style:italic"># Create 2 replica volumes.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/topology-aware</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                 </span><span style="color:#8f5902;font-style:italic"># Enable TAP (default looks for &#34;topology.kubernetes.io/zone=&#34; on nodes)</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>That StorageClass can be used by a PVC:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">my-vol-1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;ondat-replicated&#34;</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#8f5902;font-style:italic"># Ondat StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>The above StorageClass has the <code>storageos.com/replicas</code> label set. This
-label tells Ondat to create a volume with a replica. Adding Ondat
-feature labels to the StorageClass ensures all volumes created with the
-StorageClass have the same labels.</p>
-<p>You can also choose to add the label in the PVC definition rather than the
-StorageClass. The PVC definition takes precedence over the StorageClass.</p>
-<h3 id="topology-aware-storage-class">Topology Aware Storage Class</h3>
-<p>StorageClass that enables <a href="/docs/reference/tap">Topology Aware Placement</a>
-and replication with <a href="/docs/operations/failure-modes">soft mode</a>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that &#34;ondat-tap&#34; was created.</span>
+kubectl get sc <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;ondat-tap&#34;</span>
+</code></pre></div><p>For a detailed demonstration of how to use the Volume Replication &amp; Topology-Aware Placement features with persistent volumes, review the <a href="/docs/operations/tap/">How To Enable Topology-Aware Placement (TAP)</a> operations page.</p>
+<h3 id="example---create-a-storageclass-that-enables-volume-replication-topology-aware-placement-tap--volume-encryption">Example - Create a StorageClass that Enables Volume Replication, Topology-Aware Placement (TAP) &amp; Volume Encryption</h3>
+<p>Below is an example Ondat StorageClass definition called <code>ondat-replicated-tap-encrypted</code> that uses the <a href="/docs/concepts/replication/">Volume Replication</a>, <a href="/docs/concepts/tap/">Topology-Aware Placement (TAP)</a> and <a href="/docs/concepts/encryption/">Volume Encryption</a> feature labels.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-encryption&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-rep-tap</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-replicated-tap-encrypted</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/failure-mode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;soft&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/topology-aware</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;2&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                             </span><span style="color:#8f5902;font-style:italic"># Create 2 replica volumes.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/encryption</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                        </span><span style="color:#8f5902;font-style:italic"># Enable volume encryption.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/topology-aware</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                    </span><span style="color:#8f5902;font-style:italic"># Enable TAP (default looks for &#34;topology.kubernetes.io/zone=&#34; on nodes)</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><h3 id="encrypted-volumes-storage-class">Encrypted volumes Storage Class</h3>
-<p>StorageClass that enables encryption and replication for volumes.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that &#34;ondat-replicated-tap-encrypted&#34; was created.</span>
+kubectl get sc <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;ondat-replicated-tap-encrypted&#34;</span>
+</code></pre></div><p>For a detailed demonstration of how to use the Volume Encryption feature with persistent volumes, review the <a href="/docs/operations/encryption/">How To Enable Data Encryption For Volumes</a> operations page.</p>
+<h3 id="example---create-a-storageclass-that-enables-data-compression">Example - Create a StorageClass that Enables Data Compression</h3>
+<p>Below is an example Ondat StorageClass definition called <code>ondat-compressed</code> that uses the <a href="/docs/concepts/replication/">Data Compression</a> feature label.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-compressed&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">cat &lt;&lt;EOF | kubectl create --filename -</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-rep-enc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-compressed</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/nocompress</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;false&#34;</span><span style="color:#f8f8f8;text-decoration:underline">                     </span><span style="color:#8f5902;font-style:italic"># Enable compression of data-at-rest and data-in-transit.</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;1&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/encryption</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div>
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><p>For a detailed demonstration of how to use the compression for persistent volumes, review the <a href="/docs/operations/compression/">How To Enable Data Compression</a> operations page.</p>
+
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
