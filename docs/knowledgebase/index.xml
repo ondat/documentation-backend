@@ -127,6 +127,69 @@ kubectl logs daemonsets.apps/storageos-node  --namespace&lt;span style=&#34;colo
     </item>
     
     <item>
+      <title>Docs: Solution - Deployment Using A RWX Volume Is Stuck In A &#39;ContainerCreating&#39; State</title>
+      <link>/docs/knowledgebase/solution-deployment-using-rwx-volume-is-stuck-in-a-container-creating-state/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-deployment-using-rwx-volume-is-stuck-in-a-container-creating-state/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You are experiencing an issue where your Kubernetes resource that is using an Ondat RWX volume is stuck in &lt;code&gt;ContainerCreating&lt;/code&gt; state. Below is example outputs of a deployment experiencing this error message;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the status of the pods in the &amp;#34;ondat-files&amp;#34; namespace.&lt;/span&gt;
+kubectl get pod --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;ondat-files
+
+NAME                                         READY   STATUS              RESTARTS   AGE
+ondat-files-deployment-rwx-d68b4866d-khl2d   0/1     ContainerCreating   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          13m
+ondat-files-deployment-rwx-d68b4866d-twzrt   0/1     ContainerCreating   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          13m
+ondat-files-deployment-rwx-d68b4866d-z5xhm   0/1     ContainerCreating   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          13m
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the status of the deployment, notice that the 0 out 3 pods are READY.&lt;/span&gt;
+kubectl get deployments.apps --namespace ondat-files
+
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+ondat-files-deployment-rwx   0/3     &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;            &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;           18m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Upon describing one of the replica pods of the deployment to further investigate, you may notice the following error message in the &lt;code&gt;Events:&lt;/code&gt; section &amp;raquo; &lt;code&gt;rpc error: code = Internal desc = internal error: the &amp;quot;nfs&amp;quot; licence feature is required to perform the requested operation&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe one of the affected replica pods of the deployment&lt;/span&gt;
+kubectl describe pod ondat-files-deployment-rwx-d68b4866d-twzrt --namespace ondat-files
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# truncated output...&lt;/span&gt;
+Events:
+  Type     Reason              Age                 From                     Message
+  ----     ------              ----                ----                     -------
+  Normal   Scheduled           18m                 storageos-scheduler      Successfully assigned ondat-files/ondat-files-deployment-rwx-d68b4866d-twzrt to aks-default-15645363-vmss000000
+  Warning  FailedMount         14m                 kubelet                  Unable to attach or mount volumes: unmounted &lt;span style=&#34;color:#000&#34;&gt;volumes&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=[&lt;/span&gt;ondat-files&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;, unattached &lt;span style=&#34;color:#000&#34;&gt;volumes&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=[&lt;/span&gt;kube-api-access-ng2c5 ondat-files&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: timed out waiting &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; the condition
+  Warning  FailedMount         67s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x7 over 16m&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;   kubelet                  Unable to attach or mount volumes: unmounted &lt;span style=&#34;color:#000&#34;&gt;volumes&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=[&lt;/span&gt;ondat-files&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;, unattached &lt;span style=&#34;color:#000&#34;&gt;volumes&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=[&lt;/span&gt;ondat-files kube-api-access-ng2c5&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: timed out waiting &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; the condition
+  Warning  FailedAttachVolume  22s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x17 over 18m&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  attachdetach-controller  AttachVolume.Attach failed &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; volume &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;pvc-41f429ff-3fa9-4361-b7bc-c55f869499ae&amp;#34;&lt;/span&gt; : rpc error: &lt;span style=&#34;color:#000&#34;&gt;code&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; Internal &lt;span style=&#34;color:#000&#34;&gt;desc&lt;/span&gt; &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; internal error: the &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;nfs&amp;#34;&lt;/span&gt; licence feature is required to perform the requested operation
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In order for end user to be able to successfully provision RWX volumes, an Ondat cluster must be licensed with either a &lt;em&gt;Community&lt;/em&gt;, &lt;em&gt;Standard&lt;/em&gt; or &lt;em&gt;Enterprise&lt;/em&gt; Edition. RWX volume provisioning is available in the free Ondat Community Edition.
+&lt;ul&gt;
+&lt;li&gt;For more information on licences, review the &lt;a href=&#34;https://www.ondat.io/pricing&#34;&gt;Ondat pricing&lt;/a&gt; page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;To get the Community Edition licence, register your cluster through the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS platform&lt;/a&gt; and generate a licence so that it can be applied to your cluster.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 If you already have an Ondat cluster that is connected to the Ondat SaaS Platform, you can apply the licence automatically to the connected cluster following the steps below;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Login to the  &lt;strong&gt;Ondat SaaS Platform&lt;/strong&gt;  »  &lt;strong&gt;Organisation&lt;/strong&gt;  »  &lt;strong&gt;Licences&lt;/strong&gt;  »  &lt;strong&gt;Generate A New Licence&lt;/strong&gt;  »  &lt;strong&gt;Choose an existing cluster&lt;/strong&gt;  » Select the cluster that you want to apply a licence to.&lt;/li&gt;
+&lt;li&gt;Once the cluster has been successfully licensed, end users will be able to create resources that use Ondat RWX volumes.&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting &#39;failed to dial all known cluster members&#39; Error When Provisioning Volumes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-failed-to-dial-all-known-cluster-members-provisioning-volumes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
