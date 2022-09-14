@@ -20,20 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Tolerations | </title><meta property="og:title" content="Tolerations" />
-<meta property="og:description" content="Kubernetes Tolerations Tolerations are a Kubernetes pod property that allow pods to tolerate certain node taints. Taints can be thought of as the opposite of Node affinity in that taints repel pods. Node taints are automatically applied by Kubernetes in response to node resources coming under contention. As Ondat provides storage to pods it should not be evicted during periods of resource contention, as any pods using Ondat volumes on the same node would need to be restarted." />
+<title>Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift | </title><meta property="og:title" content="Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift" />
+<meta property="og:description" content="Issue When attempting to deploy Ondat into an OpenShift cluster, you notice that Ondat daemonset pods are missing in the project where Ondat is supposed to reside in. Below is the example of the Events: error message that shows up when you investigate further into why the daemonset is not running:
+# Get the status of the pods in the &#34;storageos&#34; project. oc get pods No resources found. # Describe the Ondat daemonset in the &#34;storageos&#34; project." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/reference/tolerations/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/knowledgebase/solution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Tolerations">
-<meta itemprop="description" content="Kubernetes Tolerations Tolerations are a Kubernetes pod property that allow pods to tolerate certain node taints. Taints can be thought of as the opposite of Node affinity in that taints repel pods. Node taints are automatically applied by Kubernetes in response to node resources coming under contention. As Ondat provides storage to pods it should not be evicted during periods of resource contention, as any pods using Ondat volumes on the same node would need to be restarted.">
+<meta itemprop="name" content="Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift">
+<meta itemprop="description" content="Issue When attempting to deploy Ondat into an OpenShift cluster, you notice that Ondat daemonset pods are missing in the project where Ondat is supposed to reside in. Below is the example of the Events: error message that shows up when you investigate further into why the daemonset is not running:
+# Get the status of the pods in the &#34;storageos&#34; project. oc get pods No resources found. # Describe the Ondat daemonset in the &#34;storageos&#34; project.">
 
-<meta itemprop="wordCount" content="159">
+<meta itemprop="wordCount" content="454">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tolerations"/>
-<meta name="twitter:description" content="Kubernetes Tolerations Tolerations are a Kubernetes pod property that allow pods to tolerate certain node taints. Taints can be thought of as the opposite of Node affinity in that taints repel pods. Node taints are automatically applied by Kubernetes in response to node resources coming under contention. As Ondat provides storage to pods it should not be evicted during periods of resource contention, as any pods using Ondat volumes on the same node would need to be restarted."/>
+<meta name="twitter:title" content="Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift"/>
+<meta name="twitter:description" content="Issue When attempting to deploy Ondat into an OpenShift cluster, you notice that Ondat daemonset pods are missing in the project where Ondat is supposed to reside in. Below is the example of the Events: error message that shows up when you investigate further into why the daemonset is not running:
+# Get the status of the pods in the &#34;storageos&#34; project. oc get pods No resources found. # Describe the Ondat daemonset in the &#34;storageos&#34; project."/>
 
 
 
@@ -76,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Tolerations | </title>
+    <title>Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift | </title>
   </head>
   <body class="td-page">
     
@@ -1293,10 +1296,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Reference</a>
+    <a  href="/docs/reference/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreference">
+    <li class="collapse " id="docsreference">
       
       
       
@@ -1492,7 +1495,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsreferencetolerations" href="/docs/reference/tolerations/">Tolerations</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencetolerations" href="/docs/reference/tolerations/">Tolerations</a>
       
       
     </li>
@@ -1517,10 +1520,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse " id="docsknowledgebase">
+    <li class="collapse show" id="docsknowledgebase">
       
       
       
@@ -1563,7 +1566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift" href="/docs/knowledgebase/solution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift/">Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift" href="/docs/knowledgebase/solution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift/">Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift</a>
       
       
       
@@ -1681,8 +1684,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#kubernetes-tolerations">Kubernetes Tolerations</a></li>
-    <li><a href="#adding-custom-tolerations">Adding Custom Tolerations</a></li>
+    <li><a href="#issue">Issue</a></li>
+    <li><a href="#root-cause">Root Cause</a></li>
+    <li><a href="#resolution">Resolution</a></li>
+    <li><a href="#references">References</a></li>
   </ul>
 </nav>
 
@@ -1714,14 +1719,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/reference/">Reference</a>
+	<a href="/docs/knowledgebase/">Knowledge Base</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/reference/tolerations/">Tolerations</a>
+	<a href="/docs/knowledgebase/solution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift/">Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift</a>
 </li>
 
 	</ol>
@@ -1729,47 +1734,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Tolerations</h1>
+	<h1>Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift</h1>
 	
-	<h2 id="kubernetes-tolerations">Kubernetes Tolerations</h2>
-<p>Tolerations are a Kubernetes pod property that allow pods to tolerate certain
-node taints. Taints can be thought of as the opposite of Node affinity in that
-taints repel pods. Node taints are automatically applied by Kubernetes in
-response to node resources coming under contention. As Ondat provides
-storage to pods it should not be evicted during periods of resource contention,
-as any pods using Ondat volumes on the same node would need to be
-restarted.</p>
-<p>As Ondat runs as a daemonset some Kubernetes tolerations are added by
-Kubernetes while others are automatically added by the Ondat operator.</p>
-<p>For more information about tolerations, see the <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">Kubernetes
-documentation</a>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#204a87;font-weight:bold">tolerations</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The unreachable and not-ready tolerations are added by Kubernetes to daemonsets automatically</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;node.kubernetes.io/unreachable&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Exists&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">effect</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;NoExecute&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;node.kubernetes.io/not-ready&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;Exists&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">effect</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;NoExecute&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#8f5902;font-style:italic"># The following tolerations are added to the Ondat daemonset by the Ondat operator</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node.kubernetes.io/disk-pressure</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Exists</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node.kubernetes.io/memory-pressure</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Exists</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node.kubernetes.io/network-unavailable</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Exists</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node.kubernetes.io/out-of-disk</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Exists</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node.kubernetes.io/pid-pressure</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Exists</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">node.kubernetes.io/unschedulable</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">operator</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Exists</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><h2 id="adding-custom-tolerations">Adding Custom Tolerations</h2>
-<p>To add custom tolerations to the Ondat daemonset <a href="/docs/reference/operator/examples#specifying-custom-tolerations">configure them in the
-StorageOSCluster
-resource</a>.</p>
+	<h2 id="issue">Issue</h2>
+<p>When attempting to deploy Ondat into an OpenShift cluster, you notice that Ondat daemonset pods are missing in the project where Ondat is supposed to reside in. Below is the example of the <code>Events:</code> error message that shows up when you investigate further into why the daemonset is not running:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the status of the pods in the &#34;storageos&#34; project.</span>
+oc get pods
+
+No resources found.
+
+<span style="color:#8f5902;font-style:italic"># Describe the Ondat daemonset  in the &#34;storageos&#34; project.</span>
+oc describe daemonset storageos
+
+<span style="color:#8f5902;font-style:italic"># Truncated output.</span>
+Events:
+  Type     Reason        Age                From                  Message
+  ----     ------        ----               ----                  -------
+  Warning  FailedCreate  0s <span style="color:#ce5c00;font-weight:bold">(</span>x12 over 10s<span style="color:#ce5c00;font-weight:bold">)</span>  daemonset-controller  Error creating: pods <span style="color:#4e9a06">&#34;storageos-&#34;</span> is forbidden: unable to validate against any security context constraint: <span style="color:#ce5c00;font-weight:bold">[</span>provider restricted: .spec.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used provider restricted: .spec.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>1<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>2<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.volumes<span style="color:#ce5c00;font-weight:bold">[</span>3<span style="color:#ce5c00;font-weight:bold">]</span>: Invalid value: <span style="color:#4e9a06">&#34;hostPath&#34;</span>: hostPath volumes are not allowed to be used spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: <span style="color:#4e9a06">&#34;SYS_ADMIN&#34;</span>: capability may not be added spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.initContainers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: <span style="color:#4e9a06">&#34;SYS_ADMIN&#34;</span>: capability may not be added spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.containers<span style="color:#ce5c00;font-weight:bold">[</span>0<span style="color:#ce5c00;font-weight:bold">]</span>.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used<span style="color:#ce5c00;font-weight:bold">]</span>
+
+</code></pre></div><h2 id="root-cause">Root Cause</h2>
+<p>The root cause of this issue is due to the default <a href="https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html">Security Context Constraints (SCCs)</a> polices in your OpenShift cluster. By default, the polices forbid any pod without an explicitly, defined policy for the <a href="https://docs.openshift.com/container-platform/4.11/authentication/understanding-and-creating-service-accounts.html"><code>ServiceAccount</code></a> used by Ondat.</p>
+<h2 id="resolution">Resolution</h2>
+<ol>
+<li>Check and ensure that the Ondat <code>ServiceAccount</code> has the correct permissions to be able to successfully create objects.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get more information about the ServiceAccounts that are under the &#34;privileged&#34; SCC.</span>
+oc get scc privileged --output yaml
+
+<span style="color:#8f5902;font-style:italic"># Truncated output.</span>
+users:
+- system:admin
+- system:serviceaccount:openshift-infra:build-controller
+- system:serviceaccount:management-infra:management-admin
+- system:serviceaccount:management-infra:inspector-admin
+- system:serviceaccount:tiller:tiller
+</code></pre></div><ol start="2">
+<li>If Ondat&rsquo;s <code>ServiceAccount</code>  &raquo; <code>system:serviceaccount:storageos:storageos</code> does not show up as demonstrated in in the command above, the next step will be to add the <code>ServiceAccount</code> to the <code>privileged</code> SCC as demonstrated below:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Add Ondat ServiceAccount to the &#34;privileged&#34; SCC.</span>
+oc adm policy add-scc-to-user privileged system:serviceaccount:storageos:storageos
+</code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html">Managing security context constraints - OpenShift Documentation</a></li>
+<li><a href="https://docs.openshift.com/container-platform/4.11/authentication/understanding-and-creating-service-accounts.html">Understanding and creating service accounts - OpenShift Documentation</a></li>
+</ul>
 
 	
 	

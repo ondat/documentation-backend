@@ -433,6 +433,61 @@ kubectl logs storageos-node-tw8fk --namespace storageos
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;When attempting to deploy Ondat into an OpenShift cluster, you notice that Ondat daemonset pods are missing in the project where Ondat is supposed to reside in. Below is the example of the &lt;code&gt;Events:&lt;/code&gt; error message that shows up when you investigate further into why the daemonset is not running:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the status of the pods in the &amp;#34;storageos&amp;#34; project.&lt;/span&gt;
+oc get pods
+
+No resources found.
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the Ondat daemonset  in the &amp;#34;storageos&amp;#34; project.&lt;/span&gt;
+oc describe daemonset storageos
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+Events:
+  Type     Reason        Age                From                  Message
+  ----     ------        ----               ----                  -------
+  Warning  FailedCreate  0s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x12 over 10s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  daemonset-controller  Error creating: pods &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-&amp;#34;&lt;/span&gt; is forbidden: unable to validate against any security context constraint: &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;provider restricted: .spec.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used provider restricted: .spec.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;1&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;2&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.volumes&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;3&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;hostPath&amp;#34;&lt;/span&gt;: hostPath volumes are not allowed to be used spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;SYS_ADMIN&amp;#34;&lt;/span&gt;: capability may not be added spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.initContainers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.privileged: Invalid value: true: Privileged containers are not allowed capabilities.add: Invalid value: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;SYS_ADMIN&amp;#34;&lt;/span&gt;: capability may not be added spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostNetwork: Invalid value: true: Host network is not allowed to be used spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.hostPort: Invalid value: 5705: Host ports are not allowed to be used spec.containers&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;0&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;.securityContext.hostPID: Invalid value: true: Host PID is not allowed to be used&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;The root cause of this issue is due to the default &lt;a href=&#34;https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html&#34;&gt;Security Context Constraints (SCCs)&lt;/a&gt; polices in your OpenShift cluster. By default, the polices forbid any pod without an explicitly, defined policy for the &lt;a href=&#34;https://docs.openshift.com/container-platform/4.11/authentication/understanding-and-creating-service-accounts.html&#34;&gt;&lt;code&gt;ServiceAccount&lt;/code&gt;&lt;/a&gt; used by Ondat.&lt;/p&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Check and ensure that the Ondat &lt;code&gt;ServiceAccount&lt;/code&gt; has the correct permissions to be able to successfully create objects.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get more information about the ServiceAccounts that are under the &amp;#34;privileged&amp;#34; SCC.&lt;/span&gt;
+oc get scc privileged --output yaml
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+users:
+- system:admin
+- system:serviceaccount:openshift-infra:build-controller
+- system:serviceaccount:management-infra:management-admin
+- system:serviceaccount:management-infra:inspector-admin
+- system:serviceaccount:tiller:tiller
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;If Ondat&amp;rsquo;s &lt;code&gt;ServiceAccount&lt;/code&gt;  &amp;raquo; &lt;code&gt;system:serviceaccount:storageos:storageos&lt;/code&gt; does not show up as demonstrated in in the command above, the next step will be to add the &lt;code&gt;ServiceAccount&lt;/code&gt; to the &lt;code&gt;privileged&lt;/code&gt; SCC as demonstrated below:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Add Ondat ServiceAccount to the &amp;#34;privileged&amp;#34; SCC.&lt;/span&gt;
+oc adm policy add-scc-to-user privileged system:serviceaccount:storageos:storageos
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html&#34;&gt;Managing security context constraints - OpenShift Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.openshift.com/container-platform/4.11/authentication/understanding-and-creating-service-accounts.html&#34;&gt;Understanding and creating service accounts - OpenShift Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting &#39;unregistered licence period has expired&#39; Error Message</title>
       <link>/docs/knowledgebase/solution-troubleshooting-unregistered-licence-period-has-expired/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
