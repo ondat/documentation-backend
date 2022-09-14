@@ -2491,6 +2491,139 @@ Customer name:
     </item>
     
     <item>
+      <title>Docs: How To Safely Shut Down &amp; Start Up A Cluster</title>
+      <link>/docs/operations/how-to-shut-down-start-up-a-cluster-procedure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/how-to-shut-down-start-up-a-cluster-procedure/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;To completely power down an Ondat cluster, for example, when needing to support a machine hall power event, it is recommended to follow the procedure demonstrated in this operation page.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The main reason for this is to place the cluster into a pseudo maintenance mode to prevent any automated recovery and failover of volumes.&lt;/li&gt;
+&lt;li&gt;As the graceful and non-graceful shutdown support in Kubernetes progress towards GA we intend to introduce an automated capability in a future release of Ondat to automate this workflow.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that you have installed and configured &lt;a href=&#34;https://kubernetes.io/docs/tasks/tools/&#34;&gt;&lt;code&gt;kubectl&lt;/code&gt;&lt;/a&gt; to communicate with your cluster.&lt;/li&gt;
+&lt;li&gt;Ensure that you have the &lt;a href=&#34;/docs/reference/cli/&#34;&gt;Ondat CLI&lt;/a&gt; utility deployed and configured to communicate with your Ondat cluster.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;procedure---shut-down-the-cluster&#34;&gt;Procedure - Shut Down The Cluster&lt;/h2&gt;
+&lt;h3 id=&#34;step-1---inspect-the-cluster-to-ensure-that-all-master-volumes-are-online--replica-volumes-are-in-sync&#34;&gt;Step 1 - Inspect The Cluster To Ensure That All Master Volumes Are Online &amp;amp; Replica Volumes Are In-sync&lt;/h3&gt;
+&lt;p&gt;Using the Ondat CLI utility, run the command below to query all the master volumes and any replica volumes, and then check that the health status is either &amp;raquo; &lt;code&gt;online&lt;/code&gt; for masters volumes and &amp;raquo; &lt;code&gt;ready&lt;/code&gt; for replica volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that no volume has a health status of &amp;raquo; &lt;code&gt;offline&lt;/code&gt; or &amp;raquo; &lt;code&gt;unknown&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check and ensure that all volumes are &amp;#34;online&amp;#34; and &amp;#34;ready&amp;#34;.&lt;/span&gt;
+kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -ti &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get pods -n storageos -l &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-cli -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].metadata.name}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt; -n storageos -- storageos describe volume -A &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep Health
+
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-2---scale-down-application-workloads-to-stop-disk-io-operations&#34;&gt;Step 2 - Scale Down Application Workloads To Stop Disk I/O Operations&lt;/h3&gt;
+&lt;p&gt;First we want to stop disk I/O workloads gracefully and flush all the data to disk. To achieve this, follow your standard Kubernetes workflow or run book for scaling workloads to zero. Below is  it will probably look something similar to:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Scale down StatefulSets and Deployments to 0 replicas.&lt;/span&gt;
+kubectl scale statefulset,deployment -n &lt;span style=&#34;color:#000&#34;&gt;$NAMESPACE&lt;/span&gt; --all --replicas&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;At this point, there should be nothing running that is generating I/O operations to any Ondat volumes. This enables end users to move onto the next step of stopping Ondat.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ondat needs to be stopped first before powering down your Kubernetes cluster, as Ondat is designed to create new replicas of data for volumes that are no longer available. To avoid Ondat from conducting its normal recovery actions as soon as Kubernetes start shutting down nodes, as this is a planned event. By scaling down the workloads and shutting down Ondat, this will freeze all the data in place and maintain the consistency.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Nothing is being done to the backing data or metadata. All of this will be preserved with this process, but as with every procedure where systems are being powered on and off, it is always recommended that backups are taken as a precaution in case your hardware has an issue powering back on.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-3----backup-the-ondat-cluster-custom-resource&#34;&gt;Step 3 -  Backup The Ondat Cluster Custom Resource&lt;/h3&gt;
+&lt;p&gt;To shut down the Ondat cluster, the first step is to remove the Ondat cluster custom resource. End users, can explore the Ondat cluster definition by examining the Custom Resource Definition &amp;raquo; &lt;code&gt;storageosclusters.storageos.com&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Before deleting this object, ensure that a copy of the definition YAML manifest is made, as this is going to be used in the restoration stage that will be described later.&lt;/li&gt;
+&lt;li&gt;To back up the YAML manifest, run the following command and ensure that the output backup file &amp;raquo; &lt;code&gt;stos-backup.yaml&lt;/code&gt; is stored in a safe place (or even added to a configuration management system):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Backup the Ondat cluster Custom Resource.&lt;/span&gt;
+kubectl get -n storageos stos storageoscluster &amp;gt; ./stos-backup.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 In the code snippet demonstrated above, if you have used a different name for the CRD, ensure that you update the command with the correct name for it to successfully run.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-4---backup-the-etcd-cluster-custom-resource&#34;&gt;Step 4 - Backup The &lt;code&gt;etcd&lt;/code&gt; Cluster Custom Resource&lt;/h3&gt;
+&lt;p&gt;For end users that are also self-hosting &lt;code&gt;etcd&lt;/code&gt; in the cluster, a recommendation will be to also back up the &lt;code&gt;etcd&lt;/code&gt; definition as well.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To back up the YAML manifest,  run the following command and ensure that the output backup file &amp;raquo; &lt;code&gt;stos-etcd-backup.yaml&lt;/code&gt; is stored in a safe place (or even added to a configuration management system):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Backup the etcd cluster Custom Resource.&lt;/span&gt;
+kubectl get -n storageos-etcd etcdcluster storageos-etcd &amp;gt; ./stos-etcd-backup.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-5---delete-the-ondat-cluster&#34;&gt;Step 5 - Delete The Ondat Cluster&lt;/h3&gt;
+&lt;p&gt;Once Custom Resource definitions have been backed up, the next step will be to delete the Ondat cluster object. This will also delete the Ondat daemonset pods from all the nodes and, in effect, will be left with a static system which has all the data intact on the nodes - although the Ondat data plane and control plane are no longer running.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This means that any node power down actions will not result in any volume recovery or failover actions as desired.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Delete the Ondat cluster object.&lt;/span&gt;
+kubectl delete -n storageos stos storageoscluster
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-6---delete-the-ondat-etcd-cluster&#34;&gt;Step 6 - Delete The Ondat &lt;code&gt;etcd&lt;/code&gt; Cluster&lt;/h3&gt;
+&lt;p&gt;After the Ondat cluster is successfully deleted, the next step will be to need to scale down the Ondat &lt;code&gt;etcd&lt;/code&gt; cluster. This will delete the &lt;code&gt;etcd&lt;/code&gt; cluster pods, but not the PVCs which contain the member information.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Delete the Ondat etcd cluster object.&lt;/span&gt;
+kubectl delete -n storageos-etcd etcdcluster storageos-etcd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-7---shut-down-the-kubernetes-nodes&#34;&gt;Step 7 - Shut Down The Kubernetes Nodes&lt;/h3&gt;
+&lt;p&gt;The next step will be to follow your Kubernetes distribution guidance on how to power down your cluster. This stage will probably be similar to the following Kubernetes documentation on How to &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/&#34;&gt;safely drain a node&lt;/a&gt;, however, it is recommended to follow the specific instructions provided by your Kubernetes distribution on this topic.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Drain a Kubernetes node in your cluster.&lt;/span&gt;
+kubectl drain &lt;span style=&#34;color:#000&#34;&gt;$NODE&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# SSH into the worker node and shut it down after the drain workflow is complete.&lt;/span&gt;
+ssh -t user@&lt;span style=&#34;color:#000&#34;&gt;$NODE&lt;/span&gt; &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;sudo shutdown now&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The procedure will probably call for shutting down all the worker nodes first (usually these &lt;a href=&#34;https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/#draining-multiple-nodes-in-parallel&#34;&gt;can be done in parallel&lt;/a&gt;), and then the master nodes, which again can usually all be done in parallel.&lt;/p&gt;
+&lt;h2 id=&#34;procedure---start-up-the-cluster&#34;&gt;Procedure - Start Up The Cluster&lt;/h2&gt;
+&lt;p&gt;To power on the cluster after a power down, restart the Kubernetes distribution, which should be as simple as powering on the &lt;a href=&#34;https://kubernetes.io/docs/concepts/overview/components/#control-plane-components&#34;&gt;control plane components&lt;/a&gt; and then the worker nodes. After a certain period of time, the Kubernetes nodes should be in a ready state. Once the nodes are in the ready state, the next step will be to restore the Ondat cluster definition and scale up the workloads.&lt;/p&gt;
+&lt;h3 id=&#34;step-1---restore-the-ondat-etcd-cluster-custom-resource&#34;&gt;Step 1 - Restore The Ondat &lt;code&gt;etcd&lt;/code&gt; Cluster Custom Resource&lt;/h3&gt;
+&lt;p&gt;To restore the Ondat &lt;code&gt;etcd&lt;/code&gt; cluster, simply apply the YAML manifest file that was created in the previous procedure:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Apply the etcd cluster Custom Resource that was previously backed up.&lt;/span&gt;
+kubectl apply -f ./stos-etcd-backup.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once successfully applied, ensure that all the &lt;code&gt;ectd&lt;/code&gt; pods are in a &lt;code&gt;Running&lt;/code&gt; state and ready:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check and ensure that the &amp;#34;etcd&amp;#34; pods are &amp;#34;Running&amp;#34; successfully.&lt;/span&gt;
+kubectl get pods -n storageos-etcd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-2---restore-the-ondat-cluster-custom-resource&#34;&gt;Step 2 - Restore The Ondat Cluster Custom Resource&lt;/h3&gt;
+&lt;p&gt;After all the &lt;code&gt;etcd&lt;/code&gt; pods are in a &lt;code&gt;Running&lt;/code&gt; statue and ready, restore the Ondat cluster by applying the other YAML manifest file that was created in the previous procedure:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Apply the Ondat cluster Custom Resource that was previously backed up.&lt;/span&gt;
+kubectl apply -f ./stos-backup.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once successfully applied, ensure that all the Ondat pods, including the Ondat daemonset pods, are in a &lt;code&gt;Running&lt;/code&gt; state and ready:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check and ensure that the Ondat pods are &amp;#34;Running&amp;#34; successfully.&lt;/span&gt;
+kubectl get pods -n storageos
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-3---check-that-the-ondat-master-volumes--replicas-are-online--ready&#34;&gt;Step 3 - Check That the Ondat Master Volumes &amp;amp; Replicas Are Online &amp;amp; Ready&lt;/h3&gt;
+&lt;p&gt;Once you have validated that the Ondat daemonset is up and running, you can query the master volumes and replica volumes to check they are all reporting that they are back online and ready:&lt;/p&gt;
+&lt;p&gt;Using the Ondat CLI utility, run the command below to query all the master volumes and any replica volumes, and then check that the health status is either &amp;raquo; &lt;code&gt;online&lt;/code&gt; for masters volumes and &amp;raquo; &lt;code&gt;ready&lt;/code&gt; for replica volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ensure that no volume has a health status of &amp;raquo; &lt;code&gt;offline&lt;/code&gt; or &amp;raquo; &lt;code&gt;unknown&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check and ensure that all volumes are &amp;#34;online&amp;#34; and &amp;#34;ready&amp;#34;.&lt;/span&gt;
+kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -ti &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl get pods -n storageos -l &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-cli -o&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;jsonpath&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{.items[0].metadata.name}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt; -n storageos -- storageos describe volume -A &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep Health
+
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-4----scale-up-the-application-workloads-to-resume-io-operations&#34;&gt;Step 4 -  Scale Up The Application Workloads To Resume I/O Operations&lt;/h3&gt;
+&lt;p&gt;The last step is to scale up the workloads again to resume I/O operations. For example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Scale up the StatefulSets back up to their desired replica count.&lt;/span&gt;
+kubectl scale statefulset -n mynamespace &amp;lt;statefulset-name&amp;gt; --replicas&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Scale up the Deployments back up to to their desired replica count.&lt;/span&gt;
+kubectl scale deployment -n mynamespace &amp;lt;deployment-name&amp;gt; --replicas&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: How To Setup A Centralised Cluster Topology</title>
       <link>/docs/operations/compute-only/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

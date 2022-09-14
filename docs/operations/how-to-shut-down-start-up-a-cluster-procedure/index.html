@@ -20,23 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes | </title><meta property="og:title" content="Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes" />
-<meta property="og:description" content="Issue After deploying a stateful application into an Ondat cluster, you experience an issue where provisioning Ondat volume for the stateful application is stuck in a Pending state.
- Upon further investigation into the persistent volume claims, the Events: section reports an failed to provision volume with StorageClass &quot;storageos&quot;: rpc error: code = OutOfRange desc = unsupported capacity size: 1000000000 error message.  # Describe the persistent volume claims in a &#34;Pending&#34; state to get more information about the issue." />
+<title>How To Safely Shut Down &amp; Start Up A Cluster | </title><meta property="og:title" content="How To Safely Shut Down &amp; Start Up A Cluster" />
+<meta property="og:description" content="Overview To completely power down an Ondat cluster, for example, when needing to support a machine hall power event, it is recommended to follow the procedure demonstrated in this operation page.
+ The main reason for this is to place the cluster into a pseudo maintenance mode to prevent any automated recovery and failover of volumes. As the graceful and non-graceful shutdown support in Kubernetes progress towards GA we intend to introduce an automated capability in a future release of Ondat to automate this workflow." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/operations/how-to-shut-down-start-up-a-cluster-procedure/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes">
-<meta itemprop="description" content="Issue After deploying a stateful application into an Ondat cluster, you experience an issue where provisioning Ondat volume for the stateful application is stuck in a Pending state.
- Upon further investigation into the persistent volume claims, the Events: section reports an failed to provision volume with StorageClass &quot;storageos&quot;: rpc error: code = OutOfRange desc = unsupported capacity size: 1000000000 error message.  # Describe the persistent volume claims in a &#34;Pending&#34; state to get more information about the issue.">
+<meta itemprop="name" content="How To Safely Shut Down &amp; Start Up A Cluster">
+<meta itemprop="description" content="Overview To completely power down an Ondat cluster, for example, when needing to support a machine hall power event, it is recommended to follow the procedure demonstrated in this operation page.
+ The main reason for this is to place the cluster into a pseudo maintenance mode to prevent any automated recovery and failover of volumes. As the graceful and non-graceful shutdown support in Kubernetes progress towards GA we intend to introduce an automated capability in a future release of Ondat to automate this workflow.">
 
-<meta itemprop="wordCount" content="461">
+<meta itemprop="wordCount" content="1458">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes"/>
-<meta name="twitter:description" content="Issue After deploying a stateful application into an Ondat cluster, you experience an issue where provisioning Ondat volume for the stateful application is stuck in a Pending state.
- Upon further investigation into the persistent volume claims, the Events: section reports an failed to provision volume with StorageClass &quot;storageos&quot;: rpc error: code = OutOfRange desc = unsupported capacity size: 1000000000 error message.  # Describe the persistent volume claims in a &#34;Pending&#34; state to get more information about the issue."/>
+<meta name="twitter:title" content="How To Safely Shut Down &amp; Start Up A Cluster"/>
+<meta name="twitter:description" content="Overview To completely power down an Ondat cluster, for example, when needing to support a machine hall power event, it is recommended to follow the procedure demonstrated in this operation page.
+ The main reason for this is to place the cluster into a pseudo maintenance mode to prevent any automated recovery and failover of volumes. As the graceful and non-graceful shutdown support in Kubernetes progress towards GA we intend to introduce an automated capability in a future release of Ondat to automate this workflow."/>
 
 
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes | </title>
+    <title>How To Safely Shut Down &amp; Start Up A Cluster | </title>
   </head>
   <body class="td-page">
     
@@ -922,10 +922,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/operations/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Operations</a>
+    <a  href="/docs/operations/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Operations</a>
   </li>
   <ul>
-    <li class="collapse " id="docsoperations">
+    <li class="collapse show" id="docsoperations">
       
       
       
@@ -1080,7 +1080,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshow-to-shut-down-start-up-a-cluster-procedure" href="/docs/operations/how-to-shut-down-start-up-a-cluster-procedure/">How To Safely Shut Down &amp; Start Up A Cluster</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationshow-to-shut-down-start-up-a-cluster-procedure" href="/docs/operations/how-to-shut-down-start-up-a-cluster-procedure/">How To Safely Shut Down &amp; Start Up A Cluster</a>
       
       
       
@@ -1520,10 +1520,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsknowledgebase">
+    <li class="collapse " id="docsknowledgebase">
       
       
       
@@ -1548,7 +1548,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes" href="/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/">Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes" href="/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/">Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</a>
       
       
       
@@ -1672,10 +1672,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#issue">Issue</a></li>
-    <li><a href="#root-cause">Root Cause</a></li>
-    <li><a href="#resolution">Resolution</a></li>
-    <li><a href="#references">References</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure---shut-down-the-cluster">Procedure - Shut Down The Cluster</a>
+      <ul>
+        <li><a href="#step-1---inspect-the-cluster-to-ensure-that-all-master-volumes-are-online--replica-volumes-are-in-sync">Step 1 - Inspect The Cluster To Ensure That All Master Volumes Are Online &amp; Replica Volumes Are In-sync</a></li>
+        <li><a href="#step-2---scale-down-application-workloads-to-stop-disk-io-operations">Step 2 - Scale Down Application Workloads To Stop Disk I/O Operations</a></li>
+        <li><a href="#step-3----backup-the-ondat-cluster-custom-resource">Step 3 -  Backup The Ondat Cluster Custom Resource</a></li>
+        <li><a href="#step-4---backup-the-etcd-cluster-custom-resource">Step 4 - Backup The <code>etcd</code> Cluster Custom Resource</a></li>
+        <li><a href="#step-5---delete-the-ondat-cluster">Step 5 - Delete The Ondat Cluster</a></li>
+        <li><a href="#step-6---delete-the-ondat-etcd-cluster">Step 6 - Delete The Ondat <code>etcd</code> Cluster</a></li>
+        <li><a href="#step-7---shut-down-the-kubernetes-nodes">Step 7 - Shut Down The Kubernetes Nodes</a></li>
+      </ul>
+    </li>
+    <li><a href="#procedure---start-up-the-cluster">Procedure - Start Up The Cluster</a>
+      <ul>
+        <li><a href="#step-1---restore-the-ondat-etcd-cluster-custom-resource">Step 1 - Restore The Ondat <code>etcd</code> Cluster Custom Resource</a></li>
+        <li><a href="#step-2---restore-the-ondat-cluster-custom-resource">Step 2 - Restore The Ondat Cluster Custom Resource</a></li>
+        <li><a href="#step-3---check-that-the-ondat-master-volumes--replicas-are-online--ready">Step 3 - Check That the Ondat Master Volumes &amp; Replicas Are Online &amp; Ready</a></li>
+        <li><a href="#step-4----scale-up-the-application-workloads-to-resume-io-operations">Step 4 -  Scale Up The Application Workloads To Resume I/O Operations</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -1707,14 +1724,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/knowledgebase/">Knowledge Base</a>
+	<a href="/docs/operations/">Operations</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/">Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</a>
+	<a href="/docs/operations/how-to-shut-down-start-up-a-cluster-procedure/">How To Safely Shut Down &amp; Start Up A Cluster</a>
 </li>
 
 	</ol>
@@ -1722,94 +1739,129 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</h1>
+	<h1>How To Safely Shut Down &amp; Start Up A Cluster</h1>
 	
-	<h2 id="issue">Issue</h2>
-<p>After deploying a stateful application into an Ondat cluster, you experience an issue where provisioning Ondat volume for the stateful application is stuck in a <code>Pending</code> state.</p>
+	<h2 id="overview">Overview</h2>
+<p>To completely power down an Ondat cluster, for example, when needing to support a machine hall power event, it is recommended to follow the procedure demonstrated in this operation page.</p>
 <ul>
-<li>Upon further investigation into the persistent volume claims, the <code>Events:</code> section reports an <code>failed to provision volume with StorageClass &quot;storageos&quot;: rpc error: code = OutOfRange desc = unsupported capacity size: 1000000000</code> error message.</li>
+<li>The main reason for this is to place the cluster into a pseudo maintenance mode to prevent any automated recovery and failover of volumes.</li>
+<li>As the graceful and non-graceful shutdown support in Kubernetes progress towards GA we intend to introduce an automated capability in a future release of Ondat to automate this workflow.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Describe the persistent volume claims in a &#34;Pending&#34; state to get more information about the issue.</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">$ kubectl describe pvc --namespace pgo</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#000">cluster1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#000">pgo</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">StorageClass</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Status</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#000">Pending</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Volume</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#000">pg-cluster=cluster1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#000">vendor=crunchydata</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Annotations:   storageos.com/storageclass</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">81e66e90-9140-47ac-8648-c17bbdb7ab8a</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#204a87;font-weight:bold">volume.beta.kubernetes.io/storage-provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#204a87;font-weight:bold">volume.kubernetes.io/storage-provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Finalizers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">kubernetes.io/pvc-protection]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Capacity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Access Modes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">VolumeMode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">Filesystem</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Used By</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#000">&lt;none&gt;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Events</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Type     Reason                Age                   From                                                                                          Message</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">    </span>------ <span style="color:#f8f8f8;text-decoration:underline">               </span>---- <span style="color:#f8f8f8;text-decoration:underline">                 </span>---- <span style="color:#f8f8f8;text-decoration:underline">                                                                                         </span>-------<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Normal   Provisioning          4m10s (x10 over 10m)  csi.storageos.com_storageos-csi-helper-6bf49c4bd5-fb4wn_ac8d4cb4-3ac4-4766-9cef-2037af393fef  External provisioner is provisioning volume for claim &#34;pgo/cluster1&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Warning  ProvisioningFailed    4m8s (x10 over 10m)   csi.storageos.com_storageos-csi-helper-6bf49c4bd5-fb4wn_ac8d4cb4-3ac4-4766-9cef-2037af393fef  failed to provision volume with StorageClass &#34;storageos&#34;: rpc error: code = OutOfRange desc = unsupported capacity size: 1000000000</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Normal   ExternalProvisioning  44s (x42 over 10m)    persistentvolume-controller                                                                   waiting for a volume to be created, either by external provisioner &#34;csi.storageos.com&#34; or manually created by system administrator</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">          </span><span style="color:#000">cluster1-pgbr-repo</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">     </span><span style="color:#000">pgo</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">StorageClass</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Status</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#000">Pending</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Volume</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">        </span><span style="color:#000">pg-cluster=cluster1</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#000">vendor=crunchydata</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Annotations:   storageos.com/storageclass</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">81e66e90-9140-47ac-8648-c17bbdb7ab8a</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#204a87;font-weight:bold">volume.beta.kubernetes.io/storage-provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">               </span><span style="color:#204a87;font-weight:bold">volume.kubernetes.io/storage-provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Finalizers</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">kubernetes.io/pvc-protection]</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Capacity</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Access Modes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">VolumeMode</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#000">Filesystem</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Used By</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">       </span><span style="color:#000">cluster1-backrest-shared-repo-77b9566957-f8jfv</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">Events</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Type     Reason                Age                   From                                                                                          Message</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span>---- <span style="color:#f8f8f8;text-decoration:underline">    </span>------ <span style="color:#f8f8f8;text-decoration:underline">               </span>---- <span style="color:#f8f8f8;text-decoration:underline">                 </span>---- <span style="color:#f8f8f8;text-decoration:underline">                                                                                         </span>-------<span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Normal   Provisioning          4m10s (x10 over 10m)  csi.storageos.com_storageos-csi-helper-6bf49c4bd5-fb4wn_ac8d4cb4-3ac4-4766-9cef-2037af393fef  External provisioner is provisioning volume for claim &#34;pgo/cluster1-pgbr-repo&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Warning  ProvisioningFailed    4m9s (x10 over 10m)   csi.storageos.com_storageos-csi-helper-6bf49c4bd5-fb4wn_ac8d4cb4-3ac4-4766-9cef-2037af393fef  failed to provision volume with StorageClass &#34;storageos&#34;: rpc error: code = OutOfRange desc = unsupported capacity size: 1000000000</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#000">Normal   ExternalProvisioning  29s (x42 over 10m)    persistentvolume-controller                                                                   waiting for a volume to be created, either by external provisioner &#34;csi.storageos.com&#34; or manually created by system administrator</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><h2 id="root-cause">Root Cause</h2>
-<p>The cause of this error message is due to the usage of <a href="https://en.wikipedia.org/wiki/Power_of_10">powers of 10</a> storage size units &raquo; (ie, <code>E, P, T, G, M, k</code> ) defined in your stateful application manifests instead of using <a href="https://en.wikipedia.org/wiki/Power_of_two">powers of 2</a> storage size units &raquo; (ie, <code>Ei, Pi, Ti, Gi, Mi, Ki</code>).</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><code>1</code> <em>kilobyte</em> (symbol <code>kB</code>) == <code>1,000</code> bytes, whereas</li>
-<li><code>1</code> <em>kibibyte</em> (symbol <code>KiB</code>) == <code>1,024</code> bytes.</li>
+<li>Ensure that you have installed and configured <a href="https://kubernetes.io/docs/tasks/tools/"><code>kubectl</code></a> to communicate with your cluster.</li>
+<li>Ensure that you have the <a href="/docs/reference/cli/">Ondat CLI</a> utility deployed and configured to communicate with your Ondat cluster.</li>
 </ul>
-<p>From the <a href="https://man7.org/linux/man-pages/man8/vmstat.8.html"><code>vmstat</code></a> man page;</p>
-<blockquote>
-<p>All linux blocks are currently 1024 bytes.  Old kernels may report blocks as 512 bytes, 2048 bytes, or 4096 bytes.
-Since procps 3.1.9, vmstat lets you choose units (k, K, m, M).
-Default is K (1024 bytes) in the default mode.</p>
-</blockquote>
-<p>Ondat conforms to using the default kernel block size &ndash; <code>1024</code> bytes as compared to <code>1000</code> bytes.</p>
-<h2 id="resolution">Resolution</h2>
-<p>To resolve this issue, end users can either;</p>
+<h2 id="procedure---shut-down-the-cluster">Procedure - Shut Down The Cluster</h2>
+<h3 id="step-1---inspect-the-cluster-to-ensure-that-all-master-volumes-are-online--replica-volumes-are-in-sync">Step 1 - Inspect The Cluster To Ensure That All Master Volumes Are Online &amp; Replica Volumes Are In-sync</h3>
+<p>Using the Ondat CLI utility, run the command below to query all the master volumes and any replica volumes, and then check that the health status is either &raquo; <code>online</code> for masters volumes and &raquo; <code>ready</code> for replica volumes.</p>
 <ul>
-<li><strong>Option 1 - Upgrade Ondat to release <code>v2.8.0</code> or greater</strong>.
-<ul>
-<li>If users would like to continue to use powers of 10 storage sizing units, ensure that you Ondat cluster is on version <code>v2.8.0</code> or greater.</li>
+<li>Ensure that no volume has a health status of &raquo; <code>offline</code> or &raquo; <code>unknown</code>.</li>
 </ul>
-</li>
-<li><strong>Option 2 - Change you manifests to use powers of 2  storage sizing units</strong>.
-<ul>
-<li>Users can modify their manifests to use <code>Ei, Pi, Ti, Gi, Mi, Ki</code> storage sizing units to allow for volumes to be successfully provisioned.</li>
-</ul>
-</li>
-</ul>
-<h2 id="references">References</h2>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Byte#Multiple-byte_units">Byte, Multiple-byte Units - Wikipedia</a></li>
-<li><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#resource-units-in-kubernetes">Resource Units In Kubernetes - Kubernetes Documentation</a></li>
-<li><a href="https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/">Kubernetes API, Common Definitions, Quantity - Kubernetes Documentation</a></li>
-</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check and ensure that all volumes are &#34;online&#34; and &#34;ready&#34;.</span>
+kubectl <span style="color:#204a87">exec</span> -ti <span style="color:#204a87;font-weight:bold">$(</span>kubectl get pods -n storageos -l <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos-cli -o<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">jsonpath</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;{.items[0].metadata.name}&#39;</span><span style="color:#204a87;font-weight:bold">)</span> -n storageos -- storageos describe volume -A <span style="color:#000;font-weight:bold">|</span> grep Health
 
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online
+</code></pre></div><h3 id="step-2---scale-down-application-workloads-to-stop-disk-io-operations">Step 2 - Scale Down Application Workloads To Stop Disk I/O Operations</h3>
+<p>First we want to stop disk I/O workloads gracefully and flush all the data to disk. To achieve this, follow your standard Kubernetes workflow or run book for scaling workloads to zero. Below is  it will probably look something similar to:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Scale down StatefulSets and Deployments to 0 replicas.</span>
+kubectl scale statefulset,deployment -n <span style="color:#000">$NAMESPACE</span> --all --replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span>
+</code></pre></div><p>At this point, there should be nothing running that is generating I/O operations to any Ondat volumes. This enables end users to move onto the next step of stopping Ondat.</p>
+<ul>
+<li>Ondat needs to be stopped first before powering down your Kubernetes cluster, as Ondat is designed to create new replicas of data for volumes that are no longer available. To avoid Ondat from conducting its normal recovery actions as soon as Kubernetes start shutting down nodes, as this is a planned event. By scaling down the workloads and shutting down Ondat, this will freeze all the data in place and maintain the consistency.</li>
+</ul>
+<blockquote>
+<p>💡 Nothing is being done to the backing data or metadata. All of this will be preserved with this process, but as with every procedure where systems are being powered on and off, it is always recommended that backups are taken as a precaution in case your hardware has an issue powering back on.</p>
+</blockquote>
+<h3 id="step-3----backup-the-ondat-cluster-custom-resource">Step 3 -  Backup The Ondat Cluster Custom Resource</h3>
+<p>To shut down the Ondat cluster, the first step is to remove the Ondat cluster custom resource. End users, can explore the Ondat cluster definition by examining the Custom Resource Definition &raquo; <code>storageosclusters.storageos.com</code>.</p>
+<ul>
+<li>Before deleting this object, ensure that a copy of the definition YAML manifest is made, as this is going to be used in the restoration stage that will be described later.</li>
+<li>To back up the YAML manifest, run the following command and ensure that the output backup file &raquo; <code>stos-backup.yaml</code> is stored in a safe place (or even added to a configuration management system):</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Backup the Ondat cluster Custom Resource.</span>
+kubectl get -n storageos stos storageoscluster &gt; ./stos-backup.yaml
+</code></pre></div><blockquote>
+<p>💡 In the code snippet demonstrated above, if you have used a different name for the CRD, ensure that you update the command with the correct name for it to successfully run.</p>
+</blockquote>
+<h3 id="step-4---backup-the-etcd-cluster-custom-resource">Step 4 - Backup The <code>etcd</code> Cluster Custom Resource</h3>
+<p>For end users that are also self-hosting <code>etcd</code> in the cluster, a recommendation will be to also back up the <code>etcd</code> definition as well.</p>
+<ul>
+<li>To back up the YAML manifest,  run the following command and ensure that the output backup file &raquo; <code>stos-etcd-backup.yaml</code> is stored in a safe place (or even added to a configuration management system):</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Backup the etcd cluster Custom Resource.</span>
+kubectl get -n storageos-etcd etcdcluster storageos-etcd &gt; ./stos-etcd-backup.yaml
+</code></pre></div><h3 id="step-5---delete-the-ondat-cluster">Step 5 - Delete The Ondat Cluster</h3>
+<p>Once Custom Resource definitions have been backed up, the next step will be to delete the Ondat cluster object. This will also delete the Ondat daemonset pods from all the nodes and, in effect, will be left with a static system which has all the data intact on the nodes - although the Ondat data plane and control plane are no longer running.</p>
+<ul>
+<li>This means that any node power down actions will not result in any volume recovery or failover actions as desired.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Delete the Ondat cluster object.</span>
+kubectl delete -n storageos stos storageoscluster
+</code></pre></div><h3 id="step-6---delete-the-ondat-etcd-cluster">Step 6 - Delete The Ondat <code>etcd</code> Cluster</h3>
+<p>After the Ondat cluster is successfully deleted, the next step will be to need to scale down the Ondat <code>etcd</code> cluster. This will delete the <code>etcd</code> cluster pods, but not the PVCs which contain the member information.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Delete the Ondat etcd cluster object.</span>
+kubectl delete -n storageos-etcd etcdcluster storageos-etcd
+</code></pre></div><h3 id="step-7---shut-down-the-kubernetes-nodes">Step 7 - Shut Down The Kubernetes Nodes</h3>
+<p>The next step will be to follow your Kubernetes distribution guidance on how to power down your cluster. This stage will probably be similar to the following Kubernetes documentation on How to <a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/">safely drain a node</a>, however, it is recommended to follow the specific instructions provided by your Kubernetes distribution on this topic.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Drain a Kubernetes node in your cluster.</span>
+kubectl drain <span style="color:#000">$NODE</span>
+
+<span style="color:#8f5902;font-style:italic"># SSH into the worker node and shut it down after the drain workflow is complete.</span>
+ssh -t user@<span style="color:#000">$NODE</span> <span style="color:#4e9a06">&#39;sudo shutdown now&#39;</span>
+</code></pre></div><p>The procedure will probably call for shutting down all the worker nodes first (usually these <a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/#draining-multiple-nodes-in-parallel">can be done in parallel</a>), and then the master nodes, which again can usually all be done in parallel.</p>
+<h2 id="procedure---start-up-the-cluster">Procedure - Start Up The Cluster</h2>
+<p>To power on the cluster after a power down, restart the Kubernetes distribution, which should be as simple as powering on the <a href="https://kubernetes.io/docs/concepts/overview/components/#control-plane-components">control plane components</a> and then the worker nodes. After a certain period of time, the Kubernetes nodes should be in a ready state. Once the nodes are in the ready state, the next step will be to restore the Ondat cluster definition and scale up the workloads.</p>
+<h3 id="step-1---restore-the-ondat-etcd-cluster-custom-resource">Step 1 - Restore The Ondat <code>etcd</code> Cluster Custom Resource</h3>
+<p>To restore the Ondat <code>etcd</code> cluster, simply apply the YAML manifest file that was created in the previous procedure:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Apply the etcd cluster Custom Resource that was previously backed up.</span>
+kubectl apply -f ./stos-etcd-backup.yaml
+</code></pre></div><p>Once successfully applied, ensure that all the <code>ectd</code> pods are in a <code>Running</code> state and ready:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check and ensure that the &#34;etcd&#34; pods are &#34;Running&#34; successfully.</span>
+kubectl get pods -n storageos-etcd
+</code></pre></div><h3 id="step-2---restore-the-ondat-cluster-custom-resource">Step 2 - Restore The Ondat Cluster Custom Resource</h3>
+<p>After all the <code>etcd</code> pods are in a <code>Running</code> statue and ready, restore the Ondat cluster by applying the other YAML manifest file that was created in the previous procedure:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Apply the Ondat cluster Custom Resource that was previously backed up.</span>
+kubectl apply -f ./stos-backup.yaml
+</code></pre></div><p>Once successfully applied, ensure that all the Ondat pods, including the Ondat daemonset pods, are in a <code>Running</code> state and ready:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check and ensure that the Ondat pods are &#34;Running&#34; successfully.</span>
+kubectl get pods -n storageos
+</code></pre></div><h3 id="step-3---check-that-the-ondat-master-volumes--replicas-are-online--ready">Step 3 - Check That the Ondat Master Volumes &amp; Replicas Are Online &amp; Ready</h3>
+<p>Once you have validated that the Ondat daemonset is up and running, you can query the master volumes and replica volumes to check they are all reporting that they are back online and ready:</p>
+<p>Using the Ondat CLI utility, run the command below to query all the master volumes and any replica volumes, and then check that the health status is either &raquo; <code>online</code> for masters volumes and &raquo; <code>ready</code> for replica volumes.</p>
+<ul>
+<li>Ensure that no volume has a health status of &raquo; <code>offline</code> or &raquo; <code>unknown</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check and ensure that all volumes are &#34;online&#34; and &#34;ready&#34;.</span>
+kubectl <span style="color:#204a87">exec</span> -ti <span style="color:#204a87;font-weight:bold">$(</span>kubectl get pods -n storageos -l <span style="color:#000">app</span><span style="color:#ce5c00;font-weight:bold">=</span>storageos-cli -o<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">jsonpath</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;{.items[0].metadata.name}&#39;</span><span style="color:#204a87;font-weight:bold">)</span> -n storageos -- storageos describe volume -A <span style="color:#000;font-weight:bold">|</span> grep Health
+
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online                                                              
+  Health            ready                                                               
+  Health            online
+</code></pre></div><h3 id="step-4----scale-up-the-application-workloads-to-resume-io-operations">Step 4 -  Scale Up The Application Workloads To Resume I/O Operations</h3>
+<p>The last step is to scale up the workloads again to resume I/O operations. For example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Scale up the StatefulSets back up to their desired replica count.</span>
+kubectl scale statefulset -n mynamespace &lt;statefulset-name&gt; --replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span>
+
+<span style="color:#8f5902;font-style:italic"># Scale up the Deployments back up to to their desired replica count.</span>
+kubectl scale deployment -n mynamespace &lt;deployment-name&gt; --replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span>
+</code></pre></div>
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
