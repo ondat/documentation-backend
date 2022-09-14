@@ -248,6 +248,47 @@ storageos-node-w98f5   0/1       Running   &lt;span style=&#34;color:#0000cf;fon
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;When attempting to deploy Ondat into an OpenShift or Kubernetes cluster, you notice that the Ondat daemonset set pods are unable to start. Upon reviewing the logs of one of the Ondat daemonset pods, there is &lt;code&gt;WARN&lt;/code&gt; and &lt;code&gt;FATAL&lt;/code&gt; log entry that was reported:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;lio &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;WARN   &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Runtime error checking stage &amp;#39;Start TCMU and create device&amp;#39;: /sys/module/target_core_user is missing, is kernel configfs present and target_core_user loaded?&amp;#34;&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;lio &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;FATAL  &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;liocheck: FAIL (platform not supported, see previous error messages)&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;The root cause of this issue is due to one or more of the required &lt;a href=&#34;https://en.wikipedia.org/wiki/LIO_%28SCSI_target%29&#34;&gt;Linux-IO (LIO) related kernel modules&lt;/a&gt; have not been successfully loaded onto the worker nodes where the Ondat daemonset will run.&lt;/p&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Ensure that the following kernel modules are loaded onto the worker nodes where an Ondat daemonset pod will run.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check to see if you can successfully find and list the kernel modules that are required for Ondat to run.&lt;/span&gt;
+lsmod &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; egrep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;^tcm_loop|^target_core_mod|^target_core_user|^configfs|^uio&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol&gt;
+&lt;li&gt;End users can install the &lt;code&gt;linux-image-extra-$(uname -r)&lt;/code&gt; package for your distribution which contains extra kernel modules that may have been left out of the base kernel package. End user can also use &lt;code&gt;modprobe&lt;/code&gt; to load the required kernel modules:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ensure that &amp;#34;kmod&amp;#34; is installed.&lt;/span&gt;
+sudo apt install kmod               &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Debian based distributions.&lt;/span&gt;
+sudo dnf install kmod               &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Red Hat based distributions.&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Use &amp;#34;modprobe&amp;#34; to load the kernel modules below on the worker nodes were Ondat will run.&lt;/span&gt;
+modprobe --all target_core_mod tcm_loop configfs target_core_user uio
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 For more information on the required kernel modules for Ondat, review the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;Ondat Prerequisites&lt;/a&gt; page.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Once the kernel modules have been successfully installed on the nodes, restart the Ondat daemonset pods by deleting the pods and let Kubernetes recreate the pods, which will detect the new system changes on the nodes.&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

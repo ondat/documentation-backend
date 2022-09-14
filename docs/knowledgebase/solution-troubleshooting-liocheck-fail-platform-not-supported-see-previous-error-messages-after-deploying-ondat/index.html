@@ -7,7 +7,6 @@
 
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
-<link rel="alternate" type="application/rss&#43;xml" href="/docs/reference/bundles/index.xml">
 
 
 <link rel="shortcut icon" href="/favicons/favicon.ico" >
@@ -21,15 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Bundles | </title><meta property="og:title" content="Bundles" />
-<meta property="og:description" content="Ondat Documentation" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/docs/reference/bundles/" />
+<title>Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat | </title><meta property="og:title" content="Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat" />
+<meta property="og:description" content="Issue When attempting to deploy Ondat into an OpenShift or Kubernetes cluster, you notice that the Ondat daemonset set pods are unable to start. Upon reviewing the logs of one of the Ondat daemonset pods, there is WARN and FATAL log entry that was reported:
+# Truncated output. category=lio level=WARN msg=&#34;Runtime error checking stage &#39;Start TCMU and create device&#39;: /sys/module/target_core_user is missing, is kernel configfs present and target_core_user loaded?&#34; category=lio level=FATAL msg=&#34;liocheck: FAIL (platform not supported, see previous error messages)&#34; Root Cause The root cause of this issue is due to one or more of the required Linux-IO (LIO) related kernel modules have not been successfully loaded onto the worker nodes where the Ondat daemonset will run." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/knowledgebase/solution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat/" /><meta property="article:section" content="docs" />
 
-<meta itemprop="name" content="Bundles">
-<meta itemprop="description" content="Ondat Documentation"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Bundles"/>
-<meta name="twitter:description" content="Ondat Documentation"/>
+
+
+<meta itemprop="name" content="Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat">
+<meta itemprop="description" content="Issue When attempting to deploy Ondat into an OpenShift or Kubernetes cluster, you notice that the Ondat daemonset set pods are unable to start. Upon reviewing the logs of one of the Ondat daemonset pods, there is WARN and FATAL log entry that was reported:
+# Truncated output. category=lio level=WARN msg=&#34;Runtime error checking stage &#39;Start TCMU and create device&#39;: /sys/module/target_core_user is missing, is kernel configfs present and target_core_user loaded?&#34; category=lio level=FATAL msg=&#34;liocheck: FAIL (platform not supported, see previous error messages)&#34; Root Cause The root cause of this issue is due to one or more of the required Linux-IO (LIO) related kernel modules have not been successfully loaded onto the worker nodes where the Ondat daemonset will run.">
+
+<meta itemprop="wordCount" content="300">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat"/>
+<meta name="twitter:description" content="Issue When attempting to deploy Ondat into an OpenShift or Kubernetes cluster, you notice that the Ondat daemonset set pods are unable to start. Upon reviewing the logs of one of the Ondat daemonset pods, there is WARN and FATAL log entry that was reported:
+# Truncated output. category=lio level=WARN msg=&#34;Runtime error checking stage &#39;Start TCMU and create device&#39;: /sys/module/target_core_user is missing, is kernel configfs present and target_core_user loaded?&#34; category=lio level=FATAL msg=&#34;liocheck: FAIL (platform not supported, see previous error messages)&#34; Root Cause The root cause of this issue is due to one or more of the required Linux-IO (LIO) related kernel modules have not been successfully loaded onto the worker nodes where the Ondat daemonset will run."/>
 
 
 
@@ -72,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Bundles | </title>
+    <title>Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat | </title>
   </head>
-  <body class="td-section">
+  <body class="td-page">
     
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXRX3CX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1289,10 +1296,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Reference</a>
+    <a  href="/docs/reference/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Reference</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreference">
+    <li class="collapse " id="docsreference">
       
       
       
@@ -1330,10 +1337,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/reference/bundles/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Bundles</a>
+    <a  href="/docs/reference/bundles/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Bundles</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsreferencebundles">
+    <li class="collapse " id="docsreferencebundles">
       
       
       
@@ -1513,10 +1520,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse " id="docsknowledgebase">
+    <li class="collapse show" id="docsknowledgebase">
       
       
       
@@ -1541,7 +1548,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat" href="/docs/knowledgebase/solution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat/">Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat" href="/docs/knowledgebase/solution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat/">Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat</a>
       
       
       
@@ -1697,14 +1704,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/reference/">Reference</a>
+	<a href="/docs/knowledgebase/">Knowledge Base</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/reference/bundles/">Bundles</a>
+	<a href="/docs/knowledgebase/solution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat/">Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat</a>
 </li>
 
 	</ol>
@@ -1712,339 +1719,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Bundles</h1>
+	<h1>Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat</h1>
 	
-	
-        <div class="section-index">
-    
-    
-    
-    
-    <hr class="panel-line">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/bundles/diagnostic-bundle/">Diagnostic bundle</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-                <div class="entry">
-                    <h5>
-                        <a href="/docs/reference/bundles/support_bundle/">Support bundle</a>
-                    </h5>
-                    <p></p>
-                </div>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    
-</div>
+	<h2 id="issue">Issue</h2>
+<p>When attempting to deploy Ondat into an OpenShift or Kubernetes cluster, you notice that the Ondat daemonset set pods are unable to start. Upon reviewing the logs of one of the Ondat daemonset pods, there is <code>WARN</code> and <code>FATAL</code> log entry that was reported:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Truncated output.</span>
+<span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>lio <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>WARN   <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;Runtime error checking stage &#39;Start TCMU and create device&#39;: /sys/module/target_core_user is missing, is kernel configfs present and target_core_user loaded?&#34;</span>
+<span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>lio <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>FATAL  <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;liocheck: FAIL (platform not supported, see previous error messages)&#34;</span>
+</code></pre></div><h2 id="root-cause">Root Cause</h2>
+<p>The root cause of this issue is due to one or more of the required <a href="https://en.wikipedia.org/wiki/LIO_%28SCSI_target%29">Linux-IO (LIO) related kernel modules</a> have not been successfully loaded onto the worker nodes where the Ondat daemonset will run.</p>
+<h2 id="resolution">Resolution</h2>
+<ol>
+<li>Ensure that the following kernel modules are loaded onto the worker nodes where an Ondat daemonset pod will run.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Check to see if you can successfully find and list the kernel modules that are required for Ondat to run.</span>
+lsmod <span style="color:#000;font-weight:bold">|</span> egrep <span style="color:#4e9a06">&#34;^tcm_loop|^target_core_mod|^target_core_user|^configfs|^uio&#34;</span>
+</code></pre></div><ol>
+<li>End users can install the <code>linux-image-extra-$(uname -r)</code> package for your distribution which contains extra kernel modules that may have been left out of the base kernel package. End user can also use <code>modprobe</code> to load the required kernel modules:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Ensure that &#34;kmod&#34; is installed.</span>
+sudo apt install kmod               <span style="color:#8f5902;font-style:italic"># Debian based distributions.</span>
+sudo dnf install kmod               <span style="color:#8f5902;font-style:italic"># Red Hat based distributions.</span>
+
+<span style="color:#8f5902;font-style:italic"># Use &#34;modprobe&#34; to load the kernel modules below on the worker nodes were Ondat will run.</span>
+modprobe --all target_core_mod tcm_loop configfs target_core_user uio
+</code></pre></div><blockquote>
+<p>💡 For more information on the required kernel modules for Ondat, review the <a href="/docs/prerequisites/systemconfiguration">Ondat Prerequisites</a> page.</p>
+</blockquote>
+<ol>
+<li>Once the kernel modules have been successfully installed on the nodes, restart the Ondat daemonset pods by deleting the pods and let Kubernetes recreate the pods, which will detect the new system changes on the nodes.</li>
+</ol>
 
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>
 </div>
+
 
           </main>
         </div>
