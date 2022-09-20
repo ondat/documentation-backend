@@ -577,6 +577,103 @@ Events:
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting etcd &#39;503 Service Unavailable&#39; Error Message During Peer Discovery</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-etcd-503-service-unavailable-error-peer-discovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-etcd-503-service-unavailable-error-peer-discovery/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;You have noticed that nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in after 1 minute of uptime:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output...&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;not first cluster node, joining first node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;address&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.5 &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;host&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;node3 &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp &lt;span style=&#34;color:#000&#34;&gt;target&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.6
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;could not retrieve cluster config from api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;status_code&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;503&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to join existing cluster&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;endpoint&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;503 Service Unavailable&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;retrying cluster join in 5 seconds...&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;Ondat uses a &lt;a href=&#34;https://en.wikipedia.org/wiki/Gossip_protocol&#34;&gt;gossip protocol&lt;/a&gt; to discover nodes in the cluster. When Ondat starts, one or more nodes can be referenced so new nodes can query existing nodes for the list of members.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The error demonstrated in the code snippet above indicates that the node can’t connect to any of the nodes in the known list. The known list is defined in the  &lt;code&gt;JOIN&lt;/code&gt;  variable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Check and ensure that the &lt;a href=&#34;/docs/prerequisites/firewalls/&#34;&gt;required ports&lt;/a&gt; for Ondat to run, are not being blocked by a firewall.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Connect to, for example &amp;#34;node04&amp;#34; on port 5705 from &amp;#34;node06&amp;#34; using &amp;#34;nc&amp;#34;.&lt;/span&gt;
+nc -zv node04 &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;5705&lt;/span&gt;
+
+Ncat: Version 7.50 &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt; https://nmap.org/ncat  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+Ncat: Connected to 10.0.1.166:5705.
+Ncat: &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt; bytes sent, &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt; bytes received in 0.01 seconds.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Ondat exposes network diagnostics through its API - which is viewable from the &lt;a href=&#34;/docs/reference/cli/&#34;&gt;Ondat CLI&lt;/a&gt;. The diagnostic results show information from all known cluster members - If all the ports are blocked during the first bootstrap of the cluster, the diagnostics results won’t show any data as nodes could not register:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The command below is only available in Ondat &lt;code&gt;v1&lt;/code&gt; deployments. For Ondat &lt;code&gt;v2&lt;/code&gt; deployments, end users can &lt;a href=&#34;/docs/reference/bundles/&#34;&gt;generate diagnostic and support bundles&lt;/a&gt; to get more information about the connectivity in the cluster.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check the network diagnostic results from the Ondat CLI (Ondat v1 deployments only).&lt;/span&gt;
+storageos cluster connectivity
+
+SOURCE  NAME            ADDRESS            LATENCY      STATUS  MESSAGE
+node4   node2.nats      172.28.128.4:5708  1.949275ms   OK
+node4   node3.api       172.28.128.5:5705  3.070574ms   OK
+node4   node3.nats      172.28.128.5:5708  2.989238ms   OK
+node4   node2.directfs  172.28.128.4:5703  2.925707ms   OK
+node4   node3.etcd      172.28.128.5:5707  2.854726ms   OK
+node4   node3.directfs  172.28.128.5:5703  2.833371ms   OK
+node4   node1.api       172.28.128.3:5705  2.714467ms   OK
+node4   node1.nats      172.28.128.3:5708  2.613752ms   OK
+node4   node1.etcd      172.28.128.3:5707  2.594159ms   OK
+node4   node1.directfs  172.28.128.3:5703  2.601834ms   OK
+node4   node2.api       172.28.128.4:5705  2.598236ms   OK
+node4   node2.etcd      172.28.128.4:5707  16.650625ms  OK
+node3   node4.nats      172.28.128.6:5708  1.304126ms   OK
+node3   node4.api       172.28.128.6:5705  1.515218ms   OK
+node3   node2.directfs  172.28.128.4:5703  1.359827ms   OK
+node3   node1.api       172.28.128.3:5705  1.185535ms   OK
+node3   node4.directfs  172.28.128.6:5703  1.379765ms   OK
+node3   node1.etcd      172.28.128.3:5707  1.221176ms   OK
+node3   node1.nats      172.28.128.3:5708  1.330122ms   OK
+node3   node2.api       172.28.128.4:5705  1.238541ms   OK
+node3   node1.directfs  172.28.128.3:5703  1.413574ms   OK
+node3   node2.etcd      172.28.128.4:5707  1.214273ms   OK
+node3   node2.nats      172.28.128.4:5708  1.321145ms   OK
+node1   node4.directfs  172.28.128.6:5703  1.140797ms   OK
+node1   node3.api       172.28.128.5:5705  1.089252ms   OK
+node1   node4.api       172.28.128.6:5705  1.178439ms   OK
+node1   node4.nats      172.28.128.6:5708  1.176648ms   OK
+node1   node2.directfs  172.28.128.4:5703  1.529612ms   OK
+node1   node2.etcd      172.28.128.4:5707  1.165681ms   OK
+node1   node2.api       172.28.128.4:5705  1.29602ms    OK
+node1   node2.nats      172.28.128.4:5708  1.267454ms   OK
+node1   node3.nats      172.28.128.5:5708  1.485657ms   OK
+node1   node3.etcd      172.28.128.5:5707  1.469429ms   OK
+node1   node3.directfs  172.28.128.5:5703  1.503015ms   OK
+node2   node4.directfs  172.28.128.6:5703  1.484ms      OK
+node2   node1.directfs  172.28.128.3:5703  1.275304ms   OK
+node2   node4.nats      172.28.128.6:5708  1.261422ms   OK
+node2   node4.api       172.28.128.6:5705  1.465532ms   OK
+node2   node3.api       172.28.128.5:5705  1.252768ms   OK
+node2   node3.nats      172.28.128.5:5708  1.212332ms   OK
+node2   node3.directfs  172.28.128.5:5703  1.192792ms   OK
+node2   node3.etcd      172.28.128.5:5707  1.270076ms   OK
+node2   node1.etcd      172.28.128.3:5707  1.218522ms   OK
+node2   node1.api       172.28.128.3:5705  1.363071ms   OK
+node2   node1.nats      172.28.128.3:5708  1.349383ms   OK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Gossip_protocol&#34;&gt;Gossip Protocol - Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
