@@ -248,6 +248,157 @@ storageos-node-w98f5   0/1       Running   &lt;span style=&#34;color:#0000cf;fon
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting &#39;failed to get secret from&#39; Error When Provisioning Volumes</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-failed-to-get-secret-from-error-when-provisioning-volumes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-failed-to-get-secret-from-error-when-provisioning-volumes/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You are experiencing an issue where a &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) that has been created, continues to remain in a &lt;code&gt;Pending&lt;/code&gt; state - thus preventing pods from successfully starting up as they require the said PVC to mount first. Below is an example output of the error message from the &lt;code&gt;Events:&lt;/code&gt; section of an affected PVC;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the PVC that is stuck in a Pending state.&lt;/span&gt;
+kubectl describe pvc vol-1 --namespace example-namespace
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+Events:
+  Type     Reason              Age                From                         Message
+  ----     ------              ----               ----                         -------
+  Warning  ProvisioningFailed  13s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x2 over 28s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;  persistentvolume-controller  Failed to provision volume with StorageClass &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;: failed to get secret from &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;/&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-api&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;For non Container Storage Interface (CSI) installations of Ondat, Kubernetes uses the Ondat API endpoint to communicate. If that communication fails, relevant actions such as create or mount volume can’t be transmitted to Ondat, hence the PVC will remain in &lt;code&gt;Pending&lt;/code&gt; state. Ondat never received the action to perform, so it never sent back an acknowledgement.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;StorageClass&lt;/code&gt; provisioned for Ondat references a &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34;&gt;Kubernetes Secret&lt;/a&gt; from where it retrieves the API endpoint and the authentication parameters.&lt;/li&gt;
+&lt;li&gt;If that secret is incorrect or missing, the connections won’t be established. It is common to see the secret has been deployed in a different namespace from where the &lt;code&gt;StorageClass&lt;/code&gt; expects it, or that is has been deployed with a different name.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure that you have successfully &lt;a href=&#34;/docs/install/&#34;&gt;deployed Ondat&lt;/a&gt; onto your Kubernetes or OpenShift cluster. If you are using the generated deployment manifests provided for &lt;a href=&#34;/docs/install/advanced/&#34;&gt;declarative installations&lt;/a&gt; to deploy Ondat,  make sure that the &lt;code&gt;StorageClass&lt;/code&gt; parameters and the &lt;code&gt;Secret&lt;/code&gt; reference match.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check and ensure that the &lt;code&gt;StorageClass&lt;/code&gt; parameters defined point to the correct location.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the Ondat StorageClass.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;kubectl get storageclass storageos --output yaml&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storage.k8s.io/v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;StorageClass&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;labels&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;app.kubernetes.io/component&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageclass&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;allowVolumeExpansion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;provisioner&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;csi.storageos.com&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;parameters&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;csi.storage.k8s.io/fstype&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;ext4&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;csi.storage.k8s.io/secret-name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-api              &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Secret name.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;csi.storage.k8s.io/secret-namespace&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos             &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Secret namespace.&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 Note that the parameters specify &lt;code&gt;secret-namespace&lt;/code&gt; and &lt;code&gt;secret-name&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Check and ensure that the secret exists in the namespace.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check the secrets that are available in the &amp;#34;storageos&amp;#34; namespace.&lt;/span&gt;
+kubectl get secrets --namespace storageos
+
+NAME                          TYPE                      DATA   AGE
+sh.helm.release.v1.ondat.v1   helm.sh/release.v1        &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;      5h10m
+storageos-etcd-0              Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;      5h9m
+storageos-etcd-1              Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;      5h9m
+storageos-etcd-2              Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;      5h9m
+storageos-etcd-ca             Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt;      5h10m
+storageos-etcd-client         Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;      5h10m
+storageos-etcd-secret         Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;3&lt;/span&gt;      5h9m
+storageos-iot-keys            Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt;      5h8m
+storageos-operator-webhook    Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4&lt;/span&gt;      5h10m
+storageos-portal-client       Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4&lt;/span&gt;      5h10m
+storageos-webhook             Opaque                    &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;4&lt;/span&gt;      5h8m
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check to see if &amp;#34;storageos-api&amp;#34; secret exists.&lt;/span&gt;
+kubectl get secrets storageos-api --namespace storageos
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Missing secret.&lt;/span&gt;
+No resources found.
+Error from server &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;NotFound&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;: secrets &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-api&amp;#34;&lt;/span&gt; not found
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# The expected output returned to look like the example provided below:&lt;/span&gt;
+NAME            TYPE                      DATA   AGE
+storageos-api   kubernetes.io/storageos   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt;      5h11m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Solution - Troubleshooting &#39;Init:Error&#39; Status Error Message After Deploying Ondat</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-init-error-status-error-message-after-deploying-ondat/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-init-error-status-error-message-after-deploying-ondat/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;When attempting to deploy Ondat into an OpenShift or Kubernetes cluster, you notice that the Ondat daemonset set pods are stuck in a &lt;code&gt;Init:Err&lt;/code&gt; state. Below is an example of the error message being reported under the &lt;code&gt;STATUS&lt;/code&gt; column.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get the status of the pods in the &amp;#34;storageos&amp;#34; namespace.&lt;/span&gt;
+kubectl get pods --namespace storageos
+
+NAME                                                 READY   STATUS    RESTARTS   AGE
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output...&lt;/span&gt;
+storageos-node-8fhf6                                 0/3     Init:Err  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
+storageos-node-8z77g                                 0/3     Init:Err  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
+storageos-node-pzvp7                                 0/3     Init:Err  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
+storageos-node-qbjbr                                 0/3     Init:Err  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
+storageos-node-vkj92                                 0/3     Init:Err  &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          6s
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;The root cause of this issue is due to missing &lt;a href=&#34;https://en.wikipedia.org/wiki/LIO_%28SCSI_target%29&#34;&gt;Linux-IO (LIO) related kernel modules&lt;/a&gt; on worker nodes that are required for Ondat to successfully start up and run.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat daemonset will attempt to load the required kernel modules onto the worker nodes. If Ondat is unsuccessful in loading the kernel modules, an &lt;code&gt;Init:Err&lt;/code&gt; error will be returned and stop Ondat from starting up without the required kernel modules.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Check and ensure that the logs of the &lt;code&gt;init&lt;/code&gt; container report any kernel modules that Ondat tried to load:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Chec the logs of the &amp;#34;init&amp;#34; container to list the missing kernel modules required for Ondat to run.&lt;/span&gt;
+kubectl --namespace storageos logs storageos-node-8z77g --container init
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output...&lt;/span&gt;
+Checking configfs
+configfs mounted on sys/kernel/config
+Module target_core_mod is not running
+executing modprobe -b target_core_mod
+Module tcm_loop is not running
+executing modprobe -b tcm_loop
+modprobe: FATAL: Module tcm_loop not found.             &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# &amp;#34;tcm_loop&amp;#34; kernel module is missing.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;End users can install the &lt;code&gt;linux-image-extra-$(uname -r)&lt;/code&gt; package for your distribution which contains extra kernel modules that may have been left out of the base kernel package. End user can also use &lt;code&gt;modprobe&lt;/code&gt; to load the required kernel modules:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ensure that &amp;#34;kmod&amp;#34; is installed.&lt;/span&gt;
+sudo apt install kmod               &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Debian based distributions.&lt;/span&gt;
+sudo dnf install kmod               &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Red Hat based distributions.&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Use &amp;#34;modprobe&amp;#34; to load the kernel modules below on the worker nodes were Ondat will run.&lt;/span&gt;
+modprobe --all target_core_mod tcm_loop configfs target_core_user uio
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 For more information on the required kernel modules for Ondat, review the &lt;a href=&#34;/docs/prerequisites/systemconfiguration&#34;&gt;Ondat Prerequisites&lt;/a&gt; page.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Once the kernel modules have been successfully installed on the nodes, restart the Ondat daemonset pods by deleting the pods and let Kubernetes recreate the pods, which will detect the new system changes on the nodes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting &#39;liocheck: FAIL (platform not supported, see previous error messages)&#39; Error Message After Deploying Ondat</title>
       <link>/docs/knowledgebase/solution-troubleshooting-liocheck-fail-platform-not-supported-see-previous-error-messages-after-deploying-ondat/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
