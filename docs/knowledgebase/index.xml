@@ -433,7 +433,7 @@ kubectl logs storageos-node-tw8fk --namespace storageos
     </item>
     
     <item>
-      <title>Docs: Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Ondat In OpenShift</title>
+      <title>Docs: Solution - Troubleshooting &#39;unable to validate against any security context constraint&#39; Error When Deploying Into A OpenShift Cluster</title>
       <link>/docs/knowledgebase/solution-troubleshooting-unable-to-validate-against-any-security-context-constraint-error-ondat-openshift/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
