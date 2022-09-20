@@ -20,7 +20,7 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster | </title><meta property="og:title" content="Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster" />
+<title>Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster | </title><meta property="og:title" content="Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster" />
 <meta property="og:description" content="Issue When attempting to deploy Ondat onto a new GKE cluster with the Ondat kubectl plugin, you experience a permission error message that causes the installation to fail.
 # installing Ondat using the Ondat kubectl plugin kubectl storageos install \  --include-etcd \  --admin-username &#34;storageos&#34; \  --admin-password &#34;storageos&#34; # log output namespace/storageos-etcd created Warning: resource namespaces/storageos is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by apply. apply should only be used on resources created declaratively by either create --save-config or apply." />
 <meta property="og:type" content="article" />
@@ -28,13 +28,13 @@
 
 
 
-<meta itemprop="name" content="Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster">
+<meta itemprop="name" content="Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster">
 <meta itemprop="description" content="Issue When attempting to deploy Ondat onto a new GKE cluster with the Ondat kubectl plugin, you experience a permission error message that causes the installation to fail.
 # installing Ondat using the Ondat kubectl plugin kubectl storageos install \  --include-etcd \  --admin-username &#34;storageos&#34; \  --admin-password &#34;storageos&#34; # log output namespace/storageos-etcd created Warning: resource namespaces/storageos is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by apply. apply should only be used on resources created declaratively by either create --save-config or apply.">
 
-<meta itemprop="wordCount" content="365">
+<meta itemprop="wordCount" content="379">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster"/>
+<meta name="twitter:title" content="Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster"/>
 <meta name="twitter:description" content="Issue When attempting to deploy Ondat onto a new GKE cluster with the Ondat kubectl plugin, you experience a permission error message that causes the installation to fail.
 # installing Ondat using the Ondat kubectl plugin kubectl storageos install \  --include-etcd \  --admin-username &#34;storageos&#34; \  --admin-password &#34;storageos&#34; # log output namespace/storageos-etcd created Warning: resource namespaces/storageos is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by apply. apply should only be used on resources created declaratively by either create --save-config or apply."/>
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster | </title>
+    <title>Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster | </title>
   </head>
   <body class="td-page">
     
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a12368bae8ee5af467ee800058535ab873ea7d5afa760e5ff0d99758bc48ca0935adde560175565800ba484e6dbb32f7cff88688f90b5dcba122ba019a28a363.json"
+  data-offline-search-index-json-src="/offline-search-index.0e5af82e754183ed821a98ae7242227b9390152ccb4ddaeb3bc4a62ed2d4bf58313702ee0efb60647703b61b42dcc758dd9ca8da33f1e8b6b4ae23b56a4e51a0.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.a12368bae8ee5af467ee800058535ab873ea7d5afa760e5ff0d99758bc48ca0935adde560175565800ba484e6dbb32f7cff88688f90b5dcba122ba019a28a363.json"
+  data-offline-search-index-json-src="/offline-search-index.0e5af82e754183ed821a98ae7242227b9390152ccb4ddaeb3bc4a62ed2d4bf58313702ee0efb60647703b61b42dcc758dd9ca8da33f1e8b6b4ae23b56a4e51a0.json"
   data-offline-search-base-href="/"
 >
 
@@ -932,12 +932,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">Cluster Health</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsdelete-stos-objects" href="/docs/operations/delete-stos-objects/">Deleting Ondat Objects</a>
       
       
@@ -1032,19 +1026,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-ondat-snapshots-and-cloudcasa" href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">How To Backup &amp; Restore Using Ondat Snapshots with CloudCasa</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-ondat-snapshots-and-cloudcasa" href="/docs/operations/backups-and-restores-with-ondat-snapshots-and-cloudcasa/">How To Backup &amp; Restore Using Snapshots with CloudCasa</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">How To Backup &amp; Restore Using Ondat Snapshots with Kasten K10</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsbackups-and-restores-with-kastenk10" href="/docs/operations/backups-and-restores-with-kastenk10/">How To Backup &amp; Restore Using Snapshots with Kasten K10</a>
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">How To Create Custom Ondat Storage Classes</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationshealth" href="/docs/operations/health/">How To Check The Health Status Of Your Cluster</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsstorageclasses" href="/docs/operations/storageclasses/">How To Create Custom Storage Classes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsrwx" href="/docs/operations/rwx/">How To Create ReadWriteMany (RWX) Volumes</a>
       
       
       
@@ -1074,7 +1080,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscluster-id" href="/docs/operations/cluster-id/">How To Get Your Ondat Cluster ID</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscluster-id" href="/docs/operations/cluster-id/">How To Get Your Cluster ID</a>
       
       
       
@@ -1098,13 +1104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsrwx" href="/docs/operations/rwx/">How To Use Ondat Files (ReadWriteMany - RWX Volumes)</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Ondat Volumes</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationstrim" href="/docs/operations/trim/">How To Use TRIM with Volumes</a>
       
       
       
@@ -1530,7 +1530,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-cannot-perform-ondat-operations-to-volumes-or-nodes" href="/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/">Solution - Cannot Perform Ondat Operations To Volumes Or Nodes</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-cannot-perform-ondat-operations-to-volumes-or-nodes" href="/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/">Solution - Cannot Perform Operations To Volumes Or Nodes</a>
       
       
       
@@ -1566,7 +1566,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes" href="/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/">Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes" href="/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/">Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Volumes</a>
       
       
       
@@ -1614,7 +1614,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-permission-errors-when-deploying-ondat-to-a-gke-cluster" href="/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/">Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-permission-errors-when-deploying-ondat-to-a-gke-cluster" href="/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/">Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster</a>
       
       
       
@@ -1700,6 +1700,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#issue">Issue</a></li>
+    <li><a href="#root-cause">Root Cause</a></li>
+    <li><a href="#resolution">Resolution</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1735,7 +1744,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/">Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster</a>
+	<a href="/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/">Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster</a>
 </li>
 
 	</ol>
@@ -1743,7 +1752,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster</h1>
+	<h1>Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster</h1>
 	
 	<h2 id="issue">Issue</h2>
 <p>When attempting to deploy Ondat onto a new <a href="/docs/install/gcp/google-kubernetes-engine-gke/">GKE cluster</a> with the <a href="/docs/reference/kubectl-plugin/">Ondat kubectl plugin</a>, you experience a permission error message that causes the installation to fail.</p>
@@ -1792,7 +1801,11 @@ Error: Multiple errors:
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl create clusterrolebinding cluster-admin-binding <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --clusterrole<span style="color:#ce5c00;font-weight:bold">=</span>cluster-admin <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  --user<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>gcloud config get-value account<span style="color:#204a87;font-weight:bold">)</span>
-</code></pre></div>
+</code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control">Authorize actions in clusters using role-based access control - Google Kubernetes Engine Documentation</a></li>
+</ul>
+
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top"></div>

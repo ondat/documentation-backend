@@ -14,7 +14,7 @@
     
     
     <item>
-      <title>Docs: Solution - Cannot Perform Ondat Operations To Volumes Or Nodes</title>
+      <title>Docs: Solution - Cannot Perform Operations To Volumes Or Nodes</title>
       <link>/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -440,7 +440,7 @@ modprobe --all target_core_mod tcm_loop configfs target_core_user uio
     </item>
     
     <item>
-      <title>Docs: Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Ondat Volumes</title>
+      <title>Docs: Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Volumes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1010,7 +1010,7 @@ curl --silent https://raw.githubusercontent.com/ondat/use-cases/main/scripts/per
     </item>
     
     <item>
-      <title>Docs: Solution - Troubleshooting Permission Errors When Deploying Ondat On A GKE Cluster</title>
+      <title>Docs: Solution - Troubleshooting Permission Errors When Deploying Into A GKE Cluster</title>
       <link>/docs/knowledgebase/solution-permission-errors-when-deploying-ondat-to-a-gke-cluster/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -1065,7 +1065,11 @@ Error: Multiple errors:
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create clusterrolebinding cluster-admin-binding &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --clusterrole&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cluster-admin &lt;span style=&#34;color:#4e9a06&#34;&gt;\
 &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;  --user&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;gcloud config get-value account&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control&#34;&gt;Authorize actions in clusters using role-based access control - Google Kubernetes Engine Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
       </description>
     </item>
     

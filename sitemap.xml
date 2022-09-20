@@ -152,8 +152,6 @@
   </url><url>
     <loc>/docs/usecases/cassandra/</loc>
   </url><url>
-    <loc>/docs/operations/health/</loc>
-  </url><url>
     <loc>/docs/reference/clusters/</loc>
   </url><url>
     <loc>/docs/reference/contributing/</loc>
@@ -188,7 +186,11 @@
   </url><url>
     <loc>/docs/operations/backups-and-restores-with-kastenk10/</loc>
   </url><url>
+    <loc>/docs/operations/health/</loc>
+  </url><url>
     <loc>/docs/operations/storageclasses/</loc>
+  </url><url>
+    <loc>/docs/operations/rwx/</loc>
   </url><url>
     <loc>/docs/operations/compression/</loc>
   </url><url>
@@ -205,8 +207,6 @@
     <loc>/docs/operations/compute-only/</loc>
   </url><url>
     <loc>/docs/operations/failure-modes/</loc>
-  </url><url>
-    <loc>/docs/operations/rwx/</loc>
   </url><url>
     <loc>/docs/operations/trim/</loc>
   </url><url>
