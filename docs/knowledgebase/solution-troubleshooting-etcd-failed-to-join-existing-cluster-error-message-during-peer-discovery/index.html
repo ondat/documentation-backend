@@ -20,23 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title> Applications Page Reference | </title><meta property="og:title" content=" Applications Page Reference" />
-<meta property="og:description" content="The Applications tab displays all of your applications. For a detailed explanation of the view, refer to the table below:
-   Column Description Possible Values     App Name The name of the app String (can contain special characters)   Kind Indicates the kind of application. Replica StatefulSet Deployment   Pods The number of pods for your application Integer   Pod Status Indicates the number of pods that are ready/syncing or with unknown/failed status Ready Syncing Unknown Failed   PV Amount Indicates the amount of PVs taken up by the app Integer   PVs Size Indicates the size of all Persistent volumes as a percentage of all available storage on all pods Available GB on the pods   PVs Status Indicates the number of PVs that are ready/syncing or with unknown/failed status Ready Syncing Unknown Failed    Detailed View of the Application To view more details of your application, click View Details and you will be given an overview of the status of the app." />
+<title>Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery | </title><meta property="og:title" content="Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery" />
+<meta property="og:description" content="Issue You are experiencing an issue where nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in the logs:
+# Truncated output... time=&#34;2018-09-24T13:40:20Z&#34; level=info msg=&#34;not first cluster node, joining first node&#34; action=create address=172.28.128.5 category=etcd host=node3 module=cp target=172.28.128.6 time=&#34;2018-09-24T13:40:20Z&#34; level=error msg=&#34;could not retrieve cluster config from api&#34; status_code=503 time=&#34;2018-09-24T13:40:20Z&#34; level=error msg=&#34;failed to join existing cluster&#34; action=create category=etcd endpoint=&#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&#34; error=&#34;503 Service Unavailable&#34; module=cp time=&#34;2018-09-24T13:40:20Z&#34; level=info msg=&#34;retrying cluster join in 5 seconds." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/ondat-portal/applications/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/knowledgebase/solution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content=" Applications Page Reference">
-<meta itemprop="description" content="The Applications tab displays all of your applications. For a detailed explanation of the view, refer to the table below:
-   Column Description Possible Values     App Name The name of the app String (can contain special characters)   Kind Indicates the kind of application. Replica StatefulSet Deployment   Pods The number of pods for your application Integer   Pod Status Indicates the number of pods that are ready/syncing or with unknown/failed status Ready Syncing Unknown Failed   PV Amount Indicates the amount of PVs taken up by the app Integer   PVs Size Indicates the size of all Persistent volumes as a percentage of all available storage on all pods Available GB on the pods   PVs Status Indicates the number of PVs that are ready/syncing or with unknown/failed status Ready Syncing Unknown Failed    Detailed View of the Application To view more details of your application, click View Details and you will be given an overview of the status of the app.">
+<meta itemprop="name" content="Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery">
+<meta itemprop="description" content="Issue You are experiencing an issue where nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in the logs:
+# Truncated output... time=&#34;2018-09-24T13:40:20Z&#34; level=info msg=&#34;not first cluster node, joining first node&#34; action=create address=172.28.128.5 category=etcd host=node3 module=cp target=172.28.128.6 time=&#34;2018-09-24T13:40:20Z&#34; level=error msg=&#34;could not retrieve cluster config from api&#34; status_code=503 time=&#34;2018-09-24T13:40:20Z&#34; level=error msg=&#34;failed to join existing cluster&#34; action=create category=etcd endpoint=&#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&#34; error=&#34;503 Service Unavailable&#34; module=cp time=&#34;2018-09-24T13:40:20Z&#34; level=info msg=&#34;retrying cluster join in 5 seconds.">
 
-<meta itemprop="wordCount" content="155">
+<meta itemprop="wordCount" content="450">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=" Applications Page Reference"/>
-<meta name="twitter:description" content="The Applications tab displays all of your applications. For a detailed explanation of the view, refer to the table below:
-   Column Description Possible Values     App Name The name of the app String (can contain special characters)   Kind Indicates the kind of application. Replica StatefulSet Deployment   Pods The number of pods for your application Integer   Pod Status Indicates the number of pods that are ready/syncing or with unknown/failed status Ready Syncing Unknown Failed   PV Amount Indicates the amount of PVs taken up by the app Integer   PVs Size Indicates the size of all Persistent volumes as a percentage of all available storage on all pods Available GB on the pods   PVs Status Indicates the number of PVs that are ready/syncing or with unknown/failed status Ready Syncing Unknown Failed    Detailed View of the Application To view more details of your application, click View Details and you will be given an overview of the status of the app."/>
+<meta name="twitter:title" content="Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery"/>
+<meta name="twitter:description" content="Issue You are experiencing an issue where nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in the logs:
+# Truncated output... time=&#34;2018-09-24T13:40:20Z&#34; level=info msg=&#34;not first cluster node, joining first node&#34; action=create address=172.28.128.5 category=etcd host=node3 module=cp target=172.28.128.6 time=&#34;2018-09-24T13:40:20Z&#34; level=error msg=&#34;could not retrieve cluster config from api&#34; status_code=503 time=&#34;2018-09-24T13:40:20Z&#34; level=error msg=&#34;failed to join existing cluster&#34; action=create category=etcd endpoint=&#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&#34; error=&#34;503 Service Unavailable&#34; module=cp time=&#34;2018-09-24T13:40:20Z&#34; level=info msg=&#34;retrying cluster join in 5 seconds."/>
 
 
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title> Applications Page Reference | </title>
+    <title>Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery | </title>
   </head>
   <body class="td-page">
     
@@ -1514,10 +1514,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse " id="docsknowledgebase">
+    <li class="collapse show" id="docsknowledgebase">
       
       
       
@@ -1602,7 +1602,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery" href="/docs/knowledgebase/solution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery/">Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery" href="/docs/knowledgebase/solution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery/">Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery</a>
       
       
       
@@ -1651,10 +1651,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/ondat-portal/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Ondat SaaS Platform</a>
+    <a  href="/docs/ondat-portal/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Ondat SaaS Platform</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsondat-portal">
+    <li class="collapse " id="docsondat-portal">
       
       
       
@@ -1673,7 +1673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsondat-portalapplications" href="/docs/ondat-portal/applications/">Applications Page Reference</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsondat-portalapplications" href="/docs/ondat-portal/applications/">Applications Page Reference</a>
       
       
     </li>
@@ -1706,6 +1706,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#issue">Issue</a></li>
+    <li><a href="#root-cause">Root Cause</a></li>
+    <li><a href="#resolution">Resolution</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1734,14 +1743,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/ondat-portal/">Ondat SaaS Platform</a>
+	<a href="/docs/knowledgebase/">Knowledge Base</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/ondat-portal/applications/">Applications Page Reference</a>
+	<a href="/docs/knowledgebase/solution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery/">Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery</a>
 </li>
 
 	</ol>
@@ -1749,57 +1758,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1> Applications Page Reference</h1>
+	<h1>Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery</h1>
 	
-	<p>The <strong>Applications</strong> tab displays all of your applications. For a detailed explanation of the view, refer to the table below:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Column</th>
-<th style="text-align:left">Description</th>
-<th style="text-align:left">Possible Values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>App Name</strong></td>
-<td style="text-align:left">The name of the app</td>
-<td style="text-align:left"><code>String</code> (can contain special characters)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Kind</strong></td>
-<td style="text-align:left">Indicates the kind of application.</td>
-<td style="text-align:left"><strong>Replica</strong> <br />  <strong>StatefulSet</strong> <br /> <strong>Deployment</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Pods</strong></td>
-<td style="text-align:left">The number of pods for your application</td>
-<td style="text-align:left"><code>Integer</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Pod Status</strong></td>
-<td style="text-align:left">Indicates the number of pods that are ready/syncing or with unknown/failed status</td>
-<td style="text-align:left"><strong>Ready</strong> <br /> <strong>Syncing</strong> <br /> <strong>Unknown</strong> <br /> <strong>Failed</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>PV Amount</strong></td>
-<td style="text-align:left">Indicates the amount of PVs taken up by the app</td>
-<td style="text-align:left"><code>Integer</code></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>PVs Size</strong></td>
-<td style="text-align:left">Indicates the size of all Persistent volumes as a percentage of all available storage on all pods</td>
-<td style="text-align:left">Available GB on the pods</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>PVs Status</strong></td>
-<td style="text-align:left">Indicates the number of PVs that are ready/syncing or with unknown/failed status</td>
-<td style="text-align:left"><strong>Ready</strong> <br /> <strong>Syncing</strong> <br /> <strong>Unknown</strong> <br /> <strong>Failed</strong></td>
-</tr>
-</tbody>
-</table>
-<h2 id="detailed-view-of-the-application">Detailed View of the Application</h2>
-<p>To view more details of your application, click <strong>View Details</strong> and you will be given an overview of the status of the app.</p>
+	<h2 id="issue">Issue</h2>
+<p>You are experiencing an issue where nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in the logs:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Truncated output...</span>
+<span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>info <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;not first cluster node, joining first node&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">address</span><span style="color:#ce5c00;font-weight:bold">=</span>172.28.128.5 <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">host</span><span style="color:#ce5c00;font-weight:bold">=</span>node3 <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp <span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span>172.28.128.6
+<span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;could not retrieve cluster config from api&#34;</span> <span style="color:#000">status_code</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">503</span>
+<span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>error <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;failed to join existing cluster&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">endpoint</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&#34;</span> <span style="color:#000">error</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;503 Service Unavailable&#34;</span> <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp
+<span style="color:#000">time</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;2018-09-24T13:40:20Z&#34;</span> <span style="color:#000">level</span><span style="color:#ce5c00;font-weight:bold">=</span>info <span style="color:#000">msg</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;retrying cluster join in 5 seconds...&#34;</span> <span style="color:#000">action</span><span style="color:#ce5c00;font-weight:bold">=</span>create <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span>etcd <span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">=</span>cp
+<span style="color:#8f5902;font-style:italic"># Truncated output...</span>
+</code></pre></div><h2 id="root-cause">Root Cause</h2>
+<p>Ondat uses a  <a href="https://en.wikipedia.org/wiki/Gossip_protocol">gossip protocol</a>  to discover nodes in the cluster. When Ondat starts, one or more nodes can be referenced so new nodes can query existing nodes for the list of members.</p>
+<ul>
+<li>The error demonstrated in the code snippet above indicates that the node can’t connect to any of the nodes in the known list. The known list is defined in the <code>JOIN</code> variable.</li>
+<li>If there are no active nodes, the bootstrap process will elect the first node in the <code>JOIN</code> variable as master, and the rest will try to discover from it. In case of that node not starting, the whole cluster will remain unable to bootstrap.</li>
+<li>Deployments of Ondat use a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">Kubernetes DaemonSet</a>, and by default do not schedule Ondat pods to master nodes, due to the presence of the &raquo; <code>node-role.kubernetes.io/master:NoSchedule</code> taint that is typically present. In such cases the <code>JOIN</code> variable must not contain master nodes or the Ondat cluster will not start.</li>
+</ul>
+<h2 id="resolution">Resolution</h2>
+<ul>
+<li>Check and ensure that the first node of the  <code>JOIN</code>  variable started properly.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Describe the daemonset and grep for &#34;JOIN&#34;.</span>
+kubectl --namespace storageos describe daemonset.apps/storageos-node <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;JOIN&#34;</span>
+
+    JOIN:          172.28.128.3,172.28.128.4,172.28.128.5
+
+<span style="color:#8f5902;font-style:italic"># Check for the pod with the &#34;172.28.128.3&#34; IP address.</span>
+kubectl --namespace storageos get pods --output wide <span style="color:#000;font-weight:bold">|</span> grep 172.28.128.3
+
+storageos-node-8zqxl   1/1       Running   <span style="color:#0000cf;font-weight:bold">0</span>          2m        172.28.128.3   node1
+</code></pre></div><ul>
+<li>Make sure that the <code>JOIN</code> variable doesn’t specify the master nodes. In case you are using the discovery service, it is necessary to ensure that the Ondat daemonset won’t allocate pods on the master nodes. This can be achieved with <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">taints</a>, node selectors or labels.</li>
+<li>For deployments with the Ondat operator you can specify which nodes to deploy Ondat on using <a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/">nodeSelectors</a>.
+<ul>
+<li>For more information on how to configure the Ondat Custom Resource, review the <a href="/docs/reference/operator/examples/">Ondat Operator Examples</a> page.</li>
+</ul>
+</li>
+<li>For more advanced deployments that are using <code>compute-only</code> and storage nodes, check the &raquo; <code>storageos.com/computeonly=true</code> label that can be added to the nodes through Kubernetes node labels has been configured correctly.
+<ul>
+<li>For more information on how to use the <code>storageos.com/computeonly=true</code> review the <a href="https://docs.ondat.io/docs/operations/compute-only/">How To Setup A Centralised Cluster Topology</a> operations page.</li>
+</ul>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Gossip_protocol">Gossip Protocol - Wikipedia</a>.</li>
+<li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">Taints and Tolerations - Kubernetes Documentation</a>.</li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/">Assign Pods to Nodes - Kubernetes Documentation</a>.</li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">Kubernetes DaemonSet</a>.</li>
+</ul>
 
 	
 	

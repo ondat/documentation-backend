@@ -292,6 +292,8 @@
   </url><url>
     <loc>/docs/knowledgebase/solution-troubleshooting-etcd-503-service-unavailable-error-peer-discovery/</loc>
   </url><url>
+    <loc>/docs/knowledgebase/solution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery/</loc>
+  </url><url>
     <loc>/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/</loc>
   </url><url>
     <loc>/docs/knowledgebase/solution-troubleshooting-daemonset-crashloopbackoff-pod-after-reinstalling-ondat/</loc>
@@ -307,8 +309,6 @@
     <loc>/docs/reference/filesystems/</loc>
   </url><url>
     <loc>/docs/reference/tolerations/</loc>
-  </url><url>
-    <loc>/docs/operations/troubleshooting/</loc>
   </url><url>
     <loc>/docs/operations/uninstall/</loc>
   </url><url>

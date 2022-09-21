@@ -917,6 +917,67 @@ node2   node1.nats      172.28.128.3:5708  1.349383ms   OK
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting etcd &#39;failed to join existing cluster&#39; Error Message During Peer Discovery</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-etcd-failed-to-join-existing-cluster-error-message-during-peer-discovery/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;You are experiencing an issue where nodes cannot successfully join the cluster. Upon investigation, you also notice the following error messages in the logs:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output...&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;not first cluster node, joining first node&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;address&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.5 &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;host&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;node3 &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp &lt;span style=&#34;color:#000&#34;&gt;target&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;172.28.128.6
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;could not retrieve cluster config from api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;status_code&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;503&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;error &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;failed to join existing cluster&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;endpoint&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;172.28.128.3,172.28.128.4,172.28.128.5,172.28.128.6&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;error&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;503 Service Unavailable&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
+&lt;span style=&#34;color:#000&#34;&gt;time&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;2018-09-24T13:40:20Z&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;level&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;info &lt;span style=&#34;color:#000&#34;&gt;msg&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;retrying cluster join in 5 seconds...&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;action&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;create &lt;span style=&#34;color:#000&#34;&gt;category&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;etcd &lt;span style=&#34;color:#000&#34;&gt;module&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;cp
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;Ondat uses a  &lt;a href=&#34;https://en.wikipedia.org/wiki/Gossip_protocol&#34;&gt;gossip protocol&lt;/a&gt;  to discover nodes in the cluster. When Ondat starts, one or more nodes can be referenced so new nodes can query existing nodes for the list of members.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The error demonstrated in the code snippet above indicates that the node can’t connect to any of the nodes in the known list. The known list is defined in the &lt;code&gt;JOIN&lt;/code&gt; variable.&lt;/li&gt;
+&lt;li&gt;If there are no active nodes, the bootstrap process will elect the first node in the &lt;code&gt;JOIN&lt;/code&gt; variable as master, and the rest will try to discover from it. In case of that node not starting, the whole cluster will remain unable to bootstrap.&lt;/li&gt;
+&lt;li&gt;Deployments of Ondat use a &lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/&#34;&gt;Kubernetes DaemonSet&lt;/a&gt;, and by default do not schedule Ondat pods to master nodes, due to the presence of the &amp;raquo; &lt;code&gt;node-role.kubernetes.io/master:NoSchedule&lt;/code&gt; taint that is typically present. In such cases the &lt;code&gt;JOIN&lt;/code&gt; variable must not contain master nodes or the Ondat cluster will not start.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Check and ensure that the first node of the  &lt;code&gt;JOIN&lt;/code&gt;  variable started properly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the daemonset and grep for &amp;#34;JOIN&amp;#34;.&lt;/span&gt;
+kubectl --namespace storageos describe daemonset.apps/storageos-node &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;JOIN&amp;#34;&lt;/span&gt;
+
+    JOIN:          172.28.128.3,172.28.128.4,172.28.128.5
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Check for the pod with the &amp;#34;172.28.128.3&amp;#34; IP address.&lt;/span&gt;
+kubectl --namespace storageos get pods --output wide &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep 172.28.128.3
+
+storageos-node-8zqxl   1/1       Running   &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;0&lt;/span&gt;          2m        172.28.128.3   node1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Make sure that the &lt;code&gt;JOIN&lt;/code&gt; variable doesn’t specify the master nodes. In case you are using the discovery service, it is necessary to ensure that the Ondat daemonset won’t allocate pods on the master nodes. This can be achieved with &lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;taints&lt;/a&gt;, node selectors or labels.&lt;/li&gt;
+&lt;li&gt;For deployments with the Ondat operator you can specify which nodes to deploy Ondat on using &lt;a href=&#34;https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/&#34;&gt;nodeSelectors&lt;/a&gt;.
+&lt;ul&gt;
+&lt;li&gt;For more information on how to configure the Ondat Custom Resource, review the &lt;a href=&#34;/docs/reference/operator/examples/&#34;&gt;Ondat Operator Examples&lt;/a&gt; page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;For more advanced deployments that are using &lt;code&gt;compute-only&lt;/code&gt; and storage nodes, check the &amp;raquo; &lt;code&gt;storageos.com/computeonly=true&lt;/code&gt; label that can be added to the nodes through Kubernetes node labels has been configured correctly.
+&lt;ul&gt;
+&lt;li&gt;For more information on how to use the &lt;code&gt;storageos.com/computeonly=true&lt;/code&gt; review the &lt;a href=&#34;https://docs.ondat.io/docs/operations/compute-only/&#34;&gt;How To Setup A Centralised Cluster Topology&lt;/a&gt; operations page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Gossip_protocol&#34;&gt;Gossip Protocol - Wikipedia&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/&#34;&gt;Taints and Tolerations - Kubernetes Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/&#34;&gt;Assign Pods to Nodes - Kubernetes Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/&#34;&gt;Kubernetes DaemonSet&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting Insufficient Free Space On Storage Disks Attached To Nodes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-insufficient-free-space-on-disks-attached-to-nodes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
