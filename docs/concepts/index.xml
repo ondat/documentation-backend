@@ -386,6 +386,7 @@ specified by &lt;a href=&#34;https://standards.ieee.org/ieee/1619/4205/&#34;&gt;
 &lt;h2 id=&#34;how-to-use-ondat-feature-labels&#34;&gt;How To Use Ondat Feature Labels?&lt;/h2&gt;
 &lt;p&gt;For more information about how to enable specific Ondat features, review the Ondat Feature Labels operations pages listed below;&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;/docs/operations/storageclasses&#34;&gt;How To Create Custom Storage Classes&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/operations/compute-only&#34;&gt;How To Setup A Centralised Cluster Topology&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/operations/replication&#34;&gt;How To Use Volume Replication&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/operations/rwx/&#34;&gt;How To Use Ondat Files (ReadWriteMany - RWX Volumes)&lt;/a&gt;.&lt;/li&gt;
