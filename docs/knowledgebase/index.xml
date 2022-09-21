@@ -440,6 +440,98 @@ modprobe --all target_core_mod tcm_loop configfs target_core_user uio
     </item>
     
     <item>
+      <title>Docs: Solution - Troubleshooting &#39;no such file or directory&#39; Error Message When Mounting A Volume To A Pod</title>
+      <link>/docs/knowledgebase/solution-troubleshooting-no-such-file-or-directory-error-message-when-mounting-a-volume-to-a-pod/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/knowledgebase/solution-troubleshooting-no-such-file-or-directory-error-message-when-mounting-a-volume-to-a-pod/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;issue&#34;&gt;Issue&lt;/h2&gt;
+&lt;p&gt;You are experiencing an issue where you get the following error message &amp;raquo; &lt;code&gt;no such file or directory&lt;/code&gt; being displayed in the &lt;code&gt;Events:&lt;/code&gt; section of a pod - causing it to be stuck in a &lt;code&gt;Pending&lt;/code&gt; state. Below is an example output of the error message upon describing the affected pod.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Describe the affected pod to get more information from the &amp;#34;Events:&amp;#34; section.&lt;/span&gt;
+kubectl describe pod affected-pod-name
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+Events:
+  &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;...&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;
+  Normal   Scheduled         11s                default-scheduler  Successfully assigned default/d1 to node3
+  Warning  FailedMount       4s &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;(&lt;/span&gt;x4 over 9s&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;)&lt;/span&gt;    kubelet, node3     MountVolume.SetUp failed &lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;for&lt;/span&gt; volume &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;pvc-f2a49198-c00c-11e8-ba01-0800278dc04d&amp;#34;&lt;/span&gt; : stat /var/lib/storageos/volumes/d9df3549-26c0-4cfc-62b4-724b443069a1: no such file or directory
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;root-cause&#34;&gt;Root Cause&lt;/h2&gt;
+&lt;p&gt;There are two root causes on why this issue may arise:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The Ondat  &lt;code&gt;DEVICE_DIR&lt;/code&gt;  location is wrongly configured when using  &lt;a href=&#34;https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/&#34;&gt;&lt;code&gt;kubelet&lt;/code&gt;&lt;/a&gt; as a container.&lt;/li&gt;
+&lt;li&gt;Mount Propagation is not enabled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;resolution&#34;&gt;Resolution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Option 1 - Correctly Configure The &lt;code&gt;DeviceDir&lt;/code&gt;/&lt;code&gt;SharedDir&lt;/code&gt; Path&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Some Kubernetes distributions such as Rancher or different deployments of OpenShift may deploy the &lt;a href=&#34;https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/&#34;&gt;&lt;code&gt;kubelet&lt;/code&gt;&lt;/a&gt; as a container. Because of this, the device files that Ondat creates to mount into the containers need to be visible to the &lt;code&gt;kubelet&lt;/code&gt;. Ondat can be configured to share the device directory. Modern Kubernetes and OpenShift deployments use the Container Storage Interface (CSI) to handle the complexity internally.&lt;/li&gt;
+&lt;li&gt;To resolve this issue, check and confirm that the &lt;code&gt;SharedDir&lt;/code&gt; key-value pair in the Ondat Custom Resource is not blank. If it is blank, edit the Ondat Custom Resource to point the &lt;code&gt;SharedDir&lt;/code&gt; key to &amp;raquo; &lt;code&gt;/var/lib/kubelet/plugins/kubernetes.io~storageos&lt;/code&gt; as demonstrated below.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Get more information about the Ondat Custom Resource.&lt;/span&gt;
+kubectl --namespace storageos describe storageosclusters.storageos.com &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;Shared Dir&amp;#34;&lt;/span&gt;
+
+  Shared Dir:            &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# This key-value pair should have a defined path.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Edit the Custom Resource and ensure that the SharedDir key points to &amp;#34;/var/lib/kubelet/plugins/kubernetes.io~storageos&amp;#34;&lt;/span&gt;
+kubectl --namespace storageos edit storageosclusters.storageos.com
+
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+spec:
+  sharedDir: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;/var/lib/kubelet/plugins/kubernetes.io~storageos&amp;#39;&lt;/span&gt;        &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# This is required if the &amp;#34;kubelet&amp;#34; is running as a container in your cluster.&lt;/span&gt;
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Truncated output.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;💡 For more information on how to configure the Ondat Custom Resource, review the &lt;a href=&#34;/docs/reference/operator/examples/&#34;&gt;Ondat Operator Examples&lt;/a&gt; page.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Option 2 - Enable Mouth Propagation&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The guidance below only applies if &lt;strong&gt;Option 1&lt;/strong&gt; has been configured correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;For older versions of Kubernetes &amp;amp; OpenShift, users need to enable &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation&#34;&gt;mount propagation&lt;/a&gt;, as it is not enabled by default. Most Kubernetes distributions allow &lt;code&gt;MountPropagation&lt;/code&gt; to be enabled using &lt;a href=&#34;https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/&#34;&gt;Feature Gates&lt;/a&gt;. Rancher, specifically, needs to enable it in the “View in API” section of your cluster. You need to edit the section &lt;code&gt;rancherKubernetesEngineConfig&lt;/code&gt; to enable the &lt;code&gt;kubelet&lt;/code&gt; feature gate.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If your cluster is NOT using the &lt;code&gt;kubelet&lt;/code&gt; as a container&lt;/strong&gt; - &lt;code&gt;ssh&lt;/code&gt; into one of the nodes and check if &amp;raquo; &lt;code&gt;/var/lib/storageos/volumes&lt;/code&gt; is empty.&lt;/li&gt;
+&lt;li&gt;If the directory is empty, &lt;code&gt;exec&lt;/code&gt; into any of the Ondat daemonset pods and check the same directory to further verify if the directory inside the container and the device files are visible. If they are visible in the container, check ensure that mount propagation is enabled.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# ssh into one of the nodes to check if the directory and device files exist (the directory should not be empty).&lt;/span&gt;
+ls /var/lib/storageos/volumes/
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# exec into one any of the Ondat daemonset pods to check if the directory and directory and device files exist.&lt;/span&gt;
+kubectl --namespace storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; storageos-node-mvbtw --container storageos -- ls -l /var/lib/storageos/volumes
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Output.&lt;/span&gt;
+bst-196004
+d529b340-0189-15c7-f8f3-33bfc4cf03fa
+ff537c5b-e295-e518-a340-0b6308b69f74
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If your cluster is using the &lt;code&gt;kubelet&lt;/code&gt; as a container&lt;/strong&gt; - &lt;code&gt;ssh&lt;/code&gt; into one of the nodes and check if &amp;raquo; &lt;code&gt;/var/lib/kubelet/plugins/kubernetes.io~storageos/devices&lt;/code&gt; is empty.&lt;/li&gt;
+&lt;li&gt;If the directory is empty, &lt;code&gt;exec&lt;/code&gt; into any of the Ondat daemonset pods and check the same directory to further verify if the directory inside the container and the device files are visible. If they are visible in the container, check and ensure that mount propagation is enabled.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# ssh into one of the nodes to check if the directory and device files exist (the directory should not be empty).&lt;/span&gt;
+ls /var/lib/kubelet/plugins/kubernetes.io~storageos/devices
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# exec into one any of the Ondat daemonset pods to check if the directory and directory and device files exist.&lt;/span&gt;
+kubectl --namespace storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; storageos-node-mvbtw --container storageos -- ls -l /var/lib/kubelet/plugins/kubernetes.io~storageos/devices
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Output.&lt;/span&gt;
+bst-196004
+d529b340-0189-15c7-f8f3-33bfc4cf03fa
+ff537c5b-e295-e518-a340-0b6308b69f74
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/&#34;&gt;Kubelet - Kubernetes Reference Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation&#34;&gt;Volumes - Mount Propagation - Kubernetes Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/&#34;&gt;Feature Gates - Kubernetes Documentation&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Solution - Troubleshooting &#39;OutOfRange desc = unsupported capacity size&#39; Error When Provisioning Volumes</title>
       <link>/docs/knowledgebase/solution-troubleshooting-outofrange-desc-unsupported-capacity-size-provisioning-ondat-volumes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
