@@ -20,23 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Downgrade Ondat from 2.7.0 to 2.6.0 | </title><meta property="og:title" content="Downgrade Ondat from 2.7.0 to 2.6.0" />
-<meta property="og:description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.
-As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format." />
+<title>How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39; | </title><meta property="og:title" content="How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39;" />
+<meta property="og:description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. This procedure can be used if a cluster administrator is required to roll back to the previous version after upgrading to Ondat v2.7.0.
+ As part of the v2.7.0 release, the Ondat team implemented a new architectural design for mapping Kubernetes volumes to the underlying data storage containers on disk. This will conduct a one-time step change to upgrade the deployment blob files and their metadata to the new format." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/operations/downgrade-ondat-2.7-to-2.6/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Downgrade Ondat from 2.7.0 to 2.6.0">
-<meta itemprop="description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.
-As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.">
+<meta itemprop="name" content="How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39;">
+<meta itemprop="description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. This procedure can be used if a cluster administrator is required to roll back to the previous version after upgrading to Ondat v2.7.0.
+ As part of the v2.7.0 release, the Ondat team implemented a new architectural design for mapping Kubernetes volumes to the underlying data storage containers on disk. This will conduct a one-time step change to upgrade the deployment blob files and their metadata to the new format.">
 
-<meta itemprop="wordCount" content="355">
+<meta itemprop="wordCount" content="483">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Downgrade Ondat from 2.7.0 to 2.6.0"/>
-<meta name="twitter:description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.
-As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format."/>
+<meta name="twitter:title" content="How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39;"/>
+<meta name="twitter:description" content="Overview This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. This procedure can be used if a cluster administrator is required to roll back to the previous version after upgrading to Ondat v2.7.0.
+ As part of the v2.7.0 release, the Ondat team implemented a new architectural design for mapping Kubernetes volumes to the underlying data storage containers on disk. This will conduct a one-time step change to upgrade the deployment blob files and their metadata to the new format."/>
 
 
 
@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Downgrade Ondat from 2.7.0 to 2.6.0 | </title>
+    <title>How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39; | </title>
   </head>
   <body class="td-page">
     
@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.c88773097e65878df63dd7d5f0817fe7edcdbeecee4a462402c9d54071a3c6a5c6dd5c24526a9b038241cf83a156c61f46cc22692aa13562fcd9f97b47d60f24.json"
+  data-offline-search-index-json-src="/offline-search-index.128d5aee2a371064f3ebadc64930b51039c6e95d825a75964090d5213c5ad54e579eb5f1c480adf924f6900f06a440158d618897dcc6b24a815e25d4bfefdc93.json"
   data-offline-search-base-href="/"
 >
 
@@ -326,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.c88773097e65878df63dd7d5f0817fe7edcdbeecee4a462402c9d54071a3c6a5c6dd5c24526a9b038241cf83a156c61f46cc22692aa13562fcd9f97b47d60f24.json"
+  data-offline-search-index-json-src="/offline-search-index.128d5aee2a371064f3ebadc64930b51039c6e95d825a75964090d5213c5ad54e579eb5f1c480adf924f6900f06a440158d618897dcc6b24a815e25d4bfefdc93.json"
   data-offline-search-base-href="/"
 >
 
@@ -937,12 +937,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
-      
-      
-      
-      
 
 
 
@@ -1051,6 +1045,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationsrwx" href="/docs/operations/rwx/">How To Create ReadWriteMany (RWX) Volumes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationsdowngrade-ondat-27-to-26" href="/docs/operations/downgrade-ondat-2.7-to-2.6/">How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39;</a>
       
       
       
@@ -1708,9 +1708,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#step-1---uninstall-ondat-v270-as-if-you-are-starting-an-upgrade">Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade</a></li>
-    <li><a href="#step-2---run-our-downgrade-script">Step 2 - Run our downgrade script</a></li>
-    <li><a href="#step-3---install-ondat-v260">Step 3 - Install Ondat v2.6.0</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#procedure">Procedure</a>
+      <ul>
+        <li><a href="#step-1---uninstall-ondat-v270---as-if-you-are-conducting-an-upgrade">Step 1 - Uninstall Ondat <code>v2.7.0</code> - As If You Are Conducting An Upgrade</a></li>
+        <li><a href="#step-2---download--update-the-cli_tool-variable-in-the-downgrade-script">Step 2 - Download &amp; Update the <code>CLI_TOOL</code> Variable In The Downgrade Script</a></li>
+        <li><a href="#step-3---run-the-downgrade-script-against-your-cluster">Step 3 - Run The Downgrade Script Against Your Cluster</a></li>
+        <li><a href="#step-4---install-ondat-v260">Step 4 - Install Ondat <code>v2.6.0</code></a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -1749,7 +1756,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/downgrade-ondat-2.7-to-2.6/">Downgrade Ondat from 2.7.0 to 2.6.0</a>
+	<a href="/docs/operations/downgrade-ondat-2.7-to-2.6/">How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39;</a>
 </li>
 
 	</ol>
@@ -1757,47 +1764,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Downgrade Ondat from 2.7.0 to 2.6.0</h1>
+	<h1>How To Downgrade Ondat from &#39;v2.7.0&#39; to &#39;v2.6.0&#39;</h1>
 	
-	<h1 id="overview">Overview</h1>
-<p>This guide will walk you through how to downgrade from Ondat v2.7.0 to v2.6.0. You can use this procedure should you decide that you need to roll back after upgrading to 2.7.0.</p>
-<p>As part of the 2.7.0 release we are implementing a new design for mapping your Kubernetes volumes to the underlying data storage containers on disk. There will be a one time step to upgrade the deployment blob files and their metadata to the new format.</p>
-<p>As part of any operational upgrade plans, we want to provide simple steps should you need to roll back in case of issues. The procedure below has been validated, however it is not usual operation, so it is necessary to raise a proactive support case <a href="/docs/support/">here</a> and work with the customer success team as part of the downgrade process.</p>
-<p>For those curious, in the past Ondat supported other Container Orchestrators (CO) and therefore used an internal UUID reference for these blob files. With the focus on only K8s now, we are removing this abstraction layer and the naming will reflect the K8s objects.</p>
-<h1 id="prerequisites">Prerequisites</h1>
-<blockquote>
-<p>⚠️ Make sure all workloads using Ondat volumes are scaled down to zero.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Recommended: While the procedure is safe, it is recommended that a backup of important stateful application is kept before performing the downgrade.</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Update the CLI_TOOL variable if you do not have access to kubectl.</p>
-</blockquote>
-<blockquote>
-<p>💡 The tool is idempotent so in the case of interruption it can be safely run multiple times.</p>
-</blockquote>
-<h1 id="procedure">Procedure</h1>
-<h2 id="step-1---uninstall-ondat-v270-as-if-you-are-starting-an-upgrade">Step 1 - Uninstall Ondat v2.7.0, as if you are starting an upgrade</h2>
+	<h2 id="overview">Overview</h2>
+<p>This guide will walk you through how to downgrade from Ondat <code>v2.7.0</code> to <code>v2.6.0</code>. This procedure can be used if a cluster administrator is required to roll back to the previous version after upgrading to Ondat <code>v2.7.0</code>.</p>
+<ul>
+<li>As part of the <code>v2.7.0</code> release, the Ondat team implemented a new architectural design for mapping Kubernetes volumes to the underlying data storage containers on disk. This will conduct a one-time step change to upgrade the deployment blob files and their metadata to the new format.
+<ul>
+<li>In the past, Ondat supported different container orchestrators, which required Ondat to use an internal UUID reference for these blob files. As Ondat now focuses only Kubernetes distributions (including OpenShift), the Ondat team have removed this abstraction layer and the naming will reflect the Kubernetes objects.</li>
+</ul>
+</li>
+<li>As part of any operational upgrade plans, the Ondat team have provided guidance and steps in this document, should you need to roll back in case you experience any issues.</li>
+<li>The procedure below has been validated, however it is not a common operation, therefore it is recommended that cluster administrators proactively reach out the Ondat Support Team by <a href="/docs/support/">creating a support ticket</a> and get assistance from the Customer Success team, as you conduct the downgrade.</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Ensure that all of your stateful workloads using Ondat volumes are scaled down to zero.</li>
+<li>While the procedure is safe, it is strongly recommended that a backup of important stateful workloads done before performing the downgrade.</li>
+</ul>
+<h2 id="procedure">Procedure</h2>
+<h3 id="step-1---uninstall-ondat-v270---as-if-you-are-conducting-an-upgrade">Step 1 - Uninstall Ondat <code>v2.7.0</code> - As If You Are Conducting An Upgrade</h3>
 <ol>
-<li>Delete your storageoscluster CR</li>
-<li>Delete your storageos operator deployment</li>
-<li>Make sure to leave your Ondat etcd alone</li>
+<li>Delete the <code>storageoscluster</code> Custom Resource.</li>
+<li>Delete the Ondat Operator deployment.</li>
+<li>Ensure that you do not make any changes to Ondat&rsquo;s etcd cluster.</li>
 </ol>
-<h2 id="step-2---run-our-downgrade-script">Step 2 - Run our downgrade script</h2>
-<ol>
-<li>
-<p>Download the following script and edit it to match your cluster&rsquo;s specifications.</p>
-<pre tabindex="0"><code>curl -sO https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh
-</code></pre></li>
-<li>
-<p>Run the script below, with your Kubernetes CLI tool&rsquo;s context set to target your cluster:</p>
-<pre tabindex="0"><code>./downgrade-db-2-7-to-2-6.sh
-</code></pre></li>
-</ol>
-<p>This will create a DaemonSet to downgrade our internal data store on each of your nodes. The Daemonset will delete itself afterwards.</p>
-<h2 id="step-3---install-ondat-v260">Step 3 - Install Ondat v2.6.0</h2>
-<p>You will now be able to use Ondat v2.6.0.</p>
+<h3 id="step-2---download--update-the-cli_tool-variable-in-the-downgrade-script">Step 2 - Download &amp; Update the <code>CLI_TOOL</code> Variable In The Downgrade Script</h3>
+<ul>
+<li>Download the downgrade script and ensure that the <a href="https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh#L5-L6"><code>CLI_TOOL</code> variable</a> in the downgrade script is using the correct CLI utility for your distribution.
+<ul>
+<li>The default value is <code>kubectl</code> which is used to interact with Kubernetes distributions. If your cluster is  and OpenShift distribution, ensure that you use <code>oc</code> as the CLI utility.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Download the downgrade script.</span>
+curl -sO https://github.com/ondat/documentation/blob/main/sh/downgrade-db-2-7-to-2-6.sh
+
+<span style="color:#8f5902;font-style:italic"># edit and apply changes to the CLI_TOOL` according toif necessary.</span>
+vim downgrade-db-2-7-to-2-6.sh
+</code></pre></div><h3 id="step-3---run-the-downgrade-script-against-your-cluster">Step 3 - Run The Downgrade Script Against Your Cluster</h3>
+<blockquote>
+<p>💡 The downgrade script is idempotent, so in the case of interruption it can be safely run multiple times.</p>
+</blockquote>
+<ul>
+<li>Run the downgrade script against your Kubernetes or OpenShift cluster that has Ondat <code>v2.7.0</code> installed. The script will create a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/">Kubernetes daemonset</a> which will downgrade the internal data store on each node where Ondat is running. Once the downgrade is complete, the daemonset will be deleted.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># run the downgrade script.</span>
+./downgrade-db-2-7-to-2-6.sh
+</code></pre></div><h3 id="step-4---install-ondat-v260">Step 4 - Install Ondat <code>v2.6.0</code></h3>
+<ul>
+<li>Once the downgrade has completed, the next step will be to install Ondat v2.6.0 into your OpenShift or Kubernetes cluster.
+<ul>
+<li>For guides on how to install Ondat, review the <a href="/docs/install/">Install</a> documentation.</li>
+</ul>
+</li>
+</ul>
 
 	
 	

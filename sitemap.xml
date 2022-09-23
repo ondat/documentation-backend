@@ -162,8 +162,6 @@
   </url><url>
     <loc>/docs/</loc>
   </url><url>
-    <loc>/docs/operations/downgrade-ondat-2.7-to-2.6/</loc>
-  </url><url>
     <loc>/docs/usecases/elasticsearch/</loc>
   </url><url>
     <loc>/docs/operations/etcd/</loc>
@@ -191,6 +189,8 @@
     <loc>/docs/operations/storageclasses/</loc>
   </url><url>
     <loc>/docs/operations/rwx/</loc>
+  </url><url>
+    <loc>/docs/operations/downgrade-ondat-2.7-to-2.6/</loc>
   </url><url>
     <loc>/docs/operations/compression/</loc>
   </url><url>
