@@ -24,8 +24,6 @@
   </url><url>
     <loc>/docs/concepts/fencing/</loc>
   </url><url>
-    <loc>/docs/concepts/rwx/</loc>
-  </url><url>
     <loc>/docs/reference/kubectl-plugin/</loc>
   </url><url>
     <loc>/docs/concepts/metric-exporter/</loc>
@@ -37,6 +35,8 @@
     <loc>/docs/concepts/rolling-upgrades/</loc>
   </url><url>
     <loc>/docs/ondat-portal/installation-portal/</loc>
+  </url><url>
+    <loc>/docs/concepts/rwx/</loc>
   </url><url>
     <loc>/docs/concepts/snapshots/</loc>
   </url><url>

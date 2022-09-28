@@ -460,82 +460,6 @@ specified by &lt;a href=&#34;https://standards.ieee.org/ieee/1619/4205/&#34;&gt;
     </item>
     
     <item>
-      <title>Docs: Ondat Files</title>
-      <link>/docs/concepts/rwx/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/rwx/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.3.0&lt;/code&gt; or greater.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;what-is-ondat-files&#34;&gt;What Is Ondat Files?&lt;/h3&gt;
-&lt;p&gt;Ondat provides support for &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; persistent volumes.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.&lt;/li&gt;
-&lt;li&gt;Ondat RWX persistent volumes are based on a &lt;a href=&#34;https://en.wikipedia.org/wiki/Clustered_file_system&#34;&gt;shared filesystem&lt;/a&gt;, the protocol being used for this feature&amp;rsquo;s backend is &lt;a href=&#34;https://en.wikipedia.org/wiki/Network_File_System&#34;&gt;Network Files System (NFS)&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;ondat-files-architecture&#34;&gt;Ondat Files Architecture&lt;/h3&gt;
-&lt;p&gt;For each RWX persistent volume, the following components below are required:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Ondat ReadWriteOnly (RWO) Volume&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;Ondat provisions a standard &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;volume&lt;/a&gt; that provides a block device for the file system of the NFS server.&lt;/li&gt;
-&lt;li&gt;This means that every RWX Volume has its own RWO Volume - thus allowing RWX Volumes to leverage the synchronous &lt;a href=&#34;https://en.wikipedia.org/wiki/Replication_%28computing%29&#34;&gt;replication&lt;/a&gt; and automatic &lt;a href=&#34;https://en.wikipedia.org/wiki/Failover&#34;&gt;failover&lt;/a&gt; functionality of Ondat, providing the NFS server with high availability.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;NFS-Ganesha Server&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;For each RWX volume, an &lt;a href=&#34;https://nfs-ganesha.github.io/&#34;&gt;NFS-Ganesha&lt;/a&gt; server is spawned by Ondat.&lt;/li&gt;
-&lt;li&gt;The NFS server runs in user space on the bode containing the primary volume. Each NFS server uses its own &lt;em&gt;RWO&lt;/em&gt; volume to store data so the data of each Volume is isolated.&lt;/li&gt;
-&lt;li&gt;Ondat binds an &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeral_port&#34;&gt;ephemeral port&lt;/a&gt; to the host network interface for each NFS-Ganesha server.&lt;/li&gt;
-&lt;li&gt;The NFS export is presented using &lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7862&#34;&gt;&lt;code&gt;NFS v4.2&lt;/code&gt;&lt;/a&gt;. Ensure that you review the official &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;prerequisites&lt;/a&gt; page for more information on the port number range, that is for Ondat RWX persistent volumes to successfully run.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Ondat API Manager&lt;/strong&gt;
-&lt;ul&gt;
-&lt;li&gt;The Ondat API Manager resource monitors Ondat RWX volumes to create and maintain a &lt;a href=&#34;https://kubernetes.io/docs/concepts/services-networking/service/&#34;&gt;Kubernetes service&lt;/a&gt; that points towards each RWX volume&amp;rsquo;s NFS export endpoint.&lt;/li&gt;
-&lt;li&gt;The API Manager is responsible for updating the service endpoint when a RWX volume failover occurs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;how-are-ondat-readwritemany-rwx-persistentvolumeclaims-pvcs-provisioned&#34;&gt;How are Ondat ReadWriteMany (RWX) PersistentVolumeClaims (PVCs) Provisioned?&lt;/h3&gt;
-&lt;p&gt;The sequence in which a RWX PVC is provisioned and used demonstrated in the steps below:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;A &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) is created with &lt;code&gt;ReadWriteMany&lt;/code&gt; (RWX) access mode using any Ondat &lt;code&gt;StorageClass&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Ondat dynamically provisions the &lt;code&gt;PersistentVolume&lt;/code&gt; (PV).&lt;/li&gt;
-&lt;li&gt;A new Ondat &lt;code&gt;ReadWriteOnly&lt;/code&gt; (RWO) Volume is provisioned internally (not visible in Kubernetes).&lt;/li&gt;
-&lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.&lt;/li&gt;
-&lt;li&gt;The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.&lt;/li&gt;
-&lt;li&gt;The &lt;em&gt;Ondat API Manager&lt;/em&gt; publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.&lt;/li&gt;
-&lt;li&gt;Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;For more information on how to get started with Ondat Files, review the &lt;a href=&#34;/docs/operations/rwx&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; operations page.&lt;/p&gt;
-&lt;h3 id=&#34;high-availability-for-ondat-files&#34;&gt;High Availability For Ondat Files&lt;/h3&gt;
-&lt;p&gt;Ondat RWX volumes failover in the same way as standard Ondat RWO volumes.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The replica volume is promoted upon detection of node failure and the NFS-Ganesha server is started on the node containing the promoted replica.&lt;/li&gt;
-&lt;li&gt;The Ondat API Manager updates the endpoint of the Volume&amp;rsquo;s NFS service, causing traffic to be routed to the URL of the new NFS-Ganesha server.&lt;/li&gt;
-&lt;li&gt;The NFS client in the application node (where the user&amp;rsquo;s pod is running) automatically reconnects.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;further-information&#34;&gt;Further Information&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;All &lt;a href=&#34;/docs/concepts/labels/&#34;&gt;Ondat Feature Labels&lt;/a&gt; that work on RWO volumes will also work on RWX volumes.&lt;/li&gt;
-&lt;li&gt;A Ondat RWX volume is matched one-to-one with a PVC. Therefore the Ondat RWX volume can only be accessed by pods in the &lt;strong&gt;same&lt;/strong&gt; Kubernetes namespace.&lt;/li&gt;
-&lt;li&gt;Ondat RWX volumes support volume resize.
-&lt;ul&gt;
-&lt;li&gt;For more information on how to resize a volume, review the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Ondat Metric Exporter</title>
       <link>/docs/concepts/metric-exporter/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -750,6 +674,90 @@ replicas remaining &lt;code&gt;&amp;lt; max(1, 0)&lt;/code&gt;.&lt;/p&gt;
 &lt;li&gt;We are developing a solution to this problem for you. It is currently a Technical Preview but now, for example, Ondat can support a &lt;a href=&#34;/docs/install/anthos/&#34;&gt;Google Anthos&lt;/a&gt; one-click upgrade without any downtime.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To get started with Ondat&amp;rsquo;s Rolling Upgrades Protection for your cluster, review the &lt;a href=&#34;/docs/operations/using-rolling-upgrades&#34;&gt;Platform Upgrade&lt;/a&gt; page for more information.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Shared Filesystems</title>
+      <link>/docs/concepts/rwx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/rwx/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.3.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;what-are-ondat-shared-filesystems&#34;&gt;What Are Ondat Shared Filesystems?&lt;/h3&gt;
+&lt;p&gt;Ondat provides support for &lt;a href=&#34;https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes&#34;&gt;ReadWriteMany (RWX)&lt;/a&gt; persistent volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A RWX PVC can be used simultaneously by many Pods in the same Kubernetes namespace for read and write operations.&lt;/li&gt;
+&lt;li&gt;Ondat RWX persistent volumes are based on a &lt;a href=&#34;https://en.wikipedia.org/wiki/Clustered_file_system&#34;&gt;shared filesystem&lt;/a&gt;, the protocol being used for this feature&amp;rsquo;s backend is &lt;a href=&#34;https://en.wikipedia.org/wiki/Network_File_System&#34;&gt;Network Files System (NFS)&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;architecture-of-ondat-shared-filesystems&#34;&gt;Architecture Of Ondat Shared Filesystems&lt;/h3&gt;
+&lt;p&gt;For each RWX persistent volume, the following components below are required:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Ondat ReadWriteOnly (RWO) Volume&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Ondat provisions a standard &lt;a href=&#34;/docs/concepts/volumes&#34;&gt;volume&lt;/a&gt; that provides a block device for the file system of the NFS server.&lt;/li&gt;
+&lt;li&gt;This means that every RWX Volume has its own RWO Volume - thus allowing RWX Volumes to leverage the synchronous &lt;a href=&#34;https://en.wikipedia.org/wiki/Replication_%28computing%29&#34;&gt;replication&lt;/a&gt; and automatic &lt;a href=&#34;https://en.wikipedia.org/wiki/Failover&#34;&gt;failover&lt;/a&gt; functionality of Ondat, providing the NFS server with high availability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NFS-Ganesha Server&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;For each RWX volume, an &lt;a href=&#34;https://nfs-ganesha.github.io/&#34;&gt;NFS-Ganesha&lt;/a&gt; server is spawned by Ondat.&lt;/li&gt;
+&lt;li&gt;The NFS server runs in user space on the bode containing the primary volume. Each NFS server uses its own &lt;em&gt;RWO&lt;/em&gt; volume to store data so the data of each Volume is isolated.&lt;/li&gt;
+&lt;li&gt;Ondat binds an &lt;a href=&#34;https://en.wikipedia.org/wiki/Ephemeral_port&#34;&gt;ephemeral port&lt;/a&gt; to the host network interface for each NFS-Ganesha server.&lt;/li&gt;
+&lt;li&gt;The NFS export is presented using &lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc7862&#34;&gt;&lt;code&gt;NFS v4.2&lt;/code&gt;&lt;/a&gt;. Ensure that you review the official &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;prerequisites&lt;/a&gt; page for more information on the port number range, that is for Ondat RWX persistent volumes to successfully run.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ondat API Manager&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;The Ondat API Manager resource monitors Ondat RWX volumes to create and maintain a &lt;a href=&#34;https://kubernetes.io/docs/concepts/services-networking/service/&#34;&gt;Kubernetes service&lt;/a&gt; that points towards each RWX volume&amp;rsquo;s NFS export endpoint.&lt;/li&gt;
+&lt;li&gt;The API Manager is responsible for updating the service endpoint when a RWX volume failover occurs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;how-are-ondat-readwritemany-rwx-persistentvolumeclaims-pvcs-provisioned&#34;&gt;How are Ondat ReadWriteMany (RWX) PersistentVolumeClaims (PVCs) Provisioned?&lt;/h3&gt;
+&lt;p&gt;The sequence in which a RWX PVC is provisioned and used demonstrated in the steps below:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; (PVC) is created with &lt;code&gt;ReadWriteMany&lt;/code&gt; (RWX) access mode using any Ondat &lt;code&gt;StorageClass&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Ondat dynamically provisions the &lt;code&gt;PersistentVolume&lt;/code&gt; (PV).&lt;/li&gt;
+&lt;li&gt;A new Ondat &lt;code&gt;ReadWriteOnly&lt;/code&gt; (RWO) Volume is provisioned internally (not visible in Kubernetes).&lt;/li&gt;
+&lt;li&gt;When the RWX PVC is consumed by a pod, an NFS-Ganesha server is instantiated on the same node as the primary volume.&lt;/li&gt;
+&lt;li&gt;The NFS-Ganesha server then uses the RWO Ondat volume as its backend disk.&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;Ondat API Manager&lt;/em&gt; publishes the host IP and port for the NFS service endpoint, by creating a Kubernetes service that points to the NFS-Ganesha server export endpoint.&lt;/li&gt;
+&lt;li&gt;Ondat issues a NFS mount on the Node where the Pod using the PVC is scheduled.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For more information on how to get started with Ondat Shared Filesystems, review the &lt;a href=&#34;/docs/operations/rwx&#34;&gt;How To Create ReadWriteMany (RWX) Volumes&lt;/a&gt; operations page.&lt;/p&gt;
+&lt;h3 id=&#34;high-availability-for-ondat-shared-filesystems&#34;&gt;High Availability For Ondat Shared Filesystems&lt;/h3&gt;
+&lt;p&gt;Ondat RWX volumes failover in the same way as standard Ondat RWO volumes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The replica volume is promoted upon detection of node failure and the NFS-Ganesha server is started on the node containing the promoted replica.&lt;/li&gt;
+&lt;li&gt;The Ondat API Manager updates the endpoint of the Volume&amp;rsquo;s NFS service, causing traffic to be routed to the URL of the new NFS-Ganesha server.&lt;/li&gt;
+&lt;li&gt;The NFS client in the application node (where the user&amp;rsquo;s pod is running) automatically reconnects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;further-information&#34;&gt;Further Information&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;All &lt;a href=&#34;/docs/concepts/labels/&#34;&gt;Ondat Feature Labels&lt;/a&gt; that work on RWO volumes will also work on RWX volumes.&lt;/li&gt;
+&lt;li&gt;A Ondat RWX volume is matched one-to-one with a PVC. Therefore the Ondat RWX volume can only be accessed by pods in the &lt;strong&gt;same&lt;/strong&gt; Kubernetes namespace.&lt;/li&gt;
+&lt;li&gt;Ondat RWX volumes support volume resize.
+&lt;ul&gt;
+&lt;li&gt;For more information on how to resize a volume, review the &lt;a href=&#34;/docs/operations/resize&#34;&gt;Volume Resize&lt;/a&gt; operations page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;As it&amp;rsquo;s backed by an NFS instance, the resource consumption of a RWX volume can grow.
+&lt;ul&gt;
+&lt;li&gt;This consumption scales linearly with the volume&amp;rsquo;s throughput.&lt;/li&gt;
+&lt;li&gt;If given insufficient resources the NFS server&amp;rsquo;s IO can be blocked and it can fail.&lt;/li&gt;
+&lt;li&gt;The resources in question are the speed of the underlying disk and CPU time of the machine hosting the volume&amp;rsquo;s primary replica.&lt;/li&gt;
+&lt;li&gt;Our attachments are unlikely to cause any issue outside of NFS. We have happily tested up to 800 consumers for volumes hosted on small hosts, for very low-throughput applications.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 
       </description>
     </item>
