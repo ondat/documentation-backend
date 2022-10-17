@@ -30,7 +30,7 @@
 <meta itemprop="name" content="Ondat Command Line Interface (CLI) Utility">
 <meta itemprop="description" content="Overview  The Ondat CLI is a utility tool that is used to manage and configure Ondat resources and conduct Day-2 storage operations. The Ondat CLI is also useful for providing useful information on the state of an Ondat cluster and troubleshooting issues.  The project repository is open source and can be located on GitHub.    Prerequisites  Ensure that you have successfully installed Ondat into your Kubernetes or Openshift cluster.">
 
-<meta itemprop="wordCount" content="932">
+<meta itemprop="wordCount" content="941">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Command Line Interface (CLI) Utility"/>
 <meta name="twitter:description" content="Overview  The Ondat CLI is a utility tool that is used to manage and configure Ondat resources and conduct Day-2 storage operations. The Ondat CLI is also useful for providing useful information on the state of an Ondat cluster and troubleshooting issues.  The project repository is open source and can be located on GitHub.    Prerequisites  Ensure that you have successfully installed Ondat into your Kubernetes or Openshift cluster."/>
@@ -175,7 +175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0fba6fa084de00ad0ccab19e2ee994484c9c8672eb98ef8b48913325750d128080fe7f6e6f97b5255b11e516a6cdfcfd01b41014151e67ebe2b0377c1e21dfea.json"
+  data-offline-search-index-json-src="/offline-search-index.e56a1ca03062e69cfebea2f1339a1478042324cf56cb5b80f53196538b3c5f0f67ac4a8a78be850412ed592a3dd9d6208a17a520c5de425ad9446e478779b284.json"
   data-offline-search-base-href="/"
 >
 
@@ -323,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.0fba6fa084de00ad0ccab19e2ee994484c9c8672eb98ef8b48913325750d128080fe7f6e6f97b5255b11e516a6cdfcfd01b41014151e67ebe2b0377c1e21dfea.json"
+  data-offline-search-index-json-src="/offline-search-index.e56a1ca03062e69cfebea2f1339a1478042324cf56cb5b80f53196538b3c5f0f67ac4a8a78be850412ed592a3dd9d6208a17a520c5de425ad9446e478779b284.json"
   data-offline-search-base-href="/"
 >
 
@@ -1780,7 +1780,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>Run the following command below against your Ondat cluster which will deploy the Ondat CLI using a <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Kubernetes deployment</a>.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Create the deployment for the Ondat CLI.</span>
-cat <span style="color:#4e9a06">&lt;&lt;EOF | kubectl create --filename -
+kubectl create --filename -<span style="color:#4e9a06">&lt;&lt;EOF
 </span><span style="color:#4e9a06">apiVersion: apps/v1
 </span><span style="color:#4e9a06">kind: Deployment
 </span><span style="color:#4e9a06">metadata:
@@ -1802,32 +1802,40 @@ cat <span style="color:#4e9a06">&lt;&lt;EOF | kubectl create --filename -
 </span><span style="color:#4e9a06">        app: storageos-cli
 </span><span style="color:#4e9a06">    spec:
 </span><span style="color:#4e9a06">      containers:
-</span><span style="color:#4e9a06">      - command:
-</span><span style="color:#4e9a06">        - /bin/sh
-</span><span style="color:#4e9a06">        - -c
-</span><span style="color:#4e9a06">        - while true; do sleep 3600; done
-</span><span style="color:#4e9a06">        env:
-</span><span style="color:#4e9a06">        - name: STORAGEOS_USERNAME
-</span><span style="color:#4e9a06">          value: storageos
-</span><span style="color:#4e9a06">        - name: STORAGEOS_PASSWORD
-</span><span style="color:#4e9a06">          value: storageos
-</span><span style="color:#4e9a06">        - name: STORAGEOS_ENDPOINTS
-</span><span style="color:#4e9a06">          value: storageos:5705
-</span><span style="color:#4e9a06">        image: storageos/cli:v2.8.1
-</span><span style="color:#4e9a06">        imagePullPolicy: Always
-</span><span style="color:#4e9a06">        name: cli
-</span><span style="color:#4e9a06">        ports:
-</span><span style="color:#4e9a06">        - containerPort: 5705
-</span><span style="color:#4e9a06">        resources:
-</span><span style="color:#4e9a06">          limits:
-</span><span style="color:#4e9a06">            cpu: 100m
-</span><span style="color:#4e9a06">            memory: 128Mi
-</span><span style="color:#4e9a06">          requests:
-</span><span style="color:#4e9a06">            cpu: 50m
-</span><span style="color:#4e9a06">            memory: 32Mi
-</span><span style="color:#4e9a06">        securityContext:
-</span><span style="color:#4e9a06">          allowPrivilegeEscalation: false
-</span><span style="color:#4e9a06">          readOnlyRootFilesystem: true
+</span><span style="color:#4e9a06">        - command:
+</span><span style="color:#4e9a06">            - /bin/sh
+</span><span style="color:#4e9a06">            - -c
+</span><span style="color:#4e9a06">            - while true; do sleep 3600; done
+</span><span style="color:#4e9a06">          env:
+</span><span style="color:#4e9a06">            - name: STORAGEOS_USERNAME
+</span><span style="color:#4e9a06">              valueFrom:
+</span><span style="color:#4e9a06">                secretKeyRef:
+</span><span style="color:#4e9a06">                  name: storageos-api
+</span><span style="color:#4e9a06">                  key: username
+</span><span style="color:#4e9a06">                  optional: false
+</span><span style="color:#4e9a06">            - name: STORAGEOS_PASSWORD
+</span><span style="color:#4e9a06">              valueFrom:
+</span><span style="color:#4e9a06">                secretKeyRef:
+</span><span style="color:#4e9a06">                  name: storageos-api
+</span><span style="color:#4e9a06">                  key: password
+</span><span style="color:#4e9a06">                  optional: false
+</span><span style="color:#4e9a06">            - name: STORAGEOS_ENDPOINTS
+</span><span style="color:#4e9a06">              value: storageos:5705
+</span><span style="color:#4e9a06">          image: storageos/cli:v2.8.3
+</span><span style="color:#4e9a06">          imagePullPolicy: Always
+</span><span style="color:#4e9a06">          name: cli
+</span><span style="color:#4e9a06">          ports:
+</span><span style="color:#4e9a06">            - containerPort: 5705
+</span><span style="color:#4e9a06">          resources:
+</span><span style="color:#4e9a06">            limits:
+</span><span style="color:#4e9a06">              cpu: 100m
+</span><span style="color:#4e9a06">              memory: 128Mi
+</span><span style="color:#4e9a06">            requests:
+</span><span style="color:#4e9a06">              cpu: 50m
+</span><span style="color:#4e9a06">              memory: 32Mi
+</span><span style="color:#4e9a06">          securityContext:
+</span><span style="color:#4e9a06">            allowPrivilegeEscalation: false
+</span><span style="color:#4e9a06">            readOnlyRootFilesystem: true
 </span><span style="color:#4e9a06">EOF</span>
 </code></pre></div><h4 id="execute-commands-through-the-ondat-cli-deployment">Execute Commands Through The Ondat CLI Deployment</h4>
 <ul>
@@ -1859,21 +1867,21 @@ storageos-cli-75874cd77f-b5dgp                       1/1     Running   <span sty
 </ul>
 <h4 id="linux">Linux</h4>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl --silent --show-error --location --output storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_linux_amd64 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_linux_amd64 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/ <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;CLI version installed:&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> storageos version
 </code></pre></div><h4 id="macos-darwin">macOS (Darwin)</h4>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl --silent --show-error --location --output storageos <span style="color:#4e9a06">\
-</span><span style="color:#4e9a06"></span>  https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_darwin_amd64 <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>  https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_darwin_amd64 <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> chmod +x storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> sudo mv storageos /usr/local/bin/ <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;CLI version installed:&#34;</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>  <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> storageos version
 </code></pre></div><h4 id="windows">Windows</h4>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># PowerShell</span>
-Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.1/storageos_windows_amd64.exe -OutFile storageos.exe <span style="color:#4e9a06">`</span>
+Invoke-WebRequest https://github.com/storageos/go-cli/releases/download/v2.8.3/storageos_windows_amd64.exe -OutFile storageos.exe <span style="color:#4e9a06">`</span>
   <span style="color:#000;font-weight:bold">;</span> Write-Host <span style="color:#4e9a06">&#34;Plugin version installed:&#34;</span> <span style="color:#4e9a06">`</span>
   <span style="color:#000;font-weight:bold">;</span> .<span style="color:#4e9a06">\s</span>torageos.exe version
 </code></pre></div><h4 id="execute-commands-through-the-ondat-cli-binary">Execute Commands Through The Ondat CLI Binary</h4>
