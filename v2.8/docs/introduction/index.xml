@@ -1,0 +1,636 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Introduction</title>
+    <link>https://docs.ondat.io/v2.8/docs/introduction/</link>
+    <description>Recent content in Introduction on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="https://docs.ondat.io/v2.8/docs/introduction/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Ondat Overview</title>
+      <link>https://docs.ondat.io/v2.8/docs/introduction/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.ondat.io/v2.8/docs/introduction/overview/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Over the past several months, we&amp;rsquo;ve been hard at work on Ondat V2, which
+contains some significant enhancements over our v1 product. We&amp;rsquo;ve built V2
+based on our observations of trends in the industry, as well as our own
+experience.&lt;/p&gt;
+&lt;p&gt;Many of our customers want to run big clusters - in the tens or hundreds of
+nodes. In these sorts of big environments, the challenges multiply. Not only do
+we need to scale well, but we also need to be more failure tolerant. Bigger
+environments typically suffer higher failure rates (more nodes = greater chance
+of something failing), but are also subject to all sorts of transient
+conditions such as network partitions.&lt;/p&gt;
+&lt;p&gt;The second trend we&amp;rsquo;ve seen become increasingly common is the desire to run
+multiple clusters, and consume storage between them in some way - sometimes to
+implement novel topologies such as a centralised storage cluster with
+satellites consuming the storage, and sometimes to replicate data between those
+clusters for HA or DR purposes.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve built V2 with these architectures and design patterns in mind. Not only
+does it scale well, but it contains the foundations we need to implement a rich
+set of multi-cluster functionality.&lt;/p&gt;
+&lt;h2 id=&#34;-upgraded-control-plane&#34;&gt;🚀 Upgraded Control Plane&lt;/h2&gt;
+&lt;p&gt;At the heart of the V2 release is an upgraded control plane. We&amp;rsquo;ve changed a
+lot here. Firstly, our usage of etcd is vastly improved. We&amp;rsquo;ve learnt a lot
+about the subtleties of distributed consensus in the last year, particularly in
+noisy or unpredictable environments. Not only is Ondat V2 much lighter on
+your etcd cluster, but it&amp;rsquo;s a lot more tolerant of transient failure conditions
+that are often found in cloud environments, or clusters under heavy load.&lt;/p&gt;
+&lt;p&gt;We spent some time describing and testing our internal state machine using the
+&lt;a href=&#34;https://en.wikipedia.org/wiki/TLA+&#34;&gt;TLA+&lt;/a&gt; formal verification language. This
+allows us to have a much higher degree of confidence that our algorithms will
+behave correctly, particularly under hard-to-test edge cases and failure
+conditions.&lt;/p&gt;
+&lt;p&gt;Additionally, we&amp;rsquo;ve changed the way volumes behave with respect to centralised
+scheduling. Each volume group (consisting of a master and 0 or more replicas)
+now behaves as a strongly consistent unit allowing it to take action
+independent of the activities of the rest of the cluster. Other state can be
+distributed around the cluster using eventually consistent mechanisms. This
+approach inherently scales better and allows Ondat V2 to effectively manage
+many more nodes and volumes than before.&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve implemented TLS on all endpoints. Not only does this give you encrypted
+traffic between nodes in your storage cluster, it also protects all endpoints
+with strong, public key based authentication. Today&amp;rsquo;s IT environments can&amp;rsquo;t
+rely on firewalls to keep bad actors out - they must implement security at all
+layers within the stack - defense in depth. While we recognise that this brings
+a welcome relief to many security conscious administrators, we also know that
+managing certificate authorities (CAs) can be an unwelcome source of
+complexity. For this reason, Ondat V2 implements an internal CA by default,
+to manage this complexity for you. If you&amp;rsquo;d prefer to integrate your own CA, we
+support that too - it&amp;rsquo;s up to you.&lt;/p&gt;
+&lt;p&gt;Finally - our logging has undergone a complete transformation in this edition. We
+know that systems engineers and operators don&amp;rsquo;t just value headline features,
+but that observability and diagnostics are equally important. All logs are now
+decorated with rich context to help you understand what is happening within
+your cluster, and we&amp;rsquo;ll output in json by default, for easy ingestion into log
+aggregators such as Elasticsearch.&lt;/p&gt;
+&lt;h2 id=&#34;-upgraded-data-plane&#34;&gt;🚀 Upgraded Data Plane&lt;/h2&gt;
+&lt;p&gt;Not to be outdone, our data plane contains some significant improvements.&lt;/p&gt;
+&lt;p&gt;Firstly, we&amp;rsquo;ve completely re-written our sync algorithm (see &lt;a href=&#34;https://docs.ondat.io/v2.8/docs/concepts/volumes&#34;&gt;Delta Sync&lt;/a&gt;, used when seeding or catching up replicas
+that have been offline or partitioned. Our new algorithm uses a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hash_list&#34;&gt;Hash
+List&lt;/a&gt; to sync only changed sections of
+a volume (similar in some ways to what rsync does). Ondat maintains these
+hashes during normal operation, meaning that when resyncing a failed replica,
+for example after a node reboot, we can very quickly and efficiently catch this
+replica up, rather than needing to promote and build a new one from scratch.
+This improves resiliency within your cluster, and prevents using excessive
+network bandwidth during failover conditions - at a time when it might be
+needed the most.&lt;/p&gt;
+&lt;p&gt;Secondly, a new threading model, with dynamic pool sizing, means that Ondat
+is faster, a lot faster. In our tests we observed improvements across the
+board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Supported Platforms and Orchestrators</title>
+      <link>https://docs.ondat.io/v2.8/docs/introduction/platforms/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.ondat.io/v2.8/docs/introduction/platforms/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;os&#34;&gt;OS&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Linux X86_64&lt;/li&gt;
+&lt;li&gt;Kernels satisfying our module &lt;a href=&#34;https://docs.ondat.io/v2.8/docs/prerequisites/systemconfiguration&#34;&gt;prerequisites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;3.x kernels have a limitation of 256 active volumes per node&lt;/li&gt;
+&lt;li&gt;4.x kernels have a limitation of 4096 active volumes per node&lt;/li&gt;
+&lt;li&gt;We are distribution agnostic as long as our prerequisites are met&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;orchestrators&#34;&gt;Orchestrators&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Kubernetes 1.19 to 1.23&lt;/li&gt;
+&lt;li&gt;OpenShift 4.0+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Self Evaluation Guide</title>
+      <link>https://docs.ondat.io/v2.8/docs/introduction/self-eval/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://docs.ondat.io/v2.8/docs/introduction/self-eval/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Our self-evaluation guide is a step by step recipe for installing and testing
+Ondat. This guide is divided into three sections:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Installation&lt;/strong&gt; - install Ondat with a single command&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feature Testing&lt;/strong&gt; - short walkthrough of some of our features&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Benchmarking&lt;/strong&gt; - a recipe to benchmark Ondat on your infrastructure&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 For more comprehensive documentation including installation advice for complex
+setups, operational guides, and use-cases, see our main &lt;a href=&#34;https://docs.ondat.io&#34;&gt;documentation site&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;support-for-self-evaluations&#34;&gt;Support for Self Evaluations&lt;/h2&gt;
+&lt;p&gt;Should you have questions or require support, there are several ways to get in
+touch with us. The fastest way to get in touch is to &lt;a href=&#34;https://slack.storageos.com&#34;&gt;join our public Slack channel&lt;/a&gt;. You can also get in touch via email to
+&lt;a href=&#34;mailto:support@storageos.com&#34;&gt;info@storageos.com&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;In this document we detail a simple installation suitable for evaluation
+purposes. The etcd we install uses a 3 node cluster with local storage, and
+as such is not suitable for production workloads. However, for evaluation
+purposes it should be sufficient. For production deployments, see our
+main &lt;a href=&#34;https://docs.ondat.io/v2.8/docs/prerequisites/etcd&#34;&gt;documentation pages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A standard Ondat installation uses the Ondat operator, which performs
+most platform-specific configuration for you. The Ondat operator has been
+certified by &lt;a href=&#34;https://storageos.com/red-hat/&#34;&gt;Red Hat&lt;/a&gt; and is &lt;a href=&#34;https://github.com/storageos/operator&#34;&gt;open source&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The basic installation steps are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Check prerequisites&lt;/li&gt;
+&lt;li&gt;Prepare Etcd StorageClass&lt;/li&gt;
+&lt;li&gt;Install kubectl-storageos plugin&lt;/li&gt;
+&lt;li&gt;Install Ondat&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h3&gt;
+&lt;p&gt;While we do not require custom kernel modules or additional userspace tooling,
+Ondat does have a few basic prerequisites that are met by default by most
+modern distributions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At least 1 CPU core, 2GB RAM free.&lt;/li&gt;
+&lt;li&gt;A Kubernetes release within the four most recent versions.&lt;/li&gt;
+&lt;li&gt;TCP ports 5701-5710 and TCP &amp;amp; UDP 5711 open between all nodes in the cluster.&lt;/li&gt;
+&lt;li&gt;A 64bit supported operating system - Ondat can run without additional
+packages in Debian 9, RancherOS, RHEL7.5,8 and CentOS7,8 and need the package
+linux-image-extra for Ubuntu.&lt;/li&gt;
+&lt;li&gt;Mainline kernel modules &lt;code&gt;target_core_mod&lt;/code&gt;, &lt;code&gt;tcp_loop&lt;/code&gt;, &lt;code&gt;target_core_user&lt;/code&gt;, &lt;code&gt;configfs&lt;/code&gt;, and &lt;code&gt;ui&lt;/code&gt;. These are present by default on most modern linux distributions, and can be installed with standard package managers. See our &lt;a href=&#34;https://docs.ondat.io/v2.8/docs/prerequisites/systemconfiguration&#34;&gt;system configuration&lt;/a&gt; page for instructions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;install-the-storageos-kubectl-plugin&#34;&gt;Install the storageos kubectl plugin&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Run the following command where &lt;code&gt;kubectl&lt;/code&gt; is installed and with the context
+set for your Kubernetes cluster&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -sSLo kubectl-storageos.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_linux_amd64.tar.gz \
+    &amp;amp;&amp;amp; tar -xf kubectl-storageos.tar.gz \
+    &amp;amp;&amp;amp; chmod +x kubectl-storageos \
+    &amp;amp;&amp;amp; sudo mv kubectl-storageos /usr/local/bin/ \
+    &amp;amp;&amp;amp; rm kubectl-storageos.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 You can find binaries for different architectures and systems in &lt;a href=&#34;https://github.com/storageos/kubectl-storageos/releases&#34;&gt;kubectl plugin&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;prepare-etcd-storageclass&#34;&gt;Prepare Etcd StorageClass&lt;/h3&gt;
+&lt;p&gt;The following procedure deploys a local-path StorageClass for the Ondat Etcd.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️  Note that this Etcd &lt;strong&gt;is suitable for evaluation purposes only&lt;/strong&gt;. Do not use this cluster for production workloads.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.21/deploy/local-path-storage.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass does not guarantee data safety or availability.
+Therefore the Ondat cluster cannot operate normally if the Etcd cluster
+becomes unavailable. For a production Etcd install check the
+&lt;a href=&#34;https://docs.ondat.io/v2.8/docs/prerequisites/etcd&#34;&gt;Etcd prerequisites page&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;install-ondat&#34;&gt;Install Ondat&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl storageos install  &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --include-etcd &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-namespace storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --etcd-storage-class local-path &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-username storageos &lt;span style=&#34;color:#4e9a06&#34;&gt;\
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&lt;/span&gt;    --admin-password storageos
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;verify-ondat-installation&#34;&gt;Verify Ondat installation&lt;/h3&gt;
+&lt;p&gt;Ondat installs all its components in the &lt;code&gt;storageos&lt;/code&gt; namespace.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl -n storageos get pod -w
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME                                     READY   STATUS    RESTARTS   AGE
+storageos-api-manager-65f5c9dbdf-59p2j   1/1     Running   0          36s
+storageos-api-manager-65f5c9dbdf-nhxg2   1/1     Running   0          36s
+storageos-csi-helper-65dc8ff9d8-ddsh9    3/3     Running   0          36s
+storageos-node-4njd4                     3/3     Running   0          55s
+storageos-node-5qnl7                     3/3     Running   0          56s
+storageos-node-7xc4s                     3/3     Running   0          52s
+storageos-node-bkzkx                     3/3     Running   0          58s
+storageos-node-gwp52                     3/3     Running   0          62s
+storageos-node-zqkk7                     3/3     Running   0          62s
+storageos-operator-8f7c946f8-npj7l       2/2     Running   0          64s
+storageos-scheduler-86b979c6df-wndj4     1/1     Running   0          64s
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 Wait until all the pods are ready. It usually takes ~60 seconds to complete&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;deploy-the-ondat-cli-as-a-container&#34;&gt;Deploy the Ondat CLI as a container&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl -n storageos create -f-&amp;lt;&amp;lt;END
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storageos-cli
+  labels:
+    app: storageos
+    run: cli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storageos-cli
+      run: cli
+  template:
+    metadata:
+      labels:
+        app: storageos-cli
+        run: cli
+    spec:
+      containers:
+      - command:
+        - /bin/sh
+        - -c
+        - &amp;quot;while true; do sleep 3600; done&amp;quot;
+        env:
+        - name: STORAGEOS_ENDPOINTS
+          value: http://storageos:5705
+        - name: STORAGEOS_USERNAME
+          value: storageos
+        - name: STORAGEOS_PASSWORD
+          value: storageos
+        image: storageos/cli:v2.8.2
+        name: cli
+END
+&lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 You can get the ClusterId required on the next step using the CLI pod&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+kubectl -n storageos exec $POD -- storageos get licence
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1TiB of provisioned storage.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;https://docs.ondat.io/v2.8/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
+&lt;h2 id=&#34;provision-an-ondat-volume&#34;&gt;Provision an Ondat Volume&lt;/h2&gt;
+&lt;p&gt;Now that we have a working Ondat cluster, we can provision a volume to test
+everything is working as expected.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a PVC&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;kind: PersistentVolumeClaim
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  name: pvc-1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  storageClassName: &amp;#34;storageos&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  accessModes:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    - ReadWriteOnce
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  resources:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;    requests:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;      storage: 5Gi
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;END&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create 2 replicas by labeling your PVC&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl label pvc pvc-1 storageos.com/replicas&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Verify that the volume and replicas were created with the CLI&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;pvc-1&lt;/code&gt; should be listed in the CLI output&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;POD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl -n storageos get pod -ocustom-columns&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;_:.metadata.name --no-headers -lapp&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-cli&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; -- storageos get volumes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a pod that consumes the PVC&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;kind: Pod
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; name: d1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; containers:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   - name: debian
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     image: debian:9-slim
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     command: [&amp;#34;/bin/sh&amp;#34;,&amp;#34;-c&amp;#34;,&amp;#34;while true; do sleep 3600; done&amp;#34;]
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     volumeMounts:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;       - mountPath: /mnt
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;         name: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; volumes:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   - name: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     persistentVolumeClaim:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;       claimName: pvc-1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;END&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check that the pod starts successfully. If the pod starts successfully then
+the Ondat cluster is working correctly&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pod d1 -w
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The pod mounts an Ondat volume under &lt;code&gt;/mnt&lt;/code&gt; so any files written there
+will persist beyond the lifetime of the pod. This can be demonstrated using
+the following commands.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Execute a shell inside the pod and write some data to a file&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -it d1 -- bash
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# echo Hello World! &amp;gt; /mnt/hello&lt;/span&gt;
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# cat /mnt/hello&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Hello World!&lt;/code&gt; should be printed to the console.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Delete the pod&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl delete pod d1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Recreate the pod&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;kind: Pod
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; name: d1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; containers:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   - name: debian
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     image: debian:9-slim
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     command: [&amp;#34;/bin/sh&amp;#34;,&amp;#34;-c&amp;#34;,&amp;#34;while true; do sleep 3600; done&amp;#34;]
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     volumeMounts:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;       - mountPath: /mnt
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;         name: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; volumes:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   - name: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     persistentVolumeClaim:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;       claimName: pvc-1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;END&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open a shell inside the pod and check the contents of &lt;code&gt;/mnt/hello&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -it d1 -- cat /mnt/hello
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Hello World!&lt;/code&gt; should be printed to the console.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;ondat-features&#34;&gt;Ondat Features&lt;/h2&gt;
+&lt;p&gt;Now that you have a fully functional Ondat cluster we will explain
+some of our features that may be of use to you as you complete application and
+synthetic benchmarks.&lt;/p&gt;
+&lt;p&gt;Ondat features are all enabled/disabled by applying labels to volumes.
+These labels can be passed to Ondat via persistent volume claims (PVCs) or
+can be applied to volumes using the Ondat CLI or GUI.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The following is not an exhaustive feature list but outlines features which are
+commonly of use during a self-evaluation.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;volume-replication&#34;&gt;Volume Replication&lt;/h3&gt;
+&lt;p&gt;Ondat enables synchronous replication of volumes using the
+&lt;code&gt;storageos.com/replicas&lt;/code&gt; label.&lt;/p&gt;
+&lt;p&gt;The volume that is active is referred to as the master volume. The master
+volume and its replicas are always placed on separate nodes. In fact if a
+replica cannot be placed on a node without a replica of the same volume, the
+volume will fail to be created. For example, in a three node Ondat cluster
+a volume with 3 replicas cannot be created as the third replica cannot be
+placed on a node that doesn&amp;rsquo;t already contain a replica of the same volume.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 See our &lt;a href=&#34;https://docs.ondat.io/v2.8/docs/concepts/replication&#34;&gt;replication documentation&lt;/a&gt; for more
+information on volume replication.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;To test volume replication create the following PersistentVolumeClaim&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;kind: PersistentVolumeClaim
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; name: pvc-replicated
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; labels:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   storageos.com/replicas: &amp;#34;1&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; storageClassName: &amp;#34;storageos&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; accessModes:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; - ReadWriteOnce
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt; resources:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   requests:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     storage: 5Gi
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;END&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 Note that volume replication is enabled by setting the
+&lt;code&gt;storageos.com/replicas&lt;/code&gt; label on the volume.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Confirm that a replicated volume has been created by using the Ondat CLI
+or UI&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;POD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl -n storageos get pod -ocustom-columns&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;_:.metadata.name --no-headers -lapp&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-cli&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; -- storageos get volumes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a pod that uses the PVC&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f - &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;lt;&amp;lt;END
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;apiVersion: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;kind: Pod
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;metadata:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  name: replicated-pod
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;spec:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  containers:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   - name: debian
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     image: debian:9-slim
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     command: [&amp;#34;/bin/sleep&amp;#34;]
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     args: [ &amp;#34;3600&amp;#34;  ]
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     volumeMounts:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;       - mountPath: /mnt
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;         name: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;  volumes:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;   - name: v1
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;     persistentVolumeClaim:
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;       claimName: pvc-replicated
+&lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;END&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Write data to the volume&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -it replicated-pod -- bash
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# echo Hello World! &amp;gt; /mnt/hello&lt;/span&gt;
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# cat /mnt/hello&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Hello World!&lt;/code&gt; should be printed to the console.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Find the location of the master volume and shutdown the node&lt;/p&gt;
+&lt;p&gt;Shutting down a node causes all volumes, with online replicas, on the node
+to be evicted. For replicated volumes this immediately promotes a replica
+to become the new master.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pvc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+pvc-replicated Bound    pvc-29e2ad6e-8c4e-11e9-8356-027bfbbece86   5Gi        RWO            storageos       1m
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;POD=$(kubectl -n storageos get pod -ocustom-columns=_:.metadata.name --no-headers -lapp=storageos-cli)
+kubectl -n storageos exec $POD -- storageos get volumes
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAMESPACE  NAME                                      SIZE     LOCATION              ATTACHED ON   REPLICAS  AGE
+default    pvc-4e796a62-0271-45f9-9908-21d58789a3fe  5.0 GiB  kind-worker (online)  kind-worker2  1/1       26 seconds ago
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check the location of the master volume and notice that it is on a new node.
+If the pod that mounted the volume was located on the same node that was
+shutdown then the pod will need to be recreated.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;POD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl -n storageos get pod -ocustom-columns&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;_:.metadata.name --no-headers -lapp&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-cli&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; -- storageos get volumes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;NAMESPACE  NAME                                      SIZE     LOCATION               ATTACHED ON   REPLICAS  AGE
+default    pvc-4e796a62-0271-45f9-9908-21d58789a3fe  5.0 GiB  kind-worker2 (online)  kind-worker2  1/1       46 seconds ago
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check that the data is still accessible to the pod&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -it replicated-pod -- bash
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# cat /mnt/hello&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Hello World!&lt;/code&gt; should be printed to the console.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;benchmarking&#34;&gt;Benchmarking&lt;/h2&gt;
+&lt;p&gt;Benchmarking storage is a complex topic. Considering the many books and papers
+that have been written about benchmarking, we could write many paragraphs here
+and only begin to scratch the surface.&lt;/p&gt;
+&lt;p&gt;Taking this complexity into account we present recipes for both synthetic
+benchmarks using &lt;a href=&#34;https://github.com/axboe/fio&#34;&gt;FIO&lt;/a&gt;, and a sample application
+benchmark to test PostgreSQL using
+&lt;a href=&#34;https://www.postgresql.org/docs/current/pgbench.html&#34;&gt;pgbench&lt;/a&gt;. The approaches
+are complementary - synthetic benchmarks allow us to strictly control the
+parameters of the IO we put through the system in order to stress various
+aspects of it. Application benchmarks allow us to get a sense of the
+performance of the system when running an actual representative workload -
+which of course is the ultimate arbiter of performance.&lt;/p&gt;
+&lt;p&gt;Despite the inherent complexity of benchmarking storage there are a few general
+considerations to keep in mind.&lt;/p&gt;
+&lt;h3 id=&#34;considerations&#34;&gt;Considerations&lt;/h3&gt;
+&lt;h3 id=&#34;local-vs-remote-volumes&#34;&gt;Local vs. Remote Volumes&lt;/h3&gt;
+&lt;p&gt;When a workload is placed on the same node as a volume, there is no network
+round trip for IO, and performance is consequently improved. When considering
+the performance of Ondat it is important to evaluate both local and remote
+volumes; since for certain workloads we want the high performance of a local
+attachment, but we also desire the flexibility of knowing that our less
+performance-sensitive workloads can run from any node in the cluster.&lt;/p&gt;
+&lt;h3 id=&#34;the-effect-of-synchronous-replication&#34;&gt;The Effect of Synchronous Replication&lt;/h3&gt;
+&lt;p&gt;Synchronous replication does not impact the read performance of a volume, but
+it can have a significant impact on the write performance of the volume, since
+all writes must be propagated to replicas before being acked to the
+application. The impact varies in proportion to the inter-node latency. For an
+inter-node latency of 1ms, we have a max ceiling of 1000 write IOPS, and in
+reality a little less than that to allow for processing time on the nodes. This
+is less concerning then it may first appear, since many applications will issue
+multiple writes in parallel (known as increasing the queue depth).&lt;/p&gt;
+&lt;h3 id=&#34;synthetic-benchmarks&#34;&gt;Synthetic Benchmarks&lt;/h3&gt;
+&lt;h4 id=&#34;prerequisites-1&#34;&gt;Prerequisites&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Kubernetes cluster with a minimum of 3 nodes and a minimum of
+30 Gb available capacity&lt;/li&gt;
+&lt;li&gt;Ondat CLI running as a pod in the cluster&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Synthetic benchmarks using tools such as FIO are a useful way to begin
+measuring Ondat performance. While not fully representative of application
+performance, they allow us to reason about the performance of storage devices
+without the added complexity of simulating real world workloads, and provide
+results easily comparable across platforms.&lt;/p&gt;
+&lt;p&gt;FIO has a number of parameters that can be adjusted to simulate a variety of
+workloads and configurations. Parameters that are particularly important are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Block Size&lt;/strong&gt; - the size of the IO units performed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Queue Depth&lt;/strong&gt; - the amount of concurrent IOs in flight&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IO Pattern&lt;/strong&gt; - access can be random across the disk, or sequentially. IO
+subsystems typically perform better with sequential IO, because of the
+effect of read ahead caches, and other factors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For this self-evaluation we will run a set of tests based on the excellent
+&lt;a href=&#34;https://github.com/leeliu/dbench&#34;&gt;DBench&lt;/a&gt;, which distills the numerous FIO
+options into a series of well-crafted scenarios:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Random Read/Write IOPS and BW&lt;/strong&gt; - these tests measure the IOPS ceiling
+(with a 4k block size) and bandwidth ceiling (with a 128K block size) of the
+volume using a random IO pattern and high queue depth&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Average Latency&lt;/strong&gt; - these tests measure the IO latency of the volume under
+favourable conditions using a random access pattern, low queue depth and low
+block size&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sequential Read/Write&lt;/strong&gt; - these tests measure the sequential read/write
+throughput of the volume with a high queue depth and high block size&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mixed Random Read/Write IOPS&lt;/strong&gt; - these tests measure the performance of the
+volume under a 60/40 read/write workload using a random access pattern and
+low blocksize&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For convenience we present a single script to run the scenarios using local and
+remote volumes both with and without a replica. Deploy the FIO tests for the
+four scenarios using the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;curl -sL https://raw.githubusercontent.com/ondat/use-cases/main/scripts/deploy-synthetic-benchmarks.sh &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;💡 The script will take approximately 20 minutes to complete, and will print the
+results to STDOUT.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The exact results observed will depend on the particular platform and
+environment, but the following trends should be observable:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;local volumes perform faster than remote volumes&lt;/li&gt;
+&lt;li&gt;read performance is independent of the number of replicas&lt;/li&gt;
+&lt;li&gt;write performance is dependent on the number of replicas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;application-benchmarks&#34;&gt;Application Benchmarks&lt;/h3&gt;
+&lt;p&gt;While synthetic benchmarks are useful for examining the behaviour of Ondat
+with very specific workloads, in order to get a realistic picture of Ondat
+performance actual applications should be tested.&lt;/p&gt;
+&lt;p&gt;Many applications come with test suites which provide standard workloads. For
+best results, test using your application of choice with a representative
+configuration and real world data.&lt;/p&gt;
+&lt;p&gt;As an example of benchmarking an application the following steps lay out how to
+benchmark a Postgres database backed by an Ondat volume.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Start by cloning the Ondat use cases repository. Note this is the same
+repository that we cloned earlier so if you already have a copy just &lt;code&gt;cd storageos-usecases/pgbench&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/storageos/use-cases.git storageos-usecases
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Move into the Postgres examples folder&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#204a87&#34;&gt;cd&lt;/span&gt; storageos-usecases/pgbench
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Decide which node you want the pgbench pod and volume to be located on. The
+node needs to be labelled &lt;code&gt;app=postgres&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl label node &amp;lt;NODE&amp;gt; &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;postgres
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Then set the &lt;code&gt;storageos.com/hint.master&lt;/code&gt; label in
+20-postgres-statefulset.yaml file to match the Ondat nodeID for the node
+you have chosen before creating all the files. The Ondat nodeID can be
+obtained using the cli and doing a &lt;code&gt;describe node&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl create -f .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Confirm that Postgres is up and running&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl get pods -w -l &lt;span style=&#34;color:#000&#34;&gt;app&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;postgres
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use the Ondat CLI or the GUI to check the master volume location and the
+mount location. They should match&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#000&#34;&gt;POD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;kubectl -n storageos get pod -ocustom-columns&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;_:.metadata.name --no-headers -lapp&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos-cli&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+kubectl -n storageos &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; &lt;span style=&#34;color:#000&#34;&gt;$POD&lt;/span&gt; -- storageos get volumes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Exec into the pgbench container and run pgbench&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;kubectl &lt;span style=&#34;color:#204a87&#34;&gt;exec&lt;/span&gt; -it pgbench -- bash -c &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;/opt/cpm/bin/start.sh&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;After completing these steps you will have benchmark scores for Ondat.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Do keep in mind that benchmarks are only part of the story and that there
+is no replacement for testing actual production or production like workloads.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat invites you to provide feedback on your self-evaluation to the &lt;a href=&#34;https://storageos.slack.com&#34;&gt;slack channel&lt;/a&gt; or by directly emailing us at &lt;a href=&#34;mailto:info@ondat.io&#34;&gt;info@ondat.io&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
