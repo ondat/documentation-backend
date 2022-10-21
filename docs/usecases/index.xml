@@ -1223,7 +1223,7 @@ to. The new Prometheus instance will use the storageos-etcd service monitor
 to start scraping metrics from the storageos-etcd pods. Assuming the
 storageos cluster was setup using ETCD as pods. For more information about
 service monitors, have a look at the upstream
-&lt;a href=&#34;https://coreos.com/operators/prometheus/docs/latest/user-guides/getting-started.html&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&#34;https://prometheus-operator.dev/docs/user-guides/getting-started/&#34;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ kubectl get servicemonitor                       
 NAME             AGE
 storageos-etcd   5d1h
