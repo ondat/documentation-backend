@@ -34,7 +34,7 @@ Volumes are formatted using the linux standard ext4 filesystem by default." />
 Conceptually, Ondat volumes have a frontend presentation, which is what the application sees, and a backend presentation, which is the actual on-disk format. Depending on the configuration, frontend and backend components may be on the same or different hosts.
 Volumes are formatted using the linux standard ext4 filesystem by default.">
 
-<meta itemprop="wordCount" content="614">
+<meta itemprop="wordCount" content="682">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Volumes"/>
 <meta name="twitter:description" content="Overview Ondat volumes are a logical construct which represent a writeable volume and exhibit standard POSIX semantics. Ondat presents volumes as mounts into containers via the Linux-IO (LIO) subsystem.
@@ -183,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.faa183377be5527a34ac7eba0aa190f16b6f992840338428d7da30e5c99d71b0f0e375daa38f22dc6bcdc23f4f67b88dcbfe04d536e48a286b72f0ab5677ad27.json"
+  data-offline-search-index-json-src="/offline-search-index.e208a964349e6ce27fe7e77c72dafb462e37790a4996e32a0c1ce2d6ce1853635de73733a83d7cb6a7624292832bf5411022ddbddf5ceb12754d9d4ca5c95cff.json"
   data-offline-search-base-href="/"
 >
 
@@ -331,7 +331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.faa183377be5527a34ac7eba0aa190f16b6f992840338428d7da30e5c99d71b0f0e375daa38f22dc6bcdc23f4f67b88dcbfe04d536e48a286b72f0ab5677ad27.json"
+  data-offline-search-index-json-src="/offline-search-index.e208a964349e6ce27fe7e77c72dafb462e37790a4996e32a0c1ce2d6ce1853635de73733a83d7cb6a7624292832bf5411022ddbddf5ceb12754d9d4ca5c95cff.json"
   data-offline-search-base-href="/"
 >
 
@@ -1803,11 +1803,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>The minimum volume size Ondat supports is <code>1 GiB</code>.</li>
 </ul>
 <h3 id="ondat-volume-resizing">Ondat Volume Resizing</h3>
-<p>Ondat supports offline resize of volumes.</p>
+<p>Ondat supports online and offline resizing of volumes.</p>
+<p>Offline:</p>
 <ul>
 <li>This means that a volume cannot be resized while it is in use. Furthermore, in order for a resize operation to take place the volume must not be attached to a node. This is to ensure that the volume is not in use.</li>
 <li>This means that if a Kubernetes pod is currently consuming a volume that a resize request has been issued for, the resize will not be actioned until the pod is terminated and the volume is detached from the node.</li>
-<li>The Ondat Control Plane will then attach the volume to the node that holds the master deployment and resize the underlying block device and then run <a href="https://man7.org/linux/man-pages/man8/resize2fs.8.html">resize2fs</a> to expand the filesystem.</li>
+<li>The Ondat Control Plane will then attach the volume to the node that holds the master deployment and resize the underlying block device and then run <a href="https://man7.org/linux/man-pages/man8/resize2fs.8.html">resize2fs</a> or <a href="https://man7.org/linux/man-pages/man8/xfs_growfs.8.html">xfs_growfs</a>, on ext4 and XFS respectively, to expand the filesystem.</li>
+</ul>
+<p>Online:</p>
+<blockquote>
+<p>This feature is available in release <code>v2.9.0</code> or greater.</p>
+</blockquote>
+<ul>
+<li>This means that volumes can be resized when in use or when not in use.</li>
+<li>The Ondat Control Plane will resize the underlying block device and run <a href="https://man7.org/linux/man-pages/man8/resize2fs.8.html">resize2fs</a> or <a href="https://man7.org/linux/man-pages/man8/xfs_growfs.8.html">xfs_growfs</a>, on ext4 and XFS respectively, to expand the filesystem whilst allowing the volume to continue to be used.</li>
 </ul>
 <p>For more information on how to resize a volume, review the <a href="/docs/operations/resize">Volume Resize</a> operations page.</p>
 <h3 id="ondat-volume-encryption">Ondat Volume Encryption</h3>
