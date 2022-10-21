@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/docs/concepts/csi-allowed-topologies/</loc>
+  </url><url>
     <loc>/docs/reference/operator/install/</loc>
   </url><url>
     <loc>/docs/introduction/</loc>
@@ -191,6 +193,8 @@
     <loc>/docs/operations/rwx/</loc>
   </url><url>
     <loc>/docs/operations/downgrade-ondat-2.7-to-2.6/</loc>
+  </url><url>
+    <loc>/docs/operations/csi-allowed-topologies/</loc>
   </url><url>
     <loc>/docs/operations/compression/</loc>
   </url><url>

@@ -14,6 +14,67 @@
     
     
     <item>
+      <title>Docs: CSI Allowed Topologies</title>
+      <link>/docs/concepts/csi-allowed-topologies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/csi-allowed-topologies/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.9.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat allows use of CSI&amp;rsquo;s Allowed Topology feature, for ensuring volumes
+are located in specified lists of topologies, where &amp;lsquo;topology&amp;rsquo; is taken to
+mean a description of a node&amp;rsquo;s location, some sub-division of a cluster.&lt;/p&gt;
+&lt;p&gt;In Kubernetes topologies are defined by node labels. As it stands, the only
+label Ondat supports for this purpose is &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt;, the
+Kubernetes&#39; default label for representing &amp;ldquo;a logical failure domain&amp;rdquo;.&lt;/p&gt;
+&lt;h3 id=&#34;when-to-use-csi-allowed-topologies&#34;&gt;When to use CSI Allowed Topologies&lt;/h3&gt;
+&lt;p&gt;CSI Allowed Topologies allows you to configure the &amp;ldquo;topologies&amp;rdquo; that a volume
+is allowed to be placed in, ensuring localised access for given workloads and
+availibility zones.&lt;/p&gt;
+&lt;p&gt;As such, an example use case would be for a workload that has an affinity
+for a given region of a cluster, ensuring that a deployment of that workload&amp;rsquo;s
+volume is always available in that same region for lowered latency and
+fault-tolerance.&lt;/p&gt;
+&lt;h3 id=&#34;detailed-csi-allowed-topologies-behaviour&#34;&gt;Detailed CSI Allowed Topologies Behaviour&lt;/h3&gt;
+&lt;p&gt;Where T is the set of allowed topologies, D is the set of volume deployments
+(primary &amp;amp; replicas) and |T| and |D| are the sizes of those respective sets,
+Ondat&amp;rsquo;s provisioning behaviour is this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When |T|&amp;gt;|D| - All deployments are created on nodes within |D| unique topologies within T.&lt;/li&gt;
+&lt;li&gt;When |T|=|D| - All topologies in T contain exactly one deployment.&lt;/li&gt;
+&lt;li&gt;When |T|&amp;lt;|D| - All topologies in T contain at least one deployment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So all allowed topologies will be populated with deployments if able, and if
+there are more deployments than allowed topologies those deployments can be
+placed on other toplogies.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-use&#34;&gt;How to use&lt;/h2&gt;
+&lt;p&gt;You can enable by applying a &lt;code&gt;storageos.com/fixed-topology: &amp;quot;true&amp;quot;&lt;/code&gt; label to
+any PVC that uses a StorageClass with an &lt;code&gt;allowedTopologies&lt;/code&gt; block.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For more information on how to enable CSI Allowed Topologies for your
+volumes, review the &lt;a href=&#34;/docs/operations/csi-allowed-topologies&#34;&gt;Ondat CSI Allowed Topologies&lt;/a&gt;
+operations page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;useful-links&#34;&gt;Useful links&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The CSI spec&amp;rsquo;s definition of the Topology Requirement feature: &lt;a href=&#34;https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc&#34;&gt;https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Docs on Kubernetes&#39; CSI&amp;rsquo;s implementation of the CSI Topology Requirement feature: &lt;a href=&#34;https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment&#34;&gt;https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Please note that there are discrepencies between this implementation and the original spec. In these cases the Kubernetes implementation should be seen to supersede.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The description of the &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt; label, with information on how it&amp;rsquo;s set by cloud providers: &lt;a href=&#34;https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone&#34;&gt;https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Install</title>
       <link>/docs/reference/operator/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -5327,107 +5388,6 @@ example line:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To activate the new settings, run the following command:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sysctl -p /etc/sysctl.conf
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Etcd in Kubernetes</title>
-      <link>/docs/prerequisites/etcd/etcd/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/prerequisites/etcd/etcd/</guid>
-      <description>
-        
-        
-        &lt;p&gt;Ondat requires an etcd cluster in order to function. For more information on
-why etcd is required, see our &lt;a href=&#34;/docs/concepts/etcd&#34;&gt;etcd concepts&lt;/a&gt; page.&lt;/p&gt;
-&lt;p&gt;Neither Ondat nor Kubernetes support using Kubernetes&#39; own internal etcd for Ondat.&lt;/p&gt;
-&lt;p&gt;For most use-cases it is recommended to install the Ondat etcd operator that
-will manage creation and maintenance of Ondat&amp;rsquo;s required etcd cluster. In some
-circumstances, eg. when cloud storage technologies are not available,
-it makes sense to install etcd on separate machines outside of
-your Kubernetes cluster.&lt;/p&gt;
-&lt;h2 id=&#34;installing-etcd-into-your-kubernetes-cluster&#34;&gt;Installing Etcd Into Your Kubernetes Cluster&lt;/h2&gt;
-&lt;p&gt;This is our recommended way to host etcd in both testing and production
-environments.&lt;/p&gt;
-&lt;h2 id=&#34;configuring-storage-for-etcd&#34;&gt;Configuring Storage for Etcd&lt;/h2&gt;
-&lt;p&gt;We highly recommend using cloud provider network attached disks for storing
-etcd data, such as EBS volumes, Google Persistent Disks, Azure Disks, etc. This
-allows the etcd operator to recover from node failures.&lt;/p&gt;
-&lt;p&gt;For testing environments or where there are no resilient storage options available,
-a node-local storage option can be used, such as
-&lt;a href=&#34;https://github.com/rancher/local-path-provisioner&#34;&gt;Local Path Provisioner&lt;/a&gt;.
-This will store etcd data on the node hosting an etcd pod&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ The &lt;code&gt;local-path&lt;/code&gt; StorageClass is only recommended when other, better
-storage classes are not available, as this stores
-all the data of the &lt;code&gt;etcd&lt;/code&gt; peers locally, which
-makes it susceptible to state being lost on node failures.
-In the case of &lt;code&gt;local-path&lt;/code&gt; storage, a minimum of 5 etcd nodes
-is recommended to increase resilience.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;installing-etcd&#34;&gt;Installing Etcd&lt;/h2&gt;
-&lt;p&gt;An etcd cluster can be created in three different ways:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Installing the etcd operator via our helm chart&lt;/li&gt;
-&lt;li&gt;Installing Ondat (and the etcd operator) via our Plugin&lt;/li&gt;
-&lt;li&gt;Manually deploying the etcd operator and applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing the etcd operator via our helm chart&lt;/h3&gt;
-&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts&#34;&gt;Ondat Helm
-Chart&lt;/a&gt; repository.&lt;/p&gt;
-&lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin&#34;&gt;&lt;strong&gt;Recommended:&lt;/strong&gt; Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install \
-    --include-etcd \
-    --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; \
-    --etcd-tls-enabled
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;configurable-manually-applying-an-etcdcluster-custom-resource&#34;&gt;&lt;strong&gt;Configurable:&lt;/strong&gt; Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
-&lt;p&gt;This installation method allows the most configuration of the etcd cluster, but
-is error-prone and therefore not recommended in situations in which the Helm chart
-or plugin can be used, instead.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;recommended-installing-the-etcd-operator-via-our-helm-chart-1&#34;&gt;Recommended: Installing the etcd operator via our helm chart&lt;/h3&gt;
-&lt;p&gt;For full instructions, visit &lt;a href=&#34;https://github.com/ondat/charts&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;recommended-installing-ondat-and-the-etcd-operator-via-our-plugin-1&#34;&gt;Recommended: Installing Ondat (and the etcd operator) via our Plugin&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl storageos install \
-    --include-etcd \
-    --etcd-storage-class &amp;lt;the storage class you want to use for etcd&amp;gt; \
-    --etcd-tls-enabled
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;manually-applying-an-etcdcluster-custom-resource&#34;&gt;Manually applying an &lt;code&gt;etcdcluster&lt;/code&gt; custom resource&lt;/h3&gt;
-&lt;p&gt;This installation method allows the most configuration of the etcd cluster, but
-is error-prone and therefore not recommended in situations in which the Helm chart
-or plugin can be used, instead.&lt;/p&gt;
-&lt;p&gt;Find the verison of the etcd operator you want to install from
-&lt;a href=&#34;https://github.com/storageos/etcd-cluster-operator/releases/&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Install the etcd operator:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCD_OPERATOR_VERSION=&amp;lt;set the version you want to use&amp;gt;
-kubectl apply -f https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster-operator.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then adapt the following sample to your needs and use &lt;code&gt;kubectl&lt;/code&gt; to  apply it:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export ETCD_OPERATOR_VERSION=&amp;lt;set the version you want to use&amp;gt;
-wget https://github.com/storageos/etcd-cluster-operator/releases/download/${ETCD_OPERATOR_VERSION}/storageos-etcd-cluster.yaml
-vim storageos-etcd-cluster.yaml
-kubectl apply -f storageos-etcd-cluster.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;installation-verification&#34;&gt;Installation Verification&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl -n storageos-etcd get pod,svc,pdb
-NAME                                                     READY   STATUS    RESTARTS   AGE
-pod/storageos-etcd-0-28m5t                               1/1     Running   0          18h
-pod/storageos-etcd-1-2lpn9                               1/1     Running   0          18h
-pod/storageos-etcd-2-dpdz6                               1/1     Running   0          18h
-pod/storageos-etcd-3-7lsmz                               1/1     Running   0          18h
-pod/storageos-etcd-4-q5xjd                               1/1     Running   0          18h
-pod/storageos-etcd-controller-manager-6f5776c64f-dhp7r   1/1     Running   0          18h
-pod/storageos-etcd-controller-manager-6f5776c64f-vvxrr   1/1     Running   0          18h
-pod/storageos-etcd-proxy-96bf4bb5f-z5m7f                 1/1     Running   0          18h
-
-NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
-service/storageos-etcd         ClusterIP   None            &amp;lt;none&amp;gt;        2379/TCP,2380/TCP   18h
-service/storageos-etcd-proxy   ClusterIP   10.43.199.194   &amp;lt;none&amp;gt;        80/TCP              18h
-
-NAME                                        MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
-poddisruptionbudget.policy/storageos-etcd   3               N/A               2                     18h
-&lt;/code&gt;&lt;/pre&gt;
       </description>
     </item>
     

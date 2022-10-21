@@ -20,23 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Solution - Unable To Mount RWX Volumes To A Pod | </title><meta property="og:title" content="Solution - Unable To Mount RWX Volumes To A Pod" />
-<meta property="og:description" content="Issue A PersistentVolumeClaim (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
- Below is the error message that is returned in the Events section when you describe the pod.  # describe the &#34;my-pod-mounting-rwx-volume&#34; pod. kubectl describe pod my-pod-mounting-rwx-volume # truncated output. Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 7m39s storageos-scheduler Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8." />
+<title>How To Enable CSI Allowed Toplogies | </title><meta property="og:title" content="How To Enable CSI Allowed Toplogies" />
+<meta property="og:description" content="Overview The CSI Allowed Topologies feature lets you specify sub-divisions of a cluster for a volume to be placed in. For detailed information on it, please review the Ondat CSI Allowed Topologies feature page.
+CSI Allowed Topologies are enabled by applying a storageos.com/fixed-topology: &quot;true&quot; label to any PVC that uses a StorageClass with an allowedTopologies block.
+Node Label Precautions For Ondat, the only node label available to use in allowedTopologies is topology." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/operations/csi-allowed-topologies/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Solution - Unable To Mount RWX Volumes To A Pod">
-<meta itemprop="description" content="Issue A PersistentVolumeClaim (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
- Below is the error message that is returned in the Events section when you describe the pod.  # describe the &#34;my-pod-mounting-rwx-volume&#34; pod. kubectl describe pod my-pod-mounting-rwx-volume # truncated output. Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 7m39s storageos-scheduler Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8.">
+<meta itemprop="name" content="How To Enable CSI Allowed Toplogies">
+<meta itemprop="description" content="Overview The CSI Allowed Topologies feature lets you specify sub-divisions of a cluster for a volume to be placed in. For detailed information on it, please review the Ondat CSI Allowed Topologies feature page.
+CSI Allowed Topologies are enabled by applying a storageos.com/fixed-topology: &quot;true&quot; label to any PVC that uses a StorageClass with an allowedTopologies block.
+Node Label Precautions For Ondat, the only node label available to use in allowedTopologies is topology.">
 
-<meta itemprop="wordCount" content="417">
+<meta itemprop="wordCount" content="638">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Solution - Unable To Mount RWX Volumes To A Pod"/>
-<meta name="twitter:description" content="Issue A PersistentVolumeClaim (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
- Below is the error message that is returned in the Events section when you describe the pod.  # describe the &#34;my-pod-mounting-rwx-volume&#34; pod. kubectl describe pod my-pod-mounting-rwx-volume # truncated output. Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 7m39s storageos-scheduler Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8."/>
+<meta name="twitter:title" content="How To Enable CSI Allowed Toplogies"/>
+<meta name="twitter:description" content="Overview The CSI Allowed Topologies feature lets you specify sub-divisions of a cluster for a volume to be placed in. For detailed information on it, please review the Ondat CSI Allowed Topologies feature page.
+CSI Allowed Topologies are enabled by applying a storageos.com/fixed-topology: &quot;true&quot; label to any PVC that uses a StorageClass with an allowedTopologies block.
+Node Label Precautions For Ondat, the only node label available to use in allowedTopologies is topology."/>
 
 
 
@@ -79,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Solution - Unable To Mount RWX Volumes To A Pod | </title>
+    <title>How To Enable CSI Allowed Toplogies | </title>
   </head>
   <body class="td-page">
     
@@ -932,10 +935,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/operations/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Operations</a>
+    <a  href="/docs/operations/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Operations</a>
   </li>
   <ul>
-    <li class="collapse " id="docsoperations">
+    <li class="collapse show" id="docsoperations">
       
       
       
@@ -1066,7 +1069,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationscsi-allowed-topologies" href="/docs/operations/csi-allowed-topologies/">How To Enable CSI Allowed Topologies</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationscsi-allowed-topologies" href="/docs/operations/csi-allowed-topologies/">How To Enable CSI Allowed Topologies</a>
       
       
       
@@ -1530,10 +1533,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsknowledgebase">
+    <li class="collapse " id="docsknowledgebase">
       
       
       
@@ -1648,7 +1651,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-unable-to-mount-rwx-volumes-to-a-pod" href="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/">Solution - Unable To Mount RWX Volumes To A Pod</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-unable-to-mount-rwx-volumes-to-a-pod" href="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/">Solution - Unable To Mount RWX Volumes To A Pod</a>
       
       
     </li>
@@ -1722,6 +1725,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#node-label-precautions">Node Label Precautions</a></li>
+        <li><a href="#usage-notes">Usage Notes</a></li>
+      </ul>
+    </li>
+    <li><a href="#example-usage">Example Usage</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1750,14 +1765,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/knowledgebase/">Knowledge Base</a>
+	<a href="/docs/operations/">Operations</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/">Solution - Unable To Mount RWX Volumes To A Pod</a>
+	<a href="/docs/operations/csi-allowed-topologies/">How To Enable CSI Allowed Topologies</a>
 </li>
 
 	</ol>
@@ -1765,82 +1780,157 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Solution - Unable To Mount RWX Volumes To A Pod</h1>
+	<h1>How To Enable CSI Allowed Toplogies</h1>
 	
-	<h2 id="issue">Issue</h2>
-<p>A <code>PersistentVolumeClaim</code> (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.</p>
+	<h2 id="overview">Overview</h2>
+<p>The CSI Allowed Topologies feature lets you specify sub-divisions of a cluster
+for a volume to be placed in. For detailed information on it, please review the
+<a href="/docs/concepts/csi-allowed-topologies">Ondat CSI Allowed Topologies</a> feature page.</p>
+<p>CSI Allowed Topologies are enabled by applying a <code>storageos.com/fixed-topology: &quot;true&quot;</code> label to any PVC that uses a StorageClass with an <code>allowedTopologies</code> block.</p>
+<h3 id="node-label-precautions">Node Label Precautions</h3>
+<p>For Ondat, the only node label available to use in <code>allowedTopologies</code> is
+<code>topology.kubernetes.io/zone</code>, the Kubernetes' default label for representing
+&ldquo;a logical failure domain&rdquo;. Please note that this label is often preset and/or
+overwritten by cloud providers through the Kubernetes cloud-provider
+interface (more information on that <a href="https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone">here</a>).</p>
+<p>As such, manually overwriting these values yourself should be done with caution,
+check your cloud provider&rsquo;s behaviour before making changes outside of testing
+environments.</p>
+<h3 id="usage-notes">Usage Notes</h3>
 <ul>
-<li>Below is the error message that is returned in the <code>Events</code> section when you describe the pod.</li>
+<li>This feature is mutually exclusive with Ondat&rsquo;s
+<a href="/docs/operations/tap">Topology-Aware-Provisioning</a> feature. A volume
+specifying both labels will fail to provision.</li>
+<li>Your nodes must have the required label key, otherwise volumes with the label
+will fail to provision.</li>
+<li>There must exist nodes with the labels values specified on your
+StorageClass, otherwise the volume will fail to be placed.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># describe the &#34;my-pod-mounting-rwx-volume&#34; pod.</span>
-kubectl describe pod my-pod-mounting-rwx-volume
+<h2 id="example-usage">Example Usage</h2>
+<p>These instructions will ensure your cluster is correctly labelled to use the
+feature, create an Allowed Topologies StorageClass, and create a PVC using the
+StorageClass and the Allowed Topologies feature.</p>
+<ol>
+<li>
+<p>In the code snippet below, we set a custom value for the &lsquo;zone&rsquo; label for each of our nodes.</p>
+<blockquote>
+<p>💡Please see the &lsquo;Node Lable Precautions&rsquo; section above for warnings on manually setting this label in production.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Label the worker nodes to define custom zones.</span>
+kubectl label node demo-worker-node-1 topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>zone-1
+kubectl label node demo-worker-node-2 topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>zone-2
+kubectl label node demo-worker-node-3 topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>zone-3
+kubectl label node demo-worker-node-4 topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>zone-4
+kubectl label node demo-worker-node-5 topology.kubernetes.io/zone<span style="color:#ce5c00;font-weight:bold">=</span>zone-5
 
-<span style="color:#8f5902;font-style:italic"># truncated output.</span>
-Events:
-  Type     Reason       Age                  From                 Message
-  ----     ------       ----                 ----                 -------
-  Normal   Scheduled    7m39s                storageos-scheduler  Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8.eu-west-2.compute.internal
-  Warning  FailedMount  94s                  kubelet              MountVolume.SetUp failed <span style="color:#204a87;font-weight:bold">for</span> volume <span style="color:#4e9a06">&#34;pvc-c30e3215-bbd6-4dd5-a6e2-84de1fb06097&#34;</span> : rpc error: <span style="color:#000">code</span> <span style="color:#ce5c00;font-weight:bold">=</span> DeadlineExceeded <span style="color:#000">desc</span> <span style="color:#ce5c00;font-weight:bold">=</span> context deadline exceeded
-  Warning  FailedMount  63s <span style="color:#ce5c00;font-weight:bold">(</span>x3 over 5m36s<span style="color:#ce5c00;font-weight:bold">)</span>  kubelet              Unable to attach or mount volumes: unmounted <span style="color:#000">volumes</span><span style="color:#ce5c00;font-weight:bold">=[</span>v1<span style="color:#ce5c00;font-weight:bold">]</span>, unattached <span style="color:#000">volumes</span><span style="color:#ce5c00;font-weight:bold">=[</span>v1 kube-api-access-h9njv<span style="color:#ce5c00;font-weight:bold">]</span>: timed out waiting <span style="color:#204a87;font-weight:bold">for</span> the condition
-</code></pre></div><h2 id="root-cause">Root Cause</h2>
-<ul>
-<li>The error message is related to the fact that there is no <code>Service Endpoint:</code> for the RWX NFS server.
-<ul>
-<li>The Ondat Control Plane in the <code>storageos-node-xxxx</code> daemonset pod spawns a Ganesha NFS server that is bound to the host network on a port in the range <a href="/docs/prerequisites/firewalls/"><code>25705-25960</code></a>. If the Pod cannot bound to the port for the Ganesha the <code>Service Endpoint:</code> value will show as empty.</li>
-</ul>
+<span style="color:#8f5902;font-style:italic"># Check that the worker nodes have been labeled successfully.</span>
+kubectl describe nodes <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;topology.kubernetes.io/zone&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Create a custom <code>StorageClass</code>, with an <code>allowedTopologies</code> block and check that it has been successfully created.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create the &#34;ondat-allowed-topologies&#34; StorageClass.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">kubectl create -f-&lt;&lt;EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storage.k8s.io/v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">StorageClass</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-allowed-topologies</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">provisioner</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">csi.storageos.com</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowVolumeExpansion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">parameters</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/fstype</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ext4</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;1&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos-api</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">csi.storage.k8s.io/secret-namespace</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">storageos</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">allowedTopologies</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>- <span style="color:#204a87;font-weight:bold">matchLabelExpressions</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>- <span style="color:#204a87;font-weight:bold">key</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">topology.kubernetes.io/zone</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">values</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">zone-1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">zone-2</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Review and confirm that &#34;ondat-allowed-topologies&#34; was created.</span>
+kubectl get sc <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;ondat-allowed-topologies&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Create a custom <code>PersistentVolumeClaim</code> with the <code>storageos.com/fixed-topologies=true</code> label and refrencing the previously created StorageClass.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#8f5902;font-style:italic"># Create a &#34;allowed-topologies-pvc&#34; PVC with 1 replica and the `storageos.com/fixed-topologies=true` label.</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">kubectl create -f-&lt;&lt;EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">apiVersion</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">v1</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">kind</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">PersistentVolumeClaim</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">metadata</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">name</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">allowed-topologies-pvc</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">labels</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/replicas</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;1&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">storageos.com/fixed-topology</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#34;true&#34;</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">spec</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">storageClassName</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">ondat-allowed-topologies</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">accessModes</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>- <span style="color:#000">ReadWriteOnce</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span><span style="color:#204a87;font-weight:bold">resources</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span><span style="color:#204a87;font-weight:bold">requests</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">      </span><span style="color:#204a87;font-weight:bold">storage</span><span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">5Gi</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#000">EOF</span><span style="color:#f8f8f8;text-decoration:underline">
+</span></code></pre></div></li>
+<li>
+<p>Once the PVC resource has been successfully created, review and confirm that the labels and StorageClass have been set correctly.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the labels applied to the &#34;pvc-allowed-topologies&#34; PVC.</span>
+kubectl get pvc -owide --show-labels
+
+NAME                     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS               AGE    VOLUMEMODE   LABELS
+allowed-topologies-pvc   Bound    pvc-abb18d51-7e1a-4812-8d65-40dbc090362a   5Gi        RWO            ondat-allowed-topologies   107s   Filesystem   storageos.com/fixed-topology<span style="color:#ce5c00;font-weight:bold">=</span>true,storageos.com/replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span>
+</code></pre></div></li>
+<li>
+<p>To confirm that Ondat has successfully provisioned volume deployments in the right topologies (the two zones specified in the StorageClass) deploy and run the <a href="https://docs.ondat.io/docs/reference/cli/#run-the-cli-as-a-deployment-in-your-cluster">Ondat CLI utility as a deployment</a> first, so that you can interact and manage Ondat through <code>kubectl</code>.</p>
 </li>
-</ul>
-<h2 id="resolution">Resolution</h2>
-<ul>
-<li>Check and ensure that there is a <a href="https://kubernetes.io/docs/concepts/services-networking/service/">service</a> for the RWX volume in the same namespace where the pod is located. If the service does not exist, a recommendation would be to follow the instructions below.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Define environment variables.</span>
-<span style="color:#000">PVC_NAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;my-volume-name&#34;</span>
-<span style="color:#000">PV_NAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>kubectl get pvc <span style="color:#000">$PVC_NAME</span> -ojsonpath<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;{.spec.volumeName}&#39;</span><span style="color:#204a87;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">)</span>
+<li>
+<p>With the Ondat CLI now deployed, you can check the location of the master and replica volumes.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the volumes in the &#34;default&#34; namespace using the Ondat CLI.</span>
+kubectl -n storageos <span style="color:#204a87">exec</span> deploy/storageos-cli -- storageos get volumes -A
 
-<span style="color:#8f5902;font-style:italic"># Get the PersistentVolume (PV) name associated to your PersistentVolumeClaim (PVC).</span>
-kubectl get service <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#000">$PV_NAME</span>
-</code></pre></div><ul>
-<li>You can also use the <a href="/docs/reference/cli/">Ondat CLI</a> to also check the health status of the volume. Notice that there is no assigned port under the <code>Service Endpoint:</code> key-value pair as demonstrated below;</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Use the Ondat CLI to describe the RWX volume which does not have a service.</span>
-storageos describe volume <span style="color:#000">$PV_NAME</span>
+NAMESPACE  NAME                                      SIZE     LOCATION                     ATTACHED ON  REPLICAS  AGE
+default    pvc-abb18d51-7e1a-4812-8d65-40dbc090362a  5.0 GiB  demo-worker-node-2 <span style="color:#ce5c00;font-weight:bold">(</span>online<span style="color:#ce5c00;font-weight:bold">)</span>               1/1       <span style="color:#0000cf;font-weight:bold">41</span> minutes ago
 
-ID                      a3802f33-93f5-4b1e-9253-5430c7abc71e
-Name                    pvc-5a7abc65-a0b7-4397-b782-1597c9e1ab8d
+<span style="color:#8f5902;font-style:italic"># Describe the volume.</span>
+kubectl -n storageos <span style="color:#204a87">exec</span> deploy/storageos-cli -- storageos describe volume pvc-abb18d51-7e1a-4812-8d65-40dbc090362a -n default
+
+ID                  882ab4dd-1b35-4bb4-a825-68763719b991
+Name                pvc-abb18d51-7e1a-4812-8d65-40dbc090362a
 Description
-AttachedOn              
-Attachment Type         nfs
+AttachedOn
+Attachment Type     detached
 NFS
-  Service Endpoint:    
+  Service Endpoint
   Exports:
-  - ID                  <span style="color:#0000cf;font-weight:bold">1</span>
-    Path                /
-    Pseudo Path         /
-    ACLs
-    - Identity Type     hostname
-      Identity Matcher  *
-      Squash            all
-      Squash UID        <span style="color:#0000cf;font-weight:bold">0</span>
-      Squash GUID       <span style="color:#0000cf;font-weight:bold">0</span>
-Namespace               default <span style="color:#ce5c00;font-weight:bold">(</span>e4344675-311b-453c-8a59-71ef5b2e98cf<span style="color:#ce5c00;font-weight:bold">)</span>
-Labels                  csi.storage.k8s.io/pv/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-5a7abc65-a0b7-4397-b782-1597c9e1ab8d,
-                        csi.storage.k8s.io/pvc/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-rwx2,
-                        csi.storage.k8s.io/pvc/namespace<span style="color:#ce5c00;font-weight:bold">=</span>default,
-                        storageos.com/nocompress<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>
-Filesystem              ext4
-Size                    5.0 GiB <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5368709120</span> bytes<span style="color:#ce5c00;font-weight:bold">)</span>
-Version                 NQ
-Created at              2022-02-10T16:55:12Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">7</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
-Updated at              2022-02-10T16:55:34Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">6</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+Namespace           default <span style="color:#ce5c00;font-weight:bold">(</span>5055ae9d-6278-4374-a6c8-e4779c6cc58f<span style="color:#ce5c00;font-weight:bold">)</span>
+Labels              csi.storage.k8s.io/pv/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-abb18d51-7e1a-4812-8d65-40dbc090362a,
+                    csi.storage.k8s.io/pvc/name<span style="color:#ce5c00;font-weight:bold">=</span>allowed-topologies-pvc,
+                    csi.storage.k8s.io/pvc/namespace<span style="color:#ce5c00;font-weight:bold">=</span>default,
+                    storageos.com/fixed-topologies<span style="color:#ce5c00;font-weight:bold">=</span>true,
+                    storageos.com/replicas<span style="color:#ce5c00;font-weight:bold">=</span>1,
+Topology Preferences
+  Requisite Zones:    <span style="color:#ce5c00;font-weight:bold">[</span>zone-1, zone-2<span style="color:#ce5c00;font-weight:bold">]</span>
+  Preferred Zones:    <span style="color:#ce5c00;font-weight:bold">[</span>zone-1, zone-2<span style="color:#ce5c00;font-weight:bold">]</span>
+Filesystem          ext4
+Size                5.0 GiB <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5368709120</span> bytes<span style="color:#ce5c00;font-weight:bold">)</span>
+Version             OQ
+Created at          2022-07-22T16:05:04Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">42</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
+Updated at          2022-07-22T16:26:35Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">21</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
 
 Master:
-  ID                    4c5a91a5-f7cd-4d2c-a63e-fc23049b4321
-  Node                  ip-10-73-17-108.eu-west-2.compute.internal <span style="color:#ce5c00;font-weight:bold">(</span>26d7a07c-1d68-49e9-a541-d0eb93ab77b9<span style="color:#ce5c00;font-weight:bold">)</span>
-  Health                online
-</code></pre></div><ul>
-<li>Check and ensure that the ports in the range of <code>25705-25960</code> is accessible between the worker nodes in your Kubernetes cluster. You can find more information on the ports required for RWX Volume Endpoints in the <a href="/docs/prerequisites/firewalls/">Firewall</a> prerequisites page.</li>
-</ul>
+  ID                248ea74d-8753-4f64-afbf-73b72ddc211b
+  Node              demo-worker-node-2 <span style="color:#ce5c00;font-weight:bold">(</span>1c9284c7-99a4-40c5-9ab9-95df19c1a8ac<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            online
+
+Replicas:
+  ID                e48d6084-8ce8-4d57-8644-20d61c28005e
+  Node              demo-worker-node-1 <span style="color:#ce5c00;font-weight:bold">(</span>114ae6a7-c40d-40c2-87cb-1dc9dcc24348<span style="color:#ce5c00;font-weight:bold">)</span>
+  Health            ready
+  Promotable        <span style="color:#204a87">true</span>
+</code></pre></div><blockquote>
+<p>💡  As demonstrated in the output above, the 2 deployments of the volume are on nodes in the two topologies specified in the StorageClass (zone-1 and zone-2)</p>
+</blockquote>
+</li>
+</ol>
 
 	
 	

@@ -20,23 +20,26 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Solution - Unable To Mount RWX Volumes To A Pod | </title><meta property="og:title" content="Solution - Unable To Mount RWX Volumes To A Pod" />
-<meta property="og:description" content="Issue A PersistentVolumeClaim (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
- Below is the error message that is returned in the Events section when you describe the pod.  # describe the &#34;my-pod-mounting-rwx-volume&#34; pod. kubectl describe pod my-pod-mounting-rwx-volume # truncated output. Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 7m39s storageos-scheduler Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8." />
+<title>CSI Allowed Topologies | </title><meta property="og:title" content="CSI Allowed Topologies" />
+<meta property="og:description" content="Overview  💡 This feature is available in release v2.9.0 or greater.
+ Ondat allows use of CSI&rsquo;s Allowed Topology feature, for ensuring volumes are located in specified lists of topologies, where &lsquo;topology&rsquo; is taken to mean a description of a node&rsquo;s location, some sub-division of a cluster.
+In Kubernetes topologies are defined by node labels. As it stands, the only label Ondat supports for this purpose is topology.kubernetes.io/zone, the Kubernetes&#39; default label for representing &ldquo;a logical failure domain&rdquo;." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/concepts/csi-allowed-topologies/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Solution - Unable To Mount RWX Volumes To A Pod">
-<meta itemprop="description" content="Issue A PersistentVolumeClaim (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
- Below is the error message that is returned in the Events section when you describe the pod.  # describe the &#34;my-pod-mounting-rwx-volume&#34; pod. kubectl describe pod my-pod-mounting-rwx-volume # truncated output. Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 7m39s storageos-scheduler Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8.">
+<meta itemprop="name" content="CSI Allowed Topologies">
+<meta itemprop="description" content="Overview  💡 This feature is available in release v2.9.0 or greater.
+ Ondat allows use of CSI&rsquo;s Allowed Topology feature, for ensuring volumes are located in specified lists of topologies, where &lsquo;topology&rsquo; is taken to mean a description of a node&rsquo;s location, some sub-division of a cluster.
+In Kubernetes topologies are defined by node labels. As it stands, the only label Ondat supports for this purpose is topology.kubernetes.io/zone, the Kubernetes&#39; default label for representing &ldquo;a logical failure domain&rdquo;.">
 
-<meta itemprop="wordCount" content="417">
+<meta itemprop="wordCount" content="365">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Solution - Unable To Mount RWX Volumes To A Pod"/>
-<meta name="twitter:description" content="Issue A PersistentVolumeClaim (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.
- Below is the error message that is returned in the Events section when you describe the pod.  # describe the &#34;my-pod-mounting-rwx-volume&#34; pod. kubectl describe pod my-pod-mounting-rwx-volume # truncated output. Events: Type Reason Age From Message ---- ------ ---- ---- ------- Normal Scheduled 7m39s storageos-scheduler Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8."/>
+<meta name="twitter:title" content="CSI Allowed Topologies"/>
+<meta name="twitter:description" content="Overview  💡 This feature is available in release v2.9.0 or greater.
+ Ondat allows use of CSI&rsquo;s Allowed Topology feature, for ensuring volumes are located in specified lists of topologies, where &lsquo;topology&rsquo; is taken to mean a description of a node&rsquo;s location, some sub-division of a cluster.
+In Kubernetes topologies are defined by node labels. As it stands, the only label Ondat supports for this purpose is topology.kubernetes.io/zone, the Kubernetes&#39; default label for representing &ldquo;a logical failure domain&rdquo;."/>
 
 
 
@@ -79,7 +82,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Solution - Unable To Mount RWX Volumes To A Pod | </title>
+    <title>CSI Allowed Topologies | </title>
   </head>
   <body class="td-page">
     
@@ -422,17 +425,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Features</a>
+    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Features</a>
   </li>
   <ul>
-    <li class="collapse " id="docsconcepts">
+    <li class="collapse show" id="docsconcepts">
       
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptscsi-allowed-topologies" href="/docs/concepts/csi-allowed-topologies/">CSI Allowed Topologies</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptscsi-allowed-topologies" href="/docs/concepts/csi-allowed-topologies/">CSI Allowed Topologies</a>
       
       
       
@@ -1530,10 +1533,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsknowledgebase">
+    <li class="collapse " id="docsknowledgebase">
       
       
       
@@ -1648,7 +1651,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-unable-to-mount-rwx-volumes-to-a-pod" href="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/">Solution - Unable To Mount RWX Volumes To A Pod</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-unable-to-mount-rwx-volumes-to-a-pod" href="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/">Solution - Unable To Mount RWX Volumes To A Pod</a>
       
       
     </li>
@@ -1722,6 +1725,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#when-to-use-csi-allowed-topologies">When to use CSI Allowed Topologies</a></li>
+        <li><a href="#detailed-csi-allowed-topologies-behaviour">Detailed CSI Allowed Topologies Behaviour</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-use">How to use</a></li>
+    <li><a href="#useful-links">Useful links</a></li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1750,14 +1766,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/knowledgebase/">Knowledge Base</a>
+	<a href="/docs/concepts/">Features</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/">Solution - Unable To Mount RWX Volumes To A Pod</a>
+	<a href="/docs/concepts/csi-allowed-topologies/">CSI Allowed Topologies</a>
 </li>
 
 	</ol>
@@ -1765,81 +1781,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Solution - Unable To Mount RWX Volumes To A Pod</h1>
+	<h1>CSI Allowed Topologies</h1>
 	
-	<h2 id="issue">Issue</h2>
-<p>A <code>PersistentVolumeClaim</code> (PVC) is bound and the Ondat volume appears to be in a healthy state, but the volume was never mounted to the assigned pod.</p>
+	<h2 id="overview">Overview</h2>
+<blockquote>
+<p>💡 This feature is available in release <code>v2.9.0</code> or greater.</p>
+</blockquote>
+<p>Ondat allows use of CSI&rsquo;s Allowed Topology feature, for ensuring volumes
+are located in specified lists of topologies, where &lsquo;topology&rsquo; is taken to
+mean a description of a node&rsquo;s location, some sub-division of a cluster.</p>
+<p>In Kubernetes topologies are defined by node labels. As it stands, the only
+label Ondat supports for this purpose is <code>topology.kubernetes.io/zone</code>, the
+Kubernetes' default label for representing &ldquo;a logical failure domain&rdquo;.</p>
+<h3 id="when-to-use-csi-allowed-topologies">When to use CSI Allowed Topologies</h3>
+<p>CSI Allowed Topologies allows you to configure the &ldquo;topologies&rdquo; that a volume
+is allowed to be placed in, ensuring localised access for given workloads and
+availibility zones.</p>
+<p>As such, an example use case would be for a workload that has an affinity
+for a given region of a cluster, ensuring that a deployment of that workload&rsquo;s
+volume is always available in that same region for lowered latency and
+fault-tolerance.</p>
+<h3 id="detailed-csi-allowed-topologies-behaviour">Detailed CSI Allowed Topologies Behaviour</h3>
+<p>Where T is the set of allowed topologies, D is the set of volume deployments
+(primary &amp; replicas) and |T| and |D| are the sizes of those respective sets,
+Ondat&rsquo;s provisioning behaviour is this:</p>
 <ul>
-<li>Below is the error message that is returned in the <code>Events</code> section when you describe the pod.</li>
+<li>When |T|&gt;|D| - All deployments are created on nodes within |D| unique topologies within T.</li>
+<li>When |T|=|D| - All topologies in T contain exactly one deployment.</li>
+<li>When |T|&lt;|D| - All topologies in T contain at least one deployment.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># describe the &#34;my-pod-mounting-rwx-volume&#34; pod.</span>
-kubectl describe pod my-pod-mounting-rwx-volume
-
-<span style="color:#8f5902;font-style:italic"># truncated output.</span>
-Events:
-  Type     Reason       Age                  From                 Message
-  ----     ------       ----                 ----                 -------
-  Normal   Scheduled    7m39s                storageos-scheduler  Successfully assigned default/test4-849f875f74-dmjtr to ip-10-73-16-8.eu-west-2.compute.internal
-  Warning  FailedMount  94s                  kubelet              MountVolume.SetUp failed <span style="color:#204a87;font-weight:bold">for</span> volume <span style="color:#4e9a06">&#34;pvc-c30e3215-bbd6-4dd5-a6e2-84de1fb06097&#34;</span> : rpc error: <span style="color:#000">code</span> <span style="color:#ce5c00;font-weight:bold">=</span> DeadlineExceeded <span style="color:#000">desc</span> <span style="color:#ce5c00;font-weight:bold">=</span> context deadline exceeded
-  Warning  FailedMount  63s <span style="color:#ce5c00;font-weight:bold">(</span>x3 over 5m36s<span style="color:#ce5c00;font-weight:bold">)</span>  kubelet              Unable to attach or mount volumes: unmounted <span style="color:#000">volumes</span><span style="color:#ce5c00;font-weight:bold">=[</span>v1<span style="color:#ce5c00;font-weight:bold">]</span>, unattached <span style="color:#000">volumes</span><span style="color:#ce5c00;font-weight:bold">=[</span>v1 kube-api-access-h9njv<span style="color:#ce5c00;font-weight:bold">]</span>: timed out waiting <span style="color:#204a87;font-weight:bold">for</span> the condition
-</code></pre></div><h2 id="root-cause">Root Cause</h2>
+<p>So all allowed topologies will be populated with deployments if able, and if
+there are more deployments than allowed topologies those deployments can be
+placed on other toplogies.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>You can enable by applying a <code>storageos.com/fixed-topology: &quot;true&quot;</code> label to
+any PVC that uses a StorageClass with an <code>allowedTopologies</code> block.</p>
 <ul>
-<li>The error message is related to the fact that there is no <code>Service Endpoint:</code> for the RWX NFS server.
+<li>For more information on how to enable CSI Allowed Topologies for your
+volumes, review the <a href="/docs/operations/csi-allowed-topologies">Ondat CSI Allowed Topologies</a>
+operations page.</li>
+</ul>
+<h2 id="useful-links">Useful links</h2>
 <ul>
-<li>The Ondat Control Plane in the <code>storageos-node-xxxx</code> daemonset pod spawns a Ganesha NFS server that is bound to the host network on a port in the range <a href="/docs/prerequisites/firewalls/"><code>25705-25960</code></a>. If the Pod cannot bound to the port for the Ganesha the <code>Service Endpoint:</code> value will show as empty.</li>
+<li>The CSI spec&rsquo;s definition of the Topology Requirement feature: <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc">https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc</a></li>
+<li>Docs on Kubernetes' CSI&rsquo;s implementation of the CSI Topology Requirement feature: <a href="https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment">https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment</a>
+<ul>
+<li>Please note that there are discrepencies between this implementation and the original spec. In these cases the Kubernetes implementation should be seen to supersede.</li>
 </ul>
 </li>
-</ul>
-<h2 id="resolution">Resolution</h2>
-<ul>
-<li>Check and ensure that there is a <a href="https://kubernetes.io/docs/concepts/services-networking/service/">service</a> for the RWX volume in the same namespace where the pod is located. If the service does not exist, a recommendation would be to follow the instructions below.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Define environment variables.</span>
-<span style="color:#000">PVC_NAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;my-volume-name&#34;</span>
-<span style="color:#000">PV_NAME</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87;font-weight:bold">$(</span>kubectl get pvc <span style="color:#000">$PVC_NAME</span> -ojsonpath<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;{.spec.volumeName}&#39;</span><span style="color:#204a87;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">)</span>
-
-<span style="color:#8f5902;font-style:italic"># Get the PersistentVolume (PV) name associated to your PersistentVolumeClaim (PVC).</span>
-kubectl get service <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#000">$PV_NAME</span>
-</code></pre></div><ul>
-<li>You can also use the <a href="/docs/reference/cli/">Ondat CLI</a> to also check the health status of the volume. Notice that there is no assigned port under the <code>Service Endpoint:</code> key-value pair as demonstrated below;</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Use the Ondat CLI to describe the RWX volume which does not have a service.</span>
-storageos describe volume <span style="color:#000">$PV_NAME</span>
-
-ID                      a3802f33-93f5-4b1e-9253-5430c7abc71e
-Name                    pvc-5a7abc65-a0b7-4397-b782-1597c9e1ab8d
-Description
-AttachedOn              
-Attachment Type         nfs
-NFS
-  Service Endpoint:    
-  Exports:
-  - ID                  <span style="color:#0000cf;font-weight:bold">1</span>
-    Path                /
-    Pseudo Path         /
-    ACLs
-    - Identity Type     hostname
-      Identity Matcher  *
-      Squash            all
-      Squash UID        <span style="color:#0000cf;font-weight:bold">0</span>
-      Squash GUID       <span style="color:#0000cf;font-weight:bold">0</span>
-Namespace               default <span style="color:#ce5c00;font-weight:bold">(</span>e4344675-311b-453c-8a59-71ef5b2e98cf<span style="color:#ce5c00;font-weight:bold">)</span>
-Labels                  csi.storage.k8s.io/pv/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-5a7abc65-a0b7-4397-b782-1597c9e1ab8d,
-                        csi.storage.k8s.io/pvc/name<span style="color:#ce5c00;font-weight:bold">=</span>pvc-rwx2,
-                        csi.storage.k8s.io/pvc/namespace<span style="color:#ce5c00;font-weight:bold">=</span>default,
-                        storageos.com/nocompress<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#204a87">true</span>
-Filesystem              ext4
-Size                    5.0 GiB <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5368709120</span> bytes<span style="color:#ce5c00;font-weight:bold">)</span>
-Version                 NQ
-Created at              2022-02-10T16:55:12Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">7</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
-Updated at              2022-02-10T16:55:34Z <span style="color:#ce5c00;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">6</span> minutes ago<span style="color:#ce5c00;font-weight:bold">)</span>
-
-Master:
-  ID                    4c5a91a5-f7cd-4d2c-a63e-fc23049b4321
-  Node                  ip-10-73-17-108.eu-west-2.compute.internal <span style="color:#ce5c00;font-weight:bold">(</span>26d7a07c-1d68-49e9-a541-d0eb93ab77b9<span style="color:#ce5c00;font-weight:bold">)</span>
-  Health                online
-</code></pre></div><ul>
-<li>Check and ensure that the ports in the range of <code>25705-25960</code> is accessible between the worker nodes in your Kubernetes cluster. You can find more information on the ports required for RWX Volume Endpoints in the <a href="/docs/prerequisites/firewalls/">Firewall</a> prerequisites page.</li>
+<li>The description of the <code>topology.kubernetes.io/zone</code> label, with information on how it&rsquo;s set by cloud providers: <a href="https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone">https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone</a></li>
 </ul>
 
 	
