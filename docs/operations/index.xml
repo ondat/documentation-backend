@@ -3426,6 +3426,76 @@ my-vol-1                            Bound    pvc-9477f989-8a60-4d10-8407-99bad90
     </item>
     
     <item>
+      <title>Docs: How To Use Ondat Storage Pooling</title>
+      <link>/docs/operations/pooling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/operations/pooling/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Ondat&amp;rsquo;s Storage Pooling lets you control the storage backends that your
+workloads run on. For more information on the feature, please review the
+&lt;a href=&#34;/docs/concepts/pooling&#34;&gt;Storage Pooling&lt;/a&gt; feature page.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-use&#34;&gt;How To Use&lt;/h2&gt;
+&lt;h3 id=&#34;preparing-your-drives&#34;&gt;Preparing your Drives&lt;/h3&gt;
+&lt;p&gt;Drives will need to be added to the desired Kubernetes nodes and mounted inside &lt;code&gt;/var/lib/storageos/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Example:
+If you install an nvme drive and want it to only be used by a storage pool you may mount it to &lt;code&gt;/var/lib/storageos/nvme1&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you install an nvme drive and want it to be used by any volume you may mount it to &lt;code&gt;/var/lib/storageos/data/dev2&lt;/code&gt;. Drives mounted like this can still be used by storage pools. Any drives mounted which conform to the pattern &amp;lsquo;&lt;code&gt;/var/lib/storageos/data/dev[0-9]+&lt;/code&gt;&amp;rsquo; will also be used by Ondat volumes on that node that do not use the storage pool, as that is our default storage location.&lt;/p&gt;
+&lt;h3 id=&#34;creating-a-storage-pool&#34;&gt;Creating a Storage Pool&lt;/h3&gt;
+&lt;p&gt;Storage pools are a &lt;a href=&#34;https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/&#34;&gt;Kubernetes custom resource&lt;/a&gt; and can be applied as such. The custom resource has a few fields that should be supplied.&lt;/p&gt;
+&lt;p&gt;The storage pool controller will create a &lt;code&gt;StorageClass&lt;/code&gt; from the storage pool, so the standard storage class fields should be set (for example &lt;code&gt;allowVolumeExpansion&lt;/code&gt;, &lt;code&gt;parameters&lt;/code&gt;, &lt;code&gt;reclaimPolicy&lt;/code&gt; and &lt;code&gt;volumeBindingMode&lt;/code&gt;). These fields will fallback to their defaults if not set.&lt;/p&gt;
+&lt;p&gt;The other field that must be set is the &lt;code&gt;nodeDriveMap&lt;/code&gt;, this defines the drives that are in the storage pool and specifies which nodes they&amp;rsquo;re on and where they&amp;rsquo;re mounted.&lt;/p&gt;
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: api.storageos.com/v1
+kind: Pool
+metadata:
+  name: &amp;quot;my-fast-storage-pool&amp;quot;
+spec:
+  nodeDriveMap:
+    worker-1:
+    - &amp;quot;/var/lib/storageos/nvme1&amp;quot;
+    - &amp;quot;/var/lib/storageos/nvme2&amp;quot;
+    worker-2:
+    - &amp;quot;/var/lib/storageos/really-fast-nvme&amp;quot;
+    worker-3:
+    - &amp;quot;/var/lib/storageos/data/dev1&amp;quot;
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  parameters:
+    csi.storage.k8s.io/fstype: ext4
+    storageos.com/replicas: 1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Above defines a storage pool that has 4 drives total, 2 on worker-1 (mounted to &lt;code&gt;/var/lib/storageos/nvme1&lt;/code&gt; and &lt;code&gt;/var/lib/storageos/nvme2&lt;/code&gt; respectively), 1 on worker-2 (mounted to &lt;code&gt;/var/lib/storageos/really-fast-nvme&lt;/code&gt;) and 1 on worker-3 (mounted to &lt;code&gt;/var/lib/storageos/data/dev1&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;The resulting &lt;code&gt;StorageClass&lt;/code&gt; will by default use &lt;code&gt;ext4&lt;/code&gt;, allow volume expansion, immediately bind PVs and have 1 replica. As it The drive on worker-3 will be used for all volumes that land on that node, as well as any volumes that use the storage pool.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Volumes still need to be replicated to utilise more than a single node&amp;rsquo;s drives.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;using-a-storage-pool&#34;&gt;Using a Storage Pool&lt;/h3&gt;
+&lt;p&gt;When a storage pool is created Ondat&amp;rsquo;s storage pool controller will create a &lt;code&gt;StorageClass&lt;/code&gt;, named in the form &lt;code&gt;storageos-&amp;lt;namespace&amp;gt;-&amp;lt;storage pool name&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Any PVCs that use the resulting &lt;code&gt;StorageClass&lt;/code&gt; will use the storage pool and therefore will only write data to the drives specified by the storage pool.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s important to note that volumes that use a storage pool will only host primaries and replicas on nodes that are part of the pool.
+If there&amp;rsquo;s not enough nodes in the pool to host a volume the following error will be applied to the PVC&amp;rsquo;s status: &lt;code&gt;not enough suitable nodes for the requested number of deployment&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;updating-a-storage-pool&#34;&gt;Updating a Storage Pool&lt;/h3&gt;
+&lt;p&gt;Storage pools support the following updates:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adding a new drive, on an existing node, to the pool&lt;/li&gt;
+&lt;li&gt;Adding a new node to the pool (and therefore adding one or more new drives)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In both cases the new drives will only be used for new volumes, existing volumes will not start using the new drives.&lt;/p&gt;
+&lt;p&gt;To update a pool simply edit the &lt;code&gt;Pool&lt;/code&gt; CR and apply the changes.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Removing drives or nodes from a pool is not supported. Instead create a new pool with fewer drives/nodes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;deleting-a-storage-pool&#34;&gt;Deleting a Storage Pool&lt;/h3&gt;
+&lt;p&gt;Storage pools can only be deleted if they&amp;rsquo;re not in use (i.e no volumes are using the storage class created by the pool). A finalizer is used to ensure this.&lt;/p&gt;
+&lt;p&gt;If a pool is not in use and it is deleted the storage pool controller will cleanup the related storage class.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: How To Use TRIM with Volumes</title>
       <link>/docs/operations/trim/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

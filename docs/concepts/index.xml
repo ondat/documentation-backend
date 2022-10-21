@@ -14,67 +14,6 @@
     
     
     <item>
-      <title>Docs: CSI Allowed Topologies</title>
-      <link>/docs/concepts/csi-allowed-topologies/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/concepts/csi-allowed-topologies/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.9.0&lt;/code&gt; or greater.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ondat allows use of CSI&amp;rsquo;s Allowed Topology feature, for ensuring volumes
-are located in specified lists of topologies, where &amp;lsquo;topology&amp;rsquo; is taken to
-mean a description of a node&amp;rsquo;s location, some sub-division of a cluster.&lt;/p&gt;
-&lt;p&gt;In Kubernetes topologies are defined by node labels. As it stands, the only
-label Ondat supports for this purpose is &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt;, the
-Kubernetes&#39; default label for representing &amp;ldquo;a logical failure domain&amp;rdquo;.&lt;/p&gt;
-&lt;h3 id=&#34;when-to-use-csi-allowed-topologies&#34;&gt;When to use CSI Allowed Topologies&lt;/h3&gt;
-&lt;p&gt;CSI Allowed Topologies allows you to configure the &amp;ldquo;topologies&amp;rdquo; that a volume
-is allowed to be placed in, ensuring localised access for given workloads and
-availibility zones.&lt;/p&gt;
-&lt;p&gt;As such, an example use case would be for a workload that has an affinity
-for a given region of a cluster, ensuring that a deployment of that workload&amp;rsquo;s
-volume is always available in that same region for lowered latency and
-fault-tolerance.&lt;/p&gt;
-&lt;h3 id=&#34;detailed-csi-allowed-topologies-behaviour&#34;&gt;Detailed CSI Allowed Topologies Behaviour&lt;/h3&gt;
-&lt;p&gt;Where T is the set of allowed topologies, D is the set of volume deployments
-(primary &amp;amp; replicas) and |T| and |D| are the sizes of those respective sets,
-Ondat&amp;rsquo;s provisioning behaviour is this:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;When |T|&amp;gt;|D| - All deployments are created on nodes within |D| unique topologies within T.&lt;/li&gt;
-&lt;li&gt;When |T|=|D| - All topologies in T contain exactly one deployment.&lt;/li&gt;
-&lt;li&gt;When |T|&amp;lt;|D| - All topologies in T contain at least one deployment.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So all allowed topologies will be populated with deployments if able, and if
-there are more deployments than allowed topologies those deployments can be
-placed on other toplogies.&lt;/p&gt;
-&lt;h2 id=&#34;how-to-use&#34;&gt;How to use&lt;/h2&gt;
-&lt;p&gt;You can enable by applying a &lt;code&gt;storageos.com/fixed-topology: &amp;quot;true&amp;quot;&lt;/code&gt; label to
-any PVC that uses a StorageClass with an &lt;code&gt;allowedTopologies&lt;/code&gt; block.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;For more information on how to enable CSI Allowed Topologies for your
-volumes, review the &lt;a href=&#34;/docs/operations/csi-allowed-topologies&#34;&gt;Ondat CSI Allowed Topologies&lt;/a&gt;
-operations page.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;useful-links&#34;&gt;Useful links&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The CSI spec&amp;rsquo;s definition of the Topology Requirement feature: &lt;a href=&#34;https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc&#34;&gt;https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Docs on Kubernetes&#39; CSI&amp;rsquo;s implementation of the CSI Topology Requirement feature: &lt;a href=&#34;https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment&#34;&gt;https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;Please note that there are discrepencies between this implementation and the original spec. In these cases the Kubernetes implementation should be seen to supersede.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;The description of the &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt; label, with information on how it&amp;rsquo;s set by cloud providers: &lt;a href=&#34;https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone&#34;&gt;https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Ondat Cluster Topologies</title>
       <link>/docs/concepts/cluster-topologies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -240,6 +179,67 @@ volumes.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;ondat-compression--data-encryption&#34;&gt;Ondat Compression &amp;amp; Data Encryption&lt;/h3&gt;
 &lt;p&gt;When Ondat compression and &lt;a href=&#34;/docs/concepts/encryption&#34;&gt;data encryption&lt;/a&gt; are both enabled for a volume, blocks are &lt;strong&gt;compressed first&lt;/strong&gt; and then encrypted.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat CSI Allowed Topologies</title>
+      <link>/docs/concepts/csi-allowed-topologies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/csi-allowed-topologies/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.9.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ondat allows use of CSI&amp;rsquo;s Allowed Topology feature, for ensuring volumes
+are located in specified lists of topologies, where &amp;lsquo;topology&amp;rsquo; is taken to
+mean a description of a node&amp;rsquo;s location, some sub-division of a cluster.&lt;/p&gt;
+&lt;p&gt;In Kubernetes topologies are defined by node labels. As it stands, the only
+label Ondat supports for this purpose is &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt;, the
+Kubernetes&#39; default label for representing &amp;ldquo;a logical failure domain&amp;rdquo;.&lt;/p&gt;
+&lt;h3 id=&#34;when-to-use-csi-allowed-topologies&#34;&gt;When to use CSI Allowed Topologies&lt;/h3&gt;
+&lt;p&gt;CSI Allowed Topologies allows you to configure the &amp;ldquo;topologies&amp;rdquo; that a volume
+is allowed to be placed in, ensuring localised access for given workloads and
+availibility zones.&lt;/p&gt;
+&lt;p&gt;As such, an example use case would be for a workload that has an affinity
+for a given region of a cluster, ensuring that a deployment of that workload&amp;rsquo;s
+volume is always available in that same region for lowered latency and
+fault-tolerance.&lt;/p&gt;
+&lt;h3 id=&#34;detailed-csi-allowed-topologies-behaviour&#34;&gt;Detailed CSI Allowed Topologies Behaviour&lt;/h3&gt;
+&lt;p&gt;Where T is the set of allowed topologies, D is the set of volume deployments
+(primary &amp;amp; replicas) and |T| and |D| are the sizes of those respective sets,
+Ondat&amp;rsquo;s provisioning behaviour is this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;When |T|&amp;gt;|D| - All deployments are created on nodes within |D| unique topologies within T.&lt;/li&gt;
+&lt;li&gt;When |T|=|D| - All topologies in T contain exactly one deployment.&lt;/li&gt;
+&lt;li&gt;When |T|&amp;lt;|D| - All topologies in T contain at least one deployment.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So all allowed topologies will be populated with deployments if able, and if
+there are more deployments than allowed topologies those deployments can be
+placed on other toplogies.&lt;/p&gt;
+&lt;h2 id=&#34;how-to-use&#34;&gt;How to use&lt;/h2&gt;
+&lt;p&gt;You can enable by applying a &lt;code&gt;storageos.com/fixed-topology: &amp;quot;true&amp;quot;&lt;/code&gt; label to
+any PVC that uses a StorageClass with an &lt;code&gt;allowedTopologies&lt;/code&gt; block.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For more information on how to enable CSI Allowed Topologies for your
+volumes, review the &lt;a href=&#34;/docs/operations/csi-allowed-topologies&#34;&gt;Ondat CSI Allowed Topologies&lt;/a&gt;
+operations page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;useful-links&#34;&gt;Useful links&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The CSI spec&amp;rsquo;s definition of the Topology Requirement feature: &lt;a href=&#34;https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc&#34;&gt;https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Docs on Kubernetes&#39; CSI&amp;rsquo;s implementation of the CSI Topology Requirement feature: &lt;a href=&#34;https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment&#34;&gt;https://kubernetes-csi.github.io/docs/topology.html#sidecar-deployment&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;Please note that there are discrepencies between this implementation and the original spec. In these cases the Kubernetes implementation should be seen to supersede.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The description of the &lt;code&gt;topology.kubernetes.io/zone&lt;/code&gt; label, with information on how it&amp;rsquo;s set by cloud providers: &lt;a href=&#34;https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone&#34;&gt;https://kubernetes.io/docs/reference/labels-annotations-taints/#topologykubernetesiozone&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
       </description>
     </item>
@@ -880,6 +880,37 @@ Kasten K10 and CloudCasa have been tested and validated with our feature.&lt;/p&
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Storage Pooling</title>
+      <link>/docs/concepts/pooling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/concepts/pooling/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 This feature is available in release &lt;code&gt;v2.9.0&lt;/code&gt; or greater.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Storage Pooling enables greater control over the type of storage a workload will use, this can be used to improve performance for resource-intensive applications and to reduce cost for less resource-intensive applications.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-ondat-storage-pooling&#34;&gt;What is Ondat Storage Pooling?&lt;/h3&gt;
+&lt;p&gt;In short, storage pooling allows applications to target which drives they want to write data to.&lt;/p&gt;
+&lt;p&gt;The Storage Pooling feature allows creation of &amp;ldquo;Storage Pools&amp;rdquo;, defined as a group of drives connected to a set of machines.&lt;/p&gt;
+&lt;p&gt;Applications can then use this storage pool, meaning any data written by the application will only be written to the drives in the storage pool&lt;/p&gt;
+&lt;h3 id=&#34;why-use-storage-pooling&#34;&gt;Why use Storage Pooling&lt;/h3&gt;
+&lt;p&gt;The main use-case for storage pooling is allowing heterogenous storage configurations in a cluster, without decreasing performance.&lt;/p&gt;
+&lt;p&gt;Without storage pooling Ondat will choose where to store data based on backend disk size and will spread data across all drives connected to a node (assuming the drive is mounted in &lt;code&gt;/var/lib/storageos/data/&lt;/code&gt;). This means it is possible for a slow drive in the cluster to decrease the performance of a volume even if all the other drives in the cluster are very fast.&lt;/p&gt;
+&lt;p&gt;With storage pooling applications can be targeted to use specific drives. This means a resource-intensive application can be targeted to use high-performance NVMe drives, whilst less resource-intensive applications can be targeted against cheaper lower-performance drives.&lt;/p&gt;
+&lt;h3 id=&#34;how-to-use-storage-pooling&#34;&gt;How to use Storage Pooling&lt;/h3&gt;
+&lt;p&gt;Ondat installs a new custom resource definition (CRD) into the Kubernetes cluster, called a &lt;code&gt;Pool&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Users can then create a &lt;code&gt;Pool&lt;/code&gt;, specifying which drives and which nodes should be part of it.&lt;/p&gt;
+&lt;p&gt;An Ondat controller will then create a &lt;code&gt;StorageClass&lt;/code&gt; for this pool. Any application that uses this &lt;code&gt;StorageClass&lt;/code&gt; will then utilize only the drives in that &lt;code&gt;Pool&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For detailed information on using Storage Pools  please review the &lt;a href=&#34;/docs/operations/pooling&#34;&gt;Storage Pooling&lt;/a&gt; operations page.&lt;/p&gt;
 
       </description>
     </item>

@@ -20,23 +20,29 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Solution - Cannot Perform Operations To Volumes Or Nodes | </title><meta property="og:title" content="Solution - Cannot Perform Operations To Volumes Or Nodes" />
-<meta property="og:description" content="Issue You are experiencing issues with performing operations to volumes and nodes in an Ondat cluster. Below are some of the operations that you are unable to execute;
- A specific PersistentVolumeClaim (PVC) can’t be created or deleted successfully.  # Describe the PVC named &#34;my-pvc&#34;. kubectl describe pvc my-pvc # truncated output... Events: Type Reason Age From Message ---- ------ ---- ---- ------- Warning ProvisioningFailed 27s (x9 over 10m) csi." />
+<title>Ondat Storage Pooling | </title><meta property="og:title" content="Ondat Storage Pooling" />
+<meta property="og:description" content="Overview  💡 This feature is available in release v2.9.0 or greater.
+ Storage Pooling enables greater control over the type of storage a workload will use, this can be used to improve performance for resource-intensive applications and to reduce cost for less resource-intensive applications.
+What is Ondat Storage Pooling? In short, storage pooling allows applications to target which drives they want to write data to.
+The Storage Pooling feature allows creation of &ldquo;Storage Pools&rdquo;, defined as a group of drives connected to a set of machines." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/concepts/pooling/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Solution - Cannot Perform Operations To Volumes Or Nodes">
-<meta itemprop="description" content="Issue You are experiencing issues with performing operations to volumes and nodes in an Ondat cluster. Below are some of the operations that you are unable to execute;
- A specific PersistentVolumeClaim (PVC) can’t be created or deleted successfully.  # Describe the PVC named &#34;my-pvc&#34;. kubectl describe pvc my-pvc # truncated output... Events: Type Reason Age From Message ---- ------ ---- ---- ------- Warning ProvisioningFailed 27s (x9 over 10m) csi.">
+<meta itemprop="name" content="Ondat Storage Pooling">
+<meta itemprop="description" content="Overview  💡 This feature is available in release v2.9.0 or greater.
+ Storage Pooling enables greater control over the type of storage a workload will use, this can be used to improve performance for resource-intensive applications and to reduce cost for less resource-intensive applications.
+What is Ondat Storage Pooling? In short, storage pooling allows applications to target which drives they want to write data to.
+The Storage Pooling feature allows creation of &ldquo;Storage Pools&rdquo;, defined as a group of drives connected to a set of machines.">
 
-<meta itemprop="wordCount" content="575">
+<meta itemprop="wordCount" content="307">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Solution - Cannot Perform Operations To Volumes Or Nodes"/>
-<meta name="twitter:description" content="Issue You are experiencing issues with performing operations to volumes and nodes in an Ondat cluster. Below are some of the operations that you are unable to execute;
- A specific PersistentVolumeClaim (PVC) can’t be created or deleted successfully.  # Describe the PVC named &#34;my-pvc&#34;. kubectl describe pvc my-pvc # truncated output... Events: Type Reason Age From Message ---- ------ ---- ---- ------- Warning ProvisioningFailed 27s (x9 over 10m) csi."/>
+<meta name="twitter:title" content="Ondat Storage Pooling"/>
+<meta name="twitter:description" content="Overview  💡 This feature is available in release v2.9.0 or greater.
+ Storage Pooling enables greater control over the type of storage a workload will use, this can be used to improve performance for resource-intensive applications and to reduce cost for less resource-intensive applications.
+What is Ondat Storage Pooling? In short, storage pooling allows applications to target which drives they want to write data to.
+The Storage Pooling feature allows creation of &ldquo;Storage Pools&rdquo;, defined as a group of drives connected to a set of machines."/>
 
 
 
@@ -79,7 +85,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Solution - Cannot Perform Operations To Volumes Or Nodes | </title>
+    <title>Ondat Storage Pooling | </title>
   </head>
   <body class="td-page">
     
@@ -420,10 +426,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Features</a>
+    <a  href="/docs/concepts/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Features</a>
   </li>
   <ul>
-    <li class="collapse " id="docsconcepts">
+    <li class="collapse show" id="docsconcepts">
       
       
       
@@ -508,7 +514,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsconceptspooling" href="/docs/concepts/pooling/">Ondat Storage Pooling</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsconceptspooling" href="/docs/concepts/pooling/">Ondat Storage Pooling</a>
       
       
       
@@ -1534,17 +1540,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
+    <a  href="/docs/knowledgebase/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Knowledge Base</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsknowledgebase">
+    <li class="collapse " id="docsknowledgebase">
       
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsknowledgebasesolution-cannot-perform-ondat-operations-to-volumes-or-nodes" href="/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/">Solution - Cannot Perform Operations To Volumes Or Nodes</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsknowledgebasesolution-cannot-perform-ondat-operations-to-volumes-or-nodes" href="/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/">Solution - Cannot Perform Operations To Volumes Or Nodes</a>
       
       
       
@@ -1726,6 +1732,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a>
+      <ul>
+        <li><a href="#what-is-ondat-storage-pooling">What is Ondat Storage Pooling?</a></li>
+        <li><a href="#why-use-storage-pooling">Why use Storage Pooling</a></li>
+        <li><a href="#how-to-use-storage-pooling">How to use Storage Pooling</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1754,14 +1772,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/knowledgebase/">Knowledge Base</a>
+	<a href="/docs/concepts/">Features</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/knowledgebase/solution-cannot-perform-ondat-operations-to-volumes-or-nodes/">Solution - Cannot Perform Operations To Volumes Or Nodes</a>
+	<a href="/docs/concepts/pooling/">Ondat Storage Pooling</a>
 </li>
 
 	</ol>
@@ -1769,108 +1787,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Solution - Cannot Perform Operations To Volumes Or Nodes</h1>
+	<h1>Ondat Storage Pooling</h1>
 	
-	<h2 id="issue">Issue</h2>
-<p>You are experiencing issues with performing operations to volumes and nodes in an Ondat cluster. Below are some of the operations that you are unable to execute;</p>
-<ul>
-<li>A specific <code>PersistentVolumeClaim</code> (PVC) can’t be created or deleted successfully.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Describe the PVC named &#34;my-pvc&#34;.</span>
-kubectl describe pvc my-pvc
-
-<span style="color:#8f5902;font-style:italic"># truncated output...</span>
-Events:
-  Type     Reason                Age                 From                                                                                         Message
-  ----     ------                ----                ----                                                                                         -------
-  Warning  ProvisioningFailed    27s <span style="color:#ce5c00;font-weight:bold">(</span>x9 over 10m<span style="color:#ce5c00;font-weight:bold">)</span>   csi.storageos.com_storageos-csi-helper-f7569f986-6prpq_debad2f4-27a8-4033-81af-7fb2e338afd4  failed to provision volume with StorageClass <span style="color:#4e9a06">&#34;storageos&#34;</span>: rpc error: <span style="color:#000">code</span> <span style="color:#ce5c00;font-weight:bold">=</span> DeadlineExceeded <span style="color:#000">desc</span> <span style="color:#ce5c00;font-weight:bold">=</span> context deadline exceeded
-</code></pre></div><ul>
-<li>Volumes cannot be used (ie, failing to attach and mount) and are reporting a <code>FailedScheduling</code> event.</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Describe the pod &#34;d2&#34;.</span>
-kubectl describe pod d2
-
-<span style="color:#8f5902;font-style:italic"># truncated output...</span>
-Events:
-  Type     Reason            Age   From                 Message
-  ----     ------            ----  ----                 -------
-  Warning  FailedScheduling  4s    storageos-scheduler  Post <span style="color:#4e9a06">&#34;http://storageos:5705/v2/k8s/scheduler/filter&#34;</span>: context deadline exceeded <span style="color:#ce5c00;font-weight:bold">(</span>Client.Timeout exceeded <span style="color:#204a87;font-weight:bold">while</span> awaiting headers<span style="color:#ce5c00;font-weight:bold">)</span>
-</code></pre></div><ul>
-<li>Volumes are not successfully failing over.</li>
-<li>Nodes cannot be added or deleted.</li>
-</ul>
-<p>In addition, when reviewing the logs for the Ondat daemonset, you may see the following <code>error</code> and <code>warning</code> messages;</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Get the logs for the Ondat daemonset/</span>
-kubectl logs daemonsets.apps/storageos-node  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
-
-<span style="color:#8f5902;font-style:italic"># truncated output...</span>
-<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;auth_req_username&#34;</span>:<span style="color:#4e9a06">&#34;storageos&#34;</span>,<span style="color:#4e9a06">&#34;error&#34;</span>:<span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>,<span style="color:#4e9a06">&#34;level&#34;</span>:<span style="color:#4e9a06">&#34;error&#34;</span>,<span style="color:#4e9a06">&#34;msg&#34;</span>:<span style="color:#4e9a06">&#34;error while performing login&#34;</span>,<span style="color:#4e9a06">&#34;req_id&#34;</span>:<span style="color:#4e9a06">&#34;4ba51f16-0f69-4b4f-bb83-0d7f9b58ff0c&#34;</span>,<span style="color:#4e9a06">&#34;req_ip&#34;</span>:<span style="color:#4e9a06">&#34;10.73.0.217:49118&#34;</span>,<span style="color:#4e9a06">&#34;req_xff&#34;</span>:<span style="color:#4e9a06">&#34;&#34;</span>,<span style="color:#4e9a06">&#34;time&#34;</span>:<span style="color:#4e9a06">&#34;2022-02-13T18:48:54.796090712Z&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;error&#34;</span>:<span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>,<span style="color:#4e9a06">&#34;level&#34;</span>:<span style="color:#4e9a06">&#34;error&#34;</span>,<span style="color:#4e9a06">&#34;msg&#34;</span>:<span style="color:#4e9a06">&#34;storing remote capacity failed&#34;</span>,<span style="color:#4e9a06">&#34;node_id&#34;</span>:<span style="color:#4e9a06">&#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&#34;</span>,<span style="color:#4e9a06">&#34;time&#34;</span>:<span style="color:#4e9a06">&#34;2022-02-13T18:49:03.674273759Z&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;error&#34;</span>:<span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>,<span style="color:#4e9a06">&#34;level&#34;</span>:<span style="color:#4e9a06">&#34;warning&#34;</span>,<span style="color:#4e9a06">&#34;msg&#34;</span>:<span style="color:#4e9a06">&#34;failed to update node size value in remote store&#34;</span>,<span style="color:#4e9a06">&#34;node_id&#34;</span>:<span style="color:#4e9a06">&#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&#34;</span>,<span style="color:#4e9a06">&#34;time&#34;</span>:<span style="color:#4e9a06">&#34;2022-02-13T18:49:03.674370036Z&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;error&#34;</span>:<span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>,<span style="color:#4e9a06">&#34;level&#34;</span>:<span style="color:#4e9a06">&#34;error&#34;</span>,<span style="color:#4e9a06">&#34;msg&#34;</span>:<span style="color:#4e9a06">&#34;failed to fetch latest available licence information&#34;</span>,<span style="color:#4e9a06">&#34;time&#34;</span>:<span style="color:#4e9a06">&#34;2022-02-13T18:49:03.675980929Z&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;error&#34;</span>:<span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>,<span style="color:#4e9a06">&#34;level&#34;</span>:<span style="color:#4e9a06">&#34;warning&#34;</span>,<span style="color:#4e9a06">&#34;msg&#34;</span>:<span style="color:#4e9a06">&#34;lock operation failure - is etcd healthy?&#34;</span>,<span style="color:#4e9a06">&#34;node_id&#34;</span>:<span style="color:#4e9a06">&#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&#34;</span>,<span style="color:#4e9a06">&#34;store_lock_key&#34;</span>:<span style="color:#4e9a06">&#34;storageos/default/v1/locks/node/d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&#34;</span>,<span style="color:#4e9a06">&#34;time&#34;</span>:<span style="color:#4e9a06">&#34;2022-02-13T18:49:11.026773582Z&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span><span style="color:#4e9a06">&#34;error&#34;</span>:<span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>,<span style="color:#4e9a06">&#34;level&#34;</span>:<span style="color:#4e9a06">&#34;error&#34;</span>,<span style="color:#4e9a06">&#34;msg&#34;</span>:<span style="color:#4e9a06">&#34;abandoning expired lock&#34;</span>,<span style="color:#4e9a06">&#34;node_id&#34;</span>:<span style="color:#4e9a06">&#34;d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&#34;</span>,<span style="color:#4e9a06">&#34;store_lock_key&#34;</span>:<span style="color:#4e9a06">&#34;storageos/default/v1/locks/node/d8d3d8dc-c3cd-4f97-86fb-4706d01dff33&#34;</span>,<span style="color:#4e9a06">&#34;time&#34;</span>:<span style="color:#4e9a06">&#34;2022-02-13T18:49:11.026865788Z&#34;</span><span style="color:#ce5c00;font-weight:bold">}</span>
-
-<span style="color:#8f5902;font-style:italic"># Use jq for clearer formatting and only show the error messages in the daemonset pods.</span>
-kubectl logs daemonsets.apps/storageos-node  --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos <span style="color:#000;font-weight:bold">|</span> jq <span style="color:#4e9a06">&#39;{msg: .msg, error: .error}&#39;</span>
-
-<span style="color:#ce5c00;font-weight:bold">{</span>
-<span style="color:#4e9a06">&#34;msg&#34;</span>: <span style="color:#4e9a06">&#34;storing remote capacity failed&#34;</span>,
-<span style="color:#4e9a06">&#34;error&#34;</span>: <span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span>
-<span style="color:#4e9a06">&#34;msg&#34;</span>: <span style="color:#4e9a06">&#34;failed to update node size value in remote store&#34;</span>,
-<span style="color:#4e9a06">&#34;error&#34;</span>: <span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span>
-<span style="color:#4e9a06">&#34;msg&#34;</span>: <span style="color:#4e9a06">&#34;failed to fetch latest available licence information&#34;</span>,
-<span style="color:#4e9a06">&#34;error&#34;</span>: <span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span>
-<span style="color:#4e9a06">&#34;msg&#34;</span>: <span style="color:#4e9a06">&#34;lock operation failure - is etcd healthy?&#34;</span>,
-<span style="color:#4e9a06">&#34;error&#34;</span>: <span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span>
-<span style="color:#4e9a06">&#34;msg&#34;</span>: <span style="color:#4e9a06">&#34;abandoning expired lock&#34;</span>,
-<span style="color:#4e9a06">&#34;error&#34;</span>: <span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-<span style="color:#ce5c00;font-weight:bold">{</span>
-<span style="color:#4e9a06">&#34;msg&#34;</span>: <span style="color:#4e9a06">&#34;error during authentication&#34;</span>,
-<span style="color:#4e9a06">&#34;error&#34;</span>: <span style="color:#4e9a06">&#34;context deadline exceeded&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">}</span>
-</code></pre></div><h2 id="root-cause">Root Cause</h2>
-<ul>
-<li>The <code>error</code> messages that are returned from the Ondat daemonset <code>daemonsets.apps/storageos-node</code> indicates that the daemonset pods cannot successfully communicate with the <code>etcd</code> cluster.</li>
-</ul>
-<h2 id="resolution">Resolution</h2>
-<p>To resolve the operations issues, this will require assessing and repairing the  <code>etcd</code>  cluster and ensuring that the cluster is healthy again - whether the issue is <code>etcd</code>, your network configuration, or because the nodes where Ondat is deployed are overutilised to the point where they cannot fulfil requests to and from <code>etcd</code> successfully.</p>
-<ol>
-<li>Ensure that your <code>etcd</code> cluster is running and is healthy.
-<ul>
-<li><code>etcdctl member list -wtable</code></li>
-<li><code>etcdctl endpoint status -wtable</code></li>
-<li><code>etcdctl endpoint health -wtable</code></li>
-</ul>
-</li>
-<li>Check to see if your <code>etcd</code> cluster has lost <a href="https://en.wikipedia.org/wiki/Quorum">quorum</a> by reviewing the <code>etcd</code> logs.</li>
-<li>Check to see if your <code>etcd</code> cluster is routable.</li>
-<li>Check to see if your <code>etcd</code> cluster is in a Read Only (RO) state that has been caused by an <code>etcd</code> alarm.
-<ul>
-<li><code>etcdctl alarm list</code></li>
-</ul>
-</li>
-<li>Check to see if your <code>etcd</code> cluster is struggling to write to disk fast enough (<code>etcd</code> is sensitive to latency on disk).
-<ul>
-<li>Review the logs and prometheus monitoring metrics for <code>disk_wal_fsync</code> and <code>db_fsync</code> and check to see if there is any performance degradation. (ie, orders of seconds rather than milliseconds or nanoseconds).</li>
-</ul>
-</li>
-<li>If your <code>etcd</code> cluster is healthy and routable, check to see if the nodes running the Ondat daemonset pods <code>daemonsets.apps/storageos-node</code> are healthy.
-<ul>
-<li>Are the pods under unusual load?</li>
-<li>Are there any errors being reported in one daemonset pod or more?</li>
-</ul>
-</li>
-</ol>
+	<h2 id="overview">Overview</h2>
+<blockquote>
+<p>💡 This feature is available in release <code>v2.9.0</code> or greater.</p>
+</blockquote>
+<p>Storage Pooling enables greater control over the type of storage a workload will use, this can be used to improve performance for resource-intensive applications and to reduce cost for less resource-intensive applications.</p>
+<h3 id="what-is-ondat-storage-pooling">What is Ondat Storage Pooling?</h3>
+<p>In short, storage pooling allows applications to target which drives they want to write data to.</p>
+<p>The Storage Pooling feature allows creation of &ldquo;Storage Pools&rdquo;, defined as a group of drives connected to a set of machines.</p>
+<p>Applications can then use this storage pool, meaning any data written by the application will only be written to the drives in the storage pool</p>
+<h3 id="why-use-storage-pooling">Why use Storage Pooling</h3>
+<p>The main use-case for storage pooling is allowing heterogenous storage configurations in a cluster, without decreasing performance.</p>
+<p>Without storage pooling Ondat will choose where to store data based on backend disk size and will spread data across all drives connected to a node (assuming the drive is mounted in <code>/var/lib/storageos/data/</code>). This means it is possible for a slow drive in the cluster to decrease the performance of a volume even if all the other drives in the cluster are very fast.</p>
+<p>With storage pooling applications can be targeted to use specific drives. This means a resource-intensive application can be targeted to use high-performance NVMe drives, whilst less resource-intensive applications can be targeted against cheaper lower-performance drives.</p>
+<h3 id="how-to-use-storage-pooling">How to use Storage Pooling</h3>
+<p>Ondat installs a new custom resource definition (CRD) into the Kubernetes cluster, called a <code>Pool</code>.</p>
+<p>Users can then create a <code>Pool</code>, specifying which drives and which nodes should be part of it.</p>
+<p>An Ondat controller will then create a <code>StorageClass</code> for this pool. Any application that uses this <code>StorageClass</code> will then utilize only the drives in that <code>Pool</code>.</p>
+<p>For detailed information on using Storage Pools  please review the <a href="/docs/operations/pooling">Storage Pooling</a> operations page.</p>
 
 	
 	
