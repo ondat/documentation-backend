@@ -402,54 +402,6 @@ window.onload = function() {
     </item>
     
     <item>
-      <title>Docs: Contributing to the documentation</title>
-      <link>/docs/reference/contributing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/contributing/</guid>
-      <description>
-        
-        
-        &lt;p&gt;We are always looking to improve our documentation. If you like to help people
-and can write, read on for the process for submitting your contributions. If your
-guide is published, you&amp;rsquo;ll receive $250 per article by PayPal.&lt;/p&gt;
-&lt;h2 id=&#34;content-guidelines&#34;&gt;Content guidelines&lt;/h2&gt;
-&lt;p&gt;A guide contains step by step instructions for how to accomplish a specific
-task using Ondat. To be accepted, guides must be:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Written in English.&lt;/li&gt;
-&lt;li&gt;Relevant, accurate and complete.&lt;/li&gt;
-&lt;li&gt;Technically correct and thoroughly tested.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Guides should avoid:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Duplicating an existing guide or other sources, such as blogs or forum posts.&lt;/li&gt;
-&lt;li&gt;Including irrelevant material.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;submission-and-review&#34;&gt;Submission and review&lt;/h2&gt;
-&lt;p&gt;You should submit your guide as a pull request to
-&lt;a href=&#34;https://github.com/ondat/documentation.git&#34;&gt;the GitHub repository&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Your submission will be left open for community review for two weeks. After
-this, your submission will be reviewed internally for about another week.&lt;/p&gt;
-&lt;p&gt;If accepted, your pull request will be approved and you will have 36 hours to
-send your submission title and PayPal account information. Non-response will be
-taken as a go-ahead to publish.&lt;/p&gt;
-&lt;h2 id=&#34;legal&#34;&gt;Legal&lt;/h2&gt;
-&lt;p&gt;COPYRIGHT OWNERSHIP. The Ondat Guides &amp;amp; Tutorials repository is licensed
-under the &lt;a href=&#34;https://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International&lt;/a&gt;
-(CC BY-NC-SA 4.0) license.&lt;/p&gt;
-&lt;p&gt;CREDIT. Nothing contained in this Agreement shall be deeded to require Ondat
-to use the Work, or any part thereof, in connection with Ondat Guides &amp;amp;
-Tutorials or otherwise. Credit for the Work shall read, “Contributed by &lt;em&gt;writer’s
-name&lt;/em&gt;.”&lt;/p&gt;
-&lt;p&gt;PAYMENT. Upon publication of a submission to the Ondat Guides &amp;amp; Tutorials
-Repository, the writer will be paid the sum of USD $250.00 as an electronic
-payment.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: GUI</title>
       <link>/docs/reference/gui/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
