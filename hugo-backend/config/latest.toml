@@ -174,9 +174,6 @@ no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY
     url = '/v2.7'
 [[params.versions]]
     version = 'v2.8'
-    url = '/v2.8.1'
-[[params.versions]]
-    version = 'v2.9'
     url = '/v2.8'
 [[params.versions]]
     version = 'v2.9'
