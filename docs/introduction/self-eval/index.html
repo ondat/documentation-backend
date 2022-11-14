@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Step-by-step guide to installing and evaluating Ondat
 ">
 
-<meta itemprop="wordCount" content="2600">
+<meta itemprop="wordCount" content="2650">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Self Evaluation Guide"/>
 <meta name="twitter:description" content="Step-by-step guide to installing and evaluating Ondat
@@ -180,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ebb62f9ca44a4de723c878d73e869219f09b9226f018a0897a1cb096745318598ca4ceb566d006fb8a257cb8fd9f0afb878deca1d87ab287c151ad2c1a289136.json"
+  data-offline-search-index-json-src="/offline-search-index.2bbafc43ca784400fe56467b3e4be39d676e2d5df28fd2c84778b00f71e39a88750579da1e5270257a111c9070ecc0f40ce30e7e18cf3f36cf609ab1d4644a74.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.ebb62f9ca44a4de723c878d73e869219f09b9226f018a0897a1cb096745318598ca4ceb566d006fb8a257cb8fd9f0afb878deca1d87ab287c151ad2c1a289136.json"
+  data-offline-search-index-json-src="/offline-search-index.2bbafc43ca784400fe56467b3e4be39d676e2d5df28fd2c84778b00f71e39a88750579da1e5270257a111c9070ecc0f40ce30e7e18cf3f36cf609ab1d4644a74.json"
   data-offline-search-base-href="/"
 >
 
@@ -1854,7 +1854,7 @@ linux-image-extra for Ubuntu.</li>
 set for your Kubernetes cluster</p>
 </blockquote>
 <pre tabindex="0"><code>curl -sSLo kubectl-storageos.tar.gz \
-    https://github.com/storageos/kubectl-storageos/releases/download/v1.3.0/kubectl-storageos_1.3.0_linux_amd64.tar.gz \
+    https://github.com/storageos/kubectl-storageos/releases/download/v1.3.2/kubectl-storageos_1.3.2_linux_amd64.tar.gz \
     &amp;&amp; tar -xf kubectl-storageos.tar.gz \
     &amp;&amp; chmod +x kubectl-storageos \
     &amp;&amp; sudo mv kubectl-storageos /usr/local/bin/ \
@@ -1880,8 +1880,12 @@ becomes unavailable. For a production Etcd install check the
 </span><span style="color:#4e9a06"></span>    --etcd-namespace storageos <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --etcd-storage-class local-path <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --admin-username storageos <span style="color:#4e9a06">\
+</span><span style="color:#4e9a06"></span>    --etcd-replicas<span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#4e9a06">\
 </span><span style="color:#4e9a06"></span>    --admin-password storageos
-</code></pre></div><h3 id="verify-ondat-installation">Verify Ondat installation</h3>
+</code></pre></div><blockquote>
+<p>💡 We have set the etcd-replicas to 3 in the example above assuming a cluster with 3 worker nodes. You can set the replicas as low as 1 for single node evaluations for edge deployments for example, although remember a single etcd cluster does not provide any resilience.</p>
+</blockquote>
+<h3 id="verify-ondat-installation">Verify Ondat installation</h3>
 <p>Ondat installs all its components in the <code>storageos</code> namespace.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl -n storageos get pod -w
 </code></pre></div><pre tabindex="0"><code>NAME                                     READY   STATUS    RESTARTS   AGE
@@ -1932,7 +1936,7 @@ spec:
           value: storageos
         - name: STORAGEOS_PASSWORD
           value: storageos
-        image: storageos/cli:v2.8.2
+        image: storageos/cli:v2.9.0
         name: cli
 END
 </code></pre><blockquote>
