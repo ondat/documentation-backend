@@ -32,7 +32,7 @@ Supported Distributions Current (non-EOL) versions of the following distribution
 <meta itemprop="description" content="Ondat requires certain standard kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers). A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.
 Supported Distributions Current (non-EOL) versions of the following distributions are supported by default:">
 
-<meta itemprop="wordCount" content="400">
+<meta itemprop="wordCount" content="393">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="System Configuration"/>
 <meta name="twitter:description" content="Ondat requires certain standard kernel modules to function. In particular it requires Linux-IO, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers). A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.
@@ -180,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2bbafc43ca784400fe56467b3e4be39d676e2d5df28fd2c84778b00f71e39a88750579da1e5270257a111c9070ecc0f40ce30e7e18cf3f36cf609ab1d4644a74.json"
+  data-offline-search-index-json-src="/offline-search-index.f9bc5b241ed8cee1fdf9a0338cfc01114e86b8aa7be706ef437329f9a08dcb31e4625886eafff0e461264edfbcb32c5232719ec88bc1232db6a54ff8ee18977b.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.2bbafc43ca784400fe56467b3e4be39d676e2d5df28fd2c84778b00f71e39a88750579da1e5270257a111c9070ecc0f40ce30e7e18cf3f36cf609ab1d4644a74.json"
+  data-offline-search-index-json-src="/offline-search-index.f9bc5b241ed8cee1fdf9a0338cfc01114e86b8aa7be706ef437329f9a08dcb31e4625886eafff0e461264edfbcb32c5232719ec88bc1232db6a54ff8ee18977b.json"
   data-offline-search-base-href="/"
 >
 
@@ -1790,17 +1790,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>CentOS</li>
 <li>Debian</li>
 <li>Ubuntu</li>
+<li>Amazon Linux 2/2022 (11th November 2022 release with Kernel 5.4.219-126.411.amzn2.x86_64 or above)</li>
 </ul>
 <p>The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:</p>
 <ul>
 <li>Bottlerocket</li>
 <li>Google ContainerOS</li>
 </ul>
-<p>The following distributions are currently not supported:</p>
-<ul>
-<li>Amazon Linux (lacks <code>target_core_mod</code> and <code>target_core_user</code>)</li>
-</ul>
-<p>This has been <a href="https://github.com/amazonlinux/amazon-linux-2022/issues/88">raised with AWS</a>.</p>
 <blockquote>
 <p>💡 If you require help with a specific issue with a listed distribution, <a href="https://github.com/ondat/documentation/issues">raise an issue on GitHub</a> or reach out to us on our <a href="https://slack.storageos.com">Community Slack</a></p>
 </blockquote>

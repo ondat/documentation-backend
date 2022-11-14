@@ -31,17 +31,13 @@
 &lt;li&gt;CentOS&lt;/li&gt;
 &lt;li&gt;Debian&lt;/li&gt;
 &lt;li&gt;Ubuntu&lt;/li&gt;
+&lt;li&gt;Amazon Linux 2/2022 (11th November 2022 release with Kernel 5.4.219-126.411.amzn2.x86_64 or above)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Bottlerocket&lt;/li&gt;
 &lt;li&gt;Google ContainerOS&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The following distributions are currently not supported:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Amazon Linux (lacks &lt;code&gt;target_core_mod&lt;/code&gt; and &lt;code&gt;target_core_user&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This has been &lt;a href=&#34;https://github.com/amazonlinux/amazon-linux-2022/issues/88&#34;&gt;raised with AWS&lt;/a&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;💡 If you require help with a specific issue with a listed distribution, &lt;a href=&#34;https://github.com/ondat/documentation/issues&#34;&gt;raise an issue on GitHub&lt;/a&gt; or reach out to us on our &lt;a href=&#34;https://slack.storageos.com&#34;&gt;Community Slack&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
