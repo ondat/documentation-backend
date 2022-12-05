@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Ondat release notes on new features, fixes and changes.
 ">
 
-<meta itemprop="wordCount" content="5258">
+<meta itemprop="wordCount" content="5273">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Release Notes"/>
 <meta name="twitter:description" content="Ondat release notes on new features, fixes and changes.
@@ -180,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fc3b8df01c5344820aa78f435ef6fbcd3df5bdd4c85c117d4be23a2d44c61d810315f893c01449ce5e7ec359b2ef4599013e5f3ff1db09644dd882372cd860ba.json"
+  data-offline-search-index-json-src="/offline-search-index.5d012c2400f2fb301088f441775b8cb4d31f8681010c2fbc46ba3016a85ea3fe04d6f4da57622dd467e62da5d8423c8ba880822cc92479fa9428ca7805a32379.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.fc3b8df01c5344820aa78f435ef6fbcd3df5bdd4c85c117d4be23a2d44c61d810315f893c01449ce5e7ec359b2ef4599013e5f3ff1db09644dd882372cd860ba.json"
+  data-offline-search-index-json-src="/offline-search-index.5d012c2400f2fb301088f441775b8cb4d31f8681010c2fbc46ba3016a85ea3fe04d6f4da57622dd467e62da5d8423c8ba880822cc92479fa9428ca7805a32379.json"
   data-offline-search-base-href="/"
 >
 
@@ -1902,7 +1902,11 @@ installation instructions see our
 <h3 id="new">New</h3>
 <ul>
 <li>Allow dataplane startup timeout to be configured</li>
-<li>Increase control plane&rsquo;s default max log size to 25MiB and enable log compression</li>
+<li>Increase control plane&rsquo;s default max log size to 25MiB (was 10 MiB) and enable log compression
+<ul>
+<li>This means the maximum size of logs on a node will be 250 MiB (likely less due to compression), as up to 10 log files are retained before rollover</li>
+</ul>
+</li>
 <li>CSI helper timeouts can now be configured via the StorageosCluster CRD</li>
 <li>CSI Provisioner’s number of worker threads can now be configured via the StorageosCluster CRD</li>
 <li>CSI Provisioner’s number of worker threads now defaults to 32 (was 100, which caused issues when creating many volumes at once)</li>
@@ -1911,11 +1915,7 @@ installation instructions see our
 </ul>
 <h3 id="fixed">Fixed</h3>
 <ul>
-<li>Significantly reduce the CPU usage when creating volumes
-<ul>
-<li>This fixes an issue where creating many volumes at once could cause small clusters to become unstable</li>
-</ul>
-</li>
+<li>Significantly reduce the CPU usage when creating volumes</li>
 <li>Placement service logs will now be output correctly to stdout</li>
 <li>Remove arbitrary max presentations per node limit (it was 250)</li>
 <li>No longer discard blocks when running mkfs for XFS</li>
