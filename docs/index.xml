@@ -3976,10 +3976,10 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;Debian&lt;/li&gt;
 &lt;li&gt;Ubuntu&lt;/li&gt;
 &lt;li&gt;Amazon Linux 2/2022 (11th November 2022 release with Kernel 5.4.219-126.411.amzn2.x86_64 or above)&lt;/li&gt;
+&lt;li&gt;Bottlerocket (currently doesn&amp;rsquo;t support &lt;a href=&#34;/docs/concepts/snapshots/&#34;&gt;Snapshots&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The following distributions include the prerequisite modules but are not yet tested exhaustively by the Ondat team:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Bottlerocket&lt;/li&gt;
 &lt;li&gt;Google ContainerOS&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
