@@ -183,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7fd29a3742d431fa2f4400d525e5c39cb65292e728ebab49ea8f72eafd557f43bc4064fc686592a4e4949408a60eff0c6b4989e11af101224738cbb10c4fc723.json"
+  data-offline-search-index-json-src="/offline-search-index.0ecc46a85073a9ccea3727c1aa796b9db13462a9f74b1e9e1527ee7c163e13496187bab799dbdb4f5792ba46ed8c79b06b1bc44a7af439187f2fbaeaa7ddebc9.json"
   data-offline-search-base-href="/"
 >
 
@@ -331,7 +331,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.7fd29a3742d431fa2f4400d525e5c39cb65292e728ebab49ea8f72eafd557f43bc4064fc686592a4e4949408a60eff0c6b4989e11af101224738cbb10c4fc723.json"
+  data-offline-search-index-json-src="/offline-search-index.0ecc46a85073a9ccea3727c1aa796b9db13462a9f74b1e9e1527ee7c163e13496187bab799dbdb4f5792ba46ed8c79b06b1bc44a7af439187f2fbaeaa7ddebc9.json"
   data-offline-search-base-href="/"
 >
 
@@ -1821,7 +1821,7 @@ spec:
   allowVolumeExpansion: true
   parameters:
     csi.storage.k8s.io/fstype: ext4
-    storageos.com/replicas: 1
+    storageos.com/replicas: &quot;1&quot;
 </code></pre><p>Above defines a storage pool that has 4 drives total, 2 on worker-1 (mounted to <code>/var/lib/storageos/nvme1</code> and <code>/var/lib/storageos/nvme2</code> respectively), 1 on worker-2 (mounted to <code>/var/lib/storageos/really-fast-nvme</code>) and 1 on worker-3 (mounted to <code>/var/lib/storageos/data/dev1</code>).</p>
 <p>The resulting <code>StorageClass</code> will by default use <code>ext4</code>, allow volume expansion, immediately bind PVs and have 1 replica. As it The drive on worker-3 will be used for all volumes that land on that node, as well as any volumes that use the storage pool.</p>
 <blockquote>

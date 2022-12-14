@@ -3966,7 +3966,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
       <description>
         
         
-        &lt;p&gt;Ondat requires certain standard kernel modules to function. In particular it requires &lt;a href=&#34;http://linux-iscsi.org/wiki/Main_Page&#34;&gt;Linux-IO&lt;/a&gt;, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).  A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.&lt;/p&gt;
+        &lt;p&gt;Ondat requires certain standard kernel modules to function. In particular it requires &lt;a href=&#34;https://en.wikipedia.org/wiki/LIO_(SCSI_target)&#34;&gt;Linux-IO (LIO)&lt;/a&gt;, an open-source implementation of the SCSI target, on all nodes that will execute Ondat (usually the workers).  A variety of Linux distributions are made available by AWS/Azure/GCP and other hyperscalers for use within their kubernetes platforms, however note that not all of them ship with Linux-IO.&lt;/p&gt;
 &lt;h2 id=&#34;supported-distributions&#34;&gt;Supported Distributions&lt;/h2&gt;
 &lt;p&gt;Current (non-EOL) versions of the following distributions are supported by default:&lt;/p&gt;
 &lt;ul&gt;
@@ -3995,7 +3995,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;li&gt;&lt;code&gt;uio&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;http://linux-iscsi.org/wiki/LIO&#34;&gt;TCMU&lt;/a&gt; cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.&lt;/p&gt;
+&lt;p&gt;⚠️ Other applications utilising &lt;a href=&#34;https://docs.kernel.org/target/tcmu-design.html&#34;&gt;TCMU&lt;/a&gt; cannot be run concurrently with Ondat. Doing so may result in corruption of data. On startup, Ondat will detect if other applications are using TCMU.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;In most modern distributions, including those listed above, the modules are distributed as part of the Linux kernel package and are included by default. In some older distributions, they were part of a kernel extras package that needed to be installed separately.&lt;/p&gt;
 &lt;h2 id=&#34;installing-the-required-kernel-modules&#34;&gt;Installing the required Kernel Modules&lt;/h2&gt;

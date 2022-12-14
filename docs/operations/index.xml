@@ -3466,7 +3466,7 @@ spec:
   allowVolumeExpansion: true
   parameters:
     csi.storage.k8s.io/fstype: ext4
-    storageos.com/replicas: 1
+    storageos.com/replicas: &amp;quot;1&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Above defines a storage pool that has 4 drives total, 2 on worker-1 (mounted to &lt;code&gt;/var/lib/storageos/nvme1&lt;/code&gt; and &lt;code&gt;/var/lib/storageos/nvme2&lt;/code&gt; respectively), 1 on worker-2 (mounted to &lt;code&gt;/var/lib/storageos/really-fast-nvme&lt;/code&gt;) and 1 on worker-3 (mounted to &lt;code&gt;/var/lib/storageos/data/dev1&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;The resulting &lt;code&gt;StorageClass&lt;/code&gt; will by default use &lt;code&gt;ext4&lt;/code&gt;, allow volume expansion, immediately bind PVs and have 1 replica. As it The drive on worker-3 will be used for all volumes that land on that node, as well as any volumes that use the storage pool.&lt;/p&gt;
 &lt;blockquote&gt;
