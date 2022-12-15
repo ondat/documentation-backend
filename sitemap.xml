@@ -262,8 +262,6 @@
   </url><url>
     <loc>/docs/usecases/postgres/</loc>
   </url><url>
-    <loc>/docs/usecases/prometheus/</loc>
-  </url><url>
     <loc>/docs/usecases/redis/</loc>
   </url><url>
     <loc>/docs/reference/resource_requests_and_limits/</loc>
