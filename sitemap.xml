@@ -50,6 +50,8 @@
   </url><url>
     <loc>/docs/concepts/volumes/</loc>
   </url><url>
+    <loc>/docs/install/openshift/openshift-container-platform-ocp/</loc>
+  </url><url>
     <loc>/docs/upgrade/using-rolling-upgrades/</loc>
   </url><url>
     <loc>/docs/reference/policies/</loc>
