@@ -60,8 +60,6 @@
   </url><url>
     <loc>/docs/install/gcp/google-kubernetes-engine-gke/</loc>
   </url><url>
-    <loc>/docs/install/openshift/openshift-operatorhub/</loc>
-  </url><url>
     <loc>/docs/install/aws/</loc>
   </url><url>
     <loc>/docs/install/azure/microsoft-azure-aks/</loc>
@@ -72,8 +70,6 @@
   </url><url>
     <loc>/docs/introduction/overview/</loc>
   </url><url>
-    <loc>/docs/install/openshift/openshift-marketplace/</loc>
-  </url><url>
     <loc>/docs/install/rancher/rancher/</loc>
   </url><url>
     <loc>/docs/install/rancher/rancher-marketplace/</loc>
@@ -83,6 +79,8 @@
     <loc>/docs/ondat-portal/dashboard/</loc>
   </url><url>
     <loc>/docs/install/gcp/</loc>
+  </url><url>
+    <loc>/docs/install/openshift/</loc>
   </url><url>
     <loc>/docs/install/rancher/</loc>
   </url><url>
@@ -97,8 +95,6 @@
     <loc>/docs/introduction/platforms/</loc>
   </url><url>
     <loc>/docs/install/digitalocean/</loc>
-  </url><url>
-    <loc>/docs/install/openshift/</loc>
   </url><url>
     <loc>/docs/install/advanced/</loc>
   </url><url>

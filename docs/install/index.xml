@@ -165,10 +165,30 @@ go!&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running kubernetes in GCP there are a number of options on how you run your kubernetes cluster. Please see the following datasheets and blogs for more information about some of the use-cases of running in GCP.&lt;/p&gt;
+&lt;p&gt;If you are running Kubernetes in GCP, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in GCP.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/datasheets/ondat-google-anthos&#34;&gt;Datasheet: Ondat for Google Anthos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/datasheets/ondat-google-anthos&#34;&gt;Datasheet: Ondat For Google Anthos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: OpenShift</title>
+      <link>/docs/install/openshift/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/openshift/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;If you are running OpenShift, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in OpenShift.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/run-production-databases-on-red-hat-openshift-with-ondat&#34;&gt;Webinar:  Run Production Databases On Red Hat OpenShift With Ondat&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/demo-installing-storageos-on-openshift-4&#34;&gt;Blog: How To Deploy Ondat In An OpenShift Cluster - Video Demonstration&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -226,27 +246,6 @@ go!&lt;/p&gt;
 &lt;p&gt;If you are running kubernetes in Digital Ocean there are a number of options on how you run your kubernetes cluster. Please see the following datasheets and blogs for more information about some of the use-cases of running in Digital Ocean.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: OpenShift</title>
-      <link>/docs/install/openshift/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/install/openshift/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running OpenShift there are a number of options on how you run your kubernetes cluster. Please see the following datasheets and blogs for more information about some of the use-cases of running Ondat in OpenShift.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/run-production-databases-on-red-hat-openshift-with-ondat&#34;&gt;Webinar: Run production databases on Red Hat Openshift&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/run-production-databases-on-red-hat-openshift-with-ondat&#34;&gt;Webinar: Run production databases on OpenShift with Ondat&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/demo-installing-storageos-on-openshift-4&#34;&gt;Blog: Installing on OpenShift&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>

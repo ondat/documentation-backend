@@ -2053,156 +2053,6 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
     </item>
     
     <item>
-      <title>Docs: OpenShift via OperatorHub</title>
-      <link>/docs/install/openshift/openshift-operatorhub/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/install/openshift/openshift-operatorhub/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This guide will demonstrate how to install Ondat onto an &lt;a href=&#34;/docs/platforms/openshift&#34;&gt;Openshift&lt;/a&gt; cluster using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure the
-&lt;a href=&#34;/docs/prerequisites/&#34;&gt;prerequisites for Ondat&lt;/a&gt; are
-satisfied before proceeding. Including the deployment of an etcd cluster and
-configuration of CRI-O PID limits.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are
-opened for the worker nodes&#39; security group.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 For OpenShift upgrades, refer to the
-&lt;a href=&#34;/docs/platforms/openshift#openshift-upgrades&#34;&gt;OpenShift platform page&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ondat v2 supports OpenShift v4. For more information, see the &lt;a href=&#34;/docs/platforms/openshift&#34;&gt;OpenShift platform&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;installation-of-ondat-via-operatorhub&#34;&gt;installation of Ondat via OperatorHub&lt;/h2&gt;
-&lt;h4 id=&#34;step-1-operatorhub&#34;&gt;Step 1: Operatorhub&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Select the &lt;code&gt;OperatorHub&lt;/code&gt; from the Catalog sub menu and search for StorageOS&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Choose between using the RedHat Marketplace or the Community Operators
-installation.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Select StorageOS and click &lt;strong&gt;Install&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Select the relevant install options.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Make sure the &lt;code&gt;Approval Strategy&lt;/code&gt; is set to &lt;strong&gt;Manual&lt;/strong&gt;. This option makes sure that the StorageOS
-Operator doesn&amp;rsquo;t upgrade versions without explicit approval.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Start the approval procedure by clicking on the operator name.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;On &lt;strong&gt;Subscription Details&lt;/strong&gt;, click the approval link.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;On &lt;strong&gt;Review Manual Install&lt;/strong&gt; panel in the &lt;strong&gt;Components&lt;/strong&gt; tab, click &lt;strong&gt;Approve&lt;/strong&gt; to confirm the installation.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The Ondat Operator is installed along the required CRDs.&lt;/p&gt;
-&lt;h4 id=&#34;step-2-authentication&#34;&gt;Step 2: Authentication&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create a Secret in the &lt;code&gt;openshift-operators&lt;/code&gt; project and select the YAML option to create a secret containing the &lt;code&gt;username&lt;/code&gt; and an
-&lt;code&gt;password&lt;/code&gt; key. The username and password defined in the secret will be
-used to authenticate when using the Ondat CLI and GUI. Take note of
-which project you created the secret in.&lt;/p&gt;
-&lt;p&gt;Input the secret as YAML for simplicity.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Secret&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-api&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;openshift-operators&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;kubernetes.io/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# echo -n &amp;#39;&amp;lt;secret&amp;gt;&amp;#39; | base64&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;c3RvcmFnZW9z&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;password&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;c3RvcmFnZW9z&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Go to the &lt;strong&gt;Operators&lt;/strong&gt;-&amp;gt;&lt;strong&gt;Installed Operators&lt;/strong&gt; and verify that the StorageOS Operator is installed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Go to the &lt;strong&gt;StorageOS Cluster&lt;/strong&gt; section.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Click &lt;strong&gt;Create StorageOSCluster&lt;/strong&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 An Ondat Cluster is defined using a Custom Resource Definition&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Create the Custom Resource&lt;/p&gt;
-&lt;p&gt;The StorageOS cluster resource describes the Ondat cluster that will be
-created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
-the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;Operator configuration&lt;/a&gt; page.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.com/v1&amp;#34;&lt;/span&gt;
-kind: StorageOSCluster
-metadata:
-  name: storageos
-  namespace: openshift-operators
-spec:
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ondat Pods are in kube-system by default&lt;/span&gt;
-  secretRefName: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Reference the Secret created in the previous step&lt;/span&gt;
-  secretRefNamespace: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;openshift-operators&amp;#34;&lt;/span&gt;  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Namespace of the Secret created in the previous step&lt;/span&gt;
-  k8sDistro: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;openshift&amp;#34;&lt;/span&gt;
-  kvBackend:
-    address: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Example address, change for your etcd endpoint&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# address: &amp;#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&amp;#39; # You can set ETCD server ips&lt;/span&gt;
-  resources:
-    requests:
-      memory: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;512Mi&amp;#34;&lt;/span&gt;
-      cpu: &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# nodeSelectorTerms:&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#   - matchExpressions:&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#     - key: &amp;#34;node-role.kubernetes.io/worker&amp;#34; # Compute node label will vary according to your installation&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       operator: In&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       values:&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       - &amp;#34;true&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Verify that the StorageOS Cluster resource status is &lt;strong&gt;Running&lt;/strong&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It can take up to a minute to report the Ondat Pods ready.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Check the StorageOS Pods in the &lt;code&gt;kube-system&lt;/code&gt; project&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A Status of 3/3 in the &lt;strong&gt;Ready&lt;/strong&gt; column for the Daemonset Pods indicates that Ondat is
-bootstrapped successfully.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1TiB of provisioned storage.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
-&lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat volume guide&lt;/a&gt; for an example of how
-to mount an Ondat volume in a Pod.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Azure Kubernetes Service (AKS)</title>
       <link>/docs/install/azure/microsoft-azure-aks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -2487,159 +2337,6 @@ needed the most.&lt;/p&gt;
 &lt;p&gt;Secondly, a new threading model, with dynamic pool sizing, means that Ondat
 is faster, a lot faster. In our tests we observed improvements across the
 board, with improvements in throughput of up to 135% for some scenarios.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: OpenShift via Marketplace</title>
-      <link>/docs/install/openshift/openshift-marketplace/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/install/openshift/openshift-marketplace/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;This guide will demonstrate how to install Ondat onto an &lt;a href=&#34;/docs/platforms/openshift&#34;&gt;Openshift&lt;/a&gt; cluster using the &lt;a href=&#34;/docs/reference/kubectl-plugin/&#34;&gt;Ondat kubectl plugin&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure the &lt;a href=&#34;/docs/prerequisites/&#34;&gt;prerequisites for Ondat&lt;/a&gt; are satisfied before proceeding. Including the deployment of an etcd cluster and configuration of CRI-O PID limits.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ If you have installed OpenShift in AWS ensure that the requisite ports are opened for the worker nodes&#39; security group.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Make sure to add an &lt;a href=&#34;/docs/operations/licensing/&#34;&gt;Ondat licence&lt;/a&gt; after installing. You can request a licence via the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat SaaS Platform&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 For OpenShift upgrades, refer to the &lt;a href=&#34;/docs/platforms/openshift#openshift-upgrades&#34;&gt;OpenShift platform page&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Ondat v2 supports OpenShift v4. For more information, see the &lt;a href=&#34;/docs/platforms/openshift&#34;&gt;OpenShift platform&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;installation-of-ondat-via-red-hat-marketplace&#34;&gt;installation of Ondat via Red Hat Marketplace&lt;/h2&gt;
-&lt;h4 id=&#34;step-1-red-hat-markerplace&#34;&gt;Step 1: Red Hat Markerplace&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ The installation of Ondat using the Red Hat Marketplace requires the
-Openshift cluster to be registered to the Marketplace Portal, including the
-roll out of the &lt;code&gt;PullSecret&lt;/code&gt; in your cluster. Failure to do so will result in a
-image pull authentication failure with the Red Hat registry.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Select the &lt;code&gt;OperatorHub&lt;/code&gt; from the Catalog sub menu and search for StorageOS.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Choose the RedHat Marketplace option.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Select StorageOS and click &lt;strong&gt;Purchase&lt;/strong&gt;. Note that Openshift needs to be
-registered with the Red Hat Marketplace portal.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Select the relevant install option.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Project Edition is suitable for production workloads, Developer Edition
-for personal experimentation and evaluation.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Specify the product configuration to fit your needs.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Navigate to your software within Red Hat Marketplace and install the
-StorageOS software as specified in the image.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Install the Operator. Set the update approval strategy to &lt;strong&gt;Automatic&lt;/strong&gt; to
-ensure that you always have the latest version of StorageOS installed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The Ondat Operator is installed into your specified cluster.&lt;/p&gt;
-&lt;h4 id=&#34;step-2-authentication&#34;&gt;Step 2: Authentication&lt;/h4&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Create a Secret in the &lt;code&gt;openshift-operators&lt;/code&gt; project and select the YAML option to create a secret containing the &lt;code&gt;username&lt;/code&gt; and an
-&lt;code&gt;password&lt;/code&gt; key. The username and password defined in the secret will be
-used to authenticate when using the Ondat CLI and GUI. Take note of
-which project you created the secret in.&lt;/p&gt;
-&lt;p&gt;Input the secret as YAML for simplicity.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;apiVersion&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;v1&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;kind&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;Secret&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;metadata&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;name&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;storageos-api&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;namespace&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;openshift-operators&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;type&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;kubernetes.io/storageos&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;data&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# echo -n &amp;#39;&amp;lt;secret&amp;gt;&amp;#39; | base64&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;username&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;c3RvcmFnZW9z&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;password&lt;/span&gt;&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#000&#34;&gt;c3RvcmFnZW9z&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Navigate to StorageOS on your &lt;strong&gt;Installed Operators&lt;/strong&gt; tab.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Verify that the StorageOS Operator is installed.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Open to the &lt;strong&gt;StorageOS Cluster&lt;/strong&gt; tab and click &lt;strong&gt;Create StorageOSCluster&lt;/strong&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 A StorageOSCluster is defined using a Custom Resource(CR) Definition.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Create the CR Definition:&lt;/p&gt;
-&lt;p&gt;The Ondat cluster resource describes the Ondat cluster that will be
-created. Parameters such as the &lt;code&gt;secretRefName&lt;/code&gt;, the &lt;code&gt;secretRefNamespace&lt;/code&gt; and
-the &lt;code&gt;kvBackend.address&lt;/code&gt; are mandatory.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 Additional &lt;code&gt;spec&lt;/code&gt; parameters are available on the &lt;a href=&#34;/docs/reference/operator/configuration&#34;&gt;Operator configuration&lt;/a&gt; page.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;apiVersion: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos.com/v1&amp;#34;&lt;/span&gt;
-kind: StorageOSCluster
-metadata:
-  name: storageos
-  namespace: openshift-operators
-spec:
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Ondat Pods are in kube-system by default&lt;/span&gt;
-  secretRefName: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos-api&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Reference the Secret created in the previous step&lt;/span&gt;
-  secretRefNamespace: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;openshift-operators&amp;#34;&lt;/span&gt;  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Namespace of the Secret created in the previous step&lt;/span&gt;
-  k8sDistro: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;openshift&amp;#34;&lt;/span&gt;
-  kvBackend:
-    address: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;storageos-etcd-client.etcd:2379&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Example address, change for your etcd endpoint&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# address: &amp;#39;10.42.15.23:2379,10.42.12.22:2379,10.42.13.16:2379&amp;#39; # You can set ETCD server ips&lt;/span&gt;
-  resources:
-    requests:
-      memory: &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;512Mi&amp;#34;&lt;/span&gt;
-      cpu: &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# nodeSelectorTerms:&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#   - matchExpressions:&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#     - key: &amp;#34;node-role.kubernetes.io/worker&amp;#34; # Compute node label will vary according to your installation&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       operator: In&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       values:&lt;/span&gt;
-  &lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;#       - &amp;#34;true&amp;#34;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Verify that the StorageOS Cluster status is &lt;strong&gt;Running&lt;/strong&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 It can take up to a minute to report the Ondat Pods ready.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Check the StorageOS Pods in the &lt;code&gt;kube-system&lt;/code&gt; project.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💡 A Status of 3/3 in the &lt;strong&gt;Ready&lt;/strong&gt; column for the Daemonset Pods indicates that Ondat is
-bootstrapped successfully.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;license-cluster&#34;&gt;License cluster&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⚠️ Newly installed Ondat clusters must be licensed within 24 hours. Our Community Edition tier supports up to 1TiB of provisioned storage.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;To obtain a license, follow the instructions on our &lt;a href=&#34;/docs/operations/licensing&#34;&gt;licensing operations&lt;/a&gt; page.&lt;/p&gt;
-&lt;h2 id=&#34;first-ondat-volume&#34;&gt;First Ondat volume&lt;/h2&gt;
-&lt;p&gt;If this is your first installation you may wish to follow the &lt;a href=&#34;/docs/operations/firstpvc&#34;&gt;Ondat volume guide&lt;/a&gt; for an example of how
-to mount an Ondat volume in a Pod.&lt;/p&gt;
 
       </description>
     </item>
@@ -5395,6 +5092,145 @@ default CRI-O limit in Openshift 4.x see the RedHat documentation
 generally see the CRI-O documentation
 &lt;a href=&#34;https://github.com/cri-o/cri-o/blob/master/docs/crio.conf.5.md&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ondat Best Practices</title>
+      <link>/docs/best-practices/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/best-practices/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;etcd---in-cluster---replicas-and-availability-zones&#34;&gt;Etcd - In Cluster - Replicas and Availability Zones&lt;/h2&gt;
+&lt;p&gt;We recommend running etcd with 5 replicas (etcd peers) and spreading them across availability zones when running etcd inside the cluster, this improves the resiliency of the etcd cluster. This is done by default when installing via the plugin or helm.&lt;/p&gt;
+&lt;h2 id=&#34;etcd-low-latency-io&#34;&gt;Etcd low latency IO&lt;/h2&gt;
+&lt;p&gt;It is recommended to run etcd on low-latency disks and keep other IO-intensive
+applications separate from the etcd nodes. Etcd is very sensitive to IO latency.
+Thus, the effect of disk contention can cause etcd downtime.&lt;/p&gt;
+&lt;p&gt;Batch jobs such as backups, builds or application bundling can easily cause a
+high usage of disks making etcd unstable. It is recommended to run such
+workloads apart from the etcd servers.&lt;/p&gt;
+&lt;h2 id=&#34;setup-of-storage-on-the-hosts&#34;&gt;Setup of storage on the hosts&lt;/h2&gt;
+&lt;p&gt;We recommend creating a separate filesystem for Ondat to mitigate the risk
+of filling the root filesystem on nodes. This has to be done for each node in
+the cluster.&lt;/p&gt;
+&lt;p&gt;Follow the &lt;a href=&#34;/docs/operations/managing-host-storage&#34;&gt;managing host storage&lt;/a&gt; best practices page for more
+details.&lt;/p&gt;
+&lt;h2 id=&#34;resource-reservations&#34;&gt;Resource reservations&lt;/h2&gt;
+&lt;p&gt;Ondat resource consumption depends on the workloads and the Ondat
+features in use.&lt;/p&gt;
+&lt;p&gt;The recommended minimum memory reservation for the Ondat Pods is 512MB for
+non-production environments. However it is recommended to prepare nodes so
+Ondat can operate with at least with 1-2GB of memory. Ondat frees
+memory when possible.&lt;/p&gt;
+&lt;p&gt;For production environments, we recommend 4GB of Memory and 1 CPU as a minimum
+and to test Ondat using realistic workloads and tune resources accordingly.&lt;/p&gt;
+&lt;p&gt;Ondat Pods resource allocation will impact directly on the availability of
+volumes in case of eviction or resource limit triggered restart. It is
+recommended to not limit Ondat Pods.&lt;/p&gt;
+&lt;p&gt;Ondat implements a storage engine, therefore limiting CPU consumption might
+affect the I/O throughput of your volumes.&lt;/p&gt;
+&lt;h2 id=&#34;setting-a-kubernetes-pid-limit&#34;&gt;Setting a Kubernetes PID limit&lt;/h2&gt;
+&lt;p&gt;Ondat recommends that a PID cgroup limit of 32768 be set. Ondat is a
+multi-threaded application and while most Kubernetes distributions set the PID
+cgroup limit to 32768, some environments can set a limit as low as 1024. The
+Ondat init container will print a log message warning if the PID cgroup
+limit is too low. See our &lt;a href=&#34;/docs/prerequisites/pidlimits&#34;&gt;prerequisites&lt;/a&gt; for
+more information.&lt;/p&gt;
+&lt;h2 id=&#34;maintain-a-sufficient-number-of-nodes-for-replicas-to-be-created&#34;&gt;Maintain a sufficient number of nodes for replicas to be created&lt;/h2&gt;
+&lt;p&gt;To ensure that a new replica can always be created, an additional node should
+be available. To guarantee high availability, clusters using Volumes with 1
+replica must have at least 3 storage nodes. When using Volumes with 2
+replicas, at least 4 storage nodes, 3 replicas, 5 nodes, etc.&lt;/p&gt;
+&lt;p&gt;Minimum number of storage nodes = 1 (primary) + N (replicas) + 1&lt;/p&gt;
+&lt;p&gt;For more information, see the section on
+&lt;a href=&#34;/docs/concepts/replication#number-of-nodes&#34;&gt;replication&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-api-usernamepassword&#34;&gt;Ondat API username/password&lt;/h2&gt;
+&lt;p&gt;The API grants full access to Ondat functionality, therefore we recommend
+that the default administrative password of &amp;lsquo;storageos&amp;rsquo; is reset to something
+unique and strong.&lt;/p&gt;
+&lt;p&gt;You can change the default parameters by encoding the &lt;code&gt;username&lt;/code&gt; and
+&lt;code&gt;password&lt;/code&gt; values (in base64) into the &lt;code&gt;storageos-api&lt;/code&gt; secret.&lt;/p&gt;
+&lt;p&gt;To generate a unique password, a technique such as the following, which
+generates a pseudo-random 24 character string, may be used:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Generate strong password&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;cat -e /dev/urandom &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; tr -dc &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;a-zA-Z0-9-!@#$%^&amp;amp;*()_+~&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; fold -w &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;24&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; head -n 1&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+
+&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;# Convert password to base64 representation for embedding in a K8S secret&lt;/span&gt;
+&lt;span style=&#34;color:#000&#34;&gt;BASE64PASSWORD&lt;/span&gt;&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color:#204a87&#34;&gt;echo&lt;/span&gt; -n &lt;span style=&#34;color:#000&#34;&gt;$PASSWORD&lt;/span&gt; &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; base64&lt;span style=&#34;color:#204a87;font-weight:bold&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that the Kubernetes secret containing a strong password &lt;em&gt;must&lt;/em&gt; be created
+before bootstrapping the cluster. Multiple installation procedures use this
+Secret to create an Ondat account when the cluster first starts.&lt;/p&gt;
+&lt;h2 id=&#34;ondat-pod-placement&#34;&gt;Ondat Pod placement&lt;/h2&gt;
+&lt;p&gt;Ondat must run on all nodes that will contribute storage capacity to the
+cluster or that will host Pods which use Ondat volumes. For production
+environments, it is recommended to avoid placing Ondat Pods on Master
+nodes.&lt;/p&gt;
+&lt;p&gt;Ondat is deployed with a DaemonSet controller, and therefore tolerates the
+standard unschedulable (:NoSchedule) action. If that is the only taint placed
+on master or cordoned nodes Ondat pods might start on them (see the
+Kubernetes
+&lt;a href=&#34;https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/&#34;&gt;docs&lt;/a&gt;
+for more details). To avoid scheduling Ondat pods on master nodes, you can
+add an arbitrary taint to them for which the Ondat DaemonSet won&amp;rsquo;t have a
+toleration.&lt;/p&gt;
+&lt;h2 id=&#34;dedicated-instance-groups&#34;&gt;Dedicated instance groups&lt;/h2&gt;
+&lt;p&gt;Cloud environments give users the ability to quickly scale the number of nodes
+in a cluster in response to their needs. Because of the ephemeral nature of the
+cloud, Ondat recommends setting conservative downscaling policies.&lt;/p&gt;
+&lt;p&gt;For production clusters, it recommended to use dedicated instance groups for
+Stateful applications that allow the user to set different scaling policies and
+define Ondat pools based on node selectors to collocate volumes.&lt;/p&gt;
+&lt;p&gt;Losing a few nodes at the same time could cause the loss of data even when
+volume replicas are being used.&lt;/p&gt;
+&lt;h2 id=&#34;port-blocking&#34;&gt;Port blocking&lt;/h2&gt;
+&lt;p&gt;Ondat exposes ports to operate. It is recommended that the &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;ports&lt;/a&gt; are not accessible from outside
+the scope of your cluster.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Max AIO</title>
+      <link>/docs/prerequisites/max-aio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/prerequisites/max-aio/</guid>
+      <description>
+        
+        
+        &lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
+Input Output) contexts to serve I/O requests without blocking. Ondat
+requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment,
+whether master or replica).&lt;/p&gt;
+&lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite&lt;/h2&gt;
+&lt;p&gt;By default there is a maximum number of AIO contexts that can be allocated at
+once.&lt;/p&gt;
+&lt;p&gt;The current and maximum number of AIO requests is visible in the virtual
+files &lt;code&gt;/proc/sys/fs/aio-nr&lt;/code&gt; and &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The default context limit has been set at 2^16 or 65536. This figure may vary
+so do check your &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;When &lt;code&gt;aio-nr&lt;/code&gt; reaches &lt;code&gt;aio-max-nr&lt;/code&gt; the &lt;code&gt;io_setup&lt;/code&gt; syscall will fail with
+EAGAIN. For more information see the Linux kernel docs
+&lt;a href=&#34;https://www.kernel.org/doc/Documentation/sysctl/fs.txt&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;why-is-this-relevant&#34;&gt;Why is this relevant?&lt;/h2&gt;
+&lt;p&gt;As Ondat requires 4 AIO contexts per deployed volume, there is a limit to
+the number of volumes that can be deployed per node. Trying to provision
+additional deployments once the &lt;code&gt;aio-max-nr&lt;/code&gt; has been reached will fail as the
+kernel will be unable to create enough new AIO contexts.&lt;/p&gt;
+&lt;h2 id=&#34;increasing-your-aio-context-cap&#34;&gt;Increasing your AIO context cap&lt;/h2&gt;
+&lt;p&gt;If your nodes &lt;code&gt;aio-max-nr&lt;/code&gt; is set too low you can either provision additional
+nodes to reduce the number of deployments per node, or increase the &lt;code&gt;aio-max-nr&lt;/code&gt;
+kernel parameter.&lt;/p&gt;
+&lt;p&gt;You can do this by editing your &lt;code&gt;/etc/sysctl.conf&lt;/code&gt; file with the following
+example line:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;fs.aio-max-nr &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1048576&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To activate the new settings, run the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sysctl -p /etc/sysctl.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       </description>
     </item>
     
