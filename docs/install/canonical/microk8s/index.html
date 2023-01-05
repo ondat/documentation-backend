@@ -20,26 +20,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
-<title>Policies | </title><meta property="og:title" content="Policies" />
-<meta property="og:description" content="Policies control access to Ondat namespaces. Policies can be configured at the group or user level so access can be controlled granularly.
-Users can belong to one or more groups to control their namespace permissions. Additionally user specific policies can be created to grant a user access to a namespace. Users can belong to any number of groups and have any number of user level policies configured.
- ⚠️ Users are created with access to the default namespace." />
+<title>MicroK8s | </title><meta property="og:title" content="MicroK8s" />
+<meta property="og:description" content="Walkthrough guide to install Ondat onto a MicroK8s Cluster
+" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/docs/operations/policies/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="/docs/install/canonical/microk8s/" /><meta property="article:section" content="docs" />
 
 
 
-<meta itemprop="name" content="Policies">
-<meta itemprop="description" content="Policies control access to Ondat namespaces. Policies can be configured at the group or user level so access can be controlled granularly.
-Users can belong to one or more groups to control their namespace permissions. Additionally user specific policies can be created to grant a user access to a namespace. Users can belong to any number of groups and have any number of user level policies configured.
- ⚠️ Users are created with access to the default namespace.">
+<meta itemprop="name" content="MicroK8s">
+<meta itemprop="description" content="Walkthrough guide to install Ondat onto a MicroK8s Cluster
+">
 
-<meta itemprop="wordCount" content="183">
+<meta itemprop="wordCount" content="540">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Policies"/>
-<meta name="twitter:description" content="Policies control access to Ondat namespaces. Policies can be configured at the group or user level so access can be controlled granularly.
-Users can belong to one or more groups to control their namespace permissions. Additionally user specific policies can be created to grant a user access to a namespace. Users can belong to any number of groups and have any number of user level policies configured.
- ⚠️ Users are created with access to the default namespace."/>
+<meta name="twitter:title" content="MicroK8s"/>
+<meta name="twitter:description" content="Walkthrough guide to install Ondat onto a MicroK8s Cluster
+"/>
 
 
 
@@ -82,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KXRX3CX');</script>
 
 
-    <title>Policies | </title>
+    <title>MicroK8s | </title>
   </head>
   <body class="td-page">
     
@@ -630,10 +627,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Install</a>
+    <a  href="/docs/install/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Install</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstall">
+    <li class="collapse show" id="docsinstall">
       
       
       
@@ -688,17 +685,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/canonical/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Canonical</a>
+    <a  href="/docs/install/canonical/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Canonical</a>
   </li>
   <ul>
-    <li class="collapse " id="docsinstallcanonical">
+    <li class="collapse show" id="docsinstallcanonical">
       
       
       
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallcanonicalmicrok8s" href="/docs/install/canonical/microk8s/">MicroK8s</a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsinstallcanonicalmicrok8s" href="/docs/install/canonical/microk8s/">MicroK8s</a>
       
       
     </li>
@@ -962,10 +959,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/operations/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Operations</a>
+    <a  href="/docs/operations/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Operations</a>
   </li>
   <ul>
-    <li class="collapse show" id="docsoperations">
+    <li class="collapse " id="docsoperations">
       
       
       
@@ -1192,7 +1189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsoperationspolicies" href="/docs/operations/policies/">Policies</a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsoperationspolicies" href="/docs/operations/policies/">Policies</a>
       
       
       
@@ -1746,6 +1743,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a>
+      <ul>
+        <li><a href="#1---cluster-and-node-prerequisites">1 - Cluster and Node Prerequisites</a></li>
+        <li><a href="#2---client-tools-prerequisites">2 - Client Tools Prerequisites</a></li>
+      </ul>
+    </li>
+    <li><a href="#installation-of-ondat">Installation of Ondat</a>
+      <ul>
+        <li><a href="#step-1---enable-the-microk8s-add-ons-community-repository">Step 1 - Enable The MicroK8s Add-ons Community Repository</a></li>
+        <li><a href="#step-2---install-the-microk8s-ondat-add-on">Step 2 - Install The MicroK8s Ondat Add-on</a></li>
+        <li><a href="#step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</a></li>
+        <li><a href="#step-5---applying-a-licence-to-the-cluster">Step 5 - Applying a Licence to the Cluster</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
 
 
           </div>
@@ -1766,6 +1783,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
+
+
+
 <li class="breadcrumb-item" >
 	<a href="/docs/">Documentation</a>
 </li>
@@ -1774,14 +1794,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <li class="breadcrumb-item" >
-	<a href="/docs/operations/">Operations</a>
+	<a href="/docs/install/">Install</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="/docs/install/canonical/">Canonical</a>
 </li>
 
 
 
 
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="/docs/operations/policies/">Policies</a>
+	<a href="/docs/install/canonical/microk8s/">MicroK8s</a>
 </li>
 
 	</ol>
@@ -1789,28 +1816,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             
 <div class="td-content">
-	<h1>Policies</h1>
-	
-	<p>Policies control access to Ondat namespaces. Policies can be
-configured at the group or user level so access can be controlled granularly.</p>
-<p>Users can belong to one or more groups to control their namespace permissions.
-Additionally user specific policies can be created to grant a user access to a
-namespace. Users can belong to any number of groups and have any number of
-user level policies configured.</p>
+	<h1>MicroK8s</h1>
+	<div class="lead">Walkthrough guide to install Ondat onto a MicroK8s Cluster</div>
+	<h2 id="overview">Overview</h2>
+<p>This guide will demonstrate how to install Ondat onto a <a href="https://microk8s.io/">MicroK8s</a> cluster using the <a href="https://microk8s.io/docs/addon-ondat">Ondat MicroK8S add-on</a>.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="1---cluster-and-node-prerequisites">1 - Cluster and Node Prerequisites</h3>
+<p>The minimum cluster requirements for a <strong>non-production installation</strong> of Ondat are as follows:</p>
+<ul>
+<li>MicroK8s v1.26 or greater to deploy the Ondat add-on.</li>
+<li>Linux with a 64-bit architecture.</li>
+<li>2 vCPU and 4 GB of RAM per node.</li>
+<li>3 worker nodes in the cluster and sufficient <a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">Role-Based Access Control (RBAC)</a> permissions to deploy and manage applications in the cluster.</li>
+<li>Ensure that your MicroK8s cluster is using <a href="https://microk8s.io/docs/getting-started">an Ubuntu LTS release image</a> as the default node operating system and supports <code>snapd</code>. The Ubuntu LTS release image has the required kernel modules available for Ondat to run successfully.</li>
+</ul>
+<p>For a comprehensive list of prerequisites and how to build a <strong>production installation</strong> of Ondat refer to <a href="https://docs.ondat.io/docs/prerequisites/">Ondat Prerequisites</a>.</p>
+<h3 id="2---client-tools-prerequisites">2 - Client Tools Prerequisites</h3>
+<p>The following CLI utilities are installed and available in your <code>$PATH</code> on the machine where you will be running the installation commands:</p>
+<ul>
+<li><a href="https://microk8s.io/docs/getting-started">microk8s</a></li>
+</ul>
+<h2 id="installation-of-ondat">Installation of Ondat</h2>
+<h3 id="step-1---enable-the-microk8s-add-ons-community-repository">Step 1 - Enable The MicroK8s Add-ons Community Repository</h3>
+<p>First, ensure that you have enabled the Community repository by running the following command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">microk8s <span style="color:#204a87">enable</span> community
+</code></pre></div><h3 id="step-2---install-the-microk8s-ondat-add-on">Step 2 - Install The MicroK8s Ondat Add-on</h3>
+<p>To enable the add-on, run the following command:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">microk8s <span style="color:#204a87">enable</span> ondat
+</code></pre></div><ul>
+<li>For Ondat to be successfully deployed onto a MicroK8s cluster, the following <a href="https://microk8s.io/docs/addon-dns">Core add-ons</a> should be available:
+<ul>
+<li><a href="https://microk8s.io/docs/addon-dns"><code>dns</code></a> - <a href="https://coredns.io/">CoreDNS</a> to provide address resolution services and service discovery in your MicroK8s cluster.</li>
+<li><a href="https://microk8s.io/docs/addon-hostpath-storage"><code>hostpath-storage</code></a> - Host storage for Ondat’s <code>etcd</code> cluster.</li>
+<li><a href="https://helm.sh/"><code>helm3</code></a> - Helm 3 package manager for Kubernetes to deploy the Ondat Helm chart.</li>
+</ul>
+</li>
+</ul>
 <blockquote>
-<p>⚠️ Users are created with access to the default namespace. Policies cannot
-be applied to the default namespace.</p>
+<p>💡 The Ondat add-on will automatically check and deploy the required core add-ons if they are not already installed in the MicroK8s cluster.</p>
 </blockquote>
-<h2 id="managing-policies">Managing Policies</h2>
-<p>To start creating policies, at least one custom namespace and user are
-required. For more information on how to create namespaces, see our
-<a href="/docs/operations/namespaces">Namespace guide</a>, and for users see
-our <a href="/docs/reference/cli/create">Users CLI reference</a>.</p>
-<p>In order to create a policy navigate to &ldquo;Policies&rdquo; in the GUI and select
-&ldquo;Create Policy&rdquo;. A policy controls access to a variety of Ondat resources
-and is applied to a user, by placing the user in the policies group.</p>
-<p>In order to delete a policy, all users must be removed from the policy group
-before deletion of the policy can be completed.</p>
+<h3 id="step-3---verifying-ondat-installation">Step 3 - Verifying Ondat Installation</h3>
+<p>Run the following <code>microk8s kubectl</code> commands to inspect Ondat&rsquo;s resources (the core components should all be in a <code>RUNNING</code> status)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">microk8s kubectl get all --namespace<span style="color:#ce5c00;font-weight:bold">=</span>storageos
+microk8s kubectl get storageclasses <span style="color:#000;font-weight:bold">|</span> grep <span style="color:#4e9a06">&#34;storageos&#34;</span>
+</code></pre></div><p>Once all the components are up and running, the output should look like this:</p>
+<p><img src="/images/docs/install/InstallSuccess.png" alt="Install Success"></p>
+<h3 id="step-5---applying-a-licence-to-the-cluster">Step 5 - Applying a Licence to the Cluster</h3>
+<p>Once you have confirmed that your deployment was successful, the next step will be to <a href="https://www.ondat.io/pricing">get your free Community edition licence</a> by signing up and registering your cluster through the Ondat Portal.</p>
+<blockquote>
+<p>💡 Newly installed Ondat clusters must be licensed within 24 hours.</p>
+</blockquote>
+<p>To register your cluster:</p>
+<ul>
+<li>Either login or create an account on the <a href="https://portal.ondat.io/">Ondat Portal</a>.</li>
+<li>Choose the &ldquo;<strong>Install Ondat on your cluster</strong>&rdquo; or &ldquo;<strong>Add cluster</strong>&rdquo; options in the UI.</li>
+<li>Add a <strong>Name</strong> for your cluster and where it is going to be located. This will allow you to view the same prerequisites listed above.</li>
+<li>After selecting &ldquo;<strong>Next</strong>&rdquo;, you will be provided with 2 options, namely &ldquo;<strong>New Installation</strong>&rdquo; and &ldquo;<strong>Existing Installation</strong>&rdquo;.
+<ul>
+<li>Select the &ldquo;<strong>Existing Installation</strong>&rdquo; option, then copy and paste the Helm commands into your terminal and run them against your MicroK8s cluster, which already has an existing Ondat installation.</li>
+</ul>
+</li>
+</ul>
+<p>To licence your cluster with the Community edition:</p>
+<ol>
+<li>On the <strong>Clusters</strong> page, select &ldquo;<strong>View Details</strong>&rdquo;.</li>
+<li>Click on &ldquo;<strong>Change Licence</strong>&rdquo;.</li>
+<li>In the following pop-up select the &ldquo;<strong>Community Licence</strong>&rdquo; option then click &ldquo;<strong>Generate</strong>&rdquo;.</li>
+</ol>
+<p>This process generates a licence and installs it for you. Now you are good to go!</p>
 
 	
 	

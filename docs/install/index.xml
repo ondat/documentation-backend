@@ -142,14 +142,34 @@ go!&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running kubernetes in AWS there are a number of options on how you run your kubernetes cluster. Read the following datasheets and blogs for more information about some of the use-cases of running in AWS.&lt;/p&gt;
+&lt;p&gt;If you are running Kubernetes in AWS, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in AWS.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://f.hubspotusercontent40.net/hubfs/3402546/Datasheet/Ondat%20Datasheet_AWS-EKS.pdf&#34;&gt;Datasheet: Ondat and EKS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://f.hubspotusercontent40.net/hubfs/3402546/Ondat%20datasheet_AWS%20Kubernetes.pdf&#34;&gt;Datasheet: The Kube-Native Data Platform for AWS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/an-eks-deep-dive-with-ondat&#34;&gt;Blog: An EKS Deep Dive with Ondat&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/reduce-your-storage-costs-on-ephemeral-storage-ec2-instances&#34;&gt;Webinar: Reduce your storage costs with ephemeral storage EC2 instances with Ondat&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/storage-optimisation-for-containers-on-aws&#34;&gt;Webinar: Storage optimization for containers on AWS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://f.hubspotusercontent40.net/hubfs/3402546/Datasheet/Ondat%20Datasheet_AWS-EKS.pdf&#34;&gt;Datasheet: Ondat and EKS - Better Together&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://f.hubspotusercontent40.net/hubfs/3402546/Ondat%20datasheet_AWS%20Kubernetes.pdf&#34;&gt;Datasheet: The Kubernetes Native Data Platform for AWS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/an-eks-deep-dive-with-ondat&#34;&gt;Blog: An EKS Deep Dive With Ondat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/aws-eks-and-persistent-data-with-weaveworks-eksctl-cloudformation-storageos&#34;&gt;Blog: AWS EKS and Persistent Data with Weaveworks &lt;code&gt;eksctl&lt;/code&gt;, CloudFormation &amp;amp; Ondat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/reduce-your-storage-costs-on-ephemeral-storage-ec2-instances&#34;&gt;Webinar: Reduce Your Storage Costs on Ephemeral Storage EC2 Instances with Ondat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/storage-optimisation-for-containers-on-aws&#34;&gt;Webinar: Storage Optimization for Containers on AWS and How to Leverage Ondat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Canonical</title>
+      <link>/docs/install/canonical/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/canonical/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;If you are running Kubernetes with Canonical, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat with Canonical Kubernetes.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://microk8s.io/docs/addon-ondat&#34;&gt;MicroK8s quickstart: Addon - Ondat&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -204,10 +224,14 @@ go!&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running Rancher there are a number of options on how you run your kubernetes cluster. Please see the following datasheets and blogs for more information about some of the use-cases of running Ondat in Rancher.&lt;/p&gt;
+&lt;p&gt;If you are running Kubernetes in Rancher, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in Rancher.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/ondat-and-suse-rancher-run-your-stateful-applications-everywhere&#34;&gt;Blog: Ondat and SUSE Rancher - Run your stateful applications everywhere&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/ondat-and-suse-rancher-run-your-stateful-applications-everywhere&#34;&gt;Blog: Ondat and SUSE Rancher - Run your Stateful Applications Everywhere&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/blog/self-managed-dbass-with-ondat-rancher&#34;&gt;Blog: Self-managed DBaaS running on Kubernetes with Ondat and SUSE Rancher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://thenewstack.io/implement-postgres-on-kubernetes-with-ondat-and-suse-rancher/&#34;&gt;Blog: Implement Postgres on Kubernetes with Ondat and SUSE Rancher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/deliver-kubernetes-native-persistent-storage-with-ondat-and-suse-rancher&#34;&gt;Webinar: Deliver Kubernetes native, persistent storage with Ondat and SUSE Rancher&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=3ai4cCj3P58&#34;&gt;Video Demonstration: Getting started with SUSE Rancher and Ondat persistent storage&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -223,11 +247,11 @@ go!&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running Kubernetes in Azure there are a number of options on how you run your kubernetes cluster. See the following datasheets and blogs for more information about some of the use-cases of running in Azure.&lt;/p&gt;
+&lt;p&gt;If you are running Kubernetes in Azure, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in Azure.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/datasheets/ondat-aks&#34;&gt;Datasheet: Ondat for AKS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/deploying-stateful-applications-in-a-microsoft-aks-cluster-using-ondat&#34;&gt;Webinar: Deploying stateful applications in an AKS cluster&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20AKS%20Datasheet.pdf&#34;&gt;Datasheet: Ondat for Microsoft Azure Kubernetes Service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/deploying-stateful-applications-in-a-microsoft-aks-cluster-using-ondat&#34;&gt;Webinar: Deploying Stateful Applications in a Microsoft AKS Cluster Using Ondat&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -243,9 +267,9 @@ go!&lt;/p&gt;
         
         
         &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running kubernetes in Digital Ocean there are a number of options on how you run your kubernetes cluster. Please see the following datasheets and blogs for more information about some of the use-cases of running in Digital Ocean.&lt;/p&gt;
+&lt;p&gt;If you are running Kubernetes in DigitalOcean, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in DigitalOcean.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;Whitepaper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>

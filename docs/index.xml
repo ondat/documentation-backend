@@ -2053,6 +2053,85 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
     </item>
     
     <item>
+      <title>Docs: MicroK8s</title>
+      <link>/docs/install/canonical/microk8s/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/canonical/microk8s/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This guide will demonstrate how to install Ondat onto a &lt;a href=&#34;https://microk8s.io/&#34;&gt;MicroK8s&lt;/a&gt; cluster using the &lt;a href=&#34;https://microk8s.io/docs/addon-ondat&#34;&gt;Ondat MicroK8S add-on&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;h3 id=&#34;1---cluster-and-node-prerequisites&#34;&gt;1 - Cluster and Node Prerequisites&lt;/h3&gt;
+&lt;p&gt;The minimum cluster requirements for a &lt;strong&gt;non-production installation&lt;/strong&gt; of Ondat are as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MicroK8s v1.26 or greater to deploy the Ondat add-on.&lt;/li&gt;
+&lt;li&gt;Linux with a 64-bit architecture.&lt;/li&gt;
+&lt;li&gt;2 vCPU and 4 GB of RAM per node.&lt;/li&gt;
+&lt;li&gt;3 worker nodes in the cluster and sufficient &lt;a href=&#34;https://kubernetes.io/docs/reference/access-authn-authz/rbac/&#34;&gt;Role-Based Access Control (RBAC)&lt;/a&gt; permissions to deploy and manage applications in the cluster.&lt;/li&gt;
+&lt;li&gt;Ensure that your MicroK8s cluster is using &lt;a href=&#34;https://microk8s.io/docs/getting-started&#34;&gt;an Ubuntu LTS release image&lt;/a&gt; as the default node operating system and supports &lt;code&gt;snapd&lt;/code&gt;. The Ubuntu LTS release image has the required kernel modules available for Ondat to run successfully.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For a comprehensive list of prerequisites and how to build a &lt;strong&gt;production installation&lt;/strong&gt; of Ondat refer to &lt;a href=&#34;https://docs.ondat.io/docs/prerequisites/&#34;&gt;Ondat Prerequisites&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;2---client-tools-prerequisites&#34;&gt;2 - Client Tools Prerequisites&lt;/h3&gt;
+&lt;p&gt;The following CLI utilities are installed and available in your &lt;code&gt;$PATH&lt;/code&gt; on the machine where you will be running the installation commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://microk8s.io/docs/getting-started&#34;&gt;microk8s&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;installation-of-ondat&#34;&gt;Installation of Ondat&lt;/h2&gt;
+&lt;h3 id=&#34;step-1---enable-the-microk8s-add-ons-community-repository&#34;&gt;Step 1 - Enable The MicroK8s Add-ons Community Repository&lt;/h3&gt;
+&lt;p&gt;First, ensure that you have enabled the Community repository by running the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;microk8s &lt;span style=&#34;color:#204a87&#34;&gt;enable&lt;/span&gt; community
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;step-2---install-the-microk8s-ondat-add-on&#34;&gt;Step 2 - Install The MicroK8s Ondat Add-on&lt;/h3&gt;
+&lt;p&gt;To enable the add-on, run the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;microk8s &lt;span style=&#34;color:#204a87&#34;&gt;enable&lt;/span&gt; ondat
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;For Ondat to be successfully deployed onto a MicroK8s cluster, the following &lt;a href=&#34;https://microk8s.io/docs/addon-dns&#34;&gt;Core add-ons&lt;/a&gt; should be available:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://microk8s.io/docs/addon-dns&#34;&gt;&lt;code&gt;dns&lt;/code&gt;&lt;/a&gt; - &lt;a href=&#34;https://coredns.io/&#34;&gt;CoreDNS&lt;/a&gt; to provide address resolution services and service discovery in your MicroK8s cluster.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://microk8s.io/docs/addon-hostpath-storage&#34;&gt;&lt;code&gt;hostpath-storage&lt;/code&gt;&lt;/a&gt; - Host storage for Ondat’s &lt;code&gt;etcd&lt;/code&gt; cluster.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://helm.sh/&#34;&gt;&lt;code&gt;helm3&lt;/code&gt;&lt;/a&gt; - Helm 3 package manager for Kubernetes to deploy the Ondat Helm chart.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 The Ondat add-on will automatically check and deploy the required core add-ons if they are not already installed in the MicroK8s cluster.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;step-3---verifying-ondat-installation&#34;&gt;Step 3 - Verifying Ondat Installation&lt;/h3&gt;
+&lt;p&gt;Run the following &lt;code&gt;microk8s kubectl&lt;/code&gt; commands to inspect Ondat&amp;rsquo;s resources (the core components should all be in a &lt;code&gt;RUNNING&lt;/code&gt; status)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;microk8s kubectl get all --namespace&lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt;storageos
+microk8s kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;|&lt;/span&gt; grep &lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#34;storageos&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once all the components are up and running, the output should look like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/docs/install/InstallSuccess.png&#34; alt=&#34;Install Success&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;step-5---applying-a-licence-to-the-cluster&#34;&gt;Step 5 - Applying a Licence to the Cluster&lt;/h3&gt;
+&lt;p&gt;Once you have confirmed that your deployment was successful, the next step will be to &lt;a href=&#34;https://www.ondat.io/pricing&#34;&gt;get your free Community edition licence&lt;/a&gt; by signing up and registering your cluster through the Ondat Portal.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💡 Newly installed Ondat clusters must be licensed within 24 hours.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To register your cluster:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Either login or create an account on the &lt;a href=&#34;https://portal.ondat.io/&#34;&gt;Ondat Portal&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Choose the &amp;ldquo;&lt;strong&gt;Install Ondat on your cluster&lt;/strong&gt;&amp;rdquo; or &amp;ldquo;&lt;strong&gt;Add cluster&lt;/strong&gt;&amp;rdquo; options in the UI.&lt;/li&gt;
+&lt;li&gt;Add a &lt;strong&gt;Name&lt;/strong&gt; for your cluster and where it is going to be located. This will allow you to view the same prerequisites listed above.&lt;/li&gt;
+&lt;li&gt;After selecting &amp;ldquo;&lt;strong&gt;Next&lt;/strong&gt;&amp;rdquo;, you will be provided with 2 options, namely &amp;ldquo;&lt;strong&gt;New Installation&lt;/strong&gt;&amp;rdquo; and &amp;ldquo;&lt;strong&gt;Existing Installation&lt;/strong&gt;&amp;rdquo;.
+&lt;ul&gt;
+&lt;li&gt;Select the &amp;ldquo;&lt;strong&gt;Existing Installation&lt;/strong&gt;&amp;rdquo; option, then copy and paste the Helm commands into your terminal and run them against your MicroK8s cluster, which already has an existing Ondat installation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To licence your cluster with the Community edition:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;On the &lt;strong&gt;Clusters&lt;/strong&gt; page, select &amp;ldquo;&lt;strong&gt;View Details&lt;/strong&gt;&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Click on &amp;ldquo;&lt;strong&gt;Change Licence&lt;/strong&gt;&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;In the following pop-up select the &amp;ldquo;&lt;strong&gt;Community Licence&lt;/strong&gt;&amp;rdquo; option then click &amp;ldquo;&lt;strong&gt;Generate&lt;/strong&gt;&amp;rdquo;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This process generates a licence and installs it for you. Now you are good to go!&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Azure Kubernetes Service (AKS)</title>
       <link>/docs/install/azure/microsoft-azure-aks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -5190,47 +5269,6 @@ volume replicas are being used.&lt;/p&gt;
 &lt;p&gt;Ondat exposes ports to operate. It is recommended that the &lt;a href=&#34;/docs/prerequisites/firewalls&#34;&gt;ports&lt;/a&gt; are not accessible from outside
 the scope of your cluster.&lt;/p&gt;
 
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Max AIO</title>
-      <link>/docs/prerequisites/max-aio/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/prerequisites/max-aio/</guid>
-      <description>
-        
-        
-        &lt;p&gt;As part of the dataplane operation, Ondat uses Linux AIO (Asynchronous
-Input Output) contexts to serve I/O requests without blocking. Ondat
-requires 4 AIO contexts per deployment (i.e. an Ondat volume deployment,
-whether master or replica).&lt;/p&gt;
-&lt;h2 id=&#34;max-aio-prerequisite&#34;&gt;Max AIO prerequisite&lt;/h2&gt;
-&lt;p&gt;By default there is a maximum number of AIO contexts that can be allocated at
-once.&lt;/p&gt;
-&lt;p&gt;The current and maximum number of AIO requests is visible in the virtual
-files &lt;code&gt;/proc/sys/fs/aio-nr&lt;/code&gt; and &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The default context limit has been set at 2^16 or 65536. This figure may vary
-so do check your &lt;code&gt;/proc/sys/fs/aio-max-nr&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;When &lt;code&gt;aio-nr&lt;/code&gt; reaches &lt;code&gt;aio-max-nr&lt;/code&gt; the &lt;code&gt;io_setup&lt;/code&gt; syscall will fail with
-EAGAIN. For more information see the Linux kernel docs
-&lt;a href=&#34;https://www.kernel.org/doc/Documentation/sysctl/fs.txt&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;why-is-this-relevant&#34;&gt;Why is this relevant?&lt;/h2&gt;
-&lt;p&gt;As Ondat requires 4 AIO contexts per deployed volume, there is a limit to
-the number of volumes that can be deployed per node. Trying to provision
-additional deployments once the &lt;code&gt;aio-max-nr&lt;/code&gt; has been reached will fail as the
-kernel will be unable to create enough new AIO contexts.&lt;/p&gt;
-&lt;h2 id=&#34;increasing-your-aio-context-cap&#34;&gt;Increasing your AIO context cap&lt;/h2&gt;
-&lt;p&gt;If your nodes &lt;code&gt;aio-max-nr&lt;/code&gt; is set too low you can either provision additional
-nodes to reduce the number of deployments per node, or increase the &lt;code&gt;aio-max-nr&lt;/code&gt;
-kernel parameter.&lt;/p&gt;
-&lt;p&gt;You can do this by editing your &lt;code&gt;/etc/sysctl.conf&lt;/code&gt; file with the following
-example line:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;fs.aio-max-nr &lt;span style=&#34;color:#ce5c00;font-weight:bold&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#0000cf;font-weight:bold&#34;&gt;1048576&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To activate the new settings, run the following command:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;sysctl -p /etc/sysctl.conf
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
       </description>
     </item>
     
