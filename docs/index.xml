@@ -3817,7 +3817,7 @@ kubectl get storageclasses &lt;span style=&#34;color:#000;font-weight:bold&#34;&
 &lt;p&gt;Current (non-EOL) versions of the following distributions are supported by default:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;SUSE Linux Enterprise Server&lt;/li&gt;
-&lt;li&gt;Red Hat Enterprise Linux&lt;/li&gt;
+&lt;li&gt;Red Hat Enterprise Linux (also supported with real-time kernel)&lt;/li&gt;
 &lt;li&gt;CentOS&lt;/li&gt;
 &lt;li&gt;Debian&lt;/li&gt;
 &lt;li&gt;Ubuntu&lt;/li&gt;
