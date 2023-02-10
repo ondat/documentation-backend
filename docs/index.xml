@@ -3179,11 +3179,6 @@ documentation&lt;/a&gt;.&lt;/p&gt;
 &lt;li&gt;4.x kernels have a limitation of 4096 active volumes per node&lt;/li&gt;
 &lt;li&gt;We are distribution agnostic as long as our prerequisites are met&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;orchestrators&#34;&gt;Orchestrators&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Kubernetes 1.19 to 1.23&lt;/li&gt;
-&lt;li&gt;OpenShift 4.0+&lt;/li&gt;
-&lt;/ul&gt;
 
       </description>
     </item>
