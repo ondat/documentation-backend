@@ -32,7 +32,7 @@ Etcd low latency IO It is recommended to run etcd on low-latency disks and keep 
 <meta itemprop="description" content="Etcd - In Cluster - Replicas and Availability Zones We recommend running etcd with 5 replicas (etcd peers) and spreading them across availability zones when running etcd inside the cluster, this improves the resiliency of the etcd cluster. This is done by default when installing via the plugin or helm.
 Etcd low latency IO It is recommended to run etcd on low-latency disks and keep other IO-intensive applications separate from the etcd nodes.">
 
-<meta itemprop="wordCount" content="796">
+<meta itemprop="wordCount" content="706">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ondat Best Practices"/>
 <meta name="twitter:description" content="Etcd - In Cluster - Replicas and Availability Zones We recommend running etcd with 5 replicas (etcd peers) and spreading them across availability zones when running etcd inside the cluster, this improves the resiliency of the etcd cluster. This is done by default when installing via the plugin or helm.
@@ -180,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1d18e18f46c1b954641e8c3780eee071374033c3c76f68057fe166de2e27abfa62a4dce1d8a0d9288bb26fa7f17ed5ad6b3ffe1047ed400cc2c25d61fadc8428.json"
+  data-offline-search-index-json-src="/offline-search-index.821084d1c4dac6d34fc6225a9e4cb0f15ab0c25e861184c7efdb665ab5d0122b8b9f21e74d9afcf93de081e78bf40d5fafa73d71a302b487346868f6cacdbf91.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.1d18e18f46c1b954641e8c3780eee071374033c3c76f68057fe166de2e27abfa62a4dce1d8a0d9288bb26fa7f17ed5ad6b3ffe1047ed400cc2c25d61fadc8428.json"
+  data-offline-search-index-json-src="/offline-search-index.821084d1c4dac6d34fc6225a9e4cb0f15ab0c25e861184c7efdb665ab5d0122b8b9f21e74d9afcf93de081e78bf40d5fafa73d71a302b487346868f6cacdbf91.json"
   data-offline-search-base-href="/"
 >
 
@@ -384,12 +384,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsintroductionoverview" href="/docs/introduction/overview/">Ondat Overview</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsintroductionplatforms" href="/docs/introduction/platforms/">Supported Platforms</a>
       
       
       
@@ -548,36 +542,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitessystemconfiguration" href="/docs/prerequisites/systemconfiguration/">System Configuration</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesipv6" href="/docs/prerequisites/ipv6/">Availability of IPv6</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesfirewalls" href="/docs/prerequisites/firewalls/">Firewalls</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitespidlimits" href="/docs/prerequisites/pidlimits/">PID Limits</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsprerequisitesmax-aio" href="/docs/prerequisites/max-aio/">Max AIO</a>
-      
-      
-      
-      
 
 
 
@@ -685,6 +649,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/azure/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Azure</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstallazure">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallazuremicrosoft-azure-aks" href="/docs/install/azure/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
     <a  href="/docs/install/canonical/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Canonical</a>
   </li>
   <ul>
@@ -696,6 +689,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallcanonicalmicrok8s" href="/docs/install/canonical/microk8s/">MicroK8s</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a  href="/docs/install/digitalocean/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">DigitalOcean</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docsinstalldigitalocean">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitaloceandigitalocean-kubernetes" href="/docs/install/digitalocean/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
       
       
     </li>
@@ -801,64 +823,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallrancherrancher-gov" href="/docs/install/rancher/rancher-gov/">Rancher Kubernetes Engine 2 (RKE2)</a>
-      
-      
-    </li>
-  </ul>
-</ul>
-
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/azure/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Azure</a>
-  </li>
-  <ul>
-    <li class="collapse " id="docsinstallazure">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstallazuremicrosoft-azure-aks" href="/docs/install/azure/microsoft-azure-aks/">Azure Kubernetes Service (AKS)</a>
-      
-      
-    </li>
-  </ul>
-</ul>
-
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/install/digitalocean/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">DigitalOcean</a>
-  </li>
-  <ul>
-    <li class="collapse " id="docsinstalldigitalocean">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsinstalldigitaloceandigitalocean-kubernetes" href="/docs/install/digitalocean/digitalocean-kubernetes/">DigitalOcean Kubernetes (DOKS)</a>
       
       
     </li>
@@ -1520,12 +1484,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencefilesystems" href="/docs/reference/filesystems/">Supported File Systems</a>
-      
-      
-      
-      
-      
       <a class="td-sidebar-link td-sidebar-link__page " id="m-docsreferencetolerations" href="/docs/reference/tolerations/">Tolerations</a>
       
       
@@ -1749,12 +1707,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="#etcd-low-latency-io">Etcd low latency IO</a></li>
     <li><a href="#setup-of-storage-on-the-hosts">Setup of storage on the hosts</a></li>
     <li><a href="#resource-reservations">Resource reservations</a></li>
-    <li><a href="#setting-a-kubernetes-pid-limit">Setting a Kubernetes PID limit</a></li>
     <li><a href="#maintain-a-sufficient-number-of-nodes-for-replicas-to-be-created">Maintain a sufficient number of nodes for replicas to be created</a></li>
     <li><a href="#ondat-api-usernamepassword">Ondat API username/password</a></li>
     <li><a href="#ondat-pod-placement">Ondat Pod placement</a></li>
     <li><a href="#dedicated-instance-groups">Dedicated instance groups</a></li>
-    <li><a href="#port-blocking">Port blocking</a></li>
   </ul>
 </nav>
 
@@ -1822,13 +1778,6 @@ volumes in case of eviction or resource limit triggered restart. It is
 recommended to not limit Ondat Pods.</p>
 <p>Ondat implements a storage engine, therefore limiting CPU consumption might
 affect the I/O throughput of your volumes.</p>
-<h2 id="setting-a-kubernetes-pid-limit">Setting a Kubernetes PID limit</h2>
-<p>Ondat recommends that a PID cgroup limit of 32768 be set. Ondat is a
-multi-threaded application and while most Kubernetes distributions set the PID
-cgroup limit to 32768, some environments can set a limit as low as 1024. The
-Ondat init container will print a log message warning if the PID cgroup
-limit is too low. See our <a href="/docs/prerequisites/pidlimits">prerequisites</a> for
-more information.</p>
 <h2 id="maintain-a-sufficient-number-of-nodes-for-replicas-to-be-created">Maintain a sufficient number of nodes for replicas to be created</h2>
 <p>To ensure that a new replica can always be created, an additional node should
 be available. To guarantee high availability, clusters using Volumes with 1
@@ -1875,9 +1824,6 @@ Stateful applications that allow the user to set different scaling policies and
 define Ondat pools based on node selectors to collocate volumes.</p>
 <p>Losing a few nodes at the same time could cause the loss of data even when
 volume replicas are being used.</p>
-<h2 id="port-blocking">Port blocking</h2>
-<p>Ondat exposes ports to operate. It is recommended that the <a href="/docs/prerequisites/firewalls">ports</a> are not accessible from outside
-the scope of your cluster.</p>
 
 	
 	

@@ -157,6 +157,26 @@ go!&lt;/p&gt;
     </item>
     
     <item>
+      <title>Docs: Azure</title>
+      <link>/docs/install/azure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/azure/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;If you are running Kubernetes in Azure, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in Azure.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20AKS%20Datasheet.pdf&#34;&gt;Datasheet: Ondat for Microsoft Azure Kubernetes Service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/deploying-stateful-applications-in-a-microsoft-aks-cluster-using-ondat&#34;&gt;Webinar: Deploying Stateful Applications in a Microsoft AKS Cluster Using Ondat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
       <title>Docs: Canonical</title>
       <link>/docs/install/canonical/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -170,6 +190,24 @@ go!&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://microk8s.io/docs/addon-ondat&#34;&gt;MicroK8s quickstart: Addon - Ondat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: DigitalOcean</title>
+      <link>/docs/install/digitalocean/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/install/digitalocean/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;If you are running Kubernetes in DigitalOcean, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in DigitalOcean.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>
@@ -232,44 +270,6 @@ go!&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://thenewstack.io/implement-postgres-on-kubernetes-with-ondat-and-suse-rancher/&#34;&gt;Blog: Implement Postgres on Kubernetes with Ondat and SUSE Rancher&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/deliver-kubernetes-native-persistent-storage-with-ondat-and-suse-rancher&#34;&gt;Webinar: Deliver Kubernetes native, persistent storage with Ondat and SUSE Rancher&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=3ai4cCj3P58&#34;&gt;Video Demonstration: Getting started with SUSE Rancher and Ondat persistent storage&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: Azure</title>
-      <link>/docs/install/azure/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/install/azure/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running Kubernetes in Azure, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in Azure.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20AKS%20Datasheet.pdf&#34;&gt;Datasheet: Ondat for Microsoft Azure Kubernetes Service&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.ondat.io/webinars/deploying-stateful-applications-in-a-microsoft-aks-cluster-using-ondat&#34;&gt;Webinar: Deploying Stateful Applications in a Microsoft AKS Cluster Using Ondat&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-      </description>
-    </item>
-    
-    <item>
-      <title>Docs: DigitalOcean</title>
-      <link>/docs/install/digitalocean/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/install/digitalocean/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
-&lt;p&gt;If you are running Kubernetes in DigitalOcean, there are a number of options on how you run your Ondat cluster. Please see the following white papers, datasheets, webinars and blogs for more information about some of the key use-cases of running Ondat in DigitalOcean.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://3402546.fs1.hubspotusercontent-na1.net/hubfs/3402546/Ondat%20-%20Platform%20Architecture.pdf&#34;&gt;White paper: Ondat Platform Architecture Overview&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
       </description>

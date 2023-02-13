@@ -5575,33 +5575,6 @@ documentation&lt;/a&gt;&lt;/p&gt;
     </item>
     
     <item>
-      <title>Docs: Supported File System</title>
-      <link>/docs/reference/filesystems/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/reference/filesystems/</guid>
-      <description>
-        
-        
-        &lt;h2 id=&#34;host-filesystems&#34;&gt;Host Filesystems&lt;/h2&gt;
-&lt;p&gt;Ondat will automatically use &lt;code&gt;/var/lib/storageos&lt;/code&gt; on each host as a base
-directory for storing &lt;a href=&#34;/docs/concepts/volumes#blob-files&#34;&gt;configuration and blob files&lt;/a&gt;.
-Supported host filesystem types
-are &lt;code&gt;ext4&lt;/code&gt; and &lt;code&gt;xfs&lt;/code&gt;. If you require a specific filesystem, &lt;a href=&#34;/docs/support&#34;&gt;contact
-Ondat&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;persistent-volume-filesystems&#34;&gt;Persistent Volume Filesystems&lt;/h2&gt;
-&lt;p&gt;Ondat provides a block device on which a file system can be created. The
-creation of the filesystem is either handled by Ondat or by Kubernetes
-which affects what filesystems can be created.&lt;/p&gt;
-&lt;h3 id=&#34;csi-driver&#34;&gt;CSI Driver&lt;/h3&gt;
-&lt;p&gt;When using Ondat with the CSI driver, Ondat is responsible for running
-mkfs against the block device that pods mount. Ondat is able to create
-ext2, ext3, ext4 and xfs file systems.&lt;/p&gt;
-
-      </description>
-    </item>
-    
-    <item>
       <title>Docs: Tolerations</title>
       <link>/docs/reference/tolerations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

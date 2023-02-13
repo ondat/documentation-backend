@@ -64,15 +64,25 @@
   </url><url>
     <loc>/docs/install/aws/</loc>
   </url><url>
+    <loc>/docs/install/azure/</loc>
+  </url><url>
     <loc>/docs/install/azure/microsoft-azure-aks/</loc>
   </url><url>
     <loc>/docs/install/canonical/</loc>
   </url><url>
+    <loc>/docs/install/digitalocean/</loc>
+  </url><url>
     <loc>/docs/install/digitalocean/digitalocean-kubernetes/</loc>
+  </url><url>
+    <loc>/docs/install/gcp/</loc>
   </url><url>
     <loc>/docs/install/gcp/anthos/</loc>
   </url><url>
     <loc>/docs/introduction/overview/</loc>
+  </url><url>
+    <loc>/docs/install/openshift/</loc>
+  </url><url>
+    <loc>/docs/install/rancher/</loc>
   </url><url>
     <loc>/docs/install/rancher/rancher/</loc>
   </url><url>
@@ -82,23 +92,11 @@
   </url><url>
     <loc>/docs/ondat-portal/dashboard/</loc>
   </url><url>
-    <loc>/docs/install/gcp/</loc>
-  </url><url>
-    <loc>/docs/install/openshift/</loc>
-  </url><url>
-    <loc>/docs/install/rancher/</loc>
-  </url><url>
     <loc>/docs/install/rancher/rancher-gov/</loc>
   </url><url>
     <loc>/docs/ondat-portal/applications/</loc>
   </url><url>
     <loc>/docs/reference/operator/examples/</loc>
-  </url><url>
-    <loc>/docs/install/azure/</loc>
-  </url><url>
-    <loc>/docs/introduction/platforms/</loc>
-  </url><url>
-    <loc>/docs/install/digitalocean/</loc>
   </url><url>
     <loc>/docs/install/advanced/</loc>
   </url><url>
@@ -108,27 +106,17 @@
   </url><url>
     <loc>/docs/install/aws/terraform-aws-eks-blueprints/</loc>
   </url><url>
-    <loc>/docs/prerequisites/systemconfiguration/</loc>
-  </url><url>
     <loc>/docs/release-notes/</loc>
   </url><url>
-    <loc>/docs/prerequisites/ipv6/</loc>
-  </url><url>
     <loc>/docs/concepts/</loc>
-  </url><url>
-    <loc>/docs/prerequisites/firewalls/</loc>
   </url><url>
     <loc>/docs/prerequisites/</loc>
   </url><url>
     <loc>/docs/install/</loc>
   </url><url>
-    <loc>/docs/prerequisites/pidlimits/</loc>
-  </url><url>
     <loc>/docs/upgrade/</loc>
   </url><url>
     <loc>/docs/best-practices/</loc>
-  </url><url>
-    <loc>/docs/prerequisites/max-aio/</loc>
   </url><url>
     <loc>/docs/operations/</loc>
   </url><url>
@@ -311,8 +299,6 @@
     <loc>/docs/knowledgebase/solution-unable-to-mount-rwx-volumes-to-a-pod/</loc>
   </url><url>
     <loc>/docs/reference/bundles/support_bundle/</loc>
-  </url><url>
-    <loc>/docs/reference/filesystems/</loc>
   </url><url>
     <loc>/docs/reference/tolerations/</loc>
   </url><url>
