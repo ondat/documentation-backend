@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/docs/concepts/automatic-data-locality/</loc>
+  </url><url>
     <loc>/docs/reference/operator/install/</loc>
   </url><url>
     <loc>/docs/introduction/</loc>
   </url><url>
     <loc>/docs/install/kubernetes/</loc>
   </url><url>
+    <loc>/docs/concepts/move/</loc>
+  </url><url>
     <loc>/docs/reference/namespaces/</loc>
+  </url><url>
+    <loc>/docs/concepts/cloning/</loc>
   </url><url>
     <loc>/docs/concepts/cluster-topologies/</loc>
   </url><url>
@@ -178,6 +184,8 @@
   </url><url>
     <loc>/docs/operations/health/</loc>
   </url><url>
+    <loc>/docs/operations/how-to-clone-a-volume/</loc>
+  </url><url>
     <loc>/docs/operations/storageclasses/</loc>
   </url><url>
     <loc>/docs/operations/rwx/</loc>
@@ -197,6 +205,8 @@
     <loc>/docs/operations/cluster-id/</loc>
   </url><url>
     <loc>/docs/operations/how-to-shut-down-start-up-a-cluster-procedure/</loc>
+  </url><url>
+    <loc>/docs/operations/how-to-set-ondat-container-requests-and-limits/</loc>
   </url><url>
     <loc>/docs/operations/compute-only/</loc>
   </url><url>
