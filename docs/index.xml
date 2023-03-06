@@ -3899,6 +3899,8 @@ installation instructions see our
 &lt;li&gt;&lt;a href=&#34;/docs/operations/how-to-set-ondat-container-requests-and-limits&#34;&gt;Container resource limits&lt;/a&gt; can now be set for most Ondat pods, via the &lt;code&gt;storageoscluster&lt;/code&gt; resource.&lt;/li&gt;
 &lt;li&gt;We now support Red Hat Enterprise Linux for Real Time&lt;/li&gt;
 &lt;li&gt;The operator now installs the CLI pod by default&lt;/li&gt;
+&lt;li&gt;All CLI commands are now available through the plugin&lt;/li&gt;
+&lt;li&gt;New options to filter volumes added to the &lt;code&gt;get&lt;/code&gt; and &lt;code&gt;describe&lt;/code&gt; commands of the plugin&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;new---technical-preview&#34;&gt;New - Technical Preview&lt;/h3&gt;
 &lt;blockquote&gt;
@@ -3914,6 +3916,7 @@ installation instructions see our
 &lt;li&gt;Performing multiple volume mounts at the same time should now be much faster&lt;/li&gt;
 &lt;li&gt;Reduced the storage usage of empty (thin-provisioned) volumes&lt;/li&gt;
 &lt;li&gt;Fixed a rare memory leak in the api-manager&lt;/li&gt;
+&lt;li&gt;Fixed the output of error messages in the plugin&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;291---release-2022-11-23&#34;&gt;2.9.1 - Release 2022-11-23&lt;/h2&gt;
 &lt;p&gt;This release improves stability and reduces resource consumption when creating many volumes at once.&lt;/p&gt;

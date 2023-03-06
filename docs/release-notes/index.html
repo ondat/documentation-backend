@@ -32,7 +32,7 @@
 <meta itemprop="description" content="Ondat release notes on new features, fixes and changes.
 ">
 
-<meta itemprop="wordCount" content="5416">
+<meta itemprop="wordCount" content="5449">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Release Notes"/>
 <meta name="twitter:description" content="Ondat release notes on new features, fixes and changes.
@@ -180,7 +180,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d4768a235e0424fced4ca560107bb59f08672c9580fe2266047ca0c54e47c8b21254ede7829afe1be8da417b777dd46ac34c47ff56d634048e7169931305e139.json"
+  data-offline-search-index-json-src="/offline-search-index.9ac1eb9becfeaaf4f134f0a026aed6fe58985af701bef693ae2482c7d29edf63fae00ae78413e2671d5c4fb3fd234ae9b81c93be46691982db8c3142d68b37c3.json"
   data-offline-search-base-href="/"
 >
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d4768a235e0424fced4ca560107bb59f08672c9580fe2266047ca0c54e47c8b21254ede7829afe1be8da417b777dd46ac34c47ff56d634048e7169931305e139.json"
+  data-offline-search-index-json-src="/offline-search-index.9ac1eb9becfeaaf4f134f0a026aed6fe58985af701bef693ae2482c7d29edf63fae00ae78413e2671d5c4fb3fd234ae9b81c93be46691982db8c3142d68b37c3.json"
   data-offline-search-base-href="/"
 >
 
@@ -1917,6 +1917,8 @@ installation instructions see our
 <li><a href="/docs/operations/how-to-set-ondat-container-requests-and-limits">Container resource limits</a> can now be set for most Ondat pods, via the <code>storageoscluster</code> resource.</li>
 <li>We now support Red Hat Enterprise Linux for Real Time</li>
 <li>The operator now installs the CLI pod by default</li>
+<li>All CLI commands are now available through the plugin</li>
+<li>New options to filter volumes added to the <code>get</code> and <code>describe</code> commands of the plugin</li>
 </ul>
 <h3 id="new---technical-preview">New - Technical Preview</h3>
 <blockquote>
@@ -1932,6 +1934,7 @@ installation instructions see our
 <li>Performing multiple volume mounts at the same time should now be much faster</li>
 <li>Reduced the storage usage of empty (thin-provisioned) volumes</li>
 <li>Fixed a rare memory leak in the api-manager</li>
+<li>Fixed the output of error messages in the plugin</li>
 </ul>
 <h2 id="291---release-2022-11-23">2.9.1 - Release 2022-11-23</h2>
 <p>This release improves stability and reduces resource consumption when creating many volumes at once.</p>
