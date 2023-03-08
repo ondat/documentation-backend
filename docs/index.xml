@@ -3908,7 +3908,7 @@ installation instructions see our
 &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/concepts/cloning&#34;&gt;Cloning&lt;/a&gt; is now supported for technical preview&lt;/li&gt;
-&lt;li&gt;The &lt;a href=&#34;docs/concepts/move&#34;&gt;Move&lt;/a&gt; feature, supported for technical previews, allows volumes to be moved between nodes.&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;/docs/concepts/move&#34;&gt;Move&lt;/a&gt; feature, supported for technical previews, allows volumes to be moved between nodes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;fixed&#34;&gt;Fixed&lt;/h3&gt;
 &lt;ul&gt;
