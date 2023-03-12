@@ -3891,11 +3891,10 @@ installation instructions see our
 &lt;p&gt;The latest CLI release is &lt;code&gt;2.10.0&lt;/code&gt;, available from
 &lt;a href=&#34;https://github.com/storageos/go-cli/releases&#34;&gt;GitHub&lt;/a&gt; or containerised from
 &lt;a href=&#34;https://hub.docker.com/r/storageos/cli&#34;&gt;DockerHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;2100---release-2023-04-01&#34;&gt;2.10.0 - Release 2023-04-01&lt;/h2&gt;
+&lt;h2 id=&#34;2100---release-2023-03-01&#34;&gt;2.10.0 - Release 2023-03-01&lt;/h2&gt;
 &lt;p&gt;This release contains various new features and improves stability.&lt;/p&gt;
 &lt;h3 id=&#34;new&#34;&gt;New&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;/docs/operations/how-to-set-ondat-container-requests-and-limits&#34;&gt;Container resource limits&lt;/a&gt; can now be set for most Ondat pods, via the &lt;code&gt;storageoscluster&lt;/code&gt; resource.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;/docs/operations/how-to-set-ondat-container-requests-and-limits&#34;&gt;Container resource limits&lt;/a&gt; can now be set for most Ondat pods, via the &lt;code&gt;storageoscluster&lt;/code&gt; resource.&lt;/li&gt;
 &lt;li&gt;We now support Red Hat Enterprise Linux for Real Time&lt;/li&gt;
 &lt;li&gt;The operator now installs the CLI pod by default&lt;/li&gt;
